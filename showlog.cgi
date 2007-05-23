@@ -83,7 +83,7 @@ if($date =~ /(....)-(..)-(..)/) {
                     push @o, "<a name=\"prob$prob\"></a>\n";
                     push @o, "<div class=\"gccwarn\">$line</div>\n";
                 }
-                elsif($line =~ /^([^:]*):(\d+):/) {
+                elsif($line =~ /^(([^:]*):(\d+):| make\[.*\*\*\*)/) {
                     $prob++;
                     push @o, "<a name=\"prob$prob\"></a>\n";
                     push @o, "<div class=\"gccerror\">$line</div>\n";

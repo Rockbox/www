@@ -3,7 +3,7 @@
 
 <h2>Daily Builds for Different Models</h2>
 
-<p>These are automated daily builds of the code in CVS. They contain all the
+<p>These are automated daily builds of the current code. They contain all the
 latest features. They may also contain bugs and/or undocumented changes... <a
 href="/twiki/bin/view/Main/DeviceChart">identify your model</a>
 
@@ -11,8 +11,11 @@ href="/twiki/bin/view/Main/DeviceChart">identify your model</a>
 <a name="target_builds"></a>
 <a name="daily_builds"></a>
 <!--#exec cmd="./dailymod.pl" -->
-<h2>Daily Changelog</h2>
+
+<h2>More Dailies</h2>
 <!--#exec cmd="./dailysrc.pl" -->
+<p>
+<a href="/manual.shtml">Manuals</a> - pdf, downloadable HTML and online versions.
 
 <h2>Donate</h2>
 

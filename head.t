@@ -6,8 +6,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
-<link rel="STYLESHEET" type="text/css" href="/style.css">
-<link rel="shortcut icon" href="/favicon.ico">
+<link rel="STYLESHEET" type="text/css" href="http://www.rockbox.org/style.css">
+<link rel="shortcut icon" href="http://www.rockbox.org/favicon.ico">
 #ifdef _PAGE_
 <title>Rockbox - _PAGE_</title>
 #else
@@ -17,6 +17,15 @@
 #ifndef _PAGE_
 <meta name="keywords" content="Rockbox,Archos,firmware,open source,computer,programming,software">
 #endif
+
+<script language="Javascript" type="text/javascript">
+function fsstrip() {
+    var expr = /[0-9]+/;
+    document.fsform.taskid.value = expr.exec(document.fsform.taskid.value);
+    return true;
+}
+</script>
+
 </head>
 #else
 %TMPL:DEF{"rockboxmenu"}%
@@ -27,35 +36,42 @@
 <tr valign="top">
 <td bgcolor=MENUBG valign="top">
 <br>
-<div align="center"><a href="/"><img src="/rockbox100.png" width=99 height=30 border=0 alt="Rockbox.org home"></a>
+<div align="center"><a href="http://www.rockbox.org/">
+<img src="http://www.rockbox.org/rockbox100.png" width=99 height=30 border=0 alt="Rockbox.org home"></a>
 </div>
 <div align="right" style="margin-top:20px">
  <div class="submenu">
  Downloads
  </div>
- <a class="menulink" href="/download/">releases</a><br>
- <a class="menulink" href="/daily.shtml">daily builds</a><br>
- <a class="menulink" href="/cvs.shtml">CVS builds</a>
+ <a class="menulink" href="http://www.rockbox.org/download/">releases</a><br>
+ <a class="menulink" href="http://build.rockbox.org">current build</a><br>
+ <a class="menulink" href="http://www.rockbox.org/twiki/bin/view/Main/RockboxExtras">extras</a>
  <div class="submenu">
  Documentation
  </div>
-
- <a class="menulink" href="/manual.shtml">manual</a><br>
- <a class="menulink" href="/twiki/">wiki</a><br>
- <a class="menulink" href="/twiki/bin/view/Main/DocsIndex">index</a>
+ <a class="menulink" href="http://www.rockbox.org/manual.shtml">manual</a><br>
+ <a class="menulink" href="http://www.rockbox.org/twiki/">wiki</a><br>
+ <a class="menulink" href="http://www.rockbox.org/twiki/bin/view/Main/DocsIndex">index</a>
  <div class="submenu">
  Support
  </div>
- <a class="menulink" href="/mail/">mailing lists</a><br>
- <a class="menulink" href="/irc/">IRC</a><br>
+ <a class="menulink" href="http://www.rockbox.org/mail/">mailing lists</a><br>
+ <a class="menulink" href="http://www.rockbox.org/irc/">IRC</a><br>
  <a class="menulink" href="http://forums.rockbox.org/">forums</a>
  <div class="submenu">
  Tracker
  </div>
- <a class="menulink" href="/tracker/index.php?type=1">feature&nbsp;requests</a><br>
- <a class="menulink" href="/tracker/index.php?type=2">bug reports</a><br>
- <a class="menulink" href="/tracker/index.php?type=4">patches</a><br>
- <br>
+ <a class="menulink" href="http://www.rockbox.org/tracker/index.php?type=1">feature&nbsp;requests</a><br>
+ <a class="menulink" href="http://www.rockbox.org/tracker/index.php?type=2">bug reports</a><br>
+ <a class="menulink" href="http://www.rockbox.org/tracker/index.php?type=4">patches</a><br>
+ <div class="submenu">
+ Search
+ </div>
+<form name="fsform" action="http://www.rockbox.org/tracker/index.php" method="get" onSubmit="return fsstrip();">
+<input id="taskid" name="show_task" type="text" size="10" maxlength="10" accesskey="t"><br>
+<input class="mainbutton" type="submit" value="Flyspray #">
+</form>
+<br>
 <form action="http://www.google.com/search">
 <input name=as_q size=10><br>
 <input value="Search" type=submit>
@@ -70,7 +86,7 @@
 <input type="hidden" name="cn" value="Note to the Rockbox team">
 <input type="hidden" name="currency_code" value="USD">
 <input type="hidden" name="tax" value="0">
-<input type="image" src="/paypal-donate.gif" border="0" name="submit">
+<input type="image" src="http://www.rockbox.org/paypal-donate.gif" border="0" name="submit">
 </form>
 </div>
 </td>

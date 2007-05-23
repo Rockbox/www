@@ -57,6 +57,12 @@ pre {
  border-color: #000000;
 }
 
+.submenu {
+ padding:2px;
+ background-color:#b6c6e5;
+ margin-top:8px;
+}
+
 .menulink {
  color: #f0f0f0;
  line-height: 140%;
@@ -157,17 +163,7 @@ td.toolscat {
  background-color: #b6c6e5;
 }
 
-.vc_diff_nochange {
- background-color: #ffffff;
-}
-
-.vc_navheader {
- background-color: #7897cb;
-}
-
-.vc_diff_chunk_header {
- background-color: #90afe3;
-}
+/****** TWiki ******/
 
 .twikiDiffLineNumberHeader {
  background-color: #d6e6f5;
@@ -193,6 +189,25 @@ td.toolscat {
  border: 2px outset white;
 }
 
+.twikiAccessKey {
+ border-bottom: solid black 1px;
+}
+
+.twikiRevInfo {
+ font-size: 80%;
+ text-align: right;
+}
+
+.TWikiCopyright {
+ font-size: 75%;
+ text-align: right;
+}
+
+.twikiEmulatedLink {
+ text-decoration: underline;
+ color: blue;
+}
+
 .bstamp {
  text-decoration: none;
 }
@@ -213,4 +228,23 @@ td.toolscat {
   color: #ff0;
   font-weight: bold;
   font-size: 10px; 
+}
+
+.sponsor {
+  width: 120px;
+  font-size: 7pt;
+  float: right;
+  border: outset 2px #ffffff;
+  padding: 3px 3px 3px 3px;
+  margin-left: 10px;
+}
+
+/* code fragments in twiki: */
+.fragment {
+/*  border: dotted 1px;*/
+  padding: 0 2px 0 5px;
+}
+
+.fname {
+  font-size: 85%;
 }

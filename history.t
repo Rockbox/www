@@ -2,6 +2,59 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<p><i>2007-03-10</i>: We welcome <a
+href="http://www.rockbox.org/mail/archive/rockbox-dev-archive-2007-03/0005.shtml">SanDisk
+Sansa E200</a> to the happy family of Rockbox targets.
+
+<p><i>2007-03-04</i>: We welcome <a
+href="http://www.rockbox.org/mail/archive/rockbox-archive-2007-03/0175.shtml">iAudio
+M5</a> to the happy family of Rockbox targets.
+
+<p><i>2007-01-24</i>: There's talk with <a href="/twiki/bin/view/Main/AustriaMicrosystems">AMS</a>.
+
+<p><i>2007-01-11</i>: We are changing version control system from CVS to Subversion.
+
+<p><i>2006-12-29</i>: Toshiba Gigabeat builds added to the CVS build table and
+the daily builds.
+
+<p><i>2006-12-25</i>: The recent instabilities might be cured now as we run
+only single-CPU on the server now. Removed CVS builds from this server to
+reduce some load.
+
+<p><i>2006-12-14</i>: Michiel van der Kolk, sometimes known as HCl, is
+dead. He passed away yesterday. He will be missed and remembered as maestro of
+Rockboy and his eager work on the initial tag database amongst other
+things. <a href="http://forums.rockbox.org/index.php?topic=7694.0">more...</a>
+
+<p><i>2006-12-07</i>: Sansa e200 builds added to the CVS build table
+
+<p><i>2006-10-02</i>: Enhanced left-side menu of the web site
+
+<p><i>2006-08-23</i>: <a href="http://rasher.dk/rockbox/people/">Where are the Rockboxers?</a> 
+
+<p><i>2006-07-18</i>: The <a href="/mail/archive/rockbox-dev-archive-2006-07/0054.shtml">feature freeze is lifted</a>
+
+<p><i>2006-07-14</i>: The Wiki is back up again.
+
+<p><i>2006-07-07</i>: Site is back up again after a few days downtime due to
+yet another break-in/attack. The twiki parts are still disabled and will be
+brought back once we believe we have them "secured" properly.
+
+<p><i>2006-03-28</i>: <a
+href="mail/archive/rockbox-archive-2006-03/0502.shtml">Sound</a> on <a
+href="http://www.rockbox.org/twiki/bin/view/Main/IaudioPort">iAudio X5!</a>.
+
+<p><i>2006-03-17</i>: <a href="devcon2006/">The Rockbox International
+Developers Conference 2006</a>.
+
+<p><i>2006-02-23</i>: We have migrated to a new bugtracker: Flyspray. It's faster and better in practically every aspect. <a href="/tracker/">See it here</a>.
+
+<p><i>2006-01-28</i>: <a href="http://www.rockbox.org/mail/archive/rockbox-archive-2006-01/0543.shtml">Sound</a> on <a href="http://www.rockbox.org/twiki/bin/view/Main/IpodPort">iPod!</a>
+
+<p><i>2005-12-06</i>: Unicode support!
+
+<p><i>2005-09-22</i>: Rockbox v2.5 is <a href="download/">released</a>.
+
 <p><i>2005-09-21</i>: The Wiki pages are now restored as much as possible with the exception of the <a href="http://www.rockbox.org/twiki/bin/view/Main/WpsGallery">WPS Gallery</a>. The Wiki has been upgraded and the hole is plugged. Backups are done manually currently - work is underway to fix the automatic system that failed us.
 
 <p><i>2005-09-19</i>: An oldish backup restored, work in progress on getting pages more up-to-date. Mailing lists are up again, but check that you are still subscribed!
