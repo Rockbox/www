@@ -6,7 +6,8 @@ my $src="/home/dast/src/rockbox";
 
 #******** Config options **********
 
-my $sshopts="-oConnectTimeout=15 -oCheckHostIP=no -oStrictHostKeyChecking=no";
+my $sshopts="-oConnectTimeout=15 -oCheckHostIP=no -oStrictHostKeyChecking=no".
+    " -oServerAliveInterval=30";
 
 # config.pm has the @servers array with all the servers and info about what
 # builds they can do
@@ -293,7 +294,8 @@ sub buildremote {
     if ($exitcode) {
         logmsg "Warning: $server failed with ssh exit code: $exitcode.\n";
         logmsg "attempt to get log to see *actual* fail reason\n";
-        $fail=1;
+        return 2;
+	# $fail = 1; # this previously tried to check how far we had got
     }
 
     # Get the build info
