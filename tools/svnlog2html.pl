@@ -8,7 +8,7 @@ my @b;
 my @f;
 my $rev;
 
-# SVN user names
+# SVN user names, list them in lowercase only
 my %shortnames=('linus' => 'Linus Nielsen Feltzing', # Nielsen Feltzing
                 'bagder' => 'Daniel Stenberg', # Stenberg
                 'zagor' => 'Björn Stenberg', # Stenberg
@@ -32,15 +32,15 @@ my %shortnames=('linus' => 'Linus Nielsen Feltzing', # Nielsen Feltzing
                 'tomas' => 'Tomas Salfischberger',
                 'pbv' => 'Pedro Vasconcelos', # Vasconcelos
                 'miipekk' => 'Miika Pekkarinen', # Miika Pekkarinen
-                'Bryant' => 'Dave Bryant', # David Bryant
-                'Andy' => 'Andy',
+                'bryant' => 'Dave Bryant', # David Bryant
+                'andy' => 'Andy',
                 'dionoea' => 'Antoine Cellerier', # Antoine Cellerier
                 'markun' => 'Marcoen Hirschberg', # Marcoen Hirschberg
                 'niobos' => 'Niels Laukens', # Niels Laukens
                 'rdjackso' => 'Ryan Jackson', # Ryan Jackson
                 'kevin' => 'Kevin Ferrare', # Kevin Ferrare
                 'len0x' => 'Anton Oleynikov', # Anton Oleynikov
-		'Adam' => 'Adam Boot',  # Adam Boot
+		'adam' => 'Adam Boot',  # Adam Boot
 		'bger' => 'Hristo Kovachev',  # Hristo Kovachev
                 'tomal' => 'Tomasz Malesinski', # Tomasz Malesinski
                 'lostlogic' => 'Brandon Low', # Brandon Low
@@ -68,14 +68,20 @@ my %shortnames=('linus' => 'Linus Nielsen Feltzing', # Nielsen Feltzing
                 'pixelma' => 'Marianne Arnold',
                 'gwhite' => 'Greg White',
                 'gotthardt' => 'Steve Gotthardt',
-                'Llorean' => 'Paul Louden',
+                'llorean' => 'Paul Louden',
                 'midgey34' => 'Tom Ross',
                 'agashlin', => 'Adam Gashlin',
                 'nicolasp' => 'Nicolas Pennequin',
-                'Domonoky' => 'Dominik Wenger',
+                'domonoky' => 'Dominik Wenger',
                 'roolku' => 'Robert Kukla',
-                'Toni' => 'Antonius Hellmann',
+                'toni' => 'Antonius Hellmann',
                 'moos' => 'Mustapha Senhaji',
+                'saratoga' => 'Michael Giacomelli',
+                'robert' => 'Robert Keevil',
+                'lenzone10' => 'Alessio Lenzi',
+                'aliask' => 'Will Robertson',
+                'james83' => 'James Espinoza',
+                'scorche' => 'Austin Appel',
                 );
 
 my @mname = ('January', 'February', 'March', 'April', 'May',
@@ -156,7 +162,7 @@ while(<STDIN>) {
         $rev = -1;
         if($l =~ /^r(\d+) \| (.+) \| ([0-9-]*) ([0-9:]*) (.*) \| (\d+) line/) {
             $rev = $1;
-            my $lname = $shortnames{$2} || $2;
+            my $lname = $shortnames{lc($2)} || $2;
             my $t = $4;
             my $d = $3;
 
