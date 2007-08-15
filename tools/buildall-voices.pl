@@ -63,7 +63,7 @@ sub buildit {
     `rm -rf * >/dev/null 2>&1`;
 
     # V (voice), F (festival), L (lame), [blank] (English)
-    my $c = sprintf('echo -e "%s\n%sa\nv\n\nf\n\n" | ../tools/configure',
+    my $c = sprintf('echo -e "%s\n%sa\nv\n\n\nf\n\n" | ../tools/configure',
                     $select, $newl?'\n':"");
 
     print "C: $c\n" if($verbose);
@@ -115,7 +115,7 @@ runone("iaudiom5", "m5");
 runone("ipodmini2g", "ipodmini2g");
 runone("ipodmini1g", "ipodmini");
 runone("h10", "h10");
-#runone("h10_5gb", "h10_5gb");
+runone("h10_5gb", "h10_5gb");
 runone("gigabeatf", "gigabeatf");
 runone("sansae200", "e200");
-buildinfo();
+#buildinfo();
