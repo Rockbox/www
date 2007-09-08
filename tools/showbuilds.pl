@@ -17,10 +17,15 @@ my %dir; # hash per type for build dir
 my $numout = 20;
 
 sub nicehead {
-    my ($file, $title)=@_;
+    my ($file, $title, $onload)=@_;
 
     open(NICE, ">$file");
     open(READ, "<head.html");
+    my $js = <<MOO
+  <script type="text/javascript" src="countdown.js"></script>
+MOO
+;
+
     while(<READ>) {
         s/_PAGE_/$title/;
         print NICE $_;
@@ -150,6 +155,12 @@ sub log2html {
                     $errors{$type.$date}++;
 #                    print STDERR "Error $type $date $1 $2\n";
                 }
+                elsif($line =~ /Using (.*gcc) ([0-9.]+) \(/ ) {
+                    $gcc{$type.$date}="$1 $2";
+#                    print STDERR "GCC $1 $2\n";
+                }
+                
+                #print STDERR "M: $line";
             }
         }
     }
@@ -189,6 +200,7 @@ my $lasttime = <IN>;
 close(IN);
 
 my $numbuilds = scalar(keys %alltypes);
+my $js;
 if($building) {
     my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday) =
         gmtime(time);
@@ -197,9 +209,12 @@ if($building) {
     if($prevtime) {
         my ($dsec,$dmin,$dhour,$dmday,$dmon,$dyear,$dwday,$dyday) =
             gmtime(time()+$prevtime);
-        $text = sprintf("Build expected to complete around %02d:%02d:%02d (in %dmins %dsecs)",
+        $text = sprintf("Build <span id=\"countdown_text\">expected to complete around %02d:%02d:%02d (in %dmins %dsecs)</span></a>",
                         $dhour, $dmin, $dsec,
                         $prevtime/60, $prevtime%60);
+        $js = sprintf("<script type=\"text/javascript\">countdown_refresh(%d,%d,%d,%d,%d,%d);</script>",
+                          $dyear+1900, $dmon, $dmday,
+                          $dhour, $dmin, $dsec);
     }
 
     $building =~ s/ /%20/g;
@@ -288,9 +303,13 @@ for(reverse @rounds) {
                     $text = "FAIL";
                 }
 
-                printf("<td class=\"%s\"><a class=\"blink\" href=\"showlog.cgi?date=%s&type=%s\">%s</a></td>\n",
+                my $ser = $server{$_};
+                $ser =~ s/rbclient\@//;
+
+                printf("<td class=\"%s\"><a class=\"blink\" href=\"showlog.cgi?date=%s&type=%s\" title=\"%s on %s in %d secs\">%s</a></td>\n",
                        $class,
                        urlencode($date{$_}), urlencode($type{$_}),
+                       $gcc{$_}, $ser, $btime{$_},
                        $text);
                 $found=1;
                 last;
@@ -346,3 +365,5 @@ for(reverse @rounds) {
 printf "</table> %d builds in %d seconds (%dmins %dsecs) makes %.1f seconds/build (the most recent build took %dmins %dsecs)\n",
     $numbuilds, $prevtime, $prevtime/60, $prevtime%60, $prevtime/$numbuilds,
     $lasttime/60, $lasttime%60;
+
+print $js;
