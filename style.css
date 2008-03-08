@@ -28,6 +28,11 @@ H3, div.h5, .newsdate {
  font-size:        110%;
 }
 
+h3.frontpage {
+ margin-top: 5px;
+ margin-bottom: 3px;
+}
+
 BODY, P, DIV, TD, TH, TR, FORM, OL, UL, LI, INPUT, TEXTAREA, SELECT
 {
  text-decoration:  none;
@@ -58,18 +63,18 @@ pre {
 }
 
 .submenu {
- padding:2px;
- background-color:#b6c6e5;
- margin-top:8px;
+ padding: 2px;
+ background-color: #b6c6e5;
+ margin-top: 10px;
 }
 
 .menulink {
- color: #f0f0f0;
+ color: #fff;
  line-height: 140%;
 }
 
 .menutext {
- color: #f0f0f0;
+ color: #fff;
  font-size: 7pt;
 }
 
@@ -111,10 +116,25 @@ PRE {
  font-size: 9pt;
 }
 
+.sponsors img {
+  overflow: hidden;
+}
 
-.rockbox, .changetable, .bugs, .requests, .patches, .dailymod, .buildstatus, .archive, .buttontable, .changesummary, .tools
+
+.rockbox, .changetable, .bugs, .requests, .patches, .dailymod, .buildstatus, .archive, .buttontable, .changesummary, .tools, .latestmail, .twikichanges, .changetable_front, .news, .sponsors, .blurb
 {
- border: outset 2px #ffffff;
+ border: outset 1px #ffffff;
+}
+
+.rockbox td, .changetable td, .bugs td, .requests td, .patches td, .archive td, .buttontable td, .tools td, .latestmail td, .twikichanges td, .changetable_front td, .news td, .blurb td
+{
+ background-color: #c6d6f5;
+ padding: 4px;
+}
+
+table.changetable_front, table.news, table.twikichanges, table.latestmail
+{
+  width: 100%;
 }
 
 .listtable tr {
@@ -130,12 +150,6 @@ PRE {
 .buildstatus th
 {
  vertical-align: top;
-}
-
-.rockbox td, .changetable td, .bugs td, .requests td, .patches td, .archive td, .buttontable td, .tools td
-{
- background-color: #c6d6f5;
- padding: 4px;
 }
 
 .fixed td {
@@ -234,7 +248,7 @@ td.toolscat {
   width: 120px;
   font-size: 7pt;
   float: right;
-  border: outset 2px #ffffff;
+  border: outset 1px #ffffff;
   padding: 3px 3px 3px 3px;
   margin-left: 10px;
 }
@@ -247,4 +261,8 @@ td.toolscat {
 
 .fname {
   font-size: 85%;
+}
+
+caption {
+   display: none;
 }

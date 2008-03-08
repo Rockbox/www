@@ -2,6 +2,26 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<p><i>2007-06-20</i>: Added download mirrors, thanks to some new sponsors
+
+<p><i>2007-06-15 - 17</i>: <a href="/devconwest2007/">Devcon West 2007</a>
+
+<p><i>2007-06-15</i>: The main web site changed IP and got faster network
+connection
+
+<p><i>2007-05-23</i>: Rockbox works on the ipod video 5.5gen 80GB
+
+<p><i>2007-05-18</i>: <a href="devcon2007/">Devcon 2007 took place</a>
+
+<p><i>2007-05-06</i>: Scheduled server maintenance. build.rockbox.org and download.rockbox.org will be down approximately 00:00 to 10:00 CET.
+
+<p><i>2007-03-29</i>: Announcing the <a href=http://www.rockbox.org/twiki/bin/view/Main/DevCon2007>Rockbox International Developers Conference 2007</a> to be
+held in Stockholm May 19-20 2007.
+
+<p><i>2007-03-15</i>: Rockbox has been accepted as a mentor organization of <a
+href="http://www.rockbox.org/twiki/bin/view/Main/SummerOfCode">Google's summer
+of code 2007</a>
+
 <p><i>2007-03-10</i>: We welcome <a
 href="http://www.rockbox.org/mail/archive/rockbox-dev-archive-2007-03/0005.shtml">SanDisk
 Sansa E200</a> to the happy family of Rockbox targets.

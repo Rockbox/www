@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Rockbox Devcon 2007 webcam</title>
+
+<script language="Javascript">
+
+<!--
+function refreshCam(){
+        rfsh = new Date() ; rfsh = "?"+rfsh.getTime();
+        document.images["cam"].src = "http://download.rockbox.org/webcam.jpg"+rfsh;
+        setTimeout("refreshCam()", 15000);
+    }
+
+//-->
+</script>
+
+<body bgcolor="#000000" text="#ffffff">
+<div align="center">
+<img name="cam" src="http://download.rockbox.org/webcam.jpg" width=640 height=480>
+<p>Click this button to save a Special Moment(tm) you see on-screen!
+<form action="http://giant.haxx.se/savethis.pl" method="get">
+<input type="submit" value="Store this image">
+</form>
+
+<p><a href="http://download.rockbox.org/devcon2007/saved/">View stored images</a>
+
+<p>A quick <a href="http://www.stud.uni-karlsruhe.de/~uhcn/rockbox/DevCon2007.jpg">who is who</a>.
+</div>
+
+<script language="JavaScript">
+  <!--
+    if( document.images )
+        refreshCam();
+  //-->
+</script>
+
+</body>
+</html>

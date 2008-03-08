@@ -1,0 +1,133 @@
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<link rel="STYLESHEET" type="text/css" href="/style.css">
+<title>Devcon 20006 Agenda Ideas</title>
+</head>
+
+<body>
+
+<div>
+
+<h1><span><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:300pt;
+ height:92.25pt'>
+ <v:imagedata src="./devcon2006-filer/image001.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=400 height=123
+src="http://www.rockbox.org/rockbox400devcon.png" v:shapes="_x0000_i1025"><![endif]></span></h1>
+
+<h1><span lang=EN-GB>Archos<o:p></o:p></span></h1>
+
+<ul style='margin-top:0cm' type=disc>
+ <li><span
+     lang=EN-GB style='mso-ansi-language:EN-GB'>PCM codec, recording
+     framewalker, perhaps playback framewalker, late bitswap </span><span
+     lang=EN-GB style='font-family:"Arial Unicode MS";mso-ansi-language:EN-GB'><o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l5 level1 lfo5;tab-stops:list 36.0pt'><span
+     lang=EN-GB style='mso-ansi-language:EN-GB'>How to handle new features,
+     with the codesize already being critical <o:p></o:p></span></li>
+</ul>
+
+<h1><span lang=EN-GB style='mso-ansi-language:EN-GB'>iPod<o:p></o:p></span></h1>
+
+<ul style='margin-top:0cm' type=disc>
+ <li class=MsoNormal style='mso-list:l1 level1 lfo6;tab-stops:list 36.0pt'><span
+     lang=EN-GB style='mso-ansi-language:EN-GB'>Discussion of how to implement
+     support for accessories (if anyone other than </span><a
+     href="http://www.rockbox.org/twiki/bin/view/Main/ChristiScarborough"><span
+     lang=EN-GB style='mso-ansi-language:EN-GB'>ChristiScarborough</span></a><span
+     lang=EN-GB style='mso-ansi-language:EN-GB'> is interested)<o:p></o:p></span></li>
+</ul>
+
+<h1><span lang=EN-GB style='mso-ansi-language:EN-GB'>Sound Playback<o:p></o:p></span></h1>
+
+<p class=MsoNormal><span lang=EN-GB style='mso-ansi-language:EN-GB'>A playback
+buffer renovation<o:p></o:p></span></p>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo1;tab-stops:list 36.0pt'><span lang=EN-GB
+     style='mso-ansi-language:EN-GB'>Playback system unification between
+     hwcodec and swcodec <o:p></o:p></span></li>
+ <ul type=circle>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l0 level2 lfo1;tab-stops:list 72.0pt'><span lang=EN-GB
+      style='mso-ansi-language:EN-GB'>Have an additional layer on hwcodec
+      targets for pre and post bitswap <o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l0 level2 lfo1;tab-stops:list 72.0pt'><span lang=EN-GB
+      style='mso-ansi-language:EN-GB'>Loadable mas codec for hwcodec <o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l0 level2 lfo1;tab-stops:list 72.0pt'><span lang=EN-GB
+      style='mso-ansi-language:EN-GB'>Split playback.c into manageable logical
+      partitions <o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l0 level2 lfo1;tab-stops:list 72.0pt'><span lang=EN-GB
+      style='mso-ansi-language:EN-GB'>A unified status to indicate playback and
+      recording state <o:p></o:p></span></li>
+ </ul>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo1;tab-stops:list 36.0pt'><span lang=EN-GB
+     style='mso-ansi-language:EN-GB'>Put metadata/album art/lyrics/other on the
+     codec buffer with a simple linked list of pointers to metadata / track
+     starts <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo1;tab-stops:list 36.0pt'><span lang=EN-GB
+     style='mso-ansi-language:EN-GB'>See </span><a
+     href="http://www.rockbox.org/twiki/bin/view/Main/AudioAPIEnhancement"><span
+     lang=EN-GB style='mso-ansi-language:EN-GB'>AudioAPIEnhancement</span></a><span
+     lang=EN-GB style='mso-ansi-language:EN-GB'> for more thoughts on this <o:p></o:p></span></li>
+</ul>
+
+<h1><span lang=EN-GB style='mso-ansi-language:EN-GB'>Radio / Record<o:p></o:p></span></h1>
+
+<ul style='margin-top:0cm' type=disc>
+ <li class=MsoNormal style='mso-list:l4 level1 lfo4;tab-stops:list 36.0pt'><span
+     lang=EN-GB style='mso-ansi-language:EN-GB'>Discussion on how to extend the
+     WPS system to radio and recording <o:p></o:p></span></li>
+</ul>
+
+<h1><span lang=EN-GB style='mso-ansi-language:EN-GB'>Project Admin<o:p></o:p></span></h1>
+
+<ul style='margin-top:0cm' type=disc>
+ <li class=MsoNormal style='mso-list:l3 level1 lfo3;tab-stops:list 36.0pt'><span
+     lang=EN-GB style='mso-ansi-language:EN-GB'>how to deal with the
+     patches/feature requests/bug reports, can we do it better? should we close
+     <strong>really</strong> old ones? <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l3 level1 lfo3;tab-stops:list 36.0pt'><span
+     lang=EN-GB style='mso-ansi-language:EN-GB'>how to improve the release
+     process and be more rigorous about recording and fixing bugs and ensuring
+     full functionality on as many platforms as possible <o:p></o:p></span></li>
+</ul>
+
+<h1><span lang=EN-GB style='mso-ansi-language:EN-GB'>Build / config / source
+tree<o:p></o:p></span></h1>
+
+<ul style='margin-top:0cm' type=disc>
+ <li class=MsoNormal style='mso-list:l2 level1 lfo2;tab-stops:list 36.0pt'><span
+     lang=EN-GB style='mso-ansi-language:EN-GB'>how to improve portability, get
+     a more generic code base<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l2 level1 lfo2;tab-stops:list 36.0pt'><span
+     lang=EN-GB style='mso-ansi-language:EN-GB'>how to make a more generic
+     button/key approach so that the hurdle for new ports don't continuously
+     add up in regard to the key assignments in plugins <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l2 level1 lfo2;tab-stops:list 36.0pt'><span
+     lang=EN-GB style='mso-ansi-language:EN-GB'>Do we need a 'make menuconfig'
+     for Rockbox in good old Linux spirit to enable easier custom builds? <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l2 level1 lfo2;tab-stops:list 36.0pt'><span
+     lang=EN-GB style='mso-ansi-language:EN-GB'>Adding more big plugins/games
+     to the single build (like Doom). Do we need to start offer different
+     download packages somehow? <o:p></o:p></span></li>
+</ul>
+
+<p class=MsoNormal><span lang=EN-GB style='mso-ansi-language:EN-GB'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

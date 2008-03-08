@@ -1,0 +1,82 @@
+deny from 69.41.161.28
+
+RedirectMatch ^/devconwest2007(.*) http://scorche.cleansoap.org/rockbox/dcw.html
+RedirectPermanent /patches.shtml http://www.rockbox.org/tracker/index.php?type=4
+RedirectPermanent /bugs.shtml http://www.rockbox.org/tracker/index.php?type=2
+RedirectPermanent /requests.shtml http://www.rockbox.org/tracker/index.php?type=1
+RedirectMatch ^/langs(.*) http://www.rockbox.org/twiki/bin/view/Main/LangFiles
+RedirectMatch ^/fonts(.*) http://www.rockbox.org/dl.cgi?bin=fonts
+
+AddType application/octet-stream .mod .ajz .lng .fnt .voice
+AddType text/xml .rss
+AddDefaultcharset On
+
+### FS #5617 - Redirect from static pages to wiki ###
+# Root
+#RedirectPermanent /activity.html http://www.rockbox.org/
+#RedirectPermanent /status.html http://www.rockbox.org/
+#RedirectPermanent /tools.html http://www.rockbox.org/
+#RedirectPermanent /usb-howto.html http://www.rockbox.org/
+#RedirectPermanent /lock.html http://www.rockbox.org/
+
+RedirectPermanent /bugs.html http://www.rockbox.org/tracker/index.php?type=2
+RedirectPermanent /cross-gcc.html http://www.rockbox.org/twiki/bin/view/Main/CrossCompiler
+RedirectPermanent /patches.html http://www.rockbox.org/tracker/index.php?type=4
+RedirectPermanent /requests.html http://www.rockbox.org/tracker/index.php?type=1
+RedirectPermanent /screenshots.html http://www.rockbox.org/twiki/bin/view/Main/ScreenShots
+RedirectPermanent /TODO http://www.rockbox.org/twiki/bin/view/Main/ReleaseTodo
+
+# /screenshots dir
+RedirectPermanent /screenshots/index.html http://www.rockbox.org/twiki/bin/view/Main/ScreenShots
+#RedirectPermanent /screenshots/ http://www.rockbox.org/twiki/bin/view/Main/ScreenShots
+
+# /docs dir
+#RedirectPermanent /docs/mpeghdr.html http://www.rockbox.org/
+#RedirectPermanent /docs/rocklatin.html http://www.rockbox.org/
+#RedirectPermanent /docs/repairbattery.html http://www.rockbox.org/
+#RedirectPermanent /docs/repairlcd.html http://www.rockbox.org/
+#RedirectPermanent /docs/contributing.html http://www.rockbox.org/
+#RedirectPermanent /docs/license.html http://www.rockbox.org/
+RedirectPermanent /docs/rvf.html http://www.rockbox.org/twiki/bin/view/Main/VideoTutorial
+RedirectPermanent /docs/index.html http://www.rockbox.org/twiki/bin/view/Main/DocsIndex
+RedirectPermanent /docs/nodo.html http://www.rockbox.org/twiki/bin/view/Main/NoDo
+RedirectPermanent /docs/battery-faq.html http://www.rockbox.org/twiki/bin/view/Main/BatteryFAQ
+RedirectPermanent /docs/credits.html http://svn.rockbox.org/viewvc.cgi/trunk/docs/CREDITS
+RedirectPermanent /docs/cygwin_sdk.html http://www.rockbox.org/twiki/bin/view/Main/CygwinDevelopment
+RedirectPermanent /docs/custom_wps_format.html http://www.rockbox.org/twiki/bin/view/Main/CustomWPS
+RedirectPermanent /docs/datasheets.html http://www.rockbox.org/twiki/bin/view/Main/DataSheets
+RedirectPermanent /docs/devicechart.html http://www.rockbox.org/twiki/bin/view/Main/DeviceChart
+RedirectPermanent /docs/faq.html http://www.rockbox.org/twiki/bin/view/Main/GeneralFAQ
+RedirectPermanent /docs/features.html http://www.rockbox.org/twiki/bin/view/Main/FeatureComparison
+RedirectPermanent /docs/firsttime.html http://www.rockbox.org/twiki/bin/view/Main/DevelopmentGuide
+RedirectPermanent /docs/flash.html http://www.rockbox.org/twiki/bin/view/Main/FlashingRockbox
+RedirectPermanent /docs/how_to_compile.html http://www.rockbox.org/twiki/bin/view/Main/HowToCompile
+RedirectPermanent /docs/patch.html http://www.rockbox.org/twiki/bin/view/Main/WorkingWithPatches
+RedirectPermanent /docs/ports.html http://www.rockbox.org/twiki/bin/view/Main/PortPinAssignments
+RedirectPermanent /docs/rvf.html http://www.rockbox.org/twiki/bin/view/Main/VideoTutorial
+RedirectPermanent /docs/tools.html http://www.rockbox.org/twiki/bin/view/Main/UsefulTools
+#RedirectPermanent /docs/ http://www.rockbox.org/twiki/bin/view/Main/DocsIndex
+
+# /schematics dir
+RedirectPermanent /schematics/index.html http://www.rockbox.org/twiki/bin/view/Main/HardwareSchematics
+#RedirectPermanent /schematics/ http://www.rockbox.org/twiki/bin/view/Main/HardwareSchematics
+
+# /sh-win dir
+RedirectPermanent /sh-win/index.html http://www.rockbox.org/twiki/bin/view/Main/CygwinDevelopment
+#RedirectPermanent /sh-win/ http://www.rockbox.org/twiki/bin/view/Main/CygwinDevelopment
+
+# /mods dir
+#RedirectPermanent /mods/harddisk.html http://www.rockbox.org/
+RedirectPermanent /mods/index.html http://www.rockbox.org/twiki/bin/view/Main/DocsIndex#Hardware
+RedirectPermanent /mods/disassemble.html http://www.rockbox.org/twiki/bin/view/Main/DisassemblePlayer
+RedirectPermanent /mods/disassemble2.html http://www.rockbox.org/twiki/bin/view/Main/DisassemblePlayer2
+RedirectPermanent /mods/reassemble.html http://www.rockbox.org/twiki/bin/view/Main/ReassemblePlayer
+RedirectPermanent /mods/rs232.html http://www.rockbox.org/twiki
+#RedirectPermanent /mods/ http://www.rockbox.org/twiki/bin/view/Main/DocsIndex#Hardware
+
+# twiki/index.html
+RedirectPermanent /twiki/index.html http://www.rockbox.org/twiki/bin/view/Main/WebHome
+
+RedirectPermanent /wiki/ http://www.rockbox.org/twiki/bin/view/Main/
+
+RedirectMatch ^/viewcvs.cgi/(.*) http://svn.rockbox.org/viewvc.cgi/trunk/$1?view=log

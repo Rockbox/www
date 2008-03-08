@@ -13,61 +13,58 @@
 #else
 <title>Rockbox</title>
 #endif
-<meta name="author" content="Björn Stenberg, in Emacs">
+<meta name="author" content="Rockbox Contributors">
 #ifndef _PAGE_
 <meta name="keywords" content="Rockbox,Archos,firmware,open source,computer,programming,software">
 #endif
-
-<script language="Javascript" type="text/javascript">
+<script type="text/javascript">
 function fsstrip() {
     var expr = /[0-9]+/;
     document.fsform.taskid.value = expr.exec(document.fsform.taskid.value);
     return true;
 }
 </script>
-
 </head>
 #else
 %TMPL:DEF{"rockboxmenu"}%
 #endif
-<body bgcolor=BGCOLOR text="black" link="blue" vlink="purple" alink="red" topmargin=0 leftmargin=0 marginwidth=0 marginheight=0>
-
-<table border=0 cellpadding=7 cellspacing=0 height="100%">
+<body>
+<table border=0 cellpadding=7 cellspacing=0>
 <tr valign="top">
 <td bgcolor=MENUBG valign="top">
 <br>
 <div align="center"><a href="http://www.rockbox.org/">
 <img src="http://www.rockbox.org/rockbox100.png" width=99 height=30 border=0 alt="Rockbox.org home"></a>
 </div>
-<div align="right" style="margin-top:20px">
- <div class="submenu">
- Downloads
- </div>
- <a class="menulink" href="http://www.rockbox.org/download/">releases</a><br>
- <a class="menulink" href="http://build.rockbox.org">current build</a><br>
- <a class="menulink" href="http://www.rockbox.org/twiki/bin/view/Main/RockboxExtras">extras</a>
- <div class="submenu">
- Documentation
- </div>
- <a class="menulink" href="http://www.rockbox.org/manual.shtml">manual</a><br>
- <a class="menulink" href="http://www.rockbox.org/twiki/">wiki</a><br>
- <a class="menulink" href="http://www.rockbox.org/twiki/bin/view/Main/DocsIndex">index</a>
- <div class="submenu">
- Support
- </div>
- <a class="menulink" href="http://www.rockbox.org/mail/">mailing lists</a><br>
- <a class="menulink" href="http://www.rockbox.org/irc/">IRC</a><br>
- <a class="menulink" href="http://forums.rockbox.org/">forums</a>
- <div class="submenu">
- Tracker
- </div>
- <a class="menulink" href="http://www.rockbox.org/tracker/index.php?type=1">feature&nbsp;requests</a><br>
- <a class="menulink" href="http://www.rockbox.org/tracker/index.php?type=2">bug reports</a><br>
- <a class="menulink" href="http://www.rockbox.org/tracker/index.php?type=4">patches</a><br>
- <div class="submenu">
- Search
- </div>
-<form name="fsform" action="http://www.rockbox.org/tracker/index.php" method="get" onSubmit="return fsstrip();">
+<div style="margin-top:20px">
+<div class="submenu">
+Downloads
+</div>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/package.png' align='top'> <a class="menulink" href="http://www.rockbox.org/download/">releases</a><br>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/bomb.png' align='top'> <a class="menulink" href="http://build.rockbox.org">current build</a><br>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/style.png' align='top'> <a class="menulink" href="http://www.rockbox.org/twiki/bin/view/Main/RockboxExtras">extras</a>
+<div class="submenu">
+Documentation
+</div>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/page_white_acrobat.png' align='top'> <a class="menulink" href="http://www.rockbox.org/manual.shtml">manual</a><br>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/application_edit.png' align='top'> <a class="menulink" href="http://www.rockbox.org/twiki/">wiki</a><br>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/book_open.png' align='top'> <a class="menulink" href="http://www.rockbox.org/twiki/bin/view/Main/DocsIndex">index</a>
+<div class="submenu">
+Support
+</div>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/email.png' align='top'> <a class="menulink" href="http://www.rockbox.org/mail/">mailing lists</a><br>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/group.png' align='top'> <a class="menulink" href="http://www.rockbox.org/irc/">IRC</a><br>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/comment_edit.png' align='top'> <a class="menulink" href="http://forums.rockbox.org/">forums</a>
+<div class="submenu">
+Tracker
+</div>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/bug.png' align='top'> <a class="menulink" href="http://www.rockbox.org/tracker/index.php?type=2">bugs</a><br>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/brick.png' align='top'> <a class="menulink" href="http://www.rockbox.org/tracker/index.php?type=4">patches</a><br>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/lightbulb.png' align='top'>&nbsp;<a class="menulink" href="http://www.rockbox.org/tracker/index.php?type=1">requests</a><br>
+<div class="submenu">
+Search
+</div>
+<form id="fsform" action="http://www.rockbox.org/tracker/index.php" method="get" onSubmit="return fsstrip();">
 <input id="taskid" name="show_task" type="text" size="10" maxlength="10" accesskey="t"><br>
 <input class="mainbutton" type="submit" value="Flyspray #">
 </form>
@@ -77,8 +74,7 @@ function fsstrip() {
 <input value="Search" type=submit>
 <input type=hidden name=as_sitesearch value="www.rockbox.org">
 </form>
-
-<p><form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<p><form action="https://www.paypal.com/cgi-bin/webscr" method="get">
 <input type="hidden" name="cmd" value="_xclick">
 <input type="hidden" name="business" value="bjorn@haxx.se">
 <input type="hidden" name="item_name" value="Donation to the Rockbox project">
@@ -86,7 +82,7 @@ function fsstrip() {
 <input type="hidden" name="cn" value="Note to the Rockbox team">
 <input type="hidden" name="currency_code" value="USD">
 <input type="hidden" name="tax" value="0">
-<input type="image" src="http://www.rockbox.org/paypal-donate.gif" border="0" name="submit">
+<input type="image" src="http://www.rockbox.org/paypal-donate.gif" name="submit">
 </form>
 </div>
 </td>
@@ -95,7 +91,7 @@ function fsstrip() {
 %TMPL:END%
 #else
 #ifdef _LOGO_
-<div align="center">_LOGO_</div>
+_LOGO_
 #else
 TITLE(_PAGE_)
 #endif
