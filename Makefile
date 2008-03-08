@@ -1,9 +1,7 @@
 ACTION=@echo preprocessing $@; rm -f $@; $(HOME)/bin/fcpp -WWW -Uunix -H -C -V -LL >$@
 
 SRC := $(wildcard *.t)
-SOBJS := daily.shtml main.shtml index.shtml status.shtml \
-	bugs.shtml requests.shtml patches.shtml manual.shtml \
-	recent.shtml
+SOBJS := index.shtml manual.shtml recent.shtml
 
 OBJS := $(SRC:%.t=%.html) $(SOBJS) head.tmpl
 
@@ -34,18 +32,7 @@ head.tmpl: head.t
 	$(ACTION) -DTWIKI $<
 	sed -i '/^$$/d' $@
 
-main.html: main.t head.t
-
-main.shtml: main.t head.t
-
-index.shtml: main.shtml head.t
-	ln -sf main.shtml index.shtml
-
 indextop.html: indextop.t head.t
-
-daily.shtml: daily.t head.t
-
-manual.shtml: manual.t head.t
 
 since25.html:
 	ln -sf /home/dast/daniel_html/rockbox/since25.html since25.html
