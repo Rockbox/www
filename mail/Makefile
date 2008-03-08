@@ -2,14 +2,10 @@ ACTION=@echo preprocessing $@; rm -f $@; $(HOME)/bin/fcpp -WWW -Uunix -I.. -H -C
 
 HTML = etiquette.html
 
-all : $(HTML) archive
+all : $(HTML)
 
 etiquette.html: etiquette.t ../head.t ../foot.t
 	$(ACTION) $<
-
-archive:
-	rm -f archive
-	ln -s /home/maildump/html archive
 
 clean:
 	rm -f $(HTML)

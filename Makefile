@@ -15,30 +15,18 @@ OBJS := $(SRC:%.t=%.html) $(SOBJS) head.tmpl
 	$(ACTION) $<
 	@sed -i '/^$$/d' $@
 
-all: $(OBJS) since25.html since20060801.html since-4weeks.html
+all: $(OBJS)
 	@(cd irc && $(MAKE))
 	@(cd mail && $(MAKE))
 	@(cd devcon && $(MAKE))
 	@(cd digest && $(MAKE))
 	@(cd doom && $(MAKE))
 
-since20060801.html:
-	ln -sf /home/dast/daniel_html/rockbox/since-200608.html since20060801.html
-
-since-4weeks.html:
-	ln -sf /home/dast/daniel_html/rockbox/since-4weeks.html .
-
-since-12months.html:
-	ln -sf /home/dast/daniel_html/rockbox/since-12months.html .
-
 head.tmpl: head.t
 	$(ACTION) -DTWIKI $<
 	sed -i '/^$$/d' $@
 
 indextop.html: indextop.t head.t
-
-since25.html:
-	ln -sf /home/dast/daniel_html/rockbox/since25.html since25.html
 
 clean:
 	rm $(OBJS)
