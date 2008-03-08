@@ -1,0 +1,73 @@
+/* IMPORTANT: You must preserve the order of the numbered rules,
+   since braindead Javascript can only access them by index! */
+
+/* CSS rule #0 */
+.seconds {
+  display: none;
+}
+
+/* CSS rule #1 */
+.irclog {
+  background-color: white;
+  color: black;
+}
+
+/* CSS rule #2 */
+.irclog td, .odd, .even {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-family: serif;
+  border-bottom: 1px solid #eee;
+  border-left: 1px solid #eee;
+}
+
+/* CSS rule #3 */
+.join {
+  display: none;
+}
+
+.misc {
+  display: none;
+}
+
+.regular {
+  
+}
+
+.options {
+  border: 1px black dashed;
+  padding: 5px;
+  margin: 5px;
+}
+
+.action, .string {
+  color: #888;
+}
+
+.time a {
+  text-decoration: none;
+  color: black;
+}
+
+.odd {
+}
+
+.nick {
+ text-align: right;
+}
+
+.hourbar {
+  text-align: center;
+  font-weight: bold;
+  background-color: #eee;
+}
+
+.hourbar a {
+  text-decoration: none;
+  color: black;
+}
+
+a[target="_blank"] {
+  padding-right: 12px;
+  background: transparent url(icon_popup.gif) no-repeat center right;
+}
