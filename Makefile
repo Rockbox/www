@@ -28,6 +28,9 @@ since20060801.html:
 since-4weeks.html:
 	ln -sf /home/dast/daniel_html/rockbox/since-4weeks.html .
 
+since-12months.html:
+	ln -sf /home/dast/daniel_html/rockbox/since-12months.html .
+
 head.tmpl: head.t
 	$(ACTION) -DTWIKI $<
 	sed -i '/^$$/d' $@
