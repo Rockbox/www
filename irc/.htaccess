@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule log-([0-9]+)$ reader.pl?date=$1 [L]
+RewriteRule log-today$ reader.pl [L]
