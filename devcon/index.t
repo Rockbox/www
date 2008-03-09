@@ -1,7 +1,7 @@
 #define _PAGE_ Rockbox Developer Conference 2002
 #include "head.t"
 
-<table align="right"><tr><td><a href="show.cgi?img4083.jpg"><img src="img4083t.jpg" alt="photo" border=0 width=200 height=150></a><br><small><i>Comparison of Recorder and Player</i></small></td></tr></table>
+<table align="right"><tr><td><a href="img4083.jpg"><img src="img4083t.jpg" alt="photo" border=0 width=200 height=150></a><br><small><i>Comparison of Recorder and Player</i></small></td></tr></table>
 
 <p>Well, almost. :-) Björn, Linus, Daniel and Kjell sat down at Linus' house
 friday night (2002-04-19) with our Archoses and had a long and fruitful discussion about software design.
@@ -24,7 +24,7 @@ few which haven't already been defined in the code:
 <li>rename
 </ul>
 
-<table align="right"><tr><td><a href="show.cgi?img4084.jpg"><img src="img4084t.jpg" alt="photo" border=0 width=200 height=150></a>
+<table align="right"><tr><td><a href="img4084.jpg"><img src="img4084t.jpg" alt="photo" border=0 width=200 height=150></a>
 <br><small><i>Contest: Spot the development box!</i></small></td></tr></table>
 
 <h3>Directory operations</h3>
@@ -63,7 +63,7 @@ with an event queue.
 <li> Not lock up the user interface during I/O.
 </ol>
 
-<table align="right"><tr><td><a href="show.cgi?img4086.jpg"><img src="img4086t.jpg" alt="photo" border=0 width=200 height=150></a>
+<table align="right"><tr><td><a href="img4086.jpg"><img src="img4086t.jpg" alt="photo" border=0 width=200 height=150></a>
 <br><small><i>A stack of "virgins"!</i></small></td></tr></table>
 
 <p>At the same time, we agreed that we should not walk into the common trap
@@ -103,7 +103,7 @@ threads:
 <p>Threads use message passing between them and each have a message queue
 associated to it.
 
-<table align="right"><tr><td><a href="show.cgi?img4089.jpg"><img src="img4089t.jpg" alt="photo" border=0 width=200 height=150></a>
+<table align="right"><tr><td><a href="img4089.jpg"><img src="img4089t.jpg" alt="photo" border=0 width=200 height=150></a>
 <br><small><i>There's much fun to be had with these things!</i></small></td></tr></table>
 
 <p>In addition to the threads, we need a timer interrupt with the ability to
