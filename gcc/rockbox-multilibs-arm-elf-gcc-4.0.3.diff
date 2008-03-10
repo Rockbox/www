@@ -1,0 +1,25 @@
+--- gcc-4.0.3/gcc/config/arm/t-arm-elf.orig	2004-09-01 12:14:21.000000000 +0100
++++ gcc-4.0.3/gcc/config/arm/t-arm-elf	2007-11-03 21:18:23.000000000 +0000
+@@ -11,6 +11,11 @@
+ MULTILIB_EXCEPTIONS  = 
+ MULTILIB_MATCHES     =
+ 
++# We build a lib for each specific CPU Rockbox targets.  If anyone knows a better
++# way to do this, please let us know.
++MULTILIB_OPTIONS    += mcpu=arm7tdmi/mcpu=arm9tdmi/mcpu=arm9e/mcpu=arm926ej-s/mcpu=arm1136jf-s
++MULTILIB_DIRNAMES   += arm7tdmi arm9tdmi arm9e arm926ej-s arm1136jf-s
++
+ # MULTILIB_OPTIONS    += mcpu=ep9312
+ # MULTILIB_DIRNAMES   += ep9312
+ # MULTILIB_EXCEPTIONS += *mthumb/*mcpu=ep9312*
+@@ -23,8 +28,8 @@
+ # MULTILIB_DIRNAMES   += fpu soft
+ # MULTILIB_EXCEPTIONS += *mthumb/*mhard-float*
+ # 
+-# MULTILIB_OPTIONS    += mno-thumb-interwork/mthumb-interwork
+-# MULTILIB_DIRNAMES   += normal interwork
++MULTILIB_OPTIONS    += mno-thumb-interwork/mthumb-interwork
++MULTILIB_DIRNAMES   += normal interwork
+ # 
+ # MULTILIB_OPTIONS    += fno-leading-underscore/fleading-underscore
+ # MULTILIB_DIRNAMES   += elf under

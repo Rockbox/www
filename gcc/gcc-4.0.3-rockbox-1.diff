@@ -1,0 +1,33 @@
+diff -ru gcc-4.0.3-orig/gcc/config/sh/sh.h gcc-4.0.3/gcc/config/sh/sh.h
+--- gcc-4.0.3-orig/gcc/config/sh/sh.h	2006-03-06 23:40:49.000000000 +0100
++++ gcc-4.0.3/gcc/config/sh/sh.h	2006-04-28 03:03:18.000000000 +0200
+@@ -2809,12 +2809,15 @@
+ #define CASE_VECTOR_MODE ((! optimize || TARGET_BIGTABLE) ? SImode : HImode)
+ 
+ #define CASE_VECTOR_SHORTEN_MODE(MIN_OFFSET, MAX_OFFSET, BODY) \
+-((MIN_OFFSET) >= 0 && (MAX_OFFSET) <= 127 \
++((MIN_OFFSET) >= 0 && (MAX_OFFSET) <= 126 \
+  ? (ADDR_DIFF_VEC_FLAGS (BODY).offset_unsigned = 0, QImode) \
+- : (MIN_OFFSET) >= 0 && (MAX_OFFSET) <= 255 \
++ : (MIN_OFFSET) >= 0 && (MAX_OFFSET) <= 254 \
+  ? (ADDR_DIFF_VEC_FLAGS (BODY).offset_unsigned = 1, QImode) \
+  : (MIN_OFFSET) >= -32768 && (MAX_OFFSET) <= 32767 ? HImode \
+  : SImode)
++/* Note: The maximum range for byte-sized offsets was reduced by 1 to work
++   around a bug in final.c I don't know how to fix properly (jump table
++   length calculation should take alignment into account). -- Jens Arnold */
+ 
+ /* Define as C expression which evaluates to nonzero if the tablejump
+    instruction expects the table to contain offsets from the address of the
+diff -ru gcc-4.0.3-orig/gcc/version.c gcc-4.0.3/gcc/version.c
+--- gcc-4.0.3-orig/gcc/version.c	2006-03-09 21:46:18.000000000 +0100
++++ gcc-4.0.3/gcc/version.c	2006-04-29 23:52:22.000000000 +0200
+@@ -5,7 +5,7 @@
+    please modify this string to indicate that, e.g. by putting your
+    organization's name in parentheses at the end of the string.  */
+ 
+-const char version_string[] = "4.0.3";
++const char version_string[] = "4.0.3 (rockbox patch #1)";
+ 
+ /* This is the location of the online document giving instructions for
+    reporting bugs.  If you distribute a modified version of GCC,

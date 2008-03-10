@@ -1,0 +1,13 @@
+--- ./gcc-4.0.3/gcc/config/arm/t-arm-elf~	2007-02-26 12:41:48.000000000 +0000
++++ ./gcc-4.0.3/gcc/config/arm/t-arm-elf	2007-02-26 12:42:07.000000000 +0000
+@@ -23,8 +23,8 @@
+ # MULTILIB_DIRNAMES   += fpu soft
+ # MULTILIB_EXCEPTIONS += *mthumb/*mhard-float*
+ # 
+-# MULTILIB_OPTIONS    += mno-thumb-interwork/mthumb-interwork
+-# MULTILIB_DIRNAMES   += normal interwork
++MULTILIB_OPTIONS    += mno-thumb-interwork/mthumb-interwork
++MULTILIB_DIRNAMES   += normal interwork
+ # 
+ # MULTILIB_OPTIONS    += fno-leading-underscore/fleading-underscore
+ # MULTILIB_DIRNAMES   += elf under
