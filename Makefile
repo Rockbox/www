@@ -21,6 +21,7 @@ all: $(OBJS)
 	@(cd devcon && $(MAKE))
 	@(cd digest && $(MAKE))
 	@(cd doom && $(MAKE))
+	@(cd download && $(MAKE))
 
 head.tmpl: head.t
 	$(ACTION) -DTWIKI $<
@@ -35,3 +36,4 @@ clean:
 	@(cd devcon && $(MAKE) clean)
 	@(cd digest && $(MAKE) clean)
 	@(cd doom && $(MAKE) clean)
+	@(cd download && $(MAKE) clean)
