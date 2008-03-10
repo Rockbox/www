@@ -9,45 +9,40 @@ closedir DIR;
 
 print "<table class=archive>\n";
 
-$lasty = 0;
-$lastm = 0;
-$count = 0;
+my %y;
+my %ym;
+my %ymd;
+for (@logs) {
+    /(\d\d\d\d)(\d\d)(\d\d)/;
+    $y{$1}++;
+    $ym{$1.$2}++;
+    $ymd{$1.$2.$3}++;
+}
 
-for ( sort @logs ) {
-    $size = (stat("$_"))[7];
-    $file = $_;
-    $log = "";
-
-    if (/-(\d+)/) {
-       if ( $1 =~ /(\d\d\d\d)(\d\d)(\d\d)/ ) {
-            $y = $1;
-            $m = $2;
-            $d = $3;
-
-            $mname = ucfirst MonthNameEng($m);
-            if ($y != $lasty) {
-                if ($lasty != 0) {
-                    print "</tr><tr><th colspan=39><hr></th></tr><tr>\n";
-                }
-                print "<th>$y</th>\n";
-                $lasty = $y;
-            } else {
-                print "</tr><tr>\n<th></th>" if ( $m != $lastm );
+print "<table class=archive>\n";
+for (reverse sort keys %y) {
+    my $y =$_;
+    # print "Y: $y => \n";
+    foreach my $i (0 .. 11) {
+        my $m= 12-$i;
+        my $zp = sprintf("%02d", $m);
+        if(!$ym{$y.$zp}) {
+            next;
+        }
+        my $mname = ucfirst substr(MonthNameEng($m), 0, 3);
+        print "<tr><th>$mname $y</th>\n";
+        foreach my $d ( 1 .. MonthLen($m, $y)) {
+            my $zpd = sprintf("%02d", $d);
+            if(!$ymd{$y.$zp.$zpd}) {
+                print "<td>&nbsp;</td>";
             }
-
-            if ( $m != $lastm ) {
-                $count=0;
-                print "<th>$mname</th>\n";
-                $lastm = $m;
-            }
-
-            print "<td><a test href=\"$file\">$d</a></td>\n";
-
-            if ( ++$count > 15 ) {
-                print "</tr><tr><th></th><th></th>\n";
-                $count=0;
+            else {
+                #print "<td><a href=\"rockbox-$y$zp$zpd.txt\">$zpd</a></td>";
+                #print "<td><a href=\"reader.pl?date=$y$zp$zpd\">$zpd</a></td>";
+                print "<td><a href=\"log-$y$zp$zpd\">$zpd</a></td>";
             }
         }
+        print "</tr>\n";
     }
 }
-print "</ul></td></tr></table>\n";
+print "</table>\n";
