@@ -1,7 +1,7 @@
 ACTION=@echo preprocessing $@; rm -f $@; $(HOME)/bin/fcpp -WWW -Uunix -H -C -V -LL >$@
 
 SRC := $(wildcard *.t)
-SOBJS := index.shtml manual.shtml recent.shtml
+SOBJS := index.shtml manual.shtml recent.shtml daily.shtml
 
 OBJS := $(SRC:%.t=%.html) $(SOBJS) head.tmpl
 
