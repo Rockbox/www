@@ -97,7 +97,7 @@ for(reverse sort keys %date) {
         if( -f "daily/build-info") {
             open(R, "<daily/build-info");
             while(<R>) {
-                if(/^rev = (\d+)/) {
+                if(/^rev = \D*(\d+)/) {
                     $rev = "r$1";
                     last;
                 }
