@@ -20,14 +20,15 @@
         'ipodmini1g' => "/playerpics/ipodmini-small.png",
         'iaudiox5' => "/playerpics/x5-small.png",
         'iaudiom5' => "/playerpics/m5-small.png",
+        'iaudiom3' => '/rockbox100.png', # lacks small picture
         'h10' => '/playerpics/h10-small.png',
         'h10_5gb' => '/playerpics/h10_5gb-small.png',
         "sansae200" => "/playerpics/e200-small.png",
         "sansac200" => "/playerpics/c200-small.png",
         "gigabeatf" => "/playerpics/gigabeatf-small.png",
         'ipod1g2g' => "/playerpics/ipod1g2g-small.png",
-        'mrobe100' => '/rockbox100.png',
-        'mrobe500' => '/rockbox100.png',
+        'mrobe100' => '/rockbox100.png', # lacks small picture
+        'mrobe500' => '/rockbox100.png', # lacks small picture
 
         "install" => "/playerpics/install.png",
         "fonts" => "/rockbox100.png",
@@ -58,6 +59,7 @@
            'ipodmini1g' => 'iPod Mini 1st gen',
            'iaudiox5' => 'iAudio X5',
            'iaudiom5' => 'iAudio M5',
+           'iaudiom3' => 'iAudio M3',
            "sansae200" => "SanDisk Sansa e200",
            "sansac200" => "SanDisk Sansa c200",
            "gigabeatf" => "Toshiba Gigabeat F",
