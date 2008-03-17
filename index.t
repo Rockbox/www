@@ -50,12 +50,11 @@ for recent changes.
 <table class="news" summary="recent news">
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
+<tr><td nowrap>2008-03-17</td><td>We have been accepted as a mentor organization in <a href="/wiki/SummerOfCode2008">Google's summer of code 2008</a>. </td></tr>
 <tr><td nowrap>2008-03-06</td><td>We're applying to participate in <a href="/wiki/SummerOfCode2008">Google's summer of code 2008</a>. </td></tr>
 <tr><td nowrap>2007-11-23</td><td>New USB stack with limited capability. Currently it only requests full charging power. Ignore driver popups from Windows.</td></tr>
 <tr><td nowrap>2007-11-18</td><td><a href="http://www.rockbox.org/mail/archive/rockbox-archive-2007-11/0176.shtml">New voice codec used:</a> Speex!</td></tr>
 <tr><td nowrap>2007-09-19</td><td>1st and 2nd gen iPods are supported</td></tr>
-<tr><td nowrap>2007-08-07</td><td>We now offer daily built voice files on the <a href="/daily.shtml">daily build page</a></td></tr>
-<tr><td nowrap>2007-07-30</td><td>The <a href="http://www.rockbox.org/mail/archive/rockbox-dev-archive-2007-07/0049.shtml">Tracker Cleanup Week</a> has begun!</td></tr>
 <!--
 <tr><td colspan=2 align='center'><a href="history.html">Older news</a></td></tr>
 -->

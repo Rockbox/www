@@ -2,6 +2,11 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<p><i>2007-08-07</i>: We now offer daily built voice files on the <a
+href="/daily.shtml">daily build page</a>
+
+<p><i>2007-07-30</i>: The <a href="http://www.rockbox.org/mail/archive/rockbox-dev-archive-2007-07/0049.shtml">Tracker Cleanup Week</a> has begun!
+
 <p><i>2007-06-20</i>: Added download mirrors, thanks to some new sponsors
 
 <p><i>2007-06-15 - 17</i>: <a href="/devconwest2007/">Devcon West 2007</a>
