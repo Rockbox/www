@@ -30,7 +30,7 @@ and Ondio
 <li><b>Toshiba</b>: Gigabeat X and F series (<i>not the S series</i>)
 
 
-<li>More players are <a href="http://www.rockbox.org/twiki/bin/view/Main/TargetStatus">in development</a>
+<li> <a href="http://www.rockbox.org/wiki/TargetStatus">Current Status</a>
 
 </ul>
 
