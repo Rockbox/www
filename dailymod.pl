@@ -23,6 +23,7 @@ my @list=("player",
 
           "sansae200", "sansac200",
           "gigabeatf",
+          "mrobe100",
 
           # install and source are special cases
           #"install",
