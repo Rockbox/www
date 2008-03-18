@@ -23,6 +23,8 @@ and Ondio
 
 <li><b>iriver</b>: H100, H300 and H10 series
 
+<li><b>Olympus</b>: M:Robe 100
+
 <li><b>SanDisk</b>: Sansa c200, e200 and e200R series (<i>not the v2 models</i>)
 
 <li><b>Toshiba</b>: Gigabeat X and F series (<i>not the S series</i>)
