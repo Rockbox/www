@@ -20,7 +20,7 @@ my @list=("player",
           "ipodnano",
 
           "sansae200", "sansac200",
-           "gigabeatf",
+           "gigabeatf", "mrobe100",
           );
 
 for(@list) {
