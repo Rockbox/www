@@ -36,9 +36,12 @@ if(($rev < 10000) || ($rev > 100000)) {
 
 #print "show rev $rev, target $target, features $features, lang $lang, rand $rand<br>\n";
 
-my $temp=`pwd`;
-chomp $temp;
-$temp.="/temp";
+my $temp="/tmp/rockbox-genlang";
+
+if( ! -d $temp ) {
+    # make sure the temp output dir exists!
+    mkdir($temp);
+}
 
 my $cd="cd /home/dast/src/rockbox &&";
 #`svn cat -r$rev tools/genlang >temp/genlang-$rand`;
