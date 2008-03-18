@@ -27,7 +27,7 @@
         "sansac200" => "/playerpics/c200-small.png",
         "gigabeatf" => "/playerpics/gigabeatf-small.png",
         'ipod1g2g' => "/playerpics/ipod1g2g-small.png",
-        'mrobe100' => '/rockbox100.png', # lacks small picture
+        'mrobe100' => '/playerpics/mrobe100-small.png',
         'mrobe500' => '/rockbox100.png', # lacks small picture
 
         "install" => "/playerpics/install.png",
