@@ -19,7 +19,7 @@ Touch</i>)
 
 <li><b>Archos</b>: Jukebox 5000, 6000, Studio, Recorder, FM Recorder, Recorder V2
 and Ondio
-<li><b>Cowon</b>: iAudio X5, X5V, X5L, M5 and M5L
+<li><b>Cowon</b>: iAudio X5, X5V, X5L, M5, M5L, M3 and M3L
 
 <li><b>iriver</b>: H100, H300 and H10 series
 
