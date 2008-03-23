@@ -11,7 +11,7 @@ my @list=("player",
           "recorderv2",
           "ondiofm", "ondiosp",
 
-          "iaudiox5", "iaudiom5",
+          "iaudiox5", "iaudiom5", "iaudiom3",
           "h100", "h120", "h300",
           "h10_5gb", "h10",
 
