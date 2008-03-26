@@ -31,12 +31,12 @@ if(($rev < 10000) || ($rev > 100000)) {
     exit;
 }
 
+my $temp="/tmp/rockbox-genlang";
+
 # remove temp files older than 5 minutes
-`find temp -mmin +5 -type f | xargs rm -f`;
+`find $temp -mmin +5 -type f | xargs rm -f`;
 
 #print "show rev $rev, target $target, features $features, lang $lang, rand $rand<br>\n";
-
-my $temp="/tmp/rockbox-genlang";
 
 if( ! -d $temp ) {
     # make sure the temp output dir exists!
