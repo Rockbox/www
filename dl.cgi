@@ -94,10 +94,15 @@ for(reverse sort keys %date) {
             printf("<td><a title=\"Rockbox zip package for ${desc} built $nice\" href=\"$baseurl/daily/$bin/rockbox-${m}-${d}.zip\">Rockbox</a> %d KB</td>",
                    $size/1024);
         }
-        elsif(($bin eq "source") &&
-              (-f "daily/source/rockbox-$d.tar.bz2")) {
-            $size = (stat("daily/source/rockbox-$d.tar.bz2"))[7];
-            print "<td><a href=\"daily/source/rockbox-$d.tar.bz2\">bz2 source</a></td>";
+        elsif($bin eq "source") {
+            if (-f "daily/source/rockbox-$d.tar.bz2") {
+                $size = (stat("daily/source/rockbox-$d.tar.bz2"))[7];
+                print "<td><a href=\"daily/source/rockbox-$d.tar.bz2\">bz2 source</a></td>";
+            }
+            elsif(-f "daily/source/rockbox-$d.tar.7z") {
+                $size = (stat("daily/source/rockbox-$d.tar.7z"))[7];
+                print "<td><a href=\"daily/source/rockbox-$d.tar.7z\">7zip source</a></td>";
+            }
         }
         else {
             print "<td></td>";
