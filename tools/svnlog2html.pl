@@ -66,8 +66,8 @@ sub file2url {
         $diff = " [<span class=\"fname\">rename</span>]";
     }
     elsif($a eq "M") {
-        $diff = sprintf(" [<a class=\"fname\" href=\"$urlroot%s?r1=%d;r2=%d\">diff</a>]",
-                        $file, $rev-1, $rev);
+        $diff = sprintf(" [<a class=\"fname\" href=\"$urlroot%s?r1=%d;r2=%d;pathrev=%d\">diff</a>]",
+                        $file, $rev-1, $rev, $rev);
     }
     elsif($a eq "A") {
         $diff = " [<span class=\"fname\">new</span>]";
@@ -76,7 +76,7 @@ sub file2url {
          $path = sprintf("<a class=\"fname\" href=\"$urlroot%s?view=log;pathrev=%d\">%s</a>$diff\n",
                        $file, $rev-1, $sfile);
         #$path = "<span class=\"fname\">$sfile</span>";
-        $diff = " [<span class=\"fname\">gone</span>]";
+        $diff = " [<span class=\"fname\">deleted</span>]";
     }
 
     return "$path $diff\n";
