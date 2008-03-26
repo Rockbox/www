@@ -36,14 +36,19 @@ my %bleeding =
      'build-ipodvideo' => 1,
      'build-ipodvideo64mb' => 1,
      'build-ipod3g' => 1,
+     'build-ipod1g2g' => 1,
      'build-iaudiox5' => 1,
      'build-iaudiom5' => 1,
+     'build-iaudiom3' => 1,
      'build-ipodmini2g' => 1,
      'build-ipodmini1g' => 1,
      'build-h10' => 1,
      'build-h10_5gb' => 1,
      'build-sansae200' => 1,
+     'build-sansac200' => 1,
      'build-gigabeatf' => 1,
+     'build-mrobe500' => 1,
+     'build-mrobe100' => 1,
      );
 
 my @builds : shared = (
@@ -84,11 +89,16 @@ my @builds : shared = (
     "sdl:build-ipodcolorsim:iPod Color - Simulator:rockboxui:ipodcolor\\ns\\n",
     
     "sdl:build-iaudiox5sim:iAudio X5 - Simulator:rockboxui:x5\\ns\\n",
-    "sdl:build-iaudiom5sim:iAudio M5 - Simulator:rockboxui:m5\\ns\\n",
     "m68k:build-iaudiox5:iAudio X5 - Normal:rockbox.iaudio:x5\\n\\n",
     "m68k:build-iaudiox5boot:iAudio X5 - Boot:rockbox.iaudio:x5\\nb\\n",
+
     "m68k:build-iaudiom5:iAudio M5 - Normal:rockbox.iaudio:m5\\n\\n",
+    "sdl:build-iaudiom5sim:iAudio M5 - Simulator:rockboxui:m5\\ns\\n",
     "m68k:build-iaudiom5boot:iAudio M5 - Boot:rockbox.iaudio:m5\\nb\\n",
+
+    "m68k:build-iaudiom3:iAudio M3 - Normal:rockbox.iaudio:m3\\n\\n",
+    "sdl:build-iaudiom3sim:iAudio M3 - Simulator:rockboxui:m3\\ns\\n",
+    "m68k:build-iaudiom3boot:iAudio M3 - Boot:rockbox.iaudio:m3\\nb\\n",
 
     "arm:build-ipod4gray:iPod 4G Grayscale - Normal:rockbox.ipod:ipod4g\\n\\n",
     "arm:build-ipod4grayboot:iPod 4G Grayscale - Boot:bootloader-ipod4g.ipod:ipod4g\\nb\\n",
@@ -123,6 +133,23 @@ my @builds : shared = (
     "sdl:build-sansae200sim:SanDisk Sansa e200 - Simulator:rockboxui:e200\\ns\\n",
     "arm:build-sansae200boot:SanDisk Sansa e200 - Boot:PP5022.mi4:e200\\nb\\n",
     "arm:build-sansae200:SanDisk Sansa e200 - Normal:rockbox.mi4:e200\\n\\n",
+
+    "sdl:build-sansac200sim:SanDisk Sansa c200 - Simulator:rockboxui:c200\\ns\\n",
+    "arm:build-sansac200boot:SanDisk Sansa c200 - Boot:firmware.mi4:c200\\nb\\n",
+    "arm:build-sansac200:SanDisk Sansa c200 - Normal:rockbox.mi4:c200\\n\\n",
+
+    "arm:build-ipod1g2g:iPod 1G/2G - Normal:rockbox.ipod:ipod1g2g\\n\\n",
+    "arm:build-ipod1g2gboot:iPod 1G/2G - Boot:bootloader-ipod1g2g.ipod:ipod1g2g\\nb\\n",
+
+    'arm:build-mrobe500:Olympus M-Robe 500 - Normal:rockbox.mrobe500:mrobe500\n\n',
+    'sdl:build-mrobe500sim:Olympus M-Robe 500 - Simulator:rockboxui:mrobe500\ns\n',
+
+    "sdl:build-mrobe100sim:Olympus M-Robe 100 - Simulator:rockboxui:mrobe100\\ns\\n",
+    "arm:build-mrobe100boot:Olympus M-Robe 100 - Boot:pp5020.mi4:mrobe100\\nb\\n",
+    "arm:build-mrobe100:Olympus M-Robe 100 - Normal:rockbox.mi4:mrobe100\\n\\n",
+
+    "sdl:build-cowond2sim:Cowon D2 - Simulator:rockboxui:cowond2\\ns\\n",
+
 );
 
 #********* Script code  ***********
@@ -161,6 +188,11 @@ sub logmsg {
     my $t = time()-$now; # number of seconds it has taken so far
     for(@_) {
         print "$t $_";
+    }
+    if($t > (60 * 20)) {
+        # we've been working for > 20 minutes
+        print "$t terminating due to too long operation!";
+        exit;
     }
 }
 
@@ -244,7 +276,7 @@ sub buildremote {
 	$wnum = $worknum{$buildline}++;
 	if($wnum) {
 	    # this is not the first server to do this build!
-	    logmsg "non-primary build!\n";
+	    logmsg "non-primary build: $buildline\n";
 	}
 	else {
 	    lock(%work);
@@ -278,12 +310,16 @@ sub buildremote {
 		# the primary one has completed the build and is now
 		# transferring, we thus stop here
 		logmsg "The primary server completed the build before me ($server)\n";
+		lock(%worknum);
+		$worknum{$buildline}--;
 		return 2;
 	    }
 	} 
 	elsif($w > 1) {
 	    # a secondary build outrun us, stop here
 	    logmsg "A secondary server has taken over my ($server) build\n";
+	    lock(%worknum);
+	    $worknum{$buildline}--;
 	    return 2;
 	} 
 
@@ -293,8 +329,10 @@ sub buildremote {
     # 2006-03-25 TS: exit code 1 = SSH trouble.
     if ($exitcode) {
         logmsg "Warning: $server failed with ssh exit code: $exitcode.\n";
-        logmsg "attempt to get log to see *actual* fail reason\n";
+	lock(%worknum);
+	$worknum{$buildline}--;
         return 2;
+        logmsg "attempt to get log to see *actual* fail reason\n";
 	# $fail = 1; # this previously tried to check how far we had got
     }
 
@@ -389,6 +427,7 @@ sub server {
     my $original;
     my $ssh_port;
     my $port;
+    my $serverisfine=1;
 
     if($server =~ s/\/(\d+)//) {
         $port = $1;
@@ -449,6 +488,9 @@ sub server {
 		    # Fix by Linus 2006-09-26
 		    # Don't increase $buildsleft, since it is already correct
                     #$buildsleft++;
+		    $serverisfine=0; # not fine
+		    logmsg "Server $server disabled for this round\n";
+		    last;
                 } else {
                     lock($buildsleft);
                     $buildsleft--;
@@ -459,7 +501,7 @@ sub server {
 
     # if not all targets are done, wait a while and try again.
     # BUG WARNING: Might not be threadsafe... 
-    if($buildsleft > 0) {
+    if($serverisfine && ($buildsleft > 0)) {
         logmsg "Server $server finished, but $buildsleft builds left:\n";
 	my $bestpick; # get out of the locks before building
 	{
@@ -490,6 +532,7 @@ sub server {
 		    $c++;
 		}
 	    }
+	    if(0) {
 	    if($bestpick) {
 		logmsg "--- Would have picked $bestpick for $server\n";
 	    }
@@ -497,6 +540,7 @@ sub server {
 		my $t = join(", ", @mytargets); 
 		logmsg "--- None matched (my targets: $t)\n";
 	    }
+   	   }
 	}
         sleep(5); 
         goto REBUILD;
@@ -504,8 +548,6 @@ sub server {
 
     # DEBUG:
     logmsg "Server $server done (left=$buildsleft).\n";
-    lock(%zipfile);
-    $zipfile{$server}="die";
     return $server;
 }
 
@@ -520,12 +562,12 @@ sub build {
     for(@builds) {
         $_ =~ /([^:]*):([^:]*):([^:]*):([^:]*):(.*)/;
         $dir=$2;
-        `rm -Rf $dir`;
+        `rm -f $dir/buildlog`;
         `mkdir $dir`;
     }
 
     # empty the source dir too
-    `rm build-source/*`; 
+    #`rm build-source/*`; 
 
     open(DEST, ">>output/allbuilds-$file");
 
@@ -573,31 +615,31 @@ if($ARGV[0] eq "sizes") {
 	if($bleeding{$dir}) {
 	    my $target = $dir;
 	    my $bytes;
+            my $ram;
+            my $rev;
 	    if(-f "$dir/rockbox.zip") {
-		# unzip -p build-sansae200/rockbox.zip .rockbox/rockbox-info.txt
 		open(Z, "unzip -p $dir/rockbox.zip .rockbox/rockbox-info.txt|");
 		while(<Z>) {
 		    if(/^Actual size: (\d+)/i) {
 			$bytes = $1;
-			last;
+		    } 
+		    elsif(/^RAM usage: (\d+)/i) {
+			$ram = $1;
+		    } 
+		    elsif(/^Version: *(r\d+)/i) {
+			$rev = $1;
 		    } 
 		}
 		close(Z);
 
-		#if($binary !~ /(mod|ajz|wma)\z/i) {
-		#    $binary = ".rockbox/".$binary;
-		#}
-
-		#my @sz=`unzip -l $dir/rockbox.zip $binary | tail -n 1`;
-		#$bytes = int($sz[0]);
 	    }
 	    else {
-		# no file, count as zero bytes
 		$bytes=0;
 	    }
 
 	    $target =~ s/build-//g;
-	    printf("%-13s: %6d  - $binary $arch\n", $target, $bytes);
+	    printf("%-13s: %6d %7d - $binary $arch $rev\n", $target, $bytes,
+                   $ram);
 	}
     }
     exit;
@@ -625,6 +667,7 @@ if($ARGV[0] eq "pix") {
         $text =~ s/Sim - Win/Sim32/;
         $text =~ s/Toshiba *//i;
         $text =~ s/SanDisk *//i;
+        $text =~ s/Olympus *//i;
 
         print "short: $text\n";
 
@@ -705,6 +748,7 @@ if(!$torev) {
     chdir $src;
     my @all=`svnversion`;
     $torev = $all[0];
+    $fromrev = $torev-1; # count the last rev increase as the one we care about
     chomp $torev;
     chdir $pwd;
 }
@@ -735,7 +779,7 @@ if($difference) {
 
     nicehead("output/chlog-$date.html",
 	     "$builddate - from r$fromrev to r$torev");
-    `/home/dast/svnlog2html.pl < floink >> "output/chlog-$date.html"`;
+    `/home/bjst/rockbox_html/tools/svnlog2html.pl -absdate < floink >> "output/chlog-$date.html"`;
     nicefoot("output/chlog-$date.html", $builddate);
 
     # DEBUG:
@@ -782,13 +826,15 @@ if($difference) {
     open(BUILDTIME, ">output/build-info");
     print BUILDTIME "[bleeding]\n";
     print BUILDTIME "timestamp = \"$date\"\n";
+    print BUILDTIME "rev = \"$torev\"\n";
     close(BUILDTIME);
 
     logmsg("extract binary sizes\n");
     system("./buildmaster.pl sizes > output/sizes-$date");
 
     logmsg("build delta table\n");
-    system("./showsize.pl > output/sizes.html");
+    #system("./showsize.pl > output/sizes.html");
+    system("./showsize2.pl > output/sizes2.html");
 
     logmsg "all done.\n";
 
