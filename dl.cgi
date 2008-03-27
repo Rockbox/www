@@ -99,9 +99,9 @@ for(reverse sort keys %date) {
                 $size = (stat("daily/source/rockbox-$d.tar.bz2"))[7];
                 print "<td><a href=\"daily/source/rockbox-$d.tar.bz2\">bz2 source</a></td>";
             }
-            elsif(-f "daily/source/rockbox-$d.tar.7z") {
-                $size = (stat("daily/source/rockbox-$d.tar.7z"))[7];
-                print "<td><a href=\"daily/source/rockbox-$d.tar.7z\">7zip source</a></td>";
+            elsif(-f "daily/source/rockbox-$d.7z") {
+                $size = (stat("daily/source/rockbox-$d.7z"))[7];
+                print "<td><a href=\"daily/source/rockbox-$d.7z\">7zip source</a></td>";
             }
         }
         else {
