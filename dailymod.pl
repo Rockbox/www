@@ -111,8 +111,7 @@ for(reverse sort keys %date) {
         my $file = "rockbox-${m}.zip";
         my $dir = "$m/";
         if($m eq "source") {
-            $file = "rockbox-${d}.tar.bz2";
-      #      $dir="";
+            $file = "rockbox-${d}.7z";
         }
         elsif($m eq "install") {
             $file = "Rockbox-${d}-install.exe";
