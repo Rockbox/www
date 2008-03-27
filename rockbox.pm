@@ -62,7 +62,7 @@
            'iaudiom3' => 'iAudio M3',
            'sansae200' => 'SanDisk Sansa e200',
            'sansac200' => 'SanDisk Sansa c200',
-           'gigabeatf' => 'Toshiba Gigabeat F',
+           'gigabeatf' => 'Toshiba Gigabeat F/X',
            'mrobe100' => 'Olympus M-Robe 100',
            'mrobe500' => 'Olympus M-Robe 500',
            'install' => 'Windows Installer',
