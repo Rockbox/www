@@ -85,6 +85,11 @@ Search
 <input type="image" src="http://www.rockbox.org/paypal-donate.gif" name="submit">
 </form>
 </div>
+
+#ifdef MAIN_PAGE
+<!--#include file="textlinks.html" -->
+#endif
+
 </td>
 <td>
 #ifdef TWIKI
