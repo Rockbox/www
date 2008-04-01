@@ -2,7 +2,7 @@
 
 require "rockbox.pm";
 
-my $basedir = "/home/dast/rockbox-build/daily-build";
+my $basedir = "/home/dast/rockbox-build/output";
 my $docbasedir = "/home/dast/rockbox-manual/output";
 
 my @list=("player",
@@ -44,8 +44,8 @@ sub getpages {
 
 for(@list) {
     my $dir = $_;
-    opendir(DIR, "$basedir/$dir") or next;
-    my @files = sort grep { /^rockbox/ } readdir(DIR);
+    opendir(DIR, "$basedir") or next;
+    my @files = sort grep { /^build-info/ } readdir(DIR);
     closedir DIR;
 
     for(@files) {
@@ -59,8 +59,8 @@ my $split = 8;
 for(reverse sort keys %date) {
     my $d = $_;
     my $nice = $d;
-    if($d =~ /(\d\d\d\d)(\d\d)(\d\d)/) {
-        $nice = "$1-$2-$3";
+    if($d =~ /20(\d\d)(\d\d)(\d\d)/) {
+        $nice = "20$1-$2-$3";
     }
     print "<table class=rockbox cellpadding=\"0\">\n";
 
@@ -166,7 +166,6 @@ for(reverse sort keys %date) {
             printf("<br><a href=\"$voice\">voice</a> <small>%d kB</small>",
                    $size/1024);
         }
-
         print "</td>\n";
 
 	if ($count == $split) {
