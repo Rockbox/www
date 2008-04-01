@@ -134,13 +134,19 @@ for(reverse sort keys %date) {
         }
 
         my $fi = "voices/$m-$d-english.voice";
-        if ( -f $fi) {
+        my $fi2 = "voices/$m-$d-english.zip";
+        if ( -f $fi2) {
+            my $size = (stat($fi2))[7];
+            printf("<td><a href=\"/$fi2\" title=\"voice file for Rockbox $desc dated $nice\">voice zip</a> %d KB</td>",
+                   $size/1024);
+        }
+        elsif ( -f $fi) {
             my $size = (stat($fi))[7];
             printf("<td><a href=\"/$fi\" title=\"voice file for Rockbox $desc dated $nice\">english.voice</a> %d KB</td>",
                    $size/1024);
         }
         else {
-            print "<td></td>";
+            print "<td>absent</td>";
         }
 
         print "<td title=\"The build done $nice has rev $rev\">$rev</td>";

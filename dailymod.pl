@@ -159,7 +159,7 @@ for(reverse sort keys %date) {
             $voicemod = "ipodvideo";
         }
 
-        my $voice="voices/${voicemod}-${d}-english.voice";
+        my $voice="voices/${voicemod}-${d}-english.zip";
 
         if ( -f $voice ) {
             my $size = (stat($voice))[7];
