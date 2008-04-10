@@ -1,4 +1,6 @@
 #!/usr/bin/perl
+use open IN => ':utf8';
+use open OUT => ":encoding('iso-8859-1')";
 
 # get text links from xml feed and produce html
 
@@ -7,7 +9,7 @@ my $url = "http://update.livecustomer.net/?key=a539610bf93ee0795156fa7055d4b222&
 my @output = `curl --silent --max-time 5 "$url"`;
 my $output = join '', @output;
 
-my @lines = split '<Link', $output;
+my @lines = split /<Link/i, $output;
 my @list;
 
 for my $line (@lines) {
