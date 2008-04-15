@@ -27,8 +27,8 @@ for my $line (@lines) {
 my $html = join ",\n", @list;
 
 print <<END
-<p>&nbsp;<p>&nbsp;
-<table cellspacing="0" cellpadding="2" width="98" style='border: solid black 1px;'><tr><td style='font-size: 9px;'>
+<p>&nbsp;<p>&nbsp;<p>&nbsp;<p>&nbsp;<p>&nbsp;<p>&nbsp;
+<table cellspacing="0" cellpadding="2" width="98" style='border: solid black 1px;'><tr><td style='font-size: 9px; font-family: arial, helvetica, sans-serif;'>
 $html
 </td></tr></table>
 END
