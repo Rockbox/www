@@ -17,7 +17,9 @@ for my $line (@lines) {
         my $url = $1;
  
         if ($line =~ /description><!\[cdata\[(.+?)\]/i) {
-            push @list, "<a href='$url'>$1</a>";
+            my $desc = $1;
+            $desc =~ s/\x{2019}/\'/g; # OUT encoding doesn't handle this
+            push @list, "<a href='$url'>$desc</a>";
         }
     }
 }
