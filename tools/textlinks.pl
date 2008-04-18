@@ -28,6 +28,7 @@ my $html = join ",\n", @list;
 
 print <<END
 <p>&nbsp;<p>&nbsp;<p>&nbsp;<p>&nbsp;<p>&nbsp;<p>&nbsp;
+<p style='margin: 0 0 0 1px;'><img src='tlinkhead.gif' width=20 height=13>
 <table cellspacing="0" cellpadding="2" width="98" style='border: solid black 1px;'><tr><td style='font-size: 9px; font-family: arial, helvetica, sans-serif;'>
 $html
 </td></tr></table>
