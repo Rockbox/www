@@ -6,7 +6,7 @@ use open OUT => ":encoding('iso-8859-1')";
 
 my $url = "http://update.livecustomer.net/?key=a539610bf93ee0795156fa7055d4b222&version=2.0.0&include_id=4696";
 
-my @output = `curl --silent --max-time 5 "$url"`;
+my @output = `curl --silent --max-time 60 "$url"`;
 my $output = join '', @output;
 
 my @lines = split /<Link/i, $output;
