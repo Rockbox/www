@@ -29,6 +29,7 @@
         'ipod1g2g' => '/playerpics/ipod1g2g-small.png',
         'mrobe100' => '/playerpics/mrobe100-small.png',
         'mrobe500' => '/rockbox100.png', # lacks small picture
+        'creativezvm' => '/rockbox100.png', # lacks small picture
 
         'install' => '/playerpics/install.png',
         'fonts' => '/rockbox100.png',
@@ -65,6 +66,7 @@
            'gigabeatf' => 'Toshiba Gigabeat F/X',
            'mrobe100' => 'Olympus M-Robe 100',
            'mrobe500' => 'Olympus M-Robe 500',
+           'creativezvm' => 'Creative Zen Vision:M',
            'install' => 'Windows Installer',
            'fonts' => 'Fonts',
            'source' => 'Source Archive');
