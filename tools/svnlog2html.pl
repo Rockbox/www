@@ -107,7 +107,7 @@ while(<STDIN>) {
                     $l =~ s:<:&lt;:g;
                     $l =~ s:>:&gt;:g;
                     $l =~ s!FS *\#(\d+)!<a href=\"http://www.rockbox.org/tracker/task/$1\">FS \#$1</a>!g;
-                    $l =~ s!r(\d+)!<a <a href='http://svn.rockbox.org/viewvc.cgi?view=rev;revision=$1'>r$1</a>!g;
+                    $l =~ s!r(\d+)!<a href='http://svn.rockbox.org/viewvc.cgi?view=rev;revision=$1'>r$1</a>!g;
                     $what .= "<br>" if($br);
                     $what .= $l;
                     $br++;
