@@ -29,7 +29,9 @@
         'ipod1g2g' => '/playerpics/ipod1g2g-small.png',
         'mrobe100' => '/playerpics/mrobe100-small.png',
         'mrobe500' => '/rockbox100.png', # lacks small picture
-        'creativezvm' => '/rockbox100.png', # lacks small picture
+        'creativezvm30' => '/rockbox100.png', # lacks small picture
+        'creativezvm60' => '/rockbox100.png', # lacks small picture
+        'creativezenvision' => '/rockbox100.png', # lacks small picture
 
         'install' => '/playerpics/install.png',
         'fonts' => '/rockbox100.png',
@@ -66,7 +68,9 @@
            'gigabeatf' => 'Toshiba Gigabeat F/X',
            'mrobe100' => 'Olympus M-Robe 100',
            'mrobe500' => 'Olympus M-Robe 500',
-           'creativezvm' => 'Creative Zen Vision:M',
+           'creativezvm30' => 'Creative Zen Vision:M 30GB',
+           'creativezvm60' => 'Creative Zen Vision:M 60GB',
+           'creativezenvision' => 'Creative Zen Vision',
            'install' => 'Windows Installer',
            'fonts' => 'Fonts',
            'source' => 'Source Archive');
