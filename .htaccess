@@ -1,6 +1,6 @@
 deny from 69.41.161.28
 
-RedirectMatch ^/devconwest2007(.*) http://scorche.cleansoap.org/rockbox/dcw.html
+RedirectMatch ^/devconwest2007(.*) http://squisch.net/rockbox/dcw.html
 RedirectPermanent /patches.shtml http://www.rockbox.org/tracker/index.php?type=4
 RedirectPermanent /bugs.shtml http://www.rockbox.org/tracker/index.php?type=2
 RedirectPermanent /requests.shtml http://www.rockbox.org/tracker/index.php?type=1
