@@ -90,14 +90,23 @@ my $when;
 my $where;
 my $who;
 my $what;
+my $manyfiles = 0;
 
 while(<STDIN>) {
     my $l = $_;
     chomp $l;
     if(/^------------------------------------------------------------------------/) {
         if($b[0] || $f[0]) {
+            
+            if (scalar @f > 30) {
+                $manyfiles = scalar(@f) - 30;
+                @f = @f[0 .. 29];
+            }
             for(@f) {
                 $where .= sprintf("%s<br>", file2url($_, $rev));
+            }
+            if ($manyfiles) {
+                $where .= "...and $manyfiles more files.";
             }
             if (1) {
                 my $br;
@@ -114,7 +123,7 @@ while(<STDIN>) {
                 }
             }
             print "<tr><td nowrap>$when</td><td>$what</td><td nowrap>$where</td><td>$who</td></tr>\n";
-            $when = $where = $what = $who = "";
+            $when = $where = $what = $who = $manyfiles = "";
         }
         $s=1;
         next;
