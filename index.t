@@ -52,7 +52,7 @@ for recent changes.
 <table class="news" summary="recent news">
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
-<tr><td nowrap>2008-06-27</td><td>DevCon 2008 is underway. Live video feed <a href="/devcon2008/">here</a>.
+<tr><td nowrap>2008-06-27</td><td><a href="/devcon2008/">DevCon 2008</a> is over.
 <tr><td nowrap>2008-03-17</td><td>We have been accepted as a mentor organization in <a href="/wiki/SummerOfCode2008">Google's summer of code 2008</a>. </td></tr>
 <tr><td nowrap>2008-03-06</td><td>We're applying to participate in <a href="/wiki/SummerOfCode2008">Google's summer of code 2008</a>. </td></tr>
 <tr><td nowrap>2007-11-23</td><td>New USB stack with limited capability. Currently it only requests full charging power. Ignore driver popups from Windows.</td></tr>
