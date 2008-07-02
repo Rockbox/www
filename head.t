@@ -86,11 +86,6 @@ Search
 </form>
 </div>
 
-#ifdef MAIN_PAGE
-<!--#include file="textlinks.html" -->
-<span style='font-size: 9px; font-family: arial, helvetica, sans-serif;'><a href="/twiki/bin/view/Main/WhyHaveAds">Why do we have this?</a>
-#endif
-
 </td>
 #ifdef TWIKI
 <td bgcolor=MENUBG width=100%>%TMPL:END%
