@@ -41,6 +41,13 @@ BODY, P, DIV, TD, TH, TR, FORM, OL, UL, LI, INPUT, TEXTAREA, SELECT
  font-size:        13px;
 }
 
+hr {
+  border: 0;
+  color: #666;
+  background-color: #666;
+  height: 1px;
+}
+
 LI {
  margin-top: 3px;
 }
@@ -71,6 +78,10 @@ pre {
 .menulink {
  color: #fff;
  line-height: 140%;
+}
+
+.twikihead a, .twikihead {
+ color: #fff;
 }
 
 .menutext {
