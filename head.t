@@ -31,7 +31,7 @@ function fsstrip() {
 <body>
 <table border=0 cellpadding=7 cellspacing=0>
 <tr valign="top">
-<td bgcolor=MENUBG valign="top">
+<td bgcolor=MENUBG valign="top" rowspan=7>
 <br>
 <div align="center"><a href="http://www.rockbox.org/">
 <img src="http://www.rockbox.org/rockbox100.png" width=99 height=30 border=0 alt="Rockbox.org home"></a>
@@ -46,9 +46,10 @@ Downloads
 <div class="submenu">
 Documentation
 </div>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/help.png' align='top'> <a class="menulink" href="http://www.rockbox.org/twiki/bin/view/Main/GeneralFAQ">FAQ</a><br>
 <img width=16 height=16 src='http://www.rockbox.org/silk_icons/page_white_acrobat.png' align='top'> <a class="menulink" href="http://www.rockbox.org/manual.shtml">manual</a><br>
 <img width=16 height=16 src='http://www.rockbox.org/silk_icons/application_edit.png' align='top'> <a class="menulink" href="http://www.rockbox.org/twiki/">wiki</a><br>
-<img width=16 height=16 src='http://www.rockbox.org/silk_icons/book_open.png' align='top'> <a class="menulink" href="http://www.rockbox.org/twiki/bin/view/Main/DocsIndex">index</a>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/book_open.png' align='top'> <a class="menulink" href="http://www.rockbox.org/twiki/bin/view/Main/DocsIndex">docs index</a>
 <div class="submenu">
 Support
 </div>
@@ -60,7 +61,6 @@ Tracker
 </div>
 <img width=16 height=16 src='http://www.rockbox.org/silk_icons/bug.png' align='top'> <a class="menulink" href="http://www.rockbox.org/tracker/index.php?type=2">bugs</a><br>
 <img width=16 height=16 src='http://www.rockbox.org/silk_icons/brick.png' align='top'> <a class="menulink" href="http://www.rockbox.org/tracker/index.php?type=4">patches</a><br>
-<img width=16 height=16 src='http://www.rockbox.org/silk_icons/lightbulb.png' align='top'>&nbsp;<a class="menulink" href="http://www.rockbox.org/tracker/index.php?type=1">requests</a><br>
 <div class="submenu">
 Search
 </div>
@@ -88,13 +88,14 @@ Search
 
 #ifdef MAIN_PAGE
 <!--#include file="textlinks.html" -->
+<span style='font-size: 9px; font-family: arial, helvetica, sans-serif;'><a href="/twiki/bin/view/Main/WhyHaveAds">Why do we have this?</a>
 #endif
 
 </td>
-<td>
 #ifdef TWIKI
-%TMPL:END%
+<td bgcolor=MENUBG width=100%>%TMPL:END%
 #else
+<td>
 #ifdef _LOGO_
 _LOGO_
 #else
