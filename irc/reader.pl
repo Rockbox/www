@@ -33,11 +33,12 @@ else {
     $file = "rockbox-$date.txt";
 }
 
-if (1 and open NICKS, "<regulars.txt") {
+if (open NICKS, "<committers.txt") {
     foreach $line (<NICKS>) {
-        chomp $line;
-        $regular{$line} = 1;
-        $nicks{$line} = 1;
+        if ($line =~ /^([^- ]+)/) {
+            $regular{$1} = 1;
+            $nicks{$1} = 1;
+        }
     }
 }
 
@@ -183,6 +184,7 @@ Seconds:
 <a href="javascript:fontsize('120%');"><span style='font-size: 120%'>Large</span></a>
 
 <p>Click in the nick column to <span style='background-color: yellow'>highlight</span> everything a person has said.
+<br>The <img align='absbottom' src='/rockbox16.png'> icon identifies that the person is a core developer (has commit access).
 </td>
 </tr>
 </table>
@@ -330,10 +332,9 @@ sub parsechunk {
                 }
             }
 
-            my ($reg1, $reg2);
-            if (defined $regular{$nick}) {
-                $reg1 = "<span class=regular>";
-                $reg2 = "</span>";
+            my $class = "nick";
+            if (defined $regular{lc $nick}) {
+                $class = "regular";
             }
             my $n1 = "<span class=nick_$nick>";
             my $n2 = "</span>";
@@ -345,7 +346,7 @@ sub parsechunk {
             print("<tr valign=top class='row$nick'>",
                   "<td class=time><a name='$hour:$minute:$second' href='$ENV{query}#$hour:$minute:$second'>$hour:$minute",
                   "<span class=seconds>:$second</span></a></td>",
-                  "<td class=nick onclick='markNick(\"$nick\");'>$n1$reg1$nick$reg2$n2</td>",
+                  "<td class=$class onclick='markNick(\"$nick\");'>$n1$nick$n2</td>",
                   "<td class=message>$message</td>",
                   "</tr>\n");
             $houranchor = "";

@@ -30,10 +30,6 @@
   display: none;
 }
 
-.regular {
-  
-}
-
 .options {
   border: 1px black dashed;
   padding: 5px;
@@ -67,7 +63,13 @@
   color: black;
 }
 
+.regular {
+  text-align: right;
+  background: transparent url(/rockbox16.png) no-repeat;
+}
+
 a[target="_blank"] {
   padding-right: 12px;
   background: transparent url(icon_popup.gif) no-repeat center right;
 }
+
