@@ -333,20 +333,27 @@ sub parsechunk {
             }
 
             my $class = "nick";
+            my $realnick = $nick;
             if (defined $regular{lc $nick}) {
                 $class = "regular";
             }
-            my $n1 = "<span class=nick_$nick>";
+            elsif (($nick eq "*") and ($message =~ /^<span class=nick_([^>]+)/)) {
+                $realnick = $1;
+                if (defined $regular{lc $realnick}) {
+                    $class = "regular";
+                }
+            }
+            my $n1 = "<span class=nick_$realnick>";
             my $n2 = "</span>";
             if ($nick =~ /[^\w\d_\-]/) {
                 $n1 = $n2 = "";
             }
 
 
-            print("<tr valign=top class='row$nick'>",
+            print("<tr valign=top class='row$realnick'>",
                   "<td class=time><a name='$hour:$minute:$second' href='$ENV{query}#$hour:$minute:$second'>$hour:$minute",
                   "<span class=seconds>:$second</span></a></td>",
-                  "<td class=$class onclick='markNick(\"$nick\");'>$n1$nick$n2</td>",
+                  "<td class=$class onclick='markNick(\"$realnick\");'>$n1$nick$n2</td>",
                   "<td class=message>$message</td>",
                   "</tr>\n");
             $houranchor = "";
@@ -355,7 +362,7 @@ sub parsechunk {
             my ($nick, $message);
             if ($string =~ /^([^ ]+) *(.*)/) {
                 ($nick, $message) = ($1, $2);
-                $message = escapeHTML($message);
+                $message = escapeHTML($message); 
             }
             print("<tr class=join valign=top>",
                   "<td class=time>$hour:$minute",
