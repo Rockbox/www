@@ -53,7 +53,7 @@ for recent changes.
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 <tr><td nowrap>2008-08-16</td><td><a href="http://www.rockbox.org/mail/archive/rockbox-dev-archive-2008-08/0032.shtml">Release 3.0 Feature Freeze</a></td></tr>
-<tr><td nowrap>2008-06-27</td><td><a href="/devcon2008/">DevCon 2008</a> is over.</td></tr>
+<tr><td nowrap>2008-06-29</td><td><a href="/devcon2008/">DevCon 2008</a> is over.</td></tr>
 <tr><td nowrap>2008-03-17</td><td>We have been accepted as a mentor organization in <a href="/wiki/SummerOfCode2008">Google's summer of code 2008</a>. </td></tr>
 <tr><td nowrap>2008-03-06</td><td>We're applying to participate in <a href="/wiki/SummerOfCode2008">Google's summer of code 2008</a>. </td></tr>
 <tr><td nowrap>2007-11-23</td><td>New USB stack with limited capability. Currently it only requests full charging power. Ignore driver popups from Windows.</td></tr>
