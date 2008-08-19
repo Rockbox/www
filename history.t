@@ -2,6 +2,8 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<p><i>2007-09-19</i>: 1st and 2nd gen iPods are supported
+
 <p><i>2007-08-07</i>: We now offer daily built voice files on the <a
 href="/daily.shtml">daily build page</a>
 

@@ -52,12 +52,12 @@ for recent changes.
 <table class="news" summary="recent news">
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
-<tr><td nowrap>2008-06-27</td><td><a href="/devcon2008/">DevCon 2008</a> is over.
+<tr><td nowrap>2008-08-16</td><td><a href="http://www.rockbox.org/mail/archive/rockbox-dev-archive-2008-08/0032.shtml">Release 3.0 Feature Freeze</a></td></tr>
+<tr><td nowrap>2008-06-27</td><td><a href="/devcon2008/">DevCon 2008</a> is over.</td></tr>
 <tr><td nowrap>2008-03-17</td><td>We have been accepted as a mentor organization in <a href="/wiki/SummerOfCode2008">Google's summer of code 2008</a>. </td></tr>
 <tr><td nowrap>2008-03-06</td><td>We're applying to participate in <a href="/wiki/SummerOfCode2008">Google's summer of code 2008</a>. </td></tr>
 <tr><td nowrap>2007-11-23</td><td>New USB stack with limited capability. Currently it only requests full charging power. Ignore driver popups from Windows.</td></tr>
 <tr><td nowrap>2007-11-18</td><td><a href="http://www.rockbox.org/mail/archive/rockbox-archive-2007-11/0176.shtml">New voice codec used:</a> Speex!</td></tr>
-<tr><td nowrap>2007-09-19</td><td>1st and 2nd gen iPods are supported</td></tr>
 <!--
 <tr><td colspan=2 align='center'><a href="history.html">Older news</a></td></tr>
 -->
