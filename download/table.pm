@@ -44,7 +44,7 @@ sub buildtable {
                 print "</tr><tr valign=\"top\">";
                 $col=1;
             }
-            printf("<td align='center'><a href=\"%s\" title=\"%s\"><img border=\"0\" src=\"http://www.rockbox.org%s\" alt=\"%s\"><p>%s</a><br><small>$rev</small></td>\n",
+            printf("<td align='center'><a href=\"%s\" title=\"%s\"><img border=\"0\" src=\"http://www.rockbox.org%s\" alt=\"%s\"><p>%s</a></td>\n",
                    $pack,
                    $longname{$m},
                    $model{$m},
