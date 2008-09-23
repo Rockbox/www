@@ -5,7 +5,7 @@ my @list=(
           "fmrecorder", "fmrecorder8mb",
           "recorderv2",
           "ondiofm", "ondiosp",
-          "iaudiom5", "iaudiox5", "iaudiom3",
+          "iaudiom5", "iaudiox5", #"iaudiom3",
           "h100", "h120", "h300",
           "h10_5gb", "h10",
 
