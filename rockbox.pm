@@ -75,6 +75,12 @@
            'fonts' => 'Fonts',
            'source' => 'Source Archive');
 
+# short name to docs name if the short name isn't already fine
+%model2docs=(
+        'recorder8mb' => 'recorder',
+        'fmrecorder8mb' => 'fmrecorder'
+        'h120' => 'h100' );
+
 sub header {
     my ($t) = @_;
     print "Content-Type: text/html\n\n";
