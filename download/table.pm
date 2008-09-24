@@ -1,3 +1,6 @@
+my $version="3.0";
+my $basedir="http://download.rockbox.org/release/$version/";
+
 
 my @list=(
           "player",
@@ -18,26 +21,32 @@ my @list=(
           "gigabeatf",
           "sansae200", "sansac200",
           "mrobe100",
-          "source"
+          "source", "fonts"
           );
 
 sub buildtable {
     print "<p><table class='rockbox' cellpadding=\"0\"><tr valign=top>\n";
     for my $m (@list) {
         {
-            my $pack="http://download.rockbox.org/release/3.0/rockbox-$m-3.0.zip";
+            my $pack="$basedir/rockbox-$m-$version.zip";
             my $name= $longname{$m},
             my $version;
-            my $rev="3.0";
+            my $mans;
             if($m eq "source") {
-                $pack="http://download.rockbox.org/release/3.0/rockbox-3.0.7z";
+                $pack="$basedir/rockbox-$version.7z";
+            }
+            elsif($m eq "fonts") {
+                $pack="$basedir/rockbox-fonts-$version.zip";
+            }
+            else {
+                $mans=sprintf("<br><a href=\"$basedir/rockbox-%s-$version.pdf\">PDF manual</a>", $model2docs{$m});
             }
 
             if($col++ > 6) {
                 print "</tr><tr valign=\"top\">";
                 $col=1;
             }
-            printf("<td align='center'><a href=\"%s\" title=\"%s\"><img border=\"0\" src=\"http://www.rockbox.org%s\" alt=\"%s\"><p>%s</a></td>\n",
+            printf("<td align='center'><a href=\"%s\" title=\"%s\"><img border=\"0\" src=\"http://www.rockbox.org%s\" alt=\"%s\"><p>%s</a>$mans</td>\n",
                    $pack,
                    $longname{$m},
                    $model{$m},
