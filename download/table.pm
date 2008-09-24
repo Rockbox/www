@@ -31,10 +31,6 @@ sub buildtable {
             my $rev="3.0";
             if($m eq "source") {
                 $pack="http://download.rockbox.org/release/3.0/rockbox-3.0.7z";
-                
-                $m="source";
-                my $size = (stat($pack))[7];
-                $name= sprintf("Source code<br>%.1fMB", $size/(1024*1024));
             }
 
             if($col++ > 6) {
