@@ -78,7 +78,7 @@
 # short name to docs name if the short name isn't already fine
 %model2docs=(
         'recorder8mb' => 'recorder',
-        'fmrecorder8mb' => 'fmrecorder'
+        'fmrecorder8mb' => 'fmrecorder',
         'h120' => 'h100' );
 
 sub header {
