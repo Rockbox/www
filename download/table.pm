@@ -1,5 +1,5 @@
 my $version="3.0";
-my $basedir="http://download.rockbox.org/release/$version/";
+my $basedir="http://download.rockbox.org/release/$version";
 
 
 my @list=(
