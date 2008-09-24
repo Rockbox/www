@@ -8,7 +8,7 @@ header("Rockbox 3.0");
 print <<HEAD
 <p>
 Rockbox 3.0 was released on September 23, 2008. Three years after the previous
-release!
+release! See the full <a href="/twiki/bin/view/Main/ReleaseNotes30">Release Notes</a>
 
 HEAD
     ;
