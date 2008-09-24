@@ -30,10 +30,7 @@ sub buildtable {
             my $version;
             my $rev="3.0";
             if($m eq "source") {
-                $pack="rockbox-3.0.7z";
-                if(! -f $pack) {
-                    next;
-                }
+                $pack="http://download.rockbox.org/release/3.0/rockbox-3.0.7z";
                 
                 $m="source";
                 my $size = (stat($pack))[7];
