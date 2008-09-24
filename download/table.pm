@@ -30,7 +30,6 @@ sub buildtable {
         {
             my $pack="$basedir/rockbox-$m-$version.zip";
             my $name= $longname{$m},
-            my $version;
             my $mans;
             if($m eq "source") {
                 $pack="$basedir/rockbox-$version.7z";
@@ -39,7 +38,8 @@ sub buildtable {
                 $pack="$basedir/rockbox-fonts-$version.zip";
             }
             else {
-                $mans=sprintf("<br><a href=\"$basedir/rockbox-%s-$version.pdf\">PDF manual</a>", $model2docs{$m});
+                my $docs = $model2docs{$m} || $m;
+                $mans=sprintf("<br><a href=\"$basedir/rockbox-%s-$version.pdf\">PDF manual</a>", $docs;
             }
 
             if($col++ > 6) {
