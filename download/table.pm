@@ -39,8 +39,12 @@ sub buildtable {
             }
             else {
                 my $docs = $model2docs{$m} || $m;
+                my $voice = $m;
+
+                $voice =~ s/8mb//g;
+
                 $mans=sprintf("<br><a href=\"$basedir/rockbox-%s-$version.pdf\">PDF manual</a><br><a href=\"$basedir/%s-$version-english.zip\">English voice</a>",
-                              $docs, $docs);
+                              $docs, $voice);
             }
 
             if($col++ > 6) {
