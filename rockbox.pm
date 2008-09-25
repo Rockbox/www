@@ -80,6 +80,7 @@
         'recorder8mb' => 'recorder',
         'fmrecorder8mb' => 'fmrecorder',
         'ipodvideo64mb' => 'ipodvideo',
+        'ipodmini1g' => 'ipodmini2g',
         'h120' => 'h100' );
 
 sub header {
