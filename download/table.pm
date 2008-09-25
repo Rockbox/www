@@ -41,7 +41,9 @@ sub buildtable {
                 my $docs = $model2docs{$m} || $m;
                 my $voice = $m;
 
+                # cut off the memory sizes
                 $voice =~ s/8mb//g;
+                $voice =~ s/64mb//g;
 
                 $mans=sprintf("<br><a href=\"$basedir/rockbox-%s-$version.pdf\">PDF manual</a><br><a href=\"$basedir/%s-$version-english.zip\">English voice</a>",
                               $docs, $voice);

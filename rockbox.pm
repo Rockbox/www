@@ -79,6 +79,7 @@
 %model2docs=(
         'recorder8mb' => 'recorder',
         'fmrecorder8mb' => 'fmrecorder',
+        'ipodvideo64mb' => 'ipodvideo',
         'h120' => 'h100' );
 
 sub header {
