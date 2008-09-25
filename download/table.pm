@@ -39,7 +39,8 @@ sub buildtable {
             }
             else {
                 my $docs = $model2docs{$m} || $m;
-                $mans=sprintf("<br><a href=\"$basedir/rockbox-%s-$version.pdf\">PDF manual</a><br><a href=\"$basedir/$s-$version-english.zip\">English voice</a>", $docs);
+                $mans=sprintf("<br><a href=\"$basedir/rockbox-%s-$version.pdf\">PDF manual</a><br><a href=\"$basedir/%s-$version-english.zip\">English voice</a>",
+                              $docs, $docs);
             }
 
             if($col++ > 6) {
