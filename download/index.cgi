@@ -9,6 +9,8 @@ print <<HEAD
 <p>
 Rockbox 3.0 was released on September 23, 2008. Three years after the previous
 release! See the full <a href="/twiki/bin/view/Main/ReleaseNotes30">Release Notes</a>
+<p>
+ Use the <a href="/twiki/bin/view/Main/RockboxUtility">Rockbox Utility</a> for easy install!
 
 HEAD
     ;
