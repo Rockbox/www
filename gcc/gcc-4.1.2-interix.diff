@@ -1,0 +1,10 @@
+--- gcc-4.1.2/config/mh-interix	2002-12-28 07:57:50.000000000 +0100
++++ gcc-4.1.2-new/config/mh-interix	2008-09-29 21:48:27.000000000 +0200
+@@ -1,5 +1,5 @@
+-# The shell may not be in /bin. 
+-SHELL = sh
++# Interix 3.5+ refuses to execute a script with just #!sh, so simply
++# assume $SHELL is correct 
+ 
+ # We also need to override LIBGCC2_DEBUG_CFLAGS so libgcc2 will be
+ # built without debugging information
