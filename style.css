@@ -60,10 +60,6 @@ A {
  text-decoration: underline;
 }
 
-pre {
- overflow: auto;
-}
-
 .bgbox {
  border-left: 1px;
  border-color: #000000;
