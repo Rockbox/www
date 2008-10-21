@@ -74,15 +74,11 @@ Search
 <input value="Search" type=submit>
 <input type=hidden name=as_sitesearch value="www.rockbox.org">
 </form>
-<p><form action="https://www.paypal.com/cgi-bin/webscr" method="get">
-<input type="hidden" name="cmd" value="_xclick">
-<input type="hidden" name="business" value="bjorn@haxx.se">
-<input type="hidden" name="item_name" value="Donation to the Rockbox project">
-<input type="hidden" name="no_shipping" value="1">
-<input type="hidden" name="cn" value="Note to the Rockbox team">
-<input type="hidden" name="currency_code" value="USD">
-<input type="hidden" name="tax" value="0">
-<input type="image" src="http://www.rockbox.org/paypal-donate.gif" name="submit">
+<p>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="585407">
+<input type="image" src="http://www.rockbox.org/paypal-donate.gif" border="0" name="submit" alt="Donate with PayPal">
 </form>
 </div>
 
