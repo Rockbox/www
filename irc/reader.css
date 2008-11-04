@@ -66,6 +66,7 @@
 .regular {
   text-align: right;
   background: transparent url(/rockbox16.png) no-repeat;
+  padding-left: 20px;
 }
 
 a[target="_blank"] {

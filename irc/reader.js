@@ -34,13 +34,19 @@ function _(id) {
 
 function seconds(show)
 {
-    secondStyle.display = show;
+    if (show==1)
+        secondStyle.display = 'inline';
+    else
+        secondStyle.display = 'none';
     save_settings();
 }
 
 function joins(show)
 {
-    joinStyle.display = show;
+    if (show==1)
+        joinStyle.display = 'inline';
+    else
+        joinStyle.display = 'none';
     save_settings();
 }
 
@@ -58,17 +64,26 @@ function fontsize(size)
 
 function save_settings()
 {
+    var date = new Date();
+    date.setTime(date.getTime()+(900*86400*1000));
+    var expires = "; expires="+date.toGMTString();
+    var end = ";";
+
     document.cookie = "font=" +
-        fontStyle.fontFamily;
+        fontStyle.fontFamily + expires + end;
 
     document.cookie = "fontsize=" +
-        fontStyle.fontSize;
+        fontStyle.fontSize + expires + end;
 
-    document.cookie = "showseconds=" +
-        secondStyle.display;
+    if (secondStyle.display == 'inline')
+        document.cookie = "showseconds=1" + expires + end;
+    else
+        document.cookie = "showseconds=0" + expires + end;
 
-    document.cookie = "showjoins=" +
-        joinStyle.display;
+    if (joinStyle.display == 'inline')
+        document.cookie = "showjoins=1" + expires + end;
+    else
+        document.cookie = "showjoins=0" + expires + end;
 }
 
 function reader_init()
@@ -81,9 +96,16 @@ function reader_init()
     if (tmp && tmp != "")
         fontStyle.fontSize = tmp;
 
-    if (getCookie('showseconds') == 'none')
+    tmp = getCookie('showseconds');
+    if (tmp == '1')
+        secondStyle.display = 'inline';
+    else
         secondStyle.display = 'none';
-    if (getCookie('showjoins') == 'none')
+
+    tmp = getCookie('showjoins');
+    if (tmp == '1')
+        joinStyle.display = 'inline';
+    else
         joinStyle.display = 'none';
 }
 

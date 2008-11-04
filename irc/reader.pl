@@ -154,22 +154,24 @@ foreach (1 .. $tophour) {
     $hourlinks .= sprintf "<a href='#%02d:00'>%02d</a> ", $_, $_;
 }
 
+my $jstime = (stat("reader.js"))[9];
+
 print <<END
 </head>
 <body bgcolor="#b6c6e5" text="black" link="blue" vlink="purple" alink="red" topmargin=0 leftmargin=0 marginwidth=0 marginheight=0>
-<script src='reader.js' type='text/javascript'></script>
+<script src='reader.js?$jstime' language='javascript' type='text/javascript'></script>
 
 <table class=options>
 <tr><td>$prevday | Jump to hour: $hourlinks | $nextday
 <p>
 $autoscroll
 Seconds: 
-<a href="javascript:seconds('');">Show</a>
-<a href="javascript:seconds('none');">Hide</a>
+<a href="javascript:seconds(1);">Show</a>
+<a href="javascript:seconds(0);">Hide</a>
 
 | Joins:
-<a href="javascript:joins('');">Show</a>
-<a href="javascript:joins('none');">Hide</a>
+<a href="javascript:joins(1);">Show</a>
+<a href="javascript:joins(0);">Hide</a>
 
 | <a href="$file">View raw</a>
 
@@ -307,7 +309,7 @@ sub parsechunk {
 
 
             # tag svn revisions
-            $message =~ s!(\b)r(\d+)(\b)!$1<a target="_blank" href=\"http://svn.rockbox.org/viewvc.cgi?view=rev&revision=$2\">r$2</a>$3!g;
+            $message =~ s!(\b)\sr(\d+)(\b)!$1<a target="_blank" href=\"http://svn.rockbox.org/viewvc.cgi?view=rev&revision=$2\">r$2</a>$3!g;
 
             # break long lines. max 60 chars
             if (0 and $message =~ /([^ ]{60,})/) {
@@ -330,6 +332,18 @@ sub parsechunk {
                 if (index($message, $nick) > -1) {
                     $message =~ s|\b\Q$nick\E\b|<span class=nick_$nick>$nick</span>|g;
                 }
+            }
+
+            # remove any nick-highlightning inside hrefs
+            if ($message =~ /href=\"([^\"]+)/) {
+                my $url = $1;
+                my $broken_url = $url;
+ 
+                if ($url =~ /<span class=nick_([^>]+)/) {
+                    my $nick = $1;
+                    $url =~ s|<span class=nick_$nick>$nick</span>|$nick|g;
+                }
+                $message =~ s|$broken_url|$url|g;
             }
 
             my $class = "nick";
