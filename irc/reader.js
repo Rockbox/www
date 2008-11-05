@@ -44,7 +44,7 @@ function seconds(show)
 function joins(show)
 {
     if (show==1)
-        joinStyle.display = 'inline';
+        joinStyle.display = 'table-row';
     else
         joinStyle.display = 'none';
     save_settings();
@@ -80,7 +80,7 @@ function save_settings()
     else
         document.cookie = "showseconds=0" + expires + end;
 
-    if (joinStyle.display == 'inline')
+    if (joinStyle.display == 'table-row')
         document.cookie = "showjoins=1" + expires + end;
     else
         document.cookie = "showjoins=0" + expires + end;
@@ -104,7 +104,7 @@ function reader_init()
 
     tmp = getCookie('showjoins');
     if (tmp == '1')
-        joinStyle.display = 'inline';
+        joinStyle.display = 'table-row';
     else
         joinStyle.display = 'none';
 }
