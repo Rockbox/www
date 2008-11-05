@@ -311,6 +311,9 @@ sub parsechunk {
             # tag svn revisions
             $message =~ s!(\b)\sr(\d+)(\b)!$1<a target="_blank" href=\"http://svn.rockbox.org/viewvc.cgi?view=rev&revision=$2\">r$2</a>$3!g;
 
+            # escape text that looks like the multipart delimiter
+            $message =~ s!--!&minus;&minus;!g;
+
             # break long lines. max 60 chars
             if (0 and $message =~ /([^ ]{60,})/) {
                 my $substr_orig = $1;
