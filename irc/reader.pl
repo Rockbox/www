@@ -309,7 +309,7 @@ sub parsechunk {
 
 
             # tag svn revisions
-            $message =~ s!(\b)\sr(\d+)(\b)!$1<a target="_blank" href=\"http://svn.rockbox.org/viewvc.cgi?view=rev&revision=$2\">r$2</a>$3!g;
+            $message =~ s!(\b\s)r(\d+)(\b)!$1<a target="_blank" href=\"http://svn.rockbox.org/viewvc.cgi?view=rev&revision=$2\">r$2</a>$3!g;
 
             # escape text that looks like the multipart delimiter
             $message =~ s!--!&minus;&minus;!g;
