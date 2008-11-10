@@ -32,6 +32,10 @@
         'creativezvm30' => '/rockbox100.png', # lacks small picture
         'creativezvm60' => '/rockbox100.png', # lacks small picture
         'creativezenvision' => '/rockbox100.png', # lacks small picture
+        'sansaclip' => '/rockbox100.png', # lacks small picture
+        'sansafuze' => '/rockbox100.png', # lacks small picture
+        'sansae200v2' => '/playerpics/e200-small.png',
+        'sansam200v4' => '/rockbox100.png', # lacks small picture
 
         'install' => '/playerpics/install.png',
         'fonts' => '/rockbox100.png',
@@ -65,6 +69,10 @@
            'iaudiom3' => 'iAudio M3',
            'sansae200' => 'SanDisk Sansa e200',
            'sansac200' => 'SanDisk Sansa c200',
+           'sansaclip' => 'SanDisk Sansa Clip',
+           'sansafuze' => 'SanDisk Sansa Fuze',
+           'sansae200v2' => 'SanDisk Sansa e200 V2',
+           'sansam200v4' => 'SanDisk Sansa m200 V4',
            'gigabeatf' => 'Toshiba Gigabeat F/X',
            'mrobe100' => 'Olympus M-Robe 100',
            'mrobe500' => 'Olympus M-Robe 500',
