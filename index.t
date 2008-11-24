@@ -14,7 +14,7 @@ Rockbox is an open source firmware for mp3 players, written from scratch. It run
 <ul>
 
 <li><b>Apple</b>: 1st through 5.5th generation iPod, iPod Mini and 1st
-generation iPod Nano<br>(<i>not the Shuffle, 2nd/3rd gen Nano, Classic or
+generation iPod Nano<br>(<i>not the Shuffle, 2nd/3rd/4th gen Nano, Classic or
 Touch</i>)
 
 <li><b>Archos</b>: Jukebox 5000, 6000, Studio, Recorder, FM Recorder, Recorder V2
