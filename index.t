@@ -30,19 +30,17 @@ and Ondio
 <li><b>Toshiba</b>: Gigabeat X and F series (<i>not the S series</i>)
 
 
-<li> <a href="http://www.rockbox.org/wiki/TargetStatus">Current status for all targets</a>
 
 </ul>
 
-<p>Why should you run Rockbox? <a href="/twiki/bin/view/Main/WhyRockbox">Click here to find out</a>
+<p>Quick links:
+<a href="/wiki/WhyRockbox">Why should you run Rockbox?</a>
+&middot;
+<a href="/wiki/MajorChanges">Change log</a>
+&middot;
+<a href="/wiki/TargetStatus">Status for current and work-in-progress targets</a>
 
 </td></tr></table>
-
-<!--
-Check the <a
-href="http://www.rockbox.org/twiki/bin/view/Main/MajorChanges">changelog</a>
-for recent changes.
--->
 
 <h2>Recent activity:</h2>
 
