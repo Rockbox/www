@@ -30,7 +30,7 @@ and Ondio
 <li><b>Toshiba</b>: Gigabeat X and F series (<i>not the S series</i>)
 
 
-<li> <a href="http://www.rockbox.org/wiki/TargetStatus">Current Status</a>
+<li> <a href="http://www.rockbox.org/wiki/TargetStatus">Current status for all targets</a>
 
 </ul>
 
