@@ -7,7 +7,7 @@ header("Rockbox 3.1");
 
 print <<HEAD
 <p>
-Rockbox 3.1 was released on December 23, 2008. See the full <a href="/twiki/bin/view/Main/ReleaseNotes30">Release Notes</a>
+Rockbox 3.1 was released on December 23, 2008. See the full <a href="/twiki/bin/view/Main/ReleaseNotes31">Release Notes</a>
 
 <h2>Option 1: Automatic install</h2>
 <p>Download and run the <a href="/twiki/bin/view/Main/RockboxUtility">Rockbox Utility</a>.

@@ -2,6 +2,10 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<p><i>2007-11-23</i>: New USB stack with limited capability. Currently it only requests full charging power. Ignore driver popups from Windows.
+
+<p><i>2007-11-18</i>: <a href="http://www.rockbox.org/mail/archive/rockbox-archive-2007-11/0176.shtml">New voice codec used:</a> Speex!
+
 <p><i>2007-09-19</i>: 1st and 2nd gen iPods are supported
 
 <p><i>2007-08-07</i>: We now offer daily built voice files on the <a
