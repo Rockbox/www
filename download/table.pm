@@ -1,13 +1,13 @@
-my $defaultversion="3.0";
+my $defaultversion="3.1";
 
-my %diffver = ( 'player'        => '3.0.1',
-                'recorder'      => '3.0.1',
-                'recorder8mb'   => '3.0.1',
-                'fmrecorder'    => '3.0.1',
-                'fmrecorder8mb' => '3.0.1',
-                'recorderv2'    => '3.0.1',
-                'ondiofm'       => '3.0.1',
-                'ondiosp'       => '3.0.1');
+#my %diffver = ( 'player'        => '3.0.1',
+#                'recorder'      => '3.0.1',
+#                'recorder8mb'   => '3.0.1',
+#                'fmrecorder'    => '3.0.1',
+#                'fmrecorder8mb' => '3.0.1',
+#                'recorderv2'    => '3.0.1',
+#                'ondiofm'       => '3.0.1',
+#                'ondiosp'       => '3.0.1');
 
 my @list=(
           "player",
