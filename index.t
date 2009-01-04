@@ -27,9 +27,7 @@ and Ondio
 
 <li><b>SanDisk</b>: Sansa c200, e200 and e200R series (<i>not the v2 models</i>)
 
-<li><b>Toshiba</b>: Gigabeat X and F series (<i>not the S series</i>)
-
-
+<li><b>Toshiba</b>: Gigabeat X, F and S series
 
 </ul>
 
