@@ -26,7 +26,7 @@
         'sansae200' => '/playerpics/e200-small.png',
         'sansac200' => '/playerpics/c200-small.png',
         'gigabeatf' => '/playerpics/gigabeatf-small.png',
-        'gigabeats' => '/rockbox100.png', # lacks small picture
+        'gigabeats' => '/playerpics/gigabeats-small.png',
         'ipod1g2g' => '/playerpics/ipod1g2g-small.png',
         'mrobe100' => '/playerpics/mrobe100-small.png',
         'mrobe500' => '/rockbox100.png', # lacks small picture
