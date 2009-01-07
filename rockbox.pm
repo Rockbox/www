@@ -26,6 +26,7 @@
         'sansae200' => '/playerpics/e200-small.png',
         'sansac200' => '/playerpics/c200-small.png',
         'gigabeatf' => '/playerpics/gigabeatf-small.png',
+        'gigabeats' => '/rockbox100.png', # lacks small picture
         'ipod1g2g' => '/playerpics/ipod1g2g-small.png',
         'mrobe100' => '/playerpics/mrobe100-small.png',
         'mrobe500' => '/rockbox100.png', # lacks small picture
@@ -74,6 +75,7 @@
            'sansae200v2' => 'SanDisk Sansa e200 V2',
            'sansam200v4' => 'SanDisk Sansa m200 V4',
            'gigabeatf' => 'Toshiba Gigabeat F/X',
+           'gigabeats' => 'Toshiba Gigabeat S',
            'mrobe100' => 'Olympus M-Robe 100',
            'mrobe500' => 'Olympus M-Robe 500',
            'creativezvm30' => 'Creative Zen Vision:M 30GB',
