@@ -1,7 +1,7 @@
 #define _PAGE_ Daily Built Manuals
 #include "head.t"
 
-See the <a href="/download/">3.0</a> page for the manuals for the 3.0 release. 
+See the <a href="/download/">download</a> page for the manuals for the latest release. 
 
 Go to <a href="http://www.rockbox.org/twiki/bin/view/Main/RockboxManual">RockboxManual</a> for further info and helping out with the manual!
 <p>
