@@ -89,6 +89,7 @@ print "<table class=\"changetable_front\"><tr><th>when</th><th>what</th><th>wher
 my $when;
 my $where;
 my $who;
+my $whoshort;
 my $what;
 my $manyfiles = 0;
 
@@ -126,8 +127,10 @@ while(<STDIN>) {
             print "<tr><td nowrap class=\"cstamp\">$when</td>\n",
             "<td class=\"cdesc\">$what</td>\n",
             "<td nowrap class=\"cpath\">$where</td>\n",
-            "<td class=\"cname\">$who</td></tr>\n";
-            $when = $where = $what = $who = $manyfiles = "";
+            "<td class=\"cname\">$who</td>\n",
+            "<!-- <td class=\"cshortname\">$whoshort</td> -->\n",
+            "</tr>\n";
+            $when = $where = $what = $who = $whoshort = $manyfiles = "";
         }
         $s=1;
         next;
@@ -139,7 +142,8 @@ while(<STDIN>) {
         $rev = -1;
         if($l =~ /^r(\d+) \| (.+) \| ([0-9-]*) ([0-9:]*) (.*) \| (\d+) line/) {
             $rev = $1;
-            my $lname = $shortnames{lc($2)} || $2;
+            $whoshort = $2;
+            my $lname = $shortnames{lc($2)} || $whoshort;
             my $t = $4;
             my $d = $3;
 
