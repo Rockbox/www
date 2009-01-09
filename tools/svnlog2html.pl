@@ -123,7 +123,10 @@ while(<STDIN>) {
                     $br++;
                 }
             }
-            print "<tr><td nowrap>$when</td><td>$what</td><td nowrap>$where</td><td>$who</td></tr>\n";
+            print "<tr><td nowrap class=\"cstamp\">$when</td>\n",
+            "<td class=\"cdesc\">$what</td>\n",
+            "<td nowrap class=\"cpath\">$where</td>\n",
+            "<td class=\"cname\">$who</td></tr>\n";
             $when = $where = $what = $who = $manyfiles = "";
         }
         $s=1;
