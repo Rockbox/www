@@ -78,6 +78,8 @@ href="http://www.rockbox.org/twiki/bin/view/Main/IaudioPort">iAudio X5!</a>.
 <p><i>2006-03-17</i>: <a href="devcon2006/">The Rockbox International
 Developers Conference 2006</a>.
 
+<p><i>2006-02-27</i>: Rockbox now has its own distributed build system.
+
 <p><i>2006-02-23</i>: We have migrated to a new bugtracker: Flyspray. It's faster and better in practically every aspect. <a href="/tracker/">See it here</a>.
 
 <p><i>2006-01-28</i>: <a href="http://www.rockbox.org/mail/archive/rockbox-archive-2006-01/0543.shtml">Sound</a> on <a href="http://www.rockbox.org/twiki/bin/view/Main/IpodPort">iPod!</a>
