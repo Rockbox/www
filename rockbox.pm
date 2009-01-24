@@ -93,6 +93,43 @@
         'ipodmini1g' => 'ipodmini2g',
         'h120' => 'h100' );
 
+# this is the default release version, see the table below for
+# target specifics
+$publicrelease="3.1";
+
+%release=(
+          'player' => "$publicrelease",
+          'recorder'  => "$publicrelease",
+          'recorder8mb'  => "$publicrelease",
+          'fmrecorder'  => "$publicrelease",
+          'fmrecorder8mb'  => "$publicrelease",
+          'recorderv2'  => "$publicrelease",
+          'ondiofm'  => "$publicrelease",
+          'ondiosp'  => "$publicrelease",
+          'iaudiom5'  => "$publicrelease",
+          'iaudiox5'  => "$publicrelease",
+          'h100'  => "$publicrelease",
+          'h120'  => "$publicrelease",
+          'h300'  => "$publicrelease",
+          'h10_5gb'  => "$publicrelease",
+          'h10'  => "$publicrelease",
+          'ipod1g2g'  => "$publicrelease",
+          'ipod3g'  => "$publicrelease",
+          'ipod4gray'  => "$publicrelease",
+          'ipodcolor'  => "$publicrelease",
+          'ipodvideo'  => "$publicrelease",
+          'ipodvideo64mb'  => "$publicrelease",
+          'ipodmini1g'  => "$publicrelease",
+          'ipodmini2g'  => "$publicrelease",
+          'ipodnano'  => "$publicrelease",
+          'gigabeatf'  => "$publicrelease",
+          'sansae200'  => "$publicrelease",
+          'sansac200'  => "$publicrelease",
+          'mrobe100'  => "$publicrelease",
+          'source'  => "$publicrelease",
+          'fonts' => "$publicrelease"
+          );
+
 sub header {
     my ($t) = @_;
     print "Content-Type: text/html\n\n";

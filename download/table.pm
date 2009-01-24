@@ -1,14 +1,3 @@
-my $defaultversion="3.1";
-
-#my %diffver = ( 'player'        => '3.0.1',
-#                'recorder'      => '3.0.1',
-#                'recorder8mb'   => '3.0.1',
-#                'fmrecorder'    => '3.0.1',
-#                'fmrecorder8mb' => '3.0.1',
-#                'recorderv2'    => '3.0.1',
-#                'ondiofm'       => '3.0.1',
-#                'ondiosp'       => '3.0.1');
-
 my @list=(
           "player",
           "recorder", "recorder8mb",
@@ -35,7 +24,8 @@ sub buildtable {
     print "<p><table class='rockbox' cellpadding=\"0\"><tr valign=top>\n";
     for my $m (@list) {
         {
-            my $version = $diffver{$m} || $defaultversion;
+            # the release hash is in ../rockbox.pm
+            my $version = $release{$m};
             my $basedir="http://download.rockbox.org/release/$version";
             my $pack="$basedir/rockbox-$m-$version.zip";
             my $name= $longname{$m},
