@@ -23,6 +23,7 @@
         'iaudiom3' => '/playerpics/m3-small.png',
         'h10' => '/playerpics/h10-small.png',
         'h10_5gb' => '/playerpics/h10_5gb-small.png',
+        'hdd1630' => '/rockbox100.png', # lacks small picture
         'sansae200' => '/playerpics/e200-small.png',
         'sansac200' => '/playerpics/c200-small.png',
         'gigabeatf' => '/playerpics/gigabeatf-small.png',
@@ -56,6 +57,7 @@
            'h300' => 'iriver H320/340',
            'h10' => 'iriver H10 20GB',
            'h10_5gb' => 'iriver H10 5GB',
+           'hdd1630' => 'Philips HDD1630',
            'ipodcolor' => 'iPod color/Photo',
            'ipodnano' => 'iPod Nano 1st gen',
            'ipod4gray' => 'iPod 4th gen Grayscale',
