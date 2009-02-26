@@ -50,6 +50,7 @@ and Ondio
 <table class="news" summary="recent news">
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
+<tr><td nowrap>2009-02-25</td><td>The Rockbox USB stack is now enabled by default on <a href="http://forums.rockbox.org/index.php?topic=20752.0">all PP502x targets</a>.</td></tr>
 <tr><td nowrap>2008-12-23</td><td><a href="http://www.rockbox.org/download">Rockbox 3.1 is released</a></td></tr>
 <tr><td nowrap>2008-09-23</td><td><a href="http://www.rockbox.org/download">Rockbox 3.0 is released</a></td></tr>
 <tr><td nowrap>2008-08-16</td><td><a href="http://www.rockbox.org/mail/archive/rockbox-dev-archive-2008-08/0032.shtml">Release 3.0 Feature Freeze</a></td></tr>
