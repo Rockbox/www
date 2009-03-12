@@ -159,6 +159,10 @@ sub log2html {
                     $gcc{$type.$date}="$1 $2";
 #                    print STDERR "GCC $1 $2\n";
                 }
+                elsif($line =~ /Using *(.*ld) ([0-9.]+)/ ) {
+                    $ld{$type.$date}="$1 $2";
+#                    print STDERR "LD $1 $2\n";
+                }
                 
                 #print STDERR "M: $line";
             }
@@ -306,10 +310,10 @@ for(reverse @rounds) {
                 my $ser = $server{$_};
                 $ser =~ s/rbclient\@//;
 
-                printf("<td class=\"%s\"><a class=\"blink\" href=\"showlog.cgi?date=%s&type=%s\" title=\"%s on %s in %d secs\">%s</a></td>\n",
+                printf("<td class=\"%s\"><a class=\"blink\" href=\"showlog.cgi?date=%s&type=%s\" title=\"%s/%s on %s in %d secs\">%s</a></td>\n",
                        $class,
                        urlencode($date{$_}), urlencode($type{$_}),
-                       $gcc{$_}, $ser, $btime{$_},
+                       $gcc{$_}, $ld{$_}, $ser, $btime{$_},
                        $text);
                 $found=1;
                 last;

@@ -47,108 +47,130 @@ my %bleeding =
      'build-sansae200' => 1,
      'build-sansac200' => 1,
      'build-gigabeatf' => 1,
+     'build-gigabeats' => 1,
      'build-mrobe500' => 1,
      'build-mrobe100' => 1,
+     'build-cowond2' => 1,
+     'build-creativezvm30' => 1,
+     'build-creativezvm60' => 1,
+     'build-creativezenvision' => 1,
+     'build-clip' => 1,
+     'build-fuze' => 1,
+     'build-m200v4' => 1,
+     'build-hdd1630' => 1,
+     'build-ondavx747' => 1,
+     'build-ondavx767' => 1,
      );
 
 my @builds : shared = (
     "sdl:build-recordersim:Recorder - Simulator:rockboxui:recorder\\n2\\ns\\n",
-    "sh:build-recorder:Recorder - Normal:ajbrec.ajz:recorder\\n2\\n\\n",
-    "sh:build-recorderboot:Recorder - Boot:ajbrec.ajz:recorder\\n2\\nb\\n",
-    "sh:build-recorderv2:V2 Recorder - Normal:ajbrec.ajz:recorderv2\\n2\\n\\n",
- 
     "sdl:build-playersim:Player - Simulator:rockboxui:player\\n2\\ns\\n",
-    "sh:build-player:Player - Normal:archos.mod:player\\n2\\n\\n",
-    "sh:build-playerboot:Player - Boot:archos.mod:player\\n2\\nb\\n",
-    
-    "sh:build-fmrecorder:FM Recorder - Normal:ajbrec.ajz:fmrecorder\\n2\\n\\n",
-    "sh:build-fmrecorderboot:FM Recorder - Boot:ajbrec.ajz:fmrecorder\\n2\\nb\\n",
     "sdl:build-fmrecordersim:FM Recorder - Simulator:rockboxui:fmrecorder\\n2\\ns\\n",
-    "sh:build-recorder8mb:Recorder - Normal - 8MB:ajbrec.ajz:recorder\\n8\\n\\n",
-
-    "sh:build-ondiosp:Ondio SP - Normal:ajbrec.ajz:ondiosp\\n2\\n\\n",
-    "sh:build-ondiospboot:Ondio SP - Boot:ajbrec.ajz:ondiosp\\n2\\nb\\n",
-    "sh:build-ondiofm:Ondio FM - Normal:ajbrec.ajz:ondiofm\\n2\\n\\n",
     "sdl:build-ondiofmsim:Ondio FM - Simulator:rockboxui:ondiofm\\n2\\ns\\n",
-
-    "m68k:build-h100:iriver H100 - Normal:rockbox.iriver:h100\\n\\n",
-    "m68k:build-h100boot:iriver H100 - Boot:rockbox.iriver:h100\\nb\\n",
-    "m68k:build-h120:iriver H120 - Normal:rockbox.iriver:h120\\n\\n",
     "sdl:build-h120sim:iriver H120 - Simulator:rockboxui:h120\\ns\\n",
-    "m68k:build-h120boot:iriver H120 - Boot:rockbox.iriver:h120\\nb\\n",
-
-    "m68k:build-h300:iriver H300 - Normal:rockbox.iriver:h300\\n\\n",
     "sdl:build-h300sim:iriver H300 - Simulator:rockboxui:h300\\ns\\n",
-    "m68k:build-h300boot:iriver H300 - Boot:rockbox.iriver:h300\\nb\\n",
-
-    "arm:build-ipodnano:iPod Nano - Normal:rockbox.ipod:ipodnano\\n\\n",
-    "arm:build-ipodnanoboot:iPod Nano - Boot:bootloader-ipodnano.ipod:ipodnano\\nb\\n",
     "sdl:build-ipodnanosim:iPod Nano - Simulator:rockboxui:ipodnano\\ns\\n",
-    "arm:build-ipodcolor:iPod Color - Normal:rockbox.ipod:ipodcolor\\n\\n",
-    "arm:build-ipodcolorboot:iPod Color - Boot:bootloader-ipodcolor.ipod:ipodcolor\\nb\\n",
     "sdl:build-ipodcolorsim:iPod Color - Simulator:rockboxui:ipodcolor\\ns\\n",
-    
     "sdl:build-iaudiox5sim:iAudio X5 - Simulator:rockboxui:x5\\ns\\n",
-    "m68k:build-iaudiox5:iAudio X5 - Normal:rockbox.iaudio:x5\\n\\n",
-    "m68k:build-iaudiox5boot:iAudio X5 - Boot:rockbox.iaudio:x5\\nb\\n",
-
-    "m68k:build-iaudiom5:iAudio M5 - Normal:rockbox.iaudio:m5\\n\\n",
     "sdl:build-iaudiom5sim:iAudio M5 - Simulator:rockboxui:m5\\ns\\n",
-    "m68k:build-iaudiom5boot:iAudio M5 - Boot:rockbox.iaudio:m5\\nb\\n",
-
-    "m68k:build-iaudiom3:iAudio M3 - Normal:rockbox.iaudio:m3\\n\\n",
     "sdl:build-iaudiom3sim:iAudio M3 - Simulator:rockboxui:m3\\ns\\n",
-    "m68k:build-iaudiom3boot:iAudio M3 - Boot:rockbox.iaudio:m3\\nb\\n",
-
-    "arm:build-ipod4gray:iPod 4G Grayscale - Normal:rockbox.ipod:ipod4g\\n\\n",
-    "arm:build-ipod4grayboot:iPod 4G Grayscale - Boot:bootloader-ipod4g.ipod:ipod4g\\nb\\n",
     "sdl:build-ipod4graysim:iPod 4G Grayscale - Simulator:rockboxui:ipod4g\\ns\\n",
-
-    'arm:build-ipodvideo:iPod Video - Normal:rockbox.ipod:ipodvideo\n32\n\n',
-    'arm:build-ipodvideo64mb:iPod Video 64MB - Normal:rockbox.ipod:ipodvideo\n64\n\n',
-    "arm:build-ipodvideoboot:iPod Video - Boot:bootloader-ipodvideo.ipod:ipodvideo\\n32\\nb\\n",
     "sdl:build-ipodvideosim:iPod Video - Simulator:rockboxui:ipodvideo\\n32\\ns\\n",
-
-    "arm:build-ipod3g:iPod 3G - Normal:rockbox.ipod:ipod3g\\n\\n",
-    "arm:build-ipod3gboot:iPod 3G - Boot:bootloader-ipod3g.ipod:ipod3g\\nb\\n",
-
-    "arm:build-ipodmini2g:iPod Mini 2G - Normal:rockbox.ipod:ipodmini2g\\n\\n",
-    "arm:build-ipodmini2gboot:iPod Mini 2G - Boot:bootloader-ipodmini2g.ipod:ipodmini2g\\nb\\n",
     "sdl:build-ipodmini2gsim:iPod Mini 2G - Simulator:rockboxui:ipodmini2g\\ns\\n",
-
-    "arm:build-ipodmini1g:iPod Mini 1G - Normal:rockbox.ipod:ipodmini\\n\\n",
-    "arm:build-ipodmini1gboot:iPod Mini 1G - Boot:bootloader-ipodmini.ipod:ipodmini\\nb\\n",
-
     "sdl:build-h10sim:iriver H10 - Simulator:rockboxui:h10\\ns\\n",
-    "arm:build-h10:iriver H10 - Normal:rockbox.mi4:h10\\n\\n",
-    "arm:build-h10_5gb:iriver H10 5GB - Normal:rockbox.mi4:h10_5gb\\n\\n",
-    "arm:build-h10boot:iriver H10 - Boot:H10_20GC.mi4:h10\\nb\\n",
-
-    "sdl:build-ifp7xx:iriver IFP7xx - Simulator:rockboxui:ifp7xx\\ns\\n",
-
-    "arm:build-gigabeatf:Toshiba Gigabeat F - Normal:rockbox.gigabeat:gigabeatf\\n\\n",
     "sdl:build-gigabeatfsim:Toshiba Gigabeat F - Simulator:rockboxui:gigabeatf\\ns\\n",
-    "arm:build-gigabeatfboot:Toshiba Gigabeat F - Boot:FWIMG01.DAT:gigabeatf\\nb\\n",
-
+    "sdl:build-gigabeatssim:Toshiba Gigabeat S - Simulator:rockboxui:gigabeats\\ns\\n",
     "sdl:build-sansae200sim:SanDisk Sansa e200 - Simulator:rockboxui:e200\\ns\\n",
-    "arm:build-sansae200boot:SanDisk Sansa e200 - Boot:PP5022.mi4:e200\\nb\\n",
-    "arm:build-sansae200:SanDisk Sansa e200 - Normal:rockbox.mi4:e200\\n\\n",
-
     "sdl:build-sansac200sim:SanDisk Sansa c200 - Simulator:rockboxui:c200\\ns\\n",
-    "arm:build-sansac200boot:SanDisk Sansa c200 - Boot:firmware.mi4:c200\\nb\\n",
-    "arm:build-sansac200:SanDisk Sansa c200 - Normal:rockbox.mi4:c200\\n\\n",
-
-    "arm:build-ipod1g2g:iPod 1G/2G - Normal:rockbox.ipod:ipod1g2g\\n\\n",
-    "arm:build-ipod1g2gboot:iPod 1G/2G - Boot:bootloader-ipod1g2g.ipod:ipod1g2g\\nb\\n",
-
-    'arm:build-mrobe500:Olympus M-Robe 500 - Normal:rockbox.mrobe500:mrobe500\n\n',
     'sdl:build-mrobe500sim:Olympus M-Robe 500 - Simulator:rockboxui:mrobe500\ns\n',
 
     "sdl:build-mrobe100sim:Olympus M-Robe 100 - Simulator:rockboxui:mrobe100\\ns\\n",
-    "arm:build-mrobe100boot:Olympus M-Robe 100 - Boot:pp5020.mi4:mrobe100\\nb\\n",
-    "arm:build-mrobe100:Olympus M-Robe 100 - Normal:rockbox.mi4:mrobe100\\n\\n",
-
     "sdl:build-cowond2sim:Cowon D2 - Simulator:rockboxui:cowond2\\ns\\n",
+    "sdl:build-creativezvm30sim:Creative Zen Vision M 30GB - Simulator:rockboxui:creativezvm30gb\\ns\\n",
+    "sdl:build-clipsim:SanDisk Sansa Clip - Simulator:rockboxui:clip\\ns\\n",
+    "sdl:build-fuzesim:SanDisk Sansa Fuze - Simulator:rockboxui:fuze\\ns\\n",
+    "sdl:build-m200v4sim:SanDisk Sansa m200v4 - Simulator:rockboxui:m200v4\\ns\\n",
+    "sdl:build-hdd1630sim:Philips HDD1630 - Simulator:rockboxui:hdd1630\\ns\\n",
+
+    "m68k:build-h100:iriver H100 - Normal:rockbox.iriver:h100\\n\\n",
+    "m68k:build-h120:iriver H120 - Normal:rockbox.iriver:h120\\n\\n",
+    "m68k:build-h300:iriver H300 - Normal:rockbox.iriver:h300\\n\\n",
+
+    "m68k:build-iaudiox5:iAudio X5 - Normal:rockbox.iaudio:x5\\n\\n",
+    "m68k:build-iaudiom5:iAudio M5 - Normal:rockbox.iaudio:m5\\n\\n",
+    "m68k:build-iaudiom3:iAudio M3 - Normal:rockbox.iaudio:m3\\n\\n",
+    "arm:build-ipodnano:iPod Nano - Normal:rockbox.ipod:ipodnano\\n\\n",
+    "arm:build-ipodcolor:iPod Color - Normal:rockbox.ipod:ipodcolor\\n\\n",
+    "arm:build-ipod4gray:iPod 4G Grayscale - Normal:rockbox.ipod:ipod4g\\n\\n",
+    'arm:build-ipodvideo:iPod Video - Normal:rockbox.ipod:ipodvideo\n32\n\n',
+    'arm:build-ipodvideo64mb:iPod Video 64MB - Normal:rockbox.ipod:ipodvideo\n64\n\n',
+    "arm:build-ipod3g:iPod 3G - Normal:rockbox.ipod:ipod3g\\n\\n",
+    "arm:build-ipodmini2g:iPod Mini 2G - Normal:rockbox.ipod:ipodmini2g\\n\\n",
+    "arm:build-ipodmini1g:iPod Mini 1G - Normal:rockbox.ipod:ipodmini\\n\\n",
+    "arm:build-h10:iriver H10 - Normal:rockbox.mi4:h10\\n\\n",
+    "arm:build-h10_5gb:iriver H10 5GB - Normal:rockbox.mi4:h10_5gb\\n\\n",
+    "arm:build-gigabeatf:Toshiba Gigabeat F - Normal:rockbox.gigabeat:gigabeatf\\n\\n",
+    "arm:build-gigabeats:Toshiba Gigabeat S - Normal:rockbox.gigabeat:gigabeats\\n\\n",
+    "arm:build-sansae200:SanDisk Sansa e200 - Normal:rockbox.mi4:e200\\n\\n",
+    "arm:build-sansac200:SanDisk Sansa c200 - Normal:rockbox.mi4:c200\\n\\n",
+    "arm:build-ipod1g2g:iPod 1G/2G - Normal:rockbox.ipod:ipod1g2g\\n\\n",
+    'arm:build-mrobe500:Olympus M-Robe 500 - Normal:rockbox.mrobe500:mrobe500\n\n',
+    "arm:build-mrobe100:Olympus M-Robe 100 - Normal:rockbox.mi4:mrobe100\\n\\n",
+    "arm:build-cowond2:Cowon D2 - Normal:rockbox.d2:cowond2\\n\\n",
+    "arm:build-creativezvm30:Creative Zen Vision M 30GB - Normal:rockbox.zvm:creativezvm30gb\\n\\n",
+    "arm:build-creativezvm60:Creative Zen Vision M 60GB - Normal:rockbox.zvm60:creativezvm60gb\\n\\n",
+    "arm:build-creativezenvision:Creative Zen Vision - Normal:rockbox.zv:creativezenvision\\n\\n",
+    "arm:build-fuze:SanDisk Sansa Fuze - Normal:rockbox.sansa:fuze\\n\\n",
+    "arm:build-clip:SanDisk Sansa Clip - Normal:rockbox.sansa:clip\\n\\n",
+    "arm:build-m200v4:SanDisk Sansa m200v4 - Normal:rockbox.sansa:m200v4\\n\\n",
+    "arm:build-hdd1630:Philips HDD1630 - Normal:rockbox.mi4:hdd1630\\n\\n",
+
+    "mipsel:build-ondavx747:Onda VX747 - Normal:rockbox.vx747:ondavx747\\n\\n",
+    "mipsel:build-ondavx767:Onda VX767 - Normal:rockbox.vx767:ondavx767\\n\\n",
+
+    "sh:build-recorder:Recorder - Normal:ajbrec.ajz:recorder\\n2\\n\\n",
+    "sh:build-recorderv2:V2 Recorder - Normal:ajbrec.ajz:recorderv2\\n2\\n\\n",
+    "sh:build-player:Player - Normal:archos.mod:player\\n2\\n\\n",
+    "sh:build-fmrecorder:FM Recorder - Normal:ajbrec.ajz:fmrecorder\\n2\\n\\n",
+    "sh:build-recorder8mb:Recorder - Normal - 8MB:ajbrec.ajz:recorder\\n8\\n\\n",
+    "sh:build-ondiosp:Ondio SP - Normal:ajbrec.ajz:ondiosp\\n2\\n\\n",
+    "sh:build-ondiofm:Ondio FM - Normal:ajbrec.ajz:ondiofm\\n2\\n\\n",
+
+    "m68k:build-h100boot:iriver H100 - Boot:rockbox.iriver:h100\\nb\\n",
+    "m68k:build-h120boot:iriver H120 - Boot:rockbox.iriver:h120\\nb\\n",
+    "m68k:build-h300boot:iriver H300 - Boot:rockbox.iriver:h300\\nb\\n",
+    "m68k:build-iaudiox5boot:iAudio X5 - Boot:rockbox.iaudio:x5\\nb\\n",
+    "m68k:build-iaudiom5boot:iAudio M5 - Boot:rockbox.iaudio:m5\\nb\\n",
+    "m68k:build-iaudiom3boot:iAudio M3 - Boot:rockbox.iaudio:m3\\nb\\n",
+
+    "mipsel:build-ondavx747boot:Onda VX747 - Boot:rockboot.vx747:ondavx747\\nb\\n",
+    "arm:build-ipodnanoboot:iPod Nano - Boot:bootloader-ipodnano.ipod:ipodnano\\nb\\n",
+    "arm:build-ipodcolorboot:iPod Color - Boot:bootloader-ipodcolor.ipod:ipodcolor\\nb\\n",
+    "arm:build-ipod4grayboot:iPod 4G Grayscale - Boot:bootloader-ipod4g.ipod:ipod4g\\nb\\n",
+    "arm:build-ipodvideoboot:iPod Video - Boot:bootloader-ipodvideo.ipod:ipodvideo\\n32\\nb\\n",
+    "arm:build-ipod3gboot:iPod 3G - Boot:bootloader-ipod3g.ipod:ipod3g\\nb\\n",
+    "arm:build-ipodmini2gboot:iPod Mini 2G - Boot:bootloader-ipodmini2g.ipod:ipodmini2g\\nb\\n",
+    "arm:build-ipodmini1gboot:iPod Mini 1G - Boot:bootloader-ipodmini.ipod:ipodmini\\nb\\n",
+    "arm:build-h10boot:iriver H10 - Boot:H10_20GC.mi4:h10\\nb\\n",
+    "arm:build-gigabeatfboot:Toshiba Gigabeat F - Boot:FWIMG01.DAT:gigabeatf\\nb\\n",
+    "arm:build-gigabeatsboot:Toshiba Gigabeat S - Boot:nk.bin:gigabeats\\nb\\n",
+    "arm:build-sansae200boot:SanDisk Sansa e200 - Boot:PP5022.mi4:e200\\nb\\n",
+    "arm:build-sansac200boot:SanDisk Sansa c200 - Boot:firmware.mi4:c200\\nb\\n",
+    "arm:build-ipod1g2gboot:iPod 1G/2G - Boot:bootloader-ipod1g2g.ipod:ipod1g2g\\nb\\n",
+    "arm:build-mrobe100boot:Olympus M-Robe 100 - Boot:pp5020.mi4:mrobe100\\nb\\n",
+    "arm:build-cowond2boot:Cowon D2 - Boot:rockbox.d2:cowond2\\nb\\n",
+
+    "arm:build-sansae200v2boot:SanDisk Sansa e200v2 - Boot:bootloader-e200v2.sansa:e200v2\\nb\\n",
+    "arm:build-sansam200v4boot:SanDisk Sansa m200v4 - Boot:bootloader-m200v4.sansa:m200v4\\nb\\n",
+    "arm:build-sansaclipboot:SanDisk Sansa Clip - Boot:bootloader-clip.sansa:clip\\nb\\n",
+    "arm:build-sansafuzeboot:SanDisk Sansa Fuze - Boot:bootloader-fuze.sansa:fuze\\nb\\n",
+    "arm:build-hdd1630boot:Philips HDD1630 - Boot:FWImage.ebn:hdd1630\\nb\\n",
+
+    "sh:build-recorderboot:Recorder - Boot:ajbrec.ajz:recorder\\n2\\nb\\n",
+    "sh:build-playerboot:Player - Boot:archos.mod:player\\n2\\nb\\n",
+    "sh:build-fmrecorderboot:FM Recorder - Boot:ajbrec.ajz:fmrecorder\\n2\\nb\\n",
+    "sh:build-ondiospboot:Ondio SP - Boot:ajbrec.ajz:ondiosp\\n2\\nb\\n",
+
 
 );
 
@@ -341,7 +363,7 @@ sub buildremote {
     my ($dir, $desc, $target, $config)=($1,$2,$3,$4);
    
     logmsg "Copying $server:masterlog-$dir\n";
-    `scp -C -i privkey $scp_port $sshopts $server:masterlog-$dir ./$dir/buildlog >>"output/stderr-$builddate" 2>&1`;
+    `scp -C -i privkey $scp_port $sshopts $server:masterlog-$dir ./$dir/buildlog >>"output/stderr-$date" 2>&1`;
     $exitcode = $?;
 
     if($exitcode) {
@@ -381,7 +403,7 @@ sub buildremote {
         # only copy bleeding zips for what we offer as bleeding edge builds
 	my $start = time();
         logmsg "Copying $server:$dir/rockbox.zip\n";
-        `scp -i privkey $scp_port $sshopts $server:$dir/rockbox.zip ./$dir/rockbox.zip >>"output/stderr-$builddate" 2>&1`;
+        `scp -i privkey $scp_port $sshopts $server:$dir/rockbox.zip ./$dir/rockbox.zip >>"output/stderr-$date" 2>&1`;
         $exitcode = $?;
 
         if ($exitcode) {
@@ -651,10 +673,10 @@ if($ARGV[0] eq "pix") {
         my ($arch, $dir, $text, $binary, $keys)=split(":", $b);
         print "long: $text => ";
 
-        $text =~ s/FM Recorder/FM/;
-        $text =~ s/Playerold/P-old/;
-        $text =~ s/Player/Play/;
-        $text =~ s/Recorder/Rec/;
+        $text =~ s/FM Recorder/FM Rec/;
+ #       $text =~ s/Playerold/P-old/;
+ #       $text =~ s/Player/Play/;
+ #       $text =~ s/Recorder/Rec/;
         $text =~ s/Debug/Dbg/;
         $text =~ s/Normal//;
         $text =~ s/Simulator/Sim/;
@@ -668,6 +690,9 @@ if($ARGV[0] eq "pix") {
         $text =~ s/Toshiba *//i;
         $text =~ s/SanDisk *//i;
         $text =~ s/Olympus *//i;
+        $text =~ s/Creative *//i;
+        $text =~ s/Philips *//i;
+        $text =~ s/Zen Vision M/ZVM/i;
 
         print "short: $text\n";
 
@@ -821,7 +846,7 @@ if($difference) {
 
     # build source package
     logmsg("build source package\n");
-    system("./mksource $src");
+    system("./mksource");
 
     open(BUILDTIME, ">output/build-info");
     print BUILDTIME "[bleeding]\n";
@@ -834,7 +859,9 @@ if($difference) {
 
     logmsg("build delta table\n");
     #system("./showsize.pl > output/sizes.html");
-    system("./showsize2.pl > output/sizes2.html");
+    system("./showsize.pl > output/sizes2.html");
+
+    system("./blamemail.pl");
 
     logmsg "all done.\n";
 
