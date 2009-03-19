@@ -2,6 +2,11 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<p><i>2008-08-16</i>: <a href="http://www.rockbox.org/mail/archive/rockbox-dev-archive-2008-08/0032.shtml">Release 3.0 Feature Freeze</a>
+<p><i>2008-06-29</i>: <a href="/devcon2008/">DevCon 2008</a> is over.
+<p><i>2008-03-17</i>: We have been accepted as a mentor organization in <a href="/wiki/SummerOfCode2008">Google's summer of code 2008</a>.
+<p><i>2008-03-06</i>: We're applying to participate in <a href="/wiki/SummerOfCode2008">Google's summer of code 2008</a>.
+
 <p><i>2007-11-23</i>: New USB stack with limited capability. Currently it only requests full charging power. Ignore driver popups from Windows.
 
 <p><i>2007-11-18</i>: <a href="http://www.rockbox.org/mail/archive/rockbox-archive-2007-11/0176.shtml">New voice codec used:</a> Speex!
