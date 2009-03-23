@@ -3,11 +3,11 @@
 require "../rockbox.pm";
 require "table.pm";
 
-header("Rockbox 3.1");
+header("Rockbox 3.2");
 
 print <<HEAD
 <p>
-Rockbox 3.1 was released on December 23, 2008. See the full <a href="/twiki/bin/view/Main/ReleaseNotes31">Release Notes</a>
+Rockbox 3.2 was released on March 23, 2009. See the full <a href="/twiki/bin/view/Main/ReleaseNotes32">Release Notes</a>
 
 <h2>Option 1: Automatic install</h2>
 <p>Download and run the <a href="/twiki/bin/view/Main/RockboxUtility">Rockbox Utility</a>.

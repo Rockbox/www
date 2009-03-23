@@ -50,10 +50,10 @@ and Ondio
 <table class="news" summary="recent news">
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
+<tr><td nowrap>2009-03-23</td><td><a href="http://www.rockbox.org/twiki/bin/view/Main/ReleaseNotes32">Rockbox 3.2 is released</a></td></tr>
 <tr><td nowrap>2009-03-18</td><td>Rockbox has been accepted as a mentor organization for Google Summer of Code 2009. <a href="http://www.rockbox.org/twiki/bin/view/Main/SummerOfCode2009">Look here for project ideas.</a></td></tr>
 <tr><td nowrap>2009-02-25</td><td>The Rockbox USB stack is now enabled by default on <a href="http://forums.rockbox.org/index.php?topic=20752.0">all PP502x targets</a>.</td></tr>
 <tr><td nowrap>2008-12-23</td><td><a href="http://www.rockbox.org/twiki/bin/view/Main/ReleaseNotes31">Rockbox 3.1 is released</a></td></tr>
-<tr><td nowrap>2008-09-23</td><td><a href="http://www.rockbox.org/twiki/bin/view/Main/ReleaseNotes30">Rockbox 3.0 is released</a></td></tr>
 <!--
 <tr><td colspan=2 align='center'><a href="history.html">Older news</a></td></tr>
 -->

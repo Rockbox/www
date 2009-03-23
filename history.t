@@ -2,6 +2,8 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<p><i>2008-09-23</i>: <a href="http://www.rockbox.org/twiki/bin/view/Main/ReleaseNotes30">Rockbox 3.0 is released</a>
+
 <p><i>2008-08-16</i>: <a href="http://www.rockbox.org/mail/archive/rockbox-dev-archive-2008-08/0032.shtml">Release 3.0 Feature Freeze</a>
 <p><i>2008-06-29</i>: <a href="/devcon2008/">DevCon 2008</a> is over.
 <p><i>2008-03-17</i>: We have been accepted as a mentor organization in <a href="/wiki/SummerOfCode2008">Google's summer of code 2008</a>.
