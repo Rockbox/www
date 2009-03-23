@@ -97,7 +97,7 @@
 
 # this is the default release version, see the table below for
 # target specifics
-$publicrelease="3.1";
+$publicrelease="3.2";
 
 %release=(
           'player' => "$publicrelease",
