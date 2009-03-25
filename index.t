@@ -21,11 +21,11 @@ Touch</i>)
 and Ondio
 <li><b>Cowon</b>: iAudio X5, X5V, X5L, M5, M5L, M3 and M3L
 
-<li><b>iriver</b>: H100, H300 and H10 series
+<li><b>iriver</b>: iHP100 series, H100 series, H300 series and H10 series
 
 <li><b>Olympus</b>: M:Robe 100
 
-<li><b>SanDisk</b>: Sansa c200, e200 and e200R series (<i>not the AMS models</i>)
+<li><b>SanDisk</b>: Sansa c200 series, e200 series and e200R series (<i>not the AMS models</i>)
 
 <li><b>Toshiba</b>: Gigabeat X and F series (<i>not the S series</i>)
 
