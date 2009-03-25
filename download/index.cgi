@@ -3,23 +3,21 @@
 require "../rockbox.pm";
 require "table.pm";
 
-header("Rockbox 3.2");
+header("Rockbox $publicrelease Download");
 
 print <<HEAD
 <p>
-Rockbox 3.2 was released on March 23, 2009. See the full <a href="/twiki/bin/view/Main/ReleaseNotes32">Release Notes</a>
+Rockbox $publicrelease was released on ${releasedate}. See the full <a href="$releasenotes">Release Notes</a>
 
 <h2>Option 1: Automatic install</h2>
+<big>
 <p>Download and run the <a href="/twiki/bin/view/Main/RockboxUtility">Rockbox Utility</a>.
+</big>
 
 <h2>Option 2: Manual install</h2>
-<p>Download the zip for your target and unzip it to your device.
-HEAD
-    ;
 
-buildtable();
+<p> If you truly want to, you can still do the install <a href="byhand.cgi">manually</a>
 
-print <<HEAD
 <p> <a href="http://download.rockbox.org/old_releases/">old releases</a>
 archive.
 
