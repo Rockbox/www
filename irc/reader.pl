@@ -226,7 +226,7 @@ END
     #$SIG{PIPE} = 'IGNORE';
 
     $SIG{__DIE__} = sub { 
-        error("Program ending: @_");
+        printf STDERR "Program ending: @_\n";
     };
 
     $| = 1; # autoflush
