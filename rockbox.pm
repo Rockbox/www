@@ -38,6 +38,9 @@
         'sansafuze' => '/rockbox100.png', # lacks small picture
         'sansae200v2' => '/playerpics/e200-small.png',
         'sansam200v4' => '/rockbox100.png', # lacks small picture
+        'yh820' => '/rockbox100.png', # lacks small picture
+        'yh920' => '/rockbox100.png', # lacks small picture
+        'yh925' => '/rockbox100.png', # lacks small picture
 
         'install' => '/playerpics/install.png',
         'fonts' => '/rockbox100.png',
@@ -83,6 +86,10 @@
            'creativezvm30' => 'Creative Zen Vision:M 30GB',
            'creativezvm60' => 'Creative Zen Vision:M 60GB',
            'creativezenvision' => 'Creative Zen Vision',
+           'yh820' => 'Samsung YH-820',
+           'yh920' => 'Samsung YH-920',
+           'yh925' => 'Samsung YH-925',
+
            'install' => 'Windows Installer',
            'fonts' => 'Fonts',
            'source' => 'Source Archive');
