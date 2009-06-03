@@ -1,129 +1,179 @@
-#if 1
-        #define _LOGO_ <div style="max-width: 1000px;"><div align=center><img src="rockbox400.png" width=400 height=123 alt="Rockbox Logo"></div>
-#else
-        #define _LOGO_ <img src="rdcwlogo.png" align=center width=400 height=123 alt="Rockbox Devcon West 2007">
-
-#endif
-#define _PAGE_ Open Source Jukebox Firmware
-#define MAIN_PAGE
+#define FRONT_PAGE
 #include "head.t"
 
-<p><table class='blurb' align=center><tr><td>
-<p class="ingress">
-Rockbox is an open source firmware for mp3 players, written from scratch. It runs on a wide range of players:
-<ul>
+         <div class="frontpage">
+		<div class="header_container">
+			<div class="header wrapper">
+				<div class="player_image" id="player_image"></div>
+				<div class="players" id="players_list">
+					<h2>Supported players</h2>
+					<noscript><?php require('media/js/noscript.php' ) ?></noscript>
+				</div>
+				<div class="download">
+					<h2>Start using Rockbox</h2>
+					<a href="#" title="Download Rockbox Utility Installer" class="button utility">
+						<strong>Download Installer</strong>
+						<span>Rockbox Utility</span>
+					</a>
+					<a href="#" title="Download Rockbox Manual" class="button manual">
+						<strong>Download Manual</strong>
+						<span>Get Rockbox User Guide</span>
+					</a>
+				</div>
+			</div>
+		</div>
 
-<li><b>Apple</b>: 1st through 5.5th generation iPod, iPod Mini and 1st
-generation iPod Nano<br>(<i>not the Shuffle, 2nd/3rd/4th gen Nano, Classic or
-Touch</i>)
+		<div class="content_container">
+			<div class="content wrapper">
+				<div class="welcome">
+					<h1>What is Rockbox?</h1>
+					<p class="intro">
+						Rockbox is an open source replacement for the software that drives your digital 
+						audio players.
+					</p>
 
-<li><b>Archos</b>: Jukebox 5000, 6000, Studio, Recorder, FM Recorder, Recorder V2
-and Ondio
-<li><b>Cowon</b>: iAudio X5, X5V, X5L, M5, M5L, M3 and M3L
+					<p>
+						It has been in development since 2001 and receives new features, 
+						tweaks and fixes every day to provide you with the best possible music listening 
+						experience.
+					</p>
+					<p>
+						Rockbox aims to be considerably more functional and efficient than your players
+						stock firmware, while remaining easy to use and customizable.
+                                        </p>
+                                        <p> Rockbox is written by users, for users.
+					</p>
+				</div>
 
-<li><b>iriver</b>: iHP100 series, H100 series, H300 series and H10 series
+				<ul class="links">
+					<li class="target_status">
+						<h4><a href="#">Target status</a></h4>
+						<p>The current status of Rockbox development on various players.</p>
+					</li>
 
-<li><b>Olympus</b>: M:Robe 100
+					<li class="feature_comparison">
+						<h4><a href="#">Feature comparison</a></h4>
+						<p>Check Rockbox vs. out-of-the-box firmware features comparision.</p>
+					</li>
+					<li class="buyers_guide">
+						<h4><a href="#">Buyers guide</a></h4>
+						<p>Want to buy a device that Rockbox is compatible with it?</p>
+					</li>
+				</ul>
+				<ul class="links right">
+					<li class="screenchots">
+						<h4><a href="#">Screenshots</a></h4>
+						<p>Screenshots of Rockbox in action.</p>
+					</li>
+					<li class="faq">
+						<h4><a href="#">FAQ</a></h4>
+						<p>Frequently asked questions about Rockbox.</p>
+					</li>
+					<li class="glossary">
+						<h4><a href="#">Glossary</a></h4>
+						<p>Catch up with the Rockbox project lingo.</p>
+					</li>
+				</ul>
+			</div>
+		</div>
 
-<li><b>SanDisk</b>: Sansa c200 series, e200 series and e200R series (<i>not the AMS models</i>)
-
-<li><b>Toshiba</b>: Gigabeat X and F series (<i>not the S series</i>)
-
-
-
-</ul>
-
-<p>Quick links:
-<a href="/wiki/WhyRockbox">Why should you run Rockbox?</a>
-&middot;
-<a href="/wiki/MajorChanges">Change log</a>
-&middot;
-<a href="/wiki/TargetStatus">Status for current and work-in-progress targets</a>
-
-</td></tr></table>
-
-<h2>Recent activity:</h2>
-
-<table><tr valign="top"><td>
-
-<h3 class=frontpage><a href='history.html'>Project news</a></h3>
-<table class="news" summary="recent news">
-<caption>Recent news</caption>
-<tr class='tabletop'><th>when</th><th>what</th></tr>
-<tr><td nowrap>2009-03-24</td><td><a href="http://themes.rockbox.org/">themes.rockbox.org</a> is available</td></tr>
-<tr><td nowrap>2009-03-23</td><td><a href="http://www.rockbox.org/twiki/bin/view/Main/ReleaseNotes32">Rockbox 3.2 is released</a></td></tr>
-<tr><td nowrap>2009-03-18</td><td>Rockbox has been accepted as a mentor organization for Google Summer of Code 2009. <a href="http://www.rockbox.org/twiki/bin/view/Main/SummerOfCode2009">Look here for project ideas.</a></td></tr>
-<tr><td nowrap>2009-02-25</td><td>The Rockbox USB stack is now enabled by default on <a href="http://forums.rockbox.org/index.php?topic=20752.0">all PP502x targets</a>.</td></tr>
-<tr><td nowrap>2008-12-23</td><td><a href="http://www.rockbox.org/twiki/bin/view/Main/ReleaseNotes31">Rockbox 3.1 is released</a></td></tr>
+		<div class="columns_container">
 <!--
-<tr><td colspan=2 align='center'><a href="history.html">Older news</a></td></tr>
+			<div class="columns wrapper">
+				<div class="announcements">
+					<h2>Announcements</h2>
+					<div id="slider_mask">
+						<div id="announcements_slider">
+							<div class="announcement">
+								<h4 class="title">Rockbox 3.2 is released</h4>
+								<h5 class="date">23 March 2009</h5>
+								<p>
+									The Rockbox project is pleased to announce the immediate availability of
+									Rockbox 3.2. Since the last release we've added preliminary support for 
+									Apple's Ipod Accessory Protocol, which means that many accessories now 
+									partly work.
+								</p>
+							</div>
+							<div class="announcement">
+								<h4 class="title">Second news title</h4>
+								<h5 class="date">20 March 2009</h5>
+								<p>
+									Lorem ipsum dolor sit amet elit est, et orci vitae tellus
+									porttitor vel, wisi.
+								</p>
+								<p>
+									Integer quis neque. Sed porttitor. Aenean pellentesque ut,
+									placerat ante. Phasellus ultrices, dui tincidunt molestie, neque
+									vel pede. Cras ut arcu.
+								</p>
+								<p>
+									Etiam malesuada augue a diam.
+								</p>
+							</div>
+							<div class="announcement">
+								<h4 class="title">Third news title</h4>
+								<h5 class="date">5 March 2009</h5>
+								<p>
+									Lorem ipsum dolor sit amet elit est, et orci vitae tellus 
+									porttitor vel, wisi. Integer quis neque. Sed porttitor.
+								</p>
+								<p>
+									Aenean pellentesque ut, placerat ante. Phasellus ultrices, dui 
+									tincidunt molestie, neque vel pede. Cras ut arcu. Etiam malesuada
+									augue a diam.
+								</p>
+							</div>
+							<div class="announcement">
+								<h4 class="title">Fourth news title</h4>
+								<h5 class="date">28 February 2009</h5>
+								<p>
+									Lorem ipsum dolor sit amet elit est, et orci vitae tellus 
+									porttitor vel, wisi. Integer quis neque. Sed porttitor. Aenean 
+									pellentesque ut, placerat ante. Phasellus ultrices, dui tincidunt
+									molestie, neque vel pede. Cras ut arcu. Etiam malesuada augue a
+									diam.
+								</p>
+							</div>
+							<div class="announcement">
+								<h4 class="title">Fifth news title</h4>
+								<h5 class="date">1 January 2009</h5>
+								<p>
+									Lorem ipsum dolor sit amet elit est, et orci vitae tellus 
+									porttitor vel, wisi. Integer quis neque. Sed porttitor. Aenean 
+									pellentesque ut, placerat ante.
+								</p>
+								<p>
+									Phasellus ultrices, dui tincidunt molestie, neque vel pede.
+									Cras ut arcu. Etiam malesuada augue a diam.
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<ul class="pagination" id="slider_handle">
+						<li class="first"><span class="selected" title="Change announcement">Announcement 1</span></li>
+						<li class="second"><span title="Change announcement">Announcement 2</span></li>
+						<li class="third"><span title="Change announcement">Announcement 3</span></li>
+						<li class="fourth"><span title="Change announcement">Announcement 4</span></li>
+						<li class="fifth"><span title="Change announcement">Announcement 5</span></li>
+					</ul>
+				</div>
+			</div>
 -->
-</table>
+		</div>
 
-</td><td>
-
-<h3 class=frontpage><a href='recent.shtml#wiki'>Wiki</a></h3>
-<!--#include file="recentwiki_front.html" -->
-
-</td></tr>
-
-<tr><td colspan=2>
-
-<h3 class=frontpage><a href='recent.shtml#svn'>Subversion</a></h3>
-<!--#include file="last5front.html" -->
-<small>All commits <a href="since30.html">since 3.0</a>,
- <a href="since-12months.html">last 12 months</a>,
- <a href="since-4weeks.html">last four weeks</a>.
-</small>
-
-</td></tr>
-<tr><td colspan=2>
-
-<h3 class=frontpage><a href='recent.shtml#mail'>Mail</a></h3>
-<!--#include file="threads_front.html" -->
-
-</td></tr>
-</table>
-
-<h2>Sponsors:</h2>
-<table class=sponsors><tr valign="top">
-<td>
-<a href="http://www.contactor.se"><img border=0 src="/cont.png" width=101 height=36 alt="Contactor Data AB Logo"></a>
-<p>Contactor Data AB sponsors bandwidth and server for the main site.
-</td>
-
-<td>
-<a href="http://www.haxx.se"><img border=0 src="/haxx.png" width=80 height=34 alt="Haxx Logo"></a>
-<p>
-Haxx sponsors the build server, svn server and various other resources
-</td>
-
-<td>
-<a href="http://www.videolan.org/"><img border=0 src="http://download.videolan.org/images/videolan-logo.png" width=100 height=47 alt="VideoLAN"></a>
-<p>
-VideoLAN sponsors a download server
-</td>
-
-<td>
-<a href="http://www.positive-internet.com/"><img border=0
-src="http://www.positive-internet.com/images/layout1_r1_c1.gif" width=52
-height=70 alt="Positive Internet"></a>
-<p>
-Positive Internet sponsors a download server
-</td>
-
-<td>
-<a href="http://www.tbrntech.com/">TBRN</a>
-<p>
-Beyond Technical Innovations sponsors a download server
-</td>
-
-<td>
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post"><input type="hidden" name="cmd" value="_xclick"><input type="hidden" name="business" value="bjorn@haxx.se"><input type="hidden" name="item_name" value="Donation to the Rockbox project"><input type="hidden" name="no_shipping" value="1"><input type="hidden" name="cn" value="Note to the Rockbox team"><input type="hidden" name="currency_code" value="USD"><input type="hidden" name="tax" value="0"><input type="image" src="/paypal-donate.gif" name="submit"></form>
-<p>Many people have sponsored us with personal Paypal donations. Thank you!
-</td>
-</tr>
-</table>
-</div>
+		<div class="ssponsors_container">
+			<div class="ssponsors wrapper">
+				<h2>Sponsors</h2>
+				<dl>
+					<dt class="ssponsor1"><a href="#" title="Contactor Data AB">Contactor Data AB</a></dt>
+					<dt class="ssponsor4"><a href="#" title="The Positive Internet Company">The Positive Internet Company</a></dt>
+					<dt class="ssponsor2"><a href="#" title="Haxx">Haxx</a></dt>
+					<dt class="ssponsor3"><a href="#" title="VideoLAN">VideoLAN</a></dt>
+					<dt class="ssponsor5"><a href="#" title="TBRNTech">TBRNTech</a></dt>
+				</dl>
+			</div>
+		</div>
+        </div>
 
 #include "foot.t"

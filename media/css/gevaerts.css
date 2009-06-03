@@ -1,0 +1,958 @@
+/*
+ * Rockbox.org
+ * rockbox.css
+ * Copyright 2009 by Maciej "Macku" Adamczak <emacieka@tlen.pl>
+ */
+
+/* RESET
+------------------------------------------------------------------------------------------------- */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+	margin:0;
+	padding:0;
+}
+table {
+	border-collapse:separate;
+	border-spacing:0;
+}
+*table {
+	border-collapse:collapse;
+}
+fieldset,img { 
+	border:0;
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+	font-style:normal;
+	font-weight:normal;
+}
+ol,ul {
+	list-style:none;
+}
+caption,th {
+	text-align:left;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size:100%;
+	font-weight:normal;
+}
+q:before,q:after {
+	content:'';
+}
+abbr,acronym { border:0;
+}
+
+/* ROCKBOX
+------------------------------------------------------------------------------------------------- */
+#rock .top_container, #rock .header_container, #rock .content_container, #rock .columns_container, #rock .ssponsors_container, #rock .footer_container {
+	width: 100%;
+	margin: 0 auto;
+}
+
+#rock .wrapper {
+	margin: 0 30px;
+}
+
+/* FONTS
+------------------------------------------------------------------------------------------------- */
+#rock {
+	line-height: 15px;
+	font-family: Tahoma, Arial, Verdana, Helvetica, sans-serif;
+	font-size: 11px;
+	letter-spacing: 0.35px;
+	word-spacing: 0.35px;
+}
+
+#rock h1, #rock h2, #rock h3, #rock h4, #rock h5, #rock h6 {
+	color: #07c;
+	text-shadow: 1px 1px 2px #ddd;
+	letter-spacing: 0.5px;
+	line-height: 120%;
+}
+
+#rock h1 {
+	font-size: 24px;
+	margin-bottom: 15px;
+	letter-spacing: 0.3px;
+}
+
+#rock h2 {
+	font-size: 22px;
+	margin-bottom: 10px;
+}
+
+#rock h3 {
+	font-size: 20px;
+	margin-bottom: 5px;
+}
+
+#rock h4 {
+	font-size: 17px;
+	margin-bottom: 5px;
+}
+
+#rock p {
+	color: #333;
+	text-align: justify;
+	margin-top: 10px;
+}
+
+#rock a {
+	color: #07a;
+	text-decoration: none;
+	padding: 2px 1px;
+}
+
+#rock a:hover  {
+	color: #06b;
+	text-decoration: underline;
+}
+
+#rock a:active, #rock a:focus {
+	outline: none;
+}
+
+/* LISTS
+------------------------------------------------------------------------------------------------- */
+#rock ul.list {
+	color: #7be;
+	list-style: disc;
+	padding-left: 15px;
+}
+
+#rock ul.list span {
+	color: #333;
+}
+
+#rock ul.list li {
+	margin-top: 3px;
+}
+
+/* TOP
+------------------------------------------------------------------------------------------------- */
+#rock .top_container {
+	background: #def url('../images/top_bg.png') repeat-x;
+	border-bottom: 1px solid #fff;
+}
+
+#rock .top {
+	background: transparent url('../images/top_logo.png') no-repeat;
+	min-height: 40px;
+        overflow: hidden;
+}
+
+/* MENU */
+#rock .top .menu, #rock .top .menu .item, #rock .top .menu .item a, #rock .top .menu .item a em {
+	float: left;
+	display: block;
+}
+
+#rock .top .menu {
+	height: 40px;
+	padding-left: 140px;
+}
+
+
+#rock .top .menu .item {
+	height: 42px;
+}
+
+#rock .top .menu .item a {
+	height: 40px;
+	line-height: 38px;
+	font-size: 13px;
+	color: #555;
+	text-decoration: none;
+	padding: 0;
+	padding-right: 10px;
+	margin-right: 5px;
+	display: block;
+}
+
+#rock .top .menu .item a em {
+	display: block;
+	float: left;
+	width: 10px;
+	height:40px;
+}
+
+#rock .top .menu .item:hover a {
+	text-decoration: none;
+	color: #111;
+	background: transparent url('../images/top_menu.png') no-repeat right 0;
+}
+#rock .top .menu .item:hover a em {
+	background: transparent url('../images/top_menu.png') no-repeat;
+}
+
+#rock .top .menu .item .selected {
+	color: #fff;
+	background: transparent url('../images/top_menu.png') no-repeat right -42px;
+}
+
+#rock .top .menu .item .selected em {
+	background: transparent url('../images/top_menu.png') no-repeat 0 -42px;
+}
+
+/* SUMBENU */
+#rock .top .menu li:hover .submenu, #rock .top .menu .submenu:hover{
+	display: block;
+}
+
+#rock .top .menu .submenu {
+	display: none;
+	position: absolute;
+	top: 41px;
+	margin-left: -7px;
+	padding: 0 9px 9px;
+	background: transparent url('../images/submenu_shadow_bg.png') no-repeat 0 100%;
+	z-index: 1;
+	float: none;
+	clear: left;
+	
+}
+
+#rock .top .menu .submenu li {
+	background: #fff;
+	padding: 1px;
+	border: 1px solid #ace;
+	border-top: 0;
+}
+
+#rock .top .menu .submenu li:first-child {
+	border-top: 1px solid #ace;
+}
+
+#rock .top .menu .submenu li a {
+	padding: 0;
+	margin: 0;
+	background: #ddd url('../images/submenu_bg.png') repeat-x !important;
+	background: red;
+	color: #555;
+	background-position: 0 0;
+	float: none;
+	text-indent: 0;
+	font-size: 11px;
+	display: block;
+	width: 142px;
+	height: 24px;
+	line-height: 24px;
+	padding-left: 6px;
+	
+}
+#rock .top .menu li:hover .submenu li a:hover {
+	background-position: 0 -26px !important;
+	color: #111;
+	text-decoration: none;
+}
+
+#rock .submenu .icon {
+	float: left;
+	display: block;
+	width: 18px;
+	height: 18px;
+	margin-top: 4px;
+	margin-right: 8px;
+	background: transparent url('../images/icons.png') no-repeat;
+}
+
+#rock .releases .icon {
+	background-position: -18px -36px;
+}
+
+#rock .build .icon {
+	background-position: -18px 0;
+}
+
+#rock .extras .icon {
+	background-position: 0 -54px;
+}
+
+#rock .themes .icon {
+	background-position: -54px -36px;
+}
+
+#rock .faq .icon {
+	background-position: 0 -36px;
+}
+
+#rock .wiki .icon {
+	background-position: 0 0;
+}
+
+#rock .manual .icon {
+	background-position: -36px -36px;
+}
+
+#rock .doc .icon {
+	background-position: -36px 0;
+}
+
+#rock .mailing .icon {
+	background-position: -36px -18px;
+}
+
+#rock .irc .icon {
+	background-position: -54px -18px;
+}
+
+#rock .forums .icon {
+	background-position: -18px -18px;
+}
+
+#rock .bugs .icon {
+	background-position: 0 -18px;
+}
+
+#rock .patches .icon {
+	background-position: -54px 0;
+}
+
+/* FEEDS */
+#rock .top .feeds {
+	float: right;
+	margin-top: 11px;
+	overflow: hidden;
+}
+
+#rock .top .feeds dt, #rock .top .feeds dd {
+	float: left;
+}
+
+#rock .top .feeds dt {
+	margin-left: 15px;
+}
+
+#rock .top .feeds dt a {
+	background: transparent url('../images/icons.png') no-repeat;
+	width: 16px;
+	height: 16px;
+	text-indent: -10000%;
+	font-size: 0.001%;
+	display: block;
+	margin-top: -3px;
+}
+
+#rock .top .feeds dd {
+	margin-left: 5px;
+}
+
+#rock .top .feeds a {
+	color: #555;
+	padding: 2px;
+	text-decoration: none;
+}
+
+#rock .top .feeds a:hover {
+	color: #111;
+}
+
+#rock .top .feeds .news a {
+	background-position: -93px -39px;
+}
+
+#rock .top .feeds .news a:hover {
+	background-position: -71px -39px;
+}
+
+#rock .top .feeds .subversion a {
+	background-position: -93px -19px;
+}
+
+#rock .top .feeds .subversion a:hover {
+	background-position: -71px -19px;
+}
+
+#rock .top .feeds .changes a {
+	background-position: -93px 1px;
+}
+
+#rock .top .feeds .changes a:hover {
+	background-position: -71px 1px;
+}
+
+/*  HEADER
+------------------------------------------------------------------------------------------------- */
+#rock .header_container {
+	background: #f7e7b8 url('../images/header_bg.png') repeat-x;
+	min-height: 250px;
+	border-top: 1px solid #ace;
+	border-bottom: 1px solid #fff;
+        overflow: hidden;
+}
+
+#rock .header {
+	background: transparent url('../images/header_logo.jpg') no-repeat;
+	height: 250px;
+	padding: 0 30px;
+	margin: 0;
+}
+
+#rock .header .player_image {
+	float: left;
+	width: 300px;
+	height: 250px;
+	background: transparent no-repeat 50% 0;
+	margin-right: 20px;
+}
+
+/* RIGHT SIDE */
+#rock .header .players, #rock .header .download {
+	padding-top: 20px;
+	margin-left: 320px;
+}
+
+#rock .header h2 {
+	margin-bottom: 5px;
+}
+
+#rock .header .players {
+	height: 110px;
+}
+
+/* MANUFACTURE */
+#rock .header .manufacture_list {
+	position: relative;
+	height: 30px;
+	margin: 10px 0 45px;
+	padding-bottom: 4px;
+	border-bottom: 1px solid #fa0;
+}
+
+#rock .header .manufacture_list li {
+	float: left;
+	display: block;
+}
+
+#rock .header .manufacture_list strong {
+	font-size: 13px;
+	float: left;
+	display: block;
+	cursor: pointer;
+	height: 30px;
+	line-height: 30px;
+	margin-right: 8px;
+	padding-left: 10px;
+	color: #555;
+	position: relative;
+}
+
+#rock .header .manufacture_list strong span {
+	display: block;
+	cursor: pointer;
+	width: 10px;
+	height: 30px;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	right: -10px;
+	top: 0;
+}
+
+#rock .header .manufacture_list strong:hover, #rock .header .manufacture_list .selected strong {
+	color: #000;
+	background: transparent url('../images/players_menu.png') no-repeat 0 -1px;
+}
+
+#rock .header .manufacture_list strong:hover span, #rock .header .manufacture_list .selected strong span {
+	background: transparent url('../images/players_menu.png') no-repeat 100% -1px;
+}
+#rock .header .manufacture_list .selected dl {
+	display: block;
+}
+
+/* PLAYERS */
+#rock .header .players_list {
+	display: none;
+	position: absolute;
+	top: 35px;
+	left: 0;
+	width: 100%;
+	padding-top: 5px;
+	font-size: 11px;
+	border-top: 1px solid #feb;
+}
+
+#rock .header .players_list dt {
+	float: left;
+	display: block;
+	height: 22px;
+	line-height: 200%;
+	margin-right: 6px;
+	margin-bottom: 3px;
+	padding-left: 8px;
+	color: #555;
+	cursor: pointer;
+	position: relative;
+}
+
+rock .header .players_list dt span {
+	display: block;
+	cursor: pointer;
+	width: 4px;
+	height: 22px;
+	position: absolute;
+	right: -4px;
+	top: 0;
+}
+
+#rock .header .players_list dt:hover, #rock .header .players_list dt.selected {
+	color: #000;
+	background: transparent url('../images/players_menu.png') no-repeat 0 -37px;
+}
+
+#rock .header .players_list dt:hover span, #rock .header .players_list dt.selected span {
+	background: transparent url('../images/players_menu.png') no-repeat -270px -37px;
+}
+
+#rock .header .download {
+	padding-top: 15px;
+}
+
+#rock .header .download .button {
+	display: block;
+	width: 276px;
+	height: 50px;
+	float: left;
+	text-decoration: none;
+	background: transparent url('../images/download_bar.png') no-repeat;
+	color: #555;
+}
+
+#rock .header .download .button strong {
+	display: none;
+}
+
+#rock .header .download .button span {
+	display: block;
+	margin-top: 24px;
+	margin-left: 64px;
+	margin-right: 32px;
+	text-align: center;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+#rock .header .download .button:hover {
+	color: #333;
+}
+
+#rock .header .download .utility {
+	margin-right: 40px;
+	background-position: -1px 0;
+}
+
+#rock .header .download .utility:hover {
+	background-position: -283px 0;
+}
+
+
+#rock .header .download .manual {
+	margin-left: 0px;
+	padding-left: 0px;
+	background-position: -1px -57px;
+}
+
+#rock .header .download .manual:hover {
+	background-position: -283px -57px;
+}
+
+/* CONTENT
+------------------------------------------------------------------------------------------------- */
+#rock .content_container {
+	background: #fff url('../images/content_bg.png') repeat-x 0 -1px;
+	padding: 30px 0 20px;
+	overflow: hidden;
+	border-top: 1px solid #fa0;
+}
+
+#rock .content .welcome, #rock .content .links {
+	float: left;
+	width: 30%;
+}
+
+#rock .content .welcome {
+	margin-right: 4%;
+}
+
+#rock .content .welcome .intro {
+	font-weight: bold;
+	font-size: 13px;
+}
+
+#rock .content .welcome p {
+	font-size: 12px;
+	line-height: 125%;
+}
+
+#rock .content .right {
+	margin-left: 4%;
+}
+
+#rock .content .links li {
+	margin-bottom: 20px;
+	padding-left: 48px;
+	min-height: 65px;
+	background: transparent no-repeat 0 50%;
+}
+
+#rock .content .links h4 {
+	margin-bottom: 5px;
+}
+
+
+#rock .content .links p {
+	font-size: 12px;
+	line-height: 15px;
+	margin-top: 0;
+}
+
+#rock .content .links .target_status {
+	background-image: url('../images/icon_target_status.png');
+}
+
+#rock .content .links .feature_comparison {
+	background-image: url('../images/icon_feature_comparison.png');
+}
+
+#rock .content .links .buyers_guide {
+	background-image: url('../images/icon_buyers_guide.png');
+	margin-bottom: 0;;
+}
+
+#rock .content .links .screenchots {
+	background-image: url('../images/icon_screenchots.png');
+}
+
+#rock .content .links .faq {
+	background-image: url('../images/icon_faq.png');
+}
+
+#rock .content .links .glossary {
+	background-image: url('../images/icon_glossary.png');
+	margin-bottom: 0;
+}
+
+/* COLUMNS
+------------------------------------------------------------------------------------------------- */
+#rock .columns_container {
+	clear: both;
+	padding: 40px 0 30px;
+	background: #def url('../images/columns_bg.png') repeat-x;
+	border-bottom: 1px solid #7be;
+}
+
+#rock .columns {
+	overflow: hidden;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #ace;
+}
+
+#rock .columns .announcements, #rock .columns .about, #rock .columns .support {
+	float: left;
+	/*width: 278px;*/
+	width: 30%;
+	border-right: 1px solid #ace;
+	border-left: 1px solid #fff;
+	padding: 0 2%;
+	min-height: 230px;
+}
+
+#rock .columns .announcements {
+	padding-left: 0;
+	border-left: 0;
+}
+
+#rock .columns .announcements #slider_mask {
+	position: relative;
+	overflow: hidden;
+	min-height: 168px;
+	/*width: 278px;*/
+	/*width: 80%;*/
+}
+
+#rock .columns .announcements #announcements_slider {
+	position: absolute;
+}
+
+#rock .columns .announcement {
+	height: 170px;
+	/*width: 278px;*/
+	float: left;
+	/*padding-right: 100px;*/
+}
+
+#rock .columns .announcement h5 {
+	font-size: 11px;
+	color: #555;
+	margin-bottom: 3px;
+	text-shadow: none;
+}
+
+#rock .columns .pagination {
+	float: right;
+}
+
+#rock .columns .pagination li {
+	float: left;
+}
+
+#rock .columns .pagination li span {
+	float: left;
+	background: transparent url('../images/pagination.png') no-repeat;
+	width: 22px;
+	height: 22px;
+	margin-left: 3px;
+	text-indent: -10000%;
+	font-size: 0.001%;
+	padding: 1px;
+	cursor: pointer;
+}
+
+#rock .columns .pagination .first span {
+	background-position: -1px -1px;
+}
+
+#rock .columns .pagination .first span:hover, #rock .columns .pagination .first .selected {
+	background-position: -1px -24px;
+}
+
+#rock .columns .pagination .second span {
+	background-position: -24px -1px;
+}
+
+#rock .columns .pagination .second span:hover, #rock .columns .pagination .second .selected {
+	background-position: -24px -24px;
+}
+
+#rock .columns .pagination .third span {
+	background-position: -48px -1px;
+}
+
+#rock .columns .pagination .third span:hover, #rock .columns .pagination .third .selected {
+	background-position: -48px -24px;
+}
+
+#rock .columns .pagination .fourth span {
+	background-position: -72px -1px;
+}
+
+#rock .columns .pagination .fourth span:hover, #rock .columns .pagination .fourth .selected {
+	background-position: -72px -24px;
+}
+
+#rock .columns .pagination .fifth span {
+	background-position: -96px -1px;
+}
+
+#rock .columns .pagination .fifth span:hover, #rock .columns .pagination .fifth .selected {
+	background-position: -96px -24px;
+}
+
+#rock .columns .support {
+	background-image: none;
+	padding-right: 0;
+	border-right: 0;
+}
+
+#rock .columns p {
+	font-size: 11px;
+}
+
+/* DEVELOPMENT
+------------------------------------------------------------------------------------------------- */
+#rock .development {
+	clear: both;
+	overflow: hidden;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #ace;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+#rock .development .wiki, #rock .development .mailing {
+	float: left;
+	width: 47%;
+}
+
+#rock .development .wiki {
+	padding-right: 2%;
+	border-right: 1px solid #ace;
+}
+
+#rock .development .mailing {
+	border-left: 1px solid #fff;
+	padding-left: 2%
+}
+
+#rock .development .date, #rock .development .desc, #rock .development .author {
+	display: inline-block;
+        margin-left: 0px;
+        margin-right: -2px;
+}
+
+#rock .development .date {
+	width: 21%;
+}
+
+#rock .development .desc {
+	width: 47%;
+}
+
+#rock .development .author {
+	width: 30%;
+}
+
+
+/* SVN SLIDER
+------------------------------------------------------------------------------------------------- */
+
+#rock .svn {
+	padding-top: 20px;
+	border-top: 1px solid #fff;
+}
+
+#rock .svn table {
+	margin: 10px auto;
+	width: 100%;
+	border-bottom: 3px solid #ace;
+}
+
+#rock .svn table th {
+	font-size: 10px;
+	text-transform: uppercase;
+	font-weight: bold;
+	background: #cce4ff;
+	color: #333;
+	border-bottom: 3px solid #ace;
+	padding: 5px 5px 2px;
+	border-right: 1px solid #ace;
+}
+
+#rock .svn table td {
+	padding: 3px 5px;
+	border-right: 1px solid #ace;
+	vertical-align: top;
+	text-align: justify;
+}
+
+#rock .svn table tr {
+	background: #eff;
+}
+
+#rock .svn table tr:nth-child(odd) {
+	background: #def;
+}
+
+#rock .svn table .rev {
+	text-align: right;
+	width: 6%;
+}
+
+#rock .svn table .date {
+	width: 14%;
+}
+
+#rock .svn table .author {
+	width: 18%;
+}
+
+#rock .svn table .desc {
+	width: 36%;
+}
+
+#rock .svn table .stat {
+	border-right: 0;
+}
+
+/* SPONSORS
+------------------------------------------------------------------------------------------------- */
+#rock .ssponsors_container {
+	background-color: #cce4ff;
+	padding: 30px 0;
+	overflow: hidden;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #444;
+}
+
+#rock .ssponsors dl dt {
+	float: left;
+	line-height: 80px;
+	width: 21.5%;
+}
+
+#rock .ssponsors .ssponsor5 {	
+	width: auto;
+}
+
+#rock .ssponsors dl dt a {
+	display: block;
+	text-indent: -10000%;
+	font-size: 0.001%;
+	background: transparent url('../images/ssponsors.png') no-repeat;
+}
+
+#rock .ssponsors .ssponsor1 a {
+	width: 110px;
+	height: 38px;
+	background-position: -2px -11px;
+	margin-top: 11px;
+	padding: 2px;
+}
+
+#rock .ssponsors .ssponsor2 a {
+	width: 96px;
+	height: 42px;
+	background-position: -180px -10px;
+	margin-top: 10px;
+}
+
+#rock .ssponsors .ssponsor3 a {
+	width: 100px;
+	height: 48px;
+	background-position: -280px -6px;
+	margin-top: 6px;
+}
+
+#rock .ssponsors .ssponsor4 a {
+	width: 48px;
+	height: 60px;
+	background-position: -120px -2px;
+	margin-top: 2px;
+}
+
+#rock .ssponsors .ssponsor5 a {
+	width: 145px;
+	height: 20px;
+	background-position: -390px -20px;
+	margin-top: 20px;
+	margin-right: 0;
+}
+
+/* FOTTER
+------------------------------------------------------------------------------------------------- */
+#rock .footer_container {
+	border-top: 1px solid #ddd;
+	clear: both;
+	background: #000 url("../images/footer_bg.png") repeat-x;
+	color: #ddd;
+	height: 30px;
+	line-height: 30px;
+	font-size: 11px;
+}
+
+#rock .footer .copy {
+	float: left;
+}
+
+#rock .footer .layout {
+	float: right;
+}
+
+#rock .footer a {
+	color: #fff;
+	text-decoration: none;
+}
+
+#rock .footer a:hover {
+	color: #ddd;
+	text-decoration: underline;
+}

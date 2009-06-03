@@ -38,9 +38,6 @@
         'sansafuze' => '/rockbox100.png', # lacks small picture
         'sansae200v2' => '/playerpics/e200-small.png',
         'sansam200v4' => '/rockbox100.png', # lacks small picture
-        'yh820' => '/rockbox100.png', # lacks small picture
-        'yh920' => '/rockbox100.png', # lacks small picture
-        'yh925' => '/rockbox100.png', # lacks small picture
 
         'install' => '/playerpics/install.png',
         'fonts' => '/rockbox100.png',
@@ -86,10 +83,6 @@
            'creativezvm30' => 'Creative Zen Vision:M 30GB',
            'creativezvm60' => 'Creative Zen Vision:M 60GB',
            'creativezenvision' => 'Creative Zen Vision',
-           'yh820' => 'Samsung YH-820',
-           'yh920' => 'Samsung YH-920',
-           'yh925' => 'Samsung YH-925',
-
            'install' => 'Windows Installer',
            'fonts' => 'Fonts',
            'source' => 'Source Archive');
@@ -144,7 +137,7 @@ $releasenotes="/twiki/bin/view/Main/ReleaseNotes32";
 sub header {
     my ($t) = @_;
     print "Content-Type: text/html\n\n";
-    open (HEAD, "/home/bjst/rockbox_html/head.html");
+    open (HEAD, "/home/bjst/rockbox_new/head.html");
     while(<HEAD>) {
         $_ =~ s:^<title>Rockbox<\/title>:<title>$t<\/title>:;
         $_ =~ s:^<h1>_PAGE_<\/h1>:<h1>$t<\/h1>:;
@@ -154,7 +147,7 @@ sub header {
 }
 
 sub footer {
-    open (FOOT, "/home/bjst/rockbox_html/foot.html");
+    open (FOOT, "/home/bjst/rockbox_new/foot.html");
     while(<FOOT>) {
         print $_;
     }

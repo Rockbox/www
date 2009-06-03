@@ -1,22 +1,18 @@
-#define BGCOLOR "#b6c6e5"
-#define MENUBG "#6887bb"
-#define TITLE(_x) <h1>_x</h1>
-
 #ifndef TWIKI
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
-<head>
-<link rel="STYLESHEET" type="text/css" href="http://www.rockbox.org/style.css">
-<link rel="shortcut icon" href="http://www.rockbox.org/favicon.ico">
+	<head>
 #ifdef _PAGE_
-<title>Rockbox - _PAGE_</title>
+                <title>Rockbox - _PAGE_</title>
 #else
-<title>Rockbox</title>
+                <title>Rockbox &bull; open source jukebox firmware</title>
 #endif
-<meta name="author" content="Rockbox Contributors">
-#ifndef _PAGE_
-<meta name="keywords" content="Rockbox,Archos,firmware,open source,computer,programming,software">
-#endif
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="shortcut icon" href="http://www.rockbox.org/favicon.ico" />
+		<link rel="stylesheet" href="/media/css/rockbox.css" type="text/css" />
+		<script type="text/javascript" src="/media/js/mootools-1.2.1-core.js"></script>
+		<script type="text/javascript" src="/media/js/mootools-1.2.1-more.js"></script>
+		<script type="text/javascript" src="/media/js/rockbox.js"></script>
 <script type="text/javascript">
 function fsstrip() {
     var expr = /[0-9]+/;
@@ -25,72 +21,86 @@ function fsstrip() {
 }
 </script>
 </head>
+
+<body id="rock">
 #else
 %TMPL:DEF{"rockboxmenu"}%
 #endif
-<body>
-<table border=0 cellpadding=7 cellspacing=0>
-<tr valign="top">
-<td bgcolor=MENUBG valign="top" rowspan=7>
-<br>
-<div align="center"><a href="http://www.rockbox.org/">
-<img src="http://www.rockbox.org/rockbox100.png" width=99 height=30 border=0 alt="Rockbox.org home"></a>
-</div>
-<div style="margin-top:20px">
-<div class="submenu">
-Downloads
-</div>
-<img width=16 height=16 src='http://www.rockbox.org/silk_icons/package.png' align='top'> <a class="menulink" href="http://www.rockbox.org/download/">releases</a><br>
-<img width=16 height=16 src='http://www.rockbox.org/silk_icons/bomb.png' align='top'> <a class="menulink" href="http://build.rockbox.org">current build</a><br>
-<img width=16 height=16 src='http://www.rockbox.org/silk_icons/style.png' align='top'> <a class="menulink" href="http://www.rockbox.org/twiki/bin/view/Main/RockboxExtras">extras</a><br>
-<img width=16 height=16 src='http://www.rockbox.org/silk_icons/palette.png' align='top'> <a class="menulink" href="http://themes.rockbox.org/">themes</a>
-<div class="submenu">
-Documentation
-</div>
-<img width=16 height=16 src='http://www.rockbox.org/silk_icons/help.png' align='top'> <a class="menulink" href="http://www.rockbox.org/twiki/bin/view/Main/GeneralFAQ">FAQ</a><br>
-<img width=16 height=16 src='http://www.rockbox.org/silk_icons/page_white_acrobat.png' align='top'> <a class="menulink" href="http://www.rockbox.org/manual.shtml">manual</a><br>
-<img width=16 height=16 src='http://www.rockbox.org/silk_icons/application_edit.png' align='top'> <a class="menulink" href="http://www.rockbox.org/twiki/">wiki</a><br>
-<img width=16 height=16 src='http://www.rockbox.org/silk_icons/book_open.png' align='top'> <a class="menulink" href="http://www.rockbox.org/twiki/bin/view/Main/DocsIndex">docs index</a>
-<div class="submenu">
-Support
-</div>
-<img width=16 height=16 src='http://www.rockbox.org/silk_icons/email.png' align='top'> <a class="menulink" href="http://www.rockbox.org/mail/">mailing lists</a><br>
-<img width=16 height=16 src='http://www.rockbox.org/silk_icons/group.png' align='top'> <a class="menulink" href="http://www.rockbox.org/irc/">IRC</a><br>
-<img width=16 height=16 src='http://www.rockbox.org/silk_icons/comment_edit.png' align='top'> <a class="menulink" href="http://forums.rockbox.org/">forums</a>
-<div class="submenu">
-Tracker
-</div>
-<img width=16 height=16 src='http://www.rockbox.org/silk_icons/bug.png' align='top'> <a class="menulink" href="http://www.rockbox.org/tracker/index.php?type=2">bugs</a><br>
-<img width=16 height=16 src='http://www.rockbox.org/silk_icons/brick.png' align='top'> <a class="menulink" href="http://www.rockbox.org/tracker/index.php?type=4">patches</a><br>
-<div class="submenu">
-Search
-</div>
-<form id="fsform" action="http://www.rockbox.org/tracker/index.php" method="get" onSubmit="return fsstrip();">
-<input id="taskid" name="show_task" type="text" size="10" maxlength="10" accesskey="t"><br>
-<input class="mainbutton" type="submit" value="Flyspray #">
-</form>
-<br>
-<form action="http://www.google.com/search">
-<input name=as_q size=10><br>
-<input value="Search" type=submit>
-<input type=hidden name=as_sitesearch value="www.rockbox.org">
-</form>
-<p>
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="585407">
-<input type="image" src="http://www.rockbox.org/paypal-donate.gif" border="0" name="submit" alt="">
-</form>
-</div>
 
-</td>
-#ifdef TWIKI
-<td bgcolor=MENUBG width=100%>%TMPL:END%
-#else
-<td>
-#ifdef _LOGO_
-_LOGO_
-#else
-TITLE(_PAGE_)
+		<div class="top_container">
+			<div class="top wrapper">
+				<ul class="menu">
+					<li class="item home"><a href="/" class="selected"><em></em>Home</a></li>
+					<li class="item download">
+						<a href="#"><em></em>Downloads</a>
+						<ul class="submenu">
+							<li class="releases"><a href="/download/"><span class="icon"></span>Releases</a></li>
+							<li class="build"><a href="http://build.rockbox.org"><span class="icon"></span>Current build</a></li>
+							<li class="extras"><a href="/twiki/bin/view/Main/RockboxExtras"><span class="icon"></span>Extras</a></li>
+							<li class="themes"><a href="http://themes.rockbox.org"><span class="icon"></span>Themes</a></li>
+						</ul>
+					</li>
+					<li class="item documentation">
+						<a href="#"><em></em>Documentation</a>
+						<ul class="submenu">
+							<li class="manual"><a href="/manual.shtml"><span class="icon"></span>Manual</a></li>
+							<li class="faq"><a href="/twiki/bin/view/Main/GeneralFAQ"><span class="icon"></span>FAQ</a></li>
+							<li class="wiki"><a href="/twiki/"><span class="icon"></span>Wiki</a></li>
+						</ul>
+					</li>
+					<li class="item support">
+						<a href="#"><em></em>Community</a>
+						<ul class="submenu">
+							<li class="mailing"><a href="/mail/"><span class="icon"></span>Mailing lists</a></li>
+							<li class="irc"><a href="/irc/"><span class="icon"></span>IRC</a></li>
+							<li class="forums"><a href="http://forums.rockbox.org"><span class="icon"></span>Forums</a></li>
+						</ul>
+					</li>
+					<li class="item tracker">
+						<a href="#"><em></em>Development</a>
+						<ul class="submenu">
+							<li class="dev"><a href="/dev.shtml"><span class="icon"></span>Developer page</a></li>
+							<li class="bugs"><a href="/tracker/index.php?type=2"><span class="icon"></span>Bug tracker</a></li>
+							<li class="patches"><a href="/tracker/index.php?type=2"><span class="icon"></span>Patch tracker</a></li>
+						</ul>
+					</li>
+				</ul>
+
+<!--
+				<dl class="feeds">
+					<dt class="news">
+						<a href="#" title="Subscibe to last project news">Project news feeds</a>
+					</dt>
+					<dd>
+						<a href="#">Project news</a>
+					</dd>
+
+					<dt class="subversion">
+						<a href="#" title="Subscibe to last Subversion changes">Subversion feeds</a>
+					</dt>
+					<dd><a href="#" id="svn_slider_handle">Subversion</a></dd>
+
+					<dt class="changes">
+						<a href="#" title="Subscibe to last project major changes">Major changes feeds</a>
+					</dt>
+					<dd>
+						<a href="#">Major changes</a>
+					</dd>
+				</dl>
+-->
+			</div>
+		</div>
+
+
+#ifndef FRONT_PAGE
+		<div class="content_container">
+			<div class="content wrapper">
+
+#ifdef _PAGE_
+<h1>_PAGE_</h1>
 #endif
+#endif
+
+#ifdef TWIKI
+%TMPL:END%
 #endif

@@ -1,0 +1,227 @@
+/*
+ * Rockbox.org
+ * wiki.css
+ * Copyright 2009 by Maciej "Macku" Adamczak <emacieka@tlen.pl>
+ */
+
+/* SUBPAGE TWEAKS
+------------------------------------------------------------------------------------------------- */
+#rock .content_container {
+	border-top: 1px solid #ace;
+        border-bottom: 1px solid #444;
+}
+
+#rock .columns_container {
+	border-bottom: 1px solid #444;
+}
+
+#rock .columns_container .columns {
+	padding-bottom: 0;
+}
+
+
+/* WIKI
+------------------------------------------------------------------------------------------------- */
+#rock .wiki_container {
+	font-size: 12px;
+	line-height: 120%;
+}
+
+/* HEAD NAVIGATION */
+#rock .wiki_container .twikihead {
+	margin-bottom: 10px;
+	height: 20px;
+	line-height: 20p;
+	font-size: 11px;
+}
+
+#rock .wiki_container .twikihead:after{
+	content: ".";
+	display: block;
+	height: 0;
+	clear: right;
+	visibility: hidden;
+}
+
+#rock .wiki_container .twikihead dt, #rock .wiki_container .twikihead dd {
+	float: left;
+	padding: 2px 0;
+	margin-right: 5px;
+	color: #666;
+}
+
+#rock .wiki_container .twikihead dt strong {
+	font-weight: bold;
+}
+
+#rock .wiki_container .twikihead .nav {
+	float: left;
+}
+
+
+#rock .wiki_container .twikihead .search {
+	float: right;
+}
+
+#rock .wiki_container .twikihead .search dt {
+	margin-right: 0;
+	margin-left: 10px;
+	padding: 0;
+}
+
+#rock .wiki_container .twikihead .search input {
+	font-size: 11px;
+	border: 1px solid #ddd;
+	color: #666;
+	padding: 2px;
+}
+
+#rock .wiki_container .twikihead .search input:focus {
+	color: #333;
+	border-color: #7be;
+}
+
+/* HEADERS */
+#rock .wiki_container h2, #rock .wiki_container h3 {
+	color: #000;
+	font-weight: bold;
+}
+
+#rock .wiki_container h1 {
+	margin-bottom: 10px;
+	clear: right;
+}
+
+#rock .wiki_container h2 {
+	font-size: 20px;
+}
+
+#rock .wiki_container h3 {
+	color: #333;
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+
+#rock .wiki_container hr {
+	margin: 20px 0;
+	border: 0;
+	border-top: 1px solid #aaa;
+	background: #eee;
+	color: #eee;
+	height: 2px;
+}
+
+#rock .wiki_container hr.title {
+	border-top-color: #7be;
+	margin-top: 10px;
+}
+
+/* LITS */
+#rock .wiki_container ul {
+	color: #7be;
+	list-style: disc;
+	padding-left: 16px;
+}
+
+#rock .wiki_container ul li {
+	margin-top: 3px;
+}
+
+#rock .wiki_container ul span {
+	color: #333;
+}
+
+/* TABLE */
+#rock .wiki_container table {
+	margin: 20px 0;
+	border-bottom: 3px solid #7be;
+	color: #333;
+}
+
+#rock .wiki_container table th {
+	font-size: 10px;
+	text-transform: uppercase;
+	font-weight: bold;
+	background: #def;
+	border-bottom: 3px solid #7be;
+	padding: 5px 10px 2px;
+	border-right: 1px solid #7be;
+	color: #555;
+}
+
+#rock .wiki_container table td {
+	padding: 3px 10px;
+	border-right: 1px solid #7be;
+	vertical-align: top;
+	text-align: justify;
+	font-size: 12px;
+}
+
+#rock .wiki_container table th:last-child, #rock .wiki_container table td:last-child {
+	border-right: 0;
+}
+
+#rock .wiki_container table tr {
+	background: #fff;
+}
+
+#rock .wiki_container table tr.odd {
+	background: #f5faff;
+}
+
+/* TOPIC INFO */
+#rock .wiki_container .topicInfo {
+	font-size: 11px;
+	color: #666;
+	margin: 10px 0 5px;
+}
+
+#rock .wiki_container .topicInfo strong {
+	font-weight: bold;
+	padding-right: 5px;
+}
+
+/* TOPIC ACTIONS */
+#rock .wiki_container .topicAction {
+	margin: 20px auto 0;
+	width: 100%;
+	background: #fff;
+	height: 24px;
+	padding: 1px;
+	border: 1px solid #aaa;
+	color: #666;
+	font-size: 11px;
+}
+
+#rock .wiki_container .topicAction ol {
+	background: #eee;
+	height: 20px;
+	padding: 2px 4px;
+}
+
+#rock .wiki_container .topicAction li {
+	float: left;
+	height: 18px;
+	padding: 0 5px;
+	line-height: 18px;
+	margin-top: 1px;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #bbb;
+}
+
+#rock .wiki_container .topicAction li:first-child {
+	border-left: 0;
+}
+
+#rock .wiki_container .topicAction li:last-child {
+	border-right: 0;
+}
+
+#rock .wiki_container .topicAction li a	{
+	padding: 2px;
+}
+
+#rock .wiki_container .topicAction .twikiAccessKey {
+	text-decoration: underline;
+	color: #06a;
+}

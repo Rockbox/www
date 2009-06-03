@@ -7,11 +7,11 @@ OBJS := $(SRC:%.t=%.html) $(SOBJS) head.tmpl
 
 .SUFFIXES: .t .html
 
-%.html : %.t
+%.html : %.t head.t foot.t
 	$(ACTION) $<
 	@sed -i '/^$$/d' $@
 
-%.shtml : %.t
+%.shtml : %.t head.t foot.t
 	$(ACTION) $<
 	@sed -i '/^$$/d' $@
 
