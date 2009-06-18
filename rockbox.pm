@@ -104,9 +104,9 @@
 
 # this is the default release version, see the table below for
 # target specifics
-$publicrelease="3.2";
-$releasedate="March 23, 2009";
-$releasenotes="/twiki/bin/view/Main/ReleaseNotes32";
+$publicrelease="3.3";
+$releasedate="June 19, 2009";
+$releasenotes="/twiki/bin/view/Main/ReleaseNotes33";
 
 %release=(
           'player' => "$publicrelease",
