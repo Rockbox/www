@@ -104,6 +104,18 @@ sub parsecmd {
     }
 }
 
+my $count;
+sub checkbuild {
+    if(++$count < 5) {
+        return;
+    }
+
+    # time to run builds!!!!
+    for(sort { $builds{$b}{'score'} <=> $builds{$a}{'score'} }  @buildids) {
+        printf "$_:%d\n", $builds{$_}{'score'};
+    }
+}
+
 # Master socket for receiving new connections
 my $server = new IO::Socket::INET(
 	LocalHost => "localhost",
@@ -168,9 +180,10 @@ while(not $done) {
                             delete $conn{$rh->fileno};
                             $read_set->remove($rh);
                             $rh->close;
+                            delete $client{$rh};
 			}
 		}
 	}
-        #print "ping\n";
+        checkbuild();
 }
 warn "exiting.\n";
