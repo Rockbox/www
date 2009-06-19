@@ -345,8 +345,8 @@ sub parsechunk {
                 if ($url =~ /<span class=nick_([^>]+)/) {
                     my $nick = $1;
                     $url =~ s|<span class=nick_$nick>$nick</span>|$nick|g;
+                    $message =~ s|$broken_url|$url|g;
                 }
-                $message =~ s|$broken_url|$url|g;
             }
 
             my $class = "nick";
