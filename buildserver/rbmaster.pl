@@ -13,6 +13,51 @@ use IO::Select;
 # Any per-connection data can be sotred in this hash-of-hashes.
 my %conn;
 
+my %builds;
+my @buildids;
+
+sub getbuilds {
+    my ($filename)=@_;
+    open(F, "<$filename");
+    while(<F>) {
+        # sdl:nozip:recordersim:Recorder - Simulator:rockboxui:--target=recorder,--ram=2,--type=s
+        if($_ =~ /([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):([^:]*)/) {
+            my ($arch, $zip, $id, $name, $file, $confopts) =
+                ($1, $2, $3, $4, $5, $6);
+            $builds{$id}{'arch'}=$arch;
+            $builds{$id}{'zip'}=$zip;
+            $builds{$id}{'name'}=$name;
+            $builds{$id}{'file'}=$file;
+            $builds{$id}{'confopts'}=$confopts;
+
+            push @buildids, $id;
+
+         #   printf "$id:%d\n", int(rand(1000));
+        }
+    }
+    close(F);
+#    printf ("%d builds read\n", scalar(@buildids));
+}
+
+
+# read the "weight", the score, of builds from a separate file
+sub getbuildscore {
+    my ($filename)=@_;
+    open(F, "<$filename");
+    while(<F>) {
+        # id:score
+        if($_ =~ /([^:]*):(.*)/) {
+            my ($id, $score) = ($1, $2);
+            $builds{$id}{'score'}=$score;
+        }
+    }
+    close(F);
+
+#    for(sort { $builds{$b}{'score'} <=> $builds{$a}{'score'} }  @buildids) {
+#        printf "$_:%d\n", $builds{$_}{'score'};
+#    }
+}
+
 #
 # {$rh}{'cmd'} for building incoming commands
 #  {'client'} 
@@ -20,6 +65,7 @@ my %conn;
 #  {'cpu'} - string for stats
 #  {'bits'} 32 / 64 
 #  {'os'}
+#  {'bogomips'}
 #
 my %client;
 
@@ -31,13 +77,14 @@ sub HELLO {
     my ($rh, $args) = @_;
 
     my ($version, $auth, $client, $archlist, $cpu, $bits,
-        $os) = split(" ", $args);
+        $os, $bogomips) = split(" ", $args);
 
     $client{$rh}{'client'} = $client;
     $client{$rh}{'archs'} = $archlist;
     $client{$rh}{'cpu'} = $cpu;
     $client{$rh}{'bits'} = $bits;
     $client{$rh}{'os'} = $os;
+    $client{$rh}{'bogomips'} = $bogomips;
 
     # send OK
     $rh->write("_HELLO ok $client\n");
@@ -65,6 +112,10 @@ my $server = new IO::Socket::INET(
 	Listen => SOMAXCONN,
 	Reuse => 1)
 or die "socket: $!\n";
+
+getbuilds("builds");
+
+getbuildscore("build-score");
 
 my $debug;
 

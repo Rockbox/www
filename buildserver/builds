@@ -1,0 +1,106 @@
+sdl:nozip:recordersim:Recorder - Simulator:rockboxui:--target=recorder,--ram=2,--type=s
+sdl:nozip:playersim:Player - Simulator:rockboxui:--target=player,--ram=2,--type=s
+sdl:nozip:fmrecordersim:FM Recorder - Simulator:rockboxui:--target=fmrecorder,--ram=2,--type=s
+sdl:nozip:ondiofmsim:Ondio FM - Simulator:rockboxui:--target=ondiofm,--ram=2,--type=s
+sdl:nozip:h120sim:iriver H120 - Simulator:rockboxui:--target=h120,--type=s
+sdl:nozip:h300sim:iriver H300 - Simulator:rockboxui:--target=h300,--type=s
+sdl:nozip:ipodnanosim:iPod Nano - Simulator:rockboxui:--target=ipodnano,--type=s
+sdl:nozip:ipodcolorsim:iPod Color - Simulator:rockboxui:--target=ipodcolor,--type=s
+sdl:nozip:iaudiox5sim:iAudio X5 - Simulator:rockboxui:--target=x5,--type=s
+sdl:nozip:iaudiom5sim:iAudio M5 - Simulator:rockboxui:--target=m5,--type=s
+sdl:nozip:iaudiom3sim:iAudio M3 - Simulator:rockboxui:--target=m3,--type=s
+sdl:nozip:ipod4graysim:iPod 4G Grayscale - Simulator:rockboxui:--target=ipod4g,--type=s
+sdl:nozip:ipodvideosim:iPod Video - Simulator:rockboxui:--target=ipodvideo,--type=s
+sdl:nozip:ipodmini2gsim:iPod Mini 2G - Simulator:rockboxui:--target=ipodmini2g,--type=s
+sdl:nozip:h10sim:iriver H10 - Simulator:rockboxui:--target=h10,--type=s
+sdl:nozip:gigabeatfsim:Toshiba Gigabeat F - Simulator:rockboxui:--target=gigabeatf,--type=s
+sdl:nozip:gigabeatssim:Toshiba Gigabeat S - Simulator:rockboxui:--target=gigabeats,--type=s
+sdl:nozip:sansae200sim:SanDisk Sansa e200 - Simulator:rockboxui:--target=e200,--type=s
+sdl:nozip:sansac200sim:SanDisk Sansa c200 - Simulator:rockboxui:--target=c200,--type=s
+sdl:nozip:mrobe500sim:Olympus M-Robe 500 - Simulator:rockboxui:--target=mrobe500,--type=s
+sdl:nozip:mrobe100sim:Olympus M-Robe 100 - Simulator:rockboxui:--target=mrobe100,--type=s
+sdl:nozip:cowond2sim:Cowon D2 - Simulator:rockboxui:--target=cowond2,--type=s
+sdl:nozip:creativezvm30sim:Creative Zen Vision M 30GB - Simulator:rockboxui:--target=creativezvm30gb,--type=s
+sdl:nozip:clipsim:SanDisk Sansa Clip - Simulator:rockboxui:--target=clip,--type=s
+sdl:nozip:fuzesim:SanDisk Sansa Fuze - Simulator:rockboxui:--target=fuze,--type=s
+sdl:nozip:m200v4sim:SanDisk Sansa m200v4 - Simulator:rockboxui:--target=m200v4,--type=s
+sdl:nozip:hdd1630sim:Philips HDD1630 - Simulator:rockboxui:--target=hdd1630,--type=s
+m68k:zip:h100:iriver H100 - Normal:rockbox.iriver:--target=h100
+m68k:zip:h120:iriver H120 - Normal:rockbox.iriver:--target=h120
+m68k:zip:h300:iriver H300 - Normal:rockbox.iriver:--target=h300
+m68k:zip:iaudiox5:iAudio X5 - Normal:rockbox.iaudio:--target=x5
+m68k:zip:iaudiom5:iAudio M5 - Normal:rockbox.iaudio:--target=m5
+m68k:zip:iaudiom3:iAudio M3 - Normal:rockbox.iaudio:--target=m3
+arm:zip:ipodnano:iPod Nano - Normal:rockbox.ipod:--target=ipodnano
+arm:zip:ipodcolor:iPod Color - Normal:rockbox.ipod:--target=ipodcolor
+arm:zip:ipod4gray:iPod 4G Grayscale - Normal:rockbox.ipod:--target=ipod4g
+arm:zip:ipodvideo:iPod Video - Normal:rockbox.ipod:--target=ipodvideo,--ram=32
+arm:zip:ipodvideo64mb:iPod Video 64MB - Normal:rockbox.ipod:--target=ipodvideo,--ram=32
+arm:zip:ipod3g:iPod 3G - Normal:rockbox.ipod:--target=ipod3g
+arm:zip:ipodmini2g:iPod Mini 2G - Normal:rockbox.ipod:--target=ipodmini2g
+arm:zip:ipodmini1g:iPod Mini 1G - Normal:rockbox.ipod:--target=ipodmini
+arm:zip:h10:iriver H10 - Normal:rockbox.mi4:--target=h10
+arm:zip:h10_5gb:iriver H10 5GB - Normal:rockbox.mi4:--target=h10
+arm:zip:gigabeatf:Toshiba Gigabeat F - Normal:rockbox.gigabeat:--target=gigabeatf
+arm:zip:gigabeats:Toshiba Gigabeat S - Normal:rockbox.gigabeat:--target=gigabeats
+arm:zip:sansae200:SanDisk Sansa e200 - Normal:rockbox.mi4:--target=e200
+arm:zip:sansac200:SanDisk Sansa c200 - Normal:rockbox.mi4:--target=c200
+arm:zip:ipod1g2g:iPod 1G/2G - Normal:rockbox.ipod:--target=ipod1g2g
+arm:zip:mrobe500:Olympus M-Robe 500 - Normal:rockbox.mrobe500:--target=mrobe500
+arm:zip:mrobe100:Olympus M-Robe 100 - Normal:rockbox.mi4:--target=mrobe100
+arm:zip:cowond2:Cowon D2 - Normal:rockbox.d2:--target=cowond2
+arm:zip:creativezvm30:Creative Zen Vision M 30GB - Normal:rockbox.zvm:--target=creativezvm30gb
+arm:zip:creativezvm60:Creative Zen Vision M 60GB - Normal:rockbox.zvm60:--target=creativezvm60gb
+arm:zip:creativezenvision:Creative Zen Vision - Normal:rockbox.zv:--target=creativezenvision
+arm:zip:fuze:SanDisk Sansa Fuze - Normal:rockbox.sansa:--target=fuze
+arm:zip:clip:SanDisk Sansa Clip - Normal:rockbox.sansa:--target=clip
+arm:zip:sansae200v2:SanDisk Sansa e200v2 - Normal:rockbox.sansa:--target=e200v2
+arm:zip:m200v4:SanDisk Sansa m200v4 - Normal:rockbox.sansa:--target=m200v4
+arm:zip:hdd1630:Philips HDD1630 - Normal:rockbox.mi4:--target=hdd1630
+arm:zip:yh820:Samsung YH-820 - Normal:rockbox.mi4:--target=yh_820
+arm:zip:yh920:Samsung YH-920 - Normal:rockbox.mi4:--target=yh_920
+arm:zip:yh925:Samsung YH-925 - Normal:rockbox.mi4:--target=yh_925
+mipsel:zip:ondavx747:Onda VX747 - Normal:rockbox.vx747:--target=ondavx747
+mipsel:zip:ondavx767:Onda VX767 - Normal:rockbox.vx767:--target=ondavx767
+sh:zip:recorder:Recorder - Normal:ajbrec.ajz:--target=recorder,--ram=2
+sh:zip:recorderv2:V2 Recorder - Normal:ajbrec.ajz:--target=recorderv2,--ram=2
+sh:zip:player:Player - Normal:archos.mod:--target=player,--ram=2
+sh:zip:fmrecorder:FM Recorder - Normal:ajbrec.ajz:--target=fmrecorder,--ram=2
+sh:zip:recorder8mb:Recorder - Normal - 8MB:ajbrec.ajz:--target=recorder,--ram=8
+sh:zip:ondiosp:Ondio SP - Normal:ajbrec.ajz:--target=ondiosp,--ram=2
+sh:zip:ondiofm:Ondio FM - Normal:ajbrec.ajz:--target=ondiofm,--ram=2
+m68k:nozip:h100boot:iriver H100 - Boot:rockbox.iriver:--target=h100,--type=b
+m68k:nozip:h120boot:iriver H120 - Boot:rockbox.iriver:--target=h120,--type=b
+m68k:nozip:h300boot:iriver H300 - Boot:rockbox.iriver:--target=h300,--type=b
+m68k:nozip:iaudiox5boot:iAudio X5 - Boot:rockbox.iaudio:--target=x5,--type=b
+m68k:nozip:iaudiom5boot:iAudio M5 - Boot:rockbox.iaudio:--target=m5,--type=b
+m68k:nozip:iaudiom3boot:iAudio M3 - Boot:rockbox.iaudio:--target=m3,--type=b
+mipsel:nozip:ondavx747boot:Onda VX747 - Boot:rockboot.vx747:--target=ondavx747,--type=b
+arm:nozip:ipodnanoboot:iPod Nano - Boot:bootloader-ipodnano.ipod:--target=ipodnano,--type=b
+arm:nozip:ipodcolorboot:iPod Color - Boot:bootloader-ipodcolor.ipod:--target=ipodcolor,--type=b
+arm:nozip:ipod4grayboot:iPod 4G Grayscale - Boot:bootloader-ipod4g.ipod:--target=ipod4g,--type=b
+arm:nozip:ipodvideoboot:iPod Video - Boot:bootloader-ipodvideo.ipod:--target=ipodvideo,--ram=2,--type=b
+arm:nozip:ipod3gboot:iPod 3G - Boot:bootloader-ipod3g.ipod:--target=ipod3g,--type=b
+arm:nozip:ipodmini2gboot:iPod Mini 2G - Boot:bootloader-ipodmini2g.ipod:--target=ipodmini2g,--type=b
+arm:nozip:ipodmini1gboot:iPod Mini 1G - Boot:bootloader-ipodmini.ipod:--target=ipodmini,--type=b
+arm:nozip:h10boot:iriver H10 - Boot:H10_20GC.mi4:--target=h10,--type=b
+arm:nozip:gigabeatfboot:Toshiba Gigabeat F - Boot:FWIMG01.DAT:--target=gigabeatf,--type=b
+arm:nozip:gigabeatsboot:Toshiba Gigabeat S - Boot:nk.bin:--target=gigabeats,--type=b
+arm:nozip:sansae200boot:SanDisk Sansa e200 - Boot:PP5022.mi4:--target=e200,--type=b
+arm:nozip:sansac200boot:SanDisk Sansa c200 - Boot:firmware.mi4:--target=c200,--type=b
+arm:nozip:ipod1g2gboot:iPod 1G/2G - Boot:bootloader-ipod1g2g.ipod:--target=ipod1g2g,--type=b
+arm:nozip:mrobe100boot:Olympus M-Robe 100 - Boot:pp5020.mi4:--target=mrobe100,--type=b
+arm:nozip:cowond2boot:Cowon D2 - Boot:rockbox.d2:--target=cowond2,--type=b
+arm:nozip:sansae200v2boot:SanDisk Sansa e200v2 - Boot:bootloader-e200v2.sansa:--target=e200v2,--type=b
+arm:nozip:sansam200v4boot:SanDisk Sansa m200v4 - Boot:bootloader-m200v4.sansa:--target=m200v4,--type=b
+arm:nozip:sansaclipboot:SanDisk Sansa Clip - Boot:bootloader-clip.sansa:--target=clip,--type=b
+arm:nozip:sansafuzeboot:SanDisk Sansa Fuze - Boot:bootloader-fuze.sansa:--target=fuze,--type=b
+arm:nozip:hdd1630boot:Philips HDD1630 - Boot:FWImage.ebn:--target=hdd1630,--type=b
+arm:nozip:yh820boot:Samsung YH-820 - Boot:FW_YH820.mi4:--target=yh_820,--type=b
+arm:nozip:yh920boot:Samsung YH-920 - Boot:PP5020.mi4:--target=yh_920,--type=b
+arm:nozip:yh925boot:Samsung YH-925 - Boot:FW_YH925.mi4:--target=yh_925,--type=b
+arm:nozip:creativezvm30boot:Creative Zen Vision M 30GB - Boot:rockbox.zvmboot:--target=creativezvm30gb,--type=b
+sh:nozip:recorderboot:Recorder - Boot:ajbrec.ajz:--target=recorder,--ram=2,--type=b
+sh:nozip:playerboot:Player - Boot:archos.mod:--target=player,--ram=2,--type=b
+sh:nozip:fmrecorderboot:FM Recorder - Boot:ajbrec.ajz:--target=fmrecorder,--ram=2,--type=b
+sh:nozip:ondiospboot:Ondio SP - Boot:ajbrec.ajz:--target=ondiosp,--ram=2,--type=b
