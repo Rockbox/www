@@ -145,7 +145,7 @@ sub startbuild
         print ">svn up -r $builds{$id}{rev}\n";
         mkdir "build-$$";
         chdir "build-$$";
-        my $args = $builds{$id}{$confargs};
+        my $args = $builds{$id}{confargs};
         $args =~ s|,| |g;
         print ">../tools/configure $args\n";
         print ">make\n";
@@ -200,7 +200,8 @@ sub CANCEL
     my ($id) = @_;
 
     if ($builds{$id}{pid}) {
-        kill 1, $builds{$id}{pid};
+        kill 2, $builds{$id}{pid};
+        print "Killed build $id (pid $builds{$id}{pid})\n";
     }
 
     print $sock "_CANCEL $id\n";
