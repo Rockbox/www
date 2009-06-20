@@ -80,6 +80,8 @@ sub build {
     # tell client to build!
     $rh->write("BUILD $args\n");
 
+    print "BUILD $args\n";
+
     printf "Tell %s to build %s\n",  $client{$fileno}{'client'}, $id;
 
     # mark this client with what response we expect from it
@@ -142,7 +144,7 @@ sub COMPLETED {
 sub parsecmd {
     my ($rh, $cmdstr)=@_;
     
-    if($cmdstr =~ /([A-Z_]*) (.*)/) {
+    if($cmdstr =~ /^([A-Z_]*) (.*)/) {
         my $func = $1;
         my $rest = $2;
         chomp $rest;
@@ -168,15 +170,16 @@ sub sortclients {
     return $client{$b}{'bogomips'} <=> $client{$a}{'bogomips'};
 }
 
+sub startround {
+    # start a build round
+    handoutbuilds();
+}
 
 my $count;
 sub checkbuild {
-    if(++$count < 5) {
-        return;
+    if(++$count == 5) {
+        startround();
     }
-    $count = 0;
-
-    handoutbuilds();
 }
 
 sub client_can_build {
@@ -208,7 +211,7 @@ sub handoutbuilds {
         # time to go through the builds and give to clients
         for(sort sortbuilds @buildids) {
             if($builds{$_}{'done'}) {
-                printf "$_ is done now, skip\n";
+                #printf "$_ is done now, skip\n";
                 $done++;
                 next;
             }
@@ -285,7 +288,7 @@ while(not $done) {
                             if($pos != -1) {
         #                       print "GOT: $c\n";
                                 parsecmd($rh, $c);
-                                $client{$fileno}{'cmd'} = substr($c, $pos);
+                                $client{$fileno}{'cmd'} = substr($c, $pos+1);
                             }
 			}
                         else {
