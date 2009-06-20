@@ -125,12 +125,13 @@ sub build {
 
     my $rh = $client{$fileno}{'socket'};
 
-    my $args = sprintf("%s %s %d %s %s",
+    my $args = sprintf("%s %s %d %s %s %s",
                        $id,
                        $builds{$id}{'confopts'},
                        21404, # rev
                        $builds{$id}{'zip'},
-                       "mt"); # TODO: add support for this
+                       "mt", # TODO: add support for this
+                       $builds{$id}{'file'});
     
     # tell client to build!
     $rh->write("BUILD $args\n");
@@ -280,19 +281,35 @@ sub startround {
     # start a build round
     print "START a new build round\n";
     $buildround=1;
+
+    # mark all done builds as not done
+    for my $id (@buildids) {
+        $builds{$id}{'done'}=0;
+    }
+
     handoutbuilds();
 }
+
+my $count;
 
 sub endround {
     # end if a build round
     print "END of a build round\n";
 
-    # TODO: kill all still handed out builds
-    # TODO: mark all 'done' to undone for next round
+    # kill all still handed out builds
+    for my $id (@buildids) {
+        if($builds{$id}{'handcount'}) {
+            # find all clients building this and cancel
+            kill_build($id);
+            $builds{$id}{'handcount'}=0;
+        }
+    }
+
     $buildround=0;
+
+    $count=0; # start another round in 5
 }
 
-my $count;
 sub checkbuild {
     if(++$count == 5) {
         startround();
@@ -405,7 +422,7 @@ sub handoutbuilds {
         }
 
         if(!$found) {
-            printf("ALERT: No build found suitable for client %s\n",
+            printf("ALERT: No build found suitable for '%s' at $cl\n",
                    $client{$cl}{'client'});
         }
 
@@ -494,13 +511,18 @@ while(not $alldone) {
             }
         }
     }
-    print ".\n";
 
     checkbuild();
     checkclients();
 
     # loop over the clients and close the bad ones
     foreach my $rh (@$rh_set) {
+
+        my $type = $conn{$rh->fileno}{type};
+        if ($type eq 'master') {
+            next;
+        }
+
         my $cl = $rh->fileno;
 
         my $err = $client{$cl}{'bad'};
