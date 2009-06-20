@@ -18,7 +18,7 @@ unless ($archlist) {
     exit;
 }
 
-&testarchs();
+#&testarchs();
 
 my $busy = 0;
 my $buildnum = 0;
@@ -130,6 +130,7 @@ sub startbuild
     if ($pid) {
         # mother
         #print "mother: forked $pid\n";
+        $builds{$id}{pid} = $pid;
         $pipe->reader();
         $read_set->add($pipe);
         $conntype{$pipe->fileno} = 'pipe';
@@ -192,6 +193,17 @@ sub _COMPLETED
 sub PING
 {
     print $sock "_PING\n";
+}
+
+sub CANCEL
+{
+    my ($id) = @_;
+
+    if ($builds{$id}{pid}) {
+        kill 1, $builds{$id}{pid};
+    }
+
+    print $sock "_CANCEL $id\n";
 }
 
 sub BUILD
