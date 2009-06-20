@@ -29,6 +29,7 @@ sub getbuilds {
             $builds{$id}{'name'}=$name;
             $builds{$id}{'file'}=$file;
             $builds{$id}{'confopts'}=$confopts;
+            $builds{$id}{'handcount'} = 0; # not handed out to anyone
 
             push @buildids, $id;
 
@@ -70,24 +71,34 @@ sub getbuildscore {
 my %client;
 
 sub build {
-    my ($build, $rh) = @_;
+    my ($fileno, $buildid) = @_;
+
+    my $rh = $client{$fileno}{'socket'};
+    
+    # tell client to build!
+    $rh->write("BUILD $buildid\n");
 }
 
 sub HELLO {
     my ($rh, $args) = @_;
 
-    my ($version, $auth, $client, $archlist, $cpu, $bits,
+    my ($version, $archlist, $auth, $cli, $cpu, $bits,
         $os, $bogomips) = split(" ", $args);
 
-    $client{$rh}{'client'} = $client;
-    $client{$rh}{'archs'} = $archlist;
-    $client{$rh}{'cpu'} = $cpu;
-    $client{$rh}{'bits'} = $bits;
-    $client{$rh}{'os'} = $os;
-    $client{$rh}{'bogomips'} = $bogomips;
+    my $fno = $rh->fileno;
+
+    $client{$fno}{'client'} = $cli;
+    $client{$fno}{'archs'} = $archlist;
+    $client{$fno}{'cpu'} = $cpu;
+    $client{$fno}{'bits'} = $bits;
+    $client{$fno}{'os'} = $os;
+    $client{$fno}{'bogomips'} = $bogomips;
+    $client{$fno}{'socket'} = $rh;
 
     # send OK
-    $rh->write("_HELLO ok $client\n");
+    $rh->write("_HELLO ok\n");
+
+    print " $cli at fileno $fno\n";
 }
 
 
@@ -98,21 +109,65 @@ sub parsecmd {
         my $func = $1;
         my $rest = $2;
         chomp $rest;
-        print "$func received\n";
+        print "$func received for $rh\n";
 
         &$func($rh, $rest);
     }
 }
+
+# $a and $b are buildids
+sub sortbuilds {
+    # 'handcount' is the number of times the build has been handed out
+    # to a client. Get the lowest one first.
+    my $s = $builds{$a}{'handcount'} <=> $builds{$b}{'handcount'};
+
+    if(!$s) {
+        # if the same handcount, take score into account
+        $s = $builds{$b}{'score'} <=> $builds{$a}{'score'};
+    }
+    return $s;
+}
+
+# $a and $b are file numbers
+sub sortclients {
+    return $client{$b}{'bogomips'} <=> $client{$a}{'bogomips'};
+}
+
 
 my $count;
 sub checkbuild {
     if(++$count < 5) {
         return;
     }
+    $count = 0;
 
-    # time to run builds!!!!
-    for(sort { $builds{$b}{'score'} <=> $builds{$a}{'score'} }  @buildids) {
-        printf "$_:%d\n", $builds{$_}{'score'};
+    my @scl; # list of $fileno sorted
+
+    for(sort sortclients keys %client) {
+        if(!$client{$_}{'building'}) {
+            # only add clients not actually building right now
+            push @scl, $_;
+        }
+    }
+
+    if(!$scl[0]) {
+        # none no-building clients around, bail out
+        print "No clients\n";
+        return;
+    }
+
+    # time to go through the builds and give to clients
+    for(sort sortbuilds @buildids) {
+        my $cl = pop @scl;
+
+        if(!$cl) {
+            # no more clients, get out of loop
+            last;
+        }
+
+        $client{$cl}{'building'}++;
+
+        build($cl, $_);
     }
 }
 
@@ -148,7 +203,7 @@ while(not $done) {
 	foreach my $rh (@$rh_set) {
 		die "untracked rh" unless exists $conn{$rh->fileno};
 		my $type = $conn{$rh->fileno}{type};
-		warn "event $rh, fd ", $rh->fileno, ", type $type\n";
+	#	warn "event $rh, fd ", $rh->fileno, ", type $type\n";
 		if ($type eq 'master') {
 			warn "server accepting\n";
 			my $new = $rh->accept or die;
@@ -156,7 +211,7 @@ while(not $done) {
 			$conn{$new->fileno} = { type => 'http' };
 			$new->blocking(0) or die "blocking: $!";
 		} else {
-			warn "client trying to read\n";
+	#		warn "client trying to read\n";
 			my $data;
 			my $len = $rh->read($data, 512);
 
@@ -164,15 +219,16 @@ while(not $done) {
 			# nonblocking we should read all available data.
 			# Otherwise we won't be woken up again.
 			if ($data) {
-                            warn "okay, read '$data'\n";
-                            $client{$rh}{'cmd'} .= $data;
-                            my $c = $client{$rh}{'cmd'};
+        #                   warn "okay, read '$data'\n";
+                            my $fileno = $rh->fileno;
+                            $client{$fileno}{'cmd'} .= $data;
+                            my $c = $client{$fileno}{'cmd'};
                             
                             my $pos = index($c, "\n");
                             if($pos != -1) {
                                 print "GOT: $c\n";
                                 parsecmd($rh, $c);
-                                $client{$rh}{'cmd'} = substr($c, $pos);
+                                $client{$fileno}{'cmd'} = substr($c, $pos);
                             }
 			}
                         else {
