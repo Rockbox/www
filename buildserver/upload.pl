@@ -12,15 +12,24 @@ my $tmpfile = CGI::tmpFileName($filename);
 
 $filename =~ s/[\;\:\!\?\*\"\'\,\ ]/_/g;
 
+print "Content-type: text/plain\n";
+
+#for (param()) {
+#    printf "$_: %s\n", param($_);
+#}
+#exit;
+
 if (-f "$cwd/$filename") {
-    print "403 Cannot overwrite file\n";
+    print "Status: 403 Cannot overwrite file\n";
     exit;
 }
 
 if (move($tmpfile, "$cwd/$filename")) {
-    print "200 Upload successful\n";
+    print "Status: 200 Upload successful\n";
 }
 else {
-    print "502 Move failed\n";
+    print "Status: 502 Move failed\n";
 }
 
+print "\n$cwd/$filename\n";
+print STDERR "\n$cwd/$filename\n";
