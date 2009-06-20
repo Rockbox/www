@@ -77,6 +77,15 @@ sub build {
     
     # tell client to build!
     $rh->write("BUILD $buildid\n");
+
+    # mark this client with what response we expect from it
+    $client{$fileno}{'expect'}="_BUILD";
+}
+
+sub _BUILD {
+    my ($rh, $args) = @_;
+
+    print "got _BUILD back from client\n";
 }
 
 sub HELLO {
@@ -105,12 +114,10 @@ sub HELLO {
 sub parsecmd {
     my ($rh, $cmdstr)=@_;
     
-    if($cmdstr =~ /([A-Z]*) (.*)/) {
+    if($cmdstr =~ /([A-Z_]*) (.*)/) {
         my $func = $1;
         my $rest = $2;
         chomp $rest;
-        print "$func received for $rh\n";
-
         &$func($rh, $rest);
     }
 }
@@ -152,7 +159,7 @@ sub checkbuild {
 
     if(!$scl[0]) {
         # none no-building clients around, bail out
-        print "No clients\n";
+        print "No clients available/free to get builds\n";
         return;
     }
 
@@ -226,17 +233,17 @@ while(not $done) {
                             
                             my $pos = index($c, "\n");
                             if($pos != -1) {
-                                print "GOT: $c\n";
+        #                       print "GOT: $c\n";
                                 parsecmd($rh, $c);
                                 $client{$fileno}{'cmd'} = substr($c, $pos);
                             }
 			}
                         else {
                             warn "failed, removing client\n";
+                            delete $client{$rh->fileno};
                             delete $conn{$rh->fileno};
                             $read_set->remove($rh);
                             $rh->close;
-                            delete $client{$rh};
 			}
 		}
 	}
