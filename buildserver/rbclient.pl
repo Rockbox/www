@@ -63,8 +63,6 @@ while (not $done) {
     my ($rh_set, $timeleft) =
         IO::Select->select($read_set, undef, undef, 1);
 
-    goto beginning if (!$sock->connected);
-
     foreach my $rh (@$rh_set) {
         if ($conntype{$rh->fileno} eq "socket") {
             #print "Got from socket\n";
@@ -80,6 +78,9 @@ while (not $done) {
                     &parsecmd($input);
                     $input = substr($input, $pos+1);
                 }
+            }
+            else {
+                goto beginning;
             }
         }
         elsif ($conntype{$rh->fileno} eq "pipe") {
@@ -192,6 +193,7 @@ sub _COMPLETED
 
 sub PING
 {
+    print ">_PING\n";
     print $sock "_PING\n";
 }
 
