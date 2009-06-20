@@ -65,7 +65,7 @@ while (not $done) {
                 my $pos = index($input, "\n");
                 if($pos != -1) {
                     parsecmd($input);
-                    $input = substr($input, $pos);
+                    $input = substr($input, $pos+1);
                 }
             }
         }
@@ -94,7 +94,6 @@ while (not $done) {
     }
 
     if (!$busy) {
-        print "client: checking for builds\n";
         for my $id (sort {$a <=> $b} keys %builds) {
             &startbuild($id);
             last;
