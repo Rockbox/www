@@ -24,6 +24,7 @@ sub getbuilds {
             $builds{$id}{'file'}=$file;
             $builds{$id}{'confopts'}=$confopts;
             $builds{$id}{'handcount'} = 0; # not handed out to anyone
+            $builds{$id}{'done'} = 0; # not done
 
             push @buildids, $id;
 
@@ -82,7 +83,11 @@ sub build {
     printf "Tell %s to build %s\n",  $client{$fileno}{'client'}, $id;
 
     # mark this client with what response we expect from it
+    $client{$fileno}{'building'}++;
     $client{$fileno}{'expect'}="_BUILD";
+    $builds{$id}{'handcount'}++; # handed out (again?)
+
+    printf "Build $id handed out %d times\n", $builds{$id}{'handcount'};
 }
 
 sub _BUILD {
@@ -110,7 +115,7 @@ sub HELLO {
     # send OK
     $rh->write("_HELLO ok\n");
 
-    print " $cli at fileno $fno\n";
+    print "HELLO from $cli at fileno $fno\n";
 }
 
 sub COMPLETED {
@@ -118,8 +123,19 @@ sub COMPLETED {
 
     my ($id) = split(" ", $args);
 
+    print "COMPLETED $id received\n";
+
+    # mark this as not building anymore
+    $client{$rh->fileno}{'building'}=0;
+
+    $builds{$id}{'handcount'}--; # one less that builds this
+    $builds{$id}{'done'}=1;
+
     # send OK
     $rh->write("_COMPLETED $id\n");
+
+    # if we have builds not yet completed, hand out one
+    handoutbuilds();
 }
 
 
@@ -160,7 +176,11 @@ sub checkbuild {
     }
     $count = 0;
 
-    my @scl; # list of $fileno sorted
+    handoutbuilds();
+}
+
+sub handoutbuilds {
+    my @scl; # list of clients $fileno sorted
 
     for(sort sortclients keys %client) {
         if(!$client{$_}{'building'}) {
@@ -175,8 +195,16 @@ sub checkbuild {
         return;
     }
 
+    my $done=0;
+
     # time to go through the builds and give to clients
     for(sort sortbuilds @buildids) {
+        if($builds{$_}{'done'}) {
+            printf "$_ is done now, skip\n";
+            $done++;
+            next;
+        }
+
         my $cl = pop @scl;
 
         if(!$cl) {
@@ -184,9 +212,13 @@ sub checkbuild {
             last;
         }
 
-        $client{$cl}{'building'}++;
-
         build($cl, $_);
+    }
+
+    if($done >= scalar(@buildids)) {
+        print "All builds are done!\n";
+        # TODO: kill all still handed out builds
+        # TODO: mark all 'done' to undone for next round
     }
 }
 
