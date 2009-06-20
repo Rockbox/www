@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -s
 
 #use strict;
 use IO::Socket;
@@ -11,8 +11,12 @@ use POSIX ":sys_wait_h";
 my $clientver = 1;
 my $username = "foobar";
 my $password = "master";
-my $clientname = "laptop-".$$;
-my $archlist = "m68k,arm,sh";
+my $clientname = $clientname or "laptop-".$$;
+
+unless ($archlist) {
+    print "You must specify -archlist. Example:\nperl rbclient.pl -archlist=sh,arm,m68k,linuxsim\n";
+    exit;
+}
 
 my $busy = 0;
 my $buildnum = 0;
