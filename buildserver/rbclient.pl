@@ -4,6 +4,7 @@
 use IO::Socket;
 use IO::Select;
 use IO::File;
+use IO::Pipe;
 use POSIX 'mkfifo';
 use POSIX ":sys_wait_h";
 
@@ -13,25 +14,27 @@ my $password = "master";
 my $clientname = "laptop-".$$;
 my $archlist = "m68k,arm.sh";
 
-my $proto = getprotobyname('tcp');
-socket(SOCKET, PF_INET, SOCK_STREAM, $proto) or die;
+my $busy = 0;
 
-my $port = 19999;
+my $sock;
+while (1) {
+    $sock = IO::Socket::INET->new(PeerAddr => 'localhost',
+                                  PeerPort => 19999,
+                                  Proto    => 'tcp',
+                                  Blocking => 0)
+        or die "$!";
+    
+    last if ($sock->connected);
 
-my $sock = IO::Socket::INET->new(PeerAddr => 'localhost',
-                                 PeerPort => 19999,
-                                 Proto    => 'tcp',
-                                 Blocking => 0)
-    or die "$!";
+    print "Waiting for server connection\n";
+    sleep 1;
+}
+
 
 # Add the master socket to select mask
 my $read_set = new IO::Select();
 $read_set->add($sock);
-
-
-# make mother/child named pipe
-pipe MOTHER, CHILD; 
-$read_set->add(MOTHER);
+$conntype{$sock->fileno} = 'socket';
 
 my $auth = "$username:$password";
 my $speed = &bogomips;
@@ -44,9 +47,7 @@ print $sock "HELLO $clientver $archlist $auth $clientname $cpu 32 $os $speed\n";
 
 # Mail loop active until ^C pressed
 my $done = 0;
-$SIG{INT} = sub { warn "received interrupt\n"; $done = 1; };
-
-my $busy = 0;
+#$SIG{INT} = sub { warn "received interrupt\n"; $done = 1; };
 
 while (not $done) {
     my @handles = sort map $_->fileno, $read_set->handles;
@@ -54,7 +55,7 @@ while (not $done) {
         IO::Select->select($read_set, undef, undef, 1);
 
     foreach my $rh (@$rh_set) {
-        if ($rh == $sock) {
+        if ($conntype{$rh->fileno} eq "socket") {
             print "Got from socket\n";
             my $data;
             my $len = $rh->read($data, 512);
@@ -69,17 +70,25 @@ while (not $done) {
                 }
             }
         }
-        elsif ($rh == PIPE) {
-            print "Got from pipe\n";
+        elsif ($conntype{$rh->fileno} eq "pipe") {
             my $len = $rh->read($data, 512);
-            print $data;
-            my $pid = $data + 0;
-            print "Waiting for child $pid\n";
-            waitpid $pid, WNOHANG;
-            $busy = 1;
+            if ($len) {
+                print "Got from pipe: $data\n";
+                my ($pid, $buildid) = split ' ', $data;
+                print "Waiting for child $pid\n";
+                waitpid $pid, WNOHANG;
+                $busy = 0;
+                close $rh;
+                $read_set->remove($rh);
+                delete $conntype{$rh->fileno};
+                delete $builds{$buildid};
+
+                print $sock "COMPLETED $buildid\n";
+
+            }
         }
         else {
-            print "Got from other\n";
+            die "Got from other (%d)\n", $rh->fileno;
         }
     }
 
@@ -98,27 +107,37 @@ sub startbuild
 {
     my ($id) = @_;
 
-    my $pid = fork();
+    print "Client starting build $id\n";
+
+    # make mother/child pipe
+    my $pipe = new IO::Pipe();
+
+    my $pid = fork;
     if ($pid) {
         # mother
-        print "mother: forked $pid\n";
+        #print "mother: forked $pid\n";
+        $pipe->reader();
+        $read_set->add($pipe);
+        $conntype{$pipe->fileno} = 'pipe';
+
         push @children, $pid;
         $busy = 1;
     }
     else {
+        $pipe->writer();
+
         # child
-        open(PIPE, ">$pipe") or die "Failed opening pipe: $?\n";
-        
-        print "svn up -r $builds{$id}{rev}\n";
-        print "mkdir build-$$\n";
-        chdir "build-$$";
+        print " svn up -r $builds{$id}{rev}\n";
+        print " mkdir build-$$\n";
+        chdir " build-$$";
         my $args = $builds{$id}{$confargs};
         $args =~ s|,| |g;
-        print "../tools/configure $args\n";
+        print " ../tools/configure $args\n";
         chdir "..";
 
-        print PIPE "$$ $id done\n";
-        close PIPE;
+        print "child: $$ $id done\n";
+        print $pipe "$$ $id";
+        close $pipe;
         exit;
     }
 }
@@ -140,6 +159,10 @@ sub bogomips
 }
     
 sub _HELLO
+{
+}
+
+sub _COMPLETED
 {
 }
 
