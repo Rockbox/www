@@ -48,7 +48,7 @@ sub kill_build {
         }
     }
     if($num) {
-        print "Killed $num parallel $id builds!\n";
+        print "Killed $num remaining $id build!\n";
     }
 }
 
@@ -158,6 +158,13 @@ sub _BUILD {
     $client{$rh->fileno}{'expect'}="";
 }
 
+sub _PING {
+    my ($rh, $args) = @_;
+
+    print "got _PING back from client\n";
+    $client{$rh->fileno}{'expect'}="";
+}
+
 sub _CANCEL {
     my ($rh, $args) = @_;
 
@@ -180,6 +187,7 @@ sub HELLO {
     $client{$fno}{'os'} = $os;
     $client{$fno}{'bogomips'} = $bogomips;
     $client{$fno}{'socket'} = $rh;
+    $client{$fno}{'expect'} = "";
 
     if(!$bogomips) {
         # send error
@@ -274,6 +282,34 @@ my $count;
 sub checkbuild {
     if(++$count == 5) {
         startround();
+    }
+}
+
+sub checkclients {
+    my $check = time() - 10;
+
+    for my $cl (keys %client) {
+        if($client{$cl}{'expect'} eq "_PING") {
+            # if this is already waiting for a ping, we take different
+            # precautions and allow for some PING response time
+            $check = time() - 13;
+            if($client{$cl}{'time'} < $check) {
+                # no ping response either, disconnect
+            }
+            next;
+        }
+
+        if($client{$cl}{'time'} < $check) {
+            # too old, speak up!
+            my $rh = $client{$cl}{'socket'};
+            my $exp = $client{$cl}{'expect'};
+            if($exp) {
+                print "ALERT: waiting for $exp from client!\n";
+            }
+
+            $rh->write("PING 111\n");
+            $client{$cl}{'expect'}="_PING";
+        }
     }
 }
 
@@ -392,56 +428,65 @@ $conn{$server->fileno} = { type => 'master' };
 my $alldone = 0;
 $SIG{INT} = sub { warn "received interrupt\n"; $alldone = 1; };
 while(not $alldone) {
-	my @handles = sort map $_->fileno, $read_set->handles;
-	warn "waiting on (@handles)\n" if($debug);
-	my ($rh_set, $timeleft) =
-            IO::Select->select($read_set, undef, undef, 1);
+    my @handles = sort map $_->fileno, $read_set->handles;
+    warn "waiting on (@handles)\n" if($debug);
+    my ($rh_set, $timeleft) =
+        IO::Select->select($read_set, undef, undef, 1);
 
-	foreach my $rh (@$rh_set) {
-		die "untracked rh" unless exists $conn{$rh->fileno};
-		my $type = $conn{$rh->fileno}{type};
-	#	warn "event $rh, fd ", $rh->fileno, ", type $type\n";
-		if ($type eq 'master') {
-			warn "server accepting\n";
-			my $new = $rh->accept or die;
-			$read_set->add($new);
-			$conn{$new->fileno} = { type => 'rbclient' };
-			$new->blocking(0) or die "blocking: $!";
-		}
-                else {
-	#		warn "client trying to read\n";
-			my $data;
-			my $len = $rh->read($data, 512);
+    foreach my $rh (@$rh_set) {
+        die "untracked rh" unless exists $conn{$rh->fileno};
+        my $type = $conn{$rh->fileno}{type};
 
-			# Note: thereis a bug here.  Since the socket is
-			# nonblocking we should read all available data.
-			# Otherwise we won't be woken up again.
-			if ($data) {
-        #                   warn "okay, read '$data'\n";
-                            my $fileno = $rh->fileno;
-                            $client{$fileno}{'cmd'} .= $data;
-                            my $c = $client{$fileno}{'cmd'};
+        if ($type eq 'master') {
+            warn "server accepting\n";
+            my $new = $rh->accept or die;
+            $read_set->add($new);
+            $conn{$new->fileno} = { type => 'rbclient' };
+            $new->blocking(0) or die "blocking: $!";
+        }
+        else {
+            my $data;
+            my $len = $rh->read($data, 512);
+
+            if ($data) {
+                my $fileno = $rh->fileno;
+                $client{$fileno}{'cmd'} .= $data;
+
+                # timestamp incoming data from client
+                $client{$fileno}{'time'} = time();
+                my $c = $client{$fileno}{'cmd'};
                             
-                            my $pos = index($c, "\n");
-                            if($pos != -1) {
-        #                       print "GOT: $c\n";
-                                parsecmd($rh, $c);
-                                $client{$fileno}{'cmd'} = substr($c, $pos+1);
-                            }
-			}
-                        else {
-                            warn "Client disconnect, removing client\n";
-                            client_gone($rh->fileno);
-                            delete $client{$rh->fileno};
-                            delete $conn{$rh->fileno};
-                            $read_set->remove($rh);
-                            $rh->close;
-                            # do the handout builds calculations again now
-                            # when one client dropped off
-                            handoutbuilds();
-			}
-		}
-	}
-        checkbuild();
+                my $pos = index($c, "\n");
+                if($pos != -1) {
+                    parsecmd($rh, $c);
+                    $client{$fileno}{'cmd'} = substr($c, $pos+1);
+                }
+            }
+            else {
+                $client{$rh->fileno}{'bad'}="connection lost";
+            }
+        }
+    }
+    checkbuild();
+    checkclients();
+
+    # loop over the clients and close the bad ones
+    for my $cl (keys %client) {
+        my $rh = $client{$cl}{'socket'};
+        my $err = $client{$cl}{'bad'};
+
+        if($err) {
+            warn "Client disconnect ($err), removing client\n";
+            client_gone($rh->fileno);
+            delete $client{$rh->fileno};
+            delete $conn{$rh->fileno};
+            $read_set->remove($rh);
+            $rh->close;
+            # do the handout builds calculations again now
+            # when one client dropped off
+            handoutbuilds();
+        }
+    }
+
 }
 warn "exiting.\n";
