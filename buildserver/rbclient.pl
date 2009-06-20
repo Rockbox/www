@@ -43,7 +43,7 @@ my $sock;
 beginning:
 
 while (1) {
-    $sock = IO::Socket::INET->new(PeerAddr => 'localhost',
+    $sock = IO::Socket::INET->new(PeerAddr => '192.168.1.10',
                                   PeerPort => 19999,
                                   Proto    => 'tcp',
                                   Blocking => 0)
