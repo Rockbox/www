@@ -83,6 +83,7 @@ while (not $done) {
                 delete $conntype{$rh->fileno};
                 delete $builds{$buildid};
 
+                print "COMPLETED $buildid\n";
                 print $sock "COMPLETED $buildid\n";
 
             }
@@ -127,13 +128,16 @@ sub startbuild
         $pipe->writer();
 
         # child
-        print " svn up -r $builds{$id}{rev}\n";
-        print " mkdir build-$$\n";
-        chdir " build-$$";
+        print ">svn up -r $builds{$id}{rev}\n";
+        mkdir "build-$$";
+        chdir "build-$$";
         my $args = $builds{$id}{$confargs};
         $args =~ s|,| |g;
-        print " ../tools/configure $args\n";
+        print ">../tools/configure $args\n";
+        print ">make\n";
         chdir "..";
+        print ">rm -r $build-$$\n";
+        `rm -r build-$$`;
 
         print "child: $$ $id done\n";
         print $pipe "$$ $id";
