@@ -1,5 +1,5 @@
 #!/bin/sh
 while true
 do
-    perl rbclient.pl -config=config -clientname=
+    perl rbclient.pl -username= -password= -archlist=arm -clientname=
 done
