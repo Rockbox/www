@@ -78,10 +78,6 @@ sub getbuildscore {
         }
     }
     close(F);
-
-#    for(sort { $builds{$b}{'score'} <=> $builds{$a}{'score'} }  @buildids) {
-#        printf "$_:%d\n", $builds{$_}{'score'};
-#    }
 }
 
 #
@@ -117,7 +113,12 @@ sub build {
     # mark this client with what response we expect from it
     $client{$fileno}{'building'}++;
     $client{$fileno}{'expect'}="_BUILD";
-    $builds{$id}{'handcount'}++; # handed out (again?)
+
+    # remember what this client is building
+    $client{$fileno}{'builds'}.= " $id";
+
+    # count the number of times this build is handed out
+    $builds{$id}{'handcount'}++;
 
     printf "Build $id handed out %d times\n", $builds{$id}{'handcount'};
 }
@@ -126,6 +127,7 @@ sub _BUILD {
     my ($rh, $args) = @_;
 
     print "got _BUILD back from client\n";
+    $client{$rh->fileno}{'expect'}="";
 }
 
 sub HELLO {
@@ -147,7 +149,7 @@ sub HELLO {
     # send OK
     $rh->write("_HELLO ok\n");
 
-    print "HELLO from $cli at fileno $fno\n";
+    print "HELLO from $cli at fileno $fno at bogomips $bogomips\n";
 
     if($buildround) {
         handoutbuilds();
@@ -245,6 +247,16 @@ sub client_can_build {
 #           $client{$cl}{'client'}, $id, $arch);
     
     return 0; # no can build
+}
+
+sub client_gone {
+    my ($cl) = @_;
+
+    my @bip = split(" ", $client{$cl}{'builds'});
+    for my $id (@bip) {
+        # we deduct the handcount since the client building this is gone
+        $builds{$id}{'handcount'}--;
+    }
 }
 
 sub handoutbuilds {
@@ -363,11 +375,16 @@ while(not $alldone) {
                             }
 			}
                         else {
-                            warn "failed, removing client\n";
+                            warn "Client disconnect, removing client\n";
+                            client_gone($rh->fileno);
+
                             delete $client{$rh->fileno};
                             delete $conn{$rh->fileno};
                             $read_set->remove($rh);
                             $rh->close;
+                            # do the handout builds calculations again now
+                            # when one client dropped off
+                            handoutbuilds();
 			}
 		}
 	}
