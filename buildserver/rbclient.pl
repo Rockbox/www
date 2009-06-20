@@ -50,7 +50,6 @@ my $done = 0;
 #$SIG{INT} = sub { warn "received interrupt\n"; $done = 1; };
 
 while (not $done) {
-    my @handles = sort map $_->fileno, $read_set->handles;
     my ($rh_set, $timeleft) =
         IO::Select->select($read_set, undef, undef, 1);
 
@@ -71,17 +70,18 @@ while (not $done) {
             }
         }
         elsif ($conntype{$rh->fileno} eq "pipe") {
+            print "Got from pipe\n";
             my $len = $rh->read($data, 512);
             if ($len) {
-                print "Got from pipe: $data\n";
+                print "parent pipe: $data";
                 my ($pid, $buildid) = split ' ', $data;
                 print "Waiting for child $pid\n";
                 waitpid $pid, WNOHANG;
                 $busy = 0;
-                close $rh;
                 $read_set->remove($rh);
                 delete $conntype{$rh->fileno};
                 delete $builds{$buildid};
+                close $rh;
 
                 print "COMPLETED $buildid\n";
                 print $sock "COMPLETED $buildid\n";
@@ -94,6 +94,7 @@ while (not $done) {
     }
 
     if (!$busy) {
+        print "client: checking for builds\n";
         for my $id (sort {$a <=> $b} keys %builds) {
             &startbuild($id);
             last;
@@ -136,8 +137,10 @@ sub startbuild
         print ">../tools/configure $args\n";
         print ">make\n";
         chdir "..";
-        print ">rm -r $build-$$\n";
+        print ">rm -r build-$$\n";
         `rm -r build-$$`;
+
+        sleep 5;
 
         print "child: $$ $id done\n";
         print $pipe "$$ $id";
@@ -172,7 +175,8 @@ sub _COMPLETED
 
 sub BUILD
 {
-    my ($id, $confargs, $rev, $zip, $mt) = split(' ', shift @_);
+    my ($buildparams) = @_;
+    my ($id, $confargs, $rev, $zip, $mt) = split(' ', $buildparams);
 
     if (defined $builds{$id}) {
         print SOCKET "_BUILD 0\n";
@@ -186,14 +190,14 @@ sub BUILD
 
     print SOCKET "_BUILD $id\n";
 
-    print "Queued build $id $confargs\n";
+    print "Queued build $buildparams\n";
 }
 
 sub parsecmd
 {
     my ($cmdstr)=@_;
     
-    if($cmdstr =~ /([_A-Z]*) (.*)/) {
+    if($cmdstr =~ /^([_A-Z]*) (.*)/) {
         my $func = $1;
         my $rest = $2;
         chomp $rest;
