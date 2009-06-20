@@ -18,6 +18,8 @@ unless ($archlist) {
     exit;
 }
 
+&testarchs();
+
 my $busy = 0;
 my $buildnum = 0;
 
@@ -45,7 +47,7 @@ $read_set->add($sock);
 $conntype{$sock->fileno} = 'socket';
 
 my $auth = "$username:$password";
-my $speed = &bogomips;
+my ($speed, $cores) = &bogomips;
 my $cpu = `uname -m`;
 chomp $cpu;
 my $os = `uname -o`;
@@ -175,7 +177,7 @@ sub bogomips
         }
     }
 
-    return $bogomips;
+    return ($bogomips, scalar @lines);
 }
     
 sub _HELLO
@@ -227,5 +229,22 @@ sub parsecmd
     }
     else {
         print "Client didn't recognize '$cmdstr'\n";
+    }
+}
+
+sub testarchs
+{
+    %which = (
+        "arm", "arm-elf-gcc",
+        "sh", "sh-elf-gcc",
+        "m68k", "m68k-elf-gcc",
+        "mipsel", "mipsel-elf-gcc"
+        );
+
+    for (split ',', $archlist) {
+        my $p = `which $which{$_}`;
+        if (not $p =~ m|^/|) {
+            die "You specified arch $_ but don't have $which{$_} in your path!\n";
+        }
     }
 }
