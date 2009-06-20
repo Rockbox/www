@@ -13,6 +13,33 @@ my @buildids;
 # this is 1 while we're in a build round
 my $buildround;
 
+sub builds_in_progress {
+    my $c=0;
+    # count all builds that are handed out (once or more), but that aren't
+    # complete yet
+    for my $id (@buildids) {
+        if($builds{$id}{'done'}) {
+            # for safety, skip the ones that are done already
+            next;
+        }
+        if($builds{$id}{'handcount'}) {
+            $c++;
+        }
+    }
+    return $c;
+}
+
+sub builds_undone {
+    my $c=0;
+    # count all builds that aren't marked as done
+    for my $id (@buildids) {
+        if(!$builds{$id}{'done'}) {
+            $c++;
+        }
+    }
+    return $c;
+}
+
 sub getbuilds {
     my ($filename)=@_;
     open(F, "<$filename");
@@ -110,7 +137,7 @@ sub HELLO {
     my $fno = $rh->fileno;
 
     $client{$fno}{'client'} = $cli;
-    $client{$fno}{'archs'} = $archlist;
+    $client{$fno}{'archlist'} = $archlist;
     $client{$fno}{'cpu'} = $cpu;
     $client{$fno}{'bits'} = $bits;
     $client{$fno}{'os'} = $os;
@@ -201,7 +228,23 @@ sub checkbuild {
 }
 
 sub client_can_build {
-    return 1; # can build all
+    my ($cl, $id)=@_;
+
+    # figure out the arch of this build
+    my $arch = $builds{$id}{'arch'};
+
+    # see if this arch is mong the supported archs for this client
+    if(index($client{$cl}{'archlist'}, $arch) != -1) {
+        # yes it can build
+        printf("%s can build %s on arch %s\n",
+               $client{$cl}{'client'}, $id, $arch);
+        return 1;
+    }
+
+#    printf("%s CANNOT build %s on arch %s\n",
+#           $client{$cl}{'client'}, $id, $arch);
+    
+    return 0; # no can build
 }
 
 sub handoutbuilds {
@@ -214,18 +257,13 @@ sub handoutbuilds {
         }
     }
 
-    if(!$scl[0]) {
-        # none no-building clients around, bail out
-        print "No clients available/free to get builds\n";
-        return;
-    }
-
     my $done=0;
 
     while($scl[0]) {
         my $cl = pop @scl;
 
         $done =0;
+        my $found=0;
         # time to go through the builds and give to clients
         for(sort sortbuilds @buildids) {
             if($builds{$_}{'done'}) {
@@ -236,14 +274,31 @@ sub handoutbuilds {
 
             if(client_can_build($cl, $_)) {
                 build($cl, $_);
+                $found=1;
                 last;
             }
+        }
+
+        if(!$found) {
+            printf("ALERT: No build found suitable for client %s\n",
+                   $client{$cl}{'client'});
         }
 
         if($done >= scalar(@buildids)) {
             endround();
             last;
         }
+    }
+
+    my $und = builds_undone();
+    my $inp = builds_in_progress();
+    print "Still $und builds left to complete with $inp in progress\n";
+
+    if(!$inp && $und) {
+        # there's no builds in progress because we don't have clients or
+        # the clients can't build the builds we have left, and thus we
+        # consider this build round complete!
+        endround();
     }
 }
 
@@ -268,9 +323,9 @@ $read_set->add($server);
 $conn{$server->fileno} = { type => 'master' };
 
 # Mail loop active until ^C pressed
-my $done = 0;
-$SIG{INT} = sub { warn "received interrupt\n"; $done = 1; };
-while(not $done) {
+my $alldone = 0;
+$SIG{INT} = sub { warn "received interrupt\n"; $alldone = 1; };
+while(not $alldone) {
 	my @handles = sort map $_->fileno, $read_set->handles;
 	warn "waiting on (@handles)\n" if($debug);
 	my ($rh_set, $timeleft) =
