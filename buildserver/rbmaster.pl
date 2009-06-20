@@ -29,6 +29,9 @@ my %client;
 #  {'bogomips'}
 #
 
+# this is the local directory where clients upload logs and zips etc
+my $uploadpath="/var/www/b/upload";
+
 sub kill_build {
     my ($id)=@_;
 
@@ -46,6 +49,11 @@ sub kill_build {
             $rh->write("CANCEL $id\n");
             $client{$cl}{'expect'}="_CANCEL";
             $num++;
+
+            my $cli = $client{$fno}{'client'};
+            
+
+            unlink <"$uploadpath/$cli-$id"*>;
         }
     }
     if($num) {
@@ -120,6 +128,17 @@ sub getbuildscore {
     close(F);
 }
 
+sub updateclient {
+    my ($fileno, $rev) = @_;
+
+    my $rh = $client{$fileno}{'socket'};
+
+    # tell client to build!
+    $rh->write("UPDATE $rev\n");
+    $client{$fileno}{'expect'}="_UPDATE";
+}
+
+
 sub build {
     my ($fileno, $id) = @_;
 
@@ -162,6 +181,13 @@ sub _PING {
     my ($rh, $args) = @_;
 
     print "< _PING\n";
+    $client{$rh->fileno}{'expect'}="";
+}
+
+sub _UPDATE {
+    my ($rh, $args) = @_;
+
+    print "< _UPDATE\n";
     $client{$rh->fileno}{'expect'}="";
 }
 
@@ -234,12 +260,15 @@ sub COMPLETED {
     handoutbuilds();
 }
 
+# commands it will accept
 my %protocmd = (
     'HELLO' => 1,
     'COMPLETED' => 1,
     '_PING' => 1,
     '_KILL' => 1,
     '_BUILD' => 1,
+    '_CANCEL' => 1,
+    '_UPDATE' => 1,
     );
 
 
@@ -282,9 +311,10 @@ sub startround {
     print "START a new build round\n";
     $buildround=1;
 
-    # mark all done builds as not done
+    # mark all done builds as not done, not handed out
     for my $id (@buildids) {
         $builds{$id}{'done'}=0;
+        $builds{$id}{'handcount'}=0;
     }
 
     handoutbuilds();
@@ -306,13 +336,14 @@ sub endround {
     }
 
     $buildround=0;
-
-    $count=0; # start another round in 5
 }
 
 sub checkbuild {
     if(++$count == 5) {
         startround();
+        #for my $cl (keys %client) {
+        #    updateclient($cl, 21428);
+        #}
     }
 }
 
