@@ -240,6 +240,11 @@ sub BUILD
 sub parsecmd
 {
     my ($cmdstr)=@_;
+    my %functions = ('_HELLO', 1,
+                     '_COMPLETED', 1,
+                     'BUILD', 1,
+                     'PING', 1,
+                     'CANCEL', 1);
     
     if($cmdstr =~ /^([_A-Z]*) (.*)/) {
         my $func = $1;
@@ -247,7 +252,12 @@ sub parsecmd
         chomp $rest;
         print "client: $func $rest\n";
 
-        &$func($rest);
+        if (defined $functions{$func}) {
+            &$func($rest);
+        }
+        else {
+            print "Unknown command '$func'\n";
+        }
     }
     else {
         print "Client didn't recognize '$cmdstr'\n";
