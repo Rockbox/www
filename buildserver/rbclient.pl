@@ -202,7 +202,7 @@ sub startbuild
             `make zip $log`;
             
             if (-f "rockbox.zip") {
-                my $newzip = "$clientname-rockbox.zip";
+                my $newzip = "$clientname-$id.zip";
                 if (rename "rockbox.zip", $newzip) {
                     &upload($newzip);
                 }
@@ -240,7 +240,7 @@ sub upload
 sub bogomips
 {
     open CPUINFO, "</proc/cpuinfo" or return 0;
-    my @lines = grep 'bogomips:', <CPUINFO>;
+    my @lines = grep /^bogomips/, <CPUINFO>;
     close CPUINFO;
 
     my $bogomips = 0;
