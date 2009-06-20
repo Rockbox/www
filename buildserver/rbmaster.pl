@@ -10,6 +10,9 @@ my %conn;
 my %builds;
 my @buildids;
 
+# this is 1 while we're in a build round
+my $buildround;
+
 sub getbuilds {
     my ($filename)=@_;
     open(F, "<$filename");
@@ -118,6 +121,10 @@ sub HELLO {
     $rh->write("_HELLO ok\n");
 
     print "HELLO from $cli at fileno $fno\n";
+
+    if($buildround) {
+        handoutbuilds();
+    }
 }
 
 sub COMPLETED {
@@ -172,7 +179,18 @@ sub sortclients {
 
 sub startround {
     # start a build round
+    print "START a new build round\n";
     handoutbuilds();
+    $buildround=1;
+}
+
+sub endround {
+    # end if a build round
+    print "END of a build round\n";
+
+    # TODO: kill all still handed out builds
+    # TODO: mark all 'done' to undone for next round
+    $buildround=0;
 }
 
 my $count;
@@ -223,9 +241,7 @@ sub handoutbuilds {
         }
 
         if($done >= scalar(@buildids)) {
-            print "ALL BUILDS ARE DONE!\n";
-            # TODO: kill all still handed out builds
-            # TODO: mark all 'done' to undone for next round
+            endround();
             last;
         }
     }
