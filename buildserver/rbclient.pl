@@ -11,7 +11,7 @@ use POSIX ":sys_wait_h";
 my $clientver = 1;
 my $username = "foobar";
 my $password = "master";
-my $clientname = $clientname or "laptop-".$$;
+my $clientname = $clientname || "laptop-".$$;
 
 unless ($archlist) {
     print "You must specify -archlist. Example:\nperl rbclient.pl -archlist=sh,arm,m68k,linuxsim\n";
@@ -180,6 +180,7 @@ sub bogomips
     
 sub _HELLO
 {
+    die @_ if ($_[0] ne "ok");
 }
 
 sub _COMPLETED
