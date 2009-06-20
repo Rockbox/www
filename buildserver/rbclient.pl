@@ -20,9 +20,6 @@ unless ($archlist) {
 
 #&testarchs();
 
-my $busy = 0;
-my $buildnum = 0;
-
 my $sock;
 
 beginning:
@@ -55,6 +52,10 @@ chomp $os;
 
 print $sock "HELLO $clientver $archlist $auth $clientname $cpu 32 $os $speed\n";
 
+my $busy = 0;
+my %builds = ();
+my $buildnum = 0;
+
 # Mail loop active until ^C pressed
 my $done = 0;
 #$SIG{INT} = sub { warn "received interrupt\n"; $done = 1; };
@@ -80,6 +81,12 @@ while (not $done) {
                 }
             }
             else {
+                # socket dropped. stop all builds and restart
+                for my $id (keys %builds) {
+                    if ($builds{$id}{pid}) {
+                        kill 2, $builds{$id}{pid};
+                    }
+                }                
                 goto beginning;
             }
         }
