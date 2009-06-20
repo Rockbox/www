@@ -11,6 +11,12 @@ my $filename = param("upfile");
 my $tmpfile = CGI::tmpFileName($filename);
 
 $filename =~ s/[\;\:\!\?\*\"\'\,\ ]/_/g;
+
+if (-f "$cwd/$filename") {
+    print "403 Cannot overwrite file\n";
+    exit;
+}
+
 if (move($tmpfile, "$cwd/$filename")) {
     print "200 Upload successful\n";
 }
