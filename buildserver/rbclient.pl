@@ -12,11 +12,15 @@ my $clientver = 1;
 my $username = "foobar";
 my $password = "master";
 my $clientname = "laptop-".$$;
-my $archlist = "m68k,arm.sh";
+my $archlist = "m68k,arm,sh";
 
 my $busy = 0;
+my $buildnum = 0;
 
 my $sock;
+
+beginning:
+
 while (1) {
     $sock = IO::Socket::INET->new(PeerAddr => 'localhost',
                                   PeerPort => 19999,
@@ -53,9 +57,11 @@ while (not $done) {
     my ($rh_set, $timeleft) =
         IO::Select->select($read_set, undef, undef, 1);
 
+    goto beginning if (!$sock->connected);
+
     foreach my $rh (@$rh_set) {
         if ($conntype{$rh->fileno} eq "socket") {
-            print "Got from socket\n";
+            #print "Got from socket\n";
             my $data;
             my $len = $rh->read($data, 512);
             
@@ -71,12 +77,12 @@ while (not $done) {
             }
         }
         elsif ($conntype{$rh->fileno} eq "pipe") {
-            print "Got from pipe\n";
+            #print "Got from pipe\n";
             my $len = $rh->read($data, 512);
             if ($len) {
-                print "parent pipe: $data";
+                #print "parent pipe: $data";
                 my ($pid, $buildid) = split ' ', $data;
-                print "Waiting for child $pid\n";
+                #print "Waiting for child $pid\n";
                 waitpid $pid, WNOHANG;
                 $busy = 0;
                 $read_set->remove($rh);
@@ -95,7 +101,7 @@ while (not $done) {
     }
 
     if (!$busy) {
-        for my $id (sort {$a <=> $b} keys %builds) {
+        for my $id (sort {$builds{$a}{seqnum} <=> $builds{$b}{seqnum}} keys %builds) {
             &startbuild($id);
             last;
         }
@@ -195,6 +201,7 @@ sub BUILD
     $builds{$id}{rev} = $rev;
     $builds{$id}{zip} = $zip;
     $builds{$id}{mt} = $mt;
+    $builds{$id}{seqnum} = $buildnum++;
 
     print $sock "_BUILD $id\n";
 
