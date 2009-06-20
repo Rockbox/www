@@ -5,8 +5,13 @@ use IO::Socket;
 use IO::Select;
 use IO::File;
 use IO::Pipe;
+use File::Basename;
 use POSIX 'mkfifo';
 use POSIX ":sys_wait_h";
+
+my $upload = "http://192.168.1.10/b/upload.pl";
+my $cwd = `pwd`;
+chomp $cwd;
 
 my $clientver = 1;
 my $username = "foobar";
@@ -25,7 +30,7 @@ my $sock;
 beginning:
 
 while (1) {
-    $sock = IO::Socket::INET->new(PeerAddr => 'localhost',
+    $sock = IO::Socket::INET->new(PeerAddr => '192.168.1.10',
                                   PeerPort => 19999,
                                   Proto    => 'tcp',
                                   Blocking => 0)
@@ -149,22 +154,42 @@ sub startbuild
     else {
         $pipe->writer();
 
+        my $logfile = "$cwd/$clientname-$id.log";
+        my $log = ">> $logfile 2>&1";
+        
         # child
-        print ">svn up -r $builds{$id}{rev}\n";
+        `svn up -r $builds{$id}{rev} $log`;
         mkdir "build-$$";
         chdir "build-$$";
         my $args = $builds{$id}{confargs};
         $args =~ s|,| |g;
-        print ">../tools/configure $args\n";
-        print ">make\n";
-        chdir "..";
-        print ">rm -r build-$$\n";
-        `rm -r build-$$`;
-
-        for (0..3) {
-            printf "client: building %d\n", 4-$_;
-            sleep 1;
+        `../tools/configure $args $log`;
+        if ($builds{$id}{mt} eq "mt" and $cores > 1) {
+            my $c = $cores + 1;
+            `make -j$c $log`;
         }
+        else {
+            `make $log`;
+        }
+
+        print "Uploading $logfile...\n";
+        print "curl -v -F upfile=\@$logfile $upload\n";
+        `curl -v -F upfile=\@$logfile $upload`;
+        print "...done!\n";
+
+        my $zip = $builds{$id}{zip};
+        if ($zip ne "nozip") {
+            print ">make zip\n";
+            my $newzip = "$clientname-$zip";
+            rename $zip, $newzip;
+            print "Uploading $newzip...\n";
+            `curl -F upfile=\@$newzip $upload`;
+            print "...done!\n";
+        }
+
+        chdir "..";
+        `rm -r build-$$`;
+        unlink $logfile;
 
         print "child: $$ $id done\n";
         print $pipe "$$ $id";
@@ -278,5 +303,10 @@ sub testarchs
         if (not $p =~ m|^/|) {
             die "You specified arch $_ but don't have $which{$_} in your path!\n";
         }
+    }
+
+    my $p = `which curl`;
+    if (not $p =~ m|^/|) {
+        die "I couldn't find 'curl' in your path.\n";
     }
 }
