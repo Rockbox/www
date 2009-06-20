@@ -71,12 +71,21 @@ sub getbuildscore {
 my %client;
 
 sub build {
-    my ($fileno, $buildid) = @_;
+    my ($fileno, $id) = @_;
 
     my $rh = $client{$fileno}{'socket'};
+
+    my $args = sprintf("%s %s %d %s %s",
+                       $id,
+                       $builds{$id}{'confopts'},
+                       12345,
+                       $builds{$id}{'zip'},
+                       "n/a");
     
     # tell client to build!
-    $rh->write("BUILD $buildid\n");
+    $rh->write("BUILD $args\n");
+
+    printf "Tell %s to build %s\n",  $client{$fileno}{'client'}, $id;
 
     # mark this client with what response we expect from it
     $client{$fileno}{'expect'}="_BUILD";
