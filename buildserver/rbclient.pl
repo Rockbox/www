@@ -6,10 +6,10 @@ use IO::Select;
 use IO::File;
 use IO::Pipe;
 use File::Basename;
-use POSIX 'mkfifo';
+use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
-my $upload = "http://192.168.1.10/b/upload.pl";
+my $upload = "http://localhost/b/upload.pl";
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -23,14 +23,14 @@ unless ($archlist) {
     exit;
 }
 
-#&testarchs();
+&testarchs();
 
 my $sock;
 
 beginning:
 
 while (1) {
-    $sock = IO::Socket::INET->new(PeerAddr => '192.168.1.10',
+    $sock = IO::Socket::INET->new(PeerAddr => 'localhost',
                                   PeerPort => 19999,
                                   Proto    => 'tcp',
                                   Blocking => 0)
@@ -111,7 +111,6 @@ while (not $done) {
 
                 print "COMPLETED $buildid\n";
                 print $sock "COMPLETED $buildid\n";
-
             }
         }
         else {
@@ -154,37 +153,63 @@ sub startbuild
     else {
         $pipe->writer();
 
-        my $logfile = "$cwd/$clientname-$id.log";
+        my $starttime = time();
+
+        mkdir "build-$$";
+        my $logfile = "$cwd/build-$$/$clientname-$id.log";
         my $log = ">> $logfile 2>&1";
         
+        open DEST, ">$logfile";
+        # to keep all other scripts working, use the same output as buildall.pl:
+        print DEST "Build Start Single\n";
+        
+        printf DEST "Build Date: %s\n", strftime("%Y%m%dT%H%M%SZ", gmtime);
+        print DEST "Build Type: $id\n";
+        print DEST "Build Dir: $cwd/build-$$\n";
+        close DEST;
+
         # child
         `svn up -r $builds{$id}{rev} $log`;
-        mkdir "build-$$";
         chdir "build-$$";
         my $args = $builds{$id}{confargs};
         $args =~ s|,| |g;
         `../tools/configure $args $log`;
         if ($builds{$id}{mt} eq "mt" and $cores > 1) {
             my $c = $cores + 1;
-            `make -j$c $log`;
+            `make -k -j$c $log`;
         }
         else {
-            `make $log`;
+            `make -k $log`;
         }
 
-        print "Uploading $logfile...\n";
-        print "curl -v -F upfile=\@$logfile $upload\n";
-        `curl -v -F upfile=\@$logfile $upload`;
-        print "...done!\n";
+        # report
+        open DEST, ">>$logfile";
+        if (-f $builds{$id}{result}) {
+            print DEST "Build Status: Fine\n";
+        }
+        else {
+            print "no '$builds{$id}{result}'\n";
+            print DEST "Build Status: Failed\n";
+        }
+        my $tooktime = time() - $starttime;
+        print DEST "Build Time: $tooktime\n";
+        close DEST;
+
+        &upload($logfile);
 
         my $zip = $builds{$id}{zip};
         if ($zip ne "nozip") {
-            print ">make zip\n";
-            my $newzip = "$clientname-$zip";
-            rename $zip, $newzip;
-            print "Uploading $newzip...\n";
-            `curl -F upfile=\@$newzip $upload`;
-            print "...done!\n";
+            `make zip $log`;
+            
+            if (-f "rockbox.zip") {
+                my $newzip = "$clientname-rockbox.zip";
+                if (rename "rockbox.zip", $newzip) {
+                    &upload($newzip);
+                }
+            }
+            else {
+                print "?? no rockbox.zip\n";
+            }
         }
 
         chdir "..";
@@ -196,6 +221,20 @@ sub startbuild
         close $pipe;
         exit;
     }
+}
+
+sub upload
+{
+    my ($file) = @_;
+    print "Uploading $file...\n";
+    if (not -f $file) {
+        print "$file: no such file\n";
+        return;
+    }
+
+    print "curl -F upfile=\@$file $upload\n";
+    `curl -F upfile=\@$file $upload`;
+    print "...done!\n";
 }
 
 sub bogomips
@@ -225,8 +264,9 @@ sub _COMPLETED
 
 sub PING
 {
-    print ">_PING\n";
-    print $sock "_PING\n";
+    my ($arg) = @_;
+    print ">_PING $arg\n";
+    print $sock "_PING $arg\n";
 }
 
 sub CANCEL
@@ -244,7 +284,7 @@ sub CANCEL
 sub BUILD
 {
     my ($buildparams) = @_;
-    my ($id, $confargs, $rev, $zip, $mt) = split(' ', $buildparams);
+    my ($id, $confargs, $rev, $zip, $mt, $result) = split(' ', $buildparams);
 
     if (defined $builds{$id}) {
         print $sock "_BUILD 0\n";
@@ -255,11 +295,12 @@ sub BUILD
     $builds{$id}{rev} = $rev;
     $builds{$id}{zip} = $zip;
     $builds{$id}{mt} = $mt;
+    $builds{$id}{result} = $result;
     $builds{$id}{seqnum} = $buildnum++;
 
     print $sock "_BUILD $id\n";
 
-    print "Queued build $buildparams\n";
+    #print "Queued build $id => $result\n";
 }
 
 sub parsecmd
