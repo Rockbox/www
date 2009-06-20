@@ -1,5 +1,10 @@
 #!/usr/bin/perl -w
 #
+# This is the server-side implementation according to the concepts and
+# protocol posted here:
+#
+# http://www.rockbox.org/twiki/bin/view/Main/BuildServerRemake
+#
 
 use IO::Socket;
 use IO::Select;
@@ -12,6 +17,40 @@ my @buildids;
 
 # this is 1 while we're in a build round
 my $buildround;
+
+my %client;
+#
+# {$fileno}{'cmd'} for building incoming commands
+#  {'client'} 
+#  {'archs'} 
+#  {'cpu'} - string for stats
+#  {'bits'} 32 / 64 
+#  {'os'}
+#  {'bogomips'}
+#
+
+sub kill_build {
+    my ($id)=@_;
+
+    my $num;
+
+    # now kill this build on all clients still building it
+    for my $cl (keys %client) {
+        # cut out this build from this client
+        if($client{$cl}{'builds'}=~ s/ $id//) {
+            my $rh = $client{$cl}{'socket'};
+
+            # tell client to build!
+            $rh->write("CANCEL $id\n");
+            print "KILL $id on $cl\n";
+            $client{$cl}{'expect'}="_CANCEL";
+            $num++;
+        }
+    }
+    if($num) {
+        print "Killed $num parallel $id builds!\n";
+    }
+}
 
 sub builds_in_progress {
     my $c=0;
@@ -80,17 +119,6 @@ sub getbuildscore {
     close(F);
 }
 
-#
-# {$rh}{'cmd'} for building incoming commands
-#  {'client'} 
-#  {'archs'} 
-#  {'cpu'} - string for stats
-#  {'bits'} 32 / 64 
-#  {'os'}
-#  {'bogomips'}
-#
-my %client;
-
 sub build {
     my ($fileno, $id) = @_;
 
@@ -130,6 +158,13 @@ sub _BUILD {
     $client{$rh->fileno}{'expect'}="";
 }
 
+sub _CANCEL {
+    my ($rh, $args) = @_;
+
+    print "got _CANCEL back from client\n";
+    $client{$rh->fileno}{'expect'}="";
+}
+
 sub HELLO {
     my ($rh, $args) = @_;
 
@@ -146,12 +181,19 @@ sub HELLO {
     $client{$fno}{'bogomips'} = $bogomips;
     $client{$fno}{'socket'} = $rh;
 
-    # send OK
-    $rh->write("_HELLO ok\n");
+    if(!$bogomips) {
+        # send error
+        $rh->write("_HELLO error\n");
+        $client{$fno}{'bad'}="HELLO failed\n";
+    }
+    else {
+        $client{$fno}{'bad'} = 0; # not bad!
 
-    print "HELLO from $cli at fileno $fno at bogomips $bogomips\n";
+        # send OK
+        $rh->write("_HELLO ok\n");
 
-    if($buildround) {
+        print "HELLO from $cli at fileno $fno at bogomips $bogomips\n";
+
         handoutbuilds();
     }
 }
@@ -166,11 +208,17 @@ sub COMPLETED {
     # mark this as not building anymore
     $client{$rh->fileno}{'building'}=0;
 
+    # cut out this build from this client
+    $client{$rh->fileno}{'builds'}=~ s/ $id//;
+
     $builds{$id}{'handcount'}--; # one less that builds this
     $builds{$id}{'done'}=1;
 
     # send OK
     $rh->write("_COMPLETED $id\n");
+
+    # now kill this build on all clients still building it
+    kill_build($id);
 
     # if we have builds not yet completed, hand out one
     handoutbuilds();
@@ -209,8 +257,8 @@ sub sortclients {
 sub startround {
     # start a build round
     print "START a new build round\n";
-    handoutbuilds();
     $buildround=1;
+    handoutbuilds();
 }
 
 sub endround {
@@ -261,6 +309,12 @@ sub client_gone {
 
 sub handoutbuilds {
     my @scl; # list of clients $fileno sorted
+
+    if(!$buildround) {
+        # don't hand out builds unless we're in a build round
+        return;
+    }
+
 
     for(sort sortclients keys %client) {
         if(!$client{$_}{'building'}) {
@@ -353,7 +407,8 @@ while(not $alldone) {
 			$read_set->add($new);
 			$conn{$new->fileno} = { type => 'rbclient' };
 			$new->blocking(0) or die "blocking: $!";
-		} else {
+		}
+                else {
 	#		warn "client trying to read\n";
 			my $data;
 			my $len = $rh->read($data, 512);
@@ -377,7 +432,6 @@ while(not $alldone) {
                         else {
                             warn "Client disconnect, removing client\n";
                             client_gone($rh->fileno);
-
                             delete $client{$rh->fileno};
                             delete $conn{$rh->fileno};
                             $read_set->remove($rh);
