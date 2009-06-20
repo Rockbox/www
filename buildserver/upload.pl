@@ -19,17 +19,19 @@ print "Content-type: text/plain\n";
 #}
 #exit;
 
-if (-f "$cwd/$filename") {
+my $destpath="$cwd/upload";
+
+if (-f "$destpath/$filename") {
     print "Status: 403 Cannot overwrite file\n";
     exit;
 }
 
-if (move($tmpfile, "$cwd/$filename")) {
+if (move($tmpfile, "$destpath/$filename")) {
     print "Status: 200 Upload successful\n";
 }
 else {
-    print "Status: 502 Move failed\n";
+    print "Status: 502 Move failed: $!\n";
 }
 
-print "\n$cwd/$filename\n";
-print STDERR "\n$cwd/$filename\n";
+print "\n$destpath/$filename\n";
+print STDERR "\n$destpath/$filename\n";
