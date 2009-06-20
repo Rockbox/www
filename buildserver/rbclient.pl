@@ -9,8 +9,9 @@ use File::Basename;
 use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
-my $clientver = 1;
-my $upload = "http://localhost/b/upload.pl";
+my $buildmaster = '192.168.1.10';
+my $clientver = 2;
+my $upload = "http://$buildmaster/b/upload.pl";
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -37,13 +38,14 @@ unless ($username and $password and $archlist and $clientname) {
 
 &testarchs();
 
+print "Starting build client $clientname. $speed bogomips and $cores cores.\n";
 
 my $sock;
 
 beginning:
 
 while (1) {
-    $sock = IO::Socket::INET->new(PeerAddr => '192.168.1.10',
+    $sock = IO::Socket::INET->new(PeerAddr => $buildmaster,
                                   PeerPort => 19999,
                                   Proto    => 'tcp',
                                   Blocking => 0)
