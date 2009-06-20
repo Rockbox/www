@@ -329,6 +329,7 @@ sub parsecmd
                      '_COMPLETED', 1,
                      'BUILD', 1,
                      'PING', 1,
+                     'UPDATE', 1,
                      'CANCEL', 1);
     
     if($cmdstr =~ /^([_A-Z]*) (.*)/) {
