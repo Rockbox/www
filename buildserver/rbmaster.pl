@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 #
 # This is the server-side implementation according to the concepts and
 # protocol posted here:
@@ -40,9 +40,10 @@ sub kill_build {
         if($client{$cl}{'builds'}=~ s/ $id//) {
             my $rh = $client{$cl}{'socket'};
 
+            print "> CANCEL $id (on $cl)\n";
+
             # tell client to build!
             $rh->write("CANCEL $id\n");
-            print "KILL $id on $cl\n";
             $client{$cl}{'expect'}="_CANCEL";
             $num++;
         }
@@ -127,20 +128,18 @@ sub build {
     my $args = sprintf("%s %s %d %s %s",
                        $id,
                        $builds{$id}{'confopts'},
-                       12345,
+                       21404, # rev
                        $builds{$id}{'zip'},
-                       "n/a"); # TODO: add support for this
+                       "mt"); # TODO: add support for this
     
     # tell client to build!
     $rh->write("BUILD $args\n");
+    $client{$fileno}{'expect'}="_BUILD";
 
-    print "BUILD $args\n";
-
-    printf "Tell %s to build %s\n",  $client{$fileno}{'client'}, $id;
+    printf "** Tell %s to build %s\n",  $client{$fileno}{'client'}, $id;
 
     # mark this client with what response we expect from it
     $client{$fileno}{'building'}++;
-    $client{$fileno}{'expect'}="_BUILD";
 
     # remember what this client is building
     $client{$fileno}{'builds'}.= " $id";
@@ -148,27 +147,27 @@ sub build {
     # count the number of times this build is handed out
     $builds{$id}{'handcount'}++;
 
-    printf "Build $id handed out %d times\n", $builds{$id}{'handcount'};
+    #printf "Build $id handed out %d times\n", $builds{$id}{'handcount'};
 }
 
 sub _BUILD {
     my ($rh, $args) = @_;
 
-    print "got _BUILD back from client\n";
+    print "< _BUILD\n";
     $client{$rh->fileno}{'expect'}="";
 }
 
 sub _PING {
     my ($rh, $args) = @_;
 
-    print "got _PING back from client\n";
+    print "< _PING\n";
     $client{$rh->fileno}{'expect'}="";
 }
 
 sub _CANCEL {
     my ($rh, $args) = @_;
 
-    print "got _CANCEL back from client\n";
+    print "< _CANCEL\n";
     $client{$rh->fileno}{'expect'}="";
 }
 
@@ -180,27 +179,29 @@ sub HELLO {
 
     my $fno = $rh->fileno;
 
-    $client{$fno}{'client'} = $cli;
-    $client{$fno}{'archlist'} = $archlist;
-    $client{$fno}{'cpu'} = $cpu;
-    $client{$fno}{'bits'} = $bits;
-    $client{$fno}{'os'} = $os;
-    $client{$fno}{'bogomips'} = $bogomips;
-    $client{$fno}{'socket'} = $rh;
-    $client{$fno}{'expect'} = "";
-
     if(!$bogomips) {
         # send error
         $rh->write("_HELLO error\n");
-        $client{$fno}{'bad'}="HELLO failed\n";
+        $client{$fno}{'bad'}="HELLO failed";
     }
     else {
+        $client{$fno}{'client'} = $cli;
+        $client{$fno}{'archlist'} = $archlist;
+        $client{$fno}{'cpu'} = $cpu;
+        $client{$fno}{'bits'} = $bits;
+        $client{$fno}{'os'} = $os;
+        $client{$fno}{'bogomips'} = $bogomips;
+        $client{$fno}{'socket'} = $rh;
+        $client{$fno}{'expect'} = ""; # no response expected yet
+        $client{$fno}{'builds'} = ""; # none so far
+        
         $client{$fno}{'bad'} = 0; # not bad!
+        $client{$fno}{'fine'} = 1;
 
         # send OK
         $rh->write("_HELLO ok\n");
 
-        print "HELLO from $cli at fileno $fno at bogomips $bogomips\n";
+        print "$cli joined with $bogomips bogomips\n";
 
         handoutbuilds();
     }
@@ -211,7 +212,7 @@ sub COMPLETED {
 
     my ($id) = split(" ", $args);
 
-    print "COMPLETED $id received\n";
+    print "< COMPLETED $id\n";
 
     # mark this as not building anymore
     $client{$rh->fileno}{'building'}=0;
@@ -232,6 +233,14 @@ sub COMPLETED {
     handoutbuilds();
 }
 
+my %protocmd = (
+    'HELLO' => 1,
+    'COMPLETED' => 1,
+    '_PING' => 1,
+    '_KILL' => 1,
+    '_BUILD' => 1,
+    );
+
 
 sub parsecmd {
     my ($rh, $cmdstr)=@_;
@@ -240,7 +249,12 @@ sub parsecmd {
         my $func = $1;
         my $rest = $2;
         chomp $rest;
-        &$func($rh, $rest);
+        if($protocmd{$func}) {
+            &$func($rh, $rest);
+        }
+        else {
+            print "Unknown input: $cmdstr";
+        }
     }
 }
 
@@ -289,6 +303,10 @@ sub checkclients {
     my $check = time() - 10;
 
     for my $cl (keys %client) {
+        if(!$client{$cl}{'fine'}) {
+            next;
+        }
+
         if($client{$cl}{'expect'} eq "_PING") {
             # if this is already waiting for a ping, we take different
             # precautions and allow for some PING response time
@@ -307,6 +325,7 @@ sub checkclients {
                 print "ALERT: waiting for $exp from client!\n";
             }
 
+            print "> PING (to $cl)\n";
             $rh->write("PING 111\n");
             $client{$cl}{'expect'}="_PING";
         }
@@ -322,8 +341,8 @@ sub client_can_build {
     # see if this arch is mong the supported archs for this client
     if(index($client{$cl}{'archlist'}, $arch) != -1) {
         # yes it can build
-        printf("%s can build %s on arch %s\n",
-               $client{$cl}{'client'}, $id, $arch);
+     #   printf("%s can build %s on arch %s\n",
+     #          $client{$cl}{'client'}, $id, $arch);
         return 1;
     }
 
@@ -336,10 +355,14 @@ sub client_can_build {
 sub client_gone {
     my ($cl) = @_;
 
-    my @bip = split(" ", $client{$cl}{'builds'});
-    for my $id (@bip) {
-        # we deduct the handcount since the client building this is gone
-        $builds{$id}{'handcount'}--;
+    my $b = $client{$cl}{'builds'};
+
+    if($b) {
+        my @bip = split(" ", $b);
+        for my $id (@bip) {
+            # we deduct the handcount since the client building this is gone
+            $builds{$id}{'handcount'}--;
+        }
     }
 }
 
@@ -443,6 +466,10 @@ while(not $alldone) {
             $read_set->add($new);
             $conn{$new->fileno} = { type => 'rbclient' };
             $new->blocking(0) or die "blocking: $!";
+
+            # to create the hash table entry on fileno
+            $client{$new->fileno}{'cmd'} = "";
+
         }
         else {
             my $data;
@@ -467,19 +494,21 @@ while(not $alldone) {
             }
         }
     }
+    print ".\n";
+
     checkbuild();
     checkclients();
 
     # loop over the clients and close the bad ones
-    for my $cl (keys %client) {
-        my $rh = $client{$cl}{'socket'};
-        my $err = $client{$cl}{'bad'};
+    foreach my $rh (@$rh_set) {
+        my $cl = $rh->fileno;
 
+        my $err = $client{$cl}{'bad'};
         if($err) {
             warn "Client disconnect ($err), removing client\n";
-            client_gone($rh->fileno);
-            delete $client{$rh->fileno};
-            delete $conn{$rh->fileno};
+            client_gone($cl);
+            delete $client{$cl};
+            delete $conn{$cl};
             $read_set->remove($rh);
             $rh->close;
             # do the handout builds calculations again now
