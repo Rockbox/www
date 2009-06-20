@@ -62,9 +62,10 @@ while (not $done) {
             if ($len) {
                 $input .= $data;
                 
-                my $pos = index($input, "\n");
-                if($pos != -1) {
-                    parsecmd($input);
+                while (1) {
+                    my $pos = index($input, "\n");
+                    last if ($pos == -1);
+                    &parsecmd($input);
                     $input = substr($input, $pos+1);
                 }
             }
@@ -140,7 +141,7 @@ sub startbuild
         `rm -r build-$$`;
 
         for (0..3) {
-            printf "client: building %d\n", 5-$_;
+            printf "client: building %d\n", 4-$_;
             sleep 1;
         }
 
@@ -175,13 +176,18 @@ sub _COMPLETED
 {
 }
 
+sub PING
+{
+    print $sock "_PING\n";
+}
+
 sub BUILD
 {
     my ($buildparams) = @_;
     my ($id, $confargs, $rev, $zip, $mt) = split(' ', $buildparams);
 
     if (defined $builds{$id}) {
-        print SOCKET "_BUILD 0\n";
+        print $sock "_BUILD 0\n";
         return;
     }
 
@@ -190,7 +196,7 @@ sub BUILD
     $builds{$id}{zip} = $zip;
     $builds{$id}{mt} = $mt;
 
-    print SOCKET "_BUILD $id\n";
+    print $sock "_BUILD $id\n";
 
     print "Queued build $buildparams\n";
 }
