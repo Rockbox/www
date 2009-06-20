@@ -139,7 +139,10 @@ sub startbuild
         print ">rm -r build-$$\n";
         `rm -r build-$$`;
 
-        sleep 5;
+        for (0..3) {
+            printf "client: building %d\n", 5-$_;
+            sleep 1;
+        }
 
         print "child: $$ $id done\n";
         print $pipe "$$ $id";
