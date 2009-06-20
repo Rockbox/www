@@ -1,16 +1,10 @@
 #!/usr/bin/perl -w
 #
-# Working example of doing listen/accept of incoming connections,
-# and non-blocking read of data on those connections.
-# 05-Sep-2002 Ralph Siemsen <ralphs@netwinder.org>
 
-#use strict;
 use IO::Socket;
 use IO::Select;
 
 # Each active connection gets an entry here, keyed by its filedes.
-# Could have used IO::Socket objects as keys, but they hash poorly.
-# Any per-connection data can be sotred in this hash-of-hashes.
 my %conn;
 
 my %builds;
@@ -119,6 +113,15 @@ sub HELLO {
     print " $cli at fileno $fno\n";
 }
 
+sub COMPLETED {
+    my ($rh, $args) = @_;
+
+    my ($id) = split(" ", $args);
+
+    # send OK
+    $rh->write("_COMPLETED $id\n");
+}
+
 
 sub parsecmd {
     my ($rh, $cmdstr)=@_;
@@ -224,7 +227,7 @@ while(not $done) {
 			warn "server accepting\n";
 			my $new = $rh->accept or die;
 			$read_set->add($new);
-			$conn{$new->fileno} = { type => 'http' };
+			$conn{$new->fileno} = { type => 'rbclient' };
 			$new->blocking(0) or die "blocking: $!";
 		} else {
 	#		warn "client trying to read\n";
