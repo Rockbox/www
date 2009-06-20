@@ -9,21 +9,34 @@ use File::Basename;
 use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
+my $clientver = 1;
 my $upload = "http://localhost/b/upload.pl";
 my $cwd = `pwd`;
 chomp $cwd;
 
-my $clientver = 1;
-my $username = "foobar";
-my $password = "master";
-my $clientname = $clientname || "laptop-".$$;
+# read -parameters
+my $username = $username;
+my $password = $password;
+my $clientname = $clientname;
+my $archlist = $archlist;
 
-unless ($archlist) {
-    print "You must specify -archlist. Example:\nperl rbclient.pl -archlist=sh,arm,m68k,linuxsim\n";
+my ($speed, $probecores) = &bogomips;
+my $cores = $cores || $probecores;
+
+my $cpu = `uname -m`;
+chomp $cpu;
+my $os = `uname -o`;
+chomp $os;
+
+&readconfig($config) if ($config);
+
+unless ($username and $password and $archlist and $clientname) {
+    print "Insufficient parameters. You must specify:\n\n-username, -password, -clientname, -archlist\n\noptional setting: -cores\n\nYou can also specify -config=file where parameters are stored as 'label: value'.";
     exit;
 }
 
 &testarchs();
+
 
 my $sock;
 
@@ -49,12 +62,7 @@ $read_set->add($sock);
 $conntype{$sock->fileno} = 'socket';
 
 my $auth = "$username:$password";
-my ($speed, $cores) = &bogomips;
-my $cpu = `uname -m`;
-chomp $cpu;
-my $os = `uname -o`;
-chomp $os;
-
+print "HELLO $clientver $archlist $auth $clientname $cpu 32 $os $speed\n";
 print $sock "HELLO $clientver $archlist $auth $clientname $cpu 32 $os $speed\n";
 
 my $busy = 0;
@@ -303,6 +311,17 @@ sub BUILD
     #print "Queued build $id => $result\n";
 }
 
+sub UPDATE
+{
+    my ($rev) = @_;
+
+    `curl -o rbclient.pl "http://svn.rockbox.org/viewvc.cgi/www/buildserver/rbclient.pl?revision=$rev"`;
+
+    print $sock "_UPDATE $rev\n";
+    sleep 1;
+    exit;
+}
+
 sub parsecmd
 {
     my ($cmdstr)=@_;
@@ -350,4 +369,32 @@ sub testarchs
     if (not $p =~ m|^/|) {
         die "I couldn't find 'curl' in your path.\n";
     }
+}
+
+sub readconfig
+{
+    my ($file) = @_;
+
+    if (!open CFG, "<$file") {
+        print "$file: $!\n";
+        return;
+    }
+    for (<CFG>) {
+        if (/^username:\s*(.*)/) {
+            $username = $1;
+        }
+        elsif (/^password:\s*(.*)/) {
+            $password = $1;
+        }
+        elsif (/^clientname:\s*(.*)/) {
+            $clientname = $1;
+        }
+        elsif (/^archlist:\s*(.*)/) {
+            $archlist = $1;
+        }
+        elsif (/^cores:\s*(.*)/) {
+            $cores = $1;
+        }
+    }
+    close CFG;
 }
