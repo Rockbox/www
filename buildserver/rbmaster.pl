@@ -15,7 +15,7 @@ sub getbuilds {
     open(F, "<$filename");
     while(<F>) {
         # sdl:nozip:recordersim:Recorder - Simulator:rockboxui:--target=recorder,--ram=2,--type=s
-        if($_ =~ /([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):([^:]*)/) {
+        if($_ =~ /([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):(.*)/) {
             my ($arch, $zip, $id, $name, $file, $confopts) =
                 ($1, $2, $3, $4, $5, $6);
             $builds{$id}{'arch'}=$arch;
@@ -75,7 +75,7 @@ sub build {
                        $builds{$id}{'confopts'},
                        12345,
                        $builds{$id}{'zip'},
-                       "n/a");
+                       "n/a"); # TODO: add support for this
     
     # tell client to build!
     $rh->write("BUILD $args\n");
@@ -179,6 +179,10 @@ sub checkbuild {
     handoutbuilds();
 }
 
+sub client_can_build {
+    return 1; # can build all
+}
+
 sub handoutbuilds {
     my @scl; # list of clients $fileno sorted
 
@@ -197,28 +201,30 @@ sub handoutbuilds {
 
     my $done=0;
 
-    # time to go through the builds and give to clients
-    for(sort sortbuilds @buildids) {
-        if($builds{$_}{'done'}) {
-            printf "$_ is done now, skip\n";
-            $done++;
-            next;
-        }
-
+    while($scl[0]) {
         my $cl = pop @scl;
 
-        if(!$cl) {
-            # no more clients, get out of loop
-            last;
+        $done =0;
+        # time to go through the builds and give to clients
+        for(sort sortbuilds @buildids) {
+            if($builds{$_}{'done'}) {
+                printf "$_ is done now, skip\n";
+                $done++;
+                next;
+            }
+
+            if(client_can_build($cl, $_)) {
+                build($cl, $_);
+                last;
+            }
         }
 
-        build($cl, $_);
-    }
-
-    if($done >= scalar(@buildids)) {
-        print "All builds are done!\n";
-        # TODO: kill all still handed out builds
-        # TODO: mark all 'done' to undone for next round
+        if($done >= scalar(@buildids)) {
+            print "ALL BUILDS ARE DONE!\n";
+            # TODO: kill all still handed out builds
+            # TODO: mark all 'done' to undone for next round
+            last;
+        }
     }
 }
 
