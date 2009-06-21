@@ -48,10 +48,9 @@ while (1) {
     $sock = IO::Socket::INET->new(PeerAddr => $buildmaster,
                                   PeerPort => 19999,
                                   Proto    => 'tcp')
-        or die "$!";
+        or sleep 1;
 
     last if ($sock->connected);
-    sleep 1;
 }
 
 $sock->blocking(0);    
