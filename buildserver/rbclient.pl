@@ -14,10 +14,8 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $buildmaster = $buildmaster || '192.168.1.10';
-my $port = $port || 19999;
 my $revision = 5;
-my $upload = "http://$buildmaster/b/upload.pl";
+my $upload = "http://$buildmaster/upload.pl";
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -26,6 +24,8 @@ my $username = $username;
 my $password = $password;
 my $clientname = $clientname;
 my $archlist = $archlist;
+my $buildmaster = $buildmaster || 'buildmaster.rockbox.org';
+my $port = $port || 19999;
 
 my ($speed, $probecores) = &bogomips;
 my $cores = $cores || $probecores;
@@ -73,6 +73,17 @@ print $sock "HELLO $revision $archlist $auth $clientname $cpu 32 $os $speed\n";
 my $busy = 0;
 my %builds = ();
 my $buildnum = 0;
+
+$SIG{INT} = sub {
+    warn "received interrupt.\n";
+    for my $id (keys %builds) {
+        if ($builds{$id}{pid}) {
+            &killchild($id);
+        }
+    }                
+    exit -1;
+};
+
 
 while (1) {
     my ($rh_set, $timeleft) =
@@ -248,8 +259,7 @@ sub startbuild
         }
 
         chdir "..";
-        rmtree "build-$$";
-        unlink $logfile;
+        `rm -r $cwd/build-$$`;
 
         print "child: $id ($$) done\n";
         print $pipe "done $id $$\n";
@@ -455,7 +465,7 @@ sub killchild
     my $dir = "$cwd/build-$pid";
     if (-d $dir) {
         print "Removing $dir\n";
-        rmtree $dir or warn "$dir: $!";
+        `rm -r $dir`;
     }
 
     delete $builds{$id};
