@@ -32,6 +32,8 @@ my %client;
 # this is the local directory where clients upload logs and zips etc
 my $uploadpath="/var/www/b/upload";
 
+my $started = time();
+
 sub kill_build {
     my ($id)=@_;
 
@@ -147,7 +149,7 @@ sub build {
     my $args = sprintf("%s %s %d %s %s %s",
                        $id,
                        $builds{$id}{'confopts'},
-                       21404, # rev
+                       21443, # rev
                        $builds{$id}{'zip'},
                        "mt", # TODO: add support for this
                        $builds{$id}{'file'});
@@ -156,7 +158,9 @@ sub build {
     $rh->write("BUILD $args\n");
     $client{$fileno}{'expect'}="_BUILD";
 
-    printf "** Tell %s to build %s\n",  $client{$fileno}{'client'}, $id;
+    print "> BUILD $args\n";
+
+    #printf "** Tell %s to build %s\n",  $client{$fileno}{'client'}, $id;
 
     # mark this client with what response we expect from it
     $client{$fileno}{'building'}++;
@@ -173,28 +177,28 @@ sub build {
 sub _BUILD {
     my ($rh, $args) = @_;
 
-    print "< _BUILD\n";
+ #   print "< _BUILD\n";
     $client{$rh->fileno}{'expect'}="";
 }
 
 sub _PING {
     my ($rh, $args) = @_;
 
-    print "< _PING\n";
+ #   print "< _PING\n";
     $client{$rh->fileno}{'expect'}="";
 }
 
 sub _UPDATE {
     my ($rh, $args) = @_;
 
-    print "< _UPDATE\n";
+ #   print "< _UPDATE\n";
     $client{$rh->fileno}{'expect'}="";
 }
 
 sub _CANCEL {
     my ($rh, $args) = @_;
 
-    print "< _CANCEL\n";
+ #   print "< _CANCEL\n";
     $client{$rh->fileno}{'expect'}="";
 }
 
@@ -228,7 +232,7 @@ sub HELLO {
         # send OK
         $rh->write("_HELLO ok\n");
 
-        print "$cli joined with $bogomips bogomips\n";
+        print "< HELLO $args\n";
 
         handoutbuilds();
     }
@@ -339,10 +343,11 @@ sub endround {
 }
 
 sub checkbuild {
-    if(++$count == 5) {
+    if(time() > $started + 5) {
         startround();
+        $started += 1000;
         #for my $cl (keys %client) {
-        #    updateclient($cl, 21428);
+        #    updateclient($cl, 21442);
         #}
     }
 }
@@ -373,7 +378,7 @@ sub checkclients {
                 print "ALERT: waiting for $exp from client!\n";
             }
 
-            print "> PING (to $cl)\n";
+   #         print "> PING (to $cl)\n";
             $rh->write("PING 111\n");
             $client{$cl}{'expect'}="_PING";
         }
@@ -389,13 +394,8 @@ sub client_can_build {
     # see if this arch is mong the supported archs for this client
     if(index($client{$cl}{'archlist'}, $arch) != -1) {
         # yes it can build
-     #   printf("%s can build %s on arch %s\n",
-     #          $client{$cl}{'client'}, $id, $arch);
         return 1;
     }
-
-#    printf("%s CANNOT build %s on arch %s\n",
-#           $client{$cl}{'client'}, $id, $arch);
     
     return 0; # no can build
 }
@@ -477,10 +477,10 @@ sub handoutbuilds {
 
 # Master socket for receiving new connections
 my $server = new IO::Socket::INET(
-	LocalHost => "localhost",
+	#LocalHost => "localhost",
 	LocalPort => 19999,
 	Proto => "tcp",
-	Listen => SOMAXCONN,
+	Listen => 5,
 	Reuse => 1)
 or die "socket: $!\n";
 
@@ -514,10 +514,6 @@ while(not $alldone) {
             $read_set->add($new);
             $conn{$new->fileno} = { type => 'rbclient' };
             $new->blocking(0) or die "blocking: $!";
-
-            # to create the hash table entry on fileno
-            $client{$new->fileno}{'cmd'} = "";
-
         }
         else {
             my $data;
@@ -558,7 +554,8 @@ while(not $alldone) {
 
         my $err = $client{$cl}{'bad'};
         if($err) {
-            warn "Client disconnect ($err), removing client\n";
+            printf("Client disconnect ($err), removing client on %d\n",
+                   $rh->fileno);
             client_gone($cl);
             delete $client{$cl};
             delete $conn{$cl};
