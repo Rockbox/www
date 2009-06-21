@@ -10,7 +10,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $buildmaster = '192.168.1.10';
-my $clientver = 2;
+my $clientver = 3;
 my $upload = "http://$buildmaster/b/upload.pl";
 my $cwd = `pwd`;
 chomp $cwd;
@@ -282,7 +282,8 @@ sub CANCEL
 
     if ($builds{$id}{pid}) {
         kill 2, $builds{$id}{pid};
-        print "Killed build $id (pid $builds{$id}{pid})\n";
+        delete $builds{$id};
+        print "Killed build $id\n";
     }
 
     print $sock "_CANCEL $id\n";
