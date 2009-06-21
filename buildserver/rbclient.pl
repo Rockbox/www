@@ -1,4 +1,7 @@
 #!/usr/bin/perl -s
+#
+# $Id: rbclient.pl 18000 $
+#
 
 #use strict;
 use IO::Socket;
@@ -10,8 +13,10 @@ use File::Path;
 use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
-my $buildmaster = '192.168.1.10';
-my $clientver = 4;
+my $perlfile = "rbclient.pl";
+my $buildmaster = $buildmaster || '192.168.1.10';
+my $port = $port || 19999;
+my $revision = 0;
 my $upload = "http://$buildmaster/b/upload.pl";
 my $cwd = `pwd`;
 chomp $cwd;
@@ -41,13 +46,13 @@ unless ($username and $password and $archlist and $clientname) {
 
 beginning:
 
-print "Starting build client $clientname. $speed bogomips and $cores cores.\n";
+print "Starting client $clientname, revision $revision. $speed bogomips and $cores cores.\n";
 
 my $sock;
 
 while (1) {
     $sock = IO::Socket::INET->new(PeerAddr => $buildmaster,
-                                  PeerPort => 19999,
+                                  PeerPort => $port,
                                   Proto    => 'tcp')
         or sleep 1;
 
@@ -62,18 +67,14 @@ $read_set->add($sock);
 $conntype{$sock->fileno} = 'socket';
 
 my $auth = "$username:$password";
-print "HELLO $clientver $archlist $auth $clientname $cpu 32 $os $speed\n";
-print $sock "HELLO $clientver $archlist $auth $clientname $cpu 32 $os $speed\n";
+print "HELLO $revision $archlist $auth $clientname $cpu 32 $os $speed\n";
+print $sock "HELLO $revision $archlist $auth $clientname $cpu 32 $os $speed\n";
 
 my $busy = 0;
 my %builds = ();
 my $buildnum = 0;
 
-# Mail loop active until ^C pressed
-my $done = 0;
-#$SIG{INT} = sub { warn "received interrupt\n"; $done = 1; };
-
-while (not $done) {
+while (1) {
     my ($rh_set, $timeleft) =
         IO::Select->select($read_set, undef, undef, 1);
 
@@ -106,20 +107,36 @@ while (not $done) {
         }
         elsif ($conntype{$rh->fileno} eq "pipe") {
             #print "Got from pipe\n";
-            my $len = $rh->read($data, 512);
-            if ($len) {
-                #print "parent pipe: $data";
-                my ($pid, $buildid) = split ' ', $data;
-                #print "Waiting for child $pid\n";
-                waitpid $pid, WNOHANG;
-                $busy = 0;
-                $read_set->remove($rh);
-                delete $conntype{$rh->fileno};
-                delete $builds{$buildid};
-                close $rh;
+            my $data = <$rh>;
+            if (length $data) {
+                if ($data =~ /uploading (.*?) (\d+)/) {
+                    # client has started uploading
+                    my ($id, $pid) = ($1, $2);
+                    print "child $id ($pid) is uploading\n";
+                    
+                    # start new builds
+                    $busy -= $builds{$id}{cores};
+                    $builds{$id}{cores} = 0;
+                }
+                elsif ($data =~ /done (.*?) (\d+)/) {
+                    my ($id, $pid) = ($1, $2);
 
-                print "COMPLETED $buildid\n";
-                print $sock "COMPLETED $buildid\n";
+                    # start new builds
+                    $busy -= $builds{$id}{cores};
+
+                    waitpid $pid, WNOHANG;
+                    $read_set->remove($rh);
+                    delete $conntype{$rh->fileno};
+                    delete $builds{$id};
+                    close $rh;
+
+                    print "Completed build $id\n";
+                    print $sock "COMPLETED $id\n";
+                }
+            }
+            else {
+                printf "0-length pipe msg from %d!\n", $rh->fileno;
+                exit;
             }
         }
         else {
@@ -127,14 +144,20 @@ while (not $done) {
         }
     }
 
-    if (!$busy) {
-        for my $id (sort {$builds{$a}{seqnum} <=> $builds{$b}{seqnum}} keys %builds) {
+    for my $id (sort {$builds{$a}{seqnum} <=> $builds{$b}{seqnum}} keys %builds)
+    {
+        # skip builds in progress
+        next if ($builds{$id}{pid});
+
+        # is there a core available
+        if ($busy < $cores) {
             &startbuild($id);
+        }
+        else {
             last;
         }
     }
 }
-unlink $pipe;
 
 #################################################
 
@@ -142,26 +165,26 @@ sub startbuild
 {
     my ($id) = @_;
 
-    print "Client starting build $id\n";
+    print "Starting build $id\n";
 
     # make mother/child pipe
     my $pipe = new IO::Pipe();
+    $builds{$id}{pipe} = $pipe;
 
     my $pid = fork;
     if ($pid) {
         # mother
-        #print "mother: forked $pid\n";
         $builds{$id}{pid} = $pid;
         $pipe->reader();
         $read_set->add($pipe);
         $conntype{$pipe->fileno} = 'pipe';
 
         push @children, $pid;
-        $busy = 1;
+        $busy += $builds{$id}{cores};
     }
     else {
         $pipe->writer();
-
+        $pipe->autoflush();
         my $starttime = time();
 
         mkdir "build-$$";
@@ -184,7 +207,7 @@ sub startbuild
         my $args = $builds{$id}{confargs};
         $args =~ s|,| |g;
         `../tools/configure $args $log`;
-        if ($builds{$id}{mt} eq "mt" and $cores > 1) {
+        if ($builds{$id}{cores} > 1 and $cores > 1) {
             my $c = $cores + 1;
             `make -k -j$c $log`;
         }
@@ -205,10 +228,12 @@ sub startbuild
         print DEST "Build Time: $tooktime\n";
         close DEST;
 
+        print $pipe "uploading $id $$\n";
         &upload($logfile);
 
         my $zip = $builds{$id}{zip};
         if ($zip ne "nozip") {
+            print "Making $id zip\n";
             `make zip $log`;
             
             if (-f "rockbox.zip") {
@@ -226,8 +251,8 @@ sub startbuild
         rmtree "build-$$";
         unlink $logfile;
 
-        print "child: $$ $id done\n";
-        print $pipe "$$ $id";
+        print "child: $id ($$) done\n";
+        print $pipe "done $id $$\n";
         close $pipe;
         exit;
     }
@@ -242,9 +267,7 @@ sub upload
         return;
     }
 
-    print "curl -F upfile=\@$file $upload\n";
     `curl -F upfile=\@$file $upload`;
-    print "...done!\n";
 }
 
 sub bogomips
@@ -304,6 +327,7 @@ sub BUILD
     $builds{$id}{rev} = $rev;
     $builds{$id}{zip} = $zip;
     $builds{$id}{mt} = $mt;
+    $builds{$id}{cores} = $mt eq "mt" ? $cores : 1;
     $builds{$id}{result} = $result;
     $builds{$id}{seqnum} = $buildnum++;
 
@@ -317,7 +341,7 @@ sub UPDATE
     my ($rev) = @_;
     print "Update to $rev\n";
 
-    `curl -o rbclient.pl "http://svn.rockbox.org/viewvc.cgi/www/buildserver/rbclient.pl?revision=$rev"`;
+    `curl -o $perlfile "http://svn.rockbox.org/viewvc.cgi/www/buildserver/$perlfile?revision=$rev"`;
 
     print $sock "_UPDATE $rev\n";
     sleep 1;
@@ -338,7 +362,7 @@ sub parsecmd
         my $func = $1;
         my $rest = $2;
         chomp $rest;
-        #print "client: $func $rest\n";
+        #print "$func $rest\n";
 
         if (defined $functions{$func}) {
             &$func($rest);
@@ -348,12 +372,13 @@ sub parsecmd
         }
     }
     else {
-        print "Client didn't recognize '$cmdstr'\n";
+        print "Unrecognized command '$cmdstr'\n";
     }
 }
 
 sub testarchs
 {
+    # check compilers
     %which = (
         "arm", "arm-elf-gcc",
         "sh", "sh-elf-gcc",
@@ -368,9 +393,38 @@ sub testarchs
         }
     }
 
+    # check curl
     my $p = `which curl`;
     if (not $p =~ m|^/|) {
         die "I couldn't find 'curl' in your path.\n";
+    }
+
+    # check perlfile
+    if (not -w $perlfile) {
+        print "$perlfile must be located in the current directory, and writable by current\nuser, to allow automatic updates.";
+        exit;
+    }
+        
+    # check revision
+    open SRC, "<$perlfile" or die "$perlfile: $!";
+    my @rlines = grep(/\$Id\: /, <SRC>);
+    close SRC;
+
+    if ($rlines[0] =~ /\$Id: $perlfile (\d+) /) {
+        $revision = $1;
+    }
+    else {
+        die "Couldn't find svn revision in $perlfile.\n";
+    }
+
+    # check repository
+    my @svn = `svn info`;
+    my @url = grep(/^URL:/, @svn);
+    if ($url[0] =~ m|^URL: svn://svn.rockbox.org/rockbox/(.+)|) {
+        my $s = $1;
+        if ($s =~ /www/) {
+            die "Script must be ran in root of a source repository. You are in $s.\n";
+        }
     }
 }
 
