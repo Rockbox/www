@@ -6,6 +6,20 @@
 # http://www.rockbox.org/twiki/bin/view/Main/BuildServerRemake
 #
 
+# this is the local directory where clients upload logs and zips etc
+my $uploadpath="/var/www/b/upload";
+
+# the number of builds handed out to each client
+my $buildsperclient = 4;
+
+# the minimum protocol version supported. The protocol version is provided
+# by the client
+my $minimumversion = 4;
+
+# if the client is found too old, this is a svn rev we tell the client to
+# use to pick an update
+my $updaterev = 21444;
+
 use IO::Socket;
 use IO::Select;
 
@@ -29,9 +43,6 @@ my %client;
 #  {'bogomips'}
 #
 
-# this is the local directory where clients upload logs and zips etc
-my $uploadpath="/var/www/b/upload";
-
 my $started = time();
 
 sub kill_build {
@@ -52,8 +63,7 @@ sub kill_build {
             $client{$cl}{'expect'}="_CANCEL";
             $num++;
 
-            my $cli = $client{$fno}{'client'};
-            
+            my $cli = $client{$cl}{'client'};
 
             unlink <"$uploadpath/$cli-$id"*>;
         }
@@ -72,9 +82,7 @@ sub builds_in_progress {
             # for safety, skip the ones that are done already
             next;
         }
-        if($builds{$id}{'handcount'}) {
-            $c++;
-        }
+        $c += $builds{$id}{'handcount'};
     }
     return $c;
 }
@@ -107,12 +115,9 @@ sub getbuilds {
             $builds{$id}{'done'} = 0; # not done
 
             push @buildids, $id;
-
-         #   printf "$id:%d\n", int(rand(1000));
         }
     }
     close(F);
-#    printf ("%d builds read\n", scalar(@buildids));
 }
 
 
@@ -234,6 +239,11 @@ sub HELLO {
 
         print "< HELLO $args\n";
 
+        if($version < $minimumversion) {
+            updateclient($fno, $updaterev);
+            $client{$fno}{'bad'}="asked to update";
+        }
+
         handoutbuilds();
     }
 }
@@ -246,7 +256,7 @@ sub COMPLETED {
     print "< COMPLETED $id\n";
 
     # mark this as not building anymore
-    $client{$rh->fileno}{'building'}=0;
+    $client{$rh->fileno}{'building'}--;
 
     # cut out this build from this client
     $client{$rh->fileno}{'builds'}=~ s/ $id//;
@@ -310,16 +320,20 @@ sub sortclients {
     return $client{$b}{'bogomips'} <=> $client{$a}{'bogomips'};
 }
 
-sub startround {
-    # start a build round
-    print "START a new build round\n";
-    $buildround=1;
-
+sub resetbuildround {
     # mark all done builds as not done, not handed out
     for my $id (@buildids) {
         $builds{$id}{'done'}=0;
         $builds{$id}{'handcount'}=0;
     }
+}
+
+sub startround {
+    # start a build round
+    print "START a new build round\n";
+    $buildround=1;
+
+    resetbuildround();
 
     handoutbuilds();
 }
@@ -339,16 +353,18 @@ sub endround {
         }
     }
 
+    resetbuildround();
+
     $buildround=0;
+
+    # get to a new build soon
+    $started = time();
 }
 
 sub checkbuild {
     if(time() > $started + 5) {
-        startround();
         $started += 1000;
-        #for my $cl (keys %client) {
-        #    updateclient($cl, 21442);
-        #}
+        startround();
     }
 }
 
@@ -422,10 +438,9 @@ sub handoutbuilds {
         return;
     }
 
-
     for(sort sortclients keys %client) {
-        if(!$client{$_}{'building'}) {
-            # only add clients not actually building right now
+        if($client{$_}{'building'} < $buildsperclient) {
+            # only add clients with room left for more builds
             push @scl, $_;
         }
     }
@@ -452,7 +467,7 @@ sub handoutbuilds {
             }
         }
 
-        if(!$found) {
+        if(!$found && !$client{$cl}{'building'}) {
             printf("ALERT: No build found suitable for '%s' at $cl\n",
                    $client{$cl}{'client'});
         }
@@ -465,7 +480,8 @@ sub handoutbuilds {
 
     my $und = builds_undone();
     my $inp = builds_in_progress();
-    print "Still $und builds left to complete with $inp in progress\n";
+    printf(" $und builds not complete, %d clients. $inp builds in progress\n",
+           scalar(keys %client));
 
     if(!$inp && $und) {
         # there's no builds in progress because we don't have clients or
@@ -478,7 +494,7 @@ sub handoutbuilds {
 # Master socket for receiving new connections
 my $server = new IO::Socket::INET(
 	#LocalHost => "localhost",
-	LocalPort => 19999,
+	LocalPort => 19998,
 	Proto => "tcp",
 	Listen => 5,
 	Reuse => 1)
@@ -539,9 +555,6 @@ while(not $alldone) {
         }
     }
 
-    checkbuild();
-    checkclients();
-
     # loop over the clients and close the bad ones
     foreach my $rh (@$rh_set) {
 
@@ -563,9 +576,12 @@ while(not $alldone) {
             $rh->close;
             # do the handout builds calculations again now
             # when one client dropped off
-            handoutbuilds();
         }
     }
 
+    checkbuild();
+    checkclients();
+
+    handoutbuilds(); # see if there's more builds to hand out
 }
 warn "exiting.\n";
