@@ -14,11 +14,11 @@ my $buildsperclient = 4;
 
 # the minimum protocol version supported. The protocol version is provided
 # by the client
-my $minimumversion = 5;
+my $minimumversion = 6;
 
 # if the client is found too old, this is a svn rev we tell the client to
 # use to pick an update
-my $updaterev = 21450;
+my $updaterev = 21458;
 
 use IO::Socket;
 use IO::Select;
