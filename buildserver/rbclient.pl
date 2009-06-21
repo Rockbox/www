@@ -50,7 +50,7 @@ while (1) {
                                   Proto    => 'tcp')
         or sleep 1;
 
-    last if ($sock->connected);
+    last if ($sock and $sock->connected);
 }
 
 $sock->blocking(0);    
@@ -272,7 +272,7 @@ sub _COMPLETED
 sub PING
 {
     my ($arg) = @_;
-    print ">_PING $arg\n";
+#    print ">_PING $arg\n";
     print $sock "_PING $arg\n";
 }
 
@@ -307,12 +307,13 @@ sub BUILD
 
     print $sock "_BUILD $id\n";
 
-    #print "Queued build $id => $result\n";
+    print "Got build $id\n";
 }
 
 sub UPDATE
 {
     my ($rev) = @_;
+    print "Update to $rev\n";
 
     `curl -o rbclient.pl "http://svn.rockbox.org/viewvc.cgi/www/buildserver/rbclient.pl?revision=$rev"`;
 
@@ -335,7 +336,7 @@ sub parsecmd
         my $func = $1;
         my $rest = $2;
         chomp $rest;
-        print "client: $func $rest\n";
+        #print "client: $func $rest\n";
 
         if (defined $functions{$func}) {
             &$func($rest);
