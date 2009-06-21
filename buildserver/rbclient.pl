@@ -51,6 +51,7 @@ while (1) {
         or die "$!";
 
     last if ($sock->connected);
+    sleep 1;
 }
 
 $sock->blocking(0);    
