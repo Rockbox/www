@@ -407,10 +407,10 @@ sub testarchs
         
     # check revision
     open SRC, "<$perlfile" or die "$perlfile: $!";
-    my @rlines = grep(/\$Id\: /, <SRC>);
+    my @rlines = grep(/\Id: /, <SRC>);
     close SRC;
 
-    if ($rlines[0] =~ /\$Id$perlfile (\d+) /) {
+    if ($rlines[0] =~ /Id: $perlfile (\d+)/) {
         $revision = $1;
     }
     else {
