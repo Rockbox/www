@@ -15,7 +15,6 @@ use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
 my $revision = 5;
-my $upload = "http://$buildmaster/upload.pl";
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -26,6 +25,8 @@ my $clientname = $clientname;
 my $archlist = $archlist;
 my $buildmaster = $buildmaster || 'buildmaster.rockbox.org';
 my $port = $port || 19999;
+
+my $upload = "http://$buildmaster/upload.pl";
 
 my ($speed, $probecores) = &bogomips;
 my $cores = $cores || $probecores;
