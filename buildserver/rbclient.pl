@@ -47,16 +47,13 @@ beginning:
 while (1) {
     $sock = IO::Socket::INET->new(PeerAddr => $buildmaster,
                                   PeerPort => 19999,
-                                  Proto    => 'tcp',
-                                  Blocking => 0)
+                                  Proto    => 'tcp')
         or die "$!";
-    
-    last if ($sock->connected);
 
-    print "Waiting for server connection\n";
-    sleep 1;
+    last if ($sock->connected);
 }
 
+$sock->blocking(0);    
 
 # Add the master socket to select mask
 my $read_set = new IO::Select();
