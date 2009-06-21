@@ -1,6 +1,6 @@
 #!/usr/bin/perl -s
 #
-# $Id: rbclient.pl 18000 $
+# $Id$
 #
 
 #use strict;
@@ -410,7 +410,7 @@ sub testarchs
     my @rlines = grep(/\$Id\: /, <SRC>);
     close SRC;
 
-    if ($rlines[0] =~ /\$Id: $perlfile (\d+) /) {
+    if ($rlines[0] =~ /\$Id$perlfile (\d+) /) {
         $revision = $1;
     }
     else {
