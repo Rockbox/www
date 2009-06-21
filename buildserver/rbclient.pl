@@ -16,7 +16,7 @@ use POSIX ":sys_wait_h";
 my $perlfile = "rbclient.pl";
 my $buildmaster = $buildmaster || '192.168.1.10';
 my $port = $port || 19999;
-my $revision = 0;
+my $revision = 5;
 my $upload = "http://$buildmaster/b/upload.pl";
 my $cwd = `pwd`;
 chomp $cwd;
@@ -405,18 +405,6 @@ sub testarchs
         exit;
     }
         
-    # check revision
-    open SRC, "<$perlfile" or die "$perlfile: $!";
-    my @rlines = grep(/\Id: /, <SRC>);
-    close SRC;
-
-    if ($rlines[0] =~ /Id: $perlfile (\d+)/) {
-        $revision = $1;
-    }
-    else {
-        die "Couldn't find svn revision in $perlfile.\n";
-    }
-
     # check repository
     my @svn = `svn info`;
     my @url = grep(/^URL:/, @svn);
