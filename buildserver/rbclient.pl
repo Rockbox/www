@@ -6,11 +6,12 @@ use IO::Select;
 use IO::File;
 use IO::Pipe;
 use File::Basename;
+use File::Path;
 use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $buildmaster = '192.168.1.10';
-my $clientver = 3;
+my $clientver = 4;
 my $upload = "http://$buildmaster/b/upload.pl";
 my $cwd = `pwd`;
 chomp $cwd;
@@ -38,11 +39,11 @@ unless ($username and $password and $archlist and $clientname) {
 
 &testarchs();
 
+beginning:
+
 print "Starting build client $clientname. $speed bogomips and $cores cores.\n";
 
 my $sock;
-
-beginning:
 
 while (1) {
     $sock = IO::Socket::INET->new(PeerAddr => $buildmaster,
@@ -94,9 +95,10 @@ while (not $done) {
             }
             else {
                 # socket dropped. stop all builds and restart
+                print "Server socket disconnected! Cleanup and restart.\n";
                 for my $id (keys %builds) {
                     if ($builds{$id}{pid}) {
-                        kill 2, $builds{$id}{pid};
+                        &killchild($id);
                     }
                 }                
                 goto beginning;
@@ -173,6 +175,7 @@ sub startbuild
         printf DEST "Build Date: %s\n", strftime("%Y%m%dT%H%M%SZ", gmtime);
         print DEST "Build Type: $id\n";
         print DEST "Build Dir: $cwd/build-$$\n";
+        print DEST "Build Server: $clientname\n";
         close DEST;
 
         # child
@@ -220,7 +223,7 @@ sub startbuild
         }
 
         chdir "..";
-        `rm -r build-$$`;
+        rmtree "build-$$";
         unlink $logfile;
 
         print "child: $$ $id done\n";
@@ -281,9 +284,7 @@ sub CANCEL
     my ($id) = @_;
 
     if ($builds{$id}{pid}) {
-        kill 2, $builds{$id}{pid};
-        delete $builds{$id};
-        print "Killed build $id\n";
+        &killchild($id);
     }
 
     print $sock "_CANCEL $id\n";
@@ -399,4 +400,21 @@ sub readconfig
         }
     }
     close CFG;
+}
+
+sub killchild
+{
+    my ($id) = @_;
+    my $pid = $builds{$id}{pid};
+    kill 9, $pid;
+    print "Killed build $id\n";
+    waitpid $pid, WNOHANG;
+
+    my $dir = "$cwd/build-$pid";
+    if (-d $dir) {
+        print "Removing $dir\n";
+        rmtree $dir or warn "$dir: $!";
+    }
+
+    delete $builds{$id};
 }
