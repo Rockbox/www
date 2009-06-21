@@ -14,11 +14,11 @@ my $buildsperclient = 4;
 
 # the minimum protocol version supported. The protocol version is provided
 # by the client
-my $minimumversion = 4;
+my $minimumversion = 5;
 
 # if the client is found too old, this is a svn rev we tell the client to
 # use to pick an update
-my $updaterev = 21444;
+my $updaterev = 21450;
 
 use IO::Socket;
 use IO::Select;
@@ -460,6 +460,11 @@ sub handoutbuilds {
                 next;
             }
 
+            if($client{$fileno}{'builds'} =~ / $id/) {
+                # this client is already building this build, skip it
+                next;
+            }
+
             if(client_can_build($cl, $_)) {
                 build($cl, $_);
                 $found=1;
@@ -494,7 +499,7 @@ sub handoutbuilds {
 # Master socket for receiving new connections
 my $server = new IO::Socket::INET(
 	#LocalHost => "localhost",
-	LocalPort => 19998,
+	LocalPort => 19999,
 	Proto => "tcp",
 	Listen => 5,
 	Reuse => 1)
