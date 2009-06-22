@@ -16,6 +16,9 @@ my $buildsperclient = 4;
 # by the client
 my $minimumversion = 6;
 
+# the name of the server log
+my $logfile="logfile";
+
 # if the client is found too old, this is a svn rev we tell the client to
 # use to pick an update
 my $updaterev = 21458;
@@ -45,6 +48,17 @@ my %client;
 
 my $started = time();
 
+sub slog {
+    my ($l)=@_;
+
+    my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = gmtime(time);
+
+    open(L, ">>$logfile");
+    printf L ("%04d%02d%02d-%02d:%02d:%02d $l",
+              $year, $mon, $day, $hour, $min, $sec);
+    close(L);
+}
+
 sub kill_build {
     my ($id)=@_;
 
@@ -53,10 +67,13 @@ sub kill_build {
     # now kill this build on all clients still building it
     for my $cl (keys %client) {
         # cut out this build from this client
-        if($client{$cl}{'builds'}=~ s/ $id//) {
+        if($client{$cl}{'builds'}=~ s/-$id-//) {
             my $rh = $client{$cl}{'socket'};
 
             print "> CANCEL $id (on $cl)\n";
+
+            slog sprintf("Cancel: build $id client %s\n",
+                         $client{$cl}{'client'});
 
             # tell client to build!
             $rh->write("CANCEL $id\n");
@@ -136,13 +153,17 @@ sub getbuildscore {
 }
 
 sub updateclient {
-    my ($fileno, $rev) = @_;
+    my ($cl, $rev) = @_;
 
-    my $rh = $client{$fileno}{'socket'};
+    my $rh = $client{$cl}{'socket'};
 
     # tell client to build!
     $rh->write("UPDATE $rev\n");
-    $client{$fileno}{'expect'}="_UPDATE";
+    $client{$cl}{'expect'}="_UPDATE";
+
+    slog sprintf("Update: rev $rev client %s\n",
+                 $client{$cl}{'client'});
+
 }
 
 
@@ -165,13 +186,15 @@ sub build {
 
     print "> BUILD $args\n";
 
+    slog sprintf("Build: build $id rev $rev client %s\n",
+                 $client{$fileno}{'client'});
     #printf "** Tell %s to build %s\n",  $client{$fileno}{'client'}, $id;
 
     # mark this client with what response we expect from it
     $client{$fileno}{'building'}++;
 
     # remember what this client is building
-    $client{$fileno}{'builds'}.= " $id";
+    $client{$fileno}{'builds'}.= "-$id-";
 
     # count the number of times this build is handed out
     $builds{$id}{'handcount'}++;
@@ -221,6 +244,11 @@ sub HELLO {
         $client{$fno}{'bad'}="HELLO failed";
     }
     else {
+        my $user;
+        if($auth =~ /([^:]*):(.*)/) {
+            $user = $1;
+        }
+
         $client{$fno}{'client'} = $cli;
         $client{$fno}{'archlist'} = $archlist;
         $client{$fno}{'cpu'} = $cpu;
@@ -230,7 +258,6 @@ sub HELLO {
         $client{$fno}{'socket'} = $rh;
         $client{$fno}{'expect'} = ""; # no response expected yet
         $client{$fno}{'builds'} = ""; # none so far
-        
         $client{$fno}{'bad'} = 0; # not bad!
         $client{$fno}{'fine'} = 1;
 
@@ -245,6 +272,8 @@ sub HELLO {
         }
 
         handoutbuilds();
+
+        slog "Joined: client $cli user $user arch $archlist bogomips $bogomips\n";
     }
 }
 
@@ -255,11 +284,14 @@ sub COMPLETED {
 
     print "< COMPLETED $id\n";
 
+    slog sprintf("Completed: build $id client %s\n",
+                 $client{$rh->fileno}{'client'});
+
     # mark this as not building anymore
     $client{$rh->fileno}{'building'}--;
 
     # cut out this build from this client
-    $client{$rh->fileno}{'builds'}=~ s/ $id//;
+    $client{$rh->fileno}{'builds'}=~ s/-$id-//;
 
     $builds{$id}{'handcount'}--; # one less that builds this
     $builds{$id}{'done'}=1;
@@ -331,6 +363,9 @@ sub resetbuildround {
 sub startround {
     # start a build round
     print "START a new build round\n";
+    slog sprintf("New round: %d clients %d builds\n",
+                 scalar(keys %client), scalar(@buildids));
+
     $buildround=1;
 
     resetbuildround();
@@ -342,7 +377,10 @@ my $count;
 
 sub endround {
     # end if a build round
+    my $inp = builds_in_progress();
+
     print "END of a build round\n";
+    slog "End of round: $inp unmade\n";
 
     # kill all still handed out builds
     for my $id (@buildids) {
