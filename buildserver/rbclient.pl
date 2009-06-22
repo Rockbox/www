@@ -14,7 +14,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 6;
+my $revision = 7;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -136,7 +136,7 @@ while (1) {
                     # start new builds
                     $busy -= $builds{$id}{cores};
 
-                    waitpid $pid, WNOHANG;
+                    waitpid $pid, 0;
                     $read_set->remove($rh);
                     delete $conntype{$rh->fileno};
                     delete $builds{$id};
@@ -260,7 +260,7 @@ sub startbuild
         }
 
         chdir "..";
-        `rm -r $cwd/build-$$`;
+        rmtree "$cwd/build-$$";
 
         print "child: $id ($$) done\n";
         print $pipe "done $id $$\n";
@@ -461,12 +461,12 @@ sub killchild
     my $pid = $builds{$id}{pid};
     kill 9, $pid;
     print "Killed build $id\n";
-    waitpid $pid, WNOHANG;
+    waitpid $pid, 0;
 
     my $dir = "$cwd/build-$pid";
     if (-d $dir) {
         print "Removing $dir\n";
-        `rm -r $dir`;
+        rmtree $dir;
     }
 
     delete $builds{$id};
