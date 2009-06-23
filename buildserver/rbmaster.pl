@@ -7,10 +7,13 @@
 #
 
 # this is the local directory where clients upload logs and zips etc
-my $uploadpath="/var/www/b/upload";
+my $uploadpath="upload";
+
+# this is the local directory where zips and logs are moved to
+my $store="data";
 
 # the number of builds handed out to each client
-my $buildsperclient = 4;
+my $buildsperclient = 3;
 
 # the minimum protocol version supported. The protocol version is provided
 # by the client
@@ -21,7 +24,7 @@ my $logfile="logfile";
 
 # if the client is found too old, this is a svn rev we tell the client to
 # use to pick an update
-my $updaterev = 21458;
+my $updaterev = 21479;
 
 use IO::Socket;
 use IO::Select;
@@ -32,7 +35,7 @@ my %conn;
 my %builds;
 my @buildids;
 
-# this is 1 while we're in a build round
+# this is $rev while we're in a build round, 0 otherwise
 my $buildround;
 
 my %client;
@@ -55,7 +58,7 @@ sub slog {
 
     open(L, ">>$logfile");
     printf L ("%04d%02d%02d-%02d:%02d:%02d $l",
-              $year, $mon, $day, $hour, $min, $sec);
+              $year+1900, $mon+1, $mday, $hour, $min, $sec);
     close(L);
 }
 
@@ -70,10 +73,12 @@ sub kill_build {
         if($client{$cl}{'builds'}=~ s/-$id-//) {
             my $rh = $client{$cl}{'socket'};
 
-            print "> CANCEL $id (on $cl)\n";
+            my $took = time() - $client{$cl}{'btime'}{$id};
 
-            slog sprintf("Cancel: build $id client %s\n",
-                         $client{$cl}{'client'});
+            print "> CANCEL $id (on $cl) after $took seconds\n";
+
+            slog sprintf("Cancel: build $id client %s seconds %d\n",
+                         $client{$cl}{'client'}, $took);
 
             # tell client to build!
             $rh->write("CANCEL $id\n");
@@ -88,6 +93,7 @@ sub kill_build {
     if($num) {
         print "Killed $num remaining $id build!\n";
     }
+    return $num;
 }
 
 sub builds_in_progress {
@@ -171,11 +177,11 @@ sub build {
     my ($fileno, $id) = @_;
 
     my $rh = $client{$fileno}{'socket'};
-
+    my $rev = $buildround;
     my $args = sprintf("%s %s %d %s %s %s",
                        $id,
                        $builds{$id}{'confopts'},
-                       21443, # rev
+                       $rev,
                        $builds{$id}{'zip'},
                        "mt", # TODO: add support for this
                        $builds{$id}{'file'});
@@ -184,17 +190,19 @@ sub build {
     $rh->write("BUILD $args\n");
     $client{$fileno}{'expect'}="_BUILD";
 
-    print "> BUILD $args\n";
+    print "Build $args\n";
 
     slog sprintf("Build: build $id rev $rev client %s\n",
                  $client{$fileno}{'client'});
-    #printf "** Tell %s to build %s\n",  $client{$fileno}{'client'}, $id;
 
     # mark this client with what response we expect from it
     $client{$fileno}{'building'}++;
 
     # remember what this client is building
     $client{$fileno}{'builds'}.= "-$id-";
+
+    # remember when this build started
+    $client{$fileno}{'btime'}{$id} = time();
 
     # count the number of times this build is handed out
     $builds{$id}{'handcount'}++;
@@ -205,28 +213,24 @@ sub build {
 sub _BUILD {
     my ($rh, $args) = @_;
 
- #   print "< _BUILD\n";
     $client{$rh->fileno}{'expect'}="";
 }
 
 sub _PING {
     my ($rh, $args) = @_;
 
- #   print "< _PING\n";
     $client{$rh->fileno}{'expect'}="";
 }
 
 sub _UPDATE {
     my ($rh, $args) = @_;
 
- #   print "< _UPDATE\n";
     $client{$rh->fileno}{'expect'}="";
 }
 
 sub _CANCEL {
     my ($rh, $args) = @_;
 
- #   print "< _CANCEL\n";
     $client{$rh->fileno}{'expect'}="";
 }
 
@@ -264,7 +268,7 @@ sub HELLO {
         # send OK
         $rh->write("_HELLO ok\n");
 
-        print "< HELLO $args\n";
+        print "Joined: $args\n";
 
         if($version < $minimumversion) {
             updateclient($fno, $updaterev);
@@ -284,8 +288,8 @@ sub COMPLETED {
 
     print "< COMPLETED $id\n";
 
-    slog sprintf("Completed: build $id client %s\n",
-                 $client{$rh->fileno}{'client'});
+    # remember when this build started
+    my $took = time() - $client{$rh->fileno}{'btime'}{$id};
 
     # mark this as not building anymore
     $client{$rh->fileno}{'building'}--;
@@ -300,10 +304,31 @@ sub COMPLETED {
     $rh->write("_COMPLETED $id\n");
 
     # now kill this build on all clients still building it
-    kill_build($id);
+    my $kills = kill_build($id);
+
+    slog sprintf("Completed: build $id client %s seconds %d kills %d\n",
+                 $client{$rh->fileno}{'client'}, $took, $kills);
 
     # if we have builds not yet completed, hand out one
     handoutbuilds();
+
+    my $base=sprintf("$uploadpath/%s-%s", $client{$rh->fileno}{'client'}, $id);
+                     
+    if($builds{$id}{'zip'} eq "zip") {
+        # if a zip was included in the build
+        rename("$base.zip", "$store/rockbox-$id.zip");
+    }
+    # now move over the build log
+    rename("$base.log", "$store/rockbox-$id.log");
+
+    # now store some data about this build
+    my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = gmtime(time);
+
+    open(L, ">$store/rockbox-$id.info");
+    printf L ("%04d%02d%02d-%02d:%02d:%02d client %s seconds %d\n",
+              $year+1900, $mon+1, $mday, $hour, $min, $sec,
+              $client{$rh->fileno}{'client'}, $took);
+    close(L);
 }
 
 # commands it will accept
@@ -366,7 +391,8 @@ sub startround {
     slog sprintf("New round: %d clients %d builds\n",
                  scalar(keys %client), scalar(@buildids));
 
-    $buildround=1;
+    $buildround=21479;
+    $buildstart=time();
 
     resetbuildround();
 
@@ -378,18 +404,19 @@ my $count;
 sub endround {
     # end if a build round
     my $inp = builds_in_progress();
-
-    print "END of a build round\n";
-    slog "End of round: $inp unmade\n";
+    my $took = time() - $buildstart;
+    my $kills;
 
     # kill all still handed out builds
     for my $id (@buildids) {
         if($builds{$id}{'handcount'}) {
             # find all clients building this and cancel
-            kill_build($id);
+            $kills += kill_build($id);
             $builds{$id}{'handcount'}=0;
         }
     }
+    print "END of a build round, $took seconds, skipped $inp builds\n";
+    slog "End of round: skipped $inp seconds $took kill $kills\n";
 
     resetbuildround();
 
@@ -432,7 +459,6 @@ sub checkclients {
                 print "ALERT: waiting for $exp from client!\n";
             }
 
-   #         print "> PING (to $cl)\n";
             $rh->write("PING 111\n");
             $client{$cl}{'expect'}="_PING";
         }
@@ -457,10 +483,12 @@ sub client_can_build {
 sub client_gone {
     my ($cl) = @_;
 
+    # check which builds this client had going, and count down the handcount
+    # on those
     my $b = $client{$cl}{'builds'};
 
     if($b) {
-        my @bip = split(" ", $b);
+        my @bip = split("--+", $b);
         for my $id (@bip) {
             # we deduct the handcount since the client building this is gone
             $builds{$id}{'handcount'}--;
@@ -491,20 +519,19 @@ sub handoutbuilds {
         $done =0;
         my $found=0;
         # time to go through the builds and give to clients
-        for(sort sortbuilds @buildids) {
-            if($builds{$_}{'done'}) {
-                #printf "$_ is done now, skip\n";
+        for my $id (sort sortbuilds @buildids) {
+            if($builds{$id}{'done'}) {
                 $done++;
                 next;
             }
 
-            if($client{$fileno}{'builds'} =~ / $id/) {
+            if($client{$cl}{'builds'} =~ /-$id-/) {
                 # this client is already building this build, skip it
                 next;
             }
 
-            if(client_can_build($cl, $_)) {
-                build($cl, $_);
+            if(client_can_build($cl, $id)) {
+                build($cl, $id);
                 $found=1;
                 last;
             }
@@ -536,7 +563,6 @@ sub handoutbuilds {
 
 # Master socket for receiving new connections
 my $server = new IO::Socket::INET(
-	#LocalHost => "localhost",
 	LocalPort => 19999,
 	Proto => "tcp",
 	Listen => 5,
