@@ -40,7 +40,7 @@ chomp $os;
 
 unless ($username and $password and $archlist and $clientname) {
     print "Insufficient parameters. You must specify:\n\n-username, -password, -clientname, -archlist\n\noptional setting: -cores\n\nYou can also specify -config=file where parameters are stored as 'label: value'.";
-    exit;
+    exit 22;
 }
 
 &testarchs();
@@ -394,26 +394,30 @@ sub testarchs
         "arm", "arm-elf-gcc",
         "sh", "sh-elf-gcc",
         "m68k", "m68k-elf-gcc",
-        "mipsel", "mipsel-elf-gcc"
+        "mipsel", "mipsel-elf-gcc",
+        "sdl", "sdl-config"
         );
 
     for (split ',', $archlist) {
         my $p = `which $which{$_}`;
         if (not $p =~ m|^/|) {
-            die "You specified arch $_ but don't have $which{$_} in your path!\n";
+            print "You specified arch $_ but don't have $which{$_} in your path!\n";
+            exit 22;
         }
     }
 
     # check curl
     my $p = `which curl`;
     if (not $p =~ m|^/|) {
-        die "I couldn't find 'curl' in your path.\n";
+        print "I couldn't find 'curl' in your path.\n";
+        exit 22;
     }
 
     # check perlfile
     if (not -w $perlfile) {
         print "$perlfile must be located in the current directory, and writable by current\nuser, to allow automatic updates.";
-        exit;
+        sleep(1);
+        exit 22;
     }
         
     # check repository
@@ -422,7 +426,9 @@ sub testarchs
     if ($url[0] =~ m|^URL: svn://svn.rockbox.org/rockbox/(.+)|) {
         my $s = $1;
         if ($s =~ /www/) {
-            die "Script must be ran in root of a source repository. You are in $s.\n";
+            sleep(1);
+            print "Script must be ran in root of a source repository. You are in $s.\n";
+            exit 22;
         }
     }
 }
