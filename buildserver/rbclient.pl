@@ -31,6 +31,11 @@ my $upload = "http://$buildmaster/upload.pl";
 my ($speed, $probecores) = &bogomips;
 my $cores = $cores || $probecores;
 
+# Modify the speed accordingly if not using all cores
+if ($cores ne $probecores) {
+    $speed = $cores * ($speed / $probecores);
+}
+
 my $cpu = `uname -m`;
 chomp $cpu;
 my $os = `uname -o`;
