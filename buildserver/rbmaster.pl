@@ -75,7 +75,7 @@ sub slog {
 sub build_clients {
     my @list;
     for my $cl (keys %client) {
-        if($client{$fno}{'fine'}) {
+        if($client{$cl}{'fine'}) {
             push @list, $cl;
         }
     }
@@ -318,10 +318,21 @@ sub HELLO {
 
 sub COMPLETED {
     my ($rh, $args) = @_;
+    my $cli = $client{$rh->fileno}{'client'};
 
     my ($id) = split(" ", $args);
 
     print "< COMPLETED $id\n";
+
+    if($builds{$id}{'done'}) {
+        # This is a client saying this build is completed although it has
+        # already been said to be. Most likely because we killed this build
+        # already but the client didn't properly obey!
+        slog "Duplicate completion from $cli. $id is already complete\n";
+        print "ALERT: this build was already completed!!!\n";
+        return;
+    }
+
 
     # remember when this build started
     my $took = time() - $client{$rh->fileno}{'btime'}{$id};
@@ -342,12 +353,12 @@ sub COMPLETED {
     my $kills = kill_build($id);
 
     slog sprintf("Completed: build $id client %s seconds %d kills %d\n",
-                 $client{$rh->fileno}{'client'}, $took, $kills);
+                 $cli, $took, $kills);
 
     # if we have builds not yet completed, hand out one
     handoutbuilds();
 
-    my $base=sprintf("$uploadpath/%s-%s", $client{$rh->fileno}{'client'}, $id);
+    my $base=sprintf("$uploadpath/%s-%s", $cli, $id);
                      
     if($builds{$id}{'zip'} eq "zip") {
         # if a zip was included in the build
@@ -362,7 +373,7 @@ sub COMPLETED {
     open(L, ">$store/rockbox-$id.info");
     printf L ("%04d%02d%02d-%02d:%02d:%02d client %s seconds %d\n",
               $year+1900, $mon+1, $mday, $hour, $min, $sec,
-              $client{$rh->fileno}{'client'}, $took);
+              $cli, $took);
     close(L);
 }
 
@@ -439,6 +450,12 @@ my $count;
 
 sub endround {
     # end if a build round
+
+    if(!$buildround) {
+        # avoid accidentally doing this twice
+        return;
+    }
+
     my $inp = builds_in_progress();
     my $took = time() - $buildstart;
     my $kills;
@@ -457,20 +474,17 @@ sub endround {
     resetbuildround();
 
     $buildround=0;
-
-    my $q = pop @buildqueue;
-
-    if($q) {
-        # if there was an entry in the queue, start the new build
-        startround($q);
-    }
 }
 
 sub checkbuild {
-#    if(time() > $started + 5) {
-#        $started += 1000;
-#        startround();
-#    }
+    if(!$buildround) {
+        my $q = pop @buildqueue;
+
+        if($q) {
+            # if there was an entry in the queue, start the new build
+            startround($q);
+        }
+    }
 }
 
 sub checkclients {
@@ -725,8 +739,11 @@ while(not $alldone) {
 
         my $err = $client{$cl}{'bad'};
         if($err) {
-            printf("Client disconnect ($err), removing client on %d\n",
+            my $cli = $client{$cl}{'client'};
+
+            printf("Client disconnect ($err), removing client $cli on %d\n",
                    $rh->fileno);
+            slog "Disconnect: client $cli reason $err\n";
             client_gone($cl);
             delete $client{$cl};
             delete $conn{$cl};
