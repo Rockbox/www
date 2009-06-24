@@ -29,6 +29,11 @@ my $updaterev = 21479;
 use IO::Socket;
 use IO::Select;
 
+# secrets.pm is optional and may contain:
+# $rb_cmdpasswd = "secret"; master commander password
+# $rb_cmdenabled = 1;       enables the commander system
+eval 'require "secrets.pm"';
+
 # Each active connection gets an entry here, keyed by its filedes.
 my %conn;
 
@@ -37,6 +42,10 @@ my @buildids;
 
 # this is $rev while we're in a build round, 0 otherwise
 my $buildround;
+
+# queue of builds to do after the current buildround. pop them from the top
+# when building, push them to the list when adding
+my @buildqueue;
 
 my %client;
 #
@@ -62,13 +71,24 @@ sub slog {
     close(L);
 }
 
+# return an array with the file number of all fine build clients
+sub build_clients {
+    my @list;
+    for my $cl (keys %client) {
+        if($client{$fno}{'fine'}) {
+            push @list, $cl;
+        }
+    }
+    return @list;
+}
+
 sub kill_build {
     my ($id)=@_;
 
     my $num;
 
     # now kill this build on all clients still building it
-    for my $cl (keys %client) {
+    for my $cl (&build_clients) {
         # cut out this build from this client
         if($client{$cl}{'builds'}=~ s/-$id-//) {
             my $rh = $client{$cl}{'socket'};
@@ -234,6 +254,7 @@ sub _CANCEL {
     $client{$rh->fileno}{'expect'}="";
 }
 
+my $commander;
 sub HELLO {
     my ($rh, $args) = @_;
 
@@ -242,7 +263,21 @@ sub HELLO {
 
     my $fno = $rh->fileno;
 
-    if(!$bogomips) {
+    if(($version eq "commander") &&
+       ($archlist eq "$rb_cmdpasswd") &&
+       (1 eq "$rb_cmdenabled") &&
+       !$commander) {
+        $commander++;
+
+        # remove this from the client hash
+        delete $client{$fno};
+
+        print "Commander attached at $fno\n";
+        slog "Commander attached\n";
+
+        $conn{$fno}{type} = "commander";
+    }
+    elsif(!$bogomips) {
         # send error
         $rh->write("_HELLO error\n");
         $client{$fno}{'bad'}="HELLO failed";
@@ -263,7 +298,6 @@ sub HELLO {
         $client{$fno}{'expect'} = ""; # no response expected yet
         $client{$fno}{'builds'} = ""; # none so far
         $client{$fno}{'bad'} = 0; # not bad!
-        $client{$fno}{'fine'} = 1;
 
         # send OK
         $rh->write("_HELLO ok\n");
@@ -274,9 +308,10 @@ sub HELLO {
             updateclient($fno, $updaterev);
             $client{$fno}{'bad'}="asked to update";
         }
-
-        handoutbuilds();
-
+        else {
+            $client{$fno}{'fine'} = 1;
+            handoutbuilds();
+        }
         slog "Joined: client $cli user $user arch $archlist bogomips $bogomips\n";
     }
 }
@@ -386,12 +421,13 @@ sub resetbuildround {
 }
 
 sub startround {
+    my ($rev) = @_;
     # start a build round
-    print "START a new build round\n";
-    slog sprintf("New round: %d clients %d builds\n",
-                 scalar(keys %client), scalar(@buildids));
+    print "START a new build round for rev $rev\n";
+    slog sprintf("New round: %d clients %d builds rev $rev\n",
+                 scalar(&build_clients), scalar(@buildids));
 
-    $buildround=21479;
+    $buildround=$rev;
     $buildstart=time();
 
     resetbuildround();
@@ -422,24 +458,25 @@ sub endround {
 
     $buildround=0;
 
-    # get to a new build soon
-    $started = time();
+    my $q = pop @buildqueue;
+
+    if($q) {
+        # if there was an entry in the queue, start the new build
+        startround($q);
+    }
 }
 
 sub checkbuild {
-    if(time() > $started + 5) {
-        $started += 1000;
-        startround();
-    }
+#    if(time() > $started + 5) {
+#        $started += 1000;
+#        startround();
+#    }
 }
 
 sub checkclients {
     my $check = time() - 10;
 
-    for my $cl (keys %client) {
-        if(!$client{$cl}{'fine'}) {
-            next;
-        }
+    for my $cl (&build_clients) {
 
         if($client{$cl}{'expect'} eq "_PING") {
             # if this is already waiting for a ping, we take different
@@ -504,7 +541,7 @@ sub handoutbuilds {
         return;
     }
 
-    for(sort sortclients keys %client) {
+    for(sort sortclients &build_clients) {
         if($client{$_}{'building'} < $buildsperclient) {
             # only add clients with room left for more builds
             push @scl, $_;
@@ -551,13 +588,44 @@ sub handoutbuilds {
     my $und = builds_undone();
     my $inp = builds_in_progress();
     printf(" $und builds not complete, %d clients. $inp builds in progress\n",
-           scalar(keys %client));
+           scalar(&build_clients));
 
     if(!$inp && $und) {
         # there's no builds in progress because we don't have clients or
         # the clients can't build the builds we have left, and thus we
         # consider this build round complete!
         endround();
+    }
+}
+
+# Control commands:
+#
+# BUILD [rev] - start a build immediately, or fail if one is already in
+# progress
+#
+# QUEUE [rev] - queue a build. Do it at once if possible, or add it to get
+# done afterwards.
+#
+
+sub control {
+    my ($cmd, $rh) = @_;
+    if($cmd =~ /^BUILD (\d+)/) {
+        if(!$buildround) {
+            &startround($1);
+            $rh->write("OK!\n");
+        }
+        else {
+            $rh->write("BUSY!\n");
+        }
+    }
+    elsif($cmd =~ /^QUEUE (\d+)/) {
+        if(!$buildround) {
+            &startround($1);
+        }
+        else {
+            push @buildqueue, $1;
+        }
+        $rh->write("OK!\n");
     }
 }
 
@@ -580,6 +648,10 @@ my $read_set = new IO::Select();
 $read_set->add($server);
 $conn{$server->fileno} = { type => 'master' };
 
+print "Server starts\n";
+
+slog "Server starts\n";
+
 # Mail loop active until ^C pressed
 my $alldone = 0;
 $SIG{INT} = sub { warn "received interrupt\n"; $alldone = 1; };
@@ -599,6 +671,23 @@ while(not $alldone) {
             $read_set->add($new);
             $conn{$new->fileno} = { type => 'rbclient' };
             $new->blocking(0) or die "blocking: $!";
+        }
+        elsif ($type eq 'commander') {
+            my $data;
+            my $len = $rh->read($data, 512);
+
+            if ($data) {
+                chomp $data;
+                control($data, $rh);
+            }
+            else {
+                print "Commander left\n";
+                slog "Commander left\n";                
+                delete $conn{$cl};
+                $read_set->remove($rh);
+                $rh->close;
+                $commander=0;
+            }
         }
         else {
             my $data;
