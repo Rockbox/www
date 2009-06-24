@@ -352,7 +352,10 @@ sub UPDATE
     my ($rev) = @_;
     print "Update to $rev\n";
 
-    `curl -o $perlfile "http://svn.rockbox.org/viewvc.cgi/www/buildserver/$perlfile?revision=$rev"`;
+    `curl -o $perlfile.new "http://svn.rockbox.org/viewvc.cgi/www/buildserver/$perlfile?revision=$rev"`;
+    
+    # This might fail, but runclient.sh will save us
+    rename("$perlfile.new", $perlfile);
 
     print $sock "_UPDATE $rev\n";
     sleep 1;
@@ -416,6 +419,13 @@ sub testarchs
     # check perlfile
     if (not -w $perlfile) {
         print "$perlfile must be located in the current directory, and writable by current\nuser, to allow automatic updates.";
+        sleep(1);
+        exit 22;
+    }
+
+    # check an upgrade file
+    if (-e "$perlfile.new") {
+        print "An upgrade didn't complete. Rename $perlfile.new to $perlfile\n"
         sleep(1);
         exit 22;
     }
