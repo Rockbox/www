@@ -425,7 +425,7 @@ sub testarchs
 
     # check an upgrade file
     if (-e "$perlfile.new") {
-        print "An upgrade didn't complete. Rename $perlfile.new to $perlfile\n"
+        print "An upgrade didn't complete. Rename $perlfile.new to $perlfile\n";
         sleep(1);
         exit 22;
     }
