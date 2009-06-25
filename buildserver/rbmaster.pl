@@ -17,14 +17,14 @@ my $buildsperclient = 3;
 
 # the minimum protocol version supported. The protocol version is provided
 # by the client
-my $minimumversion = 6;
+my $minimumversion = 8;
 
 # the name of the server log
 my $logfile="logfile";
 
 # if the client is found too old, this is a svn rev we tell the client to
 # use to pick an update
-my $updaterev = 21479;
+my $updaterev = 21517;
 
 use IO::Socket;
 use IO::Select;
@@ -60,9 +60,6 @@ my $buildround;
 # queue of builds to do after the current buildround. pop them from the top
 # when building, push them to the list when adding
 my @buildqueue;
-
-# name => fileno
-my %clientnames;
 
 my %client;
 #
@@ -308,14 +305,15 @@ sub HELLO {
         }
         $cli .= "-$user"; # append the user name
 
-        if($clientnames{$cli}) {
-            # send error
-            print "HELLO dupe name: $cli ($args)\n";
-            $rh->write("_HELLO error duplicate name!\n");
-            $client{$fno}{'bad'}="duplicate name";
-            return;
+        for my $cl (@build_clients) {
+            if($client{$cl}{'client'} eq "$cli") {
+                print "HELLO dupe name: $cli ($args)\n";
+                $rh->write("_HELLO error duplicate name!\n");
+                $client{$fno}{'bad'}="duplicate name";
+                $client{$fno}{'client'} = "$cli.$$";
+                return;
+            }
         }
-        $clientnames{$cli} = $fno;
 
         $client{$fno}{'client'} = $cli;
         $client{$fno}{'archlist'} = $archlist;
@@ -784,9 +782,6 @@ while(not $alldone) {
         my $err = $client{$cl}{'bad'};
         if($err) {
             my $cli = $client{$cl}{'client'};
-
-            # this name is now available again!
-            $clientnames{$cli} = "";
 
             printf("Client disconnect ($err), removing client $cli on %d\n",
                    $rh->fileno);
