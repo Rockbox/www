@@ -290,7 +290,7 @@ sub HELLO {
         if($auth =~ /([^:]*):(.*)/) {
             $user = $1;
         }
-        $cli = ".$user"; # append the user name
+        $cli = "-$user"; # append the user name
 
         if($clientnames{$cli}) {
             # send error
