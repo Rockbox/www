@@ -30,8 +30,22 @@ use IO::Socket;
 use IO::Select;
 
 # secrets.pm is optional and may contain:
-# $rb_cmdpasswd = "secret"; master commander password
+#
+# The master commander password that must be presented when connecting
+# $rb_cmdpasswd = "secret";
+#
+# Enabling the commander concept
 # $rb_cmdenabled = 1;       enables the commander system
+#
+# The shell script run after each build is completed. The arguments for this
+# script is $buildid $client-$user.
+# NOTE: this script is called synchronously. Make it run fast.
+# $rb_eachcomplete = "scriptname.sh";
+#
+# The shell script run after each build round is completed. No arguments.
+# NOTE: this script is called synchronously. Make it run fast.
+# $rb_buildround = "scriptname.sh"
+#
 eval 'require "secrets.pm"';
 
 # Each active connection gets an entry here, keyed by its filedes.
@@ -387,6 +401,10 @@ sub COMPLETED {
               $year+1900, $mon+1, $mday, $hour, $min, $sec,
               $cli, $took);
     close(L);
+
+    if($rb_eachcomplete) {
+        system("$rb_eachcomplete $id $cli");
+    }
 }
 
 # commands it will accept
@@ -485,6 +503,9 @@ sub endround {
 
     resetbuildround();
 
+    if($rb_buildround) {
+        system("$rb_buildround");
+    }
     $buildround=0;
 }
 
