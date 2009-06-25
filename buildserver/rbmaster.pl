@@ -47,6 +47,9 @@ my $buildround;
 # when building, push them to the list when adding
 my @buildqueue;
 
+# name => fileno
+my %clientnames;
+
 my %client;
 #
 # {$fileno}{'cmd'} for building incoming commands
@@ -287,6 +290,15 @@ sub HELLO {
         if($auth =~ /([^:]*):(.*)/) {
             $user = $1;
         }
+        $cli = ".$user"; # append the user name
+
+        if($clientnames{$cli}) {
+            # send error
+            $rh->write("_HELLO error duplicate name!\n");
+            $client{$fno}{'bad'}="duplicate name";
+            return;
+        }
+        $clientnames{$cli} = $fno;
 
         $client{$fno}{'client'} = $cli;
         $client{$fno}{'archlist'} = $archlist;
@@ -547,6 +559,8 @@ sub client_gone {
     }
 }
 
+my $stat;
+
 sub handoutbuilds {
     my @scl; # list of clients $fileno sorted
 
@@ -601,8 +615,14 @@ sub handoutbuilds {
 
     my $und = builds_undone();
     my $inp = builds_in_progress();
-    printf(" $und builds not complete, %d clients. $inp builds in progress\n",
-           scalar(&build_clients));
+    my $bc = scalar(&build_clients);
+
+    # only display this stat if different than last time
+    my $thisstat="$und-$inp-$bc";
+    if($thisstat ne $stat) {
+        print "$und builds not complete, $bc clients. $inp builds in progress\n";
+        $stat = $thisstat;
+    }
 
     if(!$inp && $und) {
         # there's no builds in progress because we don't have clients or
@@ -697,7 +717,7 @@ while(not $alldone) {
             else {
                 print "Commander left\n";
                 slog "Commander left\n";                
-                delete $conn{$cl};
+                delete $conn{$rh->fileno};
                 $read_set->remove($rh);
                 $rh->close;
                 $commander=0;
@@ -740,6 +760,9 @@ while(not $alldone) {
         my $err = $client{$cl}{'bad'};
         if($err) {
             my $cli = $client{$cl}{'client'};
+
+            # this name is now available again!
+            $clientnames{$cli} = "";
 
             printf("Client disconnect ($err), removing client $cli on %d\n",
                    $rh->fileno);
