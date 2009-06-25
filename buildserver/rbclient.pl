@@ -317,18 +317,20 @@ sub upload
 
 sub bogomips
 {
-    open CPUINFO, "</proc/cpuinfo" or return 1;
+    open CPUINFO, "</proc/cpuinfo" or return 0;
     my @lines = grep /^bogomips/, <CPUINFO>;
+    seek(CPUINFO, 0, SEEK_SET);
+    my @cores = grep /^processor/, <CPUINFO>;
     close CPUINFO;
 
-    my $bogomips = 0;
+    my $bogomips = 1;
     for (@lines) {
         if (/bogomips\s*: (\d+)/) {
             $bogomips += $1;
         }
     }
 
-    return ($bogomips, scalar @lines);
+    return ($bogomips, scalar @cores);
 }
     
 sub _HELLO
