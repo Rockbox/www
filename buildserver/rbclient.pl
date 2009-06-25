@@ -317,7 +317,7 @@ sub upload
 
 sub bogomips
 {
-    open CPUINFO, "</proc/cpuinfo" or return 0;
+    open CPUINFO, "</proc/cpuinfo" or return 1;
     my @lines = grep /^bogomips/, <CPUINFO>;
     close CPUINFO;
 
