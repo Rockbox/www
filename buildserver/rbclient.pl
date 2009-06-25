@@ -232,9 +232,13 @@ sub startbuild
         $pipe->writer();
         $pipe->autoflush();
         my $starttime = time();
+        # It is important that we name the uploaded files
+        # [client]-[user]-[build].log/zip as otherwise the server won't
+        # find/use it
+        my $base="$clientname-$username-$id";
 
         mkdir "build-$$";
-        my $logfile = "$cwd/build-$$/$clientname-$id.log";
+        my $logfile = "$cwd/build-$$/$base.log";
         my $log = ">> $logfile 2>&1";
         
         open DEST, ">$logfile";
@@ -283,7 +287,7 @@ sub startbuild
             `make zip $log`;
             
             if (-f "rockbox.zip") {
-                my $newzip = "$clientname-$id.zip";
+                my $newzip = "$base.zip";
                 if (rename "rockbox.zip", $newzip) {
                     &upload($newzip);
                 }
