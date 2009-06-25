@@ -44,7 +44,36 @@ chomp $os;
 &readconfig($config) if ($config);
 
 unless ($username and $password and $archlist and $clientname) {
-    print "Insufficient parameters. You must specify:\n\n-username, -password, -clientname, -archlist\n\noptional setting: -cores\n\nYou can also specify -config=file where parameters are stored as 'label: value'.";
+    print <<MOO
+Insufficient parameters. You must specify:
+
+-username=[user]
+  This is your user name given to you by the server admins
+
+-password=[password]
+  The secret password given to you by the server admins
+
+-clientname=[client name]
+  The unique name of this particular instances of your build clients. After
+  all, you at least run one on your desktop, one on your laptop and one in
+  your toaster. Right?
+
+-archlist=[list,of,archs]
+  May include arm,m68k,sh,sdl,mipsel and should be a comma-separated list with
+  no spaces
+
+optional setting: 
+
+-cores=[num]
+  Override rbclient\'s probed results
+
+-buildmaster=[host]
+  Connect to this given server instead of the default.
+
+You can also specify -config=file where parameters are stored as 'label: value'
+
+MOO
+;
     exit 22;
 }
 
