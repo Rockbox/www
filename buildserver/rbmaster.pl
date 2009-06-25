@@ -296,6 +296,8 @@ sub HELLO {
     }
     elsif(!$bogomips) {
         # send error
+        print "Bad HELLO: $args\n";
+
         $rh->write("_HELLO error\n");
         $client{$fno}{'bad'}="HELLO failed";
     }
@@ -304,10 +306,11 @@ sub HELLO {
         if($auth =~ /([^:]*):(.*)/) {
             $user = $1;
         }
-        $cli = "-$user"; # append the user name
+        $cli .= "-$user"; # append the user name
 
         if($clientnames{$cli}) {
             # send error
+            print "HELLO dupe name: $cli ($args)\n";
             $rh->write("_HELLO error duplicate name!\n");
             $client{$fno}{'bad'}="duplicate name";
             return;
