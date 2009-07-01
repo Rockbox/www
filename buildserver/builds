@@ -10,7 +10,7 @@ sdl:nozip:iaudiox5sim:iAudio X5 - Simulator:rockboxui:--target=x5,--type=s
 sdl:nozip:iaudiom5sim:iAudio M5 - Simulator:rockboxui:--target=m5,--type=s
 sdl:nozip:iaudiom3sim:iAudio M3 - Simulator:rockboxui:--target=m3,--type=s
 sdl:nozip:ipod4graysim:iPod 4G Grayscale - Simulator:rockboxui:--target=ipod4g,--type=s
-sdl:nozip:ipodvideosim:iPod Video - Simulator:rockboxui:--target=ipodvideo,--type=s
+sdl:nozip:ipodvideosim:iPod Video - Simulator:rockboxui:--target=ipodvideo,--type=s,-ram=32
 sdl:nozip:ipodmini2gsim:iPod Mini 2G - Simulator:rockboxui:--target=ipodmini2g,--type=s
 sdl:nozip:h10sim:iriver H10 - Simulator:rockboxui:--target=h10,--type=s
 sdl:nozip:gigabeatfsim:Toshiba Gigabeat F - Simulator:rockboxui:--target=gigabeatf,--type=s
