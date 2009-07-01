@@ -361,6 +361,9 @@ sub CANCEL
     if ($builds{$id}{pid}) {
         &killchild($id);
     }
+    elsif (defined $builds{$id}) {
+        delete $builds{$id};
+    }
 
     print $sock "_CANCEL $id\n";
 }
