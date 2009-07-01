@@ -50,6 +50,7 @@ and Ondio
 <table class="news" summary="recent news">
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
+<tr><td nowrap>2009-06-21</td><td><a href="/twiki/bin/view/Main/DevConEuro2009">DevConEuro2009</a> has ended </td></tr>
 <tr><td nowrap>2009-06-19</td><td><a href="http://www.rockbox.org/twiki/bin/view/Main/ReleaseNotes33">Rockbox 3.3 is released</a></td></tr>
 <tr><td nowrap>2009-03-24</td><td><a href="http://themes.rockbox.org/">themes.rockbox.org</a> is available</td></tr>
 <tr><td nowrap>2009-03-23</td><td><a href="http://www.rockbox.org/twiki/bin/view/Main/ReleaseNotes32">Rockbox 3.2 is released</a></td></tr>
