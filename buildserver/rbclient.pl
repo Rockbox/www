@@ -14,7 +14,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 9;
+my $revision = 10;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -283,7 +283,7 @@ sub startbuild
         &upload($logfile);
 
         my $zip = $builds{$id}{zip};
-        if ($zip ne "nozip") {
+        if (-f $builds{$id}{result} and $zip ne "nozip") {
             print "Making $id zip\n";
             `make zip $log`;
             
