@@ -28,6 +28,7 @@ my $updaterev = 21609;
 
 use IO::Socket;
 use IO::Select;
+use DBI;
 
 # secrets.pm is optional and may contain:
 #
@@ -45,6 +46,10 @@ use IO::Select;
 # The shell script run after each build round is completed. No arguments.
 # NOTE: this script is called synchronously. Make it run fast.
 # $rb_buildround = "scriptname.sh"
+#
+# The account details used to access the mysql database.
+# $rb_dbuser = 'dbuser';
+# $rb_dbpwd = 'dbpwd';
 #
 eval 'require "secrets.pm"';
 
@@ -382,6 +387,13 @@ sub COMPLETED {
     slog sprintf("Completed: build $id client %s seconds %d kills %d\n",
                  $cli, $took, $kills);
 
+    # log this build in the database
+    # (must be done before handoutbuilds() since it will reset $buildround)
+    if ($rb_dbuser) {
+        &db_submit($buildround, $id, $cli, $took,
+                   $client{$rh->fileno}{'bogomips'});
+    }
+
     # if we have builds not yet completed, hand out one
     handoutbuilds();
 
@@ -406,6 +418,16 @@ sub COMPLETED {
     if($rb_eachcomplete) {
         system("$rb_eachcomplete $id $cli");
     }
+}
+
+sub db_submit
+{
+    my ($revision, $id, $client, $timeused, $bogomips) = @_;
+    my $dbpath = 'DBI:mysql:rockbox';
+    my $db = DBI->connect($dbpath, $rb_dbuser, $rb_dbpwd);
+    my $sth = $db->prepare("INSERT INTO builds (revision,id,client,timeused,bogomips) VALUES (?,?,?,?,?)");
+    $sth->execute($revision, $id, $client, $timeused, $bogomips);
+    $db->disconnect();
 }
 
 # commands it will accept
