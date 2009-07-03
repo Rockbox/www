@@ -46,12 +46,12 @@ if ($date =~ /(\d\d\d\d)(\d\d)(\d\d)/) {
     $title = "#rockbox $1-$2-$3";
 }
 
-my $msie = 0;
-if ($ENV{'HTTP_USER_AGENT'} =~ /MSIE/) {
-    $msie = 1;
+my $gecko = 0;
+if ($ENV{'HTTP_USER_AGENT'} =~ /Gecko/) {
+    $gecko = 1;
 }
 
-if ($file eq "current.txt" and not $msie) {
+if ($file eq "current.txt" and $gecko) {
     print "Content-type: multipart/mixed;boundary=Delimiter\n\n";
     print "--Delimiter\n";
     print "Content-type: text/html\n\n";
@@ -194,8 +194,8 @@ Seconds:
 END
     ;
 
-if ($msie) {
-    print "<p><b>Notice:</b> Microsoft Internet Explorer does not support the 'Server Push' feature that allows this log reader to auto-update. Therefore this page will simply show the current log, and not automatically update.</p>\n";
+if (!$gecko) {
+    print "<p><b>Notice:</b> Only Mozilla-derived browsers support the multipart/mixed \"server push\" method used by this log reader to auto-update. Since you do not appear to use a Mozilla browser, this page will simply show the current log, and not automatically update.</p>\n";
 }
 
 $date =~ m/(\d\d\d\d)(\d\d)(\d\d)/;
@@ -207,7 +207,7 @@ my $houranchor;
 print "<table class=irclog>\n";
 # pass 2: output html
 
-if ($file eq "current.txt" and not $msie) {
+if ($file eq "current.txt" and $gecko) {
     # go into tail chase mode
 
     # start auto-scrolling
@@ -366,6 +366,8 @@ sub parsechunk {
                 $n1 = $n2 = "";
             }
 
+            # remove control codes
+            $message =~ s|[\000-\037]||g;
 
             print("<tr valign=top class='row$realnick'>",
                   "<td class=time><a name='$hour:$minute:$second' href='$ENV{query}#$hour:$minute:$second'>$hour:$minute",
