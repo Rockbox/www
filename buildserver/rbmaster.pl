@@ -310,7 +310,7 @@ sub HELLO {
         }
         $cli .= "-$user"; # append the user name
 
-        for my $cl (@build_clients) {
+        for my $cl (&build_clients) {
             if($client{$cl}{'client'} eq "$cli") {
                 print "HELLO dupe name: $cli ($args)\n";
                 $rh->write("_HELLO error duplicate name!\n");
@@ -389,10 +389,8 @@ sub COMPLETED {
 
     # log this build in the database
     # (must be done before handoutbuilds() since it will reset $buildround)
-    if ($rb_dbuser) {
-        &db_submit($buildround, $id, $cli, $took,
-                   $client{$rh->fileno}{'bogomips'});
-    }
+    &db_submit($buildround, $id, $cli, $took,
+               $client{$rh->fileno}{'bogomips'});
 
     # if we have builds not yet completed, hand out one
     handoutbuilds();
@@ -422,11 +420,19 @@ sub COMPLETED {
 
 sub db_submit
 {
+    return unless ($rb_dbuser and $rb_dbpwd);
+
     my ($revision, $id, $client, $timeused, $bogomips) = @_;
     my $dbpath = 'DBI:mysql:rockbox';
     my $db = DBI->connect($dbpath, $rb_dbuser, $rb_dbpwd);
-    my $sth = $db->prepare("INSERT INTO builds (revision,id,client,timeused,bogomips) VALUES (?,?,?,?,?)");
-    $sth->execute($revision, $id, $client, $timeused, $bogomips);
+    if ($client) {
+        my $sth = $db->prepare("UPDATE builds SET client=?,timeused=?,bogomips=? WHERE revision=? and id=?");
+        $sth->execute($client, $timeused, $bogomips, $revision, $id);
+    }
+    else {
+        my $sth = $db->prepare("INSERT INTO builds (revision,id) VALUES (?,?) ON DUPLICATE KEY UPDATE client='',timeused=0,bogomips=0");
+        $sth->execute($revision, $id);
+    }
     $db->disconnect();
 }
 
@@ -495,6 +501,11 @@ sub startround {
     $buildstart=time();
 
     resetbuildround();
+
+    # fill db with builds to be done
+    for my $id (@buildids) {
+        &db_submit($buildround, $id);
+    }
 
     handoutbuilds();
 }
