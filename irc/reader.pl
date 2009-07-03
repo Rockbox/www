@@ -47,7 +47,7 @@ if ($date =~ /(\d\d\d\d)(\d\d)(\d\d)/) {
 }
 
 my $gecko = 0;
-if ($ENV{'HTTP_USER_AGENT'} =~ /Gecko/) {
+if ($ENV{'HTTP_USER_AGENT'} =~ m|Gecko/2|) {
     $gecko = 1;
 }
 
