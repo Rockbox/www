@@ -41,6 +41,17 @@ chomp $cpu;
 my $os = `uname -o`;
 chomp $os;
 
+if ($cpu eq "i686" or $cpu eq "i386") {
+    $bits = 32;
+}
+elsif ($cpu eq "x86_64") {
+    $bits = 64;
+}
+else {
+    printf("Unrecognised cpu $cpu - please fix rbclient.pl to know of this\n");
+    exit 22;
+}
+
 &readconfig($config) if ($config);
 
 unless ($username and $password and $archlist and $clientname) {
@@ -102,8 +113,9 @@ $read_set->add($sock);
 $conntype{$sock->fileno} = 'socket';
 
 my $auth = "$username:$password";
-print "HELLO $revision $archlist $auth $clientname $cpu 32 $os $speed\n";
-print $sock "HELLO $revision $archlist $auth $clientname $cpu 32 $os $speed\n";
+
+print "HELLO $revision $archlist $auth $clientname $cpu $bits $os $speed\n";
+print $sock "HELLO $revision $archlist $auth $clientname $cpu $bits $os $speed\n";
 
 my $busy = 0;
 my %builds = ();
