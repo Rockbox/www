@@ -340,7 +340,10 @@ sub bogomips
     
 sub _HELLO
 {
-    die @_ if ($_[0] ne "ok");
+    if ($_[0] ne "ok") {
+        print "Server refused connection: @_\n";
+        exit 22;
+    }
 }
 
 sub _COMPLETED
