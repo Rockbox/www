@@ -63,9 +63,9 @@ my @buildids;
 # this is $rev while we're in a build round, 0 otherwise
 my $buildround;
 
-# queue of builds to do after the current buildround. pop them from the top
-# when building, push them to the list when adding
-my @buildqueue;
+# revision to build after the current buildround.
+# if several build requests are recieved during a round, we only keep the last
+my $nextround;
 
 my %client;
 #
@@ -511,8 +511,6 @@ sub startround {
     handoutbuilds();
 }
 
-my $count;
-
 sub endround {
     # end if a build round
 
@@ -545,6 +543,12 @@ sub endround {
         system("$rb_buildround");
     }
     $buildround=0;
+
+    if ($nextround) {
+        &startround($nextround);
+        $nextround = 0;
+    }
+
 }
 
 sub checkbuild {
@@ -705,18 +709,9 @@ sub control {
     if($cmd =~ /^BUILD (\d+)/) {
         if(!$buildround) {
             &startround($1);
-            $rh->write("OK!\n");
         }
         else {
-            $rh->write("BUSY!\n");
-        }
-    }
-    elsif($cmd =~ /^QUEUE (\d+)/) {
-        if(!$buildround) {
-            &startround($1);
-        }
-        else {
-            push @buildqueue, $1;
+            $nextround = $1;
         }
         $rh->write("OK!\n");
     }
