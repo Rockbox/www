@@ -28,6 +28,7 @@ my $updaterev = 21609;
 
 use IO::Socket;
 use IO::Select;
+use File::Path;
 use DBI;
 
 # secrets.pm is optional and may contain:
@@ -392,9 +393,6 @@ sub COMPLETED {
     &db_submit($buildround, $id, $cli, $took,
                $client{$rh->fileno}{'bogomips'});
 
-    # if we have builds not yet completed, hand out one
-    handoutbuilds();
-
     my $base=sprintf("$uploadpath/%s-%s", $cli, $id);
                      
     if($builds{$id}{'zip'} eq "zip") {
@@ -403,6 +401,9 @@ sub COMPLETED {
     }
     # now move over the build log
     rename("$base.log", "$store/rockbox-$id.log");
+
+    # if we have builds not yet completed, hand out one
+    handoutbuilds();
 
     # now store some data about this build
     my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = gmtime(time);
@@ -536,6 +537,9 @@ sub endround {
     slog "End of round: skipped $inp seconds $took kill $kills\n";
 
     resetbuildround();
+
+    # clear upload dir
+    rmtree( $uploadpath, {keep_root => 1} );
 
     if($rb_buildround) {
         system("$rb_buildround");
