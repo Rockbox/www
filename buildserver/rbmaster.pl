@@ -272,6 +272,7 @@ sub _CANCEL {
     my ($rh, $args) = @_;
 
     $client{$rh->fileno}{'expect'}="";
+    $client{$rh->fileno}{'building'}--;
 }
 
 my $commander;
@@ -551,17 +552,6 @@ sub endround {
 
 }
 
-sub checkbuild {
-    if(!$buildround) {
-        my $q = pop @buildqueue;
-
-        if($q) {
-            # if there was an entry in the queue, start the new build
-            startround($q);
-        }
-    }
-}
-
 sub checkclients {
     my $check = time() - 10;
 
@@ -828,7 +818,6 @@ while(not $alldone) {
         }
     }
 
-    checkbuild();
     checkclients();
 
     handoutbuilds(); # see if there's more builds to hand out
