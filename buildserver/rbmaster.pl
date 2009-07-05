@@ -401,7 +401,7 @@ sub COMPLETED {
         rename("$base.zip", "$store/rockbox-$id.zip");
     }
     # now move over the build log
-    rename("$base.log", "$store/rockbox-$id.log");
+    rename("$base.log", "$store/$buildround-$id.log");
 
     # if we have builds not yet completed, hand out one
     handoutbuilds();
