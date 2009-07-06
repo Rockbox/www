@@ -390,7 +390,6 @@ sub COMPLETED {
                  $cli, $took, $kills);
 
     # log this build in the database
-    # (must be done before handoutbuilds() since it will reset $buildround)
     &db_submit($buildround, $id, $cli, $took,
                $client{$rh->fileno}{'bogomips'});
 
@@ -403,21 +402,12 @@ sub COMPLETED {
     # now move over the build log
     rename("$base.log", "$store/$buildround-$id.log");
 
-    # if we have builds not yet completed, hand out one
-    handoutbuilds();
-
-    # now store some data about this build
-    my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = gmtime(time);
-
-    open(L, ">$store/rockbox-$id.info");
-    printf L ("%04d%02d%02d-%02d:%02d:%02d client %s seconds %d\n",
-              $year+1900, $mon+1, $mday, $hour, $min, $sec,
-              $cli, $took);
-    close(L);
-
     if($rb_eachcomplete) {
         system("$rb_eachcomplete $id $cli");
     }
+
+    # if we have builds not yet completed, hand out one
+    handoutbuilds();
 }
 
 sub db_submit
@@ -541,7 +531,7 @@ sub endround {
     rmtree( $uploadpath, {keep_root => 1} );
 
     if($rb_buildround) {
-        system("$rb_buildround");
+        system("$rb_buildround $buildround");
     }
     $buildround=0;
 
