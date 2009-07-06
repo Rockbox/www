@@ -14,7 +14,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 10;
+my $revision = 11;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -536,6 +536,8 @@ sub killchild
 
     my $pipe = $builds{$id}{pipe};
     $read_set->remove($pipe);
+
+    $busy -= $builds{$id}{cores};
 
     my $pid = $builds{$id}{pid};
     kill -9, $pid;
