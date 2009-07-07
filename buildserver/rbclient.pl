@@ -14,7 +14,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 11;
+my $revision = 12;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -189,7 +189,8 @@ while (1) {
                     close $rh;
 
                     print "Completed build $id\n";
-                    print $sock "COMPLETED $id\n";
+                    my $timespent = time() - $builds{$id}{started};
+                    print $sock "COMPLETED $id $timespent\n";
                 }
             }
             else {
@@ -239,6 +240,7 @@ sub startbuild
 
         push @children, $pid;
         $busy += $builds{$id}{cores};
+        $biulds{$id}{started} = time();
     }
     else {
         setpgrp;
