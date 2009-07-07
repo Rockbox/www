@@ -17,11 +17,11 @@ my $buildsperclient = 3;
 
 # the minimum protocol version supported. The protocol version is provided
 # by the client
-my $minimumversion = 11;
+my $minimumversion = 12;
 
 # if the client is found too old, this is a svn rev we tell the client to
 # use to pick an update
-my $updaterev = 21683;
+my $updaterev = 21705;
 
 # the name of the server log
 my $logfile="logfile";
@@ -354,7 +354,7 @@ sub COMPLETED {
     my ($rh, $args) = @_;
     my $cli = $client{$rh->fileno}{'client'};
 
-    my ($id) = split(" ", $args);
+    my ($id, $took) = split(" ", $args);
 
     print "< COMPLETED $id\n";
 
@@ -366,10 +366,6 @@ sub COMPLETED {
         print "ALERT: this build was already completed!!!\n";
         return;
     }
-
-
-    # remember when this build started
-    my $took = time() - $client{$rh->fileno}{'btime'}{$id};
 
     # mark this as not building anymore
     $client{$rh->fileno}{'building'}--;
