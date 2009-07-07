@@ -266,6 +266,7 @@ sub startbuild
 
         # child
         `svn up -r $builds{$id}{rev} $log`;
+        exit if ($?); # abort if svn failed
         chdir "build-$$";
         my $args = $builds{$id}{confargs};
         $args =~ s|,| |g;
