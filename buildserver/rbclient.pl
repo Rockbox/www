@@ -14,7 +14,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 14;
+my $revision = 15;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -185,8 +185,14 @@ while (1) {
                     waitpid $pid, 0;
                     $read_set->remove($rh);
                     delete $conntype{$rh->fileno};
-                    delete $builds{$id};
                     close $rh;
+
+                    my $dir = "$cwd/build-$builds{$id}{pid}";
+                    if (-d $dir) {
+                        rmtree $dir;
+                    }
+
+                    delete $builds{$id};
 
                     if ($status == 0) {
                         print "Completed build $id\n";
@@ -199,7 +205,7 @@ while (1) {
                 }
             }
             else {
-                printf "0-length pipe msg from %d!\n", $rh->fileno;
+                printf "Child %d died unexpectedly!\n", $rh->fileno;
                 exit;
             }
         }
@@ -235,6 +241,21 @@ sub startbuild
     my $pipe = new IO::Pipe();
     $builds{$id}{pipe} = $pipe;
 
+    # fix svn
+    my $buf = `svn info`;
+    my $rev;
+    if ($buf =~ /Revision: (\d+)/) {
+        $rev = $1;
+    }
+    if ($rev != $builds{$id}{rev}) {
+        # (using system() to make stderr messages appear on client console)
+        system("svn up -q -r $builds{$id}{rev} $log");
+    }
+    if ($?) { # abort if svn failed
+        print "*** Subversion error!\n";
+        return;
+    }
+
     my $pid = fork;
     if ($pid) {
         # mother
@@ -248,6 +269,7 @@ sub startbuild
         $builds{$id}{started} = time();
     }
     else {
+        # child
         setpgrp;
         $pipe->writer();
         $pipe->autoflush();
@@ -271,13 +293,6 @@ sub startbuild
         print DEST "Build Server: $clientname\n";
         close DEST;
 
-        # child
-        `svn up -r $builds{$id}{rev} $log`;
-        if ($?) { # abort if svn failed
-            print $pipe "done $id $$ $?\n";
-            close $pipe;
-            exit;
-        }
         chdir "build-$$";
         my $args = $builds{$id}{confargs};
         $args =~ s|,| |g;
@@ -321,9 +336,6 @@ sub startbuild
                 print "?? no rockbox.zip\n";
             }
         }
-
-        chdir "..";
-        rmtree "$cwd/build-$$";
 
         print "child: $id ($$) done\n";
         print $pipe "done $id $$ 0\n";
