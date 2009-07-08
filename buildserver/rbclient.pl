@@ -14,7 +14,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 13;
+my $revision = 14;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -176,8 +176,8 @@ while (1) {
                     $busy -= $builds{$id}{cores};
                     $builds{$id}{cores} = 0;
                 }
-                elsif ($data =~ /done (.*?) (\d+)/) {
-                    my ($id, $pid) = ($1, $2);
+                elsif ($data =~ /done (.*?) (\d+) (\d+)/) {
+                    my ($id, $pid, $status) = ($1, $2, $3);
 
                     # start new builds
                     $busy -= $builds{$id}{cores};
@@ -188,9 +188,14 @@ while (1) {
                     delete $builds{$id};
                     close $rh;
 
-                    print "Completed build $id\n";
-                    my $timespent = time() - $builds{$id}{started};
-                    print $sock "COMPLETED $id $timespent\n";
+                    if ($status == 0) {
+                        print "Completed build $id\n";
+                        my $timespent = time() - $builds{$id}{started};
+                        print $sock "COMPLETED $id $timespent\n";
+                    }
+                    else {
+                        print "Failed build $id: Status $status\n";
+                    }
                 }
             }
             else {
@@ -268,7 +273,11 @@ sub startbuild
 
         # child
         `svn up -r $builds{$id}{rev} $log`;
-        exit if ($?); # abort if svn failed
+        if ($?) { # abort if svn failed
+            print $pipe "done $id $$ $?\n";
+            close $pipe;
+            exit;
+        }
         chdir "build-$$";
         my $args = $builds{$id}{confargs};
         $args =~ s|,| |g;
@@ -317,7 +326,7 @@ sub startbuild
         rmtree "$cwd/build-$$";
 
         print "child: $id ($$) done\n";
-        print $pipe "done $id $$\n";
+        print $pipe "done $id $$ 0\n";
         close $pipe;
         exit;
     }
