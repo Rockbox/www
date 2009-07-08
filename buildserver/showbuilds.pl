@@ -169,7 +169,12 @@ foreach $t (sort keys %alltypes) {
     $alt =~ s/-//g;
     $alt =~ s/ +/ /g;
 
-    print"<th><img width='16' height='130' alt=\"$alt\" src=\"http://build.rockbox.org/dist/build-$t.png\"></th>\n";
+    my ($a1, $a2);
+    if (-f "data/rockbox-$t.zip") {
+        $a1 = "<a href='data/rockbox-$t.zip' >";
+        $a2 = "</a>";
+    }
+    print"<th>$a1<img border=0 width='16' height='130' alt=\"$alt\" src=\"http://build.rockbox.org/dist/build-$t.png\">$a2</th>\n";
 }
 print "<th>score</th>";
 print "</tr>\n";
@@ -279,14 +284,14 @@ for my $rev (sort {$b <=> $a} keys %rounds) {
             $text = "FAIL";
         }
         
-        printf("<td class=\"%s\"><a class=\"blink\" href=\"shownewlog.cgi?rev=%s&type=%s\" title=\"%s/%s on %s in %d secs\">%s</a></td>\n",
+        printf("<td class=\"%s\"><a class=\"blink\" href=\"shownewlog.cgi?rev=%s;type=%s\" title=\"%s/%s on %s in %d secs\">%s</a></td>\n",
                $class,
                urlencode($rev), urlencode($type),
                $$b{gcc}, $$b{ld}, $$b{server}, $$b{time},
                $text);
     }
     printf "<td>%d</td>", $score;
-    printf("<td><a href=\"cvsmod/serv-$rev.html\">%d</a></td>",
+    printf("<td><a href=\"data/$rev-clients.html\">%d</a></td>",
            scalar(keys %servs));
     print "</tr>\n";
 

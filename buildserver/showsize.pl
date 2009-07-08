@@ -183,7 +183,7 @@ foreach my $l (reverse sort @logs) {
 
 	print "<tr><td nowrap>$b</td>";
 	print $lines{"$dir/$l"}."\n";
-	print "<td><a href=\"/cvsmod/$l\">log</a></td>";
+	print "<td><a href=\"/data/$l\">log</a></td>";
 	print "</tr>\n";
 
 	if($c++ > 18) {
