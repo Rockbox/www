@@ -14,7 +14,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 16;
+my $revision = 17;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -176,7 +176,7 @@ while (1) {
                     $busy -= $builds{$id}{cores};
                     $builds{$id}{cores} = 0;
                 }
-                elsif ($data =~ /done (.*?) (\d+) (\d+)/) {
+                elsif ($data =~ /done (.*?) (\d+) (.*)/) {
                     my ($id, $pid, $status) = ($1, $2, $3);
 
                     # start new builds
@@ -192,7 +192,7 @@ while (1) {
                         rmtree $dir;
                     }
 
-                    if ($status == 0) {
+                    if ($status eq "ok") {
                         print "Completed build $id\n";
                         my $timespent = time() - $builds{$id}{started};
                         print $sock "COMPLETED $id $timespent\n";
@@ -336,11 +336,14 @@ sub startbuild
             }
             else {
                 print "?? no rockbox.zip\n";
+                print $pipe "done $id $$ nozip\n";
+                close $pipe;
+                exit;
             }
         }
 
         print "child: $id ($$) done\n";
-        print $pipe "done $id $$ 0\n";
+        print $pipe "done $id $$ ok\n";
         close $pipe;
         exit;
     }
@@ -498,6 +501,13 @@ sub testarchs
     my $p = `which curl`;
     if (not $p =~ m|^/|) {
         print "I couldn't find 'curl' in your path.\n";
+        exit 22;
+    }
+
+    # check curl
+    my $p = `which zip`;
+    if (not $p =~ m|^/|) {
+        print "I couldn't find 'zip' in your path.\n";
         exit 22;
     }
 
