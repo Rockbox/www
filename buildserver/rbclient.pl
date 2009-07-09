@@ -120,6 +120,7 @@ print $sock "HELLO $revision $archlist $auth $clientname $cpu $bits $os $speed\n
 my $busy = 0;
 my %builds = ();
 my $buildnum = 0;
+my $lastcomm = 0;
 
 $SIG{INT} = sub {
     warn "received interrupt.\n";
@@ -139,6 +140,7 @@ while (1) {
     foreach my $rh (@$rh_set) {
         if ($conntype{$rh->fileno} eq "socket") {
             #print "Got from socket\n";
+            $lastcomm = time();
             my $data;
             my $len = $rh->read($data, 512);
             
@@ -227,6 +229,12 @@ while (1) {
             last;
         }
     }
+
+    if ($lastcomm + 60 < time()) {
+        print "Server connection stalled. Exiting!\n";
+        exit;
+    }
+
 }
 
 #################################################
