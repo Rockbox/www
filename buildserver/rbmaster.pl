@@ -17,11 +17,11 @@ my $buildsperclient = 3;
 
 # the minimum protocol version supported. The protocol version is provided
 # by the client
-my $minimumversion = 12;
+my $minimumversion = 17;
 
 # if the client is found too old, this is a svn rev we tell the client to
 # use to pick an update
-my $updaterev = 21705;
+my $updaterev = 21737;
 
 # the name of the server log
 my $logfile="logfile";
@@ -192,6 +192,9 @@ sub getbuildscore {
         # id:score
         if($_ =~ /([^:]*):(.*)/) {
             my ($id, $score) = ($1, $2);
+            if ($builds{$id}{'zip'} eq "zip") {
+                $score += 10000;
+            }
             $builds{$id}{'score'}=$score;
         }
     }
@@ -460,7 +463,7 @@ sub sortbuilds {
 
     if(!$s) {
         # if the same handcount, take score into account
-        $s = $builds{$b}{'score'} <=> $builds{$a}{'score'};
+        $s = $builds{$a}{'score'} <=> $builds{$b}{'score'};
     }
     return $s;
 }
@@ -494,6 +497,9 @@ sub startround {
     for my $id (@buildids) {
         &db_submit($buildround, $id);
     }
+
+    # clear zip files, to avoid old ones remaining
+    `rm -f data/rockbox-*.zip`;
 
     handoutbuilds();
 }
@@ -558,7 +564,7 @@ sub checkclients {
             my $rh = $client{$cl}{'socket'};
             my $exp = $client{$cl}{'expect'};
             if($exp) {
-                print "ALERT: waiting for $exp from client!\n";
+                print "ALERT: waiting for $exp from client $client{$cl}{client}!\n";
             }
 
             $rh->write("PING 111\n");
@@ -730,7 +736,6 @@ while(not $alldone) {
         my $type = $conn{$rh->fileno}{type};
 
         if ($type eq 'master') {
-            warn "server accepting\n";
             my $new = $rh->accept or die;
             $read_set->add($new);
             $conn{$new->fileno} = { type => 'rbclient' };
