@@ -39,3 +39,7 @@ for my $c (sort {scalar keys %{$clients{$b}} <=> scalar keys %{$clients{$a}}}
 }
 print "</table>\n";
 
+my $end = `tail -100 logfile | grep "End of round"`;
+if ($end =~ /seconds (\d+) /) {
+    print "<p>This build round took $1 seconds.\n";
+}
