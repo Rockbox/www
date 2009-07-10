@@ -14,11 +14,11 @@ my $store="data";
 
 # the minimum protocol version supported. The protocol version is provided
 # by the client
-my $minimumversion = 18;
+my $minimumversion = 19;
 
 # if the client is found too old, this is a svn rev we tell the client to
 # use to pick an update
-my $updaterev = 21755;
+my $updaterev = 21758;
 
 # the name of the server log
 my $logfile="logfile";
@@ -55,6 +55,7 @@ eval 'require "secrets.pm"';
 my %conn;
 
 my %builds;
+my @buildids;
 
 # this is $rev while we're in a build round, 0 otherwise
 my $buildround;
@@ -136,7 +137,7 @@ sub builds_in_progress {
     my $c=0;
     # count all builds that are handed out (once or more), but that aren't
     # complete yet
-    for my $id (keys %builds) {
+    for my $id (@buildids) {
         if($builds{$id}{'done'}) {
             # for safety, skip the ones that are done already
             next;
@@ -149,7 +150,7 @@ sub builds_in_progress {
 sub builds_undone {
     my $c=0;
     # count all builds that aren't marked as done
-    for my $id (keys %builds) {
+    for my $id (@buildids) {
         if(!$builds{$id}{'done'}) {
             $c++;
         }
@@ -172,6 +173,8 @@ sub getbuilds {
             $builds{$id}{'confopts'}=$confopts;
             $builds{$id}{'handcount'} = 0; # not handed out to anyone
             $builds{$id}{'done'} = 0; # not done
+
+            push @buildids, $id;
         }
     }
     close(F);
@@ -485,7 +488,7 @@ sub sortclients {
 
 sub resetbuildround {
     # mark all done builds as not done, not handed out
-    for my $id (keys %builds) {
+    for my $id (@buildids) {
         $builds{$id}{'done'}=0;
         $builds{$id}{'handcount'}=0;
     }
@@ -496,7 +499,7 @@ sub startround {
     # start a build round
     print "START a new build round for rev $rev\n";
     slog sprintf("New round: %d clients %d builds rev $rev\n",
-                 scalar(&build_clients), scalar keys %builds);
+                 scalar(&build_clients), scalar @buildids);
 
     $buildround=$rev;
     $buildstart=time();
@@ -504,7 +507,7 @@ sub startround {
     resetbuildround();
 
     # fill db with builds to be done
-    for my $id (keys %builds) {
+    for my $id (@buildids) {
         &db_submit($buildround, $id);
     }
 
@@ -527,7 +530,7 @@ sub endround {
     my $kills;
 
     # kill all still handed out builds
-    for my $id (keys %builds) {
+    for my $id (@buildids) {
         if($builds{$id}{'handcount'}) {
             # find all clients building this and cancel
             $kills += kill_build($id);
@@ -624,7 +627,7 @@ sub handoutbuilds {
     }
 
     my @scl = sort sortclients @_;
-    my @blist = sort sortbuilds keys %builds;
+    my @blist = sort sortbuilds @buildids;
 
     my $done=0;
 
@@ -661,7 +664,7 @@ sub handoutbuilds {
                    $client{$cl}{'client'});
         }
 
-        if($done >= scalar keys %builds) {
+        if($done >= scalar @buildids) {
             endround();
             last;
         }
