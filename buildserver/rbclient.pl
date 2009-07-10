@@ -14,7 +14,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 19;
+my $revision = 20;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -404,14 +404,11 @@ sub CANCEL
 {
     my ($id) = @_;
 
-    if ($builds{$id}{pid}) {
-        &killchild($id);
-    }
-    elsif (defined $builds{$id}) {
-        delete $builds{$id};
-    }
+    my $wasted = time() - $builds{$id}{started};
 
-    print $sock "_CANCEL $id\n";
+    &killchild($id);
+
+    print $sock "_CANCEL $wasted\n";
 
     if ($busy < $cores) {
         print $sock "GIMMEMORE\n";
@@ -580,6 +577,8 @@ sub readconfig
 sub killchild
 {
     my ($id) = @_;
+
+    return if (not defined $builds{$id});
 
     my $pipe = $builds{$id}{pipe};
     $read_set->remove($pipe);
