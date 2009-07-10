@@ -120,7 +120,7 @@ print $sock "HELLO $revision $archlist $auth $clientname $cpu $bits $os $speed\n
 my $busy = 0;
 my %builds = ();
 my $buildnum = 0;
-my $lastcomm = 0;
+my $lastcomm = time();
 
 $SIG{INT} = sub {
     warn "received interrupt.\n";
