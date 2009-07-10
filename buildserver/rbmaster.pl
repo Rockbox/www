@@ -14,11 +14,11 @@ my $store="data";
 
 # the minimum protocol version supported. The protocol version is provided
 # by the client
-my $minimumversion = 19;
+my $minimumversion = 21;
 
 # if the client is found too old, this is a svn rev we tell the client to
 # use to pick an update
-my $updaterev = 21758;
+my $updaterev = 21766;
 
 # the name of the server log
 my $logfile="logfile";
@@ -76,6 +76,7 @@ my %client;
 #
 
 my $started = time();
+my $wastedtime = 0; # sum of time spent by clients on cancelled builds
 
 sub slog {
     my ($l)=@_;
@@ -273,6 +274,8 @@ sub _UPDATE {
 sub _CANCEL {
     my ($rh, $args) = @_;
 
+    $wastedtime += $args;
+
     $client{$rh->fileno}{'expect'}="";
     $client{$rh->fileno}{'building'}--;
 }
@@ -367,7 +370,7 @@ sub COMPLETED {
     my ($rh, $args) = @_;
     my $cli = $client{$rh->fileno}{'client'};
 
-    my ($id, $took) = split(" ", $args);
+    my ($id, $took, $ultime, $ulsize) = split(" ", $args);
 
     print "< COMPLETED $id\n";
 
@@ -392,15 +395,15 @@ sub COMPLETED {
     # send OK
     $rh->write("_COMPLETED $id\n");
 
-    slog sprintf("Completed: build $id client %s seconds %d kills %d\n",
-                 $cli, $took, $kills);
+    slog sprintf("Completed: build $id client %s seconds %d kills %d uplink %d\n",
+                 $cli, $took, $kills, $ulsize / $ultime / 1024);
 
     # now kill this build on all clients still building it
     my $kills = kill_build($id);
 
     # log this build in the database
     &db_submit($buildround, $id, $cli, $took,
-               $client{$rh->fileno}{'bogomips'});
+               $client{$rh->fileno}{'bogomips'}, $ultime, $ulsize);
 
     my $base=sprintf("$uploadpath/%s-%s", $cli, $id);
                      
@@ -424,11 +427,11 @@ sub db_submit
     my $dbpath = 'DBI:mysql:rockbox';
     my $db = DBI->connect($dbpath, $rb_dbuser, $rb_dbpwd);
     if ($client) {
-        my $sth = $db->prepare("UPDATE builds SET client=?,timeused=?,bogomips=? WHERE revision=? and id=?");
-        $sth->execute($client, $timeused, $bogomips, $revision, $id);
+        my $sth = $db->prepare("UPDATE builds SET client=?,timeused=?,bogomips=?,ultime=?,ulsize=? WHERE revision=? and id=?");
+        $sth->execute($client, $timeused, $bogomips, $revision, $id, $ultime, $ulsize);
     }
     else {
-        my $sth = $db->prepare("INSERT INTO builds (revision,id) VALUES (?,?) ON DUPLICATE KEY UPDATE client='',timeused=0,bogomips=0");
+        my $sth = $db->prepare("INSERT INTO builds (revision,id) VALUES (?,?) ON DUPLICATE KEY UPDATE client='',timeused=0,bogomips=0,ultime=0,ulsize=0");
         $sth->execute($revision, $id);
     }
     $db->disconnect();
@@ -538,7 +541,7 @@ sub endround {
         }
     }
     print "END of a build round, $took seconds, skipped $inp builds\n";
-    slog "End of round: skipped $inp seconds $took kill $kills\n";
+    slog "End of round $buildround: skipped $inp seconds $took wasted $wastedtime\n";
 
     resetbuildround();
 
