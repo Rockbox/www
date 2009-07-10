@@ -14,7 +14,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 18;
+my $revision = 19;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -409,6 +409,10 @@ sub CANCEL
     }
 
     print $sock "_CANCEL $id\n";
+
+    if ($busy < $cores) {
+        print $sock "GIMMEMORE\n";
+    }
 }
 
 sub BUILD
