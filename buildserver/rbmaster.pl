@@ -395,8 +395,12 @@ sub COMPLETED {
     # send OK
     $rh->write("_COMPLETED $id\n");
 
+    my $uplink = 0;
+    if ($ulsize and $ultime) {
+        $uplink = $ulsize / $ultime / 1024;
+    }
     slog sprintf("Completed: build $id client %s seconds %d kills %d uplink %d\n",
-                 $cli, $took, $kills, $ulsize / $ultime / 1024);
+                 $cli, $took, $kills, $uplink);
 
     # now kill this build on all clients still building it
     my $kills = kill_build($id);
@@ -423,16 +427,21 @@ sub db_submit
 {
     return unless ($rb_dbuser and $rb_dbpwd);
 
-    my ($revision, $id, $client, $timeused, $bogomips) = @_;
+    my ($revision, $id, $client, $timeused, $bogomips, $ultime, $ulsize) = @_;
     my $dbpath = 'DBI:mysql:rockbox';
-    my $db = DBI->connect($dbpath, $rb_dbuser, $rb_dbpwd);
+    my $db = DBI->connect($dbpath, $rb_dbuser, $rb_dbpwd) or
+        warn "DBI: Can't connect to database: ". DBI->errstr;
     if ($client) {
-        my $sth = $db->prepare("UPDATE builds SET client=?,timeused=?,bogomips=?,ultime=?,ulsize=? WHERE revision=? and id=?");
-        $sth->execute($client, $timeused, $bogomips, $revision, $id, $ultime, $ulsize);
+        my $sth = $db->prepare("UPDATE builds SET client=?,timeused=?,bogomips=?,ultime=?,ulsize=? WHERE revision=? and id=?") or
+            warn "DBI: Can't prepare statement: ". $db->errstr;
+        $sth->execute($client, $timeused, $bogomips, $ultime, $ulsize, $revision, $id) or
+            warn "DBI: Can't execute statement: ". $sth->errstr;
     }
     else {
-        my $sth = $db->prepare("INSERT INTO builds (revision,id) VALUES (?,?) ON DUPLICATE KEY UPDATE client='',timeused=0,bogomips=0,ultime=0,ulsize=0");
-        $sth->execute($revision, $id);
+        my $sth = $db->prepare("INSERT INTO builds (revision,id) VALUES (?,?) ON DUPLICATE KEY UPDATE client='',timeused=0,bogomips=0,ultime=0,ulsize=0") or
+            warn "DBI: Can't prepare statement: ". $db->errstr;
+        $sth->execute($revision, $id) or
+            warn "DBI: Can't execute statement: ". $sth->errstr;
     }
     $db->disconnect();
 }
@@ -815,8 +824,6 @@ while(not $alldone) {
                 $read_set->remove($rh);
                 $rh->close;
             }
-            # do the handout builds calculations again now
-            # when one client dropped off
         }
     }
 
