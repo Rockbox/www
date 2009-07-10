@@ -18,6 +18,10 @@ my $revision = 19;
 my $cwd = `pwd`;
 chomp $cwd;
 
+sub tprint {
+    print strftime("%F %T ", localtime()), $_[0];
+}
+
 # read -parameters
 my $username = $username;
 my $password = $password;
@@ -92,7 +96,7 @@ MOO
 
 beginning:
 
-print "Starting client $clientname, revision $revision. $speed bogomips and $cores cores.\n";
+tprint "Starting client $clientname, revision $revision. $speed bogomips and $cores cores.\n";
 
 my $sock;
 
@@ -114,7 +118,7 @@ $conntype{$sock->fileno} = 'socket';
 
 my $auth = "$username:$password";
 
-print "HELLO $revision $archlist $auth $clientname $cpu $bits $os $speed\n";
+tprint "HELLO $revision $archlist $auth $clientname $cpu $bits $os $speed\n";
 print $sock "HELLO $revision $archlist $auth $clientname $cpu $bits $os $speed\n";
 
 my $busy = 0;
@@ -156,7 +160,7 @@ while (1) {
             }
             else {
                 # socket dropped. stop all builds and restart
-                print "Server socket disconnected! Cleanup and restart.\n";
+                tprint "Server socket disconnected! Cleanup and restart.\n";
                 for my $id (keys %builds) {
                     if ($builds{$id}{pid}) {
                         &killchild($id);
@@ -172,7 +176,7 @@ while (1) {
                 if ($data =~ /uploading (.*?) (\d+)/) {
                     # client has started uploading
                     my ($id, $pid) = ($1, $2);
-                    print "child $id ($pid) is uploading\n";
+                    tprint "child $id ($pid) is uploading\n";
                     
                     # we're no longer busy
                     $busy -= $builds{$id}{cores};
@@ -196,19 +200,19 @@ while (1) {
                     }
 
                     if ($status eq "ok") {
-                        print "Completed build $id\n";
+                        tprint "Completed build $id\n";
                         my $timespent = time() - $builds{$id}{started};
                         print $sock "COMPLETED $id $timespent\n";
                     }
                     else {
-                        print "Failed build $id: Status $status\n";
+                        tprint "Failed build $id: Status $status\n";
                     }
 
                     delete $builds{$id};
                 }
             }
             else {
-                printf "Child %d died unexpectedly!\n", $rh->fileno;
+                tprint sprintf "Child %d died unexpectedly!\n", $rh->fileno;
                 exit;
             }
         }
@@ -218,7 +222,7 @@ while (1) {
     }
 
     if ($lastcomm + 60 < time()) {
-        print "Server connection stalled. Exiting!\n";
+        tprint "Server connection stalled. Exiting!\n";
         exit;
     }
 
@@ -230,7 +234,7 @@ sub startbuild
 {
     my ($id) = @_;
 
-    print "Starting build $id\n";
+    tprint "Starting build $id\n";
 
     # make mother/child pipe
     my $pipe = new IO::Pipe();
@@ -247,7 +251,7 @@ sub startbuild
         system("svn up -q -r $builds{$id}{rev} $log");
     }
     if ($?) { # abort if svn failed
-        print "*** Subversion error!\n";
+        tprint "*** Subversion error!\n";
         return;
     }
 
@@ -320,7 +324,7 @@ sub startbuild
 
         my $zip = $builds{$id}{zip};
         if (-f $builds{$id}{result} and $zip ne "nozip") {
-            print "Making $id zip\n";
+            tprint "Making $id zip\n";
             `make zip $log`;
             
             if (-f "rockbox.zip") {
@@ -330,14 +334,14 @@ sub startbuild
                 }
             }
             else {
-                print "?? no rockbox.zip\n";
+                tprint "?? no rockbox.zip\n";
                 print $pipe "done $id $$ nozip\n";
                 close $pipe;
                 exit;
             }
         }
 
-        print "child: $id ($$) done\n";
+        tprint "child: $id ($$) done\n";
         print $pipe "done $id $$ ok\n";
         close $pipe;
         exit;
@@ -347,9 +351,9 @@ sub startbuild
 sub upload
 {
     my ($file) = @_;
-    print "Uploading $file...\n";
+    tprint "Uploading $file...\n";
     if (not -f $file) {
-        print "$file: no such file\n";
+        tprint "$file: no such file\n";
         return;
     }
 
@@ -377,7 +381,7 @@ sub bogomips
 sub _HELLO
 {
     if ($_[0] ne "ok") {
-        print "Server refused connection: @_\n";
+        tprint "Server refused connection: @_\n";
         exit 22;
     }
 }
@@ -393,7 +397,6 @@ sub _GIMMEMORE
 sub PING
 {
     my ($arg) = @_;
-#    print ">_PING $arg\n";
     print $sock "_PING $arg\n";
 }
 
@@ -445,7 +448,7 @@ sub BUILD
 sub UPDATE
 {
     my ($rev) = @_;
-    print "Update to $rev\n";
+    tprint "Update to $rev\n";
 
     `curl -o $perlfile.new "http://svn.rockbox.org/viewvc.cgi/www/buildserver/$perlfile?revision=$rev"`;
     
@@ -478,11 +481,11 @@ sub parsecmd
             &$func($rest);
         }
         else {
-            print "Unknown command '$func'\n";
+            tprint "Unknown command '$func'\n";
         }
     }
     else {
-        print "Unrecognized command '$cmdstr'\n";
+        tprint "Unrecognized command '$cmdstr'\n";
     }
 }
 
@@ -585,12 +588,12 @@ sub killchild
 
     my $pid = $builds{$id}{pid};
     kill -9, $pid;
-    print "Killed build $id\n";
+    tprint "Killed build $id\n";
     waitpid $pid, 0;
 
     my $dir = "$cwd/build-$pid";
     if (-d $dir) {
-        print "Removing $dir\n";
+        tprint "Removing $dir\n";
         rmtree $dir;
     }
 
