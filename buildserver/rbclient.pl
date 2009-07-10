@@ -379,7 +379,7 @@ sub bogomips
 
     my $bogomips = 1;
     for (@lines) {
-        if (/bogomips\s*: (\d+)/) {
+        if (/bogomips\s*: (\d+)/i) {
             $bogomips += $1;
         }
     }
