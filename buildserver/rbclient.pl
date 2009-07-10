@@ -41,7 +41,7 @@ chomp $cpu;
 my $os = `uname -o`;
 chomp $os;
 
-if ($cpu eq "i686" or $cpu eq "i386") {
+if ($cpu eq "i686" or $cpu eq "i386" or $cpu eq "armv5tel") {
     $bits = 32;
 }
 elsif ($cpu eq "x86_64") {
@@ -372,9 +372,9 @@ sub upload
 sub bogomips
 {
     open CPUINFO, "</proc/cpuinfo" or return 0;
-    my @lines = grep /^bogomips/, <CPUINFO>;
+    my @lines = grep /^bogomips/i, <CPUINFO>;
     seek(CPUINFO, 0, SEEK_SET);
-    my @cores = grep /^processor/, <CPUINFO>;
+    my @cores = grep /^processor/i, <CPUINFO>;
     close CPUINFO;
 
     my $bogomips = 1;
