@@ -14,7 +14,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 20;
+my $revision = 21;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -183,8 +183,8 @@ while (1) {
                     $builds{$id}{cores} = 0;
                     print $sock "GIMMEMORE\n";
                 }
-                elsif ($data =~ /done (.*?) (\d+) (.*)/) {
-                    my ($id, $pid, $status) = ($1, $2, $3);
+                elsif ($data =~ /done (.*?) (\d+) (\d+) (\d+) (.*)/) {
+                    my ($id, $pid, $ultime, $ulsize, $status) = ($1, $2, $3, $4, $5);
 
                     # start new builds
                     $busy -= $builds{$id}{cores};
@@ -202,7 +202,7 @@ while (1) {
                     if ($status eq "ok") {
                         tprint "Completed build $id\n";
                         my $timespent = time() - $builds{$id}{started};
-                        print $sock "COMPLETED $id $timespent\n";
+                        print $sock "COMPLETED $id $timespent $ultime $ulsize\n";
                     }
                     else {
                         tprint "Failed build $id: Status $status\n";
@@ -322,6 +322,7 @@ sub startbuild
         print $pipe "uploading $id $$\n";
         &upload($logfile);
 
+        my ($ultime, $ulsize) = (0,0);
         my $zip = $builds{$id}{zip};
         if (-f $builds{$id}{result} and $zip ne "nozip") {
             tprint "Making $id zip\n";
@@ -330,19 +331,22 @@ sub startbuild
             if (-f "rockbox.zip") {
                 my $newzip = "$base.zip";
                 if (rename "rockbox.zip", $newzip) {
+                    my $ulstart = time();
                     &upload($newzip);
+                    $ultime = time() - $ulstart;
+                    $ulsize = (stat($newzip))[7];
                 }
             }
             else {
                 tprint "?? no rockbox.zip\n";
-                print $pipe "done $id $$ nozip\n";
+                print $pipe "done $id $$ 0 0 nozip\n";
                 close $pipe;
                 exit;
             }
         }
 
         tprint "child: $id ($$) done\n";
-        print $pipe "done $id $$ ok\n";
+        print $pipe "done $id $$ $ultime $ulsize ok\n";
         close $pipe;
         exit;
     }
