@@ -12,16 +12,13 @@ my $uploadpath="upload";
 # this is the local directory where zips and logs are moved to
 my $store="data";
 
-# the number of builds handed out to each client
-my $buildsperclient = 3;
-
 # the minimum protocol version supported. The protocol version is provided
 # by the client
-my $minimumversion = 17;
+my $minimumversion = 18;
 
 # if the client is found too old, this is a svn rev we tell the client to
 # use to pick an update
-my $updaterev = 21737;
+my $updaterev = 21755;
 
 # the name of the server log
 my $logfile="logfile";
@@ -58,7 +55,6 @@ eval 'require "secrets.pm"';
 my %conn;
 
 my %builds;
-my @buildids;
 
 # this is $rev while we're in a build round, 0 otherwise
 my $buildround;
@@ -140,7 +136,7 @@ sub builds_in_progress {
     my $c=0;
     # count all builds that are handed out (once or more), but that aren't
     # complete yet
-    for my $id (@buildids) {
+    for my $id (keys %builds) {
         if($builds{$id}{'done'}) {
             # for safety, skip the ones that are done already
             next;
@@ -153,7 +149,7 @@ sub builds_in_progress {
 sub builds_undone {
     my $c=0;
     # count all builds that aren't marked as done
-    for my $id (@buildids) {
+    for my $id (keys %builds) {
         if(!$builds{$id}{'done'}) {
             $c++;
         }
@@ -176,8 +172,6 @@ sub getbuilds {
             $builds{$id}{'confopts'}=$confopts;
             $builds{$id}{'handcount'} = 0; # not handed out to anyone
             $builds{$id}{'done'} = 0; # not done
-
-            push @buildids, $id;
         }
     }
     close(F);
@@ -192,10 +186,12 @@ sub getbuildscore {
         # id:score
         if($_ =~ /([^:]*):(.*)/) {
             my ($id, $score) = ($1, $2);
-            if ($builds{$id}{'zip'} eq "zip") {
-                $score += 10000;
+            if (defined $builds{$id}) {
+                if ($builds{$id}{'zip'} eq "zip") {
+                    $score += 10000;
+                }
+                $builds{$id}{'score'}=$score;
             }
-            $builds{$id}{'score'}=$score;
         }
     }
     close(F);
@@ -298,6 +294,7 @@ sub HELLO {
 
         print "Commander attached at $fno\n";
         slog "Commander attached\n";
+        $rh->write("Hello commander\n");
 
         $conn{$fno}{type} = "commander";
     }
@@ -340,6 +337,7 @@ sub HELLO {
         $rh->write("_HELLO ok\n");
 
         print "Joined: $args\n";
+        slog "Joined: client $cli user $user arch $archlist bogomips $bogomips\n";
 
         if($version < $minimumversion) {
             updateclient($fno, $updaterev);
@@ -347,10 +345,19 @@ sub HELLO {
         }
         else {
             $client{$fno}{'fine'} = 1;
-            handoutbuilds();
+            handoutbuilds($fno);
         }
-        slog "Joined: client $cli user $user arch $archlist bogomips $bogomips\n";
     }
+}
+
+sub GIMMEMORE {
+    my ($rh, $args) = @_;
+    my $cli = $client{$rh->fileno}{'client'};
+
+    print "< GIMMEMORE ($cli)\n";
+    $rh->write("_GIMMEMORE $id\n");
+
+    &handoutbuilds($rh->fileno);
 }
 
 sub COMPLETED {
@@ -382,11 +389,11 @@ sub COMPLETED {
     # send OK
     $rh->write("_COMPLETED $id\n");
 
-    # now kill this build on all clients still building it
-    my $kills = kill_build($id);
-
     slog sprintf("Completed: build $id client %s seconds %d kills %d\n",
                  $cli, $took, $kills);
+
+    # now kill this build on all clients still building it
+    my $kills = kill_build($id);
 
     # log this build in the database
     &db_submit($buildround, $id, $cli, $took,
@@ -404,9 +411,6 @@ sub COMPLETED {
     if($rb_eachcomplete) {
         system("$rb_eachcomplete $id $cli");
     }
-
-    # if we have builds not yet completed, hand out one
-    handoutbuilds();
 }
 
 sub db_submit
@@ -431,6 +435,7 @@ sub db_submit
 my %protocmd = (
     'HELLO' => 1,
     'COMPLETED' => 1,
+    'GIMMEMORE' => 1,
     '_PING' => 1,
     '_KILL' => 1,
     '_BUILD' => 1,
@@ -442,7 +447,7 @@ my %protocmd = (
 sub parsecmd {
     my ($rh, $cmdstr)=@_;
     
-    if($cmdstr =~ /^([A-Z_]*) (.*)/) {
+    if($cmdstr =~ /^([A-Z_]*) *(.*)/) {
         my $func = $1;
         my $rest = $2;
         chomp $rest;
@@ -457,9 +462,14 @@ sub parsecmd {
 
 # $a and $b are buildids
 sub sortbuilds {
-    # 'handcount' is the number of times the build has been handed out
-    # to a client. Get the lowest one first.
-    my $s = $builds{$a}{'handcount'} <=> $builds{$b}{'handcount'};
+    # done builds are, naturally, last
+    my $s = $builds{$b}{'done'} <=> $builds{$a}{'done'};
+
+    if (!$s) {
+        # 'handcount' is the number of times the build has been handed out
+        # to a client. Get the lowest one first.
+        $s = $builds{$b}{'handcount'} <=> $builds{$a}{'handcount'};
+    }
 
     if(!$s) {
         # if the same handcount, take score into account
@@ -475,7 +485,7 @@ sub sortclients {
 
 sub resetbuildround {
     # mark all done builds as not done, not handed out
-    for my $id (@buildids) {
+    for my $id (keys %builds) {
         $builds{$id}{'done'}=0;
         $builds{$id}{'handcount'}=0;
     }
@@ -486,7 +496,7 @@ sub startround {
     # start a build round
     print "START a new build round for rev $rev\n";
     slog sprintf("New round: %d clients %d builds rev $rev\n",
-                 scalar(&build_clients), scalar(@buildids));
+                 scalar(&build_clients), scalar keys %builds);
 
     $buildround=$rev;
     $buildstart=time();
@@ -494,14 +504,14 @@ sub startround {
     resetbuildround();
 
     # fill db with builds to be done
-    for my $id (@buildids) {
+    for my $id (keys %builds) {
         &db_submit($buildround, $id);
     }
 
     # clear zip files, to avoid old ones remaining
     `rm -f data/rockbox-*.zip`;
 
-    handoutbuilds();
+    handoutbuilds(keys %client);
 }
 
 sub endround {
@@ -517,7 +527,7 @@ sub endround {
     my $kills;
 
     # kill all still handed out builds
-    for my $id (@buildids) {
+    for my $id (keys %builds) {
         if($builds{$id}{'handcount'}) {
             # find all clients building this and cancel
             $kills += kill_build($id);
@@ -555,6 +565,7 @@ sub checkclients {
             $check = time() - 13;
             if($client{$cl}{'time'} < $check) {
                 # no ping response either, disconnect
+                $client{$cl}{'bad'}="ping timeout";
             }
             next;
         }
@@ -607,29 +618,27 @@ sub client_gone {
 my $stat;
 
 sub handoutbuilds {
-    my @scl; # list of clients $fileno sorted
-
     if(!$buildround) {
         # don't hand out builds unless we're in a build round
         return;
     }
 
-    for(sort sortclients &build_clients) {
-        if($client{$_}{'building'} < $buildsperclient) {
-            # only add clients with room left for more builds
-            push @scl, $_;
-        }
-    }
+    my @scl = sort sortclients @_;
+    my @blist = sort sortbuilds keys %builds;
 
     my $done=0;
 
-    while($scl[0]) {
-        my $cl = pop @scl;
+    for my $cl (@scl) {
+
+        next if ($conn{$cl}{type} eq "commander");
 
         $done =0;
         my $found=0;
+
         # time to go through the builds and give to clients
-        for my $id (sort sortbuilds @buildids) {
+        while (scalar @blist) {
+            my $id = pop @blist;
+
             if($builds{$id}{'done'}) {
                 $done++;
                 next;
@@ -652,7 +661,7 @@ sub handoutbuilds {
                    $client{$cl}{'client'});
         }
 
-        if($done >= scalar(@buildids)) {
+        if($done >= scalar keys %builds) {
             endround();
             last;
         }
@@ -783,34 +792,28 @@ while(not $alldone) {
     }
 
     # loop over the clients and close the bad ones
-    foreach my $rh (@$rh_set) {
-
-        my $type = $conn{$rh->fileno}{type};
-        if ($type eq 'master') {
-            next;
-        }
-
-        my $cl = $rh->fileno;
+    foreach my $cl (keys %client) {
 
         my $err = $client{$cl}{'bad'};
         if($err) {
             my $cli = $client{$cl}{'client'};
 
             printf("Client disconnect ($err), removing client $cli on %d\n",
-                   $rh->fileno);
+                   $cl);
             slog "Disconnect: client $cli reason $err\n";
             client_gone($cl);
+            my $rh = $client{$cl}{'socket'};
             delete $client{$cl};
             delete $conn{$cl};
-            $read_set->remove($rh);
-            $rh->close;
+            if ($rh) {
+                $read_set->remove($rh);
+                $rh->close;
+            }
             # do the handout builds calculations again now
             # when one client dropped off
         }
     }
 
     checkclients();
-
-    handoutbuilds(); # see if there's more builds to hand out
 }
 warn "exiting.\n";
