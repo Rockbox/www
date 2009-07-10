@@ -14,7 +14,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 17;
+my $revision = 18;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -174,9 +174,10 @@ while (1) {
                     my ($id, $pid) = ($1, $2);
                     print "child $id ($pid) is uploading\n";
                     
-                    # start new builds
+                    # we're no longer busy
                     $busy -= $builds{$id}{cores};
                     $builds{$id}{cores} = 0;
+                    print $sock "GIMMEMORE\n";
                 }
                 elsif ($data =~ /done (.*?) (\d+) (.*)/) {
                     my ($id, $pid, $status) = ($1, $2, $3);
@@ -213,20 +214,6 @@ while (1) {
         }
         else {
             die "Got from other (%d)\n", $rh->fileno;
-        }
-    }
-
-    for my $id (sort {$builds{$a}{seqnum} <=> $builds{$b}{seqnum}} keys %builds)
-    {
-        # skip builds in progress
-        next if ($builds{$id}{pid});
-
-        # is there a core available
-        if ($busy < $cores) {
-            &startbuild($id);
-        }
-        else {
-            last;
         }
     }
 
@@ -399,6 +386,10 @@ sub _COMPLETED
 {
 }
 
+sub _GIMMEMORE
+{
+}
+
 sub PING
 {
     my ($arg) = @_;
@@ -440,7 +431,11 @@ sub BUILD
 
     print $sock "_BUILD $id\n";
 
-    print "Got build $id\n";
+    &startbuild($id);
+    if ($busy < $cores) {
+        print $sock "GIMMEMORE\n";
+    }
+
 }
 
 sub UPDATE
@@ -463,6 +458,7 @@ sub parsecmd
     my ($cmdstr)=@_;
     my %functions = ('_HELLO', 1,
                      '_COMPLETED', 1,
+                     '_GIMMEMORE', 1,
                      'BUILD', 1,
                      'PING', 1,
                      'UPDATE', 1,
