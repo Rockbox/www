@@ -62,6 +62,7 @@ arm:zip:yh920:Samsung YH-920 - Normal:rockbox.mi4:--target=yh_920,--type=n
 arm:zip:yh925:Samsung YH-925 - Normal:rockbox.mi4:--target=yh_925,--type=n
 mipsel:zip:ondavx747:Onda VX747 - Normal:rockbox.vx747:--target=ondavx747,--type=n
 mipsel:zip:ondavx767:Onda VX767 - Normal:rockbox.vx767:--target=ondavx767,--type=n
+mipsel:zip:ondavx777:Onda VX777 - Normal:rockbox.vx777:--target=ondavx777,--type=n
 sh:zip:recorder:Recorder - Normal:ajbrec.ajz:--target=recorder,--ram=2,--type=n
 sh:zip:recorderv2:V2 Recorder - Normal:ajbrec.ajz:--target=recorderv2,--ram=2,--type=n
 sh:zip:player:Player - Normal:archos.mod:--target=player,--ram=2,--type=n
