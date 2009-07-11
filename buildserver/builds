@@ -61,6 +61,7 @@ arm:zip:hdd1630:Philips HDD1630 - Normal:rockbox.mi4:--target=hdd1630,--type=n
 arm:zip:yh820:Samsung YH-820 - Normal:rockbox.mi4:--target=yh_820,--type=n
 arm:zip:yh920:Samsung YH-920 - Normal:rockbox.mi4:--target=yh_920,--type=n
 arm:zip:yh925:Samsung YH-925 - Normal:rockbox.mi4:--target=yh_925,--type=n
+arm:zip:sa9200:Philips SA9200 - Normal:rockbox.mi4:--target=sa9200,--type=n
 mipsel:zip:ondavx747:Onda VX747 - Normal:rockbox.vx747:--target=ondavx747,--type=n
 mipsel:zip:ondavx767:Onda VX767 - Normal:rockbox.vx767:--target=ondavx767,--type=n
 mipsel:zip:ondavx777:Onda VX777 - Normal:rockbox.vx777:--target=ondavx777,--type=n
