@@ -16,6 +16,7 @@ sdl:nozip:h10sim:iriver H10 - Simulator:rockboxui:--target=h10,--type=s
 sdl:nozip:gigabeatfsim:Toshiba Gigabeat F - Simulator:rockboxui:--target=gigabeatf,--type=s
 sdl:nozip:gigabeatssim:Toshiba Gigabeat S - Simulator:rockboxui:--target=gigabeats,--type=s
 sdl:nozip:sansae200sim:SanDisk Sansa e200 - Simulator:rockboxui:--target=e200,--type=s
+sdl:nozip:sansae200v2sim:SanDisk Sansa e200v2 - Simulator:rockboxui:--target=e200v2,--type=s
 sdl:nozip:sansac200sim:SanDisk Sansa c200 - Simulator:rockboxui:--target=c200,--type=s
 sdl:nozip:mrobe500sim:Olympus M-Robe 500 - Simulator:rockboxui:--target=mrobe500,--type=s
 sdl:nozip:mrobe100sim:Olympus M-Robe 100 - Simulator:rockboxui:--target=mrobe100,--type=s
