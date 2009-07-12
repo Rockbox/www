@@ -14,7 +14,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 22;
+my $revision = 23;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -478,7 +478,7 @@ sub parsecmd
                      'UPDATE', 1,
                      'CANCEL', 1);
     
-    if($cmdstr =~ /^([_A-Z]*) (.*)/) {
+    if($cmdstr =~ /^([_A-Z]*) *(.*)/) {
         my $func = $1;
         my $rest = $2;
         chomp $rest;
