@@ -14,11 +14,11 @@ my $store="data";
 
 # the minimum protocol version supported. The protocol version is provided
 # by the client
-my $minimumversion = 21;
+my $minimumversion = 22;
 
 # if the client is found too old, this is a svn rev we tell the client to
 # use to pick an update
-my $updaterev = 21766;
+my $updaterev = 21823;
 
 # the name of the server log
 my $logfile="logfile";
@@ -180,12 +180,10 @@ sub getbuilds {
             $builds{$id}{'name'}=$name;
             $builds{$id}{'file'}=$file;
             $builds{$id}{'confopts'}=$confopts;
-            if ($zip eq "zip") {
-                $score += 5000;
-            }
             $builds{$id}{'score'}=$score;
             $builds{$id}{'handcount'} = 0; # not handed out to anyone
             $builds{$id}{'done'} = 0; # not done
+            $builds{$id}{'uploading'} = 0; # not uploading
 
             push @buildids, $id;
         }
@@ -354,6 +352,13 @@ sub HELLO {
     }
 }
 
+sub UPLOADING {
+    my ($rh, $args) = @_;
+    $builds{$args}{uploading} = 1;
+    command $rh, "_UPLOADING\n";
+    slog "Upload: $client{$rh->fileno}{'client'} uploads $args\n";
+}
+
 sub GIMMEMORE {
     my ($rh, $args) = @_;
     my $cli = $client{$rh->fileno}{'client'};
@@ -389,6 +394,7 @@ sub COMPLETED {
 
     $builds{$id}{'handcount'}--; # one less that builds this
     $builds{$id}{'done'}=1;
+    $builds{$id}{'uploading'}=0;
 
     # send OK
     command $rh, "_COMPLETED $id\n";
@@ -452,6 +458,7 @@ sub db_submit
 my %protocmd = (
     'HELLO' => 1,
     'COMPLETED' => 1,
+    'UPLOADING' => 1,
     'GIMMEMORE' => 1,
     '_PING' => 1,
     '_KILL' => 1,
@@ -483,9 +490,19 @@ sub sortbuilds {
     my $s = $builds{$b}{'done'} <=> $builds{$a}{'done'};
 
     if (!$s) {
+        # delay handing out builds that are being uploaded right now
+        $s = $builds{$a}{'uploading'} <=> $builds{$b}{'uploading'};
+    }
+
+    if (!$s) {
         # 'handcount' is the number of times the build has been handed out
         # to a client. Get the lowest one first.
         $s = $builds{$b}{'handcount'} <=> $builds{$a}{'handcount'};
+    }
+
+    if (!$s) {
+        # hand out zip builds before nozip
+        $s = $builds{$a}{'zip'} cmp $builds{$b}{'zip'};
     }
 
     if(!$s) {
