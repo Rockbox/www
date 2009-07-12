@@ -395,6 +395,10 @@ sub _COMPLETED
 {
 }
 
+sub _UPLOADING
+{
+}
+
 sub _GIMMEMORE
 {
 }
@@ -467,6 +471,7 @@ sub parsecmd
     my ($cmdstr)=@_;
     my %functions = ('_HELLO', 1,
                      '_COMPLETED', 1,
+                     '_UPLOADING', 1,
                      '_GIMMEMORE', 1,
                      'BUILD', 1,
                      'PING', 1,
