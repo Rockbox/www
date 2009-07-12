@@ -14,7 +14,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 21;
+my $revision = 22;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -177,6 +177,7 @@ while (1) {
                     # client has started uploading
                     my ($id, $pid) = ($1, $2);
                     tprint "child $id ($pid) is uploading\n";
+                    print $sock "UPLOADING $id\n";
                     
                     # we're no longer busy
                     $busy -= $builds{$id}{cores};
@@ -300,10 +301,10 @@ sub startbuild
         `../tools/configure $args $log`;
         if ($builds{$id}{cores} > 1 and $cores > 1) {
             my $c = $cores + 1;
-            `make -k -j$c $log`;
+            `nice make -k -j$c $log`;
         }
         else {
-            `make -k $log`;
+            `nice make -k $log`;
         }
 
         # report
@@ -326,7 +327,7 @@ sub startbuild
         my $zip = $builds{$id}{zip};
         if (-f $builds{$id}{result} and $zip ne "nozip") {
             tprint "Making $id zip\n";
-            `make zip $log`;
+            `nice make zip $log`;
             
             if (-f "rockbox.zip") {
                 my $newzip = "$base.zip";
