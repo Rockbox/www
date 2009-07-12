@@ -164,38 +164,19 @@ sub getbuilds {
     open(F, "<$filename");
     while(<F>) {
         # sdl:nozip:recordersim:Recorder - Simulator:rockboxui:--target=recorder,--ram=2,--type=s
-        if($_ =~ /([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):(.*)/) {
-            my ($arch, $zip, $id, $name, $file, $confopts) =
-                ($1, $2, $3, $4, $5, $6);
+        if($_ =~ /([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):(\d+)/) {
+            my ($arch, $zip, $id, $name, $file, $confopts, $score) =
+                ($1, $2, $3, $4, $5, $6, $7);
             $builds{$id}{'arch'}=$arch;
             $builds{$id}{'zip'}=$zip;
             $builds{$id}{'name'}=$name;
             $builds{$id}{'file'}=$file;
             $builds{$id}{'confopts'}=$confopts;
+            $builds{$id}{'score'}=$score;
             $builds{$id}{'handcount'} = 0; # not handed out to anyone
             $builds{$id}{'done'} = 0; # not done
 
             push @buildids, $id;
-        }
-    }
-    close(F);
-}
-
-
-# read the "weight", the score, of builds from a separate file
-sub getbuildscore {
-    my ($filename)=@_;
-    open(F, "<$filename");
-    while(<F>) {
-        # id:score
-        if($_ =~ /([^:]*):(.*)/) {
-            my ($id, $score) = ($1, $2);
-            if (defined $builds{$id}) {
-                if ($builds{$id}{'zip'} eq "zip") {
-                    $score += 10000;
-                }
-                $builds{$id}{'score'}=$score;
-            }
         }
     }
     close(F);
@@ -732,8 +713,6 @@ my $server = new IO::Socket::INET(
 or die "socket: $!\n";
 
 getbuilds("builds");
-
-getbuildscore("build-score");
 
 my $debug;
 
