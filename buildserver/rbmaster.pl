@@ -14,11 +14,11 @@ my $store="data";
 
 # the minimum protocol version supported. The protocol version is provided
 # by the client
-my $minimumversion = 23;
+my $minimumversion = 25;
 
 # if the client is found too old, this is a svn rev we tell the client to
 # use to pick an update
-my $updaterev = 21829;
+my $updaterev = 21850;
 
 # the name of the server log
 my $logfile="logfile";
@@ -28,6 +28,7 @@ use IO::Select;
 use File::Path;
 use DBI;
 use Time::HiRes qw(gettimeofday tv_interval);
+use POSIX 'strftime';
 
 # secrets.pm is optional and may contain:
 #
@@ -82,18 +83,30 @@ my $wastedtime = 0; # sum of time spent by clients on cancelled builds
 sub command {
     my ($socket, $string) = @_;
     my $cl = $socket->fileno;
-    print $socket $string;
+    print $socket "$string\n";
     $client{$cl}{'time'} = time();
 }
 
+sub privmessage {
+    my ($cl, $string) = @_;
+
+    my $socket = $client{$cl}{'socket'};
+    print $socket "MESSAGE $string\n";
+    $client{$cl}{'time'} = time();
+    $client{$cl}{'expect'} = '_MESSAGE';
+}
+
+sub message {
+    my ($string) = @_;
+
+    for my $cl (&build_clients) {
+        &privmessage($cl, $string);
+    }
+}
+
 sub slog {
-    my ($l)=@_;
-
-    my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = gmtime(time);
-
     open(L, ">>$logfile");
-    printf L ("%04d%02d%02d-%02d:%02d:%02d $l",
-              $year+1900, $mon+1, $mday, $hour, $min, $sec);
+    print L strftime("%F %T ", localtime()), $_[0], "\n";
     close(L);
 }
 
@@ -123,11 +136,11 @@ sub kill_build {
 
             #print "> CANCEL $id ($client{$cl}{client}) after $took seconds\n";
 
-            slog sprintf("Cancel: build $id client %s seconds %d\n",
+            slog sprintf("Cancel: build $id client %s seconds %d",
                          $client{$cl}{'client'}, $took);
 
             # tell client to build!
-            command $rh, "CANCEL $id\n";
+            command $rh, "CANCEL $id";
             $client{$cl}{'expect'}="_CANCEL";
             $num++;
 
@@ -169,6 +182,10 @@ sub builds_undone {
 
 sub getbuilds {
     my ($filename)=@_;
+
+    %builds = ();
+    @buildids = ();
+
     open(F, "<$filename");
     while(<F>) {
         # sdl:nozip:recordersim:Recorder - Simulator:rockboxui:--target=recorder,--ram=2,--type=s
@@ -189,6 +206,9 @@ sub getbuilds {
         }
     }
     close(F);
+
+    my @s = sort {$builds{$b}{score} <=> $builds{$a}{score}} keys %builds;
+    $topscore = $builds{$s[0]}{score};
 }
 
 sub updateclient {
@@ -197,7 +217,7 @@ sub updateclient {
     my $rh = $client{$cl}{'socket'};
 
     # tell client to build!
-    command $rh, "UPDATE $rev\n";
+    command $rh, "UPDATE $rev";
     $client{$cl}{'expect'}="_UPDATE";
 
     slog sprintf("Update: rev $rev client %s\n",
@@ -220,12 +240,12 @@ sub build {
                        $builds{$id}{'file'});
     
     # tell client to build!
-    command $rh, "BUILD $args\n";
+    command $rh, "BUILD $args";
     $client{$fileno}{'expect'}="_BUILD";
 
     #print "Build $args\n";
 
-    slog sprintf("Build: build $id rev $rev client %s\n",
+    slog sprintf("Build: build $id rev $rev client %s",
                  $client{$fileno}{'client'});
 
     # mark this client with what response we expect from it
@@ -249,6 +269,11 @@ sub _BUILD {
     $client{$rh->fileno}{'expect'}="";
 }
 
+sub _MESSAGE {
+    my ($rh, $args) = @_;
+    $client{$rh->fileno}{'expect'}="";
+}
+
 sub _PING {
     my ($rh, $args) = @_;
 
@@ -257,7 +282,7 @@ sub _PING {
     $t = int($t * 1000);
     if ($t > 1000) {
         #print "Slow _PING from $client{$rh->fileno}{client} ($t ms)\n";
-        slog "Slow _PING from $client{$rh->fileno}{client} ($t ms)\n";
+        slog "Slow _PING from $client{$rh->fileno}{client} ($t ms)";
     }
 }
 
@@ -295,8 +320,8 @@ sub HELLO {
         delete $client{$fno};
 
         #print "Commander attached at $fno\n";
-        slog "Commander attached\n";
-        command $rh, "Hello commander\n";
+        slog "Commander attached";
+        command $rh, "Hello commander";
 
         $conn{$fno}{type} = "commander";
     }
@@ -304,7 +329,7 @@ sub HELLO {
         # send error
         print "Bad HELLO: $args\n";
 
-        command $rh, "_HELLO error\n";
+        command $rh, "_HELLO error";
         $client{$fno}{'bad'}="HELLO failed";
     }
     else {
@@ -316,8 +341,8 @@ sub HELLO {
 
         for my $cl (&build_clients) {
             if($client{$cl}{'client'} eq "$cli") {
-                slog "HELLO dupe name: $cli ($args)\n";
-                command $rh, "_HELLO error duplicate name!\n";
+                slog "HELLO dupe name: $cli ($args)";
+                command $rh, "_HELLO error duplicate name!";
                 $client{$fno}{'bad'}="duplicate name";
                 $client{$fno}{'client'} = "$cli.$$";
                 return;
@@ -339,11 +364,13 @@ sub HELLO {
         &get_clientscore($fno);
 
         # send OK
-        command $rh, "_HELLO ok\n";
+        command $rh, "_HELLO ok";
 
         #print "Joined: $args\n";
-        slog "Joined: client $cli user $user arch $archlist bogomips $bogomips score $client{$fno}{avgscore}\n";
+        my $score = $client{$fno}{avgscore};
+        slog "Joined: client $cli user $user arch $archlist score $score";
 
+        privmessage $fno, sprintf  "Welcome $cli. Your score $score puts you in the %s category.", ($score > $topscore) ? "fast" : "slow";
         if($version < $minimumversion) {
             updateclient($fno, $updaterev);
             $client{$fno}{'bad'}="asked to update";
@@ -358,7 +385,7 @@ sub HELLO {
 sub UPLOADING {
     my ($rh, $args) = @_;
     $builds{$args}{uploading} = 1;
-    command $rh, "_UPLOADING\n";
+    command $rh, "_UPLOADING";
     #slog "Upload: $client{$rh->fileno}{'client'} uploads $args\n";
 }
 
@@ -367,7 +394,7 @@ sub GIMMEMORE {
     my $cli = $client{$rh->fileno}{'client'};
 
     #print "< GIMMEMORE ($cli)\n";
-    command $rh, "_GIMMEMORE $id\n";
+    command $rh, "_GIMMEMORE $id";
 
     &handoutbuilds($rh->fileno);
 }
@@ -384,7 +411,7 @@ sub COMPLETED {
         # This is a client saying this build is completed although it has
         # already been said to be. Most likely because we killed this build
         # already but the client didn't properly obey!
-        slog "Duplicate completion from $cli. $id is already complete\n";
+        slog "Duplicate completion from $cli. $id is already complete";
         #print "ALERT: this build was already completed!!!\n";
         return;
     }
@@ -400,7 +427,7 @@ sub COMPLETED {
     $builds{$id}{'uploading'}=0;
 
     # send OK
-    command $rh, "_COMPLETED $id\n";
+    command $rh, "_COMPLETED $id";
 
     # assign client score
     $client{$rh->fileno}{roundscore} += $builds{$id}{score};
@@ -409,8 +436,15 @@ sub COMPLETED {
     if ($ulsize and $ultime) {
         $uplink = $ulsize / $ultime / 1024;
     }
-    slog sprintf("Completed: build $id client %s seconds %d kills %d uplink %d score %d\n",
-                 $cli, $took, $kills, $uplink, $client{$rh->fileno}{roundscore});
+    slog sprintf("Completed: build $id client %s seconds %d uplink %d score %d",
+                 $cli, $took, $uplink, $client{$rh->fileno}{roundscore});
+
+    if (&check_fatal_error(sprintf("$uploadpath/%s-%s.log", $cli, $id))) {
+        slog "$cli is out of diskspace! Disabling client.";
+        privmessage $rh->fileno, "Your are out of disk space. You have been disabled.";
+        $client{$rh->fileno}{'fine'} = 0;
+        return;
+    }
 
     # now kill this build on all clients still building it
     my $kills = kill_build($id);
@@ -432,18 +466,30 @@ sub COMPLETED {
         my $start = time();
         system("$rb_eachcomplete $id $cli");
         if ((time() - $start) > 1) {
-            slog "WARNING: rb_eachcomplete script is taking too long!\n";
+            slog "WARNING: rb_eachcomplete script is taking too long!";
         }
     }
 }
 
+sub check_fatal_error
+{
+    my ($file) = @_;
+    if (open F, "<$file") {
+        if (grep /No space left on device/, <F>) {
+            close F;
+            return 1;
+        }
+        close F;
+    }
+    return 0;
+}
 sub update_clientscores
 {
     return unless ($db);
 
     for my $cl (&build_clients) {
         my $score = $client{$cl}{roundscore};
-        next if (!$score);
+        $score = 0 if (!$score);
         $setscore_sth->execute($client{$cl}{client}, $buildround, $score, $buildround, $score) or
             warn "DBI: Can't execute statement: ". $setscore_sth->errstr;
     }
@@ -509,6 +555,7 @@ my %protocmd = (
     '_BUILD' => 1,
     '_CANCEL' => 1,
     '_UPDATE' => 1,
+    '_MESSAGE' => 1,
     );
 
 
@@ -581,7 +628,7 @@ sub slowclient {
 
 # $a and $b are file numbers
 sub sortclients {
-    return $client{$b}{'bogomips'} <=> $client{$a}{'bogomips'};
+    return $client{$b}{'avgscore'} <=> $client{$a}{'avgscore'};
 }
 
 sub resetbuildround {
@@ -595,13 +642,21 @@ sub resetbuildround {
 sub startround {
     my ($rev) = @_;
     # start a build round
-    #print "START a new build round for rev $rev\n";
-    slog sprintf("New round: %d clients %d builds rev $rev\n",
-                 scalar(&build_clients), scalar @buildids);
+
+    getbuilds("builds");
+
+    my $num_clients = scalar &build_clients;
+    my $num_builds = scalar @buildids;
+
+    slog "New round: $num_clients clients $num_builds builds rev $rev topscore $topscore";
+
+    message sprintf "New build round started. Revision $rev, $num_builds builds, $num_clients clients.";
 
     $buildround=$rev;
     $buildstart=time();
     $wastedtime = 0;
+    $phase = 1;
+    $countdown = 0;
 
     resetbuildround();
 
@@ -637,7 +692,9 @@ sub endround {
         }
     }
     #print "END of a build round, $took seconds, skipped $inp builds\n";
-    slog "End of round $buildround: skipped $inp seconds $took wasted $wastedtime\n";
+    slog "End of round $buildround: skipped $inp seconds $took wasted $wastedtime";
+
+    message sprintf "Build round completed after $took seconds.";
 
     resetbuildround();
 
@@ -682,7 +739,7 @@ sub checkclients {
             if($exp) {
                 print "ALERT: waiting ${t}s for $exp from client $client{$cl}{client}!\n";
             }
-            command $rh, "PING 111\n";
+            command $rh, "PING 111";
             $client{$cl}{'ping'}=[gettimeofday];
             $client{$cl}{'expect'}="_PING";
         }
@@ -734,12 +791,13 @@ sub handoutbuilds {
 
     for my $cl (@scl) {
 
+        next if ($client{$cl}{fine} == 0);
         next if ($conn{$cl}{type} eq "commander");
 
         $done =0;
         my $found=0;
 
-        if ($client{$cl}{avgscore} > 5000) {
+        if ($client{$cl}{avgscore} > $topscore) {
             @blist = sort fastclient @blist;
         }
         else {
@@ -784,9 +842,24 @@ sub handoutbuilds {
 
     # only display this stat if different than last time
     my $thisstat="$und-$inp-$bc";
-    if($thisstat ne $stat) {
+    if($buildround and $thisstat ne $stat) {
         print "$und builds not complete, $bc clients. $inp builds in progress\n";
         $stat = $thisstat;
+    }
+
+    if ($und < 10 and $countdown != $und) {
+        message sprintf "$und build%s left...", ($und > 1) ? "s" : "";
+        $countdown = $und;
+    }
+
+    my $unhanded = 0;
+    for my $id (@buildids) {
+        $unhanded += 1 if ($builds{$id}{handcount} == 0);
+    }
+    if ($unhanded == 0 and $phase == 1) {
+        $phase = 2;
+        slog "All builds are now handed out. Speculative building commencing.";
+        message "All builds are now handed out. Speculative building commencing.";
     }
 
     if(!$inp && $und) {
@@ -815,7 +888,7 @@ sub control {
         else {
             $nextround = $1;
         }
-        command $rh, "OK!\n";
+        command $rh, "OK!";
     }
 }
 
@@ -839,7 +912,7 @@ $conn{$server->fileno} = { type => 'master' };
 
 print "Server starts\n";
 
-slog "Server starts\n";
+slog "Server starts";
 
 # Main loop active until ^C pressed
 my $alldone = 0;
@@ -852,7 +925,7 @@ while(not $alldone) {
 
     foreach my $rh (@$rh_set) {
         if (not exists $conn{$rh->fileno}) {
-            slog "Fatal: Untracked rh!\n";
+            slog "Fatal: Untracked rh!";
             die "untracked rh";
         }
         my $type = $conn{$rh->fileno}{type};
@@ -873,7 +946,7 @@ while(not $alldone) {
             }
             else {
                 #print "Commander left\n";
-                slog "Commander left\n";                
+                slog "Commander left";                
                 delete $conn{$rh->fileno};
                 $read_set->remove($rh);
                 $rh->close;
@@ -913,7 +986,7 @@ while(not $alldone) {
 
             printf("Client disconnect ($err), removing client $cli on %d\n",
                    $cl);
-            slog "Disconnect: client $cli reason $err\n";
+            slog "Disconnect: client $cli reason $err";
             client_gone($cl);
             my $rh = $client{$cl}{'socket'};
             if ($rh) {
@@ -921,7 +994,7 @@ while(not $alldone) {
                 $rh->close;
             }
             else {
-                slog "!!! No rh to delete for client $cli\n";
+                slog "!!! No rh to delete for client $cli";
             }
             delete $client{$cl};
             delete $conn{$cl};
