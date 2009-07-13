@@ -14,7 +14,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 23;
+my $revision = 24;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -93,6 +93,9 @@ MOO
 }
 
 &testarchs();
+
+# no localized messages, please
+$ENV{LC_ALL} = 'C';
 
 beginning:
 
@@ -223,7 +226,9 @@ while (1) {
     }
 
     if ($lastcomm + 60 < time()) {
-        tprint "Server connection stalled. Exiting!\n";
+        tprint "Server connection stalled. Exiting in 5s...\n";
+        close $sock;
+        sleep 5;
         exit;
     }
 
@@ -466,6 +471,12 @@ sub UPDATE
     exit;
 }
 
+sub MESSAGE
+{
+    tprint "Server message: @_\n";
+    print $sock "_MESSAGE\n";
+}
+
 sub parsecmd
 {
     my ($cmdstr)=@_;
@@ -476,7 +487,8 @@ sub parsecmd
                      'BUILD', 1,
                      'PING', 1,
                      'UPDATE', 1,
-                     'CANCEL', 1);
+                     'CANCEL', 1,
+                     'MESSAGE', 1);
     
     if($cmdstr =~ /^([_A-Z]*) *(.*)/) {
         my $func = $1;
@@ -596,7 +608,7 @@ sub killchild
     $busy -= $builds{$id}{cores};
 
     my $pid = $builds{$id}{pid};
-    kill -9, $pid;
+    kill -2, $pid;
     tprint "Killed build $id\n";
     waitpid $pid, 0;
 
