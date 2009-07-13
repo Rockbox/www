@@ -14,11 +14,11 @@ my $store="data";
 
 # the minimum protocol version supported. The protocol version is provided
 # by the client
-my $minimumversion = 22;
+my $minimumversion = 23;
 
 # if the client is found too old, this is a svn rev we tell the client to
 # use to pick an update
-my $updaterev = 21823;
+my $updaterev = 21829;
 
 # the name of the server log
 my $logfile="logfile";
@@ -334,12 +334,15 @@ sub HELLO {
         $client{$fno}{'expect'} = ""; # no response expected yet
         $client{$fno}{'builds'} = ""; # none so far
         $client{$fno}{'bad'} = 0; # not bad!
+        $client{$fno}{'avgscore'} = 0;
+
+        &get_clientscore($fno);
 
         # send OK
         command $rh, "_HELLO ok\n";
 
         #print "Joined: $args\n";
-        slog "Joined: client $cli user $user arch $archlist bogomips $bogomips\n";
+        slog "Joined: client $cli user $user arch $archlist bogomips $bogomips score $client{$fno}{avgscore}\n";
 
         if($version < $minimumversion) {
             updateclient($fno, $updaterev);
@@ -356,7 +359,7 @@ sub UPLOADING {
     my ($rh, $args) = @_;
     $builds{$args}{uploading} = 1;
     command $rh, "_UPLOADING\n";
-    slog "Upload: $client{$rh->fileno}{'client'} uploads $args\n";
+    #slog "Upload: $client{$rh->fileno}{'client'} uploads $args\n";
 }
 
 sub GIMMEMORE {
@@ -399,12 +402,15 @@ sub COMPLETED {
     # send OK
     command $rh, "_COMPLETED $id\n";
 
+    # assign client score
+    $client{$rh->fileno}{roundscore} += $builds{$id}{score};
+
     my $uplink = 0;
     if ($ulsize and $ultime) {
         $uplink = $ulsize / $ultime / 1024;
     }
-    slog sprintf("Completed: build $id client %s seconds %d kills %d uplink %d\n",
-                 $cli, $took, $kills, $uplink);
+    slog sprintf("Completed: build $id client %s seconds %d kills %d uplink %d score %d\n",
+                 $cli, $took, $kills, $uplink, $client{$rh->fileno}{roundscore});
 
     # now kill this build on all clients still building it
     my $kills = kill_build($id);
@@ -431,27 +437,65 @@ sub COMPLETED {
     }
 }
 
+sub update_clientscores
+{
+    return unless ($db);
+
+    for my $cl (&build_clients) {
+        my $score = $client{$cl}{roundscore};
+        next if (!$score);
+        $setscore_sth->execute($client{$cl}{client}, $buildround, $score, $buildround, $score) or
+            warn "DBI: Can't execute statement: ". $setscore_sth->errstr;
+    }
+}
+
+sub get_clientscore
+{
+    return unless ($db);
+
+    my ($cl) = @_;
+
+    my $rows = $getscore_sth->execute($client{$cl}{client});
+    if ($rows > 0) {
+        my ($score, $count) = $getscore_sth->fetchrow_array();
+        $client{$cl}{avgscore} = int($score / $count);
+    }
+}
+
+sub db_connect
+{
+    my $dbpath = 'DBI:mysql:rockbox';
+    $db = DBI->connect($dbpath, $rb_dbuser, $rb_dbpwd) or
+        warn "DBI: Can't connect to database: ". DBI->errstr;
+
+    # prepare some statements for later execution:
+
+    $submit_update_sth = $db->prepare("UPDATE builds SET client=?,timeused=?,bogomips=?,ultime=?,ulsize=? WHERE revision=? and id=?") or
+        warn "DBI: Can't prepare statement: ". $db->errstr;
+
+    $submit_new_sth = $db->prepare("INSERT INTO builds (revision,id) VALUES (?,?) ON DUPLICATE KEY UPDATE client='',timeused=0,bogomips=0,ultime=0,ulsize=0") or
+        warn "DBI: Can't prepare statement: ". $db->errstr;
+
+    $setscore_sth = $db->prepare("INSERT INTO clients (name, lastrev, totscore, builds) VALUES (?,?,?,1) ON DUPLICATE KEY UPDATE lastrev=?,totscore=totscore+?,builds=builds+1") or
+        warn "DBI: Can't prepare statement: ". $db->errstr;
+
+    $getscore_sth = $db->prepare("SELECT totscore, builds FROM clients WHERE name=?") or
+        warn "DBI: Can't prepare statement: ". $db->errstr;
+}
+
 sub db_submit
 {
     return unless ($rb_dbuser and $rb_dbpwd);
 
     my ($revision, $id, $client, $timeused, $bogomips, $ultime, $ulsize) = @_;
-    my $dbpath = 'DBI:mysql:rockbox';
-    my $db = DBI->connect($dbpath, $rb_dbuser, $rb_dbpwd) or
-        warn "DBI: Can't connect to database: ". DBI->errstr;
     if ($client) {
-        my $sth = $db->prepare("UPDATE builds SET client=?,timeused=?,bogomips=?,ultime=?,ulsize=? WHERE revision=? and id=?") or
-            warn "DBI: Can't prepare statement: ". $db->errstr;
-        $sth->execute($client, $timeused, $bogomips, $ultime, $ulsize, $revision, $id) or
-            warn "DBI: Can't execute statement: ". $sth->errstr;
+        $submit_update_sth->execute($client, $timeused, $bogomips, $ultime, $ulsize, $revision, $id) or
+            warn "DBI: Can't execute statement: ". $submit_update_sth->errstr;
     }
     else {
-        my $sth = $db->prepare("INSERT INTO builds (revision,id) VALUES (?,?) ON DUPLICATE KEY UPDATE client='',timeused=0,bogomips=0,ultime=0,ulsize=0") or
-            warn "DBI: Can't prepare statement: ". $db->errstr;
-        $sth->execute($revision, $id) or
-            warn "DBI: Can't execute statement: ". $sth->errstr;
+        $submit_new_sth->execute($revision, $id) or
+            warn "DBI: Can't execute statement: ". $submit_new_sth->errstr;
     }
-    $db->disconnect();
 }
 
 # commands it will accept
@@ -479,19 +523,19 @@ sub parsecmd {
             &$func($rh, $rest);
         }
         else {
-            print "Unknown input: $cmdstr";
+            slog "Unknown input: $cmdstr";
         }
     }
 }
 
 # $a and $b are buildids
-sub sortbuilds {
+sub fastclient {
     # done builds are, naturally, last
     my $s = $builds{$b}{'done'} <=> $builds{$a}{'done'};
 
     if (!$s) {
         # delay handing out builds that are being uploaded right now
-        $s = $builds{$a}{'uploading'} <=> $builds{$b}{'uploading'};
+        $s = $builds{$b}{'uploading'} <=> $builds{$a}{'uploading'};
     }
 
     if (!$s) {
@@ -508,6 +552,29 @@ sub sortbuilds {
     if(!$s) {
         # if the same handcount, take score into account
         $s = $builds{$a}{'score'} <=> $builds{$b}{'score'};
+    }
+    return $s;
+}
+
+# $a and $b are buildids
+sub slowclient {
+    # done builds are, naturally, last
+    my $s = $builds{$b}{'done'} <=> $builds{$a}{'done'};
+
+    if (!$s) {
+        # delay handing out builds that are being uploaded right now
+        $s = $builds{$b}{'uploading'} <=> $builds{$a}{'uploading'};
+    }
+
+    if (!$s) {
+        # 'handcount' is the number of times the build has been handed out
+        # to a client. Get the lowest one first.
+        $s = $builds{$b}{'handcount'} <=> $builds{$a}{'handcount'};
+    }
+
+    if(!$s) {
+        # if the same handcount, take score into account
+        $s = $builds{$b}{'score'} <=> $builds{$a}{'score'};
     }
     return $s;
 }
@@ -546,7 +613,7 @@ sub startround {
     # clear zip files, to avoid old ones remaining
     `rm -f data/rockbox-*.zip`;
 
-    handoutbuilds(keys %client);
+    handoutbuilds(&build_clients);
 }
 
 sub endround {
@@ -577,6 +644,8 @@ sub endround {
     # clear upload dir
     rmtree( $uploadpath, {keep_root => 1} );
 
+    &update_clientscores();
+
     if($rb_buildround) {
         system("$rb_buildround $buildround");
     }
@@ -586,7 +655,6 @@ sub endround {
         &startround($nextround);
         $nextround = 0;
     }
-
 }
 
 sub checkclients {
@@ -661,8 +729,7 @@ sub handoutbuilds {
     }
 
     my @scl = sort sortclients @_;
-    my @blist = sort sortbuilds @buildids;
-
+    my @blist = @buildids;
     my $done=0;
 
     for my $cl (@scl) {
@@ -671,6 +738,13 @@ sub handoutbuilds {
 
         $done =0;
         my $found=0;
+
+        if ($client{$cl}{avgscore} > 5000) {
+            @blist = sort fastclient @blist;
+        }
+        else {
+            @blist = sort slowclient @blist;
+        }
 
         # time to go through the builds and give to clients
         while (scalar @blist) {
@@ -754,6 +828,7 @@ my $server = new IO::Socket::INET(
 or die "socket: $!\n";
 
 getbuilds("builds");
+db_connect();
 
 my $debug;
 
@@ -830,7 +905,7 @@ while(not $alldone) {
     }
 
     # loop over the clients and close the bad ones
-    foreach my $cl (keys %client) {
+    foreach my $cl (&build_clients) {
 
         my $err = $client{$cl}{'bad'};
         if($err) {
