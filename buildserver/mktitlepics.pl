@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+my $dir = "titles";
+
 my %builds;
 
 # copy from rbmaster.pl, could be made a .pm
@@ -27,6 +29,8 @@ sub getbuilds {
 getbuilds("builds");
 
 foreach my $id (keys %builds) {
+    next if (-f "$dir/$id.png");
+
     my $text = $builds{$id}{'name'};
     print "long: $text => ";
 
@@ -55,6 +59,7 @@ foreach my $id (keys %builds) {
     `convert -font helvetica -pointsize 13 -fill black -draw "text 1,13 '$text'" text-bg.png dump.png`;
 
     # rotate image                                                          
-    `convert -rotate -90 dump.png pic-$id.png`;
+    `convert -rotate -90 dump.png $dir/$id.png`;
 }
 
+unlink "dump.png";
