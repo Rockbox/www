@@ -27,6 +27,9 @@ sdl:nozip:fuzesim:SanDisk Sansa Fuze - Simulator:rockboxui:--target=fuze,--type=
 sdl:nozip:m200v4sim:SanDisk Sansa m200v4 - Simulator:rockboxui:--target=m200v4,--type=s:8554
 sdl:nozip:hdd1630sim:Philips HDD1630 - Simulator:rockboxui:--target=hdd1630,--type=s:13492
 sdl:nozip:sa9200sim:Philips SA9200 - Simulator:rockboxui:--target=sa9200,--type=s:13492
+sdl:nozip:yh820sim:Samsung YH-820 - Simulator:rockboxui:--target=yh_820,--type=s:13492
+sdl:nozip:yh920sim:Samsung YH-920 - Simulator:rockboxui:--target=yh_920,--type=s:13492
+sdl:nozip:yh925sim:Samsung YH-925 - Simulator:rockboxui:--target=yh_925,--type=s:13492
 m68k:zip:h100:iriver H100 - Normal:rockbox.iriver:--target=h100,--type=n:17256
 m68k:zip:h120:iriver H120 - Normal:rockbox.iriver:--target=h120,--type=n:17251
 m68k:zip:h300:iriver H300 - Normal:rockbox.iriver:--target=h300,--type=n:18055
