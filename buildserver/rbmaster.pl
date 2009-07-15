@@ -14,11 +14,11 @@ my $store="data";
 
 # the minimum protocol version supported. The protocol version is provided
 # by the client
-my $minimumversion = 25;
+my $minimumversion = 27;
 
 # if the client is found too old, this is a svn rev we tell the client to
 # use to pick an update
-my $updaterev = 21850;
+my $updaterev = 21880;
 
 # the name of the server log
 my $logfile="logfile";
@@ -74,7 +74,6 @@ my %client;
 #  {'cpu'} - string for stats
 #  {'bits'} 32 / 64 
 #  {'os'}
-#  {'bogomips'}
 #
 
 my $started = time();
@@ -139,7 +138,9 @@ sub kill_build {
             slog sprintf("Cancel: build $id client %s seconds %d",
                          $client{$cl}{'client'}, $took);
 
-            # tell client to build!
+            $wastedtime += $took;
+
+            # tell client to cancel!
             command $rh, "CANCEL $id";
             $client{$cl}{'expect'}="_CANCEL";
             $num++;
@@ -181,10 +182,12 @@ sub builds_undone {
 }
 
 sub getbuilds {
-    my ($filename)=@_;
+    my $filename="builds";
 
     %builds = ();
     @buildids = ();
+
+    system("svn up -q $filename");
 
     open(F, "<$filename");
     while(<F>) {
@@ -220,7 +223,7 @@ sub updateclient {
     command $rh, "UPDATE $rev";
     $client{$cl}{'expect'}="_UPDATE";
 
-    slog sprintf("Update: rev $rev client %s\n",
+    slog sprintf("Update: rev $rev client %s",
                  $client{$cl}{'client'});
 
 }
@@ -295,8 +298,6 @@ sub _UPDATE {
 sub _CANCEL {
     my ($rh, $args) = @_;
 
-    $wastedtime += $args;
-
     $client{$rh->fileno}{'expect'}="";
     $client{$rh->fileno}{'building'}--;
 }
@@ -305,8 +306,7 @@ my $commander;
 sub HELLO {
     my ($rh, $args) = @_;
 
-    my ($version, $archlist, $auth, $cli, $cpu, $bits,
-        $os, $bogomips) = split(" ", $args);
+    my ($version, $archlist, $auth, $cli, $cpu, $bits, $os) = split(" ", $args);
 
     my $fno = $rh->fileno;
 
@@ -325,7 +325,7 @@ sub HELLO {
 
         $conn{$fno}{type} = "commander";
     }
-    elsif(!$bogomips) {
+    elsif($os eq "") {
         # send error
         print "Bad HELLO: $args\n";
 
@@ -354,30 +354,33 @@ sub HELLO {
         $client{$fno}{'cpu'} = $cpu;
         $client{$fno}{'bits'} = $bits;
         $client{$fno}{'os'} = $os;
-        $client{$fno}{'bogomips'} = $bogomips;
         $client{$fno}{'socket'} = $rh;
         $client{$fno}{'expect'} = ""; # no response expected yet
         $client{$fno}{'builds'} = ""; # none so far
         $client{$fno}{'bad'} = 0; # not bad!
         $client{$fno}{'avgscore'} = 0;
 
-        &get_clientscore($fno);
-
         # send OK
         command $rh, "_HELLO ok";
 
-        #print "Joined: $args\n";
-        my $score = $client{$fno}{avgscore};
         slog "Joined: client $cli user $user arch $archlist score $score";
 
-        privmessage $fno, sprintf  "Welcome $cli. Your score $score puts you in the %s category.", ($score > $topscore) ? "fast" : "slow";
-        if($version < $minimumversion) {
-            updateclient($fno, $updaterev);
-            $client{$fno}{'bad'}="asked to update";
+        &getclient($fno);
+
+        if ($client{$fno}{blocked} > 0) {
+            privmessage $fno, sprintf  "Hello $cli. Your build client has been temporarily disabled by the administrators. Please go to #rockbox to find out why.";
         }
         else {
-            $client{$fno}{'fine'} = 1;
-            handoutbuilds($fno);
+            my $score = $client{$fno}{avgscore};
+            privmessage $fno, sprintf  "Welcome $cli. Your score $score puts you in the %s category.", ($score > $topscore) ? "fast" : "slow";
+            if($version < $minimumversion) {
+                updateclient($fno, $updaterev);
+                $client{$fno}{'bad'}="asked to update";
+            }
+            else {
+                $client{$fno}{'fine'} = 1;
+                handoutbuilds($fno);
+            }
         }
     }
 }
@@ -450,8 +453,7 @@ sub COMPLETED {
     my $kills = kill_build($id);
 
     # log this build in the database
-    &db_submit($buildround, $id, $cli, $took,
-               $client{$rh->fileno}{'bogomips'}, $ultime, $ulsize);
+    &db_submit($buildround, $id, $cli, $took, $ultime, $ulsize);
 
     my $base=sprintf("$uploadpath/%s-%s", $cli, $id);
                      
@@ -464,9 +466,10 @@ sub COMPLETED {
 
     if($rb_eachcomplete) {
         my $start = time();
-        system("$rb_eachcomplete $id $cli");
-        if ((time() - $start) > 1) {
-            slog "WARNING: rb_eachcomplete script is taking too long!";
+        system("$rb_eachcomplete $id $cli $buildround");
+        my $took = time() - $start;
+        if ($took > 1) {
+            slog "rb_eachcomplete took $took seconds";
         }
     }
 }
@@ -495,16 +498,17 @@ sub update_clientscores
     }
 }
 
-sub get_clientscore
+sub getclient
 {
     return unless ($db);
 
     my ($cl) = @_;
 
-    my $rows = $getscore_sth->execute($client{$cl}{client});
+    my $rows = $getclient_sth->execute($client{$cl}{client});
     if ($rows > 0) {
-        my ($score, $count) = $getscore_sth->fetchrow_array();
+        my ($score, $count, $blocked) = $getclient_sth->fetchrow_array();
         $client{$cl}{avgscore} = int($score / $count);
+        $client{$cl}{blocked} = $blocked;
     }
 }
 
@@ -516,16 +520,16 @@ sub db_connect
 
     # prepare some statements for later execution:
 
-    $submit_update_sth = $db->prepare("UPDATE builds SET client=?,timeused=?,bogomips=?,ultime=?,ulsize=? WHERE revision=? and id=?") or
+    $submit_update_sth = $db->prepare("UPDATE builds SET client=?,timeused=?,ultime=?,ulsize=? WHERE revision=? and id=?") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
 
-    $submit_new_sth = $db->prepare("INSERT INTO builds (revision,id) VALUES (?,?) ON DUPLICATE KEY UPDATE client='',timeused=0,bogomips=0,ultime=0,ulsize=0") or
+    $submit_new_sth = $db->prepare("INSERT INTO builds (revision,id) VALUES (?,?) ON DUPLICATE KEY UPDATE client='',timeused=0,ultime=0,ulsize=0") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
 
     $setscore_sth = $db->prepare("INSERT INTO clients (name, lastrev, totscore, builds) VALUES (?,?,?,1) ON DUPLICATE KEY UPDATE lastrev=?,totscore=totscore+?,builds=builds+1") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
 
-    $getscore_sth = $db->prepare("SELECT totscore, builds FROM clients WHERE name=?") or
+    $getclient_sth = $db->prepare("SELECT totscore, builds, blocked FROM clients WHERE name=?") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
 }
 
@@ -533,9 +537,9 @@ sub db_submit
 {
     return unless ($rb_dbuser and $rb_dbpwd);
 
-    my ($revision, $id, $client, $timeused, $bogomips, $ultime, $ulsize) = @_;
+    my ($revision, $id, $client, $timeused, $ultime, $ulsize) = @_;
     if ($client) {
-        $submit_update_sth->execute($client, $timeused, $bogomips, $ultime, $ulsize, $revision, $id) or
+        $submit_update_sth->execute($client, $timeused, $ultime, $ulsize, $revision, $id) or
             warn "DBI: Can't execute statement: ". $submit_update_sth->errstr;
     }
     else {
@@ -643,7 +647,7 @@ sub startround {
     my ($rev) = @_;
     # start a build round
 
-    getbuilds("builds");
+    &getbuilds();
 
     my $num_clients = scalar &build_clients;
     my $num_builds = scalar @buildids;
@@ -704,7 +708,12 @@ sub endround {
     &update_clientscores();
 
     if($rb_buildround) {
+        my $start = time();
         system("$rb_buildround $buildround");
+        my $took = time() - $start;
+        if ($took > 1) {
+            slog "rb_buildround took $took seconds";
+        }
     }
     $buildround=0;
 
@@ -777,6 +786,19 @@ sub client_gone {
     }
 }
 
+sub unhanded {
+    my $unhanded = 0;
+    for my $id (@buildids) {
+        if ($builds{$id}{handcount} > 1) {
+            $phase = 2;
+            slog "Speculative building now commencing.";
+            message "Speculative building now commencing.";
+            last;
+        }
+    }
+}
+
+
 my $stat;
 
 sub handoutbuilds {
@@ -836,6 +858,8 @@ sub handoutbuilds {
         }
     }
 
+    &unhanded();
+
     my $und = builds_undone();
     my $inp = builds_in_progress();
     my $bc = scalar(&build_clients);
@@ -850,16 +874,6 @@ sub handoutbuilds {
     if ($und < 10 and $countdown != $und) {
         message sprintf "$und build%s left...", ($und > 1) ? "s" : "";
         $countdown = $und;
-    }
-
-    my $unhanded = 0;
-    for my $id (@buildids) {
-        $unhanded += 1 if ($builds{$id}{handcount} == 0);
-    }
-    if ($unhanded == 0 and $phase == 1) {
-        $phase = 2;
-        slog "All builds are now handed out. Speculative building commencing.";
-        message "All builds are now handed out. Speculative building commencing.";
     }
 
     if(!$inp && $und) {
