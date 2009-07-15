@@ -29,6 +29,7 @@ my $clientname = $clientname;
 my $archlist = $archlist;
 my $buildmaster = $buildmaster || 'buildmaster.rockbox.org';
 my $port = $port || 19999;
+my $ulspeed = $ulspeed || 0;
 
 my $upload = "http://$buildmaster/upload.pl";
 
@@ -84,6 +85,9 @@ optional setting:
 
 -buildmaster=[host]
   Connect to this given server instead of the default.
+
+-ulspeed=[speed]
+  Limit upload speed to max [speed] kilobytes per second.
 
 You can also specify -config=file where parameters are stored as 'label: value'
 
@@ -367,7 +371,12 @@ sub upload
         return;
     }
 
-    `curl -F upfile=\@$file $upload`;
+    my $limit;
+    if ($ulspeed) {
+        $limit = "--limit-rate ${ulspeed}k";
+    }
+
+    `curl $limit -F upfile=\@$file $upload`;
 }
 
 sub bogomips
