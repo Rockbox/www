@@ -103,7 +103,7 @@ for my $rev (sort {$b <=> $a} keys %builds) {
     for my $type (sort keys %alltypes) {
 
         if (not defined $builds{$rev}{$type}{client}) {
-            print "<td>&nbsp;</td>\n";
+            push @tds, "<td>&nbsp;</td>\n";
             next;
         }
 
