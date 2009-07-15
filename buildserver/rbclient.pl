@@ -33,7 +33,7 @@ my $ulspeed = $ulspeed || 0;
 
 my $upload = "http://$buildmaster/upload.pl";
 
-my ($speed, $probecores) = &bogomips;
+my ($probecores) = &probecores;
 my $cores = $cores || $probecores;
 
 # Modify the speed accordingly if not using all cores
@@ -43,7 +43,7 @@ if ($cores ne $probecores) {
 
 my $cpu = `uname -m`;
 chomp $cpu;
-my $os = `uname -o`;
+my $os = `uname -s`;
 chomp $os;
 
 if ($cpu eq "i686" or $cpu eq "i386" or $cpu eq "armv5tel") {
@@ -103,7 +103,7 @@ $ENV{LC_ALL} = 'C';
 
 beginning:
 
-tprint "Starting client $clientname, revision $revision. $speed bogomips and $cores cores.\n";
+tprint "Starting client $clientname, revision $revision, cores $cores\n";
 
 my $sock;
 
@@ -125,8 +125,8 @@ $conntype{$sock->fileno} = 'socket';
 
 my $auth = "$username:$password";
 
-tprint "HELLO $revision $archlist $auth $clientname $cpu $bits $os $speed\n";
-print $sock "HELLO $revision $archlist $auth $clientname $cpu $bits $os $speed\n";
+tprint "HELLO $revision $archlist $auth $clientname $cpu $bits $os\n";
+print $sock "HELLO $revision $archlist $auth $clientname $cpu $bits $os\n";
 
 my $busy = 0;
 my %builds = ();
@@ -379,22 +379,13 @@ sub upload
     `curl $limit -F upfile=\@$file $upload`;
 }
 
-sub bogomips
+sub probecores
 {
     open CPUINFO, "</proc/cpuinfo" or return 0;
-    my @lines = grep /^bogomips/i, <CPUINFO>;
-    seek(CPUINFO, 0, SEEK_SET);
     my @cores = grep /^processor/i, <CPUINFO>;
     close CPUINFO;
 
-    my $bogomips = 1;
-    for (@lines) {
-        if (/bogomips\s*: (\d+)/i) {
-            $bogomips += $1;
-        }
-    }
-
-    return ($bogomips, scalar @cores);
+    return (scalar @cores);
 }
     
 sub _HELLO
