@@ -14,7 +14,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 26;
+my $revision = 27;
 my $cwd = `pwd`;
 chomp $cwd;
 
