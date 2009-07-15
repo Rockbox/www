@@ -418,11 +418,9 @@ sub CANCEL
 {
     my ($id) = @_;
 
-    my $wasted = time() - $builds{$id}{started};
-
     &killchild($id);
 
-    print $sock "_CANCEL $wasted\n";
+    print $sock "_CANCEL\n";
 
     if ($busy < $cores) {
         print $sock "GIMMEMORE\n";
