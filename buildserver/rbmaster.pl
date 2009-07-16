@@ -789,7 +789,7 @@ sub client_gone {
 sub unhanded {
     my $unhanded = 0;
     for my $id (@buildids) {
-        if ($builds{$id}{handcount} > 1) {
+        if ($builds{$id}{handcount} > 1 and $phase < 2) {
             $phase = 2;
             slog "Speculative building now commencing.";
             message "Speculative building now commencing.";
