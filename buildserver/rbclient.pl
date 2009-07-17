@@ -14,12 +14,17 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 27;
+my $revision = 28;
 my $cwd = `pwd`;
 chomp $cwd;
 
 sub tprint {
-    print strftime("%F %T ", localtime()), $_[0];
+    my $line = strftime("%F %T ", localtime()) . $_[0];
+    print $line;
+    if (open LOG, ">>rbclient.log") {
+        print LOG $line;
+        close LOG;
+    }
 }
 
 # read -parameters
@@ -301,7 +306,7 @@ sub startbuild
         printf DEST "Build Date: %s\n", strftime("%Y%m%dT%H%M%SZ", gmtime);
         print DEST "Build Type: $id\n";
         print DEST "Build Dir: $cwd/build-$$\n";
-        print DEST "Build Server: $clientname\n";
+        print DEST "Build Server: $clientname-$username\n";
         close DEST;
 
         chdir "build-$$";
@@ -322,7 +327,7 @@ sub startbuild
             print DEST "Build Status: Fine\n";
         }
         else {
-            print "no '$builds{$id}{result}'\n";
+            print DEST "Build Failure: No '$builds{$id}{result}' was produced.\n";
             print DEST "Build Status: Failed\n";
         }
         my $tooktime = time() - $starttime;
@@ -391,8 +396,10 @@ sub probecores
 sub _HELLO
 {
     if ($_[0] ne "ok") {
-        tprint "Server refused connection: @_\n";
-        exit 22;
+        tprint "HELLO failed: @_\n";
+        # try again a little later
+        sleep 10;
+        goto beginning;
     }
 }
 
