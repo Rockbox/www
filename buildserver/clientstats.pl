@@ -32,13 +32,15 @@ my $rev = $ARGV[0];
 
 my $dbpath = 'DBI:mysql:rockbox';
 my $db = DBI->connect($dbpath, $rb_dbuser, $rb_dbpwd);
-my $sth = $db->prepare("SELECT id,client,timeused,bogomips FROM builds WHERE revision=?");
+my $getclient_sth = $db->prepare("SELECT totscore, builds FROM clients WHERE name=?") or
+    warn "DBI: Can't prepare statement: ". $db->errstr;
+
+my $sth = $db->prepare("SELECT id,client,timeused FROM builds WHERE revision=?");
 my $rows = $sth->execute($rev) + 0;
 if ($rows) {
-    while (my ($id, $client, $time, $bogomips) = $sth->fetchrow_array()) {
+    while (my ($id, $client, $time) = $sth->fetchrow_array()) {
         $clients{$client}{$id} = $time;
         $score{$client} += $builds{$id}{score};
-        $speed{$client} = $bogomips;
     }
 }
 
@@ -47,9 +49,19 @@ if ($rows) {
 printf("<p>For these $rows builds, the following %d build clients participated:\n",
        scalar keys %clients);
 
-print "<table><tr><th>Client</th> <th>Bogomips</th> <th>Score</th> <th>Builds</th> <th>Avg time</th> <th>Total time</th> <th>All times</th> </tr>\n";
+print "<table><tr><th>Client</th> <th>Average<br>score</th> <th>Round<br>score</th> <th>Builds</th> <th>Total time</th> <th>All times</th> </tr>\n";
 
 for my $c (sort {$score{$b} <=> $score{$a}} keys %clients) {
+    my $avgscore = 0;
+    my $rows = $getclient_sth->execute($c);
+    if ($rows > 0) {
+        my ($score, $count) = $getclient_sth->fetchrow_array();
+        if ($count) {
+            $avgscore = int($score / $count);
+        }
+    }
+
+
     my $builds;
     my $times;
     my $total;
@@ -60,14 +72,14 @@ for my $c (sort {$score{$b} <=> $score{$a}} keys %clients) {
         $times .= "$t ";
         $builds += 1;
     }
-    printf("<tr> <td>$c</td> <td align=center>$speed{$c}</td> <td align=center>$score{$c}</td> <td align=center>$builds</td> <td align=center>%d</td> <td align=center>$total</td> <td>$times</td> </tr>\n",
-           int($total / $builds));
+    print "<tr> <td>$c</td> <td align=center>$avgscore</td> <td align=center>$score{$c}</td> <td align=center>$builds</td> <td align=center>$total</td> <td>$times</td> </tr>\n";
 }
 print "</table>\n";
 
-my $end = `tail -100 logfile | grep "End of round"`;
+my $end = `tail -1000 logfile | grep "End of round $rev"`;
 if ($end =~ /seconds (\d+) wasted (\d+)/) {
-    print "<p>This build round took $1 seconds. $2 cpu seconds were spent on cancelled builds.\n";
+    my $proc = int(100 * $2 / ($1 * scalar keys %clients));
+    print "<p>This build round took $1 seconds. $2 cpu seconds ($proc%) were spent on cancelled builds.\n";
 }
 
 &nicefoot();
