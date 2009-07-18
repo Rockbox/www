@@ -18,6 +18,7 @@ sdl:nozip:gigabeatssim:Toshiba Gigabeat S - Simulator:rockboxui:--target=gigabea
 sdl:nozip:sansae200sim:SanDisk Sansa e200 - Simulator:rockboxui:--target=e200,--type=s:13657
 sdl:nozip:sansae200v2sim:SanDisk Sansa e200v2 - Simulator:rockboxui:--target=e200v2,--type=s:13398
 sdl:nozip:sansac200sim:SanDisk Sansa c200 - Simulator:rockboxui:--target=c200,--type=s:12837
+sdl:nozip:sansac200v2sim:SanDisk Sansa c200v2 - Simulator:rockboxui:--target=c200v2,--type=s:11836
 sdl:nozip:mrobe500sim:Olympus M-Robe 500 - Simulator:rockboxui:--target=mrobe500,--type=s:12895
 sdl:nozip:mrobe100sim:Olympus M-Robe 100 - Simulator:rockboxui:--target=mrobe100,--type=s:12043
 sdl:nozip:cowond2sim:Cowon D2 - Simulator:rockboxui:--target=cowond2,--type=s:13490
@@ -60,6 +61,7 @@ arm:zip:creativezenvision:Creative Zen Vision - Normal:rockbox.zv:--target=creat
 arm:zip:fuze:SanDisk Sansa Fuze - Normal:rockbox.sansa:--target=fuze,--type=n:20406
 arm:zip:clip:SanDisk Sansa Clip - Normal:rockbox.sansa:--target=clip,--type=n:13154
 arm:zip:sansae200v2:SanDisk Sansa e200v2 - Normal:rockbox.sansa:--target=e200v2,--type=n:20360
+arm:zip:sansac200v2:SanDisk Sansa c200v2 - Normal:rockbox.sansa:--target=c200v2,--type=n:17714
 arm:zip:m200v4:SanDisk Sansa m200v4 - Normal:rockbox.sansa:--target=m200v4,--type=n:12747
 arm:zip:hdd1630:Philips HDD1630 - Normal:rockbox.mi4:--target=hdd1630,--type=n:20872
 arm:zip:yh820:Samsung YH-820 - Normal:rockbox.mi4:--target=yh_820,--type=n:8623
@@ -99,6 +101,7 @@ arm:nozip:ipod1g2gboot:iPod 1G/2G - Boot:bootloader-ipod1g2g.ipod:--target=ipod1
 arm:nozip:mrobe100boot:Olympus M-Robe 100 - Boot:pp5020.mi4:--target=mrobe100,--type=b:781
 arm:nozip:cowond2boot:Cowon D2 - Boot:rockbox.d2:--target=cowond2,--type=b:742
 arm:nozip:sansae200v2boot:SanDisk Sansa e200v2 - Boot:bootloader-e200v2.sansa:--target=e200v2,--type=b:733
+arm:nozip:sansac200v2boot:SanDisk Sansa c200v2 - Boot:bootloader-c200v2.sansa:--target=c200v2,--type=b:704
 arm:nozip:sansam200v4boot:SanDisk Sansa m200v4 - Boot:bootloader-m200v4.sansa:--target=m200v4,--type=b:669
 arm:nozip:sansaclipboot:SanDisk Sansa Clip - Boot:bootloader-clip.sansa:--target=clip,--type=b:689
 arm:nozip:sansafuzeboot:SanDisk Sansa Fuze - Boot:bootloader-fuze.sansa:--target=fuze,--type=b:737
