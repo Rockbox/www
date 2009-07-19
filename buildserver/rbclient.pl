@@ -14,7 +14,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 28;
+my $revision = 29;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -101,7 +101,7 @@ MOO
     exit 22;
 }
 
-&testarchs();
+&testsystem();
 
 # no localized messages, please
 $ENV{LC_ALL} = 'C';
@@ -256,10 +256,14 @@ sub startbuild
     $builds{$id}{pipe} = $pipe;
 
     # fix svn
-    my $buf = `svn info`;
+    my $buf = `svnversion`;
     my $rev;
-    if ($buf =~ /Revision: (\d+)/) {
+    if ($buf =~ /(\d\w+)/) {
         $rev = $1;
+        if ($rev =~ /M/) {
+            tprint "*** Your source tree is modified! Clean it up and restart.\n";
+            exit 22;
+        }
     }
     if ($rev != $builds{$id}{rev}) {
         # (using system() to make stderr messages appear on client console)
@@ -513,7 +517,7 @@ sub parsecmd
     }
 }
 
-sub testarchs
+sub testsystem
 {
     # check compilers
     %which = (
@@ -527,7 +531,7 @@ sub testarchs
     for (split ',', $archlist) {
         my $p = `which $which{$_}`;
         if (not $p =~ m|^/|) {
-            print "You specified arch $_ but don't have $which{$_} in your path!\n";
+            tprint "You specified arch $_ but don't have $which{$_} in your path!\n";
             exit 22;
         }
     }
@@ -535,28 +539,26 @@ sub testarchs
     # check curl
     my $p = `which curl`;
     if (not $p =~ m|^/|) {
-        print "I couldn't find 'curl' in your path.\n";
+        tprint "I couldn't find 'curl' in your path.\n";
         exit 22;
     }
 
     # check curl
     my $p = `which zip`;
     if (not $p =~ m|^/|) {
-        print "I couldn't find 'zip' in your path.\n";
+        tprint "I couldn't find 'zip' in your path.\n";
         exit 22;
     }
 
     # check perlfile
     if (not -w $perlfile) {
-        print "$perlfile must be located in the current directory, and writable by current\nuser, to allow automatic updates.";
-        sleep(1);
+        tprint "$perlfile must be located in the current directory, and writable by current\nuser, to allow automatic updates.";
         exit 22;
     }
 
     # check an upgrade file
     if (-e "$perlfile.new") {
-        print "An upgrade didn't complete. Rename $perlfile.new to $perlfile\n";
-        sleep(1);
+        tprint "An upgrade didn't complete. Rename $perlfile.new to $perlfile\n";
         exit 22;
     }
         
@@ -566,11 +568,20 @@ sub testarchs
     if ($url[0] =~ m|^URL: svn://svn.rockbox.org/rockbox/(.+)|) {
         my $s = $1;
         if ($s =~ /www/) {
-            sleep(1);
-            print "Script must be ran in root of a source repository. You are in $s.\n";
+            tprint "Script must be ran in root of a source repository. You are in $s.\n";
             exit 22;
         }
     }
+
+    # check that source tree is unmodified
+    my $rev = `svnversion`;
+    if ($rev =~ /M/) {
+        tprint "Your source tree is modified! Clean it up and restart.\n";
+        exit 22;
+    }
+
+    # update svn to latest version
+    system("svn up");
 }
 
 sub readconfig
