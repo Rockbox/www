@@ -37,7 +37,8 @@ if (open(LOG, "<data/$rev-$build.log")) {
                    ($line =~ /gcc: .*: No such file or/) ||
                    ($line =~ /ld returned (\d+) exit status/) ||
                    ($line =~ /^svn: /) ||
-                   ($line =~ /^ *make\[.*\*\*\*/) )
+                   ($line =~ /^Build Failure: /) ||
+                   ($line =~ /^ *make: *\*\*\*/) )
             {
                 # error
                 $errors+=1;
