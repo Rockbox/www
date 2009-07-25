@@ -1,7 +1,12 @@
 #!/usr/bin/perl
+require 'rbmaster.pm';
 
 my $build = $ARGV[0];
 my $zip = "data/rockbox-$build.zip";
+
+db_connect();
+my $sth = $db->prepare("UPDATE builds SET ramsize=?,binsize=? WHERE revision=? and id=?") or
+    warn "DBI: Can't prepare statement: ". $db->errstr;
 
 if (-f $zip) {
     if (open(Z, "unzip -p $zip .rockbox/rockbox-info.txt|")) {
@@ -22,5 +27,6 @@ if (-f $zip) {
             printf S "$build: $bytes $ram\n";
             close S;
         }
+        $sth->execute($ram, $bytes, $rev, $build);
     }
 }
