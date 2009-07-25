@@ -19,6 +19,7 @@
 # $rb_dbuser = 'dbuser';
 # $rb_dbpwd = 'dbpwd';
 #
+use DBI;
 eval 'require "secrets.pm"';
 
 sub getbuilds {
