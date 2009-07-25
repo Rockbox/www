@@ -35,6 +35,7 @@ my $archlist = $archlist;
 my $buildmaster = $buildmaster || 'buildmaster.rockbox.org';
 my $port = $port || 19999;
 my $ulspeed = $ulspeed || 0;
+my $msgscript = $msgscript || '';
 
 my $upload = "http://$buildmaster/upload.pl";
 
@@ -93,6 +94,10 @@ optional setting:
 
 -ulspeed=[speed]
   Limit upload speed to max [speed] kilobytes per second.
+
+-msgscript=[script]
+  Run this script whenever a MESSAGE comes in, with the message text as the
+  first argument
 
 You can also specify -config=file where parameters are stored as 'label: value'
 
@@ -483,6 +488,9 @@ sub UPDATE
 sub MESSAGE
 {
     tprint "Server message: @_\n";
+    if($msgscript ne '') {
+        `$msgscript "@_"`;
+    }
     print $sock "_MESSAGE\n";
 }
 
