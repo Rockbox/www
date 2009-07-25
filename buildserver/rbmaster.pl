@@ -14,11 +14,11 @@ my $store="data";
 
 # the minimum protocol version supported. The protocol version is provided
 # by the client
-my $minimumversion = 28;
+my $minimumversion = 29;
 
 # if the client is found too old, this is a svn rev we tell the client to
 # use to pick an update
-my $updaterev = 21921;
+my $updaterev = 21970;
 
 # the name of the server log
 my $logfile="logfile";
@@ -30,34 +30,10 @@ use DBI;
 use Time::HiRes qw(gettimeofday tv_interval);
 use POSIX 'strftime';
 
-# secrets.pm is optional and may contain:
-#
-# The master commander password that must be presented when connecting
-# $rb_cmdpasswd = "secret";
-#
-# Enabling the commander concept
-# $rb_cmdenabled = 1;       enables the commander system
-#
-# The shell script run after each build is completed. The arguments for this
-# script is $buildid $client-$user.
-# NOTE: this script is called synchronously. Make it run fast.
-# $rb_eachcomplete = "scriptname.sh";
-#
-# The shell script run after each build round is completed. No arguments.
-# NOTE: this script is called synchronously. Make it run fast.
-# $rb_buildround = "scriptname.sh"
-#
-# The account details used to access the mysql database.
-# $rb_dbuser = 'dbuser';
-# $rb_dbpwd = 'dbpwd';
-#
-eval 'require "secrets.pm"';
+require 'rbmaster.pm';
 
 # Each active connection gets an entry here, keyed by its filedes.
 my %conn;
-
-my %builds;
-my @buildids;
 
 # this is $rev while we're in a build round, 0 otherwise
 my $buildround;
@@ -78,6 +54,7 @@ my %client;
 
 my $started = time();
 my $wastedtime = 0; # sum of time spent by clients on cancelled builds
+my $speedlimit = 50; # >50 points/sec is a "fast" machine
 
 sub slog {
     if (open(L, ">>$logfile")) {
@@ -178,37 +155,38 @@ sub builds_undone {
     return $c;
 }
 
-sub getbuilds {
-    my $filename="builds";
+sub readblockfile {
+    if ($lastblockread + 600 < time()) {
+        system("svn update --non-interactive -q blockedclients");
 
-    %builds = ();
-    @buildids = ();
+        if (open B, "<blockedclients") {
+            for my $line (<B>) {
+                next if ($line =~ /^#/);
+                chomp $line;
+                my @a = split ":", $line;
+                $blocked{$a[0]} = $a[1];
+            }
+            close B;
 
-    system("svn up -q $filename");
-
-    open(F, "<$filename");
-    while(<F>) {
-        # sdl:nozip:recordersim:Recorder - Simulator:rockboxui:--target=recorder,--ram=2,--type=s
-        if($_ =~ /([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):(\d+)/) {
-            my ($arch, $zip, $id, $name, $file, $confopts, $score) =
-                ($1, $2, $3, $4, $5, $6, $7);
-            $builds{$id}{'arch'}=$arch;
-            $builds{$id}{'zip'}=$zip;
-            $builds{$id}{'name'}=$name;
-            $builds{$id}{'file'}=$file;
-            $builds{$id}{'confopts'}=$confopts;
-            $builds{$id}{'score'}=$score;
-            $builds{$id}{'handcount'} = 0; # not handed out to anyone
-            $builds{$id}{'done'} = 0; # not done
-            $builds{$id}{'uploading'} = 0; # not uploading
-
-            push @buildids, $id;
+            for my $cl (&build_clients) {
+                my $cname = \$clients{$cl}{'client'};
+                my $cblocked = \$clients{$cl}{'blocked'};
+                if (defined $blocked{$$cname}) {
+                    if (not $$cblocked) {
+                        slog "Adding client block for $$name. Reason: $blocked{$$name}.";
+                    }
+                    $$cblocked = 1;
+                }
+                else {
+                    if ($$cblocked) {
+                        slog "Removing client block for $$cname";
+                    }
+                    $$cblocked = 0;
+                }
+            }
         }
+        $lastblockread = time();
     }
-    close(F);
-
-    my @s = sort {$builds{$b}{score} <=> $builds{$a}{score}} keys %builds;
-    $topscore = $builds{$s[0]}{score};
 }
 
 sub updateclient {
@@ -216,9 +194,10 @@ sub updateclient {
 
     my $rh = $client{$cl}{'socket'};
 
-    # tell client to build!
+    # tell client to update
     command $rh, "UPDATE $rev";
     $client{$cl}{'expect'}="_UPDATE";
+    $client{$cl}{'bad'}="asked to update";
 
     slog sprintf("Update: rev $rev client %s",
                  $client{$cl}{'client'});
@@ -257,6 +236,8 @@ sub build {
 
     # count the number of times this build is handed out
     $builds{$id}{'handcount'}++;
+
+    $setlastrev_sth->execute($client{$fileno}{'client'}, $buildround, $buildround);
 }
 
 sub _BUILD {
@@ -273,14 +254,14 @@ sub _MESSAGE {
 sub _PING {
     my ($rh, $args) = @_;
 
-    if ($client{$rh->fileno}{'expect'} ne "_PING") {
-        slog sprintf "Got unexpected _PING from $client{$rh->fileno}{client} when waiting for '%s'.", $client{$rh->fileno}{'expect'};
-    }
+    #if ($client{$rh->fileno}{'expect'} ne "_PING") {
+    #    slog sprintf "Got unexpected _PING from $client{$rh->fileno}{client} when waiting for '%s'.", $client{$rh->fileno}{'expect'};
+    #}
 
     $client{$rh->fileno}{'expect'}="";
     my $t = tv_interval($client{$rh->fileno}{'ping'});
     $t = int($t * 1000);
-    if ($t > 1000) {
+    if ($t > 2000) {
         slog "Slow _PING from $client{$rh->fileno}{client} ($t ms)";
     }
 }
@@ -311,9 +292,6 @@ sub HELLO {
        (1 eq "$rb_cmdenabled") &&
        !$commander) {
         $commander++;
-
-        # remove this from the client hash
-        delete $client{$fno};
 
         slog "Commander attached";
         command $rh, "Hello commander";
@@ -353,24 +331,26 @@ sub HELLO {
         $client{$fno}{'expect'} = ""; # no response expected yet
         $client{$fno}{'builds'} = ""; # none so far
         $client{$fno}{'bad'} = 0; # not bad!
-        $client{$fno}{'avgscore'} = 0;
+        $client{$fno}{'blocked'} = $blocked{$cli};
 
         # send OK
         command $rh, "_HELLO ok";
 
-        &getclient($fno);
+        my $speed = &getspeed($cli);
 
-        my $score = $client{$fno}{avgscore};
-        slog "Joined: client $cli arch $archlist score $score";
+        $client{$fno}{speed} = $speed;
 
-        if ($client{$fno}{blocked} > 0) {
-            privmessage $fno, sprintf  "Hello $cli. Your build client has been temporarily disabled by the administrators. Please go to #rockbox to find out why.";
+        if ($client{$fno}{blocked}) {
+            slog "Blocked: client $cli blocked due to: $client{$fno}{blocked}";
+            privmessage $fno, sprintf  "Hello $cli. Your build client has been temporarily blocked by the administrators due to: $client{$fno}{blocked}. Please go to #rockbox to enable your client again.";
         }
-
-        privmessage $fno, sprintf  "Welcome $cli. Your score $score puts you in the %s category.", ($score > $topscore) ? "fast" : "slow";
+        else {
+            slog "Joined: client $cli arch $archlist speed $speed";
+            privmessage $fno, sprintf  "Welcome $cli. Your speed $speed points/sec puts you in the %s category.", ($speed > $speedlimit) ? "fast" : "slow";
+        }
+        
         if($version < $minimumversion) {
             updateclient($fno, $updaterev);
-            $client{$fno}{'bad'}="asked to update";
         }
         else {
             $client{$fno}{'fine'} = 1;
@@ -401,6 +381,9 @@ sub COMPLETED {
 
     my ($id, $took, $ultime, $ulsize) = split(" ", $args);
 
+    # ACK command
+    command $rh, "_COMPLETED $id";
+
     if($builds{$id}{'done'}) {
         # This is a client saying this build is completed although it has
         # already been said to be. Most likely because we killed this build
@@ -409,36 +392,38 @@ sub COMPLETED {
         return;
     }
 
-    # mark this as not building anymore
+    if (!$buildround) {
+        # round has ended, but someone wasn't killed properly
+        # just ignore it
+        slog "$cli completed $id after round end";
+        return;
+    }
+
+    # mark this client as not building anymore
     $client{$rh->fileno}{'building'}--;
 
     # cut out this build from this client
     $client{$rh->fileno}{'builds'}=~ s/-$id-//;
 
-    $builds{$id}{'handcount'}--; # one less that builds this
-    $builds{$id}{'done'}=1;
-    $builds{$id}{'uploading'}=0;
-
-    # send OK
-    command $rh, "_COMPLETED $id";
-
-    # assign client score
-    $client{$rh->fileno}{roundscore} += $builds{$id}{score};
-
     my $uplink = 0;
     if ($ulsize and $ultime) {
         $uplink = $ulsize / $ultime / 1024;
     }
-    slog sprintf("Completed: build $id client %s seconds %d uplink %d score %d",
-                 $cli, $took, $uplink, $client{$rh->fileno}{roundscore});
+    slog sprintf("Completed: build $id client %s seconds %d uplink %d speed %d",
+                 $cli, $took, $uplink, $builds{$id}{score}/($took - $ultime));
 
     my $msg = &check_log(sprintf("$uploadpath/%s-%s.log", $cli, $id));
     if ($msg) {
         slog "Fatal build error: $msg. Disabling client.";
         privmessage $rh->fileno, "Fatal build error: $msg. You have been temporarily disabled.";
-        $client{$rh->fileno}{'blocked'} = 1;
+        $client{$rh->fileno}{'blocked'} = $msg;
         return;
     }
+
+    # mark build completed
+    $builds{$id}{'handcount'}--; # one less that builds this
+    $builds{$id}{'done'}=1;
+    $builds{$id}{'uploading'}=0;
 
     # now kill this build on all clients still building it
     my $kills = kill_build($id);
@@ -483,51 +468,6 @@ sub check_log
     else {
         return "Missing log file";
     }
-}
-sub update_clientscores
-{
-    return unless ($db);
-
-    for my $cl (&build_clients) {
-        my $score = $client{$cl}{roundscore};
-        $score = 0 if (!$score);
-        $setscore_sth->execute($client{$cl}{client}, $buildround, $score, $buildround, $score) or
-            warn "DBI: Can't execute statement: ". $setscore_sth->errstr;
-    }
-}
-
-sub getclient
-{
-    return unless ($db);
-
-    my ($cl) = @_;
-
-    my $rows = $getclient_sth->execute($client{$cl}{client});
-    if ($rows > 0) {
-        my ($score, $count) = $getclient_sth->fetchrow_array();
-        $client{$cl}{avgscore} = int($score / $count);
-    }
-}
-
-sub db_connect
-{
-    my $dbpath = 'DBI:mysql:rockbox';
-    $db = DBI->connect($dbpath, $rb_dbuser, $rb_dbpwd) or
-        warn "DBI: Can't connect to database: ". DBI->errstr;
-
-    # prepare some statements for later execution:
-
-    $submit_update_sth = $db->prepare("UPDATE builds SET client=?,timeused=?,ultime=?,ulsize=? WHERE revision=? and id=?") or
-        warn "DBI: Can't prepare statement: ". $db->errstr;
-
-    $submit_new_sth = $db->prepare("INSERT INTO builds (revision,id) VALUES (?,?) ON DUPLICATE KEY UPDATE client='',timeused=0,ultime=0,ulsize=0") or
-        warn "DBI: Can't prepare statement: ". $db->errstr;
-
-    $setscore_sth = $db->prepare("INSERT INTO clients (name, lastrev, totscore, builds) VALUES (?,?,?,1) ON DUPLICATE KEY UPDATE lastrev=?,totscore=totscore+?,builds=builds+1") or
-        warn "DBI: Can't prepare statement: ". $db->errstr;
-
-    $getclient_sth = $db->prepare("SELECT totscore, builds, blocked FROM clients WHERE name=?") or
-        warn "DBI: Can't prepare statement: ". $db->errstr;
 }
 
 sub db_submit
@@ -630,7 +570,7 @@ sub slowclient {
 
 # $a and $b are file numbers
 sub sortclients {
-    return $client{$b}{'avgscore'} <=> $client{$a}{'avgscore'};
+    return $client{$b}{'speed'} <=> $client{$a}{'speed'};
 }
 
 sub resetbuildround {
@@ -650,7 +590,7 @@ sub startround {
     my $num_clients = scalar &build_clients;
     my $num_builds = scalar @buildids;
 
-    slog "New round: $num_clients clients $num_builds builds rev $rev topscore $topscore";
+    slog "New round: $num_clients clients $num_builds builds rev $rev";
 
     message sprintf "New build round started. Revision $rev, $num_builds builds, $num_clients clients.";
 
@@ -667,8 +607,15 @@ sub startround {
         &db_submit($buildround, $id);
     }
 
-    # clear zip files, to avoid old ones remaining
-    `rm -f data/rockbox-*.zip`;
+    # run housekeeping script
+    if ($rb_roundstart) {
+        my $start = time();
+        system("$rb_roundstart $buildround");
+        my $took = time() - $start;
+        if ($took > 1) {
+            slog "rb_roundstart took $took seconds";
+        }
+    }
 
     handoutbuilds(&build_clients);
 }
@@ -702,14 +649,12 @@ sub endround {
     # clear upload dir
     rmtree( $uploadpath, {keep_root => 1} );
 
-    &update_clientscores();
-
-    if($rb_buildround) {
+    if($rb_roundend) {
         my $start = time();
-        system("$rb_buildround $buildround");
+        system("$rb_roundend $buildround");
         my $took = time() - $start;
         if ($took > 1) {
-            slog "rb_buildround took $took seconds";
+            slog "rb_roundend took $took seconds";
         }
     }
     $buildround=0;
@@ -811,14 +756,14 @@ sub handoutbuilds {
 
     for my $cl (@scl) {
 
-        next if ($client{$cl}{blocked} == 1);
+        next if ($client{$cl}{blocked});
         next if ($client{$cl}{fine} == 0);
         next if ($conn{$cl}{type} eq "commander");
 
         $done =0;
         my $found=0;
 
-        if ($client{$cl}{avgscore} > $topscore) {
+        if ($client{$cl}{speed} > $speedlimit) {
             @blist = sort fastclient @blist;
         }
         else {
@@ -894,9 +839,10 @@ sub handoutbuilds {
 
 sub control {
     my ($rh, $cmd) = @_;
+    chomp $cmd;
+    slog "Commander says: $cmd";
+
     if($cmd =~ /^BUILD (\d+)/) {
-        chomp $cmd;
-        slog "Commander says: $cmd";
         if(!$buildround) {
             &startround($1);
         }
@@ -904,6 +850,13 @@ sub control {
             $nextround = $1;
         }
         command $rh, "OK!";
+    }
+    elsif ($cmd =~ /^UPDATE (.*?) (\d+)/) {
+        for my $cl (&build_clients) {
+            if ($clients{$cl}{client} eq "$1") {
+                &update_client($cl, $2);
+            }
+        }
     }
 }
 
@@ -925,13 +878,17 @@ my $read_set = new IO::Select();
 $read_set->add($server);
 $conn{$server->fileno} = { type => 'master' };
 
+readblockfile();
+
 print "Server starts. See 'logfile'.\n";
 
 slog "Server starts";
 
 # Main loop active until ^C pressed
 my $alldone = 0;
-$SIG{INT} = sub { warn "received interrupt\n"; $alldone = 1; };
+$SIG{KILL} = sub { slog "Killed"; exit; };
+$SIG{INT} = sub { slog "Received interrupt"; $alldone = 1; };
+$SIG{__DIE__} = sub { slog(sprintf("Perl error: %s", @_)); };
 while(not $alldone) {
     my @handles = sort map $_->fileno, $read_set->handles;
     warn "waiting on (@handles)\n" if($debug);
@@ -967,6 +924,7 @@ while(not $alldone) {
                     }
                     else {
                         &parsecmd($rh, $$cmd);
+                        $type = $conn{$rh->fileno}{type};
                     }
                     $$cmd = substr($$cmd, $pos+1);
                 }
@@ -1009,5 +967,6 @@ while(not $alldone) {
     }
 
     checkclients();
+    readblockfile();
 }
 warn "exiting.\n";
