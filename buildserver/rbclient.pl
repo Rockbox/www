@@ -518,7 +518,7 @@ sub parsecmd
             tprint "Unknown command '$func'\n";
         }
         if($commandhook ne '') {
-            `$commandhook "$func" "$rest"`;
+            system(sprintf("%s '%s' '%s'",$commandhook,$func,$rest));
         }
     }
     else {
