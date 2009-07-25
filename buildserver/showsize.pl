@@ -13,57 +13,6 @@ my %lines;
 my %this;
 my %delta;
 
-my %targsort = ('player' => 5,
-                'recorder' => 10,
-                'recorder8mb' => 20,
-                'fmrecorder' => 30,
-                'fmrecorder8mb' => 40,
-                'recorderv2' => 50,
-                'ondiofm' => 60,
-                'ondiosp' => 70,
-                'iaudiom3' => 80,
-                'iaudiom5' => 85,
-                'iaudiox5' => 90,
-                "h100" => 100,
-                "h120" => 110,
-                "h300" => 120,
-                "h10_5gb" => 130,
-                "h10" => 140,
-                "hdd1630" => 145,
-                "ipod1g2g" => 150,
-                "ipod3g" => 160,
-                "ipod4gray" => 170,
-                "ipodcolor" => 180,
-                "ipodvideo" => 190,
-                "ipodvideo64mb" => 200,
-                "ipodmini1g" => 210,
-                "ipodmini2g" => 220,
-                "ipodnano" => 230,
-                "sansae200" => 240,
-                "sansac200" => 245,
-                "clip" => 250,
-                "fuze" => 260,
-                "sansae200v2" => 265,
-                "m200v4" => 270,
-                "gigabeatf" => 280,
-                "gigabeats" => 290,
-                "mrobe500" => 300,
-                "mrobe100" => 310,
-                "cowond2" => 350,
-                "creativezvm30" => 400,
-                "creativezvm60" => 410,
-                "creativezenvision" => 420,
-                'ondavx747' => 500,
-                'ondavx767' => 510,
-                'yh820' => 600,
-                'yh920' => 610,
-                'yh925' => 620,
-                );
-
-sub titlesort {
-    return $targsort{$a} <=> $targsort{$b};
-}
-
 sub singlefile {
     my($file)=@_;
     my @o;
@@ -130,7 +79,7 @@ sub singlefile {
     }
     close(F);
 
-    for my $t (sort titlesort keys %title) {
+    for my $t (sort keys %title) {
         my $tx = $single{$t};
         if(!$tx) {
             $tx="<td>&nbsp;</td>";
@@ -168,8 +117,8 @@ print <<MOO
 MOO
 ;
 print "<table class=\"buildstatus\" cellspacing=\"1\" cellpadding=\"2\"><tr><th>Revision</th>\n";
-for my $t (sort titlesort keys %title) {
-    print "<td><img width='16' height='130' alt=\"$t\" src=\"/dist/build-$t.png\"></td>\n";
+for my $t (sort keys %title) {
+    print "<td><img width='16' height='130' alt=\"$t\" src=\"/titles/$t.png\"></td>\n";
 }
 print "<th>Delta</th>\n";
 print "</tr>\n";
