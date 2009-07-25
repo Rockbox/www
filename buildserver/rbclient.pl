@@ -35,7 +35,7 @@ my $archlist = $archlist;
 my $buildmaster = $buildmaster || 'buildmaster.rockbox.org';
 my $port = $port || 19999;
 my $ulspeed = $ulspeed || 0;
-my $msgscript = $msgscript || '';
+my $commandhook = $commandhook || '';
 
 my $upload = "http://$buildmaster/upload.pl";
 
@@ -95,9 +95,10 @@ optional setting:
 -ulspeed=[speed]
   Limit upload speed to max [speed] kilobytes per second.
 
--msgscript=[script]
-  Run this script whenever a MESSAGE comes in, with the message text as the
-  first argument
+-commandhook=[script]
+  Run this script whenever a command comes in, with the command itself as the
+  first argument, and the command parameters in the second argument. This can
+  be used for fancy monitoring of the client.
 
 You can also specify -config=file where parameters are stored as 'label: value'
 
@@ -488,9 +489,6 @@ sub UPDATE
 sub MESSAGE
 {
     tprint "Server message: @_\n";
-    if($msgscript ne '') {
-        `$msgscript "@_"`;
-    }
     print $sock "_MESSAGE\n";
 }
 
@@ -518,6 +516,9 @@ sub parsecmd
         }
         else {
             tprint "Unknown command '$func'\n";
+        }
+        if($commandhook ne '') {
+            `$commandhook "$func" "$rest"`;
         }
     }
     else {
