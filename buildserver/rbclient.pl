@@ -14,14 +14,14 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 29;
+my $revision = 30;
 my $cwd = `pwd`;
 chomp $cwd;
 
 sub tprint {
     my $line = strftime("%F %T ", localtime()) . $_[0];
     print $line;
-    if (open LOG, ">>rbclient.log") {
+    if (open LOG, ">>$cwd/rbclient.log") {
         print LOG $line;
         close LOG;
     }
@@ -109,6 +109,9 @@ MOO
 
 &testsystem();
 
+if (not -d "builds") {
+    mkdir "builds";
+}
 # no localized messages, please
 $ENV{LC_ALL} = 'C';
 
@@ -213,7 +216,7 @@ while (1) {
                     delete $conntype{$rh->fileno};
                     close $rh;
 
-                    my $dir = "$cwd/build-$builds{$id}{pid}";
+                    my $dir = "$cwd/builds/build-$builds{$id}{pid}";
                     if (-d $dir) {
                         rmtree $dir;
                     }
@@ -305,8 +308,9 @@ sub startbuild
         # find/use it
         my $base="$clientname-$username-$id";
 
+        chdir "builds";
         mkdir "build-$$";
-        my $logfile = "$cwd/build-$$/$base.log";
+        my $logfile = "$cwd/builds/build-$$/$base.log";
         my $log = ">> $logfile 2>&1";
         
         open DEST, ">$logfile";
@@ -315,14 +319,14 @@ sub startbuild
         
         printf DEST "Build Date: %s\n", strftime("%Y%m%dT%H%M%SZ", gmtime);
         print DEST "Build Type: $id\n";
-        print DEST "Build Dir: $cwd/build-$$\n";
+        print DEST "Build Dir: $cwd/builds/build-$$\n";
         print DEST "Build Server: $clientname-$username\n";
         close DEST;
 
         chdir "build-$$";
         my $args = $builds{$id}{confargs};
         $args =~ s|,| |g;
-        `../tools/configure $args $log`;
+        `$cwd/tools/configure $args $log`;
         if ($builds{$id}{cores} > 1 and $cores > 1) {
             my $c = $cores + 1;
             `nice make -k -j$c $log`;
@@ -639,7 +643,7 @@ sub killchild
         waitpid $pid, 0;
     }
 
-    my $dir = "$cwd/build-$pid";
+    my $dir = "$cwd/builds/build-$pid";
     if (-d $dir) {
         tprint "Removing $dir\n";
         rmtree $dir;
