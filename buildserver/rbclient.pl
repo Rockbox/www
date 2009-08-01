@@ -146,6 +146,7 @@ my $busy = 0;
 my %builds = ();
 my $buildnum = 0;
 my $lastcomm = time();
+my $input;
 
 $SIG{INT} = sub {
     warn "received interrupt.\n";
@@ -166,16 +167,15 @@ while (1) {
         if ($conntype{$rh->fileno} eq "socket") {
             #print "Got from socket\n";
             $lastcomm = time();
-            my $data;
-            my $len = $rh->read($data, 512);
-            
-            if ($len) {
+            my $data = <$rh>;
+            if (length $data) {
                 $input .= $data;
                 
                 while (1) {
                     my $pos = index($input, "\n");
                     last if ($pos == -1);
-                    &parsecmd($input);
+                    my $line = substr($input, 0, $pos);
+                    &parsecmd($line);
                     $input = substr($input, $pos+1);
                 }
             }
