@@ -14,11 +14,11 @@ my $store="data";
 
 # the minimum protocol version supported. The protocol version is provided
 # by the client
-my $minimumversion = 29;
+my $minimumversion = 31;
 
 # if the client is found too old, this is a svn rev we tell the client to
 # use to pick an update
-my $updaterev = 21970;
+my $updaterev = 22109;
 
 # the name of the server log
 my $logfile="logfile";
@@ -58,6 +58,13 @@ my $speedlimit = 50; # >50 points/sec is a "fast" machine
 
 sub slog {
     if (open(L, ">>$logfile")) {
+        print L strftime("%F %T ", localtime()), $_[0], "\n";
+        close(L);
+    }
+}
+
+sub dlog {
+    if (open(L, ">>debuglog")) {
         print L strftime("%F %T ", localtime()), $_[0], "\n";
         close(L);
     }
@@ -327,11 +334,15 @@ sub HELLO {
         $client{$fno}{'cpu'} = $cpu;
         $client{$fno}{'bits'} = $bits;
         $client{$fno}{'os'} = $os;
-        $client{$fno}{'socket'} = $rh;
         $client{$fno}{'expect'} = ""; # no response expected yet
         $client{$fno}{'builds'} = ""; # none so far
         $client{$fno}{'bad'} = 0; # not bad!
         $client{$fno}{'blocked'} = $blocked{$cli};
+
+        if($version < $minimumversion) {
+            updateclient($fno, $updaterev);
+            return;
+        }
 
         # send OK
         command $rh, "_HELLO ok";
@@ -351,11 +362,11 @@ sub HELLO {
         
         if($version < $minimumversion) {
             updateclient($fno, $updaterev);
+            return;
         }
-        else {
-            $client{$fno}{'fine'} = 1;
-            handoutbuilds($fno);
-        }
+
+        $client{$fno}{'fine'} = 1;
+        handoutbuilds($fno);
     }
 }
 
@@ -409,8 +420,12 @@ sub COMPLETED {
     if ($ulsize and $ultime) {
         $uplink = $ulsize / $ultime / 1024;
     }
+    my $speed = 0;
+    if ($took - $ultime > 0) {
+        $speed = $builds{$id}{score}/($took - $ultime);
+    }
     slog sprintf("Completed: build $id client %s seconds %d uplink %d speed %d",
-                 $cli, $took, $uplink, $builds{$id}{score}/($took - $ultime));
+                 $cli, $took, $uplink, $speed);
 
     my $msg = &check_log(sprintf("$uploadpath/%s-%s.log", $cli, $id));
     if ($msg) {
@@ -463,6 +478,10 @@ sub check_log
             return "Incomplete log file";
         }
 
+        if (grep /^Segmentation fault/, @log) {
+            return "Compiler crashed";
+        }
+
         return "";
     }
     else {
@@ -509,6 +528,7 @@ sub parsecmd {
         chomp $rest;
         if($protocmd{$func}) {
             &$func($rh, $rest);
+            #dlog "$client{$rh->fileno}{client} sent $func $rest" unless ($func eq "_PING");
         }
         else {
             chomp $cmdstr;
@@ -649,6 +669,8 @@ sub endround {
     # clear upload dir
     rmtree( $uploadpath, {keep_root => 1} );
 
+    #$endround_sth->execute($buildround, $took);
+
     if($rb_roundend) {
         my $start = time();
         system("$rb_roundend $buildround");
@@ -657,12 +679,14 @@ sub endround {
             slog "rb_roundend took $took seconds";
         }
     }
+
     $buildround=0;
 
     if ($nextround) {
         &startround($nextround);
         $nextround = 0;
     }
+
 }
 
 sub checkclients {
@@ -890,15 +914,13 @@ $SIG{KILL} = sub { slog "Killed"; exit; };
 $SIG{INT} = sub { slog "Received interrupt"; $alldone = 1; };
 $SIG{__DIE__} = sub { slog(sprintf("Perl error: %s", @_)); };
 while(not $alldone) {
-    my @handles = sort map $_->fileno, $read_set->handles;
-    warn "waiting on (@handles)\n" if($debug);
     my ($rh_set, $timeleft) =
         IO::Select->select($read_set, undef, undef, 1);
 
     foreach my $rh (@$rh_set) {
         if (not exists $conn{$rh->fileno}) {
-            slog "Fatal: Untracked rh!";
-            die "untracked rh";
+            slog "*** Error: Untracked rh!";
+            $read_set->remove($rh);
         }
         my $type = $conn{$rh->fileno}{type};
 
@@ -907,11 +929,15 @@ while(not $alldone) {
             $read_set->add($new);
             $conn{$new->fileno} = { type => 'rbclient' };
             $new->blocking(0) or die "blocking: $!";
+            $client{$new->fileno}{'socket'} = $new;
         }
         else {
             my $data;
             my $fileno = $rh->fileno;
-            my $len = $rh->read($data, 512);
+            my $data = <$rh>;
+            my $len = length $data;
+
+            #dlog "$client{$fileno}{'client'} sent $len bytes";
 
             if ($len) {
                 my $cmd = \$client{$fileno}{'cmd'};
@@ -938,6 +964,7 @@ while(not $alldone) {
                     $commander=0;
                 }
                 else {
+                    $client{$fileno}{fine} = 1;
                     $client{$fileno}{'bad'}="connection lost";
                 }
             }
