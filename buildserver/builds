@@ -28,9 +28,9 @@ sdl:nozip:fuzesim:SanDisk Sansa Fuze - Simulator:rockboxui:--target=fuze,--type=
 sdl:nozip:m200v4sim:SanDisk Sansa m200v4 - Simulator:rockboxui:--target=m200v4,--type=s:8861
 sdl:nozip:hdd1630sim:Philips HDD1630 - Simulator:rockboxui:--target=hdd1630,--type=s:13891
 sdl:nozip:sa9200sim:Philips SA9200 - Simulator:rockboxui:--target=sa9200,--type=s:5826
-sdl:nozip:yh820sim:Samsung YH-820 - Simulator:rockboxui:--target=yh_820,--type=s:13136
-sdl:nozip:yh920sim:Samsung YH-920 - Simulator:rockboxui:--target=yh_920,--type=s:12667
-sdl:nozip:yh925sim:Samsung YH-925 - Simulator:rockboxui:--target=yh_925,--type=s:13941
+sdl:nozip:yh820sim:Samsung YH-820 - Simulator:rockboxui:--target=yh820,--type=s:13136
+sdl:nozip:yh920sim:Samsung YH-920 - Simulator:rockboxui:--target=yh920,--type=s:12667
+sdl:nozip:yh925sim:Samsung YH-925 - Simulator:rockboxui:--target=yh925,--type=s:13941
 sdl:nozip:ondavx747sim:Onda VX747 - Simulator:rockboxui:--target=ondavx747,--type=s:14177
 m68k:zip:h100:iriver H100 - Normal:rockbox.iriver:--target=h100,--type=n:17517
 m68k:zip:h120:iriver H120 - Normal:rockbox.iriver:--target=h120,--type=n:17525
@@ -65,9 +65,9 @@ arm:zip:sansae200v2:SanDisk Sansa e200v2 - Normal:rockbox.sansa:--target=e200v2,
 arm:zip:sansac200v2:SanDisk Sansa c200v2 - Normal:rockbox.sansa:--target=c200v2,--type=n:17966
 arm:zip:m200v4:SanDisk Sansa m200v4 - Normal:rockbox.sansa:--target=m200v4,--type=n:12954
 arm:zip:hdd1630:Philips HDD1630 - Normal:rockbox.mi4:--target=hdd1630,--type=n:21258
-arm:zip:yh820:Samsung YH-820 - Normal:rockbox.mi4:--target=yh_820,--type=n:20130
-arm:zip:yh920:Samsung YH-920 - Normal:rockbox.mi4:--target=yh_920,--type=n:19192
-arm:zip:yh925:Samsung YH-925 - Normal:rockbox.mi4:--target=yh_925,--type=n:21388
+arm:zip:yh820:Samsung YH-820 - Normal:rockbox.mi4:--target=yh820,--type=n:20130
+arm:zip:yh920:Samsung YH-920 - Normal:rockbox.mi4:--target=yh920,--type=n:19192
+arm:zip:yh925:Samsung YH-925 - Normal:rockbox.mi4:--target=yh925,--type=n:21388
 arm:zip:sa9200:Philips SA9200 - Normal:rockbox.mi4:--target=sa9200,--type=n:8966
 mipsel:zip:ondavx747:Onda VX747 - Normal:rockbox.vx747:--target=ondavx747,--type=n:27223
 mipsel:zip:ondavx767:Onda VX767 - Normal:rockbox.vx767:--target=ondavx767,--type=n:11512
