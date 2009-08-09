@@ -107,9 +107,9 @@ arm:nozip:sansam200v4boot:SanDisk Sansa m200v4 - Boot:bootloader-m200v4.sansa:--
 arm:nozip:sansaclipboot:SanDisk Sansa Clip - Boot:bootloader-clip.sansa:--target=clip,--type=b:731
 arm:nozip:sansafuzeboot:SanDisk Sansa Fuze - Boot:bootloader-fuze.sansa:--target=fuze,--type=b:782
 arm:nozip:hdd1630boot:Philips HDD1630 - Boot:FWImage.ebn:--target=hdd1630,--type=b:836
-arm:nozip:yh820boot:Samsung YH-820 - Boot:FW_YH820.mi4:--target=yh_820,--type=b:807
-arm:nozip:yh920boot:Samsung YH-920 - Boot:PP5020.mi4:--target=yh_920,--type=b:809
-arm:nozip:yh925boot:Samsung YH-925 - Boot:FW_YH925.mi4:--target=yh_925,--type=b:817
+arm:nozip:yh820boot:Samsung YH-820 - Boot:FW_YH820.mi4:--target=yh820,--type=b:807
+arm:nozip:yh920boot:Samsung YH-920 - Boot:PP5020.mi4:--target=yh920,--type=b:809
+arm:nozip:yh925boot:Samsung YH-925 - Boot:FW_YH925.mi4:--target=yh925,--type=b:817
 arm:nozip:sa9200boot:Philips SA9200 - Boot:FWImage.ebn:--target=sa9200,--type=b:820
 arm:nozip:creativezvm30boot:Creative Zen Vision M 30GB - Boot:rockbox.zvmboot:--target=creativezvm30gb,--type=b:898
 sh:nozip:recorderboot:Recorder - Boot:ajbrec.ajz:--target=recorder,--ram=2,--type=b:807
