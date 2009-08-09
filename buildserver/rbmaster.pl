@@ -347,7 +347,7 @@ sub HELLO {
         # send OK
         command $rh, "_HELLO ok";
 
-        my $speed = &getspeed($cli);
+        my ($speed, $ulspeed) = &getspeed($cli);
 
         $client{$fno}{speed} = $speed;
 

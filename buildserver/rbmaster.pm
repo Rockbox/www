@@ -45,6 +45,7 @@ sub getbuilds {
         $builds{$id}{'assigned'} = 0; # not assigned to anyone
         $builds{$id}{'done'} = 0; # not done
         $builds{$id}{'uploading'} = 0; # not uploading
+        $builds{$id}{'ulsize'} = 0;
 
         push @buildids, $id;
     }
@@ -52,12 +53,28 @@ sub getbuilds {
 
     my @s = sort {$builds{$b}{score} <=> $builds{$a}{score}} keys %builds;
     $topscore = int($builds{$s[0]}{score} / 2);
+
+    db_connect() if (not $db);
+
+    # get last revision
+    my $lastrev;
+    my $rows = $getlastrev_sth->execute();
+    ($lastrev) = $getlastrev_sth->fetchrow_array();
+    $getlastrev_sth->finish();
+
+    # get last sizes
+    my $rows = $getsizes_sth->execute($lastrev);
+    while (my ($id, $size) = $getsizes_sth->fetchrow_array())
+    {
+        $builds{$id}{ulsize} = $size;
+    }
+    $getsizes_sth->finish();
 }
 
 
-sub getspeed
+sub getspeed($)
 {
-    return 0 unless ($db);
+    db_connect() if (not $db);
 
     my $avgsize = 5;
     my ($cli) = @_;
@@ -66,16 +83,32 @@ sub getspeed
     my $rows = $getspeed_sth->execute($cli, $maxrows);
     if ($rows > 0) {
         #print "$rows rows\n";
-        my ($points, $time);
+        my ($points, $time, $usize, $utime);
 
         # fetch score for $avgcount latest revisions (build rounds)
-        while (my ($id, $tottime, $ultime) = $getspeed_sth->fetchrow_array()) {
+        while (my ($id, $tottime, $ultime, $ulsize) = $getspeed_sth->fetchrow_array()) {
             $points += $builds{$id}{score};
             $time += ($tottime - $ultime);
+            if ($ultime && $ulsize) {
+                $utime += $ultime;
+                $usize += $ulsize;
+            }
         }
-        return int($points / $time);
+        $getspeed_sth->finish();
+
+        my $ulspeed = 0;
+        if ($utime) {
+            $ulspeed = int($usize / $utime);
+        }
+
+        my $buildspeed = 0;
+        if ($time) {
+            $buildspeed = int($points / $time);
+        }
+
+        return ($buildspeed, $ulspeed);
     }
-    return 0;
+    return (0, 0);
 }
 
 sub db_connect
@@ -95,7 +128,13 @@ sub db_connect
     $setlastrev_sth = $db->prepare("INSERT INTO clients (name, lastrev) VALUES (?,?) ON DUPLICATE KEY UPDATE lastrev=?") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
 
-    $getspeed_sth = $db->prepare("SELECT id, timeused, ultime FROM builds WHERE client=? ORDER BY revision DESC LIMIT ?") or
+    $getspeed_sth = $db->prepare("SELECT id, timeused, ultime, ulsize FROM builds WHERE client=? ORDER BY revision DESC LIMIT ?") or
+        warn "DBI: Can't prepare statement: ". $db->errstr;
+
+    $getlastrev_sth = $db->prepare("SELECT revision FROM builds ORDER BY revision DESC LIMIT 1") or
+        warn "DBI: Can't prepare statement: ". $db->errstr;
+
+    $getsizes_sth = $db->prepare("SELECT id,ulsize FROM builds WHERE revision = ?") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
 }
 
