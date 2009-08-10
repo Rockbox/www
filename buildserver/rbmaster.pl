@@ -270,7 +270,8 @@ sub build {
     $builds{$id}{'clients'}{$fileno} = 1;
 
     if (!$test) {
-        $setlastrev_sth->execute($client{$fileno}{'client'}, $buildround, $buildround);
+        $setlastrev_sth->execute($cli, $buildround, $buildround);
+        $buildclients{$cli} = 1;
     }
 }
 
@@ -412,8 +413,8 @@ sub UPLOADING {
     my $cli = $client{$cl}{'client'};
     my $rs;
     $client{$cl}{roundscore} += $builds{$id}{score};
-    $client{$cl}{roundtime} += tv_interval($client{$cl}{btime}{$id});
-    $client{$cl}{speed} = int($client{$cl}{roundscore} / $client{$cl}{roundtime});
+    $client{$cl}{roundtime} += $client{$cl}{took}{$id};
+    $client{$cl}{roundspeed} = int($client{$cl}{roundscore} / $client{$cl}{roundtime});
 
     if ($client{$cl}{avgspeed}) {
         $client{$cl}{relativespeed} = int($client{$cl}{speed} * 100 / $client{$cl}{avgspeed});
@@ -421,14 +422,14 @@ sub UPLOADING {
         #$client{$cl}{avgspeed} = $rs;
     }
 
-    if (!$rs or $rs > 120 or $rs < 80) {
+    if (!$rs or $rs > 120 or $rs < 90) {
         # speed is different from what we used in calculations.
         # redo calculations.
         if (!$rs) {
-            slog "$cli has speed $client{$cl}{speed}";
+            slog "$cli has speed $client{$cl}{roundspeed}";
         }
         else {
-            dlog sprintf "$cli is running at $rs%% (speed %d)", $client{$cl}{speed};
+            dlog sprintf "$cli is running at $rs%% (speed %d)", $client{$cl}{roundspeed};
         }
         # reallocate for unexpectedly slow clients, not for fast
         #if (!$rs or $rs < 80) {
@@ -750,6 +751,7 @@ sub startround {
             }
         }
     }
+    %buildclients = ();
 
     &bestfit_builds(1);
 }
@@ -786,10 +788,16 @@ sub endround {
     if(!$test and $rb_roundend) {
         my $start = time();
         system("$rb_roundend $buildround");
-        my $took = time() - $start;
-        if ($took > 1) {
-            slog "rb_roundend took $took seconds";
+        my $rbtook = time() - $start;
+        if ($rbtook > 1) {
+            slog "rb_roundend took $rbtook seconds";
         }
+
+        my $rounds_sth = $db->prepare("INSERT INTO rounds (revision, took, clients) VALUES (?,?,?) ON DUPLICATE KEY UPDATE took=?,clients=?") or 
+            slog "DBI: Can't prepare statement: ". $db->errstr;
+        $rounds_sth->execute($buildround,
+                             $took, scalar %buildclients,
+                             $took, scalar %buildclients);
     }
     $buildround=0;
 
