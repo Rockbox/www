@@ -76,9 +76,8 @@ sub getspeed($)
 {
     db_connect() if (not $db);
 
-    my $avgsize = 5;
     my ($cli) = @_;
-    my $maxrows = 25;
+    my $maxrows = 10;
 
     my $rows = $getspeed_sth->execute($cli, $maxrows);
     if ($rows > 0) {
@@ -88,7 +87,7 @@ sub getspeed($)
         # fetch score for $avgcount latest revisions (build rounds)
         while (my ($id, $tottime, $ultime, $ulsize) = $getspeed_sth->fetchrow_array()) {
             $points += $builds{$id}{score};
-            $time += ($tottime - $ultime);
+            $time += $tottime;
             if ($ultime && $ulsize) {
                 $utime += $ultime;
                 $usize += $ulsize;
