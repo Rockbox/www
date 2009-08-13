@@ -1063,7 +1063,7 @@ sub bestfit_builds
                 ($timeused + $buildtime + $ultime - $lastultime < $maxtime))
             {
                 $client{$c}{queue}{$b} = $buildtime || 1;
-                $client{$c}{ultime}{$b} = $ultime - $lastultime;
+                $client{$c}{ultime}{$b} = $ultime;
                 $timeused += $buildtime + $ultime - $lastultime;
                 $points += $builds{$b}{score};
                 $builds{$b}{assigned} = 1;
