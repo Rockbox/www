@@ -135,6 +135,9 @@ sub db_connect
 
     $getsizes_sth = $db->prepare("SELECT id,ulsize FROM builds WHERE revision = ?") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
+
+    $dblog_sth = $db->prepare("INSERT INTO log (revision,client,type,value) VALUES (?,?,?,?)") or
+        warn "DBI: Can't prepare statement: ". $db->errstr;
 }
 
 sub nicehead {

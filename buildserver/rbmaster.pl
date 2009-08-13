@@ -80,6 +80,15 @@ sub dlog {
     }
 }
 
+sub dblog($$$)
+{
+    return if (!$buildround);
+
+    my ($cl, $key, $value) = @_;
+
+    $dblog_sth->execute($buildround, $client{$cl}{client}, $key, $value);
+}
+
 sub command {
     my ($socket, $string) = @_;
     my $cl = $socket->fileno;
@@ -137,6 +146,7 @@ sub kill_build {
 
                 slog sprintf("Cancel: build $id client %s seconds %d",
                              $client{$cl}{'client'}, $took);
+                dblog($cl, "cancelled", $id);
 
                 $wastedtime += $took;
                 
@@ -152,6 +162,7 @@ sub kill_build {
             }
             else {
                 slog "Remove: build $id client $client{$cl}{client}";
+                dblog($cl, "dequeued", $id);
             }
         }
     }
@@ -258,6 +269,7 @@ sub build {
     $client{$fileno}{'expect'}="_BUILD";
 
     slog "Build: build $id rev $rev client $cli";
+    dblog($fileno, "build", $id);
 
     # mark this client with what response we expect from it
     $client{$fileno}{'building'}++;
@@ -366,6 +378,7 @@ sub HELLO {
 
         if($version < $minimumversion) {
             updateclient($fno, $updaterev);
+            $client{$fno}{'bad'}="Updating";
             return;
         }
 
@@ -391,6 +404,7 @@ sub HELLO {
         else {
             slog "Joined: client $cli arch $archlist speed $speed";
             privmessage $fno, sprintf  "Welcome $cli. Your average speed is $speed points/sec. Avg upload speed is %d KB/s.", $ulspeed / 1024;
+            dblog($fno, "joined", "");
         }
         
         $client{$fno}{'fine'} = 1;
@@ -406,6 +420,7 @@ sub UPLOADING {
     my $cl = $rh->fileno;
     $builds{$id}{uploading} = 1;
     command $rh, "_UPLOADING";
+    dblog($cl, "uploading", "$id");
     
     $client{$cl}{took}{$id} = tv_interval($client{$cl}{btime}{$id});
 
@@ -495,6 +510,7 @@ sub COMPLETED {
         slog "Fatal build error: $msg. Disabling client.";
         privmessage $cl, "Fatal build error: $msg. You have been temporarily disabled.";
         $client{$cl}{'blocked'} = $msg;
+        client_gone($cl);
         return;
     }
 
@@ -517,8 +533,11 @@ sub COMPLETED {
     my $timeused = time() - $buildstart;
     slog sprintf "Completed: build $id client $cli seconds %.1f uplink $uplink speed %d time $timeused left $left", $took, $speed;
 
+    dblog($cl, "completed", "$id speed:$speed uplink:$uplink");
+
     if ($left and $left <= 10) {
         slog sprintf "$left builds remaining: %s", join(", ", @lefts);
+        message "$left build(s) remaining";
     }
 
     # now kill this build on all clients still building it
@@ -577,15 +596,17 @@ sub check_log
         if (grep /No space left on device/, @log) {
             return "Out of disk space";
         }
+
         if (not grep /^Build Status/, @log) {
             return "Incomplete log file";
         }
-        if (grep /^Segmentation fault/, @log) {
+
+        if (grep /segmentation fault/i, @log) {
             return "Compiler crashed";
         }
 
-        if (grep /gcc: not found/, @log) {
-            return "Compiler not found";
+        if (grep /not found/i, @log) {
+            return "Command not found";
         }
 
         return "";
@@ -731,15 +752,11 @@ sub startround {
     $wastedtime = 0;
     $phase = 1;
     $countdown = 0;
+    $speculative = 0;
 
     resetbuildround();
 
     if (!$test) {
-
-        # fill db with builds to be done
-        for my $id (@buildids) {
-            &db_submit($buildround, $id);
-        }
 
         # run housekeeping script
         if ($rb_roundstart) {
@@ -750,7 +767,25 @@ sub startround {
                 slog "rb_roundstart took $took seconds";
             }
         }
+
+        my $sth = $db->prepare("DELETE FROM log WHERE revision=?") or 
+            slog "DBI: Can't prepare statement: ". $db->errstr;
+        $sth->execute($buildround);
+
+        # fill db with builds to be done
+        for my $id (@buildids) {
+            &db_submit($buildround, $id);
+        }
     }
+
+    # get new speed values for all clients
+    for my $cl (&build_clients) {
+        my ($speed, $ulspeed) = getspeed($client{$cl}{client});
+        $client{$cl}{avgspeed} = $speed;
+        $client{$cl}{speed} = $speed; 
+        $client{$cl}{ulspeed} = $ulspeed; 
+    }
+
     %buildclients = ();
 
     &bestfit_builds(1);
@@ -786,18 +821,18 @@ sub endround {
     rmtree( $uploadpath, {keep_root => 1} );
 
     if(!$test and $rb_roundend) {
+        my $rounds_sth = $db->prepare("INSERT INTO rounds (revision, took, clients) VALUES (?,?,?) ON DUPLICATE KEY UPDATE took=?,clients=?") or 
+            slog "DBI: Can't prepare statement: ". $db->errstr;
+        $rounds_sth->execute($buildround,
+                             $took, scalar keys %buildclients,
+                             $took, scalar keys %buildclients);
+
         my $start = time();
         system("$rb_roundend $buildround");
         my $rbtook = time() - $start;
         if ($rbtook > 1) {
             slog "rb_roundend took $rbtook seconds";
         }
-
-        my $rounds_sth = $db->prepare("INSERT INTO rounds (revision, took, clients) VALUES (?,?,?) ON DUPLICATE KEY UPDATE took=?,clients=?") or 
-            slog "DBI: Can't prepare statement: ". $db->errstr;
-        $rounds_sth->execute($buildround,
-                             $took, scalar %buildclients,
-                             $took, scalar %buildclients);
     }
     $buildround=0;
 
@@ -861,6 +896,7 @@ sub client_gone {
     for my $id (keys %{$client{$cl}{queue}}) {
         $builds{$id}{'assigned'} = 0;
         slog "$client{$cl}{client} abandoned build $id";
+        dblog($cl, "abandoned", $id);
         $abandoned_builds += 1;
     }
 
@@ -868,6 +904,7 @@ sub client_gone {
     for my $id (keys %{$client{$cl}{btime}}) {
         $builds{$id}{handcount}--;
         delete $builds{$id}{'clients'}{$cl};
+        dblog($cl, "abandoned", $id);
     }
 
     # are any clients left?
@@ -985,6 +1022,8 @@ sub bestfit_builds
     
     for my $c (sort {$client{$a}{speed} <=> $client{$b}{speed}} &build_clients)
     {
+        next if ($client{$c}{blocked});
+
         $client{$c}{queue} = ();
 
         my $speed = $client{$c}{speed};
@@ -1023,15 +1062,13 @@ sub bestfit_builds
             if (client_can_build($c, $b) and
                 ($timeused + $buildtime + $ultime - $lastultime < $maxtime))
             {
-                $client{$c}{queue}{$b} = $buildtime;
+                $client{$c}{queue}{$b} = $buildtime || 1;
+                $client{$c}{ultime}{$b} = $ultime - $lastultime;
                 $timeused += $buildtime + $ultime - $lastultime;
                 $points += $builds{$b}{score};
                 $builds{$b}{assigned} = 1;
                 
                 $totultime += $ultime - $lastultime;
-
-                #dlog "$client{$c}{client} got $b ($buildtime + $ultime - $lastultime)";
-
                 $lastultime = $ultime;
 
                 $bcount++;
@@ -1043,6 +1080,7 @@ sub bestfit_builds
         $totleft += int($maxtime - $timeused);
 
         my @blist;
+        my @dlist;
         my $bcount = 0;
         for my $b (sort bigsort keys %{$client{$c}{queue}}) {
             push @blist, "$b:$builds{$b}{score}:$builds{$b}{ulsize}";
@@ -1061,6 +1099,17 @@ sub bestfit_builds
             dlog "*** $b unassigned, trying again";
             #sleep 1;
             goto tryagain;
+        }
+    }
+
+    for my $cl (&build_clients) {
+        my $num = 1;
+        my $speed = $client{$cl}{speed};
+        for my $b (sort bigsort keys %{$client{$cl}{queue}}) {
+            my $buildtime = int($client{$cl}{queue}{$b} + 0.5);
+            my $ultime = int($client{$cl}{ultime}{$b} + 0.5);
+            dblog($cl, "queued", "$num:$b:$buildtime:$ultime");
+            $num++;
         }
     }
 
@@ -1087,6 +1136,7 @@ sub start_next_build($)
     my ($cl) = @_;
 
     return if (!$buildround);
+    return if ($client{$cl}{blocked});
 
     my $cli = $client{$cl}{client};
 
@@ -1110,7 +1160,7 @@ sub start_next_build($)
                 $client{$cl}{queue}{$id} = 1;
                 $builds{$id}{assigned} = 1;
                 $abandoned_builds -= 1;
-                dlog "$cli does abandoned $id";
+                #dlog "$cli does abandoned $id";
                 &build($cl, $id);
                 return;
             }
@@ -1121,12 +1171,16 @@ sub start_next_build($)
         # help with other builds, speculatively
         for my $id (&bigbuilds) {
             next if (!client_can_build($cl, $id));
+            next if (defined $client{$cl}{btime}{$id});
             if (!$builds{$id}{done}) {
                 if ($builds{$id}{handcount} == 0) {
-                    dlog "$cli does unstarted $id";
+                    #dlog "$cli does unstarted $id";
                 }
                 else {
-                    dlog "$cli does unfinished $id ($builds{$id}{handcount})";
+                    if (!$speculative) {
+                        message "Speculative building started";
+                        $speculative = 1;
+                    }
                 }
                 &build($cl, $id);
                 return;
@@ -1329,6 +1383,7 @@ while(not $alldone) {
             my $cli = $client{$cl}{'client'};
 
             slog "Disconnect: client $cli reason $err";
+            dblog($cl, "disconnect", $err);
             $client{$cl}{fine} = 0;
             client_gone($cl);
             my $rh = $client{$cl}{'socket'};
