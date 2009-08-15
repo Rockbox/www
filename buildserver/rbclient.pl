@@ -395,7 +395,7 @@ sub upload
         $limit = "--limit-rate ${ulspeed}k";
     }
 
-    `curl $limit -F upfile=\@$file $upload`;
+    `curl $limit -s -F upfile=\@$file $upload`;
 }
 
 sub probecores
