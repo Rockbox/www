@@ -42,7 +42,7 @@ arm:zip:ipodnano:iPod Nano - Normal:rockbox.ipod:--target=ipodnano,--type=n:2148
 arm:zip:ipodcolor:iPod Color - Normal:rockbox.ipod:--target=ipodcolor,--type=n:21586
 arm:zip:ipod4gray:iPod 4G Grayscale - Normal:rockbox.ipod:--target=ipod4g,--type=n:19682
 arm:zip:ipodvideo:iPod Video - Normal:rockbox.ipod:--target=ipodvideo,--ram=32,--type=n:21983
-arm:zip:ipodvideo64mb:iPod Video 64MB - Normal:rockbox.ipod:--target=ipodvideo,--ram=32,--type=n:21936
+arm:zip:ipodvideo64mb:iPod Video 64MB - Normal:rockbox.ipod:--target=ipodvideo,--ram=64,--type=n:21936
 arm:zip:ipod3g:iPod 3G - Normal:rockbox.ipod:--target=ipod3g,--type=n:18716
 arm:zip:ipodmini2g:iPod Mini 2G - Normal:rockbox.ipod:--target=ipodmini2g,--type=n:18975
 arm:zip:ipodmini1g:iPod Mini 1G - Normal:rockbox.ipod:--target=ipodmini,--type=n:18976
