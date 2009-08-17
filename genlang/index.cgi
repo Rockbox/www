@@ -21,12 +21,19 @@ my $lang = CGI::param('lang');
 
 print "Content-Type: text/plain; charset=UTF8\n\n";
 
-$rev = 0 + $rev;
+$rev =~ s/[^\d\.]//g;
 $target =~ s/[^a-z0-9]//g;
 $features =~ s/[^a-z0-9:_-]//g;
 $lang =~ s/[^a-z-]//g;
+my $rev_opt = "-r$rev";
+my $svn_path = "svn://svn.rockbox.org/rockbox/trunk";
 
-if(($rev < 10000) || ($rev > 100000)) {
+if ($rev =~ /\./) {
+    $rev =~ s/\./_/;
+    $svn_path = "svn://svn.rockbox.org/rockbox/tags/v$rev";
+    $rev_opt = "";
+}
+elsif(($rev < 10000) || ($rev > 100000)) {
     print "Bad rev input\n";
     exit;
 }
@@ -43,12 +50,11 @@ if( ! -d $temp ) {
     mkdir($temp);
 }
 
-my $cd="cd /home/dast/src/rockbox &&";
 #`svn cat -r$rev tools/genlang >temp/genlang-$rand`;
-my $cmd="$cd svn cat -r$rev apps/lang/$lang.lang >$temp/lang-$lang-$rand";
+my $cmd="svn cat $rev_opt $svn_path/apps/lang/$lang.lang >$temp/lang-$lang-$rand";
 #print "$cmd<br>";
 print `$cmd`;
-$cmd="$cd svn cat -r$rev apps/lang/english.lang >$temp/english-$rand";
+$cmd="svn cat $rev_opt $svn_path/apps/lang/english.lang >$temp/english-$rand";
 print `$cmd`;
 
 if(-s "$temp/lang-$lang-$rand" &&
