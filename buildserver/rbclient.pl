@@ -14,7 +14,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 31;
+my $revision = 32;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -208,15 +208,12 @@ while (1) {
                 elsif ($data =~ /done (.*?) (\d+) (\d+) (\d+) (.*)/) {
                     my ($id, $pid, $ultime, $ulsize, $status) = ($1, $2, $3, $4, $5);
 
-                    # start new builds
-                    $busy -= $builds{$id}{cores};
-
                     waitpid $pid, 0;
                     $read_set->remove($rh);
                     delete $conntype{$rh->fileno};
                     close $rh;
 
-                    my $dir = "$cwd/builds/build-$builds{$id}{pid}";
+                    my $dir = "$cwd/builds/build-$id";
                     if (-d $dir) {
                         rmtree $dir;
                     }
@@ -309,8 +306,11 @@ sub startbuild
         my $base="$clientname-$username-$id";
 
         chdir "builds";
-        mkdir "build-$$";
-        my $logfile = "$cwd/builds/build-$$/$base.log";
+        if (-d "build-$id") {
+            rmtree "build-$id";
+        }
+        mkdir "build-$id";
+        my $logfile = "$cwd/builds/build-$id/$base.log";
         my $log = ">> $logfile 2>&1";
         
         open DEST, ">$logfile";
@@ -319,15 +319,15 @@ sub startbuild
         
         printf DEST "Build Date: %s\n", strftime("%Y%m%dT%H%M%SZ", gmtime);
         print DEST "Build Type: $id\n";
-        print DEST "Build Dir: $cwd/builds/build-$$\n";
+        print DEST "Build Dir: $cwd/builds/build-$id\n";
         print DEST "Build Server: $clientname-$username\n";
         close DEST;
 
-        chdir "build-$$";
+        chdir "build-$id";
         my $args = $builds{$id}{confargs};
         $args =~ s|,| |g;
         `$cwd/tools/configure $args $log`;
-        if ($builds{$id}{cores} > 1 and $cores > 1) {
+        if ($builds{$id}{cores} > 1) {
             my $c = $cores + 1;
             `nice make -k -j$c $log`;
         }
@@ -469,10 +469,6 @@ sub BUILD
     print $sock "_BUILD $id\n";
 
     &startbuild($id);
-    if ($busy < $cores) {
-        print $sock "GIMMEMORE\n";
-    }
-
 }
 
 sub UPDATE
@@ -643,7 +639,7 @@ sub killchild
         waitpid $pid, 0;
     }
 
-    my $dir = "$cwd/builds/build-$pid";
+    my $dir = "$cwd/builds/build-$id";
     if (-d $dir) {
         tprint "Removing $dir\n";
         rmtree $dir;
