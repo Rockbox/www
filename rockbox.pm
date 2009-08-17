@@ -30,7 +30,7 @@
         'gigabeats' => '/playerpics/gigabeats-small.png',
         'ipod1g2g' => '/playerpics/ipod1g2g-small.png',
         'mrobe100' => '/playerpics/mrobe100-small.png',
-        'mrobe500' => '/rockbox100.png', # lacks small picture
+        'mrobe500' => '/playerpics/mrobe500-small.png',
         'creativezvm30' => '/rockbox100.png', # lacks small picture
         'creativezvm60' => '/rockbox100.png', # lacks small picture
         'creativezenvision' => '/rockbox100.png', # lacks small picture
