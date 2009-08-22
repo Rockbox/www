@@ -47,7 +47,7 @@ arm:zip:ipod3g:iPod 3G - Normal:rockbox.ipod:--target=ipod3g,--type=n:18716
 arm:zip:ipodmini2g:iPod Mini 2G - Normal:rockbox.ipod:--target=ipodmini2g,--type=n:18975
 arm:zip:ipodmini1g:iPod Mini 1G - Normal:rockbox.ipod:--target=ipodmini,--type=n:18976
 arm:zip:h10:iriver H10 - Normal:rockbox.mi4:--target=h10,--type=n:21496
-arm:zip:h10_5gb:iriver H10 5GB - Normal:rockbox.mi4:--target=h10,--type=n:21496
+arm:zip:h10_5gb:iriver H10 5GB - Normal:rockbox.mi4:--target=h10_5gb,--type=n:21496
 arm:zip:gigabeatf:Toshiba Gigabeat F - Normal:rockbox.gigabeat:--target=gigabeatf,--type=n:20657
 arm:zip:gigabeats:Toshiba Gigabeat S - Normal:rockbox.gigabeat:--target=gigabeats,--type=n:22022
 arm:zip:sansae200:SanDisk Sansa e200 - Normal:rockbox.mi4:--target=e200,--type=n:21687
