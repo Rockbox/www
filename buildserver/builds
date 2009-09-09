@@ -116,3 +116,38 @@ sh:nozip:recorderboot:Recorder - Boot:ajbrec.ajz:--target=recorder,--ram=2,--typ
 sh:nozip:playerboot:Player - Boot:archos.mod:--target=player,--ram=2,--type=b:712
 sh:nozip:fmrecorderboot:FM Recorder - Boot:ajbrec.ajz:--target=fmrecorder,--ram=2,--type=b:784
 sh:nozip:ondiospboot:Ondio SP - Boot:ajbrec.ajz:--target=ondiosp,--ram=2,--type=b:778
+sdl:nozip:recordersim:Recorder - Checkwps:rockboxui:--target=recorder,--ram=2,--type=c:86
+sdl:nozip:playersim:Player - Checkwps:rockboxui:--target=player,--ram=2,--type=c:74
+sdl:nozip:fmrecordersim:FM Recorder - Checkwps:rockboxui:--target=fmrecorder,--ram=2,--type=c:86
+sdl:nozip:ondiofmsim:Ondio FM - Checkwps:rockboxui:--target=ondiofm,--ram=2,--type=c:84
+sdl:nozip:h120sim:iriver H120 - Checkwps:rockboxui:--target=h120,--type=c:86
+sdl:nozip:h300sim:iriver H300 - Checkwps:rockboxui:--target=h300,--type=c:84
+sdl:nozip:ipodnanosim:iPod Nano - Checkwps:rockboxui:--target=ipodnano,--type=c:84
+sdl:nozip:ipodcolorsim:iPod Color - Checkwps:rockboxui:--target=ipodcolor,--type=c:84
+sdl:nozip:iaudiox5sim:iAudio X5 - Checkwps:rockboxui:--target=x5,--type=c:86
+sdl:nozip:iaudiom5sim:iAudio M5 - Checkwps:rockboxui:--target=m5,--type=c:86
+sdl:nozip:iaudiom3sim:iAudio M3 - Checkwps:rockboxui:--target=m3,--type=c:82
+sdl:nozip:ipod4graysim:iPod 4G Grayscale - Checkwps:rockboxui:--target=ipod4g,--type=c:84
+sdl:nozip:ipodvideosim:iPod Video - Checkwps:rockboxui:--target=ipodvideo,--type=c,--ram=32:85
+sdl:nozip:ipodmini2gsim:iPod Mini 2G - Checkwps:rockboxui:--target=ipodmini2g,--type=c:86
+sdl:nozip:h10sim:iriver H10 - Checkwps:rockboxui:--target=h10,--type=c:85
+sdl:nozip:gigabeatfsim:Toshiba Gigabeat F - Checkwps:rockboxui:--target=gigabeatf,--type=c:83
+sdl:nozip:gigabeatssim:Toshiba Gigabeat S - Checkwps:rockboxui:--target=gigabeats,--type=c:85
+sdl:nozip:sansae200sim:SanDisk Sansa e200 - Checkwps:rockboxui:--target=e200,--type=c:88
+sdl:nozip:sansae200v2sim:SanDisk Sansa e200v2 - Checkwps:rockboxui:--target=e200v2,--type=c:83
+sdl:nozip:sansac200sim:SanDisk Sansa c200 - Checkwps:rockboxui:--target=c200,--type=c:85
+sdl:nozip:sansac200v2sim:SanDisk Sansa c200v2 - Checkwps:rockboxui:--target=c200v2,--type=c:82
+sdl:nozip:mrobe500sim:Olympus M-Robe 500 - Checkwps:rockboxui:--target=mrobe500,--type=c:87
+sdl:nozip:mrobe100sim:Olympus M-Robe 100 - Checkwps:rockboxui:--target=mrobe100,--type=c:80
+sdl:nozip:cowond2sim:Cowon D2 - Checkwps:rockboxui:--target=cowond2,--type=c:86
+sdl:nozip:creativezvm30sim:Creative Zen Vision M 30GB - Checkwps:rockboxui:--target=creativezvm30gb,--type=c:86
+sdl:nozip:clipsim:SanDisk Sansa Clip - Checkwps:rockboxui:--target=clip,--type=c:83
+sdl:nozip:fuzesim:SanDisk Sansa Fuze - Checkwps:rockboxui:--target=fuze,--type=c:83
+sdl:nozip:m200v4sim:SanDisk Sansa m200v4 - Checkwps:rockboxui:--target=m200v4,--type=c:83
+sdl:nozip:hdd1630sim:Philips HDD1630 - Checkwps:rockboxui:--target=hdd1630,--type=c:88
+sdl:nozip:sa9200sim:Philips SA9200 - Checkwps:rockboxui:--target=sa9200,--type=c:86
+sdl:nozip:yh820sim:Samsung YH-820 - Checkwps:rockboxui:--target=yh820,--type=c:82
+sdl:nozip:yh920sim:Samsung YH-920 - Checkwps:rockboxui:--target=yh920,--type=c:82
+sdl:nozip:yh925sim:Samsung YH-925 - Checkwps:rockboxui:--target=yh925,--type=c:87
+sdl:nozip:ondavx747sim:Onda VX747 - Checkwps:rockboxui:--target=ondavx747,--type=c:93
+
