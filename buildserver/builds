@@ -150,4 +150,3 @@ sdl:nozip:yh820sim:Samsung YH-820 - Checkwps:rockboxui:--target=yh820,--type=c:8
 sdl:nozip:yh920sim:Samsung YH-920 - Checkwps:rockboxui:--target=yh920,--type=c:82
 sdl:nozip:yh925sim:Samsung YH-925 - Checkwps:rockboxui:--target=yh925,--type=c:87
 sdl:nozip:ondavx747sim:Onda VX747 - Checkwps:rockboxui:--target=ondavx747,--type=c:93
-
