@@ -10,13 +10,15 @@ my $rev = $ARGV[0];
 &db_connect();
 
 my $num = 0;
-my $sth = $db->prepare("SELECT id,client,timeused,ultime FROM builds WHERE revision=?");
+my $sth = $db->prepare("SELECT id,client,timeused,ultime,ulsize FROM builds WHERE revision=?");
 my $rows = $sth->execute($rev) + 0;
 if ($rows) {
-    while (my ($id, $client, $time, $ultime) = $sth->fetchrow_array()) {
-        $clients{$client}{$id} = $time - $ultime;
+    while (my ($id, $client, $time, $ultime, $ulsize) = $sth->fetchrow_array()) {
+        $clients{$client}{$id} = $time;
         $score{$client} += $builds{$id}{score};
         $num++;
+        $ul{$client}{ultime} += $ultime;
+        $ul{$client}{ulsize} += $ulsize;
     }
 }
 
@@ -33,7 +35,7 @@ if ($rows) {
 printf("<p>For these $num builds, the following %d build clients participated:\n",
        scalar @clist);
 
-print "<table><tr><th>Client</th> <th>Score</th> <th>Avg speed<br>(pts/sec)</th> <th>Round<br>speed</th> <th>Builds</th> <th>Total time</th> <th>All times</th> </tr>\n";
+print "<table><tr><th>Client</th> <th>Score</th> <th>Avg speed<br>(pts/sec)</th> <th>Round<br>speed</th> <th>Avg UL<br>speed</th> <th>Round<br>UL speed</th> <th>Builds</th> <th>Total time</th> <th>All times</th> </tr>\n";
 
 for my $c (sort {$score{$b} <=> $score{$a}} @clist) {
     my ($speed, $ulspeed) = &getspeed($c);
@@ -56,15 +58,20 @@ for my $c (sort {$score{$b} <=> $score{$a}} @clist) {
     }
     my $sc = 0;
     $sc = $score{$c} if defined ($score{$c});
-    print "<tr> <td>$c</td> <td>$sc</td> <td align=center>$speed</td> <td align=center>$roundspeed</td> <td align=center>$numbuilds</td> <td align=center>$total</td> <td>$times</td> </tr>\n";
+    my $roundulspeed = "-";
+    if ($ul{$c}{ulsize}) {
+        $roundulspeed = int($ul{$c}{ulsize} / $ul{$c}{ultime} / 1024);
+    }
+    $ulspeed = int($ulspeed / 1024);
+    print "<tr> <td>$c</td> <td>$sc</td> <td align=center>$speed</td> <td align=center>$roundspeed</td> <td align=center>$ulspeed</td> <td align=center>$roundulspeed</td> <td align=center>$numbuilds</td> <td align=center>$total</td> <td>$times</td> </tr>\n";
 }
 print "</table>\n";
 
-my $end = `tail -100 logfile | grep "End of round $rev"`;
-if ($end =~ /seconds (\d+) wasted (\d+)/) {
-    my ($timeused, $wasted) = ($1, $2);
-    my $proc = int(100 * $wasted / ($timeused * scalar @clist));
-    print "<p>This build round took $timeused seconds. $wasted cpu seconds ($proc%) were spent on cancelled builds.\n";
+$csth = $db->prepare("SELECT took FROM rounds WHERE revision=$rev");
+my $rows = $csth->execute();
+if ($rows) {
+    my ($timeused) = $csth->fetchrow_array();
+    print "<p>This build round took $timeused seconds.\n";
 
     for (@buildids) {
         $totalwork += $builds{$_}{score};
@@ -74,7 +81,7 @@ if ($end =~ /seconds (\d+) wasted (\d+)/) {
     printf("<br>Total client speed was $totalspeed points/second, which in ideal conditions would complete the round in %d seconds.\n", 
            $totalwork / $totalspeed);
     printf("<br>Effective round speed was $ourspeed points/second, making us %d%% efficient.\n",
-           $ourspeed * 100 / $totalspeed);
+           ($ourspeed * 100 / $totalspeed) + 0.5);
           
 }
 

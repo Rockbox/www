@@ -1,11 +1,10 @@
 #!/usr/bin/perl
+use POSIX 'strftime';
+require "rbmaster.pm";
 
-use DBI;
+$ENV{'TZ'} = "UTC";
 
-eval 'require "secrets.pm"';
-
-my $building = $ARGV[0];
-
+my $buildrev = $ARGV[0];
 
 my @b;
 my %rounds;
@@ -16,51 +15,71 @@ my %dir; # hash per type for build dir
 my $maxrounds = 20;
 
 sub getdata {
-    my $dbpath = 'DBI:mysql:rockbox';
-    my $db = DBI->connect($dbpath, $rb_dbuser, $rb_dbpwd) or
-        warn "DBI: Can't connect to database: ". DBI->errstr;
-
+    db_connect();
     my $sth = $db->prepare("SELECT revision,id,errors,warnings,client,timeused FROM builds ORDER BY revision DESC") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
     my $rows = $sth->execute();
     if ($rows) {
         while (my ($rev,$id,$errors,$warnings,$client,$time) = $sth->fetchrow_array()) {
-            $builds{$rev}{$id}{errors} = $errors;
-            $builds{$rev}{$id}{warnings} = $warnings;
-            $builds{$rev}{$id}{client} = $client;
-            $clients{$rev}{$client} = 1;
-            $builds{$rev}{$id}{time} = $time;
-            $alltypes{$id} = 1;
-            if (scalar keys %builds > $maxrounds) {
-                delete $builds{$rev};
+            $compiles{$rev}{$id}{errors} = $errors;
+            $compiles{$rev}{$id}{warnings} = $warnings;
+            if ($errors>0 or $warnings>0) {
+                $alltypes{$id} = 1;
             }
+            $compiles{$rev}{$id}{client} = $client;
+            $clients{$rev}{$client} = 1;
+            $compiles{$rev}{$id}{time} = $time;
+            $alltypes{$id} = 1;
+            if (scalar keys %compiles > $maxrounds) {
+                delete $compiles{$rev};
+                last;
+            }
+        }
+    }
+
+    $csth = $db->prepare("SELECT revision,clients,took FROM rounds ORDER BY revision DESC limit $maxrounds");
+    my $rows = $csth->execute();
+    if ($rows) {
+        while (my ($rev, $clients,$took) = $csth->fetchrow_array()) {
+            $round{$rev}{clients} = $clients;
+            $round{$rev}{time} = $took;
         }
     }
 }
 
-my $build=0;
-
+&getbuilds();
 &getdata();
 
 print "<table class=\"buildstatus\" cellspacing=\"1\" cellpadding=\"0\"><tr>";
-print "<th>rev</th>";
+print "<th>rev / time</th>";
 print "<th>score</th>";
-print "<th>clients</th>";
-foreach $t (sort keys %alltypes) {
+print "<th>time</th>";
+foreach $t (sort {$builds{$a}{name} cmp $builds{$b}{name}} keys %alltypes) {
 
     my ($a1, $a2);
     if (-f "data/rockbox-$t.zip") {
         $a1 = "<a href='data/rockbox-$t.zip' >";
         $a2 = "</a>";
     }
-    print"<th>$a1<img border=0 width='16' height='130' src=\"http://build.rockbox.org/titles/$t.png\">$a2</th>\n";
+    print"<th>$a1<img border=0 width='16' height='130' title='$builds{$t}{name}' src=\"http://build.rockbox.org/titles/$t.png\">$a2</th>\n";
 }
 print "</tr>\n";
 
 #######################
 my $numbuilds = scalar(keys %alltypes);
 my $js;
-if($building) {
+if($buildrev) {
+    my $rounds_sth = $db->prepare("SELECT took FROM rounds ORDER BY revision DESC LIMIT 5") or 
+        die "DBI: Can't prepare statement: ". $db->errstr;
+    my $rows = $rounds_sth->execute();
+    my $prevtime = 0;
+    if ($rows) {
+        while (my ($took) = $rounds_sth->fetchrow_array()) {
+            $prevtime += $took;
+        }
+        $prevtime /= $rows;
+    }
+
     my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday) =
         gmtime(time);
 
@@ -76,22 +95,21 @@ if($building) {
                           $dhour, $dmin, $dsec);
     }
 
-    $building =~ s/ /%20/g;
-
-    printf("<tr><td><a class=\"bstamp\" href=\"%s\">%04d-%02d-%02d %02d:%02d</a></td><td class=\"building\" colspan=\"%d\">$text</td></tr>\n",
-           $building,
-           $year+1900, $mon+1, $mday, $hour, $min,
-           $numbuilds, gmtime());
+    printf("<tr><td colspan=3><a class=\"bstamp\" href=\"http://svn.rockbox.org/viewvc.cgi?view=rev;revision=$buildrev\">$buildrev</a> (in progress)</td><td class=\"building\" colspan=\"%d\">$text</td></tr>\n",
+           $numbuilds);
 }
 #################
 
 my $count=0;
-for my $rev (sort {$b <=> $a} keys %builds) {
-    my @types = keys %{$builds{$rev}};
+for my $rev (sort {$b <=> $a} keys %compiles) {
+    my @types = keys %{$compiles{$rev}};
+
+    my $time = (stat("data/$rev-clients.html"))[9];
+    my $timestring = strftime("%H:%M", localtime $time);
 
     print "<tr align=center>\n";
 
-    my $chlink = "<a class=\"bstamp\" href=\"http://svn.rockbox.org/viewvc.cgi?view=rev;revision=$rev\">$rev</a>";
+    my $chlink = "<a class=\"bstamp\" href=\"http://svn.rockbox.org/viewvc.cgi?view=rev;revision=$rev\">$rev</a> $timestring";
 
     my $score=0;
     print "<td nowrap>$chlink</td>\n";
@@ -100,9 +118,9 @@ for my $rev (sort {$b <=> $a} keys %builds) {
     my %bt;
 
     my @tds;
-    for my $type (sort keys %alltypes) {
+    for my $type (sort {$builds{$a}{name} cmp $builds{$b}{name}} keys %alltypes) {
 
-        if (not defined $builds{$rev}{$type}{client}) {
+        if (not defined $compiles{$rev}{$type}{client}) {
             push @tds, "<td>&nbsp;</td>\n";
             next;
         }
@@ -111,7 +129,7 @@ for my $rev (sort {$b <=> $a} keys %builds) {
         my $text = "0";
         my $class = "buildok";
 
-        my $b = \%{$builds{$rev}{$type}};
+        my $b = \%{$compiles{$rev}{$type}};
 
         if ($$b{errors}) {
             $text=$$b{errors};
@@ -128,14 +146,14 @@ for my $rev (sort {$b <=> $a} keys %builds) {
         }
         
         push @tds, sprintf("<td class=\"%s\"><a class=\"blink\" href=\"shownewlog.cgi?rev=%s;type=%s\" title=\"Built by %s in %d secs\">%s</a></td>\n",
-               $class,
-               $rev, $type,
-               $$b{client}, $$b{time},
-               $text);
+                           $class,
+                           $rev, $type,
+                           $$b{client}, $$b{time},
+                           $text);
     }
     printf "<td>%d</td>", $score;
-    printf("<td><a href=\"data/$rev-clients.html\">%d</a></td>",
-           scalar(keys %{$clients{$rev}}));
+    printf("<td><a href=\"data/$rev-clients.html\">%d:%02d</a></td>",
+           $round{$rev}{time} / 60, $round{$rev}{time} % 60);
     print @tds;
     print "</tr>\n";
 }

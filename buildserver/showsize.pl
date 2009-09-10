@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+require "rbmaster.pm";
 
 my $dir="data";
 
@@ -12,6 +13,8 @@ my %lines;
 
 my %this;
 my %delta;
+
+getbuilds();
 
 sub singlefile {
     my($file)=@_;
@@ -79,7 +82,7 @@ sub singlefile {
     }
     close(F);
 
-    for my $t (sort keys %title) {
+    for my $t (sort {$builds{$a}{name} cmp $builds{$b}{name}} keys %title) {
         my $tx = $single{$t};
         if(!$tx) {
             $tx="<td>&nbsp;</td>";
@@ -117,7 +120,7 @@ print <<MOO
 MOO
 ;
 print "<table class=\"buildstatus\" cellspacing=\"1\" cellpadding=\"2\"><tr><th>Revision</th>\n";
-for my $t (sort keys %title) {
+for my $t (sort {$builds{$a}{name} cmp $builds{$b}{name}} keys %title) {
     print "<td><img width='16' height='130' alt=\"$t\" src=\"/titles/$t.png\"></td>\n";
 }
 print "<th>Delta</th>\n";

@@ -77,6 +77,39 @@ sub getspeed($)
     db_connect() if (not $db);
 
     my ($cli) = @_;
+    my $maxrows = 20;
+
+    my $rows = $getspeed_sth->execute($cli, $maxrows);
+    if ($rows > 0) {
+        my @ulspeeds;
+        my @buildspeeds;
+
+        # fetch score for $avgcount latest revisions (build rounds)
+        while (my ($id, $buildtime, $ultime, $ulsize) = $getspeed_sth->fetchrow_array()) {
+            my $points = $builds{$id}{score};
+            push @buildspeeds, int($points / $buildtime);
+
+            if ($ulsize && $ultime) {
+                push @ulspeeds, int($ulsize / $ultime);
+            }
+
+        }
+        $getspeed_sth->finish();
+
+        # get the "33% median" speed
+        my $bs = (sort {$a <=> $b} @buildspeeds)[scalar @buildspeeds / 3];
+        my $us = (sort {$a <=> $b} @ulspeeds)[scalar @ulspeeds / 3];
+        
+        return ($bs, $us);
+    }
+    return (0, 0);
+}
+
+sub old_getspeed($)
+{
+    db_connect() if (not $db);
+
+    my ($cli) = @_;
     my $maxrows = 10;
 
     my $rows = $getspeed_sth->execute($cli, $maxrows);
@@ -127,7 +160,7 @@ sub db_connect
     $setlastrev_sth = $db->prepare("INSERT INTO clients (name, lastrev) VALUES (?,?) ON DUPLICATE KEY UPDATE lastrev=?") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
 
-    $getspeed_sth = $db->prepare("SELECT id, timeused, ultime, ulsize FROM builds WHERE client=? ORDER BY revision DESC LIMIT ?") or
+    $getspeed_sth = $db->prepare("SELECT id, timeused, ultime, ulsize FROM builds WHERE client=? AND timeused > 0 ORDER BY revision DESC LIMIT ?") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
 
     $getlastrev_sth = $db->prepare("SELECT revision FROM builds ORDER BY revision DESC LIMIT 1") or

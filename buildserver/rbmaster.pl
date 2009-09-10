@@ -26,11 +26,11 @@ if ($test) {
 
 # the minimum protocol version supported. The protocol version is provided
 # by the client
-my $minimumversion = 31;
+my $minimumversion = 32;
 
 # if the client is found too old, this is a svn rev we tell the client to
 # use to pick an update
-my $updaterev = 22109;
+my $updaterev = 22384;
 
 
 use IO::Socket;
@@ -83,6 +83,7 @@ sub dlog {
 sub dblog($$$)
 {
     return if (!$buildround);
+    return if ($test);
 
     my ($cl, $key, $value) = @_;
 
@@ -267,8 +268,17 @@ sub build {
         command $rh, "BUILD $args";
     }
     $client{$fileno}{'expect'}="_BUILD";
+    $client{$fileno}{idle} = 0;
 
-    slog "Build: build $id rev $rev client $cli";
+    # when is this build to be regarded as overdue?
+    my $od;
+    if ($client{$fileno}{speed}) {
+        my $ulspeed = $client{$fileno}{ulspeed} || 20000;
+        $builds{$id}{overdue} = time() + ($builds{$id}{score} / $client{$fileno}{speed}) + $builds{$id}{ulsize} / $ulspeed + 15;
+        $od = strftime "%T", localtime $builds{$id}{'overdue'};
+    }
+
+    slog "Build: build $id rev $rev client $cli $od";
     dblog($fileno, "build", $id);
 
     # mark this client with what response we expect from it
@@ -284,6 +294,11 @@ sub build {
     if (!$test) {
         $setlastrev_sth->execute($cli, $buildround, $buildround);
         $buildclients{$cli} = 1;
+    }
+
+    # store the speed of the fastest client building
+    if ($client{$fileno}{speed} > $builds{$id}{topspeed}) {
+        $builds{$id}{topspeed} = $client{$fileno}{speed};
     }
 }
 
@@ -304,7 +319,7 @@ sub _PING {
     $client{$rh->fileno}{'expect'}="";
     my $t = tv_interval($client{$rh->fileno}{'ping'});
     if ($t > 2) {
-        slog "Slow _PING from $client{$rh->fileno}{client} ($t ms)";
+        #slog "Slow _PING from $client{$rh->fileno}{client} ($t ms)";
     }
 }
 
@@ -330,8 +345,8 @@ sub HELLO {
     my $fno = $rh->fileno;
 
     if(($version eq "commander") &&
-       ($archlist eq "$rb_cmdpasswd") &&
-       (1 eq "$rb_cmdenabled") &&
+       ($archlist eq $rb_cmdpasswd) &&
+       (1 eq $rb_cmdenabled) &&
        !$commander) {
         $commander++;
 
@@ -403,7 +418,7 @@ sub HELLO {
         }
         else {
             slog "Joined: client $cli arch $archlist speed $speed";
-            privmessage $fno, sprintf  "Welcome $cli. Your average speed is $speed points/sec. Avg upload speed is %d KB/s.", $ulspeed / 1024;
+            privmessage $fno, sprintf  "Welcome $cli. Your build speed is $speed points/sec. Your upload speed is %d KB/s.", $ulspeed / 1024;
             dblog($fno, "joined", "");
         }
         
@@ -461,6 +476,9 @@ sub GIMMEMORE {
 
     command $rh, "_GIMMEMORE";
 
+    my $cli = $client{$rh->fileno}{'client'};
+    #slog "$cli asked for more work";
+
     &start_next_build($rh->fileno);
 }
 
@@ -492,6 +510,7 @@ sub COMPLETED {
     # remove this build from this client
     delete $client{$cl}{queue}{$id};
     delete $client{$cl}{btime}{$id};
+    delete $builds{$id}{overdue};
 
     # mark this client as not building anymore
     $client{$cl}{'building'}--;
@@ -533,11 +552,11 @@ sub COMPLETED {
     my $timeused = time() - $buildstart;
     slog sprintf "Completed: build $id client $cli seconds %.1f uplink $uplink speed %d time $timeused left $left", $took, $speed;
 
-    dblog($cl, "completed", "$id speed:$speed uplink:$uplink");
+    dblog($cl, "completed", sprintf("$id speed:%d uplink:$uplink", $speed));
 
     if ($left and $left <= 10) {
         slog sprintf "$left builds remaining: %s", join(", ", @lefts);
-        message "$left build(s) remaining";
+        message sprintf("$left build%s remaining", $left > 1 ? "s" : "");
     }
 
     # now kill this build on all clients still building it
@@ -566,7 +585,7 @@ sub COMPLETED {
         }
     }
 
-    if ($ulsize and $client{$cl}{ulspeed}) {
+    if (0 and $ulsize and $ultime and $client{$cl}{ulspeed}) {
         my $ulspeed = $ulsize / $ultime;
         my $rs = int(($ulspeed * 100 / $client{$cl}{ulspeed}) + 0.5);
         if ($rs > 120 or $rs < 80) {
@@ -607,6 +626,10 @@ sub check_log
 
         if (grep /not found/i, @log) {
             return "Command not found";
+        }
+
+        if (grep /permission denied/i, @log) {
+            return "Permission denied";
         }
 
         return "";
@@ -655,6 +678,7 @@ sub parsecmd {
         chomp $rest;
         if($protocmd{$func}) {
             &$func($rh, $rest);
+            #dlog "$client{$rh}{client} said $rest";
         }
         else {
             chomp $cmdstr;
@@ -778,14 +802,6 @@ sub startround {
         }
     }
 
-    # get new speed values for all clients
-    for my $cl (&build_clients) {
-        my ($speed, $ulspeed) = getspeed($client{$cl}{client});
-        $client{$cl}{avgspeed} = $speed;
-        $client{$cl}{speed} = $speed; 
-        $client{$cl}{ulspeed} = $ulspeed; 
-    }
-
     %buildclients = ();
 
     &bestfit_builds(1);
@@ -836,6 +852,14 @@ sub endround {
     }
     $buildround=0;
 
+    # recalculate speed values for all clients
+    for my $cl (&build_clients) {
+        my ($speed, $ulspeed) = getspeed($client{$cl}{client});
+        $client{$cl}{avgspeed} = $speed;
+        $client{$cl}{speed} = $speed; 
+        $client{$cl}{ulspeed} = $ulspeed; 
+    }
+
     if ($nextround) {
         &startround($nextround);
         $nextround = 0;
@@ -865,7 +889,7 @@ sub checkclients {
             my $exp = $client{$cl}{'expect'};
             my $t = time() - $client{$cl}{'time'};
             if($exp) {
-                slog "Alert: Waiting ${t}s for $exp from client $client{$cl}{client}!";
+                #slog "Alert: Waiting ${t}s for $exp from client $client{$cl}{client}!";
             }
             command $rh, "PING 111";
             $client{$cl}{'ping'}=[gettimeofday];
@@ -914,13 +938,10 @@ sub client_gone {
     }
 }
 
-sub smallbuilds
-{
-    return sort {$builds{$a}{score} <=> $builds{$b}{score}} @buildids;
-}
-
 sub bigsort
 {
+    my ($usecount) = @_;
+
     # done builds are, obviously, last
     my $s = $builds{$a}{'done'} <=> $builds{$b}{'done'};
 
@@ -929,7 +950,7 @@ sub bigsort
         $s = $builds{$a}{'uploading'} <=> $builds{$b}{'uploading'};
     }
     
-    if (!$s) {
+    if ($usecount and !$s) {
         # 'handcount' is the number of times the build has been handed out
         # to a client. Get the lowest one first.
         $s = $builds{$a}{'handcount'} <=> $builds{$b}{'handcount'};
@@ -950,7 +971,41 @@ sub bigsort
 
 sub bigbuilds
 {
-    return sort bigsort @buildids;
+    return sort {bigsort(1)} @buildids;
+}
+
+sub smallsort
+{
+    # done builds are, obviously, last
+    my $s = $builds{$a}{'done'} <=> $builds{$b}{'done'};
+
+    if (!$s) {
+        # delay handing out builds that are being uploaded right now
+        $s = $builds{$a}{'uploading'} <=> $builds{$b}{'uploading'};
+    }
+    
+    if (!$s) {
+        # 'handcount' is the number of times the build has been handed out
+        # to a client. Get the lowest one first.
+        $s = $builds{$a}{'handcount'} <=> $builds{$b}{'handcount'};
+    }
+
+    if (!$s) {
+        # do nonzip builds before zip builds
+        my $s = $builds{$b}{'zip'} cmp $builds{$a}{'zip'};
+    }
+
+    if (!$s) {
+        # do light builds before heavy builds
+        $s = $builds{$a}{score} <=> $builds{$b}{score};
+    }
+
+    return $s;
+}
+
+sub smallbuilds
+{
+    return sort smallsort @buildids;
 }
 
 sub client_eta($)
@@ -1004,7 +1059,6 @@ sub bestfit_builds
 
   tryagain:
     my $totleft = 0;
-    my $bcount = 0;
 
     # remove assignments
     for my $b (@buildids) {
@@ -1012,27 +1066,27 @@ sub bestfit_builds
     }
 
     my @debug = ();
-    my $realtime = int($totwork / $totspeed + 0.5) + $margin;
+    $estimated_time = int($totwork / $totspeed + 0.5) + $margin;
     my $diff = 0;
     if ($firsttime) {
-        $diff = $realtime - $firsttime - (time - $buildstart);
+        $diff = $estimated_time - $firsttime - (time - $buildstart);
     }
-    slog sprintf "Realistic time with $margin margin: $realtime seconds (%+d)", $diff;
-    dlog "----- margin $margin --- realtime $realtime --------";
+    slog sprintf "Realistic time with $margin margin: $estimated_time seconds (%+d)", $diff;
+    dlog "----- margin $margin --- estimated_time $estimated_time --------";
     
     for my $c (sort {$client{$a}{speed} <=> $client{$b}{speed}} &build_clients)
     {
         next if ($client{$c}{blocked});
-
+        
         $client{$c}{queue} = ();
 
         my $speed = $client{$c}{speed};
-        my $maxtime = $realtime;
-        my $timeused = 0;
-        my $points = 0;
+        my $maxtime = $estimated_time;
+        $client{$c}{timeused} = 0;
+        $client{$c}{points} = 0;
 
         my $sort_order;
-        if ($speed) {
+        if ($speed > 0) {
             # we know how fast the client usually is.
             # give it as much work as it can do
             $sort_order = \&bigbuilds;
@@ -1045,50 +1099,39 @@ sub bestfit_builds
         }
 
         my $lastultime = 0;
-        my $totultime = 0;
-        my $ulspeed = $client{$c}{ulspeed} || 50000; # assume 50 KB/s uplink
+        my $ulspeed = $client{$c}{ulspeed} || 20000; # assume 20 KB/s uplink
 
         for my $b (&$sort_order)
         {
             next if ($builds{$b}{assigned});
-
+            
             my $buildtime = 0;
             if ($speed) {
                 $buildtime = $builds{$b}{score} / $speed;
             }
 
+            # no build must use more than 66% of time
+            # (or it will likely be "overtaken" by other clients)
+            next if ($buildtime > $estimated_time * 2 / 3);
+            
             my $ultime = $builds{$b}{ulsize} / $ulspeed;
-
+            my $endtime = $client{$c}{timeused} + $buildtime + $ultime - $lastultime;
+            
             if (client_can_build($c, $b) and
-                ($timeused + $buildtime + $ultime - $lastultime < $maxtime))
+                ($endtime < $maxtime))
             {
                 $client{$c}{queue}{$b} = $buildtime || 1;
                 $client{$c}{ultime}{$b} = $ultime;
-                $timeused += $buildtime + $ultime - $lastultime;
-                $points += $builds{$b}{score};
+                $client{$c}{timeused} += $buildtime + $ultime - $lastultime;
+                $client{$c}{points} += $builds{$b}{score};
                 $builds{$b}{assigned} = 1;
-                
-                $totultime += $ultime - $lastultime;
                 $lastultime = $ultime;
-
-                $bcount++;
 
                 # speed-less clients only do one build
                 last if (!$speed);
             }
         }
         $totleft += int($maxtime - $timeused);
-
-        my @blist;
-        my @dlist;
-        my $bcount = 0;
-        for my $b (sort bigsort keys %{$client{$c}{queue}}) {
-            push @blist, "$b:$builds{$b}{score}:$builds{$b}{ulsize}";
-            $bcount ++;
-        }
-        my $buildlist = join ", ", @blist;
-
-        push @debug, sprintf "%-24s (%3d KB/s) does $bcount/%d points %.1f sec $buildlist", $client{$c}{client}, $ulspeed / 1024, $points, $timeused;
     }
 
     # any unassigned builds?
@@ -1101,6 +1144,30 @@ sub bestfit_builds
             goto tryagain;
         }
     }
+
+    for my $c (sort {$client{$a}{speed} <=> $client{$b}{speed}} &build_clients) {
+        my @blist;
+        my @dlist;
+        my $bcount = 0;
+        my $ulspeed = $client{$c}{ulspeed} || 20000; # assume 20 KB/s uplink
+        for my $b (sort bigsort keys %{$client{$c}{queue}}) {
+            my $btime = 0;
+            if ($client{$c}{speed}) {
+                $btime = $builds{$b}{score} / $client{$c}{speed};
+            }
+            push @blist, sprintf("$b:%d:%d",
+                                 $btime,
+                                 $builds{$b}{ulsize} / $ulspeed);
+            $bcount ++;
+        }
+        my $buildlist = join ", ", @blist;
+
+        push @debug, sprintf("%-24s (b%3d,u%3d) does $bcount %.1f sec $buildlist",
+                             $client{$c}{client},
+                             $client{$c}{speed}, $ulspeed / 1024,
+                             $client{$c}{timeused});
+    }
+
 
     for my $cl (&build_clients) {
         my $num = 1;
@@ -1117,9 +1184,10 @@ sub bestfit_builds
         dlog $_;
     }
 
-    $firsttime = $realtime if (!$endtime);
+    $firsttime = $estimated_time if (!$firsttime);
 
-    dlog "$bcount builds in $realtime seconds. $totleft seconds unused";
+    my $bcount = scalar @buildids;
+    dlog "$bcount builds in $estimated_time seconds. $totleft seconds unused";
 
     if ($start_builds) {
         # start all clients who aren't currently running
@@ -1141,7 +1209,7 @@ sub start_next_build($)
     my $cli = $client{$cl}{client};
 
     # start next in queue
-    for my $id (sort bigsort keys %{$client{$cl}{queue}})
+    for my $id (sort {bigsort(0)} keys %{$client{$cl}{queue}})
     {
         if (!$builds{$id}{done} and !$builds{$id}{uploading})
         {
@@ -1169,9 +1237,10 @@ sub start_next_build($)
     
     if (1) {
         # help with other builds, speculatively
-        for my $id (&bigbuilds) {
+        for my $id (&smallbuilds) {
             next if (!client_can_build($cl, $id));
             next if (defined $client{$cl}{btime}{$id});
+            next if ($client{$cl}{speed} and ($builds{$id}{score} / $client{$cl}{speed} > $estimated_time * 2 / 3));
             if (!$builds{$id}{done}) {
                 if ($builds{$id}{handcount} == 0) {
                     #dlog "$cli does unstarted $id";
@@ -1181,6 +1250,10 @@ sub start_next_build($)
                         message "Speculative building started";
                         $speculative = 1;
                     }
+
+                    # don't start building this if someone faster
+                    # is already building it
+                    #next if ($builds{$id}{topspeed} > $client{$cl}{speed})
                 }
                 &build($cl, $id);
                 return;
@@ -1219,6 +1292,29 @@ sub assign_abandoned_builds
         }
     }
 }
+
+sub assign_overdue_builds
+{
+    my $now = time();
+    for my $id (sort {$builds{$b}{overdue} <=> $builds{$a}{overdue}} @buildids)
+    {
+        last if (not $builds{$id}{overdue});
+
+        if ($builds{$id}{overdue} <= $now) {
+            # we have an overdue build
+            # give it to the fastest idle client
+
+            for my $cl (sort {$client{$b}{roundspeed} <=> $client{$a}{roundspeed}} &build_clients) {
+                if (not keys %{$client{$cl}{btime}}) {
+                    slog "Overdue: $client{$cl}{client} ($client{$cl}{speed}) starts overdue build $id";
+                    &build($cl, $id);
+                    last;
+                }
+            }
+        }
+    }
+}
+
 
 sub estimate_eta
 {
@@ -1404,7 +1500,7 @@ while(not $alldone) {
         }
     }
 
-    assign_abandoned_builds();
+    #assign_overdue_builds();
 
     checkclients();
     readblockfile();
