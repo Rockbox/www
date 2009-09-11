@@ -124,19 +124,19 @@ sdl:nozip:h120wps:iriver H120 - Checkwps:checkwps.h120:--target=h120,--type=c:86
 sdl:nozip:h300wps:iriver H300 - Checkwps:checkwps.h300:--target=h300,--type=c:84
 sdl:nozip:ipodnanowps:iPod Nano - Checkwps:checkwps.ipodnano:--target=ipodnano,--type=c:84
 sdl:nozip:ipodcolorwps:iPod Color - Checkwps:checkwps.ipodcolor:--target=ipodcolor,--type=c:84
-sdl:nozip:iaudiox5wps:iAudio X5 - Checkwps:checkwps.iaudiox5:--target=x5,--type=c:86
-sdl:nozip:iaudiom5wps:iAudio M5 - Checkwps:checkwps.iaudiom5:--target=m5,--type=c:86
-sdl:nozip:iaudiom3wps:iAudio M3 - Checkwps:checkwps.iaudiom3:--target=m3,--type=c:82
-sdl:nozip:ipod4graywps:iPod 4G Grayscale - Checkwps:checkwps.ipod4gray:--target=ipod4g,--type=c:84
+sdl:nozip:iaudiox5wps:iAudio X5 - Checkwps:checkwps.x5:--target=x5,--type=c:86
+sdl:nozip:iaudiom5wps:iAudio M5 - Checkwps:checkwps.m5:--target=m5,--type=c:86
+sdl:nozip:iaudiom3wps:iAudio M3 - Checkwps:checkwps.m3:--target=m3,--type=c:82
+sdl:nozip:ipod4graywps:iPod 4G Grayscale - Checkwps:checkwps.ipod4g:--target=ipod4g,--type=c:84
 sdl:nozip:ipodvideowps:iPod Video - Checkwps:checkwps.ipodvideo:--target=ipodvideo,--type=c,--ram=32:85
 sdl:nozip:ipodmini2gwps:iPod Mini 2G - Checkwps:checkwps.ipodmini2g:--target=ipodmini2g,--type=c:86
 sdl:nozip:h10wps:iriver H10 - Checkwps:checkwps.h10:--target=h10,--type=c:85
 sdl:nozip:gigabeatfwps:Toshiba Gigabeat F - Checkwps:checkwps.gigabeatf:--target=gigabeatf,--type=c:83
 sdl:nozip:gigabeatswps:Toshiba Gigabeat S - Checkwps:checkwps.gigabeats:--target=gigabeats,--type=c:85
-sdl:nozip:sansae200wps:SanDisk Sansa e200 - Checkwps:checkwps.sansae200:--target=e200,--type=c:88
-sdl:nozip:sansae200v2wps:SanDisk Sansa e200v2 - Checkwps:checkwps.sansae200v2:--target=e200v2,--type=c:83
-sdl:nozip:sansac200wps:SanDisk Sansa c200 - Checkwps:checkwps.sansac200:--target=c200,--type=c:85
-sdl:nozip:sansac200v2wps:SanDisk Sansa c200v2 - Checkwps:checkwps.sansac200v2:--target=c200v2,--type=c:82
+sdl:nozip:sansae200wps:SanDisk Sansa e200 - Checkwps:checkwps.e200:--target=e200,--type=c:88
+sdl:nozip:sansae200v2wps:SanDisk Sansa e200v2 - Checkwps:checkwps.e200v2:--target=e200v2,--type=c:83
+sdl:nozip:sansac200wps:SanDisk Sansa c200 - Checkwps:checkwps.c200:--target=c200,--type=c:85
+sdl:nozip:sansac200v2wps:SanDisk Sansa c200v2 - Checkwps:checkwps.c200v2:--target=c200v2,--type=c:82
 sdl:nozip:mrobe500wps:Olympus M-Robe 500 - Checkwps:checkwps.mrobe500:--target=mrobe500,--type=c:87
 sdl:nozip:mrobe100wps:Olympus M-Robe 100 - Checkwps:checkwps.mrobe100:--target=mrobe100,--type=c:80
 sdl:nozip:cowond2wps:Cowon D2 - Checkwps:checkwps.cowond2:--target=cowond2,--type=c:86
