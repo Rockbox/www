@@ -116,6 +116,7 @@ sh:nozip:recorderboot:Recorder - Boot:ajbrec.ajz:--target=recorder,--ram=2,--typ
 sh:nozip:playerboot:Player - Boot:archos.mod:--target=player,--ram=2,--type=b:712
 sh:nozip:fmrecorderboot:FM Recorder - Boot:ajbrec.ajz:--target=fmrecorder,--ram=2,--type=b:784
 sh:nozip:ondiospboot:Ondio SP - Boot:ajbrec.ajz:--target=ondiosp,--ram=2,--type=b:778
+sdl:nozip:playerwps:Player - Checkwps:checkwps.player:--target=player,--ram=2,--type=c:86
 sdl:nozip:recorderwps:Recorder - Checkwps:checkwps.recorder:--target=recorder,--ram=2,--type=c:86
 sdl:nozip:fmrecorderwps:FM Recorder - Checkwps:checkwps.fmrecorder:--target=fmrecorder,--ram=2,--type=c:86
 sdl:nozip:ondiofmwps:Ondio FM - Checkwps:checkwps.ondiofm:--target=ondiofm,--ram=2,--type=c:84
