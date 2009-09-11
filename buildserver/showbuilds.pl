@@ -5,6 +5,12 @@ require "rbmaster.pm";
 $ENV{'TZ'} = "UTC";
 
 my $buildrev = $ARGV[0];
+my $showallbuilds = 0;
+
+if ($buildrev == 1) {
+    $buildrev = 0;
+    $showallbuilds = 1;
+}
 
 my @b;
 my %rounds;
@@ -29,7 +35,7 @@ sub getdata {
             $compiles{$rev}{$id}{client} = $client;
             $clients{$rev}{$client} = 1;
             $compiles{$rev}{$id}{time} = $time;
-            $alltypes{$id} = 1;
+            $alltypes{$id} = 1 if ($showallbuilds);
             if (scalar keys %compiles > $maxrounds) {
                 delete $compiles{$rev};
                 last;
