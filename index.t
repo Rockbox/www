@@ -10,7 +10,9 @@
 
 <p><table class='blurb' align=center><tr><td>
 <p class="ingress">
-Rockbox is an open source firmware for mp3 players, written from scratch. It runs on a wide range of players:
+Rockbox is an open source firmware for mp3 players, written from scratch. It runs on a wide range of players.
+
+<p><b>Stable Devices </b>
 <ul>
 
 <li><b>Apple</b>: 1st through 5.5th generation iPod, iPod Mini and 1st
@@ -25,20 +27,27 @@ and Ondio
 
 <li><b>Olympus</b>: M:Robe 100
 
-<li><b>SanDisk</b>: Sansa c200 series, e200 series and e200R series (<i>not the AMS models</i>)
+<li><b>SanDisk</b>: Sansa c200 series, e200 series and e200R series (<i>not the v2/AMS models</i>)
 
 <li><b>Toshiba</b>: Gigabeat X and F series (<i>not the S series</i>)
-
-
-
 </ul>
+
+<b>Unstable Devices - Rockbox runs on these players, but is incomplete, less usable, or has serious problems that limit it to advanced users</b>
+<ul>
+<li><b>SanDisk</b>: <a href="/wiki/SansaAMS">Sansa e200 v2 (AMS) series and Sansa Fuze V1 series</a>
+</ul>
+
+<b>Unusable Devices - Many more devices have some code written but are not yet usable. </b>
 
 <p>Quick links:
 <a href="/wiki/WhyRockbox">Why should you run Rockbox?</a>
 &middot;
 <a href="/wiki/MajorChanges">Change log</a>
 &middot;
-<a href="/wiki/TargetStatus">Status for current and work-in-progress targets</a>
+<a href="/wiki/TargetStatus#New_Platforms_Currently_Under_De">Status for Unstable and Unusable targets</a>
+&middot;
+<a href="/wiki/ContributingToRockbox">Contribute to Rockbox</a>
+
 
 </td></tr></table>
 
