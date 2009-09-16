@@ -82,7 +82,7 @@ sub file2url {
     return "$path $diff\n";
 }
 
-getshortnames("/home/dast/src/rockbox/docs/COMMITTERS");
+getshortnames("/sites/rockbox.org/trunk/docs/COMMITTERS");
 
 print "<table class=\"changetable_front\"><tr><th>when</th><th>what</th><th>where</th><th>who</th></tr>\n";
 
