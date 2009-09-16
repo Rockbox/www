@@ -12,8 +12,7 @@
 <a name='svn'></a>
 <h2>Subversion</h2>
 <!--#include file="lastsvn.html" -->
-<small>All commits <a href="since30.html">since 3.0</a>,
- <a href="since-12months.html">last 12 months</a>,
+<small>All commits <a href="since33.html">since v3.3</a>,
  <a href="since-4weeks.html">last four weeks</a>.
 </small>
 

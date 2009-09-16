@@ -2,12 +2,13 @@
 
 require "rockbox.pm";
 
-my $basedir = "/home/dast/rockbox-build/output";
-my $docbasedir = "/home/dast/rockbox-manual/output";
+my $basedir = "/sites/download.rockbox.org";
+my $baseurl = "http://download.rockbox.org";
+my $docbasedir = "/sites/download.rockbox.org/manual";
 
 my @list=("player",
           "recorder", "recorder8mb",
-          "fmrecorder", "fmrecorder8mb",
+          "fmrecorder", #"fmrecorder8mb",
           "recorderv2",
           "ondiofm", "ondiosp",
 
@@ -42,9 +43,11 @@ sub getpages {
     return 0;
 }
 
+print "Content-type: text/html\n\n";
+
 for(@list) {
     my $dir = $_;
-    opendir(DIR, "$basedir") or next;
+    opendir(DIR, "$basedir/daily") or next;
     my @files = sort grep { /^build-info/ } readdir(DIR);
     closedir DIR;
 
@@ -95,8 +98,8 @@ for(reverse sort keys %date) {
             $x++;
         }
         my $rev;
-        if( -f "daily/build-info") {
-            open(R, "<daily/build-info");
+        if( -f "$basedir/daily/build-info") {
+            open(R, "<$basedir/daily/build-info");
             while(<R>) {
                 if(/^rev = \D*(\d+)/) {
                     $rev = "r$1";
@@ -116,7 +119,7 @@ for(reverse sort keys %date) {
         elsif($m eq "install") {
             $file = "Rockbox-${d}-install.exe";
         }
-        if( -f "$basedir/$m/$file") {
+        if( -f "$basedir/daily/$m/$file") {
             printf "<a href=\"http://download.rockbox.org/daily/$dir$file\">latest</a> <small>($rev)</small><br>";
         }
         print "<a href=\"/dl.cgi?bin=$m\">old</a>";
@@ -159,7 +162,7 @@ for(reverse sort keys %date) {
             $voicemod = "ipodvideo";
         }
 
-        my $voice="voices/${voicemod}-${d}-english.zip";
+        my $voice="$baseurl/voices/${voicemod}-${d}-english.zip";
 
         if ( -f $voice ) {
             my $size = (stat($voice))[7];

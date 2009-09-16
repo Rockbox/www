@@ -144,7 +144,7 @@ $releasenotes="/twiki/bin/view/Main/ReleaseNotes33";
 sub header {
     my ($t) = @_;
     print "Content-Type: text/html\n\n";
-    open (HEAD, "/home/bjst/rockbox_html/head.html");
+    open (HEAD, "/sites/rockbox.org/www/head.html");
     while(<HEAD>) {
         $_ =~ s:^<title>Rockbox<\/title>:<title>$t<\/title>:;
         $_ =~ s:^<h1>_PAGE_<\/h1>:<h1>$t<\/h1>:;
@@ -154,7 +154,7 @@ sub header {
 }
 
 sub footer {
-    open (FOOT, "/home/bjst/rockbox_html/foot.html");
+    open (FOOT, "/sites/rockbox.org/www/foot.html");
     while(<FOOT>) {
         print $_;
     }

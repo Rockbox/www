@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
-require "/home/dast/perl/date.pm";
-require "jukebox.pm";
+require "../date.pm";
+require "../rockbox.pm";
 require CGI;
 
 $req = new CGI;

@@ -22,7 +22,7 @@ for later reference.
 
 <p><a href="log-today">Today's log</a> (live feed) <a href="current.txt">Raw text feed</a>
 
-<!--#exec cmd="./irclogs.pl" -->
+<!--#include virtual="irclogs.pl" -->
 
 <p><a href="log-today">Today's log</a> (live feed)
 

@@ -1,12 +1,13 @@
 #!/usr/bin/perl
 
-require "/home/dast/perl/date.pm";
+require "../date.pm";
 
 opendir(DIR, ".") or
     die "Can't opendir()";
 @logs = grep { /^rockbox-/ } readdir(DIR);
 closedir DIR;
 
+print "Content-type: text/html\n\n";
 print "<table class=archive>\n";
 
 my %y;
@@ -19,7 +20,6 @@ for (@logs) {
     $ymd{$1.$2.$3}++;
 }
 
-print "<table class=archive>\n";
 for (reverse sort keys %y) {
     my $y =$_;
     # print "Y: $y => \n";

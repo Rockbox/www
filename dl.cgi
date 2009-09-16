@@ -10,7 +10,7 @@ my $bin = $req->param('bin');
 my $fine=0;
 
 my $pic = $model{$bin};
-my $basedir = "/home/dast/rockbox-build/daily-build";
+my $basedir = "/sites/download.rockbox.org";
 my $baseurl = "http://download.rockbox.org";
 
 my $desc = $longname{$bin};
@@ -47,7 +47,7 @@ MOO
 
 my %date;
 my $dir = $bin;
-opendir(DIR, "$basedir/$dir") or next;
+opendir(DIR, "$basedir/daily/$dir") or next;
 my @files = sort grep { /^rockbox/ } readdir(DIR);
 closedir DIR;
 
@@ -89,18 +89,18 @@ for(reverse sort keys %date) {
         my $size;
 
         # new-style full zip:
-        if( -f "daily/$m/rockbox-${m}-${d}.zip") {
-            $size = (stat("daily/$m/rockbox-${m}-${d}.zip"))[7];
+        if( -f "$basedir/daily/$m/rockbox-${m}-${d}.zip") {
+            $size = (stat("$basedir/daily/$m/rockbox-${m}-${d}.zip"))[7];
             printf("<td><a title=\"Rockbox zip package for ${desc} built $nice\" href=\"$baseurl/daily/$bin/rockbox-${m}-${d}.zip\">Rockbox</a> %d KB</td>",
                    $size/1024);
         }
         elsif($bin eq "source") {
-            if (-f "daily/source/rockbox-$d.tar.bz2") {
-                $size = (stat("daily/source/rockbox-$d.tar.bz2"))[7];
+            if (-f "$basedir/daily/source/rockbox-$d.tar.bz2") {
+                $size = (stat("$basedir/daily/source/rockbox-$d.tar.bz2"))[7];
                 print "<td><a href=\"daily/source/rockbox-$d.tar.bz2\">bz2 source</a></td>";
             }
-            elsif(-f "daily/source/rockbox-$d.7z") {
-                $size = (stat("daily/source/rockbox-$d.7z"))[7];
+            elsif(-f "$basedir/daily/source/rockbox-$d.7z") {
+                $size = (stat("$basedir/daily/source/rockbox-$d.7z"))[7];
                 print "<td><a href=\"daily/source/rockbox-$d.7z\">7zip source</a></td>";
             }
         }
@@ -111,8 +111,8 @@ for(reverse sort keys %date) {
         $map="";
         $rev="";
 
-        if( -f "daily/build-info-${d}") {
-            open(R, "<daily/build-info-${d}");
+        if( -f "$basedir/daily/build-info-${d}") {
+            open(R, "<$basedir/daily/build-info-${d}");
             while(<R>) {
                 if(/^rev = (\d+)/) {
                     $rev = $1;
@@ -126,8 +126,8 @@ for(reverse sort keys %date) {
         }
         print "<td>$map</td>";
 
-        if ( -f "$basedir/changelogs/changes-$d.html") {
-            print "<td><a href=\"daily/changelogs/changes-$d.html\" title=\"changelog for Rockbox $nice\">changelog</a></td>";
+        if ( -f "$basedir/daily/changelogs/changes-$d.html") {
+            print "<td><a href=\"$baseurl/daily/changelogs/changes-$d.html\" title=\"changelog for Rockbox $nice\">changelog</a></td>";
         }
         else {
             print "<td>&nbsp;</td>";
@@ -137,12 +137,12 @@ for(reverse sort keys %date) {
         my $fi2 = "voices/$m-$d-english.zip";
         if ( -f $fi2) {
             my $size = (stat($fi2))[7];
-            printf("<td><a href=\"/$fi2\" title=\"voice file for Rockbox $desc dated $nice\">voice zip</a> %d KB</td>",
+            printf("<td><a href=\"$baseurl/$fi2\" title=\"voice file for Rockbox $desc dated $nice\">voice zip</a> %d KB</td>",
                    $size/1024);
         }
         elsif ( -f $fi) {
             my $size = (stat($fi))[7];
-            printf("<td><a href=\"/$fi\" title=\"voice file for Rockbox $desc dated $nice\">english.voice</a> %d KB</td>",
+            printf("<td><a href=\"$baseurl/$fi\" title=\"voice file for Rockbox $desc dated $nice\">english.voice</a> %d KB</td>",
                    $size/1024);
         }
         else {

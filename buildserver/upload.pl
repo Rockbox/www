@@ -27,6 +27,7 @@ if (-f "$destpath/$filename") {
 }
 
 if (move($tmpfile, "$destpath/$filename")) {
+    chmod 0660, "$destpath/$filename"; # chmod ug+rw
     print "Status: 200 Upload successful\n";
 }
 else {

@@ -6,7 +6,7 @@ BODY, HTML {
 
 H1 {
  text-decoration:  none;
- font-family:      sans-serif;
+ font-family:      arial, sans-serif;
  font-style:       normal;
  font-weight:      bold;
  font-size:        150%;
@@ -14,7 +14,7 @@ H1 {
 
 H2 {
  text-decoration:  none;
- font-family:      sans-serif;
+ font-family:      arial, sans-serif;
  font-style:       normal;
  font-weight:      bold;
  font-size:        130%;
@@ -22,7 +22,7 @@ H2 {
 
 H3, div.h5, .newsdate {
  text-decoration:  none;
- font-family:      sans-serif;
+ font-family:      arial, sans-serif;
  font-style:       normal;
  font-weight:      bold;
  font-size:        110%;
@@ -36,7 +36,7 @@ h3.frontpage {
 BODY, P, DIV, TD, TH, TR, FORM, OL, UL, LI, INPUT, TEXTAREA, SELECT
 {
  text-decoration:  none;
- font-family:      sans-serif;
+ font-family:      arial, sans-serif;
  font-style:       normal;
  font-size:        13px;
 }
@@ -186,6 +186,10 @@ td.toolscat {
 
 /****** TWiki ******/
 
+.foswikiAlert {
+ color: red;
+}
+
 .twikiDiffLineNumberHeader {
  background-color: #d6e6f5;
 }
@@ -219,9 +223,13 @@ td.toolscat {
  text-align: right;
 }
 
-.TWikiCopyright {
+.TWikiCopyright, .foswikiCopyright {
  font-size: 75%;
  text-align: right;
+}
+
+.foswikiTopicActions {
+ padding: 3px;
 }
 
 .twikiEmulatedLink {

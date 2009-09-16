@@ -12,7 +12,7 @@
 <p class="ingress">
 Rockbox is an open source firmware for mp3 players, written from scratch. It runs on a wide range of players.
 
-<p><b>Stable Devices </b>
+<p><b>Stable Devices:</b>
 <ul>
 
 <li><b>Apple</b>: 1st through 5.5th generation iPod, iPod Mini and 1st
@@ -32,12 +32,12 @@ and Ondio
 <li><b>Toshiba</b>: Gigabeat X and F series (<i>not the S series</i>)
 </ul>
 
-<b>Unstable Devices - Rockbox runs on these players, but is incomplete, less usable, or has serious problems that limit it to advanced users</b>
+<b>Unstable Devices:</b> (Rockbox runs on these players, but is incomplete, less usable, or has serious problems that limit it to advanced users)
 <ul>
 <li><b>SanDisk</b>: <a href="/wiki/SansaAMS">Sansa e200 v2 (AMS) series and Sansa Fuze V1 series</a>
 </ul>
 
-<b>Unusable Devices - Many more devices have some code written but are not yet usable. </b>
+<b>Unusable Devices:</b> (Many more devices have some code written but are not yet usable.)
 
 <p>Quick links:
 <a href="/wiki/WhyRockbox">Why should you run Rockbox?</a>
@@ -59,13 +59,14 @@ and Ondio
 <table class="news" summary="recent news">
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
-<tr><td nowrap>2009-06-21</td><td><a href="/twiki/bin/view/Main/DevConEuro2009">DevConEuro2009</a> has ended </td></tr>
-<tr><td nowrap>2009-06-19</td><td><a href="http://www.rockbox.org/twiki/bin/view/Main/ReleaseNotes33">Rockbox 3.3 is released</a></td></tr>
+<tr><td nowrap>2009-08-27</td><td>The site was offline for 50 hours when our ISP went down.</td></tr>
+<tr><td nowrap>2009-06-21</td><td><a href="/wiki/DevConEuro2009">DevConEuro2009</a> has ended </td></tr>
+<tr><td nowrap>2009-06-19</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes33">Rockbox 3.3 is released</a></td></tr>
 <tr><td nowrap>2009-03-24</td><td><a href="http://themes.rockbox.org/">themes.rockbox.org</a> is available</td></tr>
-<tr><td nowrap>2009-03-23</td><td><a href="http://www.rockbox.org/twiki/bin/view/Main/ReleaseNotes32">Rockbox 3.2 is released</a></td></tr>
-<tr><td nowrap>2009-03-18</td><td>Rockbox has been accepted as a mentor organization for Google Summer of Code 2009. <a href="http://www.rockbox.org/twiki/bin/view/Main/SummerOfCode2009">Look here for project ideas.</a></td></tr>
+<tr><td nowrap>2009-03-23</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes32">Rockbox 3.2 is released</a></td></tr>
+<tr><td nowrap>2009-03-18</td><td>Rockbox has been accepted as a mentor organization for Google Summer of Code 2009. <a href="http://www.rockbox.org/wiki/SummerOfCode2009">Look here for project ideas.</a></td></tr>
 <tr><td nowrap>2009-02-25</td><td>The Rockbox USB stack is now enabled by default on <a href="http://forums.rockbox.org/index.php?topic=20752.0">all PP502x targets</a>.</td></tr>
-<tr><td nowrap>2008-12-23</td><td><a href="http://www.rockbox.org/twiki/bin/view/Main/ReleaseNotes31">Rockbox 3.1 is released</a></td></tr>
+<tr><td nowrap>2008-12-23</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes31">Rockbox 3.1 is released</a></td></tr>
 <!--
 <tr><td colspan=2 align='center'><a href="history.html">Older news</a></td></tr>
 -->
@@ -82,8 +83,7 @@ and Ondio
 
 <h3 class=frontpage><a href='recent.shtml#svn'>Subversion</a></h3>
 <!--#include file="last5front.html" -->
-<small>All commits <a href="since30.html">since 3.0</a>,
- <a href="since-12months.html">last 12 months</a>,
+<small>All commits <a href="since33.html">since v3.3</a>,
  <a href="since-4weeks.html">last four weeks</a>.
 </small>
 
@@ -99,14 +99,9 @@ and Ondio
 <h2>Sponsors:</h2>
 <table class=sponsors><tr valign="top">
 <td>
-<a href="http://www.contactor.se"><img border=0 src="/cont.png" width=101 height=36 alt="Contactor Data AB Logo"></a>
-<p>Contactor Data AB sponsors bandwidth and server for the main site.
-</td>
-
-<td>
 <a href="http://www.haxx.se"><img border=0 src="/haxx.png" width=80 height=34 alt="Haxx Logo"></a>
 <p>
-Haxx sponsors the build server, svn server and various other resources
+Haxx sponsors the main site, build server, svn server and various other resources
 </td>
 
 <td>

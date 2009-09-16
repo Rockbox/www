@@ -5,7 +5,7 @@ use DBI;
 
 
 my $baseurl = "http://www.rockbox.org";
-my $htmldir = "/home/bjst/rockbox_html";
+my $htmldir = "/sites/rockbox.org/www";
 
 ### flyspray
 my $dbpath = 'DBI:mysql:flyspray';
@@ -106,7 +106,7 @@ for my $file (@htmlfiles) {
 
 
 # mail
-my $maildir = "/home/maildump/html";
+my $maildir = "/sites/maildump";
 my $mail;
 opendir(DIR, "$maildir") or die "Failed opening maillist dir: $!\n";
 for my $dir (readdir DIR) {
@@ -117,21 +117,21 @@ for my $dir (readdir DIR) {
 closedir DIR;
 
 # twiki
-my $twikidir = "/home/bjst/rockbox_twiki/data/Main";
+my $twikidir = "/sites/rockbox.org/foswiki/data/Main";
 my $twiki;
-opendir(DIR, $twikidir) or die "Failed opening twiki dir: $!\n";
+opendir(DIR, $twikidir) or die "Failed opening wiki dir: $!\n";
 for my $file (readdir DIR) {
     if ($file =~ /(.+?)\.txt$/) {
         my $base = $1;
         my $modtime = (stat("$twikidir/$file"))[9];
         my $timestring = strftime("%FT%T+01:00", localtime($modtime));
-        $twiki .= "<url href='http://www.rockbox.org/twiki/bin/view/Main/$base' lastmod='$timestring' changefreq='weekly' priority='0.8' />\n";
+        $twiki .= "<url href='http://www.rockbox.org/wiki/$base' lastmod='$timestring' changefreq='weekly' priority='0.8' />\n";
     }
 }
 closedir DIR;
 
 # irc
-my $ircdir = "/home/bjst/rockbox_html/irc";
+my $ircdir = "/sites/rockbox.org/www/irc";
 my $irc;
 opendir(DIR, $ircdir) or die "Failed opening irc dir: $!\n";
 for my $file (readdir DIR) {
@@ -152,7 +152,7 @@ print CONFIG <<END
 <?xml version="1.0" encoding="UTF-8"?>
 <site
   base_url="http://www.rockbox.org/"
-  store_into="/home/bjst/rockbox_html/sitemap.xml.gz"
+  store_into="/sites/rockbox.org/www/sitemap.xml.gz"
   verbose="0"
   sitemap_type="web"
 >

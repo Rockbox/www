@@ -12,7 +12,7 @@ sub recentwiki
     my $i;
     my %done;
 
-    open(FILE, "/home/dast/rockbox_html/twiki/data/Main/.changes");
+    open(FILE, "/sites/rockbox.org/foswiki/data/Main/.changes");
     for (<FILE>) {
         my ($subject, $user, $date)=split("\t", $_);
         $data{$date}=$_;

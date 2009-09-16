@@ -10,10 +10,10 @@ href="/twiki/bin/view/Main/DeviceChart">identify your model</a>
 <h2>Daily Build</h2>
 <a name="target_builds"></a>
 <a name="daily_builds"></a>
-<!--#exec cmd="./dailymod.pl" -->
+<!--#include virtual="dailymod.pl" -->
 
 <h2>More Dailies</h2>
-<!--#exec cmd="./dailysrc.pl" -->
+<!--#include virtual="dailysrc.pl" -->
 <p>
 <a href="/manual.shtml">Manuals</a> - pdf, downloadable HTML and online versions.
 

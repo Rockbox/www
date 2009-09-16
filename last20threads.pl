@@ -3,7 +3,7 @@
 require "nicedate.pm";
 require "CGI.pm";
 
-my $tree="/home/maildump/html/";
+my $tree="/sites/maildump/";
 
 my %listnames = ('rockbox' => 'Users',
                  'rockbox-dev' => 'Devel');

@@ -1,1 +1,1 @@
-/home/bjst/logbot/logfile
+../../logbot/logfile
