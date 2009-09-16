@@ -52,8 +52,9 @@ if ($ENV{'HTTP_USER_AGENT'} =~ m|Gecko/2|) {
 }
 
 if ($file eq "current.txt" and $gecko) {
-    print "Content-type: multipart/mixed;boundary=Delimiter\n\n";
-    print "--Delimiter\n";
+    my $delimiter = sprintf("delimiter%x%x%x", rand(2**31), rand(2**31), rand(2**31));
+    print "Content-type: multipart/mixed;boundary=$delimiter\n\n";
+    print "--$delimiter\n";
     print "Content-type: text/html\n\n";
 }
 else {
