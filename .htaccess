@@ -80,3 +80,4 @@ RedirectMatch ^/viewcvs.cgi/(.*) http://svn.rockbox.org/viewvc.cgi/trunk/$1?view
 # rbutil compat links
 RedirectMatch ^/daily/build-info$ http://download.rockbox.org/daily/build-info
 RedirectMatch ^/daily/fonts/rockbox-fonts.zip$ http://download.rockbox.org/daily/fonts/rockbox-fonts.zip
+RedirectMatch ^/voices/(.*) http://download.rockbox.org/daily/voices/$1
