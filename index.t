@@ -64,10 +64,6 @@ and Ondio
 <tr><td nowrap>2009-06-21</td><td><a href="/wiki/DevConEuro2009">DevConEuro2009</a> has ended </td></tr>
 <tr><td nowrap>2009-06-19</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes33">Rockbox 3.3 is released</a></td></tr>
 <tr><td nowrap>2009-03-24</td><td><a href="http://themes.rockbox.org/">themes.rockbox.org</a> is available</td></tr>
-<tr><td nowrap>2009-03-23</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes32">Rockbox 3.2 is released</a></td></tr>
-<tr><td nowrap>2009-03-18</td><td>Rockbox has been accepted as a mentor organization for Google Summer of Code 2009. <a href="http://www.rockbox.org/wiki/SummerOfCode2009">Look here for project ideas.</a></td></tr>
-<tr><td nowrap>2009-02-25</td><td>The Rockbox USB stack is now enabled by default on <a href="http://forums.rockbox.org/index.php?topic=20752.0">all PP502x targets</a>.</td></tr>
-<tr><td nowrap>2008-12-23</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes31">Rockbox 3.1 is released</a></td></tr>
 <!--
 <tr><td colspan=2 align='center'><a href="history.html">Older news</a></td></tr>
 -->

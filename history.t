@@ -2,6 +2,10 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<tr><i>2009-03-23</i><td><a href="http://www.rockbox.org/wiki/ReleaseNotes32">Rockbox 3.2 is released</a></td></tr>
+<tr><i>2009-03-18</i><td>Rockbox has been accepted as a mentor organization for Google Summer of Code 2009. <a href="http://www.rockbox.org/wiki/SummerOfCode2009">Look here for project ideas.</a></td></tr>
+<tr><i>2009-02-25</i><td>The Rockbox USB stack is now enabled by default on <a href="http://forums.rockbox.org/index.php?topic=20752.0">all PP502x targets</a>.</td></tr>
+<tr><i>2008-12-23</i><td><a href="http://www.rockbox.org/wiki/ReleaseNotes31">Rockbox 3.1 is released</a></td></tr>
 <p><i>2008-09-23</i>: <a href="http://www.rockbox.org/twiki/bin/view/Main/ReleaseNotes30">Rockbox 3.0 is released</a>
 
 <p><i>2008-08-16</i>: <a href="http://www.rockbox.org/mail/archive/rockbox-dev-archive-2008-08/0032.shtml">Release 3.0 Feature Freeze</a>
