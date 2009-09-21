@@ -59,8 +59,8 @@ arm:zip:cowond2:Cowon D2 - Normal:rockbox.d2:--target=cowond2,--type=n:20857
 arm:zip:creativezvm30:Creative Zen Vision M 30GB - Normal:rockbox.zvm:--target=creativezvm30gb,--type=n:20508
 arm:zip:creativezvm60:Creative Zen Vision M 60GB - Normal:rockbox.zvm60:--target=creativezvm60gb,--type=n:20499
 arm:zip:creativezenvision:Creative Zen Vision - Normal:rockbox.zv:--target=creativezenvision,--type=n:8638
-arm:zip:fuze:SanDisk Sansa Fuze - Normal:rockbox.sansa:--target=fuze,--type=n:20626
-arm:zip:clip:SanDisk Sansa Clip - Normal:rockbox.sansa:--target=clip,--type=n:13379
+arm:zip:sansafuze:SanDisk Sansa Fuze - Normal:rockbox.sansa:--target=fuze,--type=n:20626
+arm:zip:sansaclip:SanDisk Sansa Clip - Normal:rockbox.sansa:--target=clip,--type=n:13379
 arm:zip:sansae200v2:SanDisk Sansa e200v2 - Normal:rockbox.sansa:--target=e200v2,--type=n:20586
 arm:zip:sansac200v2:SanDisk Sansa c200v2 - Normal:rockbox.sansa:--target=c200v2,--type=n:17966
 arm:zip:m200v4:SanDisk Sansa m200v4 - Normal:rockbox.sansa:--target=m200v4,--type=n:12954
