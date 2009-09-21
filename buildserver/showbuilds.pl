@@ -124,6 +124,12 @@ for my $rev (sort {$b <=> $a} keys %compiles) {
     my %bt;
 
     my @tds;
+
+    if (scalar keys %alltypes == 0 and !$count) {
+        my $bcount = scalar @buildids;
+        push @tds, "<td class=buildok style='padding: 5px' rowspan=20>All $bcount builds are OK</td>";
+    }
+
     for my $type (sort {$builds{$a}{name} cmp $builds{$b}{name}} keys %alltypes) {
 
         if (not defined $compiles{$rev}{$type}{client}) {
@@ -162,6 +168,7 @@ for my $rev (sort {$b <=> $a} keys %compiles) {
            $round{$rev}{time} / 60, $round{$rev}{time} % 60);
     print @tds;
     print "</tr>\n";
+    $count++;
 }
 
 printf "</table>\n";
