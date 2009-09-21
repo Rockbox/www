@@ -35,12 +35,13 @@
         'creativezvm60' => '/rockbox100.png', # lacks small picture
         'creativezenvision' => '/rockbox100.png', # lacks small picture
         'sansaclip' => '/rockbox100.png', # lacks small picture
-        'sansafuze' => '/rockbox100.png', # lacks small picture
+        'sansafuze' => '/playerpics/fuze-small.png', # lacks small picture
         'sansae200v2' => '/playerpics/e200-small.png',
         'sansam200v4' => '/rockbox100.png', # lacks small picture
         'yh820' => '/rockbox100.png', # lacks small picture
         'yh920' => '/rockbox100.png', # lacks small picture
-        'yh925' => '/rockbox100.png', # lacks small picture
+        'yh925' => '/playerpics/yh925-small.png', # lacks small picture
+        'cowond2' => '/playerpics/d2-small.png',
 
         'install' => '/playerpics/install.png',
         'fonts' => '/rockbox100.png',
@@ -89,6 +90,7 @@
            'yh820' => 'Samsung YH-820',
            'yh920' => 'Samsung YH-920',
            'yh925' => 'Samsung YH-925',
+           'cowond2' => 'Cowon D2',
 
            'install' => 'Windows Installer',
            'fonts' => 'Fonts',
