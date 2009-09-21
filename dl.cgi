@@ -133,16 +133,16 @@ for(reverse sort keys %date) {
             print "<td>&nbsp;</td>";
         }
 
-        my $fi = "voices/$m-$d-english.voice";
-        my $fi2 = "voices/$m-$d-english.zip";
+        my $fi = "/sites/download.rockbox.org/daily/voices/$m-$d-english.voice";
+        my $fi2 = "/sites/download.rockbox.org/daily/voices/$m-$d-english.zip";
         if ( -f $fi2) {
             my $size = (stat($fi2))[7];
-            printf("<td><a href=\"$baseurl/$fi2\" title=\"voice file for Rockbox $desc dated $nice\">voice zip</a> %d KB</td>",
+            printf("<td><a href=\"http://download.rockbox.org/daily/voices/$m-$d-english.zip\" title=\"voice file for Rockbox $desc dated $nice\">voice zip</a> %d KB</td>",
                    $size/1024);
         }
         elsif ( -f $fi) {
             my $size = (stat($fi))[7];
-            printf("<td><a href=\"$baseurl/$fi\" title=\"voice file for Rockbox $desc dated $nice\">english.voice</a> %d KB</td>",
+            printf("<td><a href=\"http://download.rockbox.org/daily/voices/$m-$d-english.voice\" title=\"voice file for Rockbox $desc dated $nice\">english.voice</a> %d KB</td>",
                    $size/1024);
         }
         else {

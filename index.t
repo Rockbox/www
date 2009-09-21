@@ -10,9 +10,10 @@
 
 <p><table class='blurb' align=center><tr><td>
 <p class="ingress">
-Rockbox is an open source firmware for mp3 players, written from scratch. It runs on a wide range of players.
+Rockbox is an open source firmware for mp3 players, written from scratch. It runs on a wide range of players:
 
-<p><b>Stable Devices:</b>
+<p><h2>Stable ports</h2>
+<p>Rockbox runs well on these players, has a complete manual and is supported by <a href="/download/">the installer</a>:
 <ul>
 
 <li><b>Apple</b>: 1st through 5.5th generation iPod, iPod Mini and 1st
@@ -32,19 +33,31 @@ and Ondio
 <li><b>Toshiba</b>: Gigabeat X and F series (<i>not the S series</i>)
 </ul>
 
-<b>Unstable Devices:</b> (Rockbox runs on these players, but is incomplete, less usable, or has serious problems that limit it to advanced users)
+<h2>Unstable ports</h2>
+
+<p>Rockbox runs on these players, but is incomplete, less usable or has problems that limit it to advanced users:
+
 <ul>
-<li><b>SanDisk</b>: <a href="/wiki/SansaAMS">Sansa e200 v2 (AMS) series and Sansa Fuze V1 series</a>
+<li><b>Cowon</b>: <a href="/wiki/CowonD2Info">iAudio D2</a>
+<li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
+<li><b>SanDisk</b>: <a href="/wiki/SansaAMS">Sansa e200 v2 (AMS)</a> and <a href="/wiki/SansaAMS">Sansa Fuze V1</a>
 </ul>
 
-<b>Unusable Devices:</b> (Many more devices have some code written but are not yet usable.)
+<h2>Unusable ports</h2>
+<p>Work has begun on porting Rockbox to these players, but much remains before they are usable:
+
+<ul>
+<li>Toshiba Gigabeat S, Cowon iAudio 7, Creative ZVM, Onda VX747/767, Sandisk Sansa m200 & c100,
+<br>Tatung Elio, Logik Dax, Meizu M6, Samsung YH820, YH920 & YH925,
+<br>Philips GoGear HDD1600/1800/6300 & SA9200, Apple iPod Nano 2G</a>
+</ul>
+
+<p>Click here for a <a href="/wiki/TargetStatus#New_Platforms_Currently_Under_De">status summary of unstable and unusable ports</a>.
 
 <p>Quick links:
 <a href="/wiki/WhyRockbox">Why should you run Rockbox?</a>
 &middot;
 <a href="/wiki/MajorChanges">Change log</a>
-&middot;
-<a href="/wiki/TargetStatus#New_Platforms_Currently_Under_De">Status for Unstable and Unusable targets</a>
 &middot;
 <a href="/wiki/ContributingToRockbox">Contribute to Rockbox</a>
 

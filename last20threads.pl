@@ -3,7 +3,7 @@
 require "nicedate.pm";
 require "CGI.pm";
 
-my $tree="/sites/maildump/";
+my $tree="/sites/maildump";
 
 my %listnames = ('rockbox' => 'Users',
                  'rockbox-dev' => 'Devel');
@@ -63,7 +63,7 @@ for $date (reverse sort keys %d) {
             }
             next if(!$m); # only scan fine archives
             #print "$tree$a\n";
-            getthreads("$tree$a");
+            getthreads("$tree/$a");
         }
 
         if($numscannedmails > 1000) {

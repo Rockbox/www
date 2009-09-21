@@ -106,7 +106,7 @@
 # target specifics
 $publicrelease="3.3";
 $releasedate="June 19, 2009";
-$releasenotes="/twiki/bin/view/Main/ReleaseNotes33";
+$releasenotes="/wiki/ReleaseNotes33";
 
 %release=(
           'player' => "$publicrelease",

@@ -184,10 +184,14 @@ td.toolscat {
  background-color: #b6c6e5;
 }
 
-/****** TWiki ******/
+/****** Wiki ******/
 
 .foswikiAlert {
  color: red;
+}
+ 
+.foswikiTable td, .foswikiTable th {
+  border: 1px solid #888;
 }
 
 .twikiDiffLineNumberHeader {
@@ -280,4 +284,8 @@ td.toolscat {
 
 caption {
    display: none;
+}
+
+.ingress {
+  font-size: 110%;
 }
