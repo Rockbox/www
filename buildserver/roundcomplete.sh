@@ -19,3 +19,4 @@ echo -n 'rev = "' >> build-info
 echo -n $rev >> build-info
 echo '"' >> build-info
 
+rm data/build_running
