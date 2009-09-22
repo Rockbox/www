@@ -49,7 +49,7 @@ and Ondio
 
 <ul>
 <li>Toshiba Gigabeat S, Cowon iAudio 7, Creative ZVM, Onda VX747/767, Sandisk Sansa m200 & c100,
-<br>Tatung Elio, Logik Dax, Meizu M6, Samsung YH820, YH920 & YH925,
+<br>Tatung Elio, Logik Dax, Meizu M6, Samsung YH820 & YH920,
 <br>Philips GoGear HDD1600/1800/6300 & SA9200, Apple iPod Nano 2G</a>
 </ul>
 
