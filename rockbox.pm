@@ -23,7 +23,6 @@
         'iaudiom3' => '/playerpics/m3-small.png',
         'h10' => '/playerpics/h10-small.png',
         'h10_5gb' => '/playerpics/h10_5gb-small.png',
-        'hdd1630' => '/rockbox100.png', # lacks small picture
         'sansae200' => '/playerpics/e200-small.png',
         'sansac200' => '/playerpics/c200-small.png',
         'gigabeatf' => '/playerpics/gigabeatf-small.png',
@@ -31,16 +30,9 @@
         'ipod1g2g' => '/playerpics/ipod1g2g-small.png',
         'mrobe100' => '/playerpics/mrobe100-small.png',
         'mrobe500' => '/playerpics/mrobe500-small.png',
-        'creativezvm30' => '/rockbox100.png', # lacks small picture
-        'creativezvm60' => '/rockbox100.png', # lacks small picture
-        'creativezenvision' => '/rockbox100.png', # lacks small picture
-        'sansaclip' => '/rockbox100.png', # lacks small picture
-        'sansafuze' => '/playerpics/fuze-small.png', # lacks small picture
+        'sansafuze' => '/playerpics/fuze-small.png',
         'sansae200v2' => '/playerpics/e200-small.png',
-        'sansam200v4' => '/rockbox100.png', # lacks small picture
-        'yh820' => '/rockbox100.png', # lacks small picture
-        'yh920' => '/rockbox100.png', # lacks small picture
-        'yh925' => '/playerpics/yh925-small.png', # lacks small picture
+        'yh925' => '/playerpics/yh925-small.png',
         'cowond2' => '/playerpics/d2-small.png',
 
         'install' => '/playerpics/install.png',
