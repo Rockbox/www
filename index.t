@@ -40,7 +40,7 @@ and Ondio
 <ul>
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
-<li><b>Samsung</b>: <a href="/wiki/SamsungYH92xPort">YH-925</a>
+<li><b>Samsung</b>: <a href="/wiki/SamsungYH92xPort">YH-920</a> and <a href="/wiki/SamsungYH92xPort">YH-925</a>
 <li><b>SanDisk</b>: <a href="/wiki/SansaAMS">Sansa e200 v2 (AMS)</a> and <a href="/wiki/SansaAMS">Sansa Fuze V1</a>
 </ul>
 
@@ -49,7 +49,7 @@ and Ondio
 
 <ul>
 <li>Toshiba Gigabeat S, Cowon iAudio 7, Creative ZVM, Onda VX747/767, Sandisk Sansa m200 & c100,
-<br>Tatung Elio, Logik Dax, Meizu M6, Samsung YH820 & YH920, Apple iPod Nano 2G,
+<br>Tatung Elio, Logik Dax, Meizu M6, Samsung YH820, Apple iPod Nano 2G,
 <br>Philips GoGear HDD1600/1800/6300 & SA9200, SanDisk Sansa Clip V1/m200 V4/c200 V2</a>
 </ul>
 
