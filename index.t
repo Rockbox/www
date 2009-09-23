@@ -45,12 +45,12 @@ and Ondio
 </ul>
 
 <h2>Unusable ports</h2>
-<p>Work has begun on porting Rockbox to these players, but much remains before they are usable:
+<p>Work has been done so that Rockbox runs to a very limited extend, they are considered highly usable:
 
 <ul>
-<li>Toshiba Gigabeat S, Cowon iAudio 7, Creative ZVM, Onda VX747/767, Sandisk Sansa m200 & c100,
-<br>Tatung Elio, Logik Dax, Meizu M6, Samsung YH820, Apple iPod Nano 2G,
-<br>Philips GoGear HDD1600/1800/6300 & SA9200, SanDisk Sansa Clip V1/m200 V4/c200 V2</a>
+<li>Toshiba Gigabeat S, Cowon iAudio 7, Creative ZVM, Logik Dax, Meizu M6, Samsung YH820
+<br>Philips GoGear HDD1600, HDD1800, HDD6300 and SA9200, Onda VX747 and VX767,
+<br>Tatung Elio, Apple iPod Nano 2G, Sandisk Sansa m200, c100, Clip v1 and c200v2</a>
 </ul>
 
 <p>Click here for a <a href="/wiki/TargetStatus#New_Platforms_Currently_Under_De">status summary of unstable and unusable ports</a>.
