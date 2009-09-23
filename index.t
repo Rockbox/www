@@ -45,7 +45,7 @@ and Ondio
 </ul>
 
 <h2>Unusable ports</h2>
-<p>Work has been done so that Rockbox runs to a very limited extend, they are considered highly usable:
+<p>Work has been done so that Rockbox runs to a very limited extend, they are considered highly unusable:
 
 <ul>
 <li>Toshiba Gigabeat S, Cowon iAudio 7, Creative ZVM, Logik Dax, Meizu M6, Samsung YH820
