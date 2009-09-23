@@ -32,6 +32,7 @@
         'mrobe500' => '/playerpics/mrobe500-small.png',
         'sansafuze' => '/playerpics/fuze-small.png',
         'sansae200v2' => '/playerpics/e200-small.png',
+        'yh920' => '/playerpics/yh920-small.png',
         'yh925' => '/playerpics/yh925-small.png',
         'cowond2' => '/playerpics/d2-small.png',
 

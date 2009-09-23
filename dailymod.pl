@@ -23,7 +23,7 @@ my @list=("player",
           "ipodnano",
 
           "sansae200", "sansac200",",fuze",
-          "gigabeatf", "yh925",
+          "gigabeatf", "yh920", "yh925",
           "mrobe100", "mrobe500",
 
           # install and source are special cases
