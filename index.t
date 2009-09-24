@@ -73,6 +73,7 @@ and Ondio
 <table class="news" summary="recent news">
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
+<tr><td nowrap>2009-09-24</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes34">Rockbox 3.4 is released</a></td></tr>
 <tr><td nowrap>2009-09-16</td><td>We moved the web site to a new server and migrated from twiki to foswiki.</td></tr>
 <tr><td nowrap>2009-08-27</td><td>The site was offline for 50 hours when our ISP went down.</td></tr>
 <tr><td nowrap>2009-06-21</td><td><a href="/wiki/DevConEuro2009">DevConEuro2009</a> has ended </td></tr>

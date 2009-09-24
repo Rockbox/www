@@ -99,9 +99,9 @@
 
 # this is the default release version, see the table below for
 # target specifics
-$publicrelease="3.3";
-$releasedate="June 19, 2009";
-$releasenotes="/wiki/ReleaseNotes33";
+$publicrelease="3.4";
+$releasedate="September 24, 2009";
+$releasenotes="/wiki/ReleaseNotes34";
 
 %release=(
           'player' => "$publicrelease",
