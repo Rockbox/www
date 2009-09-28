@@ -140,7 +140,7 @@ sdl:nozip:sansac200v2wps:SanDisk Sansa c200v2 - Checkwps:checkwps.c200v2:--targe
 sdl:nozip:mrobe500wps:Olympus M-Robe 500 - Checkwps:checkwps.mrobe500:--target=mrobe500,--type=c:87
 sdl:nozip:mrobe100wps:Olympus M-Robe 100 - Checkwps:checkwps.mrobe100:--target=mrobe100,--type=c:80
 sdl:nozip:cowond2wps:Cowon D2 - Checkwps:checkwps.cowond2:--target=cowond2,--type=c:86
-sdl:nozip:creativezvm30wps:Creative Zen Vision M 30GB - Checkwps:checkwps.creativezvm30:--target=creativezvm30gb,--type=c:86
+sdl:nozip:creativezvm30wps:Creative Zen Vision M 30GB - Checkwps:checkwps.creativezvm30gb:--target=creativezvm30gb,--type=c:86
 sdl:nozip:clipwps:SanDisk Sansa Clip - Checkwps:checkwps.clip:--target=clip,--type=c:83
 sdl:nozip:fuzewps:SanDisk Sansa Fuze - Checkwps:checkwps.fuze:--target=fuze,--type=c:83
 sdl:nozip:m200v4wps:SanDisk Sansa m200v4 - Checkwps:checkwps.m200v4:--target=m200v4,--type=c:83
