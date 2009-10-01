@@ -289,3 +289,43 @@ caption {
 .ingress {
   font-size: 110%;
 }
+
+.foswikiLeft {
+  float: left;
+  position: relative;
+}
+
+.foswikiRight {
+  float: right;
+  position: relative;
+}
+
+.foswikiTopRow {
+  margin-top: 0.5em;
+  padding-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+
+.foswikiBottomRow {
+  border-bottom: solid 1px #cdf;
+  margin-bottom: 0.2em;
+  padding-bottom: 0.5em;
+}
+
+.foswikiGrayText, .foswikiGrayText a:link, .foswikiGrayText a:visited { 
+  color: #333;
+}
+
+.foswikiSummary { 
+  font-size: 86%;
+}
+
+.foswikiSRAuthor { 
+  text-align: left;
+  width: 15%;
+}
+
+.foswikiSRRev { 
+  text-align: left;
+  width: 30%;
+}
