@@ -150,3 +150,5 @@ sdl:nozip:yh820wps:Samsung YH-820 - Checkwps:checkwps.yh820:--target=yh820,--typ
 sdl:nozip:yh920wps:Samsung YH-920 - Checkwps:checkwps.yh920:--target=yh920,--type=c:82
 sdl:nozip:yh925wps:Samsung YH-925 - Checkwps:checkwps.yh925:--target=yh925,--type=c:87
 sdl:nozip:ondavx747wps:Onda VX747 - Checkwps:checkwps.ondavx747:--target=ondavx747,--type=c:93
+sdl:nozip:playerdb:Player - Database:database.player:--target=player,--ram=2,--type=d:86
+sdl:nozip:h300db:iriver H300 - Database:database.h300:--target=h300,--type=d:86
