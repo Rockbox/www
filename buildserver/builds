@@ -39,6 +39,7 @@ m68k:zip:iaudiox5:iAudio X5 - Normal:rockbox.iaudio:--target=x5,--type=n:18064
 m68k:zip:iaudiom5:iAudio M5 - Normal:rockbox.iaudio:--target=m5,--type=n:17516
 m68k:zip:iaudiom3:iAudio M3 - Normal:rockbox.iaudio:--target=m3,--type=n:15862
 arm:zip:ipodnano:iPod Nano - Normal:rockbox.ipod:--target=ipodnano,--type=n:21483
+arm:zip:ipodnano2g:iPod Nano 2G - Normal:rockbox.ipod:--target=ipodnano2g,--type=n:22318
 arm:zip:ipodcolor:iPod Color - Normal:rockbox.ipod:--target=ipodcolor,--type=n:21586
 arm:zip:ipod4gray:iPod 4G Grayscale - Normal:rockbox.ipod:--target=ipod4g,--type=n:19682
 arm:zip:ipodvideo:iPod Video - Normal:rockbox.ipod:--target=ipodvideo,--ram=32,--type=n:21983
@@ -87,6 +88,7 @@ m68k:nozip:iaudiom5boot:iAudio M5 - Boot:rockbox.iaudio:--target=m5,--type=b:675
 m68k:nozip:iaudiom3boot:iAudio M3 - Boot:rockbox.iaudio:--target=m3,--type=b:603
 mipsel:nozip:ondavx747boot:Onda VX747 - Boot:ccpmp.bin:--target=ondavx747,--type=b:1287
 arm:nozip:ipodnanoboot:iPod Nano - Boot:bootloader-ipodnano.ipod:--target=ipodnano,--type=b:840
+arm:nozip:ipodnano2gboot:iPod Nano 2G - Boot:bootloader-ipodnano2g.ipod:--target=ipodnano2g,--type=b:840
 arm:nozip:ipodcolorboot:iPod Color - Boot:bootloader-ipodcolor.ipod:--target=ipodcolor,--type=b:845
 arm:nozip:ipod4grayboot:iPod 4G Grayscale - Boot:bootloader-ipod4g.ipod:--target=ipod4g,--type=b:837
 arm:nozip:ipodvideoboot:iPod Video - Boot:bootloader-ipodvideo.ipod:--target=ipodvideo,--ram=2,--type=b:849
@@ -123,6 +125,7 @@ sdl:nozip:ondiofmwps:Ondio FM - Checkwps:checkwps.ondiofm:--target=ondiofm,--ram
 sdl:nozip:h120wps:iriver H120 - Checkwps:checkwps.h120:--target=h120,--type=c:86
 sdl:nozip:h300wps:iriver H300 - Checkwps:checkwps.h300:--target=h300,--type=c:84
 sdl:nozip:ipodnanowps:iPod Nano - Checkwps:checkwps.ipodnano:--target=ipodnano,--type=c:84
+sdl:nozip:ipodnano2gwps:iPod Nano 2G - Checkwps:checkwps.ipodnano2g:--target=ipodnano2g,--type=c:84
 sdl:nozip:ipodcolorwps:iPod Color - Checkwps:checkwps.ipodcolor:--target=ipodcolor,--type=c:84
 sdl:nozip:iaudiox5wps:iAudio X5 - Checkwps:checkwps.x5:--target=x5,--type=c:86
 sdl:nozip:iaudiom5wps:iAudio M5 - Checkwps:checkwps.m5:--target=m5,--type=c:86
