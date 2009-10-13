@@ -96,7 +96,7 @@ and Ondio
 
 <h3 class=frontpage><a href='recent.shtml#svn'>Subversion</a></h3>
 <!--#include file="last5front.html" -->
-<small>All commits <a href="since33.html">since v3.3</a>,
+<small>All commits <a href="since34.html">since v3.4</a>,
  <a href="since-4weeks.html">last four weeks</a>.
 </small>
 
