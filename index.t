@@ -51,7 +51,7 @@ and Ondio
 <ul>
 <li>Toshiba Gigabeat S, Cowon iAudio 7, Creative ZVM, Logik Dax, Meizu M6, Samsung YH820
 <br>Philips GoGear HDD1600, HDD1800, HDD6300 and SA9200, Onda VX747 and VX767,
-<br>Tatung Elio, Apple iPod Nano 2G, Sandisk Sansa m200, c100, Clip v1 and c200v2</a>
+<br>Tatung Elio, Sandisk Sansa m200, c100, Clip v1 and c200v2</a>
 </ul>
 
 <p>Click here for a <a href="/wiki/TargetStatus#New_Platforms_Currently_Under_De">status summary of unstable and unusable ports</a>.
