@@ -22,7 +22,7 @@ my @list=("player",
           "ipodmini1g", "ipodmini2g",
           "ipodnano", "ipodnano2g",
 
-          "sansae200", "sansac200",",fuze",
+          "sansae200", "sansac200","sansafuze",
           "gigabeatf", "yh920", "yh925",
           "mrobe100", "mrobe500",
 
