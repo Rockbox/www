@@ -5,6 +5,7 @@ sdl:nozip:ondiofmsim:Ondio FM - Simulator:rockboxui:--target=ondiofm,--ram=2,--t
 sdl:nozip:h120sim:iriver H120 - Simulator:rockboxui:--target=h120,--type=s:14329
 sdl:nozip:h300sim:iriver H300 - Simulator:rockboxui:--target=h300,--type=s:14661
 sdl:nozip:ipodnanosim:iPod Nano - Simulator:rockboxui:--target=ipodnano,--type=s:13842
+sdl:nozip:ipodnano2gsim:iPod Nano 2G - Simulator:rockboxui:--target=ipodnano2g,--type=s:14495
 sdl:nozip:ipodcolorsim:iPod Color - Simulator:rockboxui:--target=ipodcolor,--type=s:13978
 sdl:nozip:iaudiox5sim:iAudio X5 - Simulator:rockboxui:--target=x5,--type=s:14538
 sdl:nozip:iaudiom5sim:iAudio M5 - Simulator:rockboxui:--target=m5,--type=s:14250
