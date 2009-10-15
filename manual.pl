@@ -19,7 +19,8 @@ my @list=("player",
           "ipodmini2g",
           "ipodnano","ipodnano2g",
 
-          "sansae200", "sansac200",
+          "sansae200", "sansae200v2",
+          "sansac200", "sansafuze",
           "gigabeatf", "gigabeats",
           "mrobe100",
           );
