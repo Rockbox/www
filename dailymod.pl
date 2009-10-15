@@ -162,11 +162,12 @@ for(reverse sort keys %date) {
             $voicemod = "ipodvideo";
         }
 
-        my $voice="$baseurl/voices/${voicemod}-${d}-english.zip";
+        my $voicefile="$basedir/daily/voices/${voicemod}-${d}-english.zip";
+        my $voiceurl="$baseurl/daily/voices/${voicemod}-${d}-english.zip";
 
-        if ( -f $voice ) {
-            my $size = (stat($voice))[7];
-            printf("<br><a href=\"$voice\">voice</a> <small>%d kB</small>",
+        if ( -f $voicefile ) {
+            my $size = (stat($voicefile))[7];
+            printf("<br><a href=\"$voiceurl\">voice</a> <small>%d kB</small>",
                    $size/1024);
         }
         print "</td>\n";
