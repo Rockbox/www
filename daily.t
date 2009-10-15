@@ -12,11 +12,6 @@ href="/twiki/bin/view/Main/DeviceChart">identify your model</a>
 <a name="daily_builds"></a>
 <!--#include virtual="dailymod.pl" -->
 
-<h2>More Dailies</h2>
-<!--#include virtual="dailysrc.pl" -->
-<p>
-<a href="/manual.shtml">Manuals</a> - pdf, downloadable HTML and online versions.
-
 <h2>Donate</h2>
 
 <p>If you enjoy using Rockbox, consider donating to the project. While we
