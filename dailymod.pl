@@ -6,26 +6,31 @@ my $basedir = "/sites/download.rockbox.org";
 my $baseurl = "http://download.rockbox.org";
 my $docbasedir = "/sites/download.rockbox.org/manual";
 
-my @list=("player",
-          "recorder", "recorder8mb",
+my @list=(
           "fmrecorder", #"fmrecorder8mb",
+          "ondiofm", "ondiosp", "player",
+          "recorder8mb", "recorder",
           "recorderv2",
-          "ondiofm", "ondiosp",
 
-          "iaudiox5", "iaudiom5", "iaudiom3",
-          "h100", "h120", "h300",
-          "h10_5gb", "h10",
+          "iaudiom3", "iaudiom5", "iaudiox5",
 
           "ipod1g2g", "ipod3g",
           "ipod4gray", "ipodcolor",
-          "ipodvideo", "ipodvideo64mb",
           "ipodmini1g", "ipodmini2g",
           "ipodnano", "ipodnano2g",
+          "ipodvideo", "ipodvideo64mb",
 
-          "sansae200", "sansae200v2", 
-          "sansac200", "sansafuze",
-          "gigabeatf", "yh920", "yh925",
+          "h10", "h10_5gb",
+          "h100", "h120", "h300",
+
           "mrobe100", "mrobe500",
+
+          "yh920", "yh925",
+
+          "sansac200", "sansae200", 
+          "sansae200v2", "sansafuze",
+
+          "gigabeatf",
 
           # install and source are special cases
           #"install",
