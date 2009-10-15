@@ -17,7 +17,7 @@ my @list=("player",
           "ipod4gray", "ipodcolor",
           "ipodvideo",
           "ipodmini2g",
-          "ipodnano",
+          "ipodnano","ipodnano2g",
 
           "sansae200", "sansac200",
           "gigabeatf", "gigabeats",
