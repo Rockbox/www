@@ -162,6 +162,6 @@ print "</table>\n";
 
 print "<br clear=all><p>\n";
 
-print `./dailymod.pl`;
+print `./dailymod.pl 1`;
 
 footer();

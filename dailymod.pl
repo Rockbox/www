@@ -28,7 +28,8 @@ my @list=("player",
 
           # install and source are special cases
           #"install",
-          "source", "fonts");
+          #"source",
+          "fonts");
 
 sub getpages {
 
@@ -43,7 +44,7 @@ sub getpages {
     return 0;
 }
 
-print "Content-type: text/html\n\n";
+print "Content-type: text/html\n\n" unless ($ARGV[0]);
 
 for(@list) {
     my $dir = $_;
