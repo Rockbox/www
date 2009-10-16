@@ -4,25 +4,28 @@ require "rockbox.pm";
 
 my $basedir = "/sites/download.rockbox.org/daily/manual";
 
-my @list=("player",
-          "recorder",
+my @list=(
           "fmrecorder",
-          "recorderv2",
-          "ondiofm", "ondiosp",
+          "ondiofm", "ondiosp", "player",
+          "recorder", "recorderv2",
 
-          "iaudiom5", "iaudiox5", "iaudiom3",
-          "h100", "h120", "h300",  "h10_5gb", "h10",
+          "iaudiom3", "iaudiom5", "iaudiox5",
 
           "ipod1g2g", "ipod3g",
           "ipod4gray", "ipodcolor",
-          "ipodvideo",
           "ipodmini2g",
           "ipodnano","ipodnano2g",
+          "ipodvideo",
 
-          "sansae200", "sansae200v2",
-          "sansac200", "sansafuze",
-          "gigabeatf", "gigabeats",
+          "h10", "h10_5gb",
+          "h100", "h120", "h300",
+
           "mrobe100",
+
+          "sansac200", "sansae200",
+          "sansae200v2", "sansafuze",
+
+          "gigabeatf", "gigabeats",
           );
 
 for(@list) {
