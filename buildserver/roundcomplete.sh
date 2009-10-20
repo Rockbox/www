@@ -8,6 +8,7 @@ cat data/$rev*.size > data/$rev.sizes
 perl clientstats.pl $rev > data/$rev-clients.html
 
 perl showbuilds.pl > builds.html
+perl showbuilds.pl 1 > builds_all.html
 perl showsize.pl > sizes.html
 perl mktitlepics.pl
 perl cleanupdatadir.pl
