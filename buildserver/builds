@@ -81,8 +81,8 @@ sh:zip:fmrecorder:FM Recorder - Normal:ajbrec.ajz:--target=fmrecorder,--ram=2,--
 sh:zip:recorder8mb:Recorder - Normal - 8MB:ajbrec.ajz:--target=recorder,--ram=8,--type=n:10835
 sh:zip:ondiosp:Ondio SP - Normal:ajbrec.ajz:--target=ondiosp,--ram=2,--type=n:9370
 sh:zip:ondiofm:Ondio FM - Normal:ajbrec.ajz:--target=ondiofm,--ram=2,--type=n:9729
-m68k:nozip:h100boot:iriver H100 - Boot:rockbox.iriver:--target=h100,--type=b:690
-m68k:nozip:h120boot:iriver H120 - Boot:rockbox.iriver:--target=h120,--type=b:700
+m68k:nozip:h100boot:iriver H100 - Boot:bootloader.iriver:--target=h100,--type=b:690
+m68k:nozip:h120boot:iriver H120 - Boot:bootloader.iriver:--target=h120,--type=b:700
 m68k:nozip:h300boot:iriver H300 - Boot:rockbox.iriver:--target=h300,--type=b:725
 m68k:nozip:iaudiox5boot:iAudio X5 - Boot:rockbox.iaudio:--target=x5,--type=b:710
 m68k:nozip:iaudiom5boot:iAudio M5 - Boot:rockbox.iaudio:--target=m5,--type=b:675
