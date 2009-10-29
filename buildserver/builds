@@ -103,7 +103,7 @@ arm:nozip:sansae200boot:SanDisk Sansa e200 - Boot:PP5022.mi4:--target=e200,--typ
 arm:nozip:sansac200boot:SanDisk Sansa c200 - Boot:firmware.mi4:--target=c200,--type=b:853
 arm:nozip:ipod1g2gboot:iPod 1G/2G - Boot:bootloader-ipod1g2g.ipod:--target=ipod1g2g,--type=b:739
 arm:nozip:mrobe100boot:Olympus M-Robe 100 - Boot:pp5020.mi4:--target=mrobe100,--type=b:816
-arm:nozip:cowond2boot:Cowon D2 - Boot:rockbox.d2:--target=cowond2,--type=b:792
+arm:nozip:cowond2boot:Cowon D2 - Boot:bootloader-cowond2.bin:--target=cowond2,--type=b:792
 arm:nozip:sansae200v2boot:SanDisk Sansa e200v2 - Boot:bootloader-e200v2.sansa:--target=e200v2,--type=b:782
 arm:nozip:sansac200v2boot:SanDisk Sansa c200v2 - Boot:bootloader-c200v2.sansa:--target=c200v2,--type=b:736
 arm:nozip:sansam200v4boot:SanDisk Sansa m200v4 - Boot:bootloader-m200v4.sansa:--target=m200v4,--type=b:708
