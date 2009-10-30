@@ -7,6 +7,8 @@ require 'rbmaster.pm';
 
 my $rev = $ARGV[0];
 
+$SIG{__DIE__} = sub { printf("Perl error: %s", @_); };
+
 &db_connect();
 
 my $num = 0;
@@ -59,7 +61,7 @@ for my $c (sort {$score{$b} <=> $score{$a}} @clist) {
     my $sc = 0;
     $sc = $score{$c} if defined ($score{$c});
     my $roundulspeed = "-";
-    if ($ul{$c}{ulsize}) {
+    if ($ul{$c}{ulsize} and $ul{$c}{ultime}) {
         $roundulspeed = int($ul{$c}{ulsize} / $ul{$c}{ultime} / 1024);
     }
     $ulspeed = int($ulspeed / 1024);
