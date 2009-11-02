@@ -133,12 +133,6 @@ Positive Internet sponsors a download server
 </td>
 
 <td>
-<a href="http://www.tbrntech.com/">TBRN</a>
-<p>
-Beyond Technical Innovations sponsors a download server
-</td>
-
-<td>
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post"><input type="hidden" name="cmd" value="_xclick"><input type="hidden" name="business" value="bjorn@haxx.se"><input type="hidden" name="item_name" value="Donation to the Rockbox project"><input type="hidden" name="no_shipping" value="1"><input type="hidden" name="cn" value="Note to the Rockbox team"><input type="hidden" name="currency_code" value="USD"><input type="hidden" name="tax" value="0"><input type="image" src="/paypal-donate.gif" name="submit"></form>
 <p>Many people have sponsored us with personal Paypal donations. Thank you!
 </td>
