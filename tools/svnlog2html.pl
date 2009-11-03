@@ -31,7 +31,7 @@ sub getshortnames
             next;
         }
         if(/([^ ]*) (.*)/) {
-            $shortnames{$1}=$2;
+            $shortnames{lc $1}=$2;
         }
     }
     close(NICKS);
