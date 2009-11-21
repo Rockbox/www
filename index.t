@@ -42,7 +42,7 @@ and Ondio
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
 <li><b>Samsung</b>: <a href="/wiki/SamsungYH92xPort">YH-820</a>, <a href="/wiki/SamsungYH92xPort">YH-920</a> and <a href="/wiki/SamsungYH92xPort">YH-925</a>
-<li><b>SanDisk</b>: <a href="/wiki/SansaAMS">Sansa e200 v2 (AMS)</a> and <a href="/wiki/SansaAMS">Sansa Fuze V1</a>
+<li><b>SanDisk</b>: <a href="/wiki/SansaAMS">Sansa e200 v2 (AMS)</a>, <a href="/wiki/SansaAMS">Sansa Fuze V1</a>, and <a href="/wiki/SansaAMS">Sansa Clip</a>
 <li><b>Toshiba</b>: <a href="/wiki/GigabeatSPort">Gigabeat S</a>
 </ul>
 
@@ -52,7 +52,7 @@ and Ondio
 <ul>
 <li>Cowon iAudio 7, Creative ZVM, Logik Dax, Meizu M6 and M3,
 <br>Philips GoGear HDD1600, HDD1800, HDD6300 and SA9200, Onda VX747 and VX767,
-<br>Tatung Elio, Sandisk Sansa m200, c100, Clip v1 and c200v2</a>
+<br>Tatung Elio, Sandisk Sansa m200, c100, and c200v2</a>
 </ul>
 
 <p>Click here for a <a href="/wiki/TargetStatus#New_Platforms_Currently_Under_De">status summary of unstable and unusable ports</a>.
