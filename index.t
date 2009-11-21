@@ -42,7 +42,7 @@ and Ondio
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
 <li><b>Samsung</b>: <a href="/wiki/SamsungYH92xPort">YH-820</a>, <a href="/wiki/SamsungYH92xPort">YH-920</a> and <a href="/wiki/SamsungYH92xPort">YH-925</a>
-<li><b>SanDisk</b>: <a href="/wiki/SansaAMS">Sansa e200 v2 (AMS)</a>, <a href="/wiki/SansaAMS">Sansa Fuze V1</a>, and <a href="/wiki/SansaAMS">Sansa Clip</a>
+<li><b>SanDisk</b>: <a href="/wiki/SansaAMS">Sansa e200 v2 (AMS)</a>, <a href="/wiki/SansaAMS">Sansa Fuze V1</a>, and <a href="/wiki/SansaAMS">Sansa Clip V1 (not v2 or Clip+)</a>
 <li><b>Toshiba</b>: <a href="/wiki/GigabeatSPort">Gigabeat S</a>
 </ul>
 
