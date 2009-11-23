@@ -27,7 +27,7 @@ my @list=(
 
           "yh920", "yh925",
 
-          "sansac200", "sansae200", 
+          "sansac200", "clip", "sansae200", 
           "sansae200v2", "sansafuze",
 
           "gigabeatf",
