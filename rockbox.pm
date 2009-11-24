@@ -72,7 +72,7 @@
            'iaudiom3' => 'iAudio M3',
            'sansae200' => 'SanDisk Sansa e200',
            'sansac200' => 'SanDisk Sansa c200',
-           'clip'      => 'SanDisk Sansa Clip',
+           'sansaclip'      => 'SanDisk Sansa Clip',
            'sansafuze' => 'SanDisk Sansa Fuze',
            'sansae200v2' => 'SanDisk Sansa e200 V2',
            'sansam200v4' => 'SanDisk Sansa m200 V4',
