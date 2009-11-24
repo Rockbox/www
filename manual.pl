@@ -22,7 +22,7 @@ my @list=(
 
           "mrobe100",
 
-          "sansac200", "clip", "sansae200",
+          "sansac200", "sansaclip", "sansae200",
           "sansae200v2", "sansafuze",
 
           "gigabeatf", "gigabeats",

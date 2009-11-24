@@ -36,7 +36,7 @@
         'yh920' => '/playerpics/yh920-small.png',
         'yh925' => '/playerpics/yh925-small.png',
         'cowond2' => '/playerpics/d2-small.png',
-        'clip' => '/playerpics/clip-small.png',
+        'sansaclip' => '/playerpics/clip-small.png',
 
         'install' => '/playerpics/install.png',
         'fonts' => '/rockbox100.png',
