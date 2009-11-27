@@ -16,9 +16,7 @@ Rockbox is an open source firmware for mp3 players, written from scratch. It run
 <p>Rockbox runs well on these players, has a complete manual and is supported by <a href="/download/">the installer</a>:
 <ul>
 
-<li><b>Apple</b>: 1st through 5.5th generation iPod, iPod Mini and 1st
-generation iPod Nano<br>(<i>not the Shuffle, 2nd/3rd/4th gen Nano, Classic or
-Touch</i>)
+<li><b>Apple</b>: iPod 1g through 5.5g, iPod Mini and iPod Nano 1g
 
 <li><b>Archos</b>: Jukebox 5000, 6000, Studio, Recorder, FM Recorder, Recorder V2
 and Ondio
@@ -28,9 +26,9 @@ and Ondio
 
 <li><b>Olympus</b>: M:Robe 100
 
-<li><b>SanDisk</b>: Sansa c200 series, e200 series and e200R series (<i>not the v2/AMS models</i>)
+<li><b>SanDisk</b>: Sansa c200 series, e200 series and e200R series
 
-<li><b>Toshiba</b>: Gigabeat X and F series (<i>not the S series</i>)
+<li><b>Toshiba</b>: Gigabeat X and F series
 </ul>
 
 <h2>Unstable ports</h2>
@@ -38,7 +36,7 @@ and Ondio
 <p>Rockbox runs on these players, but is incomplete, less usable or has problems that limit it to advanced users:
 
 <ul>
-<li><b>Apple</b>: <a href="/wiki/IPodNano2GPort">2nd generation iPod Nano</a>
+<li><b>Apple</b>: <a href="/wiki/IPodNano2GPort">iPod Nano 2g</a>
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
 <li><b>Samsung</b>: <a href="/wiki/SamsungYH92xPort">YH-820</a>, <a href="/wiki/SamsungYH92xPort">YH-920</a> and <a href="/wiki/SamsungYH92xPort">YH-925</a>
@@ -52,7 +50,7 @@ and Ondio
 <ul>
 <li>Cowon iAudio 7, Creative ZVM, Logik Dax, Meizu M6 and M3,
 <br>Philips GoGear HDD1600, HDD1800, HDD6300 and SA9200, Onda VX747 and VX767,
-<br>Tatung Elio, Sandisk Sansa m200, c100, and c200v2</a>
+<br>Tatung Elio TPJ1022, Sandisk Sansa m200, c100, and c200v2</a>
 </ul>
 
 <p>Click here for a <a href="/wiki/TargetStatus#New_Platforms_Currently_Under_De">status summary of unstable and unusable ports</a>.
@@ -64,6 +62,7 @@ and Ondio
 &middot;
 <a href="/wiki/ContributingToRockbox">Contribute to Rockbox</a>
 
+<p>If your player is not listed above, it is not supported.
 
 </td></tr></table>
 
