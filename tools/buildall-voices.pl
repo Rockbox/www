@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+require "rockbox.pm";
+
 my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) =
  localtime(time);
 
@@ -12,7 +14,7 @@ $shortdate=sprintf("%02d%02d%02d", $year%100,$mon, $mday);
 # path added for lame
 # we need the compilers' paths to preprocess the feature thing when building
 # voices
-$ENV{'PATH'}.=":/usr/local/bin:/usr/local/sh-gcc/bin:/usr/local/m68k-gcc/bin:/usr/local/arm-elf/bin";
+$ENV{'PATH'}.=":/usr/local/bin:/usr/local/sh-elf/bin:/usr/local/m68k-elf/bin:/usr/local/arm-elf/bin";
 
 my $verbose;
 if($ARGV[0] eq "-v") {
@@ -28,7 +30,7 @@ if($ARGV[0]) {
 
 # made once for all targets
 sub runone {
-    my ($dir, $select, $newl)=@_;
+    my ($dir)=@_;
     my $a;
 
     if($doonly && ($doonly ne $dir)) {
@@ -40,14 +42,19 @@ sub runone {
     print "Build in build-$dir\n" if($verbose);
 
     # build the manual(s)
-    $a = buildit($dir, $select, $newl);
+    $a = buildit($dir);
 
     chdir "..";
 
     my $o="build-$dir/english.voice";
     if (-f $o) {
-        my $newo="output/$dir-$date-english.voice";
-        system("mv $o $newo");
+        my $newo="output/$dir-$date-english.zip";
+        system("cp $o output/$dir-$date-english.voice");
+        system("mkdir -p .rockbox/langs");
+        system("cp $o .rockbox/langs");
+        system("zip -q -r $newo .rockbox");
+        system("rm -rf .rockbox");
+        `chmod a+r $newo`;
         print "moved $o to $newo\n" if($verbose);
     }
 
@@ -58,19 +65,17 @@ sub runone {
 };
 
 sub buildit {
-    my ($dir, $select, $newl)=@_;
+    my ($dir)=@_;
 
     `rm -rf * >/dev/null 2>&1`;
 
-    # V (voice), F (festival), L (lame), [blank] (English)
-    my $c = sprintf('echo -e "%s\n%sa\nv\n\n\nf\n\n" | ../tools/configure',
-                    $select, $newl?'\n':"");
+    my $c = "../tools/configure --type=av --target=$dir --language=0 --tts=f";
 
     print "C: $c\n" if($verbose);
     `$c`;
 
     print "Run 'make voice'\n" if($verbose);
-    print `make voice 2>/dev/null`;
+    `make voice`;
 }
 
 sub buildinfo {
@@ -92,30 +97,13 @@ sub buildinfo {
 # run make in tools first to make sure they're up-to-date
 `(cd tools && make ) >/dev/null 2>&1`;
 
-`rm -f /home/dast/rockbox-voices/voice-pool/*`;
-$ENV{'POOL'}="/home/dast/rockbox-voices/voice-pool";
+`rm -f /sites/rockbox.org/dailybuild-voices/voice-pool/*`;
+$ENV{'POOL'}="/sites/rockbox.org/dailybuild-voices/voice-pool";
 
-runone("player", "player", 1);
-runone("recorder", "recorder", 1);
-runone("fmrecorder", "fmrecorder", 1);
-runone("recorderv2", "recorderv2", 1);
-runone("ondiosp", "ondiosp", 1);
-runone("ondiofm", "ondiofm", 1);
-runone("h100", "h100");
-runone("h120", "h120");
-runone("h300", "h300");
-runone("ipodcolor", "ipodcolor");
-runone("ipodnano", "ipodnano");
-runone("ipod4gray", "ipod4g");
-runone("ipodvideo", "ipodvideo", 1);
-runone("ipod3g", "ipod3g");
-runone("ipod1g2g", "ipod1g2g");
-runone("iaudiox5", "x5");
-runone("iaudiom5", "m5");
-runone("ipodmini2g", "ipodmini2g");
-runone("ipodmini1g", "ipodmini");
-runone("h10", "h10");
-runone("h10_5gb", "h10_5gb");
-runone("gigabeatf", "gigabeatf");
-runone("sansae200", "e200");
-#buildinfo();
+for my $b (&usablebuilds) {
+    next if ($builds{$b}{configname} < 3); # no variants
+
+    runone(voicename($b));
+}
+
+`rm -f /sites/rockbox.org/dailybuild-voices/voice-pool/*`;

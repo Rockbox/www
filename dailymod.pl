@@ -6,37 +6,6 @@ my $basedir = "/sites/download.rockbox.org";
 my $baseurl = "http://download.rockbox.org";
 my $docbasedir = "/sites/download.rockbox.org/manual";
 
-my @list=(
-          "fmrecorder", #"fmrecorder8mb",
-          "ondiofm", "ondiosp", "player",
-          "recorder8mb", "recorder",
-          "recorderv2",
-
-          "iaudiom3", "iaudiom5", "iaudiox5",
-
-          "ipod1g2g", "ipod3g",
-          "ipod4gray", "ipodcolor",
-          "ipodmini1g", "ipodmini2g",
-          "ipodnano", "ipodnano2g",
-          "ipodvideo", "ipodvideo64mb",
-
-          "h10", "h10_5gb",
-          "h100", "h120", "h300",
-
-          "mrobe100", "mrobe500",
-
-          "yh920", "yh925",
-
-          "sansac200", "sansaclip", "sansae200", 
-          "sansae200v2", "sansafuze",
-
-          "gigabeatf",
-
-          # install and source are special cases
-          #"install",
-          #"source",
-          "fonts");
-
 sub getpages {
 
     my ($file)=@_;
@@ -50,18 +19,16 @@ sub getpages {
     return 0;
 }
 
+
 print "Content-type: text/html\n\n" unless ($ARGV[0]);
 
-for(@list) {
-    my $dir = $_;
-    opendir(DIR, "$basedir/daily") or next;
-    my @files = sort grep { /^build-info/ } readdir(DIR);
-    closedir DIR;
+opendir(DIR, "$basedir/daily") or next;
+my @files = sort grep { /^build-info/ } readdir(DIR);
+closedir DIR;
 
-    for(@files) {
-        /(20\d+)/;
-        $date{$1}=$1;
-    }
+for (@files) {
+    /(20\d+)/;
+    $date{$1}=$1;
 }
 
 my $split = 8;
@@ -82,24 +49,19 @@ for(reverse sort keys %date) {
     my $x = 0;
     my @head;
 
-    foreach $t (@list) {
-        my $show = $t;
-        $show =~ s/recorder/rec/;
-        # Remove the comment below to get long names
-        $show = $longname{$t};
-        $head[$x] .= "<th>$show</th>\n";
+    # build table headers
+    foreach my $t (&usablebuilds) {
+        $head[$x] .= "<th>$builds{$t}{name}</th>\n";
 	$count++;
 	if ($count == $split) {
 	    $x++;
             $count=0;
 	}
     }
-    #print "<tr valign=\"top\">$head[0]</tr>\n";
 
     $count = 0;
     $x=0;
-    for(@list) {
-        my $m = $_;
+    for my $m (&usablebuilds) {
         if(!$count++) {
             print "<!-- $m --><tr valign=\"top\">$head[$x]</tr>\n<tr valign=\"top\">\n";
             $x++;
@@ -116,7 +78,8 @@ for(reverse sort keys %date) {
             close(R);
         }
 
-        printf "<td><img alt=\"$m\" src=\"$model{$m}\"><br>";
+        my $icon = playerpic($m);
+        printf "<td><img alt=\"$m\" src=\"$icon\"><br>";
         # new-style full zip:
         my $file = "rockbox-${m}.zip";
         my $dir = "$m/";
@@ -132,20 +95,8 @@ for(reverse sort keys %date) {
         print "<a href=\"/dl.cgi?bin=$m\">old</a>";
 
         my $docm = $m;
-        if($docm eq "h120") {
-            $docm="h100";
-        }
-        elsif($docm eq "recorder8mb") {
-            $docm="recorder";
-        }
-        elsif($docm eq "fmrecorder8mb") {
-            $docm="fmrecorder";
-        }
-        elsif($docm eq "ipodmini1g") {
-            $docm="ipodmini2g";
-        }
-        elsif($docm eq "ipodvideo64mb") {
-            $docm="ipodvideo";
+        if (defined $builds{$m}{manual}) {
+            $docm = $builds{$m}{manual};
         }
 
         my $docfile = "rockbox-${docm}.pdf";
@@ -159,14 +110,8 @@ for(reverse sort keys %date) {
         }
 
         my $voicemod = $m;
-        if($voicemod eq "recorder8mb") {
-            $voicemod = "recorder";
-        }
-        elsif($voicemod eq "fmrecorder8mb") {
-            $voicemod = "fmrecorder";
-        }
-        elsif($voicemod eq "ipodvideo64mb") {
-            $voicemod = "ipodvideo";
+        if (defined $builds{$m}{voice}) {
+            $voicemod = $builds{$m}{voice};
         }
 
         my $voicefile="$basedir/daily/voices/${voicemod}-${d}-english.zip";

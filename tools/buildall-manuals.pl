@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+require "rockbox.pm";
+
 my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) =
  localtime(time);
 
@@ -9,7 +11,7 @@ $year+=1900;
 $date=sprintf("%04d%02d%02d", $year,$mon, $mday);
 $shortdate=sprintf("%02d%02d%02d", $year%100,$mon, $mday);
 
-$ENV{'PATH'}.=":/usr/local/sh-gcc/bin:/usr/local/m68k-gcc/bin:/usr/local/arm-gcc/bin";
+$ENV{'PATH'}.=":/usr/local/sh-elf/bin:/usr/local/m68k-elf/bin:/usr/local/arm-elf/bin";
 
 my $verbose;
 if($ARGV[0] eq "-v") {
@@ -25,7 +27,7 @@ if($ARGV[0]) {
 
 # made once for all targets
 sub runone {
-    my ($dir, $conf, $nl)=@_;
+    my ($dir)=@_;
     my $a;
 
     if($doonly && ($doonly ne $dir)) {
@@ -37,7 +39,7 @@ sub runone {
     print "Build in build-$dir\n" if($verbose);
 
     # build the manual(s)
-    $a = buildit($dir, $conf, $nl);
+    $a = buildit($dir);
 
     chdir "..";
 
@@ -46,7 +48,12 @@ sub runone {
         my $newo="output/rockbox-$dir-$date.pdf";
         system("cp $o output/rockbox-$dir.pdf");
         system("mv $o $newo");
+        `chmod a+r $newo`;
         print "moved $o to $newo\n" if($verbose);
+    }
+    else  {
+        print "?? no dir $o\n" if($verbose);
+        exit;
     }
 
     $o="build-$dir/rockbox-manual.zip";
@@ -56,6 +63,10 @@ sub runone {
         system("mv $o $newo");
         print "moved $o to $newo\n" if($verbose);
     }
+    else  {
+        print "?? no dir $o\n" if($verbose);
+        exit;
+    }
 
     $o="build-$dir/html";
     if (-d $o) {
@@ -63,6 +74,10 @@ sub runone {
         system("rm -rf $newo");
         system("cp -r $o $newo");
         print "copied $o to $newo\n" if($verbose);
+    }
+    else  {
+        print "?? no dir $o\n" if($verbose);
+        exit;
     }
 
     print "remove all contents in build-$dir\n" if($verbose);
@@ -72,18 +87,17 @@ sub runone {
 };
 
 sub buildit {
-    my ($target, $confnum, $newl)=@_;
+    my ($target)=@_;
 
     `rm -rf * >/dev/null 2>&1`;
 
-    my $c = sprintf('echo -e "%s\n%sm\n" | ../tools/configure',
-                    $confnum, $newl?'\n':'');
+    my $c = "../tools/configure --target=$target --type=m";
 
     print "C: $c\n" if($verbose);
     `$c`;
 
     print "Run 'make'\n" if($verbose);
-    `make 2>/dev/null`;
+    `make manual 2>/dev/null`;
 
     print "Run 'make manual-zip'\n" if($verbose);
     `make manual-zip 2>/dev/null`;
@@ -92,24 +106,8 @@ sub buildit {
 # run make in tools first to make sure they're up-to-date
 `(cd tools && make ) >/dev/null 2>&1`;
 
-runone("player", "player", 1);
-runone("recorder", "recorder", 1);
-runone("fmrecorder", "fmrecorder", 1);
-runone("recorderv2", "recorderv2", 1);
-runone("ondiosp", "ondiosp", 1);
-runone("ondiofm", "ondiofm", 1);
-runone("h100", "h100");
-#runone("h120", 9);
-runone("h300", "h300");
-runone("ipodcolor", "ipodcolor");
-runone("ipodnano", "ipodnano");
-runone("ipod4gray", "ipod4g");
-runone("ipodvideo", "ipodvideo");
-runone("ipod3g", "ipod3g");
-runone("iaudiox5", "x5");
-runone("iaudiom5", "m5");
-runone("ipodmini2g", "ipodmini2g");
-runone("h10", "h10");
-runone("h10_5gb", "h10_5gb");
-runone("gigabeatf", "gigabeatf");
-runone("sansae200", "e200");
+for my $build (&usablebuilds) {
+    next if ($builds{$b}{configname} < 3); # no variants
+    
+    runone($build);
+}

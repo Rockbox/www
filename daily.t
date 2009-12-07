@@ -27,46 +27,4 @@ develop the software in our spare time, equipment and players cost real money.
 <input type="image" src="/paypal-donate.gif" border="0" name="submit">
 </form>
 
-
-#if 0
-<h2>CVS Compile Status</h2>
-
-<p>CVS code build status: number of compiler warnings the build generates. 0
-(zero) means no warnings. The timestamp is GMT. <a
-href="http://www.rockbox.org/twiki/bin/view/Main/TargetStatus">Target
-Status</a>
-
-<p>
-<!--#include virtual="buildstatus.link" -->
-
-<a name="bleeding_edge"></a>
-<h2>Bleeding edge builds</h2>
-
-<p>These builds are as "bleeding edge" as you can get. They are updated on
-every source change. (See status on the first line in the above table).
-
-<p>These are complete installation archives.
-
-<p>
-
-<a href="auto/build-player/rockbox.zip">Player</a>
-<a href="auto/build-recorder/rockbox.zip">Recorder</a>
-<a href="auto/build-ondiosp/rockbox.zip">Ondio SP</a>
-<a href="auto/build-ondiofm/rockbox.zip">Ondio FM</a>
-<a href="auto/build-fmrecorder/rockbox.zip">FM Recorder</a>
-<a href="auto/build-recorderv2/rockbox.zip">V2 Recorder</a>
-<a href="auto/build-recorder8mb/rockbox.zip">8MB Recorder</a>
-<a href="auto/build-h100/rockbox.zip">iriver h100</a>
-<a href="auto/build-h120/rockbox.zip">iriver h120</a>
-<a href="auto/build-h300/rockbox.zip">iriver h300</a>
-<a href="auto/build-ipodcolor/rockbox.zip">iPod Color</a>
-<a href="auto/build-ipodnano/rockbox.zip">iPod Nano</a>
-<a href="auto/build-ipod4gray/rockbox.zip">iPod 4G Gray</a>
-<a href="auto/build-ipodvideo/rockbox.zip">iPod Video</a>
-<a href="auto/build-source/rockbox-bleeding.tar.gz">source</a>
-
-<p>
-<a href="/twiki/bin/view/Main/UsingCVS">How to use CVS</a>.
-#endif
-
 #include "foot.t"

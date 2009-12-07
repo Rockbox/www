@@ -4,29 +4,13 @@ require "rockbox.pm";
 
 my $basedir = "/sites/download.rockbox.org/daily/manual";
 
-my @list=(
-          "fmrecorder",
-          "ondiofm", "ondiosp", "player",
-          "recorder", "recorderv2",
+my @list;
 
-          "iaudiom3", "iaudiom5", "iaudiox5",
-
-          "ipod1g2g", "ipod3g",
-          "ipod4gray", "ipodcolor",
-          "ipodmini2g",
-          "ipodnano","ipodnano2g",
-          "ipodvideo",
-
-          "h10", "h10_5gb",
-          "h100", "h120", "h300",
-
-          "mrobe100",
-
-          "sansac200", "sansaclip", "sansae200",
-          "sansae200v2", "sansafuze",
-
-          "gigabeatf", "gigabeats",
-          );
+for my $m (sort byname keys %builds) {
+    if ($m >= 2) {
+        push @list, $m;
+    }
+}
 
 for(@list) {
     my $dir = $_;
@@ -93,7 +77,8 @@ for(reverse sort keys %date) {
             $m = "h100";
         }
 
-        printf "<td><img alt=\"$m\" src=\"$model{$m}\"><br>";
+        my $pic = playerpic($m);
+        printf "<td><img alt=\"$m\" src=\"$pic\"><br>";
         # new-style full zip:
         #my $file = "rockbox-${m}-${d}.pdf";
         my $file = "rockbox-${m}.pdf";
