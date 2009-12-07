@@ -1,11 +1,20 @@
 require "builds.pm";
 
+my $sitedir = "/sites/rockbox.org/www";
+
 sub playerpic {
     my $m = shift @_;
 
-    return $builds{$m}{icon} ?
-        "playerpics/$builds{$m}{icon}-small.png" :
-        "playerpics/$m-small.png";
+    my $p = $builds{$m}{icon} ?
+        "/playerpics/$builds{$m}{icon}-small.png" :
+        "/playerpics/$m-small.png";
+
+    if (-r "$sitedir/$p") {
+        return $p;
+    }
+    else {
+        return "/rockbox100.png";
+    }
 }
 
 sub header {

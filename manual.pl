@@ -4,16 +4,7 @@ require "rockbox.pm";
 
 my $basedir = "/sites/download.rockbox.org/daily/manual";
 
-my @list;
-
-for my $m (sort byname keys %builds) {
-    if ($m >= 2) {
-        push @list, $m;
-    }
-}
-
-for(@list) {
-    my $dir = $_;
+for my $m (usablebuilds()) {
     opendir(DIR, "$basedir") or next;
     my @files = sort grep { /^rockbox/ } readdir(DIR);
     closedir DIR;
@@ -50,14 +41,8 @@ for(reverse sort keys %date) {
     my $x = 0;
     my @head;
 
-    foreach $t (@list) {
-        my $show = $longname{$t};
-        if($t eq "ipodmini2g") {
-            $show="iPod Mini";
-        }
-        elsif($t eq "ipodvideo") {
-            $show="iPod Video";
-        }
+    foreach my $t (usablebuilds()) {
+        my $show = $builds{$t}{name};
         $head[$x] .= "<th>$show</th>\n";
 	$count++;
 	if ($count == $split) {
@@ -69,13 +54,8 @@ for(reverse sort keys %date) {
 
     $x=1;
     $count = 0;
-    for(@list) {
-        my $m = $_;
-
-        if($m eq "h120") {
-            # for manuals, H100 and H120 is the same!
-            $m = "h100";
-        }
+    for my $m (usablebuilds()) {
+        $m = manualname($m);
 
         my $pic = playerpic($m);
         printf "<td><img alt=\"$m\" src=\"$pic\"><br>";

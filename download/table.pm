@@ -22,7 +22,7 @@ sub buildtable {
                 my $docs = manualname($m);
                 my $voice = voicename($m);
 
-                $mans="<br><a href=\"$basedir/rockbox-$docs-$version.pdf\">PDF manual</a><br><a href=\"$basedir/$voice-$version-english.zip\">English voice</a>");
+                $mans="<br><a href=\"$basedir/rockbox-$docs-$version.pdf\">PDF manual</a><br><a href=\"$basedir/$voice-$version-english.zip\">English voice</a>";
             }
 
             if($col++ > 6) {
