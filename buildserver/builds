@@ -104,11 +104,11 @@ arm:nozip:sansac200boot:SanDisk Sansa sansac200 - Boot:firmware.mi4:--target=san
 arm:nozip:ipod1g2gboot:iPod 1G/2G - Boot:bootloader-ipod1g2g.ipod:--target=ipod1g2g,--type=b:739
 arm:nozip:mrobe100boot:Olympus M-Robe 100 - Boot:pp5020.mi4:--target=mrobe100,--type=b:816
 arm:nozip:cowond2boot:Cowon D2 - Boot:bootloader-cowond2.bin:--target=cowond2,--type=b:792
-arm:nozip:sansae200v2boot:SanDisk Sansa sansae200v2 - Boot:bootloader-sansae200v2.sansa:--target=sansae200v2,--type=b:782
-arm:nozip:sansac200v2boot:SanDisk Sansa sansac200v2 - Boot:bootloader-sansac200v2.sansa:--target=sansac200v2,--type=b:736
-arm:nozip:sansam200v4boot:SanDisk Sansa sansam200v4 - Boot:bootloader-sansam200v4.sansa:--target=sansam200v4,--type=b:708
-arm:nozip:sansaclipboot:SanDisk Sansa Clip - Boot:bootloader-sansaclip.sansa:--target=sansaclip,--type=b:731
-arm:nozip:sansafuzeboot:SanDisk Sansa Fuze - Boot:bootloader-sansafuze.sansa:--target=sansafuze,--type=b:782
+arm:nozip:sansae200v2boot:SanDisk Sansa sansae200v2 - Boot:bootloader-e200v2.sansa:--target=sansae200v2,--type=b:782
+arm:nozip:sansac200v2boot:SanDisk Sansa sansac200v2 - Boot:bootloader-c200v2.sansa:--target=sansac200v2,--type=b:736
+arm:nozip:sansam200v4boot:SanDisk Sansa sansam200v4 - Boot:bootloader-m200v4.sansa:--target=sansam200v4,--type=b:708
+arm:nozip:sansaclipboot:SanDisk Sansa Clip - Boot:bootloader-clip.sansa:--target=sansaclip,--type=b:731
+arm:nozip:sansafuzeboot:SanDisk Sansa Fuze - Boot:bootloader-fuze.sansa:--target=sansafuze,--type=b:782
 arm:nozip:gogearhdd1630boot:Philips HDD1630 - Boot:FWImage.ebn:--target=gogearhdd1630,--type=b:836
 arm:nozip:samsungyh820boot:Samsung YH-820 - Boot:FW_YH820.mi4:--target=samsungyh820,--type=b:807
 arm:nozip:samsungyh920boot:Samsung YH-920 - Boot:PP5020.mi4:--target=samsungyh920,--type=b:809
