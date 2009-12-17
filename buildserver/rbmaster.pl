@@ -200,6 +200,7 @@ sub readblockfile {
         system("svn update --non-interactive -q blockedclients");
 
         if (open B, "<blockedclients") {
+            %blocked = ();
             for my $line (<B>) {
                 next if ($line =~ /^#/);
                 chomp $line;
@@ -375,6 +376,7 @@ sub HELLO {
                 command $rh, "_HELLO error duplicate name!";
                 $client{$fno}{'bad'}="duplicate name";
                 $client{$fno}{'client'} = "$cli.$$";
+                $client{$fno}{'fine'} = 1;
                 return;
             }
         }
