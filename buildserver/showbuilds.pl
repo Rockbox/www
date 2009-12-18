@@ -56,11 +56,34 @@ sub getdata {
 &getbuilds();
 &getdata();
 
+foreach my $b (keys %builds) {
+    my $text = $builds{$b}{name};
+    $text =~ s/FM Recorder/FM Rec/;
+    $text =~ s/Debug/Dbg/;
+    $text =~ s/Normal//;
+    $text =~ s/Simulator/Sim/;
+    $text =~ s/iriver *//i;
+    $text =~ s/Archos *//i;
+    $text =~ s/ - $//;
+    $text =~ s/Win32/Win/;
+    $text =~ s/- +-/-/g;
+    $text =~ s/Grayscale/Gray/;
+    $text =~ s/Sim - Win/Sim32/;
+    $text =~ s/Toshiba *//i;
+    $text =~ s/SanDisk *//i;
+    $text =~ s/Olympus *//i;
+    $text =~ s/Creative *//i;
+    $text =~ s/Philips *//i;
+    $text =~ s/Zen Vision M/ZVM/i;
+    $text =~ s/Samsung/Smsg/i;
+    $builds{$b}{sortkey} = uc $text;
+}
+
 print "<table class=\"buildstatus\" cellspacing=\"1\" cellpadding=\"0\"><tr>";
 print "<th>rev / time</th>";
 print "<th>score</th>";
 print "<th>time</th>";
-foreach $t (sort {$builds{$a}{name} cmp $builds{$b}{name}} keys %alltypes) {
+foreach $t (sort {$builds{$a}{sortkey} cmp $builds{$b}{sortkey}} keys %alltypes) {
 
     my ($a1, $a2);
     if (-f "data/rockbox-$t.zip") {
@@ -130,7 +153,7 @@ for my $rev (sort {$b <=> $a} keys %compiles) {
         push @tds, "<td class=buildok style='padding: 5px' rowspan=20>All $bcount builds are OK</td>";
     }
 
-    for my $type (sort {$builds{$a}{name} cmp $builds{$b}{name}} keys %alltypes) {
+    for my $type (sort {$builds{$a}{sortkey} cmp $builds{$b}{sortkey}} keys %alltypes) {
 
         if (not defined $compiles{$rev}{$type}{client}) {
             push @tds, "<td>&nbsp;</td>\n";
