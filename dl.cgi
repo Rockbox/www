@@ -9,11 +9,11 @@ my $bin = $req->param('bin');
 
 my $fine=0;
 
-my $pic = $model{$bin};
+my $pic = playerpic($bin);
 my $basedir = "/sites/download.rockbox.org";
 my $baseurl = "http://download.rockbox.org";
 
-my $desc = $longname{$bin};
+my $desc = $builds{$bin}{name};
 
 header("Rockbox $desc Daily Builds");
 
