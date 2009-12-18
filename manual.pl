@@ -54,30 +54,39 @@ for(reverse sort keys %date) {
 
     $x=1;
     $count = 0;
-    for my $m (usablebuilds()) {
-        $m = manualname($m);
-
-        my $pic = playerpic($m);
+    for my $b (usablebuilds()) {
+        my $m = manualname($b);
+        my $pic = playerpic($b);
         printf "<td><img alt=\"$m\" src=\"$pic\"><br>";
         # new-style full zip:
         #my $file = "rockbox-${m}-${d}.pdf";
         my $file = "rockbox-${m}.pdf";
         my $o;
+
+        $html = "$basedir/rockbox-${m}/rockbox-build.html";
+        if (open HTML, "<$html") {
+            my @lines = grep /cmss-12/, <HTML>;
+            close HTML;
+            if ($lines[0] =~ />(.+?)</) {
+                printf("<small>$1</small>");
+                $o = " ";
+            }
+        }
+
         if( -f "$basedir/$file") {
             my $size = (stat("$basedir/$file"))[7];
 
             #my $page = getpages("$basedir/$file");
 
             #$o=sprintf("<a href=\"http://download.rockbox.org/manual/$file\">pdf</a> %dKB, ${page}p", $size/1024);
-            $o=sprintf("<a href=\"http://download.rockbox.org/daily/manual/$file\">pdf</a> <small>%d kB</small>", $size/1024);
+            $o=sprintf("%s<a href=\"http://download.rockbox.org/daily/manual/$file\">pdf</a> <small>%d kB</small>", $o?"<br>":"", $size/1024);
         }
 
         $file = "rockbox-${m}-${d}-html.zip";
         if( -f "$basedir/$file") {
             my $size = (stat("$basedir/$file"))[7];
 
-            $o .= sprintf("%s<a href=\"http://download.rockbox.org/daily/manual/$file\">html-zip</a> <small>%d kB</small>", $o?"<br>":"",
-                          $size/1024);
+            $o .= sprintf("%s<a href=\"http://download.rockbox.org/daily/manual/$file\">html-zip</a> <small>%d kB</small>", $o?"<br>":"", $size/1024);
         }
 
         $file = "rockbox-${m}";
@@ -85,6 +94,7 @@ for(reverse sort keys %date) {
             $o .= sprintf("%s<a href=\"http://download.rockbox.org/daily/manual/$file/rockbox-build.html\">online</a>", $o?"<br>":"");
         }
         print "$o\n";
+
 
 	$count++;
 	if ($count == $split) {
