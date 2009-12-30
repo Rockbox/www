@@ -62,7 +62,7 @@ and Ondio
 &middot;
 <a href="/wiki/ContributingToRockbox">Contribute to Rockbox</a>
 
-<p>If your player is not listed above, it is not supported.
+<p>If your player is not listed above, then Rockbox does not run on it.
 
 </td></tr></table>
 
