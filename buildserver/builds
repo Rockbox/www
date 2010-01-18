@@ -115,7 +115,6 @@ arm:nozip:samsungyh920boot:Samsung YH-920 - Boot:PP5020.mi4:--target=samsungyh92
 arm:nozip:samsungyh925boot:Samsung YH-925 - Boot:FW_YH925.mi4:--target=samsungyh925,--type=b:817
 arm:nozip:gogearsa9200boot:Philips SA9200 - Boot:FWImage.ebn:--target=gogearsa9200,--type=b:820
 arm:nozip:zenvisionm30boot:Creative Zen Vision M 30GB - Boot:rockbox.zvmboot:--target=zenvisionm30gb,--type=b:898
-arm:nozip:pb_vibe500boot:Packard Bell Vibe 500 - Boot:rockbox.mi4:--target=pb_vibe500,--type=b:898
 sh:nozip:archosrecorderboot:Recorder - Boot:ajbrec.ajz:--target=archosrecorder,--ram=2,--type=b:807
 sh:nozip:playerboot:Player - Boot:archos.mod:--target=archosplayer,--ram=2,--type=b:712
 sh:nozip:archosfmrecorderboot:FM Recorder - Boot:ajbrec.ajz:--target=archosfmrecorder,--ram=2,--type=b:784
