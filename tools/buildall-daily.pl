@@ -37,11 +37,17 @@ if (open OUT, ">output/build-info") {
         "[dailies]\n".
         "date = \"$date\"\n".
         "rev = $rev\n";
+        
     print OUT "[release]\n";
-
     for my $model (&stablebuilds) {
         print OUT "$model=$publicrelease\n";
     }
+    
+    print OUT "[status]\n";
+    for my $model (sort byname keys %builds) {
+        print OUT "$model=$builds{$model}{\"status\"}\n";
+    }
+    
     close OUT;
 }
 
