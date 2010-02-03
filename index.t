@@ -26,7 +26,7 @@ and Ondio
 
 <li><b>Olympus</b>: M:Robe 100
 
-<li><b>SanDisk</b>: Sansa c200 series, e200 series and e200R series
+<li><b>SanDisk</b>: Sansa c200 series (not v2), e200 series (all models), and Fuze v1 (not v2)
 
 <li><b>Toshiba</b>: Gigabeat X and F series
 </ul>
@@ -40,7 +40,7 @@ and Ondio
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
 <li><b>Samsung</b>: <a href="/wiki/SamsungYH92xPort">YH-820</a>, <a href="/wiki/SamsungYH92xPort">YH-920</a> and <a href="/wiki/SamsungYH92xPort">YH-925</a>
-<li><b>SanDisk</b>: <a href="/wiki/SansaAMS">Sansa e200 v2 (AMS)</a>, <a href="/wiki/SansaAMS">Sansa Fuze V1</a>, and <a href="/wiki/SansaAMS">Sansa Clip V1 (not v2 or Clip+)</a>
+<li><b>SanDisk</b>: <a href="/wiki/SansaAMS">Sansa Clip V1 (not v2 or Clip+)</a>
 <li><b>Toshiba</b>: <a href="/wiki/GigabeatSPort">Gigabeat S</a>
 </ul>
 
@@ -74,12 +74,12 @@ and Ondio
 <table class="news" summary="recent news">
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
+<tr><td nowrap>2010-02-03</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes35">Rockbox 3.5 is released</a></td></tr>
 <tr><td nowrap>2009-09-24</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes34">Rockbox 3.4 is released</a></td></tr>
 <tr><td nowrap>2009-09-16</td><td>We moved the web site to a new server and migrated from twiki to foswiki.</td></tr>
 <tr><td nowrap>2009-08-27</td><td>The site was offline for 50 hours when our ISP went down.</td></tr>
 <tr><td nowrap>2009-06-21</td><td><a href="/wiki/DevConEuro2009">DevConEuro2009</a> has ended </td></tr>
 <tr><td nowrap>2009-06-19</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes33">Rockbox 3.3 is released</a></td></tr>
-<tr><td nowrap>2009-03-24</td><td><a href="http://themes.rockbox.org/">themes.rockbox.org</a> is available</td></tr>
 <!--
 <tr><td colspan=2 align='center'><a href="history.html">Older news</a></td></tr>
 -->
