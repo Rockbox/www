@@ -13,9 +13,9 @@ perl recentwiki.pl 5 > recentwiki_front.html
 perl recentwiki.pl 20 > recentwiki.html
 
 # commits since last release
-grep -v _PAGE_  head.html > since34.html
-( cd ../trunk && svn log -v -r HEAD:22818 ) | perl tools/svnlog2html.pl >> since34.html
-cat foot.html >> since34.html
+grep -v _PAGE_  head.html > since-release.html
+( cd ../trunk && svn log -v -r HEAD:24501 ) | perl tools/svnlog2html.pl >> since-release.html
+cat foot.html >> since-release.html
 
 # commits last four weeks
 grep -v _PAGE_  head.html > since-4weeks.html
