@@ -71,6 +71,7 @@ arm:zip:samsungyh820:Samsung YH-820 - Normal:rockbox.mi4:--target=samsungyh820,-
 arm:zip:samsungyh920:Samsung YH-920 - Normal:rockbox.mi4:--target=samsungyh920,--type=n:19192
 arm:zip:samsungyh925:Samsung YH-925 - Normal:rockbox.mi4:--target=samsungyh925,--type=n:21388
 arm:zip:gogearsa9200:Philips SA9200 - Normal:rockbox.mi4:--target=gogearsa9200,--type=n:8966
+arm:zip:pb_vibe500:Packard Bell Vibe 500 - Normal:jukebox.mi4:--target=pb_vibe500,--type=n:24345
 mipsel:zip:ondavx747:Onda VX747 - Normal:rockbox.vx747:--target=ondavx747,--type=n:27223
 mipsel:zip:ondavx767:Onda VX767 - Normal:rockbox.vx767:--target=ondavx767,--type=n:11512
 mipsel:zip:ondavx777:Onda VX777 - Normal:rockbox.vx777:--target=ondavx777,--type=n:11844
