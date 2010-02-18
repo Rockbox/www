@@ -1,159 +1,159 @@
-sdl:nozip:archosrecordersim:Recorder - Simulator:rockboxui:--target=archosrecorder,--ram=2,--type=s:5732
-sdl:nozip:archosplayersim:Player - Simulator:rockboxui:--target=archosplayer,--ram=2,--type=s:2537
-sdl:nozip:archosfmrecordersim:FM Recorder - Simulator:rockboxui:--target=archosfmrecorder,--ram=2,--type=s:5876
-sdl:nozip:archosondiofmsim:Ondio FM - Simulator:rockboxui:--target=archosondiofm,--ram=2,--type=s:5298
-sdl:nozip:iriverh120sim:iriver H120 - Simulator:rockboxui:--target=iriverh120,--type=s:14329
-sdl:nozip:iriverh300sim:iriver H300 - Simulator:rockboxui:--target=iriverh300,--type=s:14661
-sdl:nozip:ipodnano1gsim:iPod Nano 1G - Simulator:rockboxui:--target=ipodnano1g,--type=s:13842
-sdl:nozip:ipodnano2gsim:iPod Nano 2G - Simulator:rockboxui:--target=ipodnano2g,--type=s:14495
-sdl:nozip:ipodcolorsim:iPod Color - Simulator:rockboxui:--target=ipodcolor,--type=s:13978
-sdl:nozip:iaudiox5sim:iAudio X5 - Simulator:rockboxui:--target=iaudiox5,--type=s:14538
-sdl:nozip:iaudiom5sim:iAudio M5 - Simulator:rockboxui:--target=iaudiom5,--type=s:14250
-sdl:nozip:iaudiom3sim:iAudio M3 - Simulator:rockboxui:--target=iaudiom3,--type=s:12992
-sdl:nozip:ipod4gsim:iPod 4G Grayscale - Simulator:rockboxui:--target=ipod4g,--type=s:12897
-sdl:nozip:ipodvideosim:iPod Video - Simulator:rockboxui:--target=ipodvideo,--type=s,--ram=32:14184
-sdl:nozip:ipodmini2gsim:iPod Mini 2G - Simulator:rockboxui:--target=ipodmini2g,--type=s:12642
-sdl:nozip:h10sim:iriver H10 - Simulator:rockboxui:--target=iriverh10,--type=s:13955
-sdl:nozip:gigabeatfxsim:Toshiba Gigabeat F - Simulator:rockboxui:--target=gigabeatfx,--type=s:13859
-sdl:nozip:gigabeatssim:Toshiba Gigabeat S - Simulator:rockboxui:--target=gigabeats,--type=s:14142
-sdl:nozip:sansae200sim:SanDisk Sansa e200 - Simulator:rockboxui:--target=sansae200,--type=s:14003
-sdl:nozip:sansae200v2sim:SanDisk Sansa e200v2 - Simulator:rockboxui:--target=sansae200v2,--type=s:13756
-sdl:nozip:sansac200sim:SanDisk Sansa c200 - Simulator:rockboxui:--target=sansac200,--type=s:13202
-sdl:nozip:sansac200v2sim:SanDisk Sansa c200v2 - Simulator:rockboxui:--target=sansac200v2,--type=s:12216
-sdl:nozip:mrobe500sim:Olympus M-Robe 500 - Simulator:rockboxui:--target=mrobe500,--type=s:13227
-sdl:nozip:mrobe100sim:Olympus M-Robe 100 - Simulator:rockboxui:--target=mrobe100,--type=s:12405
-sdl:nozip:cowond2sim:Cowon D2 - Simulator:rockboxui:--target=cowond2,--type=s:13940
-sdl:nozip:zenvisionm30sim:Creative Zen Vision M 30GB - Simulator:rockboxui:--target=zenvisionm30gb,--type=s:13517
-sdl:nozip:sansaclipsim:SanDisk Sansa Clip - Simulator:rockboxui:--target=sansaclip,--type=s:9148
-sdl:nozip:sansafuzesim:SanDisk Sansa Fuze - Simulator:rockboxui:--target=sansafuze,--type=s:13748
-sdl:nozip:sansam200v4sim:SanDisk Sansa m200v4 - Simulator:rockboxui:--target=sansam200v4,--type=s:8861
-sdl:nozip:gogearhdd1630sim:Philips HDD1630 - Simulator:rockboxui:--target=gogearhdd1630,--type=s:13891
-sdl:nozip:gogearsa9200sim:Philips SA9200 - Simulator:rockboxui:--target=gogearsa9200,--type=s:5826
-sdl:nozip:samsungyh820sim:Samsung YH-820 - Simulator:rockboxui:--target=samsungyh820,--type=s:13136
-sdl:nozip:samsungyh920sim:Samsung YH-920 - Simulator:rockboxui:--target=samsungyh920,--type=s:12667
-sdl:nozip:samsungyh925sim:Samsung YH-925 - Simulator:rockboxui:--target=samsungyh925,--type=s:13941
-sdl:nozip:ondavx747sim:Onda VX747 - Simulator:rockboxui:--target=ondavx747,--type=s:14177
-m68k:zip:iriverh100:iriver H100 - Normal:rockbox.iriver:--target=iriverh100,--type=n:17517
-m68k:zip:iriverh120:iriver H120 - Normal:rockbox.iriver:--target=iriverh120,--type=n:17525
-m68k:zip:iriverh300:iriver H300 - Normal:rockbox.iriver:--target=iriverh300,--type=n:18237
-m68k:zip:iaudiox5:iAudio X5 - Normal:rockbox.iaudio:--target=iaudiox5,--type=n:18064
-m68k:zip:iaudiom5:iAudio M5 - Normal:rockbox.iaudio:--target=iaudiom5,--type=n:17516
-m68k:zip:iaudiom3:iAudio M3 - Normal:rockbox.iaudio:--target=iaudiom3,--type=n:15862
-arm:zip:ipodnano1g:iPod Nano 1G - Normal:rockbox.ipod:--target=ipodnano1g,--type=n:21483
-arm:zip:ipodnano2g:iPod Nano 2G - Normal:rockbox.ipod:--target=ipodnano2g,--type=n:22318
-arm:zip:ipodcolor:iPod Color - Normal:rockbox.ipod:--target=ipodcolor,--type=n:21586
-arm:zip:ipod4g:iPod 4G Grayscale - Normal:rockbox.ipod:--target=ipod4g,--type=n:19682
-arm:zip:ipodvideo:iPod Video - Normal:rockbox.ipod:--target=ipodvideo,--ram=32,--type=n:21983
-arm:zip:ipodvideo64mb:iPod Video 64MB - Normal:rockbox.ipod:--target=ipodvideo,--ram=64,--type=n:21936
-arm:zip:ipod3g:iPod 3G - Normal:rockbox.ipod:--target=ipod3g,--type=n:18716
-arm:zip:ipodmini2g:iPod Mini 2G - Normal:rockbox.ipod:--target=ipodmini2g,--type=n:18975
-arm:zip:ipodmini1g:iPod Mini 1G - Normal:rockbox.ipod:--target=ipodmini1g,--type=n:18976
-arm:zip:iriverh10:iriver H10 - Normal:rockbox.mi4:--target=iriverh10,--type=n:21496
-arm:zip:iriverh10_5gb:iriver H10 5GB - Normal:rockbox.mi4:--target=iriverh10_5gb,--type=n:21496
-arm:zip:gigabeatfx:Toshiba Gigabeat F - Normal:rockbox.gigabeat:--target=gigabeatfx,--type=n:20657
-arm:zip:gigabeats:Toshiba Gigabeat S - Normal:rockbox.gigabeat:--target=gigabeats,--type=n:22022
-arm:zip:sansae200:SanDisk Sansa e200 - Normal:rockbox.mi4:--target=sansae200,--type=n:21687
-arm:zip:sansac200:SanDisk Sansa ac200 - Normal:rockbox.mi4:--target=sansac200,--type=n:20289
-arm:zip:ipod1g2g:iPod 1G/2G - Normal:rockbox.ipod:--target=ipod1g2g,--type=n:18376
-arm:zip:mrobe500:Olympus M-Robe 500 - Normal:rockbox.mrobe500:--target=mrobe500,--type=n:20454
-arm:zip:mrobe100:Olympus M-Robe 100 - Normal:rockbox.mi4:--target=mrobe100,--type=n:18716
-arm:zip:cowond2:Cowon D2 - Normal:rockbox.d2:--target=cowond2,--type=n:20857
-arm:zip:zenvisionm30:Creative Zen Vision M 30GB - Normal:rockbox.zvm:--target=zenvisionm30gb,--type=n:20508
-arm:zip:zenvisionm60:Creative Zen Vision M 60GB - Normal:rockbox.zvm60:--target=zenvisionm60gb,--type=n:20499
-arm:zip:zenvision:Creative Zen Vision - Normal:rockbox.zv:--target=zenvision,--type=n:8638
-arm:zip:sansafuze:SanDisk Sansa Fuze - Normal:rockbox.sansa:--target=sansafuze,--type=n:20626
-arm:zip:sansaclip:SanDisk Sansa Clip - Normal:rockbox.sansa:--target=sansaclip,--type=n:13379
-arm:zip:sansae200v2:SanDisk Sansa e200v2 - Normal:rockbox.sansa:--target=sansae200v2,--type=n:20586
-arm:zip:sansac200v2:SanDisk Sansa c200v2 - Normal:rockbox.sansa:--target=sansac200v2,--type=n:17966
-arm:zip:sansam200v4:SanDisk Sansa m200v4 - Normal:rockbox.sansa:--target=sansam200v4,--type=n:12954
-arm:zip:gogearhdd1630:Philips HDD1630 - Normal:rockbox.mi4:--target=gogearhdd1630,--type=n:21258
-arm:zip:samsungyh820:Samsung YH-820 - Normal:rockbox.mi4:--target=samsungyh820,--type=n:20130
-arm:zip:samsungyh920:Samsung YH-920 - Normal:rockbox.mi4:--target=samsungyh920,--type=n:19192
-arm:zip:samsungyh925:Samsung YH-925 - Normal:rockbox.mi4:--target=samsungyh925,--type=n:21388
-arm:zip:gogearsa9200:Philips SA9200 - Normal:rockbox.mi4:--target=gogearsa9200,--type=n:8966
-arm:zip:vibe500:Packard Bell Vibe 500 - Normal:jukebox.mi4:--target=vibe500,--type=n:24345
-mipsel:zip:ondavx747:Onda VX747 - Normal:rockbox.vx747:--target=ondavx747,--type=n:27223
-mipsel:zip:ondavx767:Onda VX767 - Normal:rockbox.vx767:--target=ondavx767,--type=n:11512
-mipsel:zip:ondavx777:Onda VX777 - Normal:rockbox.vx777:--target=ondavx777,--type=n:11844
-sh:zip:archosrecorder:Recorder - Normal:ajbrec.ajz:--target=archosrecorder,--ram=2,--type=n:10807
-sh:zip:archosrecorderv2:V2 Recorder - Normal:ajbrec.ajz:--target=archosrecorderv2,--ram=2,--type=n:10836
-sh:zip:archosplayer:Player - Normal:archos.mod:--target=archosplayer,--ram=2,--type=n:4202
-sh:zip:archosfmrecorder:FM Recorder - Normal:ajbrec.ajz:--target=archosfmrecorder,--ram=2,--type=n:10820
-sh:zip:archosrecorder8mb:Recorder - Normal - 8MB:ajbrec.ajz:--target=archosrecorder,--ram=8,--type=n:10835
-sh:zip:archosondiosp:Ondio SP - Normal:ajbrec.ajz:--target=archosondiosp,--ram=2,--type=n:9370
-sh:zip:archosondiofm:Ondio FM - Normal:ajbrec.ajz:--target=archosondiofm,--ram=2,--type=n:9729
-m68k:nozip:iriverh100boot:iriver H100 - Boot:bootloader.iriver:--target=iriverh100,--type=b:690
-m68k:nozip:iriverh120boot:iriver H120 - Boot:bootloader.iriver:--target=iriverh120,--type=b:700
-m68k:nozip:iriverh300boot:iriver H300 - Boot:rockbox.iriver:--target=iriverh300,--type=b:725
-m68k:nozip:iaudiox5boot:iAudio X5 - Boot:rockbox.iaudio:--target=iaudiox5,--type=b:710
-m68k:nozip:iaudiom5boot:iAudio M5 - Boot:rockbox.iaudio:--target=iaudiom5,--type=b:675
-m68k:nozip:iaudiom3boot:iAudio M3 - Boot:rockbox.iaudio:--target=iaudiom3,--type=b:603
-mipsel:nozip:ondavx747boot:Onda VX747 - Boot:ccpmp.bin:--target=ondavx747,--type=b:1287
-arm:nozip:ipodnano1gboot:iPod Nano 1G - Boot:bootloader-ipodnano1g.ipod:--target=ipodnano1g,--type=b:840
-arm:nozip:ipodnano2gboot:iPod Nano 2G - Boot:bootloader-ipodnano2g.ipod:--target=ipodnano2g,--type=b:840
-arm:nozip:ipodcolorboot:iPod Color - Boot:bootloader-ipodcolor.ipod:--target=ipodcolor,--type=b:845
-arm:nozip:ipod4gboot:iPod 4G Grayscale - Boot:bootloader-ipod4g.ipod:--target=ipod4g,--type=b:837
-arm:nozip:ipodvideoboot:iPod Video - Boot:bootloader-ipodvideo.ipod:--target=ipodvideo,--ram=2,--type=b:849
-arm:nozip:ipod3gboot:iPod 3G - Boot:bootloader-ipod3g.ipod:--target=ipod3g,--type=b:753
-arm:nozip:ipodmini2gboot:iPod Mini 2G - Boot:bootloader-ipodmini2g.ipod:--target=ipodmini2g,--type=b:822
-arm:nozip:ipodmini1gboot:iPod Mini 1G - Boot:bootloader-ipodmini1g.ipod:--target=ipodmini1g,--type=b:813
-arm:nozip:h10boot:iriver H10 - Boot:H10_20GC.mi4:--target=iriverh10,--type=b:844
-arm:nozip:gigabeatfxboot:Toshiba Gigabeat F - Boot:FWIMG01.DAT:--target=gigabeatfx,--type=b:756
-arm:nozip:gigabeatsboot:Toshiba Gigabeat S - Boot:nk.bin:--target=gigabeats,--type=b:1042
-arm:nozip:sansae200boot:SanDisk Sansa e200 - Boot:PP5022.mi4:--target=sansae200,--type=b:857
-arm:nozip:sansac200boot:SanDisk Sansa c200 - Boot:firmware.mi4:--target=sansac200,--type=b:853
-arm:nozip:ipod1g2gboot:iPod 1G/2G - Boot:bootloader-ipod1g2g.ipod:--target=ipod1g2g,--type=b:739
-arm:nozip:mrobe100boot:Olympus M-Robe 100 - Boot:pp5020.mi4:--target=mrobe100,--type=b:816
-arm:nozip:cowond2boot:Cowon D2 - Boot:bootloader-cowond2.bin:--target=cowond2,--type=b:792
-arm:nozip:sansae200v2boot:SanDisk Sansa e200v2 - Boot:bootloader-e200v2.sansa:--target=sansae200v2,--type=b:782
-arm:nozip:sansac200v2boot:SanDisk Sansa c200v2 - Boot:bootloader-c200v2.sansa:--target=sansac200v2,--type=b:736
-arm:nozip:sansam200v4boot:SanDisk Sansa m200v4 - Boot:bootloader-m200v4.sansa:--target=sansam200v4,--type=b:708
-arm:nozip:sansaclipboot:SanDisk Sansa Clip - Boot:bootloader-clip.sansa:--target=sansaclip,--type=b:731
-arm:nozip:sansafuzeboot:SanDisk Sansa Fuze - Boot:bootloader-fuze.sansa:--target=sansafuze,--type=b:782
-arm:nozip:gogearhdd1630boot:Philips HDD1630 - Boot:FWImage.ebn:--target=gogearhdd1630,--type=b:836
-arm:nozip:samsungyh820boot:Samsung YH-820 - Boot:FW_YH820.mi4:--target=samsungyh820,--type=b:807
-arm:nozip:samsungyh920boot:Samsung YH-920 - Boot:PP5020.mi4:--target=samsungyh920,--type=b:809
-arm:nozip:samsungyh925boot:Samsung YH-925 - Boot:FW_YH925.mi4:--target=samsungyh925,--type=b:817
-arm:nozip:gogearsa9200boot:Philips SA9200 - Boot:FWImage.ebn:--target=gogearsa9200,--type=b:820
-arm:nozip:zenvisionm30boot:Creative Zen Vision M 30GB - Boot:rockbox.zvmboot:--target=zenvisionm30gb,--type=b:898
-sh:nozip:archosrecorderboot:Recorder - Boot:ajbrec.ajz:--target=archosrecorder,--ram=2,--type=b:807
-sh:nozip:playerboot:Player - Boot:archos.mod:--target=archosplayer,--ram=2,--type=b:712
-sh:nozip:archosfmrecorderboot:FM Recorder - Boot:ajbrec.ajz:--target=archosfmrecorder,--ram=2,--type=b:784
-sh:nozip:archosondiospboot:Ondio SP - Boot:ajbrec.ajz:--target=archosondiosp,--ram=2,--type=b:778
-sdl:nozip:playerwps:Player - Checkwps:checkwps.archosplayer:--target=archosplayer,--ram=2,--type=c:86
-sdl:nozip:archosrecorderwps:Recorder - Checkwps:checkwps.archosrecorder:--target=archosrecorder,--ram=2,--type=c:86
-sdl:nozip:archosfmrecorderwps:FM Recorder - Checkwps:checkwps.archosfmrecorder:--target=archosfmrecorder,--ram=2,--type=c:86
-sdl:nozip:archosondiofmwps:Ondio FM - Checkwps:checkwps.archosondiofm:--target=archosondiofm,--ram=2,--type=c:84
-sdl:nozip:iriverh120wps:iriver H120 - Checkwps:checkwps.iriverh120:--target=iriverh120,--type=c:86
-sdl:nozip:iriverh300wps:iriver H300 - Checkwps:checkwps.iriverh300:--target=iriverh300,--type=c:84
-sdl:nozip:ipodnano1gwps:iPod Nano - Checkwps:checkwps.ipodnano1g:--target=ipodnano1g,--type=c:84
-sdl:nozip:ipodnano2gwps:iPod Nano 2G - Checkwps:checkwps.ipodnano2g:--target=ipodnano2g,--type=c:84
-sdl:nozip:ipodcolorwps:iPod Color - Checkwps:checkwps.ipodcolor:--target=ipodcolor,--type=c:84
-sdl:nozip:iaudiox5wps:iAudio X5 - Checkwps:checkwps.iaudiox5:--target=iaudiox5,--type=c:86
-sdl:nozip:iaudiom5wps:iAudio M5 - Checkwps:checkwps.iaudiom5:--target=iaudiom5,--type=c:86
-sdl:nozip:iaudiom3wps:iAudio M3 - Checkwps:checkwps.iaudiom3:--target=iaudiom3,--type=c:82
-sdl:nozip:ipod4gwps:iPod 4G Grayscale - Checkwps:checkwps.ipod4g:--target=ipod4g,--type=c:84
-sdl:nozip:ipodvideowps:iPod Video - Checkwps:checkwps.ipodvideo:--target=ipodvideo,--type=c,--ram=32:85
-sdl:nozip:ipodmini2gwps:iPod Mini 2G - Checkwps:checkwps.ipodmini2g:--target=ipodmini2g,--type=c:86
-sdl:nozip:h10wps:iriver H10 - Checkwps:checkwps.iriverh10:--target=iriverh10,--type=c:85
-sdl:nozip:gigabeatfxwps:Toshiba Gigabeat F - Checkwps:checkwps.gigabeatfx:--target=gigabeatfx,--type=c:83
-sdl:nozip:gigabeatswps:Toshiba Gigabeat S - Checkwps:checkwps.gigabeats:--target=gigabeats,--type=c:85
-sdl:nozip:sansae200wps:SanDisk Sansa e200 - Checkwps:checkwps.sansae200:--target=sansae200,--type=c:88
-sdl:nozip:sansae200v2wps:SanDisk Sansa e200v2 - Checkwps:checkwps.sansae200v2:--target=sansae200v2,--type=c:83
-sdl:nozip:sansac200wps:SanDisk Sansa c200 - Checkwps:checkwps.sansac200:--target=sansac200,--type=c:85
-sdl:nozip:sansac200v2wps:SanDisk Sansa c200v2 - Checkwps:checkwps.sansac200v2:--target=sansac200v2,--type=c:82
-sdl:nozip:mrobe500wps:Olympus M-Robe 500 - Checkwps:checkwps.mrobe500:--target=mrobe500,--type=c:87
-sdl:nozip:mrobe100wps:Olympus M-Robe 100 - Checkwps:checkwps.mrobe100:--target=mrobe100,--type=c:80
-sdl:nozip:cowond2wps:Cowon D2 - Checkwps:checkwps.cowond2:--target=cowond2,--type=c:86
-sdl:nozip:zenvisionm30wps:Creative Zen Vision M 30GB - Checkwps:checkwps.zenvisionm30gb:--target=zenvisionm30gb,--type=c:86
-sdl:nozip:sansaclipwps:SanDisk Sansa Clip - Checkwps:checkwps.sansaclip:--target=sansaclip,--type=c:83
-sdl:nozip:sansafuzewps:SanDisk Sansa Fuze - Checkwps:checkwps.sansafuze:--target=sansafuze,--type=c:83
-sdl:nozip:sansam200v4wps:SanDisk Sansa m200v4 - Checkwps:checkwps.sansam200v4:--target=sansam200v4,--type=c:83
-sdl:nozip:gogearhdd1630wps:Philips HDD1630 - Checkwps:checkwps.gogearhdd1630:--target=gogearhdd1630,--type=c:88
-sdl:nozip:gogearsa9200wps:Philips SA9200 - Checkwps:checkwps.gogearsa9200:--target=gogearsa9200,--type=c:86
-sdl:nozip:samsungyh820wps:Samsung YH-820 - Checkwps:checkwps.samsungyh820:--target=samsungyh820,--type=c:82
-sdl:nozip:samsungyh920wps:Samsung YH-920 - Checkwps:checkwps.samsungyh920:--target=samsungyh920,--type=c:82
-sdl:nozip:samsungyh925wps:Samsung YH-925 - Checkwps:checkwps.samsungyh925:--target=samsungyh925,--type=c:87
-sdl:nozip:ondavx747wps:Onda VX747 - Checkwps:checkwps.ondavx747:--target=ondavx747,--type=c:93
-sdl:nozip:playerdb:Player - Database:database.archosplayer:--target=archosplayer,--ram=2,--type=d:86
-sdl:nozip:iriverh300db:iriver H300 - Database:database.iriverh300:--target=iriverh300,--type=d:86
+sdl:nozip:archosrecordersim:Recorder - Simulator:rockboxui:--target=archosrecorder,--ram=2,--type=s:6447
+sdl:nozip:archosplayersim:Player - Simulator:rockboxui:--target=archosplayer,--ram=2,--type=s:2722
+sdl:nozip:archosfmrecordersim:FM Recorder - Simulator:rockboxui:--target=archosfmrecorder,--ram=2,--type=s:6600
+sdl:nozip:archosondiofmsim:Ondio FM - Simulator:rockboxui:--target=archosondiofm,--ram=2,--type=s:6055
+sdl:nozip:iriverh120sim:iriver H120 - Simulator:rockboxui:--target=iriverh120,--type=s:16884
+sdl:nozip:iriverh300sim:iriver H300 - Simulator:rockboxui:--target=iriverh300,--type=s:17805
+sdl:nozip:ipodnano1gsim:iPod Nano 1G - Simulator:rockboxui:--target=ipodnano1g,--type=s:15783
+sdl:nozip:ipodnano2gsim:iPod Nano 2G - Simulator:rockboxui:--target=ipodnano2g,--type=s:15521
+sdl:nozip:ipodcolorsim:iPod Color - Simulator:rockboxui:--target=ipodcolor,--type=s:15821
+sdl:nozip:iaudiox5sim:iAudio X5 - Simulator:rockboxui:--target=iaudiox5,--type=s:16379
+sdl:nozip:iaudiom5sim:iAudio M5 - Simulator:rockboxui:--target=iaudiom5,--type=s:15696
+sdl:nozip:iaudiom3sim:iAudio M3 - Simulator:rockboxui:--target=iaudiom3,--type=s:14456
+sdl:nozip:ipod4gsim:iPod 4G Grayscale - Simulator:rockboxui:--target=ipod4g,--type=s:14453
+sdl:nozip:ipodvideosim:iPod Video - Simulator:rockboxui:--target=ipodvideo,--type=s,--ram=32:16095
+sdl:nozip:ipodmini2gsim:iPod Mini 2G - Simulator:rockboxui:--target=ipodmini2g,--type=s:14044
+sdl:nozip:h10sim:iriver H10 - Simulator:rockboxui:--target=iriverh10,--type=s:15845
+sdl:nozip:gigabeatfxsim:Toshiba Gigabeat F - Simulator:rockboxui:--target=gigabeatfx,--type=s:15690
+sdl:nozip:gigabeatssim:Toshiba Gigabeat S - Simulator:rockboxui:--target=gigabeats,--type=s:15991
+sdl:nozip:sansae200sim:SanDisk Sansa e200 - Simulator:rockboxui:--target=sansae200,--type=s:15888
+sdl:nozip:sansae200v2sim:SanDisk Sansa e200v2 - Simulator:rockboxui:--target=sansae200v2,--type=s:15915
+sdl:nozip:sansac200sim:SanDisk Sansa c200 - Simulator:rockboxui:--target=sansac200,--type=s:15060
+sdl:nozip:sansac200v2sim:SanDisk Sansa c200v2 - Simulator:rockboxui:--target=sansac200v2,--type=s:11282
+sdl:nozip:mrobe500sim:Olympus M-Robe 500 - Simulator:rockboxui:--target=mrobe500,--type=s:15751
+sdl:nozip:mrobe100sim:Olympus M-Robe 100 - Simulator:rockboxui:--target=mrobe100,--type=s:14139
+sdl:nozip:cowond2sim:Cowon D2 - Simulator:rockboxui:--target=cowond2,--type=s:15789
+sdl:nozip:zenvisionm30sim:Creative Zen Vision M 30GB - Simulator:rockboxui:--target=zenvisionm30gb,--type=s:15292
+sdl:nozip:sansaclipsim:SanDisk Sansa Clip - Simulator:rockboxui:--target=sansaclip,--type=s:10316
+sdl:nozip:sansafuzesim:SanDisk Sansa Fuze - Simulator:rockboxui:--target=sansafuze,--type=s:15884
+sdl:nozip:sansam200v4sim:SanDisk Sansa m200v4 - Simulator:rockboxui:--target=sansam200v4,--type=s:10014
+sdl:nozip:gogearhdd1630sim:Philips HDD1630 - Simulator:rockboxui:--target=gogearhdd1630,--type=s:15719
+sdl:nozip:gogearsa9200sim:Philips SA9200 - Simulator:rockboxui:--target=gogearsa9200,--type=s:6491
+sdl:nozip:samsungyh820sim:Samsung YH-820 - Simulator:rockboxui:--target=samsungyh820,--type=s:14718
+sdl:nozip:samsungyh920sim:Samsung YH-920 - Simulator:rockboxui:--target=samsungyh920,--type=s:14132
+sdl:nozip:samsungyh925sim:Samsung YH-925 - Simulator:rockboxui:--target=samsungyh925,--type=s:15431
+sdl:nozip:ondavx747sim:Onda VX747 - Simulator:rockboxui:--target=ondavx747,--type=s:15932
+m68k:zip:iriverh100:iriver H100 - Normal:rockbox.iriver:--target=iriverh100,--type=n:21569
+m68k:zip:iriverh120:iriver H120 - Normal:rockbox.iriver:--target=iriverh120,--type=n:21553
+m68k:zip:iriverh300:iriver H300 - Normal:rockbox.iriver:--target=iriverh300,--type=n:22573
+m68k:zip:iaudiox5:iAudio X5 - Normal:rockbox.iaudio:--target=iaudiox5,--type=n:20422
+m68k:zip:iaudiom5:iAudio M5 - Normal:rockbox.iaudio:--target=iaudiom5,--type=n:19605
+m68k:zip:iaudiom3:iAudio M3 - Normal:rockbox.iaudio:--target=iaudiom3,--type=n:17857
+arm:zip:ipodnano1g:iPod Nano 1G - Normal:rockbox.ipod:--target=ipodnano1g,--type=n:24517
+arm:zip:ipodnano2g:iPod Nano 2G - Normal:rockbox.ipod:--target=ipodnano2g,--type=n:24239
+arm:zip:ipodcolor:iPod Color - Normal:rockbox.ipod:--target=ipodcolor,--type=n:24659
+arm:zip:ipod4g:iPod 4G Grayscale - Normal:rockbox.ipod:--target=ipod4g,--type=n:22032
+arm:zip:ipodvideo:iPod Video - Normal:rockbox.ipod:--target=ipodvideo,--ram=32,--type=n:24949
+arm:zip:ipodvideo64mb:iPod Video 64MB - Normal:rockbox.ipod:--target=ipodvideo,--ram=64,--type=n:24955
+arm:zip:ipod3g:iPod 3G - Normal:rockbox.ipod:--target=ipod3g,--type=n:21001
+arm:zip:ipodmini2g:iPod Mini 2G - Normal:rockbox.ipod:--target=ipodmini2g,--type=n:21323
+arm:zip:ipodmini1g:iPod Mini 1G - Normal:rockbox.ipod:--target=ipodmini1g,--type=n:21266
+arm:zip:iriverh10:iriver H10 - Normal:rockbox.mi4:--target=iriverh10,--type=n:24402
+arm:zip:iriverh10_5gb:iriver H10 5GB - Normal:rockbox.mi4:--target=iriverh10_5gb,--type=n:24043
+arm:zip:gigabeatfx:Toshiba Gigabeat F - Normal:rockbox.gigabeat:--target=gigabeatfx,--type=n:23352
+arm:zip:gigabeats:Toshiba Gigabeat S - Normal:rockbox.gigabeat:--target=gigabeats,--type=n:25017
+arm:zip:sansae200:SanDisk Sansa e200 - Normal:rockbox.mi4:--target=sansae200,--type=n:24379
+arm:zip:sansac200:SanDisk Sansa ac200 - Normal:rockbox.mi4:--target=sansac200,--type=n:23141
+arm:zip:ipod1g2g:iPod 1G/2G - Normal:rockbox.ipod:--target=ipod1g2g,--type=n:20671
+arm:zip:mrobe500:Olympus M-Robe 500 - Normal:rockbox.mrobe500:--target=mrobe500,--type=n:24940
+arm:zip:mrobe100:Olympus M-Robe 100 - Normal:rockbox.mi4:--target=mrobe100,--type=n:20934
+arm:zip:cowond2:Cowon D2 - Normal:rockbox.d2:--target=cowond2,--type=n:23592
+arm:zip:zenvisionm30:Creative Zen Vision M 30GB - Normal:rockbox.zvm:--target=zenvisionm30gb,--type=n:23020
+arm:zip:zenvisionm60:Creative Zen Vision M 60GB - Normal:rockbox.zvm60:--target=zenvisionm60gb,--type=n:23017
+arm:zip:zenvision:Creative Zen Vision - Normal:rockbox.zv:--target=zenvision,--type=n:9593
+arm:zip:sansafuze:SanDisk Sansa Fuze - Normal:rockbox.sansa:--target=sansafuze,--type=n:24238
+arm:zip:sansaclip:SanDisk Sansa Clip - Normal:rockbox.sansa:--target=sansaclip,--type=n:15158
+arm:zip:sansae200v2:SanDisk Sansa e200v2 - Normal:rockbox.sansa:--target=sansae200v2,--type=n:24145
+arm:zip:sansac200v2:SanDisk Sansa c200v2 - Normal:rockbox.sansa:--target=sansac200v2,--type=n:16794
+arm:zip:sansam200v4:SanDisk Sansa m200v4 - Normal:rockbox.sansa:--target=sansam200v4,--type=n:14746
+arm:zip:gogearhdd1630:Philips HDD1630 - Normal:rockbox.mi4:--target=gogearhdd1630,--type=n:24145
+arm:zip:samsungyh820:Samsung YH-820 - Normal:rockbox.mi4:--target=samsungyh820,--type=n:22294
+arm:zip:samsungyh920:Samsung YH-920 - Normal:rockbox.mi4:--target=samsungyh920,--type=n:21360
+arm:zip:samsungyh925:Samsung YH-925 - Normal:rockbox.mi4:--target=samsungyh925,--type=n:23512
+arm:zip:gogearsa9200:Philips SA9200 - Normal:rockbox.mi4:--target=gogearsa9200,--type=n:10065
+arm:zip:vibe500:Packard Bell Vibe 500 - Normal:jukebox.mi4:--target=vibe500,--type=n:23744
+mipsel:zip:ondavx747:Onda VX747 - Normal:rockbox.vx747:--target=ondavx747,--type=n:30731
+mipsel:zip:ondavx767:Onda VX767 - Normal:rockbox.vx767:--target=ondavx767,--type=n:12620
+mipsel:zip:ondavx777:Onda VX777 - Normal:rockbox.vx777:--target=ondavx777,--type=n:30405
+sh:zip:archosrecorder:Recorder - Normal:ajbrec.ajz:--target=archosrecorder,--ram=2,--type=n:11280
+sh:zip:archosrecorderv2:V2 Recorder - Normal:ajbrec.ajz:--target=archosrecorderv2,--ram=2,--type=n:11352
+sh:zip:archosplayer:Player - Normal:archos.mod:--target=archosplayer,--ram=2,--type=n:4443
+sh:zip:archosfmrecorder:FM Recorder - Normal:ajbrec.ajz:--target=archosfmrecorder,--ram=2,--type=n:11364
+sh:zip:archosrecorder8mb:Recorder - Normal - 8MB:ajbrec.ajz:--target=archosrecorder,--ram=8,--type=n:11475
+sh:zip:archosondiosp:Ondio SP - Normal:ajbrec.ajz:--target=archosondiosp,--ram=2,--type=n:9899
+sh:zip:archosondiofm:Ondio FM - Normal:ajbrec.ajz:--target=archosondiofm,--ram=2,--type=n:10298
+m68k:nozip:iriverh100boot:iriver H100 - Boot:bootloader.iriver:--target=iriverh100,--type=b:703
+m68k:nozip:iriverh120boot:iriver H120 - Boot:bootloader.iriver:--target=iriverh120,--type=b:708
+m68k:nozip:iriverh300boot:iriver H300 - Boot:rockbox.iriver:--target=iriverh300,--type=b:740
+m68k:nozip:iaudiox5boot:iAudio X5 - Boot:rockbox.iaudio:--target=iaudiox5,--type=b:739
+m68k:nozip:iaudiom5boot:iAudio M5 - Boot:rockbox.iaudio:--target=iaudiom5,--type=b:688
+m68k:nozip:iaudiom3boot:iAudio M3 - Boot:rockbox.iaudio:--target=iaudiom3,--type=b:638
+mipsel:nozip:ondavx747boot:Onda VX747 - Boot:ccpmp.bin:--target=ondavx747,--type=b:1280
+arm:nozip:ipodnano1gboot:iPod Nano 1G - Boot:bootloader-ipodnano1g.ipod:--target=ipodnano1g,--type=b:870
+arm:nozip:ipodnano2gboot:iPod Nano 2G - Boot:bootloader-ipodnano2g.ipod:--target=ipodnano2g,--type=b:942
+arm:nozip:ipodcolorboot:iPod Color - Boot:bootloader-ipodcolor.ipod:--target=ipodcolor,--type=b:873
+arm:nozip:ipod4gboot:iPod 4G Grayscale - Boot:bootloader-ipod4g.ipod:--target=ipod4g,--type=b:861
+arm:nozip:ipodvideoboot:iPod Video - Boot:bootloader-ipodvideo.ipod:--target=ipodvideo,--ram=2,--type=b:884
+arm:nozip:ipod3gboot:iPod 3G - Boot:bootloader-ipod3g.ipod:--target=ipod3g,--type=b:783
+arm:nozip:ipodmini2gboot:iPod Mini 2G - Boot:bootloader-ipodmini2g.ipod:--target=ipodmini2g,--type=b:858
+arm:nozip:ipodmini1gboot:iPod Mini 1G - Boot:bootloader-ipodmini1g.ipod:--target=ipodmini1g,--type=b:855
+arm:nozip:h10boot:iriver H10 - Boot:H10_20GC.mi4:--target=iriverh10,--type=b:853
+arm:nozip:gigabeatfxboot:Toshiba Gigabeat F - Boot:FWIMG01.DAT:--target=gigabeatfx,--type=b:786
+arm:nozip:gigabeatsboot:Toshiba Gigabeat S - Boot:nk.bin:--target=gigabeats,--type=b:1046
+arm:nozip:sansae200boot:SanDisk Sansa e200 - Boot:PP5022.mi4:--target=sansae200,--type=b:862
+arm:nozip:sansac200boot:SanDisk Sansa c200 - Boot:firmware.mi4:--target=sansac200,--type=b:858
+arm:nozip:ipod1g2gboot:iPod 1G/2G - Boot:bootloader-ipod1g2g.ipod:--target=ipod1g2g,--type=b:766
+arm:nozip:mrobe100boot:Olympus M-Robe 100 - Boot:pp5020.mi4:--target=mrobe100,--type=b:856
+arm:nozip:cowond2boot:Cowon D2 - Boot:bootloader-cowond2.bin:--target=cowond2,--type=b:868
+arm:nozip:sansae200v2boot:SanDisk Sansa e200v2 - Boot:bootloader-e200v2.sansa:--target=sansae200v2,--type=b:762
+arm:nozip:sansac200v2boot:SanDisk Sansa c200v2 - Boot:bootloader-c200v2.sansa:--target=sansac200v2,--type=b:760
+arm:nozip:sansam200v4boot:SanDisk Sansa m200v4 - Boot:bootloader-m200v4.sansa:--target=sansam200v4,--type=b:733
+arm:nozip:sansaclipboot:SanDisk Sansa Clip - Boot:bootloader-clip.sansa:--target=sansaclip,--type=b:751
+arm:nozip:sansafuzeboot:SanDisk Sansa Fuze - Boot:bootloader-fuze.sansa:--target=sansafuze,--type=b:773
+arm:nozip:gogearhdd1630boot:Philips HDD1630 - Boot:FWImage.ebn:--target=gogearhdd1630,--type=b:852
+arm:nozip:samsungyh820boot:Samsung YH-820 - Boot:FW_YH820.mi4:--target=samsungyh820,--type=b:841
+arm:nozip:samsungyh920boot:Samsung YH-920 - Boot:PP5020.mi4:--target=samsungyh920,--type=b:834
+arm:nozip:samsungyh925boot:Samsung YH-925 - Boot:FW_YH925.mi4:--target=samsungyh925,--type=b:845
+arm:nozip:gogearsa9200boot:Philips SA9200 - Boot:FWImage.ebn:--target=gogearsa9200,--type=b:843
+arm:nozip:zenvisionm30boot:Creative Zen Vision M 30GB - Boot:rockbox.zvmboot:--target=zenvisionm30gb,--type=b:904
+sh:nozip:archosrecorderboot:Recorder - Boot:ajbrec.ajz:--target=archosrecorder,--ram=2,--type=b:830
+sh:nozip:playerboot:Player - Boot:archos.mod:--target=archosplayer,--ram=2,--type=b:726
+sh:nozip:archosfmrecorderboot:FM Recorder - Boot:ajbrec.ajz:--target=archosfmrecorder,--ram=2,--type=b:812
+sh:nozip:archosondiospboot:Ondio SP - Boot:ajbrec.ajz:--target=archosondiosp,--ram=2,--type=b:803
+sdl:nozip:playerwps:Player - Checkwps:checkwps.archosplayer:--target=archosplayer,--ram=2,--type=c:83
+sdl:nozip:archosrecorderwps:Recorder - Checkwps:checkwps.archosrecorder:--target=archosrecorder,--ram=2,--type=c:130
+sdl:nozip:archosfmrecorderwps:FM Recorder - Checkwps:checkwps.archosfmrecorder:--target=archosfmrecorder,--ram=2,--type=c:127
+sdl:nozip:archosondiofmwps:Ondio FM - Checkwps:checkwps.archosondiofm:--target=archosondiofm,--ram=2,--type=c:125
+sdl:nozip:iriverh120wps:iriver H120 - Checkwps:checkwps.iriverh120:--target=iriverh120,--type=c:128
+sdl:nozip:iriverh300wps:iriver H300 - Checkwps:checkwps.iriverh300:--target=iriverh300,--type=c:128
+sdl:nozip:ipodnano1gwps:iPod Nano - Checkwps:checkwps.ipodnano1g:--target=ipodnano1g,--type=c:128
+sdl:nozip:ipodnano2gwps:iPod Nano 2G - Checkwps:checkwps.ipodnano2g:--target=ipodnano2g,--type=c:129
+sdl:nozip:ipodcolorwps:iPod Color - Checkwps:checkwps.ipodcolor:--target=ipodcolor,--type=c:125
+sdl:nozip:iaudiox5wps:iAudio X5 - Checkwps:checkwps.iaudiox5:--target=iaudiox5,--type=c:127
+sdl:nozip:iaudiom5wps:iAudio M5 - Checkwps:checkwps.iaudiom5:--target=iaudiom5,--type=c:130
+sdl:nozip:iaudiom3wps:iAudio M3 - Checkwps:checkwps.iaudiom3:--target=iaudiom3,--type=c:129
+sdl:nozip:ipod4gwps:iPod 4G Grayscale - Checkwps:checkwps.ipod4g:--target=ipod4g,--type=c:126
+sdl:nozip:ipodvideowps:iPod Video - Checkwps:checkwps.ipodvideo:--target=ipodvideo,--type=c,--ram=32:133
+sdl:nozip:ipodmini2gwps:iPod Mini 2G - Checkwps:checkwps.ipodmini2g:--target=ipodmini2g,--type=c:128
+sdl:nozip:h10wps:iriver H10 - Checkwps:checkwps.iriverh10:--target=iriverh10,--type=c:128
+sdl:nozip:gigabeatfxwps:Toshiba Gigabeat F - Checkwps:checkwps.gigabeatfx:--target=gigabeatfx,--type=c:131
+sdl:nozip:gigabeatswps:Toshiba Gigabeat S - Checkwps:checkwps.gigabeats:--target=gigabeats,--type=c:134
+sdl:nozip:sansae200wps:SanDisk Sansa e200 - Checkwps:checkwps.sansae200:--target=sansae200,--type=c:127
+sdl:nozip:sansae200v2wps:SanDisk Sansa e200v2 - Checkwps:checkwps.sansae200v2:--target=sansae200v2,--type=c:129
+sdl:nozip:sansac200wps:SanDisk Sansa c200 - Checkwps:checkwps.sansac200:--target=sansac200,--type=c:133
+sdl:nozip:sansac200v2wps:SanDisk Sansa c200v2 - Checkwps:checkwps.sansac200v2:--target=sansac200v2,--type=c:128
+sdl:nozip:mrobe500wps:Olympus M-Robe 500 - Checkwps:checkwps.mrobe500:--target=mrobe500,--type=c:128
+sdl:nozip:mrobe100wps:Olympus M-Robe 100 - Checkwps:checkwps.mrobe100:--target=mrobe100,--type=c:123
+sdl:nozip:cowond2wps:Cowon D2 - Checkwps:checkwps.cowond2:--target=cowond2,--type=c:127
+sdl:nozip:zenvisionm30wps:Creative Zen Vision M 30GB - Checkwps:checkwps.zenvisionm30gb:--target=zenvisionm30gb,--type=c:127
+sdl:nozip:sansaclipwps:SanDisk Sansa Clip - Checkwps:checkwps.sansaclip:--target=sansaclip,--type=c:126
+sdl:nozip:sansafuzewps:SanDisk Sansa Fuze - Checkwps:checkwps.sansafuze:--target=sansafuze,--type=c:127
+sdl:nozip:sansam200v4wps:SanDisk Sansa m200v4 - Checkwps:checkwps.sansam200v4:--target=sansam200v4,--type=c:128
+sdl:nozip:gogearhdd1630wps:Philips HDD1630 - Checkwps:checkwps.gogearhdd1630:--target=gogearhdd1630,--type=c:128
+sdl:nozip:gogearsa9200wps:Philips SA9200 - Checkwps:checkwps.gogearsa9200:--target=gogearsa9200,--type=c:134
+sdl:nozip:samsungyh820wps:Samsung YH-820 - Checkwps:checkwps.samsungyh820:--target=samsungyh820,--type=c:127
+sdl:nozip:samsungyh920wps:Samsung YH-920 - Checkwps:checkwps.samsungyh920:--target=samsungyh920,--type=c:125
+sdl:nozip:samsungyh925wps:Samsung YH-925 - Checkwps:checkwps.samsungyh925:--target=samsungyh925,--type=c:132
+sdl:nozip:ondavx747wps:Onda VX747 - Checkwps:checkwps.ondavx747:--target=ondavx747,--type=c:132
+sdl:nozip:playerdb:Player - Database:database.archosplayer:--target=archosplayer,--ram=2,--type=d:205
+sdl:nozip:iriverh300db:iriver H300 - Database:database.iriverh300:--target=iriverh300,--type=d:433
