@@ -109,11 +109,7 @@ for(reverse sort keys %date) {
             printf("<br><a href=\"http://download.rockbox.org/manual/$docfile\">manual</a> <small>%d kB</small>", $size/1024);
         }
 
-        my $voicemod = $m;
-        if (defined $builds{$m}{voice}) {
-            $voicemod = $builds{$m}{voice};
-        }
-
+        my $voicemod = voicename($m);
         my $voicefile="$basedir/daily/voices/${voicemod}-${d}-english.zip";
         my $voiceurl="$baseurl/daily/voices/${voicemod}-${d}-english.zip";
 

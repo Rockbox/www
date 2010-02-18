@@ -69,10 +69,10 @@ sub buildit {
 
     `rm -rf * >/dev/null 2>&1`;
 
-    my $c = "../tools/configure --type=av --target=$dir --language=0 --tts=f";
+    my $c = "../tools/configure --type=av --target=$dir --ram=-1 --language=0 --tts=f --voice=-1";
 
     print "C: $c\n" if($verbose);
-    `$c`;
+    system($c);
 
     print "Run 'make voice'\n" if($verbose);
     `make voice`;
@@ -101,9 +101,9 @@ sub buildinfo {
 $ENV{'POOL'}="/sites/rockbox.org/dailybuild-voices/voice-pool";
 
 for my $b (&usablebuilds) {
-    next if ($builds{$b}{configname} < 3); # no variants
+    next if ($builds{$b}{voice}); # no variants
 
-    runone(voicename($b));
+    runone($b);
 }
 
 `rm -f /sites/rockbox.org/dailybuild-voices/voice-pool/*`;

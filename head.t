@@ -31,7 +31,7 @@ function fsstrip() {
 <body>
 <table border=0 cellpadding=7 cellspacing=0>
 <tr valign="top">
-<td bgcolor=MENUBG valign="top" rowspan=7>
+<td bgcolor=MENUBG valign="top" rowspan=7 class='leftmenu'>
 <br>
 <div align="center"><a href="http://www.rockbox.org/">
 <img src="http://www.rockbox.org/rockbox100.png" width=99 height=30 border=0 alt="Rockbox.org home"></a>
@@ -87,7 +87,7 @@ Search
 #ifdef TWIKI
 <td bgcolor=MENUBG width=100%>%TMPL:END%
 #else
-<td>
+<td class='rightcontent'>
 #ifdef _LOGO_
 _LOGO_
 #else

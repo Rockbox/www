@@ -11,6 +11,7 @@ my $filename = param("upfile");
 my $tmpfile = CGI::tmpFileName($filename);
 
 $filename =~ s/[\;\:\!\?\*\"\'\,\ ]/_/g;
+print STDERR "Uploading $filename\n";
 
 print "Content-type: text/plain\n";
 

@@ -50,7 +50,7 @@ my @hourly = ( "index.shtml",
                "recent.shtml",
                "since-12months.html",
                "since-4weeks.html",
-               "since31.html",
+               "since34.html",
                 );
 
 for my $file (@hourly) {

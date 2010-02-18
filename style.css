@@ -71,6 +71,10 @@ A {
  margin-top: 10px;
 }
 
+.rightcontent {
+ border-left: solid 1px white;
+}
+
 .menulink {
  color: #fff;
  line-height: 140%;

@@ -91,23 +91,24 @@ sub buildit {
 
     `rm -rf * >/dev/null 2>&1`;
 
-    my $c = "../tools/configure --target=$target --type=m";
+    my $c = "../tools/configure --target=$target --type=m --ram=-1";
 
     print "C: $c\n" if($verbose);
-    `$c`;
+    system($c);
 
     print "Run 'make'\n" if($verbose);
-    `make manual 2>/dev/null`;
+    system("make manual");
 
     print "Run 'make manual-zip'\n" if($verbose);
-    `make manual-zip 2>/dev/null`;
+    system("make manual-zip");
 }
 
 # run make in tools first to make sure they're up-to-date
 `(cd tools && make ) >/dev/null 2>&1`;
 
 for my $build (&usablebuilds) {
-    next if ($builds{$b}{configname} < 3); # no variants
+    my $name = manualname($build);
+    next if (not -f "../trunk/manual/platform/$name.tex");
     
-    runone($build);
+    runone($name);
 }

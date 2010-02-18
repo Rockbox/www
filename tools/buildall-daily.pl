@@ -58,6 +58,3 @@ if (open OUT, ">output/build-info-$date") {
         "rev = $rev\n";
     close OUT;
 }
-
-
-`
