@@ -52,6 +52,7 @@ foreach my $id (keys %builds) {
     $text =~ s/Philips *//i;
     $text =~ s/Zen Vision M/ZVM/i;
     $text =~ s/Samsung/Smsg/i;
+    $text =~ s/Packard Bell *//i;
 
     print "short: $text\n";
 

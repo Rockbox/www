@@ -16,17 +16,17 @@ sdl:nozip:ipodmini2gsim:iPod Mini 2G - Simulator:rockboxui:--target=ipodmini2g,-
 sdl:nozip:h10sim:iriver H10 - Simulator:rockboxui:--target=iriverh10,--type=s:13955
 sdl:nozip:gigabeatfxsim:Toshiba Gigabeat F - Simulator:rockboxui:--target=gigabeatfx,--type=s:13859
 sdl:nozip:gigabeatssim:Toshiba Gigabeat S - Simulator:rockboxui:--target=gigabeats,--type=s:14142
-sdl:nozip:sansae200sim:SanDisk Sansa sansae200 - Simulator:rockboxui:--target=sansae200,--type=s:14003
-sdl:nozip:sansae200v2sim:SanDisk Sansa sansae200v2 - Simulator:rockboxui:--target=sansae200v2,--type=s:13756
-sdl:nozip:sansac200sim:SanDisk Sansa sansac200 - Simulator:rockboxui:--target=sansac200,--type=s:13202
-sdl:nozip:sansac200v2sim:SanDisk Sansa sansac200v2 - Simulator:rockboxui:--target=sansac200v2,--type=s:12216
+sdl:nozip:sansae200sim:SanDisk Sansa e200 - Simulator:rockboxui:--target=sansae200,--type=s:14003
+sdl:nozip:sansae200v2sim:SanDisk Sansa e200v2 - Simulator:rockboxui:--target=sansae200v2,--type=s:13756
+sdl:nozip:sansac200sim:SanDisk Sansa c200 - Simulator:rockboxui:--target=sansac200,--type=s:13202
+sdl:nozip:sansac200v2sim:SanDisk Sansa c200v2 - Simulator:rockboxui:--target=sansac200v2,--type=s:12216
 sdl:nozip:mrobe500sim:Olympus M-Robe 500 - Simulator:rockboxui:--target=mrobe500,--type=s:13227
 sdl:nozip:mrobe100sim:Olympus M-Robe 100 - Simulator:rockboxui:--target=mrobe100,--type=s:12405
 sdl:nozip:cowond2sim:Cowon D2 - Simulator:rockboxui:--target=cowond2,--type=s:13940
 sdl:nozip:zenvisionm30sim:Creative Zen Vision M 30GB - Simulator:rockboxui:--target=zenvisionm30gb,--type=s:13517
 sdl:nozip:sansaclipsim:SanDisk Sansa Clip - Simulator:rockboxui:--target=sansaclip,--type=s:9148
 sdl:nozip:sansafuzesim:SanDisk Sansa Fuze - Simulator:rockboxui:--target=sansafuze,--type=s:13748
-sdl:nozip:sansam200v4sim:SanDisk Sansa sansam200v4 - Simulator:rockboxui:--target=sansam200v4,--type=s:8861
+sdl:nozip:sansam200v4sim:SanDisk Sansa m200v4 - Simulator:rockboxui:--target=sansam200v4,--type=s:8861
 sdl:nozip:gogearhdd1630sim:Philips HDD1630 - Simulator:rockboxui:--target=gogearhdd1630,--type=s:13891
 sdl:nozip:gogearsa9200sim:Philips SA9200 - Simulator:rockboxui:--target=gogearsa9200,--type=s:5826
 sdl:nozip:samsungyh820sim:Samsung YH-820 - Simulator:rockboxui:--target=samsungyh820,--type=s:13136
@@ -52,8 +52,8 @@ arm:zip:iriverh10:iriver H10 - Normal:rockbox.mi4:--target=iriverh10,--type=n:21
 arm:zip:iriverh10_5gb:iriver H10 5GB - Normal:rockbox.mi4:--target=iriverh10_5gb,--type=n:21496
 arm:zip:gigabeatfx:Toshiba Gigabeat F - Normal:rockbox.gigabeat:--target=gigabeatfx,--type=n:20657
 arm:zip:gigabeats:Toshiba Gigabeat S - Normal:rockbox.gigabeat:--target=gigabeats,--type=n:22022
-arm:zip:sansae200:SanDisk Sansa sansae200 - Normal:rockbox.mi4:--target=sansae200,--type=n:21687
-arm:zip:sansac200:SanDisk Sansa sansac200 - Normal:rockbox.mi4:--target=sansac200,--type=n:20289
+arm:zip:sansae200:SanDisk Sansa e200 - Normal:rockbox.mi4:--target=sansae200,--type=n:21687
+arm:zip:sansac200:SanDisk Sansa ac200 - Normal:rockbox.mi4:--target=sansac200,--type=n:20289
 arm:zip:ipod1g2g:iPod 1G/2G - Normal:rockbox.ipod:--target=ipod1g2g,--type=n:18376
 arm:zip:mrobe500:Olympus M-Robe 500 - Normal:rockbox.mrobe500:--target=mrobe500,--type=n:20454
 arm:zip:mrobe100:Olympus M-Robe 100 - Normal:rockbox.mi4:--target=mrobe100,--type=n:18716
@@ -63,9 +63,9 @@ arm:zip:zenvisionm60:Creative Zen Vision M 60GB - Normal:rockbox.zvm60:--target=
 arm:zip:zenvision:Creative Zen Vision - Normal:rockbox.zv:--target=zenvision,--type=n:8638
 arm:zip:sansafuze:SanDisk Sansa Fuze - Normal:rockbox.sansa:--target=sansafuze,--type=n:20626
 arm:zip:sansaclip:SanDisk Sansa Clip - Normal:rockbox.sansa:--target=sansaclip,--type=n:13379
-arm:zip:sansae200v2:SanDisk Sansa sansae200v2 - Normal:rockbox.sansa:--target=sansae200v2,--type=n:20586
-arm:zip:sansac200v2:SanDisk Sansa sansac200v2 - Normal:rockbox.sansa:--target=sansac200v2,--type=n:17966
-arm:zip:sansam200v4:SanDisk Sansa sansam200v4 - Normal:rockbox.sansa:--target=sansam200v4,--type=n:12954
+arm:zip:sansae200v2:SanDisk Sansa e200v2 - Normal:rockbox.sansa:--target=sansae200v2,--type=n:20586
+arm:zip:sansac200v2:SanDisk Sansa c200v2 - Normal:rockbox.sansa:--target=sansac200v2,--type=n:17966
+arm:zip:sansam200v4:SanDisk Sansa m200v4 - Normal:rockbox.sansa:--target=sansam200v4,--type=n:12954
 arm:zip:gogearhdd1630:Philips HDD1630 - Normal:rockbox.mi4:--target=gogearhdd1630,--type=n:21258
 arm:zip:samsungyh820:Samsung YH-820 - Normal:rockbox.mi4:--target=samsungyh820,--type=n:20130
 arm:zip:samsungyh920:Samsung YH-920 - Normal:rockbox.mi4:--target=samsungyh920,--type=n:19192
@@ -100,14 +100,14 @@ arm:nozip:ipodmini1gboot:iPod Mini 1G - Boot:bootloader-ipodmini1g.ipod:--target
 arm:nozip:h10boot:iriver H10 - Boot:H10_20GC.mi4:--target=iriverh10,--type=b:844
 arm:nozip:gigabeatfxboot:Toshiba Gigabeat F - Boot:FWIMG01.DAT:--target=gigabeatfx,--type=b:756
 arm:nozip:gigabeatsboot:Toshiba Gigabeat S - Boot:nk.bin:--target=gigabeats,--type=b:1042
-arm:nozip:sansae200boot:SanDisk Sansa sansae200 - Boot:PP5022.mi4:--target=sansae200,--type=b:857
-arm:nozip:sansac200boot:SanDisk Sansa sansac200 - Boot:firmware.mi4:--target=sansac200,--type=b:853
+arm:nozip:sansae200boot:SanDisk Sansa e200 - Boot:PP5022.mi4:--target=sansae200,--type=b:857
+arm:nozip:sansac200boot:SanDisk Sansa c200 - Boot:firmware.mi4:--target=sansac200,--type=b:853
 arm:nozip:ipod1g2gboot:iPod 1G/2G - Boot:bootloader-ipod1g2g.ipod:--target=ipod1g2g,--type=b:739
 arm:nozip:mrobe100boot:Olympus M-Robe 100 - Boot:pp5020.mi4:--target=mrobe100,--type=b:816
 arm:nozip:cowond2boot:Cowon D2 - Boot:bootloader-cowond2.bin:--target=cowond2,--type=b:792
-arm:nozip:sansae200v2boot:SanDisk Sansa sansae200v2 - Boot:bootloader-e200v2.sansa:--target=sansae200v2,--type=b:782
-arm:nozip:sansac200v2boot:SanDisk Sansa sansac200v2 - Boot:bootloader-c200v2.sansa:--target=sansac200v2,--type=b:736
-arm:nozip:sansam200v4boot:SanDisk Sansa sansam200v4 - Boot:bootloader-m200v4.sansa:--target=sansam200v4,--type=b:708
+arm:nozip:sansae200v2boot:SanDisk Sansa e200v2 - Boot:bootloader-e200v2.sansa:--target=sansae200v2,--type=b:782
+arm:nozip:sansac200v2boot:SanDisk Sansa c200v2 - Boot:bootloader-c200v2.sansa:--target=sansac200v2,--type=b:736
+arm:nozip:sansam200v4boot:SanDisk Sansa m200v4 - Boot:bootloader-m200v4.sansa:--target=sansam200v4,--type=b:708
 arm:nozip:sansaclipboot:SanDisk Sansa Clip - Boot:bootloader-clip.sansa:--target=sansaclip,--type=b:731
 arm:nozip:sansafuzeboot:SanDisk Sansa Fuze - Boot:bootloader-fuze.sansa:--target=sansafuze,--type=b:782
 arm:nozip:gogearhdd1630boot:Philips HDD1630 - Boot:FWImage.ebn:--target=gogearhdd1630,--type=b:836
@@ -138,17 +138,17 @@ sdl:nozip:ipodmini2gwps:iPod Mini 2G - Checkwps:checkwps.ipodmini2g:--target=ipo
 sdl:nozip:h10wps:iriver H10 - Checkwps:checkwps.iriverh10:--target=iriverh10,--type=c:85
 sdl:nozip:gigabeatfxwps:Toshiba Gigabeat F - Checkwps:checkwps.gigabeatfx:--target=gigabeatfx,--type=c:83
 sdl:nozip:gigabeatswps:Toshiba Gigabeat S - Checkwps:checkwps.gigabeats:--target=gigabeats,--type=c:85
-sdl:nozip:sansae200wps:SanDisk Sansa sansae200 - Checkwps:checkwps.sansae200:--target=sansae200,--type=c:88
-sdl:nozip:sansae200v2wps:SanDisk Sansa sansae200v2 - Checkwps:checkwps.sansae200v2:--target=sansae200v2,--type=c:83
-sdl:nozip:sansac200wps:SanDisk Sansa sansac200 - Checkwps:checkwps.sansac200:--target=sansac200,--type=c:85
-sdl:nozip:sansac200v2wps:SanDisk Sansa sansac200v2 - Checkwps:checkwps.sansac200v2:--target=sansac200v2,--type=c:82
+sdl:nozip:sansae200wps:SanDisk Sansa e200 - Checkwps:checkwps.sansae200:--target=sansae200,--type=c:88
+sdl:nozip:sansae200v2wps:SanDisk Sansa e200v2 - Checkwps:checkwps.sansae200v2:--target=sansae200v2,--type=c:83
+sdl:nozip:sansac200wps:SanDisk Sansa c200 - Checkwps:checkwps.sansac200:--target=sansac200,--type=c:85
+sdl:nozip:sansac200v2wps:SanDisk Sansa c200v2 - Checkwps:checkwps.sansac200v2:--target=sansac200v2,--type=c:82
 sdl:nozip:mrobe500wps:Olympus M-Robe 500 - Checkwps:checkwps.mrobe500:--target=mrobe500,--type=c:87
 sdl:nozip:mrobe100wps:Olympus M-Robe 100 - Checkwps:checkwps.mrobe100:--target=mrobe100,--type=c:80
 sdl:nozip:cowond2wps:Cowon D2 - Checkwps:checkwps.cowond2:--target=cowond2,--type=c:86
 sdl:nozip:zenvisionm30wps:Creative Zen Vision M 30GB - Checkwps:checkwps.zenvisionm30gb:--target=zenvisionm30gb,--type=c:86
 sdl:nozip:sansaclipwps:SanDisk Sansa Clip - Checkwps:checkwps.sansaclip:--target=sansaclip,--type=c:83
 sdl:nozip:sansafuzewps:SanDisk Sansa Fuze - Checkwps:checkwps.sansafuze:--target=sansafuze,--type=c:83
-sdl:nozip:sansam200v4wps:SanDisk Sansa sansam200v4 - Checkwps:checkwps.sansam200v4:--target=sansam200v4,--type=c:83
+sdl:nozip:sansam200v4wps:SanDisk Sansa m200v4 - Checkwps:checkwps.sansam200v4:--target=sansam200v4,--type=c:83
 sdl:nozip:gogearhdd1630wps:Philips HDD1630 - Checkwps:checkwps.gogearhdd1630:--target=gogearhdd1630,--type=c:88
 sdl:nozip:gogearsa9200wps:Philips SA9200 - Checkwps:checkwps.gogearsa9200:--target=gogearsa9200,--type=c:86
 sdl:nozip:samsungyh820wps:Samsung YH-820 - Checkwps:checkwps.samsungyh820:--target=samsungyh820,--type=c:82
