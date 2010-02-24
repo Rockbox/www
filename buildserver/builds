@@ -111,8 +111,8 @@ arm:nozip:sansae200v2boot:SanDisk Sansa e200v2 - Boot:bootloader-e200v2.sansa:--
 arm:nozip:sansac200v2boot:SanDisk Sansa c200v2 - Boot:bootloader-c200v2.sansa:--target=sansac200v2,--type=b:760
 arm:nozip:sansam200v4boot:SanDisk Sansa m200v4 - Boot:bootloader-m200v4.sansa:--target=sansam200v4,--type=b:733
 arm:nozip:sansaclipboot:SanDisk Sansa Clip - Boot:bootloader-clip.sansa:--target=sansaclip,--type=b:751
-arm:nozip:sansaclipboot:SanDisk Sansa Clipv2 - Boot:bootloader-clipv2.sansa:--target=sansaclipv2,--type=b:751
-arm:nozip:sansaclipboot:SanDisk Sansa Clip+ - Boot:bootloader-clipplus.sansa:--target=sansaclipplus,--type=b:751
+arm:nozip:sansaclipv2boot:SanDisk Sansa Clipv2 - Boot:bootloader-clipv2.sansa:--target=sansaclipv2,--type=b:751
+arm:nozip:sansaclipplusboot:SanDisk Sansa Clip+ - Boot:bootloader-clipplus.sansa:--target=sansaclipplus,--type=b:751
 arm:nozip:sansafuzeboot:SanDisk Sansa Fuze - Boot:bootloader-fuze.sansa:--target=sansafuze,--type=b:773
 arm:nozip:gogearhdd1630boot:Philips HDD1630 - Boot:FWImage.ebn:--target=gogearhdd1630,--type=b:852
 arm:nozip:samsungyh820boot:Samsung YH-820 - Boot:FW_YH820.mi4:--target=samsungyh820,--type=b:841
