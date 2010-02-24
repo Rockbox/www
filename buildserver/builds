@@ -63,8 +63,8 @@ arm:zip:zenvisionm60:Creative Zen Vision M 60GB - Normal:rockbox.zvm60:--target=
 arm:zip:zenvision:Creative Zen Vision - Normal:rockbox.zv:--target=zenvision,--type=n:9593
 arm:zip:sansafuze:SanDisk Sansa Fuze - Normal:rockbox.sansa:--target=sansafuze,--type=n:24238
 arm:zip:sansaclip:SanDisk Sansa Clip - Normal:rockbox.sansa:--target=sansaclip,--type=n:15158
-arm:zip:sansaclipv2:SanDisk Sansa Clipv2 - Normal:rockbox.sansa:--target=sansaclipv2,--type=n:15158
-arm:zip:sansaclipplus:SanDisk Sansa Clip+ - Normal:rockbox.sansa:--target=sansaclipplus,--type=n:15158
+arm:zip:sansaclipv2:SanDisk Sansa Clipv2 - Normal:rockbox.sansa:--target=sansaclipv2,--type=n:17994
+arm:zip:sansaclipplus:SanDisk Sansa Clip+ - Normal:rockbox.sansa:--target=sansaclipplus,--type=n:17983
 arm:zip:sansae200v2:SanDisk Sansa e200v2 - Normal:rockbox.sansa:--target=sansae200v2,--type=n:24145
 arm:zip:sansac200v2:SanDisk Sansa c200v2 - Normal:rockbox.sansa:--target=sansac200v2,--type=n:16794
 arm:zip:sansam200v4:SanDisk Sansa m200v4 - Normal:rockbox.sansa:--target=sansam200v4,--type=n:14746
