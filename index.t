@@ -75,6 +75,7 @@ and Ondio
 <table class="news" summary="recent news">
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
+<tr><td nowrap>2010-03-04</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes351">Rockbox 3.5.1 is released</a></td></tr>
 <tr><td nowrap>2010-02-15</td><td>Rockbox will be applying for Google Summer of Code 2010.  Please <a href="http://www.rockbox.org/wiki/SummerOfCode2010">suggest</a> possible projects or <a href="http://www.rockbox.org/irc/">ask</a> to be a mentor or student on our IRC channel.</td></tr>
 <tr><td nowrap>2010-02-03</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes35">Rockbox 3.5 is released</a></td></tr>
 <tr><td nowrap>2009-09-24</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes34">Rockbox 3.4 is released</a></td></tr>
