@@ -413,6 +413,12 @@ sub HELLO {
         $client{$fno}{speed} = $speed; 
         $client{$fno}{ulspeed} = $ulspeed; 
 
+        if ($client{$fno}{block_lift} and $client{$fno}{block_lift} < time()) {
+            delete $client{$fno}{blocked};
+            delete $client{$fno}{block_lift};
+            slog "Block lifted for $cli";
+        }
+
         if ($client{$fno}{blocked}) {
             slog "Blocked: client $cli blocked due to: $client{$fno}{blocked}";
             privmessage $fno, sprintf  "Hello $cli. Your build client has been temporarily blocked by the administrators due to: $client{$fno}{blocked}. Please go to #rockbox to enable your client again.";
@@ -533,6 +539,7 @@ sub COMPLETED {
         slog "Fatal build error: $msg. Disabling client.";
         privmessage $cl, "Fatal build error: $msg. You have been temporarily disabled.";
         $client{$cl}{'blocked'} = $msg;
+        $client{$cl}{'block_lift'} = time() + 600; # come back in 10 minutes
         client_gone($cl);
         return;
     }
