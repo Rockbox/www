@@ -14,7 +14,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 33;
+my $revision = 34;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -412,9 +412,8 @@ sub _HELLO
     if ($_[0] ne "ok") {
         tprint "HELLO failed: @_\n";
         close $sock;
-        # try again a little later
         sleep 10;
-        goto beginning;
+        exit;
     }
 }
 
@@ -483,6 +482,7 @@ sub UPDATE
     rename("$perlfile.new", $perlfile);
 
     print $sock "_UPDATE $rev\n";
+    close $sock;
     sleep 1;
     exit;
 }
