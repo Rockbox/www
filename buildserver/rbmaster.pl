@@ -26,15 +26,16 @@ if ($test) {
 
 # the minimum protocol version supported. The protocol version is provided
 # by the client
-my $minimumversion = 32;
+my $minimumversion = 34;
 
 # if the client is found too old, this is a svn rev we tell the client to
 # use to pick an update
-my $updaterev = 22384;
+my $updaterev = 25129;
 
 
 use IO::Socket;
 use IO::Select;
+use Net::hostent;
 use File::Path;
 use DBI;
 use Time::HiRes qw(gettimeofday tv_interval);
@@ -370,13 +371,15 @@ sub HELLO {
         }
         $cli .= "-$user"; # append the user name
 
+        my $host = $client{$fno}{'host'} . ':' . $client{$fno}{'port'};
+
         for my $cl (&build_clients) {
             if($client{$cl}{'client'} eq "$cli") {
-                slog "HELLO dupe name: $cli ($args)";
+                slog " HELLO dupe name: $cli (host $host)";
                 command $rh, "_HELLO error duplicate name!";
                 $client{$fno}{'bad'}="duplicate name";
-                $client{$fno}{'client'} = "$cli.$$";
-                $client{$fno}{'fine'} = 1;
+                $client{$fno}{'client'} = "$cli.dupe";
+                $client{$fno}{'fine'} = 1; # include in build_clients()
                 return;
             }
         }
@@ -395,7 +398,6 @@ sub HELLO {
 
         if($version < $minimumversion) {
             updateclient($fno, $updaterev);
-            $client{$fno}{'bad'}="Updating";
             return;
         }
 
@@ -427,7 +429,7 @@ sub HELLO {
         else {
 #            my $sock = $client{$fno}{socket};
 #            my($port,$iaddr) = sockaddr_in($sock);
-            slog "Joined: client $cli arch $archlist speed $speed";
+            slog "Joined: client $cli host $host arch $archlist speed $speed";
             privmessage $fno, sprintf  "Welcome $cli. Your build speed is $speed points/sec. Your upload speed is %d KB/s.", $ulspeed / 1024;
             dblog($fno, "joined", "");
         }
@@ -536,7 +538,7 @@ sub COMPLETED {
 
     my $msg = &check_log(sprintf("$uploadpath/%s-%s.log", $cli, $id));
     if ($msg) {
-        slog "Fatal build error: $msg. Disabling client.";
+        slog "Fatal build error: $msg. Blocking $cli.";
         privmessage $cl, "Fatal build error: $msg. You have been temporarily disabled.";
         $client{$cl}{'blocked'} = $msg;
         $client{$cl}{'block_lift'} = time() + 600; # come back in 10 minutes
@@ -1059,6 +1061,13 @@ sub bestfit_builds
     my $totspeed = 0;
     for (&build_clients) {
         $totspeed += $client{$_}{speed};
+
+        if ($client{$_}{block_lift} and $client{$_}{block_lift} < time()) {
+            delete $client{$_}{blocked};
+            delete $client{$_}{block_lift};
+            my $cli = $client{$_}{client};
+            slog "Block lifted for $cli";
+        }
     }
     slog sprintf "Total work: %d points", $totwork;
     slog sprintf "Total speed: %d points/sec (%d clients)", $totspeed, scalar &build_clients;
@@ -1444,6 +1453,15 @@ while(not $alldone) {
             $conn{$new->fileno} = { type => 'rbclient' };
             $new->blocking(0) or die "blocking: $!";
             $client{$new->fileno}{'socket'} = $new;
+            my $peeraddr = $new->peeraddr;
+            my $hostinfo = gethostbyaddr($peeraddr);
+            if ($hostinfo) {
+                $client{$new->fileno}{'host'} = $hostinfo->name;
+            }
+            else {
+                $client{$new->fileno}{'host'} = $new->peerhost;
+            }
+            $client{$new->fileno}{'port'} = $new->peerport;
         }
         else {
             my $data;
@@ -1476,7 +1494,10 @@ while(not $alldone) {
                 }
                 else {
                     $client{$fileno}{fine} = 1;
-                    $client{$fileno}{'bad'}="connection lost";
+                    
+                    if (not $client{$fileno}{'bad'}) {
+                        $client{$fileno}{'bad'}="connection lost";
+                    }
                 }
             }
         }
@@ -1505,9 +1526,9 @@ while(not $alldone) {
             delete $conn{$cl};
 
             # we lost a client, re-allocate builds
-            if ($buildround) {
-                #&bestfit_builds(0);
-            }
+            #if ($buildround) {
+            #    &bestfit_builds(0);
+            #}
         }
     }
 
