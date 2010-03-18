@@ -22,7 +22,8 @@ my $maxrounds = 20;
 
 sub getdata {
     db_connect();
-    my $sth = $db->prepare("SELECT revision,id,errors,warnings,client,timeused FROM builds ORDER BY revision DESC") or
+    my $maxrows = $maxrounds * scalar keys %builds;
+    my $sth = $db->prepare("SELECT revision,id,errors,warnings,client,timeused FROM builds ORDER BY revision DESC limit $maxrows") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
     my $rows = $sth->execute();
     if ($rows) {
