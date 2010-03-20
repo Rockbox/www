@@ -16,7 +16,7 @@ my $sth = $db->prepare("SELECT id,client,timeused,ultime,ulsize FROM builds WHER
 my $rows = $sth->execute($rev) + 0;
 if ($rows) {
     while (my ($id, $client, $time, $ultime, $ulsize) = $sth->fetchrow_array()) {
-        $clients{$client}{$id} = $time;
+        $clients{$client}{$id} = int($time + 0.5);
         $score{$client} += $builds{$id}{score};
         $num++;
         $ul{$client}{ultime} += $ultime;
