@@ -29,7 +29,7 @@ my $rev_opt = "-r$rev";
 my $svn_path = "svn://svn.rockbox.org/rockbox/trunk";
 
 if ($rev =~ /\./) {
-    $rev =~ s/\./_/;
+    $rev =~ s/\./_/g;
     $svn_path = "svn://svn.rockbox.org/rockbox/tags/v$rev";
     $rev_opt = "";
 }
