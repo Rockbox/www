@@ -48,13 +48,11 @@ MOO
 my %date;
 my $dir = $bin;
 opendir(DIR, "$basedir/daily/$dir") or next;
-my @files = sort grep { /^rockbox/ } readdir(DIR);
-closedir DIR;
-
-for(@files) {
-    /(200\d\d\d\d\d)/;
+for(grep { /^rockbox/ } readdir(DIR)) {
+    /(\d{8})/;
     $date{$1}=$1;
 }
+closedir DIR;
 
 print "<img src=\"$pic\" border=\"0\" align=\"left\">",
     "<table class=rockbox>\n";
