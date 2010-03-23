@@ -73,7 +73,7 @@ arm:zip:samsungyh820:Samsung YH-820 - Normal:rockbox.mi4:--target=samsungyh820,-
 arm:zip:samsungyh920:Samsung YH-920 - Normal:rockbox.mi4:--target=samsungyh920,--type=n:21360
 arm:zip:samsungyh925:Samsung YH-925 - Normal:rockbox.mi4:--target=samsungyh925,--type=n:23512
 arm:zip:gogearsa9200:Philips SA9200 - Normal:rockbox.mi4:--target=gogearsa9200,--type=n:10065
-arm:zip:vibe500:Packard Bell Vibe 500 - Normal:jukebox.mi4:--target=vibe500,--type=n:23744
+arm:zip:vibe500:Packard Bell Vibe 500 - Normal:rockbox.mi4:--target=vibe500,--type=n:23744
 mipsel:zip:ondavx747:Onda VX747 - Normal:rockbox.vx747:--target=ondavx747,--type=n:30731
 mipsel:zip:ondavx767:Onda VX767 - Normal:rockbox.vx767:--target=ondavx767,--type=n:12620
 mipsel:zip:ondavx777:Onda VX777 - Normal:rockbox.vx777:--target=ondavx777,--type=n:30405
@@ -119,6 +119,7 @@ arm:nozip:samsungyh820boot:Samsung YH-820 - Boot:FW_YH820.mi4:--target=samsungyh
 arm:nozip:samsungyh920boot:Samsung YH-920 - Boot:PP5020.mi4:--target=samsungyh920,--type=b:834
 arm:nozip:samsungyh925boot:Samsung YH-925 - Boot:FW_YH925.mi4:--target=samsungyh925,--type=b:845
 arm:nozip:gogearsa9200boot:Philips SA9200 - Boot:FWImage.ebn:--target=gogearsa9200,--type=b:843
+arm:nozip:vibe500boot:Packard Bell Vibe 500 - Boot:jukebox.mi4:--target=vibe500,--type=b:800
 arm:nozip:zenvisionm30boot:Creative Zen Vision M 30GB - Boot:rockbox.zvmboot:--target=zenvisionm30gb,--type=b:904
 sh:nozip:archosrecorderboot:Recorder - Boot:ajbrec.ajz:--target=archosrecorder,--ram=2,--type=b:830
 sh:nozip:playerboot:Player - Boot:archos.mod:--target=archosplayer,--ram=2,--type=b:726
