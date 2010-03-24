@@ -41,7 +41,7 @@ and Ondio
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
 <li><b>Packard Bell</b>: <a href="/wiki/PackardBellVibe500Port">Vibe 500</a>
 <li><b>Samsung</b>: <a href="/wiki/SamsungYH92xPort">YH-820</a>, <a href="/wiki/SamsungYH92xPort">YH-920</a> and <a href="/wiki/SamsungYH92xPort">YH-925</a>
-<li><b>SanDisk</b>: <a href="/wiki/SansaAMS">Sansa Clip V1 (not v2 or Clip+)</a>
+<li><b>SanDisk</b>: <a href="/wiki/SansaAMS">Sansa Clip v1 (not v2 or Clip+)</a>
 <li><b>Toshiba</b>: <a href="/wiki/GigabeatSPort">Gigabeat S</a>
 </ul>
 
@@ -49,9 +49,9 @@ and Ondio
 <p>Work has begun on porting Rockbox to these players, but much remains before they are usable:
 
 <ul>
-<li>Cowon iAudio 7, Creative ZVM, Logik Dax, Meizu M6 and M3,
-<br>Philips GoGear HDD1600, HDD1800, HDD6300 and SA9200, Onda VX747 and VX767,
-<br>Tatung Elio TPJ1022, Sandisk Sansa m200, c100, and c200v2</a>
+<li><b>Cowon</b> iAudio 7, <b>Creative</b> ZVM, <b>Logik</b> Dax, <b>Meizu</b> M6 and M3
+<br><b>Philips</b> GoGear HDD1600, HDD1800, HDD6300 and SA9200, <b>Onda</b> VX747 and VX767,
+<br><b>Tatung</b> Elio TPJ1022, <b>Sandisk</b> Sansa Clip v2, Clip+, m200, c100 and c200v2
 </ul>
 
 <p>Click here for a <a href="/wiki/TargetStatus#New_Platforms_Currently_Under_De">status summary of unstable and unusable ports</a>.
