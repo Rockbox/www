@@ -100,7 +100,8 @@ and Ondio
 <h3 class=frontpage><a href='recent.shtml#svn'>Subversion</a></h3>
 <!--#include file="last5front.html" -->
 <small>All commits <a href="since-release.html">since last release</a>,
- <a href="since-4weeks.html">last four weeks</a>.
+ <a href="since-4weeks.html">last four weeks</a>,
+ <a href="http://twitter.com/rockboxcommits">twitter feed</a>.
 </small>
 
 </td></tr>
