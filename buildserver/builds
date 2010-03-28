@@ -63,6 +63,7 @@ arm:zip:zenvisionm30:Creative Zen Vision M 30GB - Normal:rockbox.zvm:--target=ze
 arm:zip:zenvisionm60:Creative Zen Vision M 60GB - Normal:rockbox.zvm60:--target=zenvisionm60gb,--type=n:23294
 arm:zip:zenvision:Creative Zen Vision - Normal:rockbox.zv:--target=zenvision,--type=n:9830
 arm:zip:sansafuze:SanDisk Sansa Fuze - Normal:rockbox.sansa:--target=sansafuze,--type=n:24604
+arm:zip:sansafuzev2:SanDisk Sansa Fuzev2 - Normal:rockbox.sansa:--target=sansafuzev2,--type=n:24604
 arm:zip:sansaclip:SanDisk Sansa Clip - Normal:rockbox.sansa:--target=sansaclip,--type=n:15507
 arm:zip:sansaclipv2:SanDisk Sansa Clipv2 - Normal:rockbox.sansa:--target=sansaclipv2,--type=n:18007
 arm:zip:sansaclipplus:SanDisk Sansa Clip+ - Normal:rockbox.sansa:--target=sansaclipplus,--type=n:17998
@@ -115,6 +116,7 @@ arm:nozip:sansaclipboot:SanDisk Sansa Clip - Boot:bootloader-clip.sansa:--target
 arm:nozip:sansaclipv2boot:SanDisk Sansa Clipv2 - Boot:bootloader-clipv2.sansa:--target=sansaclipv2,--type=b:760
 arm:nozip:sansaclipplusboot:SanDisk Sansa Clip+ - Boot:bootloader-clipplus.sansa:--target=sansaclipplus,--type=b:752
 arm:nozip:sansafuzeboot:SanDisk Sansa Fuze - Boot:bootloader-fuze.sansa:--target=sansafuze,--type=b:778
+arm:nozip:sansafuzev2boot:SanDisk Sansa Fuzev2 - Boot:bootloader-fuzev2.sansa:--target=sansafuzev2,--type=b:778
 arm:nozip:gogearhdd1630boot:Philips HDD1630 - Boot:FWImage.ebn:--target=gogearhdd1630,--type=b:838
 arm:nozip:samsungyh820boot:Samsung YH-820 - Boot:FW_YH820.mi4:--target=samsungyh820,--type=b:835
 arm:nozip:samsungyh920boot:Samsung YH-920 - Boot:PP5020.mi4:--target=samsungyh920,--type=b:843
