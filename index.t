@@ -79,15 +79,8 @@ and Ondio
 <tr><td nowrap>2010-03-04</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes351">Rockbox 3.5.1 is released</a></td></tr>
 <tr><td nowrap>2010-02-15</td><td>Rockbox will be applying for Google Summer of Code 2010.  Please <a href="http://www.rockbox.org/wiki/SummerOfCode2010">suggest</a> possible projects or <a href="http://www.rockbox.org/irc/">ask</a> to be a mentor or student on our IRC channel.</td></tr>
 <tr><td nowrap>2010-02-03</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes35">Rockbox 3.5 is released</a></td></tr>
-<tr><td nowrap>2009-09-24</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes34">Rockbox 3.4 is released</a></td></tr>
-<tr><td nowrap>2009-09-16</td><td>We moved the web site to a new server and migrated from twiki to foswiki.</td></tr>
-<tr><td nowrap>2009-08-27</td><td>The site was offline for 50 hours when our ISP went down.</td></tr>
-<tr><td nowrap>2009-06-21</td><td><a href="/wiki/DevConEuro2009">DevConEuro2009</a> has ended </td></tr>
-<tr><td nowrap>2009-06-19</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes33">Rockbox 3.3 is released</a></td></tr>
-<!--
-<tr><td colspan=2 align='center'><a href="history.html">Older news</a></td></tr>
--->
 </table>
+<small><a href="history.html">Older news</a>
 
 </td><td>
 

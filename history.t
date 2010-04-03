@@ -2,6 +2,16 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<p><i>2009-09-24</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes34">Rockbox 3.4 is released</a>
+
+<p><i>2009-09-16</i>: We moved the web site to a new server and migrated from twiki to foswiki.
+
+<p><i>2009-08-27</i>: The site was offline for 50 hours when our ISP went down.
+
+<p><i>2009-06-21</i>: <a href="/wiki/DevConEuro2009">DevConEuro2009</a> has ended
+
+<p><i>2009-06-19</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes33">Rockbox 3.3 is released</a>
+
 <p><i>2009-03-23</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes32">Rockbox 3.2 is released</a>
 
 <p><i>2009-03-18</i>: Rockbox has been accepted as a mentor organization for Google Summer of Code 2009. <a href="http://www.rockbox.org/wiki/SummerOfCode2009">Look here for project ideas.</a>
