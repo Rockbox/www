@@ -22,14 +22,14 @@ sub buildtable {
                 my $docs = manualname($m);
                 my $voice = voicename($m);
 
-                $mans="<br><a href=\"$basedir/rockbox-$docs-$version.pdf\">PDF manual</a><br><a href=\"$basedir/$voice-$version-english.zip\">English voice</a>";
+                $mans="<br><a href=\"$basedir/rockbox-$docs-$version.pdf\">Manual</a><br><a href=\"$basedir/$voice-$version-english.zip\">Voice</a>";
             }
 
             if($col++ > 6) {
                 print "</tr><tr valign=\"top\">";
                 $col=1;
             }
-            printf("<td align='center'><a href=\"$pack\" title=\"$name\"><img border=\"0\" src=\"http://www.rockbox.org%s\" alt=\"$name\"><p>$name</a>$mans</td>\n",
+            printf("<td align='center'><small><img border=\"0\" src=\"http://www.rockbox.org%s\" alt=\"$name\"><p>$name<br><a href=\"$pack\" title=\"$name\"><p>Firmware</a>$mans</small></td>\n",
                    playerpic($m));
         }
     }

@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-require "../rockbox.pm";
+require "/sites/rockbox.org/www/rockbox.pm";
 require "table.pm";
 
 header("Rockbox $publicrelease Download");
