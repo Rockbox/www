@@ -12,6 +12,8 @@
 
 <p><i>2009-06-19</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes33">Rockbox 3.3 is released</a>
 
+<p><i>2009-03-24</i>: <a href="http://themes.rockbox.org/">themes.rockbox.org</a> is available
+
 <p><i>2009-03-23</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes32">Rockbox 3.2 is released</a>
 
 <p><i>2009-03-18</i>: Rockbox has been accepted as a mentor organization for Google Summer of Code 2009. <a href="http://www.rockbox.org/wiki/SummerOfCode2009">Look here for project ideas.</a>
