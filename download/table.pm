@@ -6,23 +6,23 @@ sub buildtable {
         {
             next if ($builds{$m}{status} < 3);
 
-            # the release hash is in ../rockbox.pm
-            my $version = $publicrelease;
-            my $basedir="http://download.rockbox.org/release/$version";
-            my $pack="$basedir/rockbox-$m-$version.zip";
+            # the release hash and the *release variables are from builds.pm
+
+            my $basedir="http://download.rockbox.org/release/$publicrelease";
+            my $pack="$basedir/rockbox-$m-$publicrelease.zip";
             my $name= $builds{$m}{name};
             my $mans;
             if($m eq "source") {
-                $pack="$basedir/rockbox-$version.7z";
+                $pack="$basedir/rockbox-$publicrelease.7z";
             }
             elsif($m eq "fonts") {
-                $pack="$basedir/rockbox-fonts-$version.zip";
+                $pack="$basedir/rockbox-fonts-$publicrelease.zip";
             }
             else {
                 my $docs = manualname($m);
                 my $voice = voicename($m);
 
-                $mans="<br><a href=\"$basedir/rockbox-$docs-$version.pdf\">Manual</a><br><a href=\"$basedir/$voice-$version-english.zip\">Voice</a>";
+                $mans="<br><a href=\"$basedir/rockbox-$docs-$manualrelease.pdf\">Manual</a><br><a href=\"$basedir/$voice-$voicerelease-english.zip\">Voice</a>";
             }
 
             if($col++ > 6) {
