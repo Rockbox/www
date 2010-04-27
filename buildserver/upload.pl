@@ -8,7 +8,7 @@ my $cwd = dirname $0;
 my $cgi = basename $0;
 
 my $filename = param("upfile");
-my $tmpfile = CGI::tmpFileName($filename);
+my $fh = CGI::upload("upfile");
 
 $filename =~ s/[\;\:\!\?\*\"\'\,\ ]/_/g;
 print STDERR "Uploading $filename\n";
@@ -27,12 +27,15 @@ if (-f "$destpath/$filename") {
     exit;
 }
 
-if (move($tmpfile, "$destpath/$filename")) {
-    chmod 0660, "$destpath/$filename"; # chmod ug+rw
+if (open OUTFILE, ">$destpath/$filename") {
+    while ($bytesread=read($fh,$buffer,1024)) {
+        print OUTFILE $buffer;
+    }
+    close OUTFILE;
     print "Status: 200 Upload successful\n";
 }
 else {
-    print "Status: 502 Move failed: $!\n";
+    print "Status: 502 File copy failed: $!\n";
 }
 
 print "\n$destpath/$filename\n";
