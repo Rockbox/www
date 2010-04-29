@@ -34,12 +34,14 @@ sdl:nozip:samsungyh920sim:Samsung YH-920 - Simulator:rockboxui:--target=samsungy
 sdl:nozip:samsungyh925sim:Samsung YH-925 - Simulator:rockboxui:--target=samsungyh925,--type=s:12988
 sdl:nozip:ondavx747sim:Onda VX747 - Simulator:rockboxui:--target=ondavx747,--type=s:13391
 sdl:nozip:vibe500sim:Packard Bell Vibe 500 - Simulator:rockboxui:--target=vibe500,--type=s:13361
+sdl:nozip:hd200sim:MPIO HD200 - Simulator:rockboxui:--target=hd200,--type=s:12000
 m68k:zip:iriverh100:iriver H100 - Normal:rockbox.iriver:--target=iriverh100,--type=n:19961
 m68k:zip:iriverh120:iriver H120 - Normal:rockbox.iriver:--target=iriverh120,--type=n:19938
 m68k:zip:iriverh300:iriver H300 - Normal:rockbox.iriver:--target=iriverh300,--type=n:20939
 m68k:zip:iaudiox5:iAudio X5 - Normal:rockbox.iaudio:--target=iaudiox5,--type=n:18675
 m68k:zip:iaudiom5:iAudio M5 - Normal:rockbox.iaudio:--target=iaudiom5,--type=n:17903
 m68k:zip:iaudiom3:iAudio M3 - Normal:rockbox.iaudio:--target=iaudiom3,--type=n:16306
+m68k:zip:hd200:MPIO HD200 - Normal:rockbox.mpio:--target=hd200,--type=n:16300
 arm:zip:ipodnano1g:iPod Nano 1G - Normal:rockbox.ipod:--target=ipodnano1g,--type=n:22147
 arm:zip:ipodnano2g:iPod Nano 2G - Normal:rockbox.ipod:--target=ipodnano2g,--type=n:21546
 arm:zip:ipodcolor:iPod Color - Normal:rockbox.ipod:--target=ipodcolor,--type=n:22197
@@ -92,6 +94,7 @@ m68k:nozip:iriverh300boot:iriver H300 - Boot:rockbox.iriver:--target=iriverh300,
 m68k:nozip:iaudiox5boot:iAudio X5 - Boot:rockbox.iaudio:--target=iaudiox5,--type=b:590
 m68k:nozip:iaudiom5boot:iAudio M5 - Boot:rockbox.iaudio:--target=iaudiom5,--type=b:568
 m68k:nozip:iaudiom3boot:iAudio M3 - Boot:rockbox.iaudio:--target=iaudiom3,--type=b:501
+m68k:nozip:hd200boot:MPIO HD200 - Boot:bootloader.mpio:--target=hd200,--type=b:500
 mipsel:nozip:ondavx747boot:Onda VX747 - Boot:ccpmp.bin:--target=ondavx747,--type=b:1061
 arm:nozip:ipodnano1gboot:iPod Nano 1G - Boot:bootloader-ipodnano1g.ipod:--target=ipodnano1g,--type=b:700
 arm:nozip:ipodnano2gboot:iPod Nano 2G - Boot:bootloader-ipodnano2g.ipod:--target=ipodnano2g,--type=b:726
@@ -164,5 +167,6 @@ sdl:nozip:samsungyh920wps:Samsung YH-920 - Checkwps:checkwps.samsungyh920:--targ
 sdl:nozip:samsungyh925wps:Samsung YH-925 - Checkwps:checkwps.samsungyh925:--target=samsungyh925,--type=c:130
 sdl:nozip:ondavx747wps:Onda VX747 - Checkwps:checkwps.ondavx747:--target=ondavx747,--type=c:139
 sdl:nozip:vibe500wps:Packard Bell Vibe 500 - Checkwps:checkwps.vibe500:--target=vibe500,--type=c:132
+sdl:nozip:hd200wps:MPIO HD200 - Checkwps:checkwps.mpiohd200:--target=hd200,--type=c:131
 sdl:nozip:playerdb:Player - Database:database.archosplayer:--target=archosplayer,--ram=2,--type=d:153
 sdl:nozip:iriverh300db:iriver H300 - Database:database.iriverh300:--target=iriverh300,--type=d:290
