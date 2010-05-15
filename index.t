@@ -26,6 +26,8 @@ and Ondio
 
 <li><b>Olympus</b>: M:Robe 100
 
+<li><b>Packard Bell</b>: Vibe 500
+
 <li><b>SanDisk</b>: Sansa c200 series (not v2), e200 series (all models), and Fuze v1 (not v2)
 
 <li><b>Toshiba</b>: Gigabeat X and F series
@@ -39,7 +41,6 @@ and Ondio
 <li><b>Apple</b>: <a href="/wiki/IPodNano2GPort">iPod Nano 2g</a>
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
-<li><b>Packard Bell</b>: <a href="/wiki/PackardBellVibe500Port">Vibe 500</a>
 <li><b>Samsung</b>: <a href="/wiki/SamsungYH92xPort">YH-820</a>, <a href="/wiki/SamsungYH92xPort">YH-920</a> and <a href="/wiki/SamsungYH92xPort">YH-925</a>
 <li><b>SanDisk</b>: <a href="/wiki/SansaAMS">Sansa Clip</a> (all versions) and <a href="/wiki/SansaAMS">Sansa Fuze v2</a>
 <li><b>Toshiba</b>: <a href="/wiki/GigabeatSPort">Gigabeat S</a>
