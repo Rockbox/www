@@ -52,8 +52,7 @@ sub runone {
         print "moved $o to $newo\n" if($verbose);
     }
     else  {
-        print "?? no dir $o\n" if($verbose);
-        exit;
+        print "*** error: no pdf file $o\n" if($verbose);
     }
 
     $o="build-$dir/rockbox-manual.zip";
@@ -64,8 +63,7 @@ sub runone {
         print "moved $o to $newo\n" if($verbose);
     }
     else  {
-        print "?? no dir $o\n" if($verbose);
-        exit;
+        print "*** error: no zip file $o\n" if($verbose);
     }
 
     $o="build-$dir/html";
@@ -76,8 +74,7 @@ sub runone {
         print "copied $o to $newo\n" if($verbose);
     }
     else  {
-        print "?? no dir $o\n" if($verbose);
-        exit;
+        print "*** error: no html dir $o\n" if($verbose);
     }
 
     print "remove all contents in build-$dir\n" if($verbose);
