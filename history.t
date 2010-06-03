@@ -2,6 +2,8 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<p><i>2010-02-03</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes35">Rockbox 3.5 is released</a>
+
 <p><i>2009-09-24</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes34">Rockbox 3.4 is released</a>
 
 <p><i>2009-09-16</i>: We moved the web site to a new server and migrated from twiki to foswiki.
