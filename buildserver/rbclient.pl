@@ -532,6 +532,7 @@ sub testsystem
     # check compilers
     %which = (
         "arm", "arm-elf-gcc",
+        "arm-eabi-gcc444", "arm-elf-eabi-gcc",
         "sh", "sh-elf-gcc",
         "m68k", "m68k-elf-gcc",
         "mipsel", "mipsel-elf-gcc",
