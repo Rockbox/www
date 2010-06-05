@@ -12,4 +12,5 @@ do
       echo "Address the above issue(s), then restart!"
       exit
     fi
+    sleep 30
 done
