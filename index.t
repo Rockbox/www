@@ -118,7 +118,7 @@ Haxx sponsors the main site, build server, svn server and various other resource
 </td>
 
 <td>
-<a href="http://www.videolan.org/"><img border=0 src="http://download.videolan.org/images/videolan-logo.png" width=100 height=47 alt="VideoLAN"></a>
+<a href="http://www.videolan.org/"><img border=0 src="http://images.videolan.org/images/videolan-logo.png" width=100 height=47 alt="VideoLAN"></a>
 <p>
 VideoLAN sponsors a download server
 </td>
