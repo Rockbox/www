@@ -46,8 +46,8 @@ arm:zip:ipodnano1g:iPod Nano 1G - Normal:rockbox.ipod:--target=ipodnano1g,--type
 arm:zip:ipodnano2g:iPod Nano 2G - Normal:rockbox.ipod:--target=ipodnano2g,--type=n:21546
 arm:zip:ipodcolor:iPod Color - Normal:rockbox.ipod:--target=ipodcolor,--type=n:22197
 arm:zip:ipod4g:iPod 4G Grayscale - Normal:rockbox.ipod:--target=ipod4g,--type=n:20145
-arm:zip:ipodvideo:iPod Video - Normal:rockbox.ipod:--target=ipodvideo,--ram=32,--type=n:22634
-arm:zip:ipodvideo64mb:iPod Video 64MB - Normal:rockbox.ipod:--target=ipodvideo,--ram=64,--type=n:22565
+arm-eabi-gcc444:zip:ipodvideo:iPod Video - Normal:rockbox.ipod:--target=ipodvideo,--ram=32,--type=n:22634
+arm-eabi-gcc444:zip:ipodvideo64mb:iPod Video 64MB - Normal:rockbox.ipod:--target=ipodvideo,--ram=64,--type=n:22565
 arm:zip:ipod3g:iPod 3G - Normal:rockbox.ipod:--target=ipod3g,--type=n:19011
 arm:zip:ipodmini2g:iPod Mini 2G - Normal:rockbox.ipod:--target=ipodmini2g,--type=n:19168
 arm:zip:ipodmini1g:iPod Mini 1G - Normal:rockbox.ipod:--target=ipodmini1g,--type=n:19224
@@ -100,7 +100,7 @@ arm:nozip:ipodnano1gboot:iPod Nano 1G - Boot:bootloader-ipodnano1g.ipod:--target
 arm:nozip:ipodnano2gboot:iPod Nano 2G - Boot:bootloader-ipodnano2g.ipod:--target=ipodnano2g,--type=b:726
 arm:nozip:ipodcolorboot:iPod Color - Boot:bootloader-ipodcolor.ipod:--target=ipodcolor,--type=b:701
 arm:nozip:ipod4gboot:iPod 4G Grayscale - Boot:bootloader-ipod4g.ipod:--target=ipod4g,--type=b:694
-arm:nozip:ipodvideoboot:iPod Video - Boot:bootloader-ipodvideo.ipod:--target=ipodvideo,--ram=2,--type=b:718
+arm-eabi-gcc444:nozip:ipodvideoboot:iPod Video - Boot:bootloader-ipodvideo.ipod:--target=ipodvideo,--ram=2,--type=b:718
 arm:nozip:ipod3gboot:iPod 3G - Boot:bootloader-ipod3g.ipod:--target=ipod3g,--type=b:631
 arm:nozip:ipodmini2gboot:iPod Mini 2G - Boot:bootloader-ipodmini2g.ipod:--target=ipodmini2g,--type=b:690
 arm:nozip:ipodmini1gboot:iPod Mini 1G - Boot:bootloader-ipodmini1g.ipod:--target=ipodmini1g,--type=b:685
