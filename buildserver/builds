@@ -51,7 +51,7 @@ arm:zip:ipodvideo64mb:iPod Video 64MB - Normal:rockbox.ipod:--target=ipodvideo,-
 arm:zip:ipod3g:iPod 3G - Normal:rockbox.ipod:--target=ipod3g,--type=n:19011
 arm:zip:ipodmini2g:iPod Mini 2G - Normal:rockbox.ipod:--target=ipodmini2g,--type=n:19168
 arm:zip:ipodmini1g:iPod Mini 1G - Normal:rockbox.ipod:--target=ipodmini1g,--type=n:19224
-arm:zip:iriverh10:iriver H10 - Normal:rockbox.mi4:--target=iriverh10,--type=n:22078
+arm-eabi-gcc444:zip:iriverh10:iriver H10 - Normal:rockbox.mi4:--target=iriverh10,--type=n:22078
 arm:zip:iriverh10_5gb:iriver H10 5GB - Normal:rockbox.mi4:--target=iriverh10_5gb,--type=n:21608
 arm-eabi-gcc444:zip:gigabeatfx:Toshiba Gigabeat F - Normal:rockbox.gigabeat:--target=gigabeatfx,--type=n:21023
 arm-eabi-gcc444:zip:gigabeats:Toshiba Gigabeat S - Normal:rockbox.gigabeat:--target=gigabeats,--type=n:22312
@@ -104,10 +104,10 @@ arm:nozip:ipodvideoboot:iPod Video - Boot:bootloader-ipodvideo.ipod:--target=ipo
 arm:nozip:ipod3gboot:iPod 3G - Boot:bootloader-ipod3g.ipod:--target=ipod3g,--type=b:631
 arm:nozip:ipodmini2gboot:iPod Mini 2G - Boot:bootloader-ipodmini2g.ipod:--target=ipodmini2g,--type=b:690
 arm:nozip:ipodmini1gboot:iPod Mini 1G - Boot:bootloader-ipodmini1g.ipod:--target=ipodmini1g,--type=b:685
-arm:nozip:h10boot:iriver H10 - Boot:H10_20GC.mi4:--target=iriverh10,--type=b:693
-arm:nozip:gigabeatfxboot:Toshiba Gigabeat F - Boot:FWIMG01.DAT:--target=gigabeatfx,--type=b:630
-arm:nozip:gigabeatsboot:Toshiba Gigabeat S - Boot:nk.bin:--target=gigabeats,--type=b:852
-arm:nozip:sansae200boot:SanDisk Sansa e200 - Boot:PP5022.mi4:--target=sansae200,--type=b:699
+arm-eabi-gcc444:nozip:h10boot:iriver H10 - Boot:H10_20GC.mi4:--target=iriverh10,--type=b:693
+arm-eabi-gcc444:nozip:gigabeatfxboot:Toshiba Gigabeat F - Boot:FWIMG01.DAT:--target=gigabeatfx,--type=b:630
+arm-eabi-gcc444:nozip:gigabeatsboot:Toshiba Gigabeat S - Boot:nk.bin:--target=gigabeats,--type=b:852
+arm-eabi-gcc444:nozip:sansae200boot:SanDisk Sansa e200 - Boot:PP5022.mi4:--target=sansae200,--type=b:699
 arm:nozip:sansac200boot:SanDisk Sansa c200 - Boot:firmware.mi4:--target=sansac200,--type=b:687
 arm:nozip:ipod1g2gboot:iPod 1G/2G - Boot:bootloader-ipod1g2g.ipod:--target=ipod1g2g,--type=b:615
 arm:nozip:mrobe100boot:Olympus M-Robe 100 - Boot:pp5020.mi4:--target=mrobe100,--type=b:689
