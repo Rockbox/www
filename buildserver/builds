@@ -61,9 +61,9 @@ arm:zip:ipod1g2g:iPod 1G/2G - Normal:rockbox.ipod:--target=ipod1g2g,--type=n:187
 arm:zip:mrobe500:Olympus M-Robe 500 - Normal:rockbox.mrobe500:--target=mrobe500,--type=n:21645
 arm:zip:mrobe100:Olympus M-Robe 100 - Normal:rockbox.mi4:--target=mrobe100,--type=n:18922
 arm:zip:cowond2:Cowon D2 - Normal:rockbox.d2:--target=cowond2,--type=n:21174
-arm:zip:zenvisionm30:Creative Zen Vision M 30GB - Normal:rockbox.zvm:--target=zenvisionm30gb,--type=n:20703
-arm:zip:zenvisionm60:Creative Zen Vision M 60GB - Normal:rockbox.zvm60:--target=zenvisionm60gb,--type=n:20686
-arm:zip:zenvision:Creative Zen Vision - Normal:rockbox.zv:--target=zenvision,--type=n:8751
+arm-eabi-gcc444:zip:zenvisionm30:Creative Zen Vision M 30GB - Normal:rockbox.zvm:--target=zenvisionm30gb,--type=n:20703
+arm-eabi-gcc444:zip:zenvisionm60:Creative Zen Vision M 60GB - Normal:rockbox.zvm60:--target=zenvisionm60gb,--type=n:20686
+arm-eabi-gcc444:zip:zenvision:Creative Zen Vision - Normal:rockbox.zv:--target=zenvision,--type=n:8751
 arm-eabi-gcc444:zip:sansafuze:SanDisk Sansa Fuze - Normal:rockbox.sansa:--target=sansafuze,--type=n:21810
 arm-eabi-gcc444:zip:sansafuzev2:SanDisk Sansa Fuzev2 - Normal:rockbox.sansa:--target=sansafuzev2,--type=n:21645
 arm-eabi-gcc444:zip:sansaclip:SanDisk Sansa Clip - Normal:rockbox.sansa:--target=sansaclip,--type=n:13663
@@ -72,11 +72,11 @@ arm-eabi-gcc444:zip:sansaclipplus:SanDisk Sansa Clip+ - Normal:rockbox.sansa:--t
 arm-eabi-gcc444:zip:sansae200v2:SanDisk Sansa e200v2 - Normal:rockbox.sansa:--target=sansae200v2,--type=n:21872
 arm-eabi-gcc444:zip:sansac200v2:SanDisk Sansa c200v2 - Normal:rockbox.sansa:--target=sansac200v2,--type=n:14998
 arm-eabi-gcc444:zip:sansam200v4:SanDisk Sansa m200v4 - Normal:rockbox.sansa:--target=sansam200v4,--type=n:13299
-arm:zip:gogearhdd1630:Philips HDD1630 - Normal:rockbox.mi4:--target=gogearhdd1630,--type=n:21691
-arm:zip:samsungyh820:Samsung YH-820 - Normal:rockbox.mi4:--target=samsungyh820,--type=n:20158
-arm:zip:samsungyh920:Samsung YH-920 - Normal:rockbox.mi4:--target=samsungyh920,--type=n:19307
-arm:zip:samsungyh925:Samsung YH-925 - Normal:rockbox.mi4:--target=samsungyh925,--type=n:21326
-arm:zip:gogearsa9200:Philips SA9200 - Normal:rockbox.mi4:--target=gogearsa9200,--type=n:9008
+arm-eabi-gcc444:zip:gogearhdd1630:Philips HDD1630 - Normal:rockbox.mi4:--target=gogearhdd1630,--type=n:21691
+arm-eabi-gcc444:zip:samsungyh820:Samsung YH-820 - Normal:rockbox.mi4:--target=samsungyh820,--type=n:20158
+arm-eabi-gcc444:zip:samsungyh920:Samsung YH-920 - Normal:rockbox.mi4:--target=samsungyh920,--type=n:19307
+arm-eabi-gcc444:zip:samsungyh925:Samsung YH-925 - Normal:rockbox.mi4:--target=samsungyh925,--type=n:21326
+arm-eabi-gcc444:zip:gogearsa9200:Philips SA9200 - Normal:rockbox.mi4:--target=gogearsa9200,--type=n:9008
 arm:zip:vibe500:Packard Bell Vibe 500 - Normal:rockbox.mi4:--target=vibe500,--type=n:22051
 mipsel:zip:ondavx747:Onda VX747 - Normal:rockbox.vx747:--target=ondavx747,--type=n:27372
 mipsel:zip:ondavx767:Onda VX767 - Normal:rockbox.vx767:--target=ondavx767,--type=n:11786
@@ -119,13 +119,13 @@ arm-eabi-gcc444:nozip:sansaclipboot:SanDisk Sansa Clip - Boot:bootloader-clip.sa
 arm-eabi-gcc444:nozip:sansaclipv2boot:SanDisk Sansa Clipv2 - Boot:bootloader-clipv2.sansa:--target=sansaclipv2,--type=b:598
 arm-eabi-gcc444:nozip:sansaclipplusboot:SanDisk Sansa Clip+ - Boot:bootloader-clipplus.sansa:--target=sansaclipplus,--type=b:597
 arm-eabi-gcc444:nozip:sansafuzeboot:SanDisk Sansa Fuze - Boot:bootloader-fuze.sansa:--target=sansafuze,--type=b:614
-arm:nozip:gogearhdd1630boot:Philips HDD1630 - Boot:FWImage.ebn:--target=gogearhdd1630,--type=b:684
-arm:nozip:samsungyh820boot:Samsung YH-820 - Boot:FW_YH820.mi4:--target=samsungyh820,--type=b:672
-arm:nozip:samsungyh920boot:Samsung YH-920 - Boot:PP5020.mi4:--target=samsungyh920,--type=b:677
-arm:nozip:samsungyh925boot:Samsung YH-925 - Boot:FW_YH925.mi4:--target=samsungyh925,--type=b:679
-arm:nozip:gogearsa9200boot:Philips SA9200 - Boot:FWImage.ebn:--target=gogearsa9200,--type=b:682
+arm-eabi-gcc444:nozip:gogearhdd1630boot:Philips HDD1630 - Boot:FWImage.ebn:--target=gogearhdd1630,--type=b:684
+arm-eabi-gcc444:nozip:samsungyh820boot:Samsung YH-820 - Boot:FW_YH820.mi4:--target=samsungyh820,--type=b:672
+arm-eabi-gcc444:nozip:samsungyh920boot:Samsung YH-920 - Boot:PP5020.mi4:--target=samsungyh920,--type=b:677
+arm-eabi-gcc444:nozip:samsungyh925boot:Samsung YH-925 - Boot:FW_YH925.mi4:--target=samsungyh925,--type=b:679
+arm-eabi-gcc444:nozip:gogearsa9200boot:Philips SA9200 - Boot:FWImage.ebn:--target=gogearsa9200,--type=b:682
 arm:nozip:vibe500boot:Packard Bell Vibe 500 - Boot:jukebox.mi4:--target=vibe500,--type=b:709
-arm:nozip:zenvisionm30boot:Creative Zen Vision M 30GB - Boot:rockbox.zvmboot:--target=zenvisionm30gb,--type=b:742
+arm-eabi-gcc444:nozip:zenvisionm30boot:Creative Zen Vision M 30GB - Boot:rockbox.zvmboot:--target=zenvisionm30gb,--type=b:742
 sh:nozip:archosrecorderboot:Recorder - Boot:ajbrec.ajz:--target=archosrecorder,--ram=2,--type=b:712
 sh:nozip:playerboot:Player - Boot:archos.mod:--target=archosplayer,--ram=2,--type=b:622
 sh:nozip:archosfmrecorderboot:FM Recorder - Boot:ajbrec.ajz:--target=archosfmrecorder,--ram=2,--type=b:695
