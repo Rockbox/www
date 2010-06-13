@@ -60,7 +60,7 @@ arm-eabi-gcc444:zip:sansac200:SanDisk Sansa c200 - Normal:rockbox.mi4:--target=s
 arm:zip:ipod1g2g:iPod 1G/2G - Normal:rockbox.ipod:--target=ipod1g2g,--type=n:18704
 arm-eabi-gcc444:zip:mrobe500:Olympus M-Robe 500 - Normal:rockbox.mrobe500:--target=mrobe500,--type=n:21645
 arm-eabi-gcc444:zip:mrobe100:Olympus M-Robe 100 - Normal:rockbox.mi4:--target=mrobe100,--type=n:18922
-arm-eabi-gcc444:zip:cowond2:Cowon D2 - Normal:rockbox.d2:--target=cowond2,--type=n:21174
+arm:zip:cowond2:Cowon D2 - Normal:rockbox.d2:--target=cowond2,--type=n:21174
 arm-eabi-gcc444:zip:zenvisionm30:Creative Zen Vision M 30GB - Normal:rockbox.zvm:--target=zenvisionm30gb,--type=n:20703
 arm-eabi-gcc444:zip:zenvisionm60:Creative Zen Vision M 60GB - Normal:rockbox.zvm60:--target=zenvisionm60gb,--type=n:20686
 arm-eabi-gcc444:zip:zenvision:Creative Zen Vision - Normal:rockbox.zv:--target=zenvision,--type=n:8751
@@ -111,7 +111,7 @@ arm-eabi-gcc444:nozip:sansae200boot:SanDisk Sansa e200 - Boot:PP5022.mi4:--targe
 arm:nozip:sansac200boot:SanDisk Sansa c200 - Boot:firmware.mi4:--target=sansac200,--type=b:687
 arm:nozip:ipod1g2gboot:iPod 1G/2G - Boot:bootloader-ipod1g2g.ipod:--target=ipod1g2g,--type=b:615
 arm:nozip:mrobe100boot:Olympus M-Robe 100 - Boot:pp5020.mi4:--target=mrobe100,--type=b:689
-arm-eabi-gcc444:nozip:cowond2boot:Cowon D2 - Boot:bootloader-cowond2.bin:--target=cowond2,--type=b:693
+arm:nozip:cowond2boot:Cowon D2 - Boot:bootloader-cowond2.bin:--target=cowond2,--type=b:693
 arm-eabi-gcc444:nozip:sansae200v2boot:SanDisk Sansa e200v2 - Boot:bootloader-e200v2.sansa:--target=sansae200v2,--type=b:616
 arm-eabi-gcc444:nozip:sansac200v2boot:SanDisk Sansa c200v2 - Boot:bootloader-c200v2.sansa:--target=sansac200v2,--type=b:612
 arm-eabi-gcc444:nozip:sansam200v4boot:SanDisk Sansa m200v4 - Boot:bootloader-m200v4.sansa:--target=sansam200v4,--type=b:581
