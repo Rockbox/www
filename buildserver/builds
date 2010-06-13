@@ -43,7 +43,7 @@ m68k:zip:iaudiom5:iAudio M5 - Normal:rockbox.iaudio:--target=iaudiom5,--type=n:1
 m68k:zip:iaudiom3:iAudio M3 - Normal:rockbox.iaudio:--target=iaudiom3,--type=n:16306
 m68k:zip:hd200:MPIO HD200 - Normal:rockbox.mpio:--target=hd200,--type=n:16300
 arm:zip:ipodnano1g:iPod Nano 1G - Normal:rockbox.ipod:--target=ipodnano1g,--type=n:22147
-arm:zip:ipodnano2g:iPod Nano 2G - Normal:rockbox.ipod:--target=ipodnano2g,--type=n:21546
+arm-eabi-gcc444:zip:ipodnano2g:iPod Nano 2G - Normal:rockbox.ipod:--target=ipodnano2g,--type=n:21546
 arm-eabi-gcc444:zip:ipodcolor:iPod Color - Normal:rockbox.ipod:--target=ipodcolor,--type=n:22197
 arm:zip:ipod4g:iPod 4G Grayscale - Normal:rockbox.ipod:--target=ipod4g,--type=n:20145
 arm-eabi-gcc444:zip:ipodvideo:iPod Video - Normal:rockbox.ipod:--target=ipodvideo,--ram=32,--type=n:22634
