@@ -91,9 +91,9 @@ sh:zip:archosondiofm:Ondio FM - Normal:ajbrec.ajz:--target=archosondiofm,--ram=2
 m68k:nozip:iriverh100boot:iriver H100 - Boot:bootloader.iriver:--target=iriverh100,--type=b:571
 m68k:nozip:iriverh120boot:iriver H120 - Boot:bootloader.iriver:--target=iriverh120,--type=b:571
 m68k:nozip:iriverh300boot:iriver H300 - Boot:rockbox.iriver:--target=iriverh300,--type=b:599
-m68k:nozip:iaudiox5boot:iAudio X5 - Boot:rockbox.iaudio:--target=iaudiox5,--type=b:590
-m68k:nozip:iaudiom5boot:iAudio M5 - Boot:rockbox.iaudio:--target=iaudiom5,--type=b:568
-m68k:nozip:iaudiom3boot:iAudio M3 - Boot:rockbox.iaudio:--target=iaudiom3,--type=b:501
+m68k:nozip:iaudiox5boot:iAudio X5 - Boot:x5_fw.bin:--target=iaudiox5,--type=b:590
+m68k:nozip:iaudiom5boot:iAudio M5 - Boot:m5_fw.bin:--target=iaudiom5,--type=b:568
+m68k:nozip:iaudiom3boot:iAudio M3 - Boot:cowon_m3.bin:--target=iaudiom3,--type=b:501
 m68k:nozip:hd200boot:MPIO HD200 - Boot:bootloader.mpio:--target=hd200,--type=b:500
 mipsel:nozip:ondavx747boot:Onda VX747 - Boot:ccpmp.bin:--target=ondavx747,--type=b:1061
 arm:nozip:ipodnano1gboot:iPod Nano 1G - Boot:bootloader-ipodnano1g.ipod:--target=ipodnano1g,--type=b:700
