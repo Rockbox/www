@@ -57,7 +57,6 @@ sub getbuilds {
     db_connect() if (not $db);
 
     # get last revision
-    my $lastrev;
     my $rows = $getlastrev_sth->execute();
     ($lastrev) = $getlastrev_sth->fetchrow_array();
     $getlastrev_sth->finish();
@@ -77,9 +76,8 @@ sub getspeed($)
     db_connect() if (not $db);
 
     my ($cli) = @_;
-    my $maxrows = 20;
 
-    my $rows = $getspeed_sth->execute($cli, $maxrows);
+    my $rows = $getspeed_sth->execute($cli, $lastrev-5);
     if ($rows > 0) {
         my @ulspeeds;
         my @buildspeeds;
@@ -96,11 +94,30 @@ sub getspeed($)
         }
         $getspeed_sth->finish();
 
-        # get the "33% median" speed
-        my $bs = (sort {$a <=> $b} @buildspeeds)[scalar @buildspeeds / 3];
-        my $us = (sort {$a <=> $b} @ulspeeds)[scalar @ulspeeds / 3];
+        my $bs = 0;
+        my $us = 0;
+
+        if (0) {
+            # get the "33% median" speed
+            $bs = (sort {$a <=> $b} @buildspeeds)[scalar @buildspeeds / 3];
+            $us = (sort {$a <=> $b} @ulspeeds)[scalar @ulspeeds / 3];
+        }
+        else {
+            if (scalar @buildspeeds) {
+                ($bs += $_) for @buildspeeds;
+                my $bcount = scalar @buildspeeds;
+                if ($bcount < $rounds) {
+                    $bcount = $rounds;
+                }
+                $bs /= $bcount;
+            }
+            if (scalar @ulspeeds) {
+                ($us += $_) for @ulspeeds;
+                $us /= scalar @ulspeeds;
+            }
+        }
         
-        return ($bs, $us);
+        return (int $bs, int $us);
     }
     return (0, 0);
 }
@@ -160,7 +177,7 @@ sub db_connect
     $setlastrev_sth = $db->prepare("INSERT INTO clients (name, lastrev) VALUES (?,?) ON DUPLICATE KEY UPDATE lastrev=?") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
 
-    $getspeed_sth = $db->prepare("SELECT id, timeused, ultime, ulsize FROM builds WHERE client=? AND timeused > 0 ORDER BY revision DESC LIMIT ?") or
+    $getspeed_sth = $db->prepare("SELECT id, timeused, ultime, ulsize FROM builds WHERE client=? AND timeused > 0 AND revision >= ?") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
 
     $getlastrev_sth = $db->prepare("SELECT revision FROM builds ORDER BY revision DESC LIMIT 1") or

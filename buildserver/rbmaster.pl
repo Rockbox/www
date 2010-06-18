@@ -26,12 +26,14 @@ if ($test) {
 
 # the minimum protocol version supported. The protocol version is provided
 # by the client
-my $minimumversion = 34;
+my $minimumversion = 35;
 
 # if the client is found too old, this is a svn rev we tell the client to
 # use to pick an update
-my $updaterev = 25129;
+my $updaterev = 26603;
 
+# read client block list every 10 minutes
+my $lastblockread = 0;
 
 use IO::Socket;
 use IO::Select;
@@ -401,7 +403,7 @@ sub HELLO {
             return;
         }
 
-        my ($speed, $ulspeed) = getspeed($cli);
+        my ($speed, $ulspeed) = getspeed($cli, $lastrev);
 
         # send OK
         if ($test) {
@@ -867,7 +869,7 @@ sub endround {
 
     # recalculate speed values for all clients
     for my $cl (&build_clients) {
-        my ($speed, $ulspeed) = getspeed($client{$cl}{client});
+        my ($speed, $ulspeed) = getspeed($client{$cl}{client}, $buildround);
         $client{$cl}{avgspeed} = $speed;
         $client{$cl}{speed} = $speed; 
         $client{$cl}{ulspeed} = $ulspeed; 
@@ -948,6 +950,7 @@ sub client_gone {
     if ($buildround and (scalar &build_clients) == 0) {
         slog "Ending round due to lack of clients";
         $buildround = 0;
+        $nextround = 0;
     }
 }
 
@@ -1094,6 +1097,8 @@ sub bestfit_builds
     slog sprintf "Realistic time with $margin margin: $estimated_time seconds (%+d)", $diff;
     dlog "----- margin $margin --- estimated_time $estimated_time --------";
     
+    # loop through all clients, slowest first
+    # give each client as much work as it can do in the estimated time
     for my $c (sort {$client{$a}{speed} <=> $client{$b}{speed}} &build_clients)
     {
         next if ($client{$c}{blocked});
@@ -1130,9 +1135,9 @@ sub bestfit_builds
                 $buildtime = $builds{$b}{score} / $speed;
             }
 
-            # no build must use more than 66% of time
-            # (or it will likely be "overtaken" by other clients)
-            next if ($buildtime > $estimated_time * 2 / 3);
+            # no single build must use more than 75% of total time
+            # or it will likely be "overtaken" by other clients
+            next if ($buildtime > $estimated_time * 3 / 4);
             
             my $ultime = $builds{$b}{ulsize} / $ulspeed;
             my $endtime = $client{$c}{timeused} + $buildtime + $ultime - $lastultime;
@@ -1260,7 +1265,8 @@ sub start_next_build($)
         for my $id (&smallbuilds) {
             next if (!client_can_build($cl, $id));
             next if (defined $client{$cl}{btime}{$id});
-            next if ($client{$cl}{speed} and ($builds{$id}{score} / $client{$cl}{speed} > $estimated_time * 2 / 3));
+            # don't start any build that would take >66% of round time
+            next if ($client{$cl}{roundspeed} and ($builds{$id}{score} / $client{$cl}{roundspeed} > $estimated_time * 2 / 3));
             if (!$builds{$id}{done}) {
                 if ($builds{$id}{handcount} == 0) {
                     #dlog "$cli does unstarted $id";
@@ -1408,7 +1414,7 @@ sub control {
 my $server = new IO::Socket::INET(
 	LocalPort => $test ? 19998 : 19999,
 	Proto => "tcp",
-	Listen => 25,
+	Listen => 150,
 	Reuse => 1)
 or die "socket: $!\n";
 
