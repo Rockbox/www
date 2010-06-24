@@ -77,7 +77,7 @@ arm-eabi-gcc444:zip:samsungyh820:Samsung YH-820 - Normal:rockbox.mi4:--target=sa
 arm-eabi-gcc444:zip:samsungyh920:Samsung YH-920 - Normal:rockbox.mi4:--target=samsungyh920,--type=n:19307
 arm-eabi-gcc444:zip:samsungyh925:Samsung YH-925 - Normal:rockbox.mi4:--target=samsungyh925,--type=n:21326
 arm-eabi-gcc444:zip:gogearsa9200:Philips SA9200 - Normal:rockbox.mi4:--target=gogearsa9200,--type=n:9008
-arm:zip:vibe500:Packard Bell Vibe 500 - Normal:rockbox.mi4:--target=vibe500,--type=n:22051
+arm-eabi-gcc444:zip:vibe500:Packard Bell Vibe 500 - Normal:rockbox.mi4:--target=vibe500,--type=n:22051
 mipsel:zip:ondavx747:Onda VX747 - Normal:rockbox.vx747:--target=ondavx747,--type=n:27372
 mipsel:zip:ondavx767:Onda VX767 - Normal:rockbox.vx767:--target=ondavx767,--type=n:11786
 mipsel:zip:ondavx777:Onda VX777 - Normal:rockbox.vx777:--target=ondavx777,--type=n:27347
@@ -124,7 +124,7 @@ arm-eabi-gcc444:nozip:samsungyh820boot:Samsung YH-820 - Boot:FW_YH820.mi4:--targ
 arm-eabi-gcc444:nozip:samsungyh920boot:Samsung YH-920 - Boot:PP5020.mi4:--target=samsungyh920,--type=b:677
 arm-eabi-gcc444:nozip:samsungyh925boot:Samsung YH-925 - Boot:FW_YH925.mi4:--target=samsungyh925,--type=b:679
 arm-eabi-gcc444:nozip:gogearsa9200boot:Philips SA9200 - Boot:FWImage.ebn:--target=gogearsa9200,--type=b:682
-arm:nozip:vibe500boot:Packard Bell Vibe 500 - Boot:jukebox.mi4:--target=vibe500,--type=b:709
+arm-eabi-gcc444:nozip:vibe500boot:Packard Bell Vibe 500 - Boot:jukebox.mi4:--target=vibe500,--type=b:709
 arm-eabi-gcc444:nozip:zenvisionm30boot:Creative Zen Vision M 30GB - Boot:rockbox.zvmboot:--target=zenvisionm30gb,--type=b:742
 sh:nozip:archosrecorderboot:Recorder - Boot:ajbrec.ajz:--target=archosrecorder,--ram=2,--type=b:712
 sh:nozip:playerboot:Player - Boot:archos.mod:--target=archosplayer,--ram=2,--type=b:622
