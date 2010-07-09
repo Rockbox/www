@@ -45,7 +45,7 @@ m68k:zip:hd200:MPIO HD200 - Normal:rockbox.mpio:--target=hd200,--type=n:16300
 arm-eabi-gcc444:zip:ipodnano1g:iPod Nano 1G - Normal:rockbox.ipod:--target=ipodnano1g,--type=n:22147
 arm-eabi-gcc444:zip:ipodnano2g:iPod Nano 2G - Normal:rockbox.ipod:--target=ipodnano2g,--type=n:21546
 arm-eabi-gcc444:zip:ipodcolor:iPod Color - Normal:rockbox.ipod:--target=ipodcolor,--type=n:22197
-arm:zip:ipod4g:iPod 4G Grayscale - Normal:rockbox.ipod:--target=ipod4g,--type=n:20145
+arm-eabi-gcc444:zip:ipod4g:iPod 4G Grayscale - Normal:rockbox.ipod:--target=ipod4g,--type=n:20145
 arm-eabi-gcc444:zip:ipodvideo:iPod Video - Normal:rockbox.ipod:--target=ipodvideo,--ram=32,--type=n:22634
 arm-eabi-gcc444:zip:ipodvideo64mb:iPod Video 64MB - Normal:rockbox.ipod:--target=ipodvideo,--ram=64,--type=n:22565
 arm-eabi-gcc444:zip:ipod3g:iPod 3G - Normal:rockbox.ipod:--target=ipod3g,--type=n:19011
@@ -99,7 +99,7 @@ mipsel:nozip:ondavx747boot:Onda VX747 - Boot:ccpmp.bin:--target=ondavx747,--type
 arm-eabi-gcc444:nozip:ipodnano1gboot:iPod Nano 1G - Boot:bootloader-ipodnano1g.ipod:--target=ipodnano1g,--type=b:700
 arm-eabi-gcc444:nozip:ipodnano2gboot:iPod Nano 2G - Boot:bootloader-ipodnano2g.ipod:--target=ipodnano2g,--type=b:726
 arm-eabi-gcc444:nozip:ipodcolorboot:iPod Color - Boot:bootloader-ipodcolor.ipod:--target=ipodcolor,--type=b:701
-arm:nozip:ipod4gboot:iPod 4G Grayscale - Boot:bootloader-ipod4g.ipod:--target=ipod4g,--type=b:694
+arm-eabi-gcc444:nozip:ipod4gboot:iPod 4G Grayscale - Boot:bootloader-ipod4g.ipod:--target=ipod4g,--type=b:694
 arm-eabi-gcc444:nozip:ipodvideoboot:iPod Video - Boot:bootloader-ipodvideo.ipod:--target=ipodvideo,--ram=2,--type=b:718
 arm-eabi-gcc444:nozip:ipod3gboot:iPod 3G - Boot:bootloader-ipod3g.ipod:--target=ipod3g,--type=b:631
 arm-eabi-gcc444:nozip:ipodmini2gboot:iPod Mini 2G - Boot:bootloader-ipodmini2g.ipod:--target=ipodmini2g,--type=b:690
