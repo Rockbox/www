@@ -54,6 +54,8 @@ and Ondio
 <br><b>Philips</b> GoGear HDD1600, HDD1800, HDD6300 and SA9200, <b>Onda</b> VX747 and VX767,
 <br><b>Tatung</b> Elio TPJ1022, <b>Sandisk</b> Sansa m200, c100
 <br><b>MPIO</b> HD200
+<br>
+<li><b>Android</b>
 </ul>
 
 <p>Click here for a <a href="/wiki/TargetStatus#New_Platforms_Currently_Under_De">status summary of unstable and unusable ports</a>.
