@@ -167,6 +167,6 @@ sdl:nozip:samsungyh920wps:Samsung YH-920 - Checkwps:checkwps.samsungyh920:--targ
 sdl:nozip:samsungyh925wps:Samsung YH-925 - Checkwps:checkwps.samsungyh925:--target=samsungyh925,--type=c:130
 sdl:nozip:ondavx747wps:Onda VX747 - Checkwps:checkwps.ondavx747:--target=ondavx747,--type=c:139
 sdl:nozip:vibe500wps:Packard Bell Vibe 500 - Checkwps:checkwps.vibe500:--target=vibe500,--type=c:132
-sdl:nozip:hd200wps:MPIO HD200 - Checkwps:checkwps.mpiohd200:--target=hd200,--type=c:131
+sdl:nozip:mpiohd200wps:MPIO HD200 - Checkwps:checkwps.mpiohd200:--target=mpiohd200,--type=c:131
 sdl:nozip:playerdb:Player - Database:database.archosplayer:--target=archosplayer,--ram=2,--type=d:153
 sdl:nozip:iriverh300db:iriver H300 - Database:database.iriverh300:--target=iriverh300,--type=d:290
