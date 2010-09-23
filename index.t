@@ -52,7 +52,7 @@ and Ondio
 
 <ul>
 <li><b>Cowon</b> iAudio 7, <b>Creative</b> ZVM, <b>Logik</b> Dax, <b>Meizu</b> M6 and M3
-<br><b>Philips</b> GoGear HDD1600, HDD1800, HDD6300 and SA9200, <b>Onda</b> VX747 and VX767,
+<br><b>Philips</b> GoGear HDD1600, HDD1800, HDD6300 and SA9200, <b>Onda</b> VX747, VX767 and VX777,
 <br><b>Tatung</b> Elio TPJ1022, <b>Sandisk</b> Sansa m200, c100,
 <br><b>Google</b> Android
 </ul>
