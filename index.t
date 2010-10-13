@@ -98,6 +98,7 @@ and Ondio
 <!--#include file="last5front.html" -->
 <small>All commits <a href="since-release.html">since last release</a>,
  <a href="since-4weeks.html">last four weeks</a>,
+ <a href="http://cia.vc/stats/project/rockbox/.rss">RSS feed</a>,
  <a href="http://twitter.com/rockboxcommits">twitter feed</a>.
 </small>
 
