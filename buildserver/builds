@@ -73,6 +73,7 @@ arm-eabi-gcc444:zip:sansae200v2:SanDisk Sansa e200v2 - Normal:rockbox.sansa:--ta
 arm-eabi-gcc444:zip:sansac200v2:SanDisk Sansa c200v2 - Normal:rockbox.sansa:--target=sansac200v2,--type=n:14998
 arm-eabi-gcc444:zip:sansam200v4:SanDisk Sansa m200v4 - Normal:rockbox.sansa:--target=sansam200v4,--type=n:13299
 arm-eabi-gcc444:zip:gogearhdd1630:Philips HDD1630 - Normal:rockbox.mi4:--target=gogearhdd1630,--type=n:21691
+arm-eabi-gcc444:zip:gogearhdd6330:Philips HDD6330 - Normal:rockbox.mi4:--target=gogearhdd6330,--type=n:10000
 arm-eabi-gcc444:zip:samsungyh820:Samsung YH-820 - Normal:rockbox.mi4:--target=samsungyh820,--type=n:20158
 arm-eabi-gcc444:zip:samsungyh920:Samsung YH-920 - Normal:rockbox.mi4:--target=samsungyh920,--type=n:19307
 arm-eabi-gcc444:zip:samsungyh925:Samsung YH-925 - Normal:rockbox.mi4:--target=samsungyh925,--type=n:21326
