@@ -38,7 +38,6 @@ and Ondio
 <p>Rockbox runs on these players, but is incomplete, less usable or has problems that limit it to advanced users:
 
 <ul>
-<li><b>Apple</b>: <a href="/wiki/IPodNano2GPort">iPod Nano 2g</a>
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
 <li><b>MPIO</b>: <a href="/wiki/MPIOHD200Port">HD200</a>
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
