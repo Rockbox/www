@@ -28,7 +28,7 @@ and Ondio
 
 <li><b>Packard Bell</b>: Vibe 500
 
-<li><b>SanDisk</b>: Sansa c200 series (not v2), e200 series (all models), Fuze v1 (not v2), and Clip v1 (not v2)
+<li><b>SanDisk</b>: Sansa c200 (not v2), e200 and e200R series, Fuze, Clip and Clip+
 
 <li><b>Toshiba</b>: Gigabeat X and F series
 </ul>
@@ -43,7 +43,7 @@ and Ondio
 <li><b>MPIO</b>: <a href="/wiki/MPIOHD200Port">HD200</a>
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
 <li><b>Samsung</b>: <a href="/wiki/SamsungYH92xPort">YH-820</a>, <a href="/wiki/SamsungYH92xPort">YH-920</a> and <a href="/wiki/SamsungYH92xPort">YH-925</a>
-<li><b>SanDisk</b>: <a href="/wiki/SansaAMS">Sansa Clip v2</a>, <a href="/wiki/SansaAMS">Sansa Fuze v2</a>, <a href="/wiki/SansaAMS">Sansa c200v2 series</a>, and <a href="/wiki/SansaAMS">Sansa Clip+</a>
+<li><b>SanDisk</b>: <a href="/wiki/SansaAMS">Sansa c200v2 series</a>
 <li><b>Toshiba</b>: <a href="/wiki/GigabeatSPort">Gigabeat S</a>
 </ul>
 
