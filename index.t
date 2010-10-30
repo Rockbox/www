@@ -16,7 +16,7 @@ Rockbox is an open source firmware for mp3 players, written from scratch. It run
 <p>Rockbox runs well on these players, has a complete manual and is supported by <a href="/download/">the installer</a>:
 <ul>
 
-<li><b>Apple</b>: iPod 1g through 5.5g, iPod Mini and iPod Nano 1g
+<li><b>Apple</b>: iPod 1g through 5.5g, iPod Mini, iPod Nano 1g and iPod Nano 2g
 
 <li><b>Archos</b>: Jukebox 5000, 6000, Studio, Recorder, FM Recorder, Recorder V2
 and Ondio
