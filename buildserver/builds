@@ -28,6 +28,7 @@ sdl:nozip:sansaclipsim:SanDisk Sansa Clip - Simulator:rockboxui:--target=sansacl
 sdl:nozip:sansafuzesim:SanDisk Sansa Fuze - Simulator:rockboxui:--target=sansafuze,--type=s:13375
 sdl:nozip:sansam200v4sim:SanDisk Sansa m200v4 - Simulator:rockboxui:--target=sansam200v4,--type=s:8348
 sdl:nozip:gogearhdd1630sim:Philips HDD1630 - Simulator:rockboxui:--target=gogearhdd1630,--type=s:13299
+sdl:nozip:gogearhdd6330sim:Philips HDD6330 - Simulator:rockboxui:--target=gogearhdd6330,--type=s:10000
 sdl:nozip:gogearsa9200sim:Philips SA9200 - Simulator:rockboxui:--target=gogearsa9200,--type=s:5515
 sdl:nozip:samsungyh820sim:Samsung YH-820 - Simulator:rockboxui:--target=samsungyh820,--type=s:12312
 sdl:nozip:samsungyh920sim:Samsung YH-920 - Simulator:rockboxui:--target=samsungyh920,--type=s:11793
@@ -121,6 +122,7 @@ arm-eabi-gcc444:nozip:sansaclipv2boot:SanDisk Sansa Clipv2 - Boot:bootloader-cli
 arm-eabi-gcc444:nozip:sansaclipplusboot:SanDisk Sansa Clip+ - Boot:bootloader-clipplus.sansa:--target=sansaclipplus,--type=b:597
 arm-eabi-gcc444:nozip:sansafuzeboot:SanDisk Sansa Fuze - Boot:bootloader-fuze.sansa:--target=sansafuze,--type=b:614
 arm-eabi-gcc444:nozip:gogearhdd1630boot:Philips HDD1630 - Boot:FWImage.ebn:--target=gogearhdd1630,--type=b:684
+arm-eabi-gcc444:nozip:gogearhdd6330boot:Philips HDD6330 - Boot:FWImage.ebn:--target=gogearhdd6330,--type=b:700
 arm-eabi-gcc444:nozip:samsungyh820boot:Samsung YH-820 - Boot:FW_YH820.mi4:--target=samsungyh820,--type=b:672
 arm-eabi-gcc444:nozip:samsungyh920boot:Samsung YH-920 - Boot:PP5020.mi4:--target=samsungyh920,--type=b:677
 arm-eabi-gcc444:nozip:samsungyh925boot:Samsung YH-925 - Boot:FW_YH925.mi4:--target=samsungyh925,--type=b:679
@@ -162,6 +164,7 @@ sdl:nozip:sansafuzewps:SanDisk Sansa Fuze - Checkwps:checkwps.sansafuze:--target
 arm-eabi-gcc444:nozip:sansafuzev2boot:SanDisk Sansa Fuzev2 - Boot:bootloader-fuzev2.sansa:--target=sansafuzev2,--type=b:624
 sdl:nozip:sansam200v4wps:SanDisk Sansa m200v4 - Checkwps:checkwps.sansam200v4:--target=sansam200v4,--type=c:123
 sdl:nozip:gogearhdd1630wps:Philips HDD1630 - Checkwps:checkwps.gogearhdd1630:--target=gogearhdd1630,--type=c:130
+sdl:nozip:gogearhdd6330wps:Philips HDD6330 - Checkwps:checkwps.gogearhdd6330:--target=gogearhdd6330,--type=c:130
 sdl:nozip:gogearsa9200wps:Philips SA9200 - Checkwps:checkwps.gogearsa9200:--target=gogearsa9200,--type=c:131
 sdl:nozip:samsungyh820wps:Samsung YH-820 - Checkwps:checkwps.samsungyh820:--target=samsungyh820,--type=c:132
 sdl:nozip:samsungyh920wps:Samsung YH-920 - Checkwps:checkwps.samsungyh920:--target=samsungyh920,--type=c:132
