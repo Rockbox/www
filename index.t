@@ -55,6 +55,7 @@ and Ondio
 <br><b>Philips</b> GoGear SA9200, <b>Onda</b> VX747, VX767 and VX777,
 <br><b>Tatung</b> Elio TPJ1022, <b>Sandisk</b> Sansa m200, c100,
 <br><b>Google</b> Android
+<br><b>MPIO</b> HD300
 </ul>
 
 <p>Click here for a <a href="/wiki/TargetStatus#New_Platforms_Currently_Under_De">status summary of unstable and unusable ports</a>.
