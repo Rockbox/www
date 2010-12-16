@@ -32,6 +32,11 @@ if (open(LOG, "<data/$rev-$build.log")) {
                     #print "Warning: $line";
                 }
             }
+            elsif ($line =~ /^([^:]*):(\d*):.*note: (.*)/)
+            {
+                # some gcc versions like to print notes every now and then
+                # we'll ignore those
+            }
             elsif (($line =~ /^([^:]+):(\d+):(.+)/) ||
                    ($line =~ /: undefined reference to/) ||
                    ($line =~ /gcc: .*: No such file or/) ||
