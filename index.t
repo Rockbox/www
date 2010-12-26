@@ -39,7 +39,7 @@ and Ondio
 
 <ul>
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
-<li><b>MPIO</b>: <a href="/wiki/MPIOHD200Port">HD200</a>, <a href="/wiki/MPIOHD200Port">HD200</a>
+<li><b>MPIO</b>: <a href="/wiki/MPIOHD200Port">HD200</a>, <a href="/wiki/MPIOHD300Port">HD300</a>
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
 <li><b>Philips</b>: <a href="/wiki/GoGearHDD6330">GoGear HDD16x0, HDD63x0</a>
 <li><b>Samsung</b>: <a href="/wiki/SamsungYH92xPort">YH-820</a>, <a href="/wiki/SamsungYH92xPort">YH-920</a> and <a href="/wiki/SamsungYH92xPort">YH-925</a>
