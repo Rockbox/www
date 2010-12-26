@@ -36,6 +36,7 @@ sdl:nozip:samsungyh925sim:Samsung YH-925 - Simulator:rockboxui:--target=samsungy
 sdl:nozip:ondavx747sim:Onda VX747 - Simulator:rockboxui:--target=ondavx747,--type=s:14389
 sdl:nozip:vibe500sim:Packard Bell Vibe 500 - Simulator:rockboxui:--target=vibe500,--type=s:14535
 sdl:nozip:mpiohd200sim:MPIO HD200 - Simulator:rockboxui:--target=mpiohd200,--type=s:13492
+sdl:nozip:mpiohd300sim:MPIO HD300 - Simulator:rockboxui:--target=mpiohd300,--type=s:13492
 m68k:zip:iriverh100:iriver H100 - Normal:rockbox.iriver:--target=iriverh100,--type=n:19284
 m68k:zip:iriverh120:iriver H120 - Normal:rockbox.iriver:--target=iriverh120,--type=n:19308
 m68k:zip:iriverh300:iriver H300 - Normal:rockbox.iriver:--target=iriverh300,--type=n:19946
@@ -174,5 +175,6 @@ sdl:nozip:samsungyh925wps:Samsung YH-925 - Checkwps:checkwps.samsungyh925:--targ
 sdl:nozip:ondavx747wps:Onda VX747 - Checkwps:checkwps.ondavx747:--target=ondavx747,--type=c:133
 sdl:nozip:vibe500wps:Packard Bell Vibe 500 - Checkwps:checkwps.vibe500:--target=vibe500,--type=c:126
 sdl:nozip:mpiohd200wps:MPIO HD200 - Checkwps:checkwps.mpiohd200:--target=mpiohd200,--type=c:123
+sdl:nozip:mpiohd300wps:MPIO HD300 - Checkwps:checkwps.mpiohd300:--target=mpiohd300,--type=c:123
 sdl:nozip:playerdb:Player - Database:database.archosplayer:--target=archosplayer,--ram=2,--type=d:138
 sdl:nozip:iriverh300db:iriver H300 - Database:database.iriverh300:--target=iriverh300,--type=d:297
