@@ -50,7 +50,6 @@ arm-eabi-gcc444:zip:ipodnano2g:iPod Nano 2G - Normal:rockbox.ipod:--target=ipodn
 arm-eabi-gcc444:zip:ipodcolor:iPod Color - Normal:rockbox.ipod:--target=ipodcolor,--type=n:31225
 arm-eabi-gcc444:zip:ipod4g:iPod 4G Grayscale - Normal:rockbox.ipod:--target=ipod4g,--type=n:28736
 arm-eabi-gcc444:zip:ipodvideo:iPod Video - Normal:rockbox.ipod:--target=ipodvideo,--type=n:31518
-arm-eabi-gcc444:zip:ipodvideo64mb:iPod Video 64MB - Normal:rockbox.ipod:--target=ipodvideo,--type=n:31507
 arm-eabi-gcc444:zip:ipod3g:iPod 3G - Normal:rockbox.ipod:--target=ipod3g,--type=n:27315
 arm-eabi-gcc444:zip:ipodmini2g:iPod Mini 2G - Normal:rockbox.ipod:--target=ipodmini2g,--type=n:27551
 arm-eabi-gcc444:zip:ipodmini1g:iPod Mini 1G - Normal:rockbox.ipod:--target=ipodmini1g,--type=n:27545
