@@ -53,6 +53,7 @@ arm-eabi-gcc444:zip:ipodvideo:iPod Video - Normal:rockbox.ipod:--target=ipodvide
 arm-eabi-gcc444:zip:ipod3g:iPod 3G - Normal:rockbox.ipod:--target=ipod3g,--type=n:27315
 arm-eabi-gcc444:zip:ipodmini2g:iPod Mini 2G - Normal:rockbox.ipod:--target=ipodmini2g,--type=n:27551
 arm-eabi-gcc444:zip:ipodmini1g:iPod Mini 1G - Normal:rockbox.ipod:--target=ipodmini1g,--type=n:27545
+arm-eabi-gcc444:zip:ipodclassic:iPod Classic - Normal:rockbox.ipod:--target=ipod6g,--type=n:31518
 arm-eabi-gcc444:zip:iriverh10:iriver H10 - Normal:rockbox.mi4:--target=iriverh10,--type=n:27745
 arm-eabi-gcc444:zip:iriverh10_5gb:iriver H10 5GB - Normal:rockbox.mi4:--target=iriverh10_5gb,--type=n:27284
 arm-eabi-gcc444:zip:gigabeatfx:Toshiba Gigabeat F - Normal:rockbox.gigabeat:--target=gigabeatfx,--type=n:26755
