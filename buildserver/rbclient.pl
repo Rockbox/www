@@ -400,11 +400,17 @@ sub upload
 
 sub probecores
 {
-    open CPUINFO, "</proc/cpuinfo" or return 0;
-    my @cores = grep /^processor/i, <CPUINFO>;
-    close CPUINFO;
-
-    return (scalar @cores);
+    if($^O eq "darwin") {
+        my $cores = `sysctl -n hw.ncpu`;
+        return $cores;
+    }
+    else {
+        open CPUINFO, "</proc/cpuinfo" or return 0;
+        my @cores = grep /^processor/i, <CPUINFO>;
+        close CPUINFO;
+    
+        return (scalar @cores);
+    }
 }
     
 sub _HELLO
