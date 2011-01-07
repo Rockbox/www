@@ -41,7 +41,7 @@ and Ondio
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
 <li><b>MPIO</b>: <a href="/wiki/MPIOHD200Port">HD200</a>, <a href="/wiki/MPIOHD300Port">HD300</a>
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
-<li><b>Philips</b>: <a href="/wiki/GoGearHDD6330">GoGear HDD16x0, HDD63x0</a>
+<li><b>Philips</b>: <a href="/wiki/GoGearHDD6330">GoGear HDD16x0</a>, <a href="/wiki/GoGearHDD6330">HDD63x0</a>
 <li><b>Samsung</b>: <a href="/wiki/SamsungYH92xPort">YH-820</a>, <a href="/wiki/SamsungYH92xPort">YH-920</a> and <a href="/wiki/SamsungYH92xPort">YH-925</a>
 <li><b>SanDisk</b>: <a href="/wiki/SansaAMS">Sansa c200v2 series</a>
 <li><b>Toshiba</b>: <a href="/wiki/GigabeatSPort">Gigabeat S</a>
@@ -54,7 +54,7 @@ and Ondio
 <li><b>Cowon</b> iAudio 7, <b>Creative</b> ZVM, <b>Logik</b> Dax, <b>Meizu</b> M6 and M3
 <br><b>Philips</b> GoGear SA9200, <b>Onda</b> VX747, VX767 and VX777,
 <br><b>Tatung</b> Elio TPJ1022, <b>Sandisk</b> Sansa m200, c100,
-<br><b>Google</b> Android
+<br><b>Google</b> Android, <b>Apple</b> iPod Classic
 </ul>
 
 <p>Click here for a <a href="/wiki/TargetStatus#New_Platforms_Currently_Under_De">status summary of unstable and unusable ports</a>.
