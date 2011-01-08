@@ -114,7 +114,7 @@ and Ondio
 <h2>Sponsors:</h2>
 <table class=sponsors><tr valign="top">
 <td>
-<a href="http://www.haxx.se"><img border=0 src="/haxx.png" width=80 height=34 alt="Haxx Logo"></a>
+<a href="http://www.haxx.se/"><img border=0 src="/haxx.png" width=90 height=31 alt="Haxx Logo"></a>
 <p>
 Haxx sponsors the main site, build server, svn server and various other resources
 </td>
