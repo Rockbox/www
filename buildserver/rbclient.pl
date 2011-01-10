@@ -541,6 +541,7 @@ sub testsystem
         "arm-eabi-gcc444", ["arm-elf-eabi-gcc", "4.4.4"],
         "sh", ["sh-elf-gcc", "4.0.3"],
         "m68k", ["m68k-elf-gcc", "3.4.6"],
+        "m68k-gcc452", ["m68k-elf-gcc", "4.5.2"],
         "mipsel", ["mipsel-elf-gcc", "4.1.2"],
         "sdl", ["sdl-config", ".*"],
         );
