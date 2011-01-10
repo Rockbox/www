@@ -536,19 +536,19 @@ sub parsecmd
 sub testsystem
 {
     # check compilers
-    %which = (
-        "arm", "arm-elf-gcc",
-        "arm-eabi-gcc444", "arm-elf-eabi-gcc",
-        "sh", "sh-elf-gcc",
-        "m68k", "m68k-elf-gcc",
-        "mipsel", "mipsel-elf-gcc",
-        "sdl", "sdl-config"
+    %compilers = (
+        "arm", ["arm-elf-gcc", "4.0.3"],
+        "arm-eabi-gcc444", ["arm-elf-eabi-gcc", "4.4.4"],
+        "sh", ["sh-elf-gcc", "4.0.3"],
+        "m68k", ["m68k-elf-gcc", "3.4.6"],
+        "mipsel", ["mipsel-elf-gcc", "4.1.2"],
+        "sdl", ["sdl-config", ".*"],
         );
 
     for (split ',', $archlist) {
-        my $p = `which $which{$_}`;
-        if (not $p =~ m|^/|) {
-            tprint "You specified arch $_ but don't have $which{$_} in your path!\n";
+        my $p = `$compilers{$_}[0] --version`;
+        if (not $p =~ /$compilers{$_}[1]/) {
+            tprint "You specified arch $_ but don't have (the correct version ($compilers{$_}[1]) of) $compilers{$_}[0] in your path!\n";
             exit 22;
         }
     }
