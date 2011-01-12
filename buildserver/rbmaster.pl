@@ -30,7 +30,7 @@ my $minimumversion = 36;
 
 # if the client is found too old, this is a svn rev we tell the client to
 # use to pick an update
-my $updaterev = 29023;
+my $updaterev = 29038;
 
 # read client block list every 10 minutes
 my $lastblockread = 0;
