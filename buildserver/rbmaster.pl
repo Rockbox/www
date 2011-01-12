@@ -26,11 +26,11 @@ if ($test) {
 
 # the minimum protocol version supported. The protocol version is provided
 # by the client
-my $minimumversion = 35;
+my $minimumversion = 36;
 
 # if the client is found too old, this is a svn rev we tell the client to
 # use to pick an update
-my $updaterev = 26603;
+my $updaterev = 29023;
 
 # read client block list every 10 minutes
 my $lastblockread = 0;
