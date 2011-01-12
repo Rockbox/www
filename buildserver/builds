@@ -37,14 +37,14 @@ sdl:nozip:ondavx747sim:Onda VX747 - Simulator:rockboxui:--target=ondavx747,--typ
 sdl:nozip:vibe500sim:Packard Bell Vibe 500 - Simulator:rockboxui:--target=vibe500,--type=s:14535
 sdl:nozip:mpiohd200sim:MPIO HD200 - Simulator:rockboxui:--target=mpiohd200,--type=s:13492
 sdl:nozip:mpiohd300sim:MPIO HD300 - Simulator:rockboxui:--target=mpiohd300,--type=s:13492
-m68k:zip:iriverh100:iriver H100 - Normal:rockbox.iriver:--target=iriverh100,--type=n:19284
-m68k:zip:iriverh120:iriver H120 - Normal:rockbox.iriver:--target=iriverh120,--type=n:19308
-m68k:zip:iriverh300:iriver H300 - Normal:rockbox.iriver:--target=iriverh300,--type=n:19946
-m68k:zip:iaudiox5:iAudio X5 - Normal:rockbox.iaudio:--target=iaudiox5,--type=n:17460
-m68k:zip:iaudiom5:iAudio M5 - Normal:rockbox.iaudio:--target=iaudiom5,--type=n:16961
-m68k:zip:iaudiom3:iAudio M3 - Normal:rockbox.iaudio:--target=iaudiom3,--type=n:15348
-m68k:zip:mpiohd200:MPIO HD200 - Normal:rockbox.mpio:--target=mpiohd200,--type=n:15180
-m68k:zip:mpiohd300:MPIO HD300 - Normal:rockbox.mpio:--target=mpiohd300,--type=n:16961
+m68k-gcc452:zip:iriverh100:iriver H100 - Normal:rockbox.iriver:--target=iriverh100,--type=n:19284
+m68k-gcc452:zip:iriverh120:iriver H120 - Normal:rockbox.iriver:--target=iriverh120,--type=n:19308
+m68k-gcc452:zip:iriverh300:iriver H300 - Normal:rockbox.iriver:--target=iriverh300,--type=n:19946
+m68k-gcc452:zip:iaudiox5:iAudio X5 - Normal:rockbox.iaudio:--target=iaudiox5,--type=n:17460
+m68k-gcc452:zip:iaudiom5:iAudio M5 - Normal:rockbox.iaudio:--target=iaudiom5,--type=n:16961
+m68k-gcc452:zip:iaudiom3:iAudio M3 - Normal:rockbox.iaudio:--target=iaudiom3,--type=n:15348
+m68k-gcc452:zip:mpiohd200:MPIO HD200 - Normal:rockbox.mpio:--target=mpiohd200,--type=n:15180
+m68k-gcc452:zip:mpiohd300:MPIO HD300 - Normal:rockbox.mpio:--target=mpiohd300,--type=n:16961
 arm-eabi-gcc444:zip:ipodnano1g:iPod Nano 1G - Normal:rockbox.ipod:--target=ipodnano1g,--type=n:31043
 arm-eabi-gcc444:zip:ipodnano2g:iPod Nano 2G - Normal:rockbox.ipod:--target=ipodnano2g,--type=n:30525
 arm-eabi-gcc444:zip:ipodcolor:iPod Color - Normal:rockbox.ipod:--target=ipodcolor,--type=n:31225
@@ -92,14 +92,14 @@ sh:zip:archosfmrecorder:FM Recorder - Normal:ajbrec.ajz:--target=archosfmrecorde
 sh:zip:archosrecorder8mb:Recorder - Normal - 8MB:ajbrec.ajz:--target=archosrecorder,--ram=8,--type=n:10394
 sh:zip:archosondiosp:Ondio SP - Normal:ajbrec.ajz:--target=archosondiosp,--ram=2,--type=n:9001
 sh:zip:archosondiofm:Ondio FM - Normal:ajbrec.ajz:--target=archosondiofm,--ram=2,--type=n:9362
-m68k:nozip:iriverh100boot:iriver H100 - Boot:bootloader.iriver:--target=iriverh100,--type=b:510
-m68k:nozip:iriverh120boot:iriver H120 - Boot:bootloader.iriver:--target=iriverh120,--type=b:511
-m68k:nozip:iriverh300boot:iriver H300 - Boot:rockbox.iriver:--target=iriverh300,--type=b:532
-m68k:nozip:iaudiox5boot:iAudio X5 - Boot:x5_fw.bin:--target=iaudiox5,--type=b:527
-m68k:nozip:iaudiom5boot:iAudio M5 - Boot:m5_fw.bin:--target=iaudiom5,--type=b:507
-m68k:nozip:iaudiom3boot:iAudio M3 - Boot:cowon_m3.bin:--target=iaudiom3,--type=b:449
-m68k:nozip:mpiohd200boot:MPIO HD200 - Boot:bootloader.mpio:--target=mpiohd200,--type=b:454
-m68k:nozip:mpiohd300boot:MPIO HD300 - Boot:bootloader.mpio:--target=mpiohd300,--type=b:454
+m68k-gcc452:nozip:iriverh100boot:iriver H100 - Boot:bootloader.iriver:--target=iriverh100,--type=b:510
+m68k-gcc452:nozip:iriverh120boot:iriver H120 - Boot:bootloader.iriver:--target=iriverh120,--type=b:511
+m68k-gcc452:nozip:iriverh300boot:iriver H300 - Boot:rockbox.iriver:--target=iriverh300,--type=b:532
+m68k-gcc452:nozip:iaudiox5boot:iAudio X5 - Boot:x5_fw.bin:--target=iaudiox5,--type=b:527
+m68k-gcc452:nozip:iaudiom5boot:iAudio M5 - Boot:m5_fw.bin:--target=iaudiom5,--type=b:507
+m68k-gcc452:nozip:iaudiom3boot:iAudio M3 - Boot:cowon_m3.bin:--target=iaudiom3,--type=b:449
+m68k-gcc452:nozip:mpiohd200boot:MPIO HD200 - Boot:bootloader.mpio:--target=mpiohd200,--type=b:454
+m68k-gcc452:nozip:mpiohd300boot:MPIO HD300 - Boot:bootloader.mpio:--target=mpiohd300,--type=b:454
 mipsel:nozip:ondavx747boot:Onda VX747 - Boot:ccpmp.bin:--target=ondavx747,--type=b:1017
 arm-eabi-gcc444:nozip:ipodnano1gboot:iPod Nano 1G - Boot:bootloader-ipodnano1g.ipod:--target=ipodnano1g,--type=b:818
 arm-eabi-gcc444:nozip:ipodnano2gboot:iPod Nano 2G - Boot:bootloader-ipodnano2g.ipod:--target=ipodnano2g,--type=b:861
