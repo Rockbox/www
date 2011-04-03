@@ -2,6 +2,9 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<tr><td nowrap>2010-10-30</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes37">Rockbox 3.7 is released</a></td></tr>
+<tr><td nowrap>2010-06-03</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes36">Rockbox 3.6 is released</a></td></tr>
+
 <p><i>2010-02-15</i>: Rockbox will be applying for Google Summer of Code 2010.  Please <a href="http://www.rockbox.org/wiki/SummerOfCode2010">suggest</a> possible projects or <a href="http://www.rockbox.org/irc/">ask</a> to be a mentor or student on our IRC channel.
 
 <p><i>2010-02-03</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes35">Rockbox 3.5 is released</a>

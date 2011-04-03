@@ -78,10 +78,15 @@ and Ondio
 <table class="news" summary="recent news">
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
+
+<tr><td nowrap>2011-04-03</td><td><big>Rockbox participates in the <a
+href="http://www.rockbox.org/wiki/SummerOfCode2011">Google Summer of Code
+2011</a> and we welcome students to apply for doing projects for and with
+us!</a></big></td></tr>
+
+<tr><td nowrap>2011-04-01</td><td>We apologize for the subtle April fool's joke this year.</td></tr>
 <tr><td nowrap>2011-02-27</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes38">Rockbox 3.8 is released</a></td></tr>
 <tr><td nowrap>2010-11-26</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes371">Rockbox 3.7.1 is released</a></td></tr>
-<tr><td nowrap>2010-10-30</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes37">Rockbox 3.7 is released</a></td></tr>
-<tr><td nowrap>2010-06-03</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes36">Rockbox 3.6 is released</a></td></tr>
 </table>
 <small><a href="history.html">Older news</a>
 
