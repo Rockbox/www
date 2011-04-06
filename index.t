@@ -79,14 +79,15 @@ and Ondio
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
-<tr><td nowrap>2011-04-03</td><td><big>Rockbox participates in the <a
+<tr><td nowrap>2011-04-06</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes381">Rockbox 3.8.1 is released</a></td></tr>
+
+<tr><td nowrap>2011-04-03</td><td>Rockbox participates in the <a
 href="http://www.rockbox.org/wiki/SummerOfCode2011">Google Summer of Code
 2011</a> and we welcome students to apply for doing projects for and with
-us!</a></big></td></tr>
+us!</a></td></tr>
 
 <tr><td nowrap>2011-04-01</td><td>We apologize for the subtle April fool's joke this year.</td></tr>
 <tr><td nowrap>2011-02-27</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes38">Rockbox 3.8 is released</a></td></tr>
-<tr><td nowrap>2010-11-26</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes371">Rockbox 3.7.1 is released</a></td></tr>
 </table>
 <small><a href="history.html">Older news</a>
 
@@ -132,8 +133,8 @@ VideoLAN sponsors a download server
 
 <td>
 <a href="http://www.positive-internet.com/"><img border=0
-src="http://www.positive-internet.com/images/layout1_r1_c1.gif" width=52
-height=70 alt="Positive Internet"></a>
+src="http://www.positive-internet.com/assets/templates/positive/images/logo-footer.gif" width=70
+height=87 alt="Positive Internet"></a>
 <p>
 Positive Internet sponsors a download server
 </td>
