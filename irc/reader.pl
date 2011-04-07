@@ -50,6 +50,9 @@ my $gecko = 0;
 if ($ENV{'HTTP_USER_AGENT'} =~ m|Gecko/2|) {
     $gecko = 1;
 }
+if ($ENV{'HTTP_USER_AGENT'} =~ m|Firefox/4|) {
+    $gecko = 0;
+}
 
 if ($file eq "current.txt" and $gecko) {
     my $delimiter = sprintf("delimiter%x%x%x", rand(2**31), rand(2**31), rand(2**31));
@@ -159,7 +162,7 @@ my $jstime = (stat("reader.js"))[9];
 
 print <<END
 </head>
-<body bgcolor="#b6c6e5" text="black" link="blue" vlink="purple" alink="red" topmargin=0 leftmargin=0 marginwidth=0 marginheight=0>
+<body bgcolor="#b6c6e5" text="black" link="blue" vlink="purple" alink="red">
 <script src='reader.js?$jstime' language='javascript' type='text/javascript'></script>
 
 <table class=options>
@@ -187,7 +190,7 @@ Seconds:
 <a href="javascript:fontsize('120%');"><span style='font-size: 120%'>Large</span></a>
 
 <p>Click in the nick column to <span style='background-color: yellow'>highlight</span> everything a person has said.
-<br>The <img align='absbottom' src='/rockbox16.png'> icon identifies that the person is a core developer (has commit access).
+<br>The <img align='bottom' src='/rockbox16.png' alt='Logo'> icon identifies that the person is a core developer (has commit access).
 </td>
 </tr>
 </table>
@@ -196,7 +199,7 @@ END
     ;
 
 if (!$gecko) {
-    print "<p><b>Notice:</b> Only Mozilla-derived browsers support the multipart/mixed \"server push\" method used by this log reader to auto-update. Since you do not appear to use a Mozilla browser, this page will simply show the current log, and not automatically update.</p>\n";
+    print "<p><b>Notice:</b> Only Gecko based browsers prior to FF4 support the multipart/mixed \"server push\" method used by this log reader to auto-update. Since you do not appear to use such a browser, this page will simply show the current log, and not automatically update.</p>\n";
 }
 
 $date =~ m/(\d\d\d\d)(\d\d)(\d\d)/;
@@ -286,6 +289,8 @@ sub parsechunk {
             $lasthour = $hour;
         }
 
+        $string =~ s|[-]||g;
+
         if ($action eq "#") {
             my ($nick, $message);
             if ($string =~ /^<([^>]+)> (.*)/) {
@@ -334,7 +339,7 @@ sub parsechunk {
             # tag all nicks
             foreach my $nick (keys %nicks) {
                 if (index($message, $nick) > -1) {
-                    $message =~ s|\b\Q$nick\E\b|<span class=nick_$nick>$nick</span>|g;
+                    $message =~ s|\b\Q$nick\E\b|<span class="nick_$nick">$nick</span>|g;
                 }
             }
 
@@ -343,9 +348,9 @@ sub parsechunk {
                 my $url = $1;
                 my $broken_url = $url;
  
-                if ($url =~ /<span class=nick_([^>]+)/) {
+                if ($url =~ /<span class="nick_([^>]+)/) {
                     my $nick = $1;
-                    $url =~ s|<span class=nick_$nick>$nick</span>|$nick|g;
+                    $url =~ s|<span class="nick_$nick">$nick</span>|$nick|g;
                     $message =~ s|$broken_url|$url|g;
                 }
             }
@@ -355,13 +360,13 @@ sub parsechunk {
             if (defined $regular{lc $nick}) {
                 $class = "regular";
             }
-            elsif (($nick eq "*") and ($message =~ /^<span class=nick_([^>]+)/)) {
+            elsif (($nick eq "*") and ($message =~ /^<span class="nick_([^>]+)/)) {
                 $realnick = $1;
                 if (defined $regular{lc $realnick}) {
                     $class = "regular";
                 }
             }
-            my $n1 = "<span class=nick_$realnick>";
+            my $n1 = "<span class=\"nick_$realnick\">";
             my $n2 = "</span>";
             if ($nick =~ /[^\w\d_\-]/) {
                 $n1 = $n2 = "";
@@ -389,7 +394,7 @@ sub parsechunk {
                   "<span class=seconds>:$second</span></td>",
                   "<td>&nbsp;</td>",
                   "<td class=action>$action ",
-                  "<span class=nick_$nick>$nick</span> ",
+                  "<span class=\"nick_$nick\">$nick</span> ",
                   "<span class=quitmsg>$message</span></td>",
                   "</tr>\n");
         }
