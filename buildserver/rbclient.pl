@@ -1,20 +1,21 @@
-#!/usr/bin/perl -s
+#!/usr/bin/perl -swW
 #
 # $Id$
 #
 
-#use strict;
+use strict;
 use IO::Socket;
 use IO::Select;
 use IO::File;
 use IO::Pipe;
 use File::Basename;
 use File::Path;
+use POSIX 'nice';
 use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 36;
+my $revision = 47;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -28,30 +29,26 @@ sub tprint {
 }
 
 # read -parameters
-my $username = $username;
-my $password = $password;
-my $clientname = $clientname;
-my $archlist = $archlist;
-my $buildmaster = $buildmaster || 'buildmaster.rockbox.org';
-my $port = $port || 19999;
-my $ulspeed = $ulspeed || 0;
-my $commandhook = $commandhook || '';
+our $username = $username;
+our $password = $password;
+our $clientname = $clientname;
+our $archlist = $archlist;
+our $buildmaster = $buildmaster;
+our $port = $port;
+our $ulspeed = $ulspeed || 0;
+our $commandhook = $commandhook || '';
 
-my $upload = "http://$buildmaster/upload.pl";
+my $upload_url = "http://$buildmaster/upload.cgi";
 
 my ($probecores) = &probecores;
-my $cores = $cores || $probecores;
-
-# Modify the speed accordingly if not using all cores
-if ($cores ne $probecores) {
-    $speed = $cores * ($speed / $probecores);
-}
+our $cores = $cores || $probecores;
 
 my $cpu = `uname -m`;
 chomp $cpu;
 my $os = `uname -s`;
 chomp $os;
 
+our $bits;
 if ($cpu eq "i686" or $cpu eq "i386" or $cpu eq "armv5tel") {
     $bits = 32;
 }
@@ -63,6 +60,7 @@ else {
     exit 22;
 }
 
+our $config;
 &readconfig($config) if ($config);
 
 unless ($username and $password and $archlist and $clientname) {
@@ -109,9 +107,6 @@ MOO
 
 &testsystem();
 
-if (not -d "builds") {
-    mkdir "builds";
-}
 # no localized messages, please
 $ENV{LC_ALL} = 'C';
 
@@ -129,6 +124,8 @@ while (1) {
 
     last if ($sock and $sock->connected);
 }
+
+our %conntype;
 
 $sock->blocking(0);    
 
@@ -213,18 +210,19 @@ while (1) {
                     delete $conntype{$rh->fileno};
                     close $rh;
 
-                    my $dir = "$cwd/builds/build-$id";
+                    my $dir = "$cwd/build-$id";
                     if (-d $dir) {
                         rmtree $dir;
                     }
 
+                    my $timespent = time() - $builds{$id}{started};
                     if ($status eq "ok") {
                         tprint "Completed build $id\n";
-                        my $timespent = time() - $builds{$id}{started};
                         print $sock "COMPLETED $id $timespent $ultime $ulsize\n";
                     }
                     else {
                         tprint "Failed build $id: Status $status\n";
+                        print $sock "COMPLETED $id $timespent $ultime $ulsize\n";
                     }
 
                     delete $builds{$id};
@@ -273,7 +271,7 @@ sub startbuild
     }
     if ($rev != $builds{$id}{rev}) {
         # (using system() to make stderr messages appear on client console)
-        system("svn up -q -r $builds{$id}{rev} $log");
+        system("svn up -q -r $builds{$id}{rev}");
     }
     if ($?) { # abort if svn failed
         tprint "*** Subversion error!\n";
@@ -291,7 +289,6 @@ sub startbuild
         $read_set->add($pipe);
         $conntype{$pipe->fileno} = 'pipe';
 
-        push @children, $pid;
         $busy += $builds{$id}{cores};
     }
     else {
@@ -299,40 +296,47 @@ sub startbuild
         setpgrp;
         $pipe->writer();
         $pipe->autoflush();
+        nice 19; # go to background priority
         my $starttime = time();
         # It is important that we name the uploaded files
         # [client]-[user]-[build].log/zip as otherwise the server won't
         # find/use it
         my $base="$clientname-$username-$id";
 
-        chdir "builds";
         if (-d "build-$id") {
             rmtree "build-$id";
         }
         mkdir "build-$id";
-        my $logfile = "$cwd/builds/build-$id/$base.log";
+        chdir "build-$id";
+        my $logfile = "$base.log";
         my $log = ">> $logfile 2>&1";
         
-        open DEST, ">$logfile";
+        my $cmdline = $builds{$id}{cmdline};
+
+        if (not open DEST, ">$logfile") {
+            tprint "Failed creating log file $logfile: $!\n";
+            exit;
+        }
         # to keep all other scripts working, use the same output as buildall.pl:
         print DEST "Build Start Single\n";
         
         printf DEST "Build Date: %s\n", strftime("%Y%m%dT%H%M%SZ", gmtime);
         print DEST "Build Type: $id\n";
-        print DEST "Build Dir: $cwd/builds/build-$id\n";
-        print DEST "Build Server: $clientname-$username\n";
+        print DEST "Build Dir: $cwd/build-$id\n";
+        print DEST "Build Client: $clientname-$username\n";
+        print DEST "Build Command: $cmdline\n";
         close DEST;
 
-        chdir "build-$id";
-        my $args = $builds{$id}{confargs};
-        $args =~ s|,| |g;
-        `$cwd/tools/configure $args $log`;
-        if ($builds{$id}{cores} > 1) {
-            my $c = $cores + 1;
-            `nice make -k -j$c $log`;
-        }
-        else {
-            `nice make -k $log`;
+        if ($cmdline) {
+            if ($builds{$id}{cores} > 1) {
+                my $c = $cores + 1;
+                $ENV{MAKEFLAGS} = "-j$c";
+            }
+            else {
+                $ENV{MAKEFLAGS} = "-j1";
+            }
+            tprint "($cmdline) $log\n";
+            `($cmdline) $log`;
         }
 
         # report
@@ -351,27 +355,23 @@ sub startbuild
         print $pipe "uploading $id $$\n";
         &upload($logfile);
 
+        tprint "No result file $builds{$id}{result}\n"
+            if (not -f $builds{$id}{result});
+
+        # create upload file
         my ($ultime, $ulsize) = (0,0);
-        my $zip = $builds{$id}{zip};
-        if (-f $builds{$id}{result} and $zip ne "nozip") {
-            tprint "Making $id zip\n";
-            `nice make zip $log`;
-            
-            if (-f "rockbox.zip") {
-                my $newzip = "$base.zip";
-                if (rename "rockbox.zip", $newzip) {
-                    my $ulstart = time();
-                    &upload($newzip);
-                    $ultime = time() - $ulstart;
-                    $ulsize = (stat($newzip))[7];
-                }
+        if ($builds{$id}{upload})
+        {
+            my $newname = "$base-$builds{$id}{result}";
+            if (rename $builds{$id}{result}, $newname) {
+                my $ulstart = time();
+                &upload($newname);
+                $ultime = time() - $ulstart;
+                $ulsize = (stat($newname))[7];
             }
-            else {
-                tprint "?? no rockbox.zip\n";
-                print $pipe "done $id $$ 0 0 nozip\n";
-                close $pipe;
-                exit;
-            }
+        }
+        else {
+            tprint "No upload\n";
         }
 
         tprint "child: $id ($$) done\n";
@@ -390,27 +390,22 @@ sub upload
         return;
     }
 
-    my $limit;
+    my $limit = "";
     if ($ulspeed) {
         $limit = "--limit-rate ${ulspeed}k";
     }
 
-    `curl $limit -s -F upfile=\@$file $upload`;
+    tprint "curl $limit -s -F upfile=\@$file $upload_url\n";
+    `curl $limit -s -F upfile=\@$file $upload_url`;
 }
 
 sub probecores
 {
-    if($^O eq "darwin") {
-        my $cores = `sysctl -n hw.ncpu`;
-        return $cores;
-    }
-    else {
-        open CPUINFO, "</proc/cpuinfo" or return 0;
-        my @cores = grep /^processor/i, <CPUINFO>;
-        close CPUINFO;
-    
-        return (scalar @cores);
-    }
+    open CPUINFO, "</proc/cpuinfo" or return 0;
+    my @cores = grep /^processor/i, <CPUINFO>;
+    close CPUINFO;
+
+    return (scalar @cores);
 }
     
 sub _HELLO
@@ -457,19 +452,23 @@ sub CANCEL
 sub BUILD
 {
     my ($buildparams) = @_;
-    my ($id, $confargs, $rev, $zip, $mt, $result) = split(' ', $buildparams);
+    # ipodcolorboot:29961:mt:bootloader-ipodcolor.ipod:0:../tools/configure --target=ipodcolor --type=b && make
+
+    my ($id, $rev, $mt, $result, $upload, $cmdline) = 
+        split(':', $buildparams);
+
+    tprint "Got BUILD $buildparams\n";
 
     if (defined $builds{$id}) {
         print $sock "_BUILD 0\n";
         return;
     }
 
-    $builds{$id}{confargs} = $confargs;
     $builds{$id}{rev} = $rev;
-    $builds{$id}{zip} = $zip;
-    $builds{$id}{mt} = $mt;
     $builds{$id}{cores} = $mt eq "mt" ? $cores : 1;
     $builds{$id}{result} = $result;
+    $builds{$id}{upload} = $upload;
+    $builds{$id}{cmdline} = $cmdline;
     $builds{$id}{seqnum} = $buildnum++;
 
     print $sock "_BUILD $id\n";
@@ -479,15 +478,15 @@ sub BUILD
 
 sub UPDATE
 {
-    my ($rev) = @_;
-    tprint "Update to $rev\n";
+    my ($url) = @_;
+    tprint "Update from $url\n";
 
-    `curl -o $perlfile.new "http://svn.rockbox.org/viewvc.cgi/www/buildserver/$perlfile?revision=$rev"`;
+    `curl -o $perlfile.new "$url"`;
     
     # This might fail, but runclient.sh will save us
     rename("$perlfile.new", $perlfile);
 
-    print $sock "_UPDATE $rev\n";
+    print $sock "_UPDATE\n";
     close $sock;
     sleep 1;
     exit;
@@ -501,6 +500,8 @@ sub MESSAGE
 
 sub parsecmd
 {
+    no strict 'refs';
+
     my ($cmdstr)=@_;
     my %functions = ('_HELLO', 1,
                      '_COMPLETED', 1,
@@ -516,7 +517,7 @@ sub parsecmd
         my $func = $1;
         my $rest = $2;
         chomp $rest;
-        #print "$func $rest\n";
+        #tprint "$func $rest\n";
 
         if (defined $functions{$func}) {
             &$func($rest);
@@ -535,21 +536,24 @@ sub parsecmd
 
 sub testsystem
 {
+    # this is still rockbox specific. change this to suit your project.
+
     # check compilers
-    %compilers = (
-        "arm", ["arm-elf-gcc", "4.0.3"],
-        "arm-eabi-gcc444", ["arm-elf-eabi-gcc", "4.4.4"],
-        "sh", ["sh-elf-gcc", "4.0.3"],
-        "m68k", ["m68k-elf-gcc", "3.4.6"],
-        "m68k-gcc452", ["m68k-elf-gcc", "4.5.2"],
-        "mipsel", ["mipsel-elf-gcc", "4.1.2"],
-        "sdl", ["sdl-config", ".*"],
-        );
+    my %compilers = (
+                  "arm", ["arm-elf-gcc --version", "4.0.3"],
+                  "arm-eabi-gcc444", ["arm-elf-eabi-gcc --version", "4.4.4"],
+                  "sh", ["sh-elf-gcc --version", "4.0.3"],
+                  "m68k", ["m68k-elf-gcc --version", "3.4.6"],
+                  "m68k-gcc452", ["m68k-elf-gcc --version", "4.5.2"],
+                  "mipsel", ["mipsel-elf-gcc --version", "4.1.2"],
+                  "sdl", ["sdl-config --version", ".*"],
+                  "android30", ["android list target", "API level: 11"],
+                  );
 
     for (split ',', $archlist) {
-        my $p = `$compilers{$_}[0] --version`;
+        my $p = `$compilers{$_}[0]`;
         if (not $p =~ /$compilers{$_}[1]/) {
-            tprint "You specified arch $_ but don't have (the correct version ($compilers{$_}[1]) of) $compilers{$_}[0] in your path!\n";
+            tprint "Error: You specified arch $_ but the output of '$compilers{$_}[0]' did not include '$compilers{$_}[1]'.\n";
             exit 22;
         }
     }
@@ -561,8 +565,8 @@ sub testsystem
         exit 22;
     }
 
-    # check curl
-    my $p = `which zip`;
+    # check zip
+    $p = `which zip`;
     if (not $p =~ m|^/|) {
         tprint "I couldn't find 'zip' in your path.\n";
         exit 22;
@@ -580,17 +584,6 @@ sub testsystem
         exit 22;
     }
         
-    # check repository
-    my @svn = `svn info`;
-    my @url = grep(/^URL:/, @svn);
-    if ($url[0] =~ m|^URL: svn://svn.rockbox.org/rockbox/(.+)|) {
-        my $s = $1;
-        if ($s =~ /www/) {
-            tprint "Script must be ran in root of a source repository. You are in $s.\n";
-            exit 22;
-        }
-    }
-
     # check that source tree is unmodified
     my $rev = `svnversion`;
     if ($rev =~ /M/) {
@@ -648,7 +641,7 @@ sub killchild
         waitpid $pid, 0;
     }
 
-    my $dir = "$cwd/builds/build-$id";
+    my $dir = "$cwd/build-$id";
     if (-d $dir) {
         tprint "Removing $dir\n";
         rmtree $dir;
