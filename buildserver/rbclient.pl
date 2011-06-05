@@ -33,8 +33,8 @@ our $username = $username;
 our $password = $password;
 our $clientname = $clientname;
 our $archlist = $archlist;
-our $buildmaster = $buildmaster;
-our $port = $port;
+our $buildmaster = $buildmaster || 'buildmaster.rockbox.org';
+our $port = $port || 19999;
 our $ulspeed = $ulspeed || 0;
 our $commandhook = $commandhook || '';
 
