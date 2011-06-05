@@ -80,7 +80,7 @@ A {
  line-height: 140%;
 }
 
-.twikihead a, .twikihead {
+.wikihead a, .wikihead {
  color: #fff;
 }
 
@@ -236,8 +236,17 @@ td.toolscat {
  text-align: right;
 }
 
+.foswikiTopicInfo {
+  margin-top: 5px;
+}
+
 .foswikiTopicActions {
- padding: 3px;
+  padding: 3px;
+}
+
+.foswikiRevInfo {
+ text-align: right;
+ font-size: 11px;
 }
 
 .twikiEmulatedLink {

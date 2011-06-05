@@ -2,6 +2,7 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<tr><td nowrap>2010-11-26</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes371">Rockbox 3.7.1 is released</a></td></tr>
 <tr><td nowrap>2010-10-30</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes37">Rockbox 3.7 is released</a></td></tr>
 <tr><td nowrap>2010-06-03</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes36">Rockbox 3.6 is released</a></td></tr>
 

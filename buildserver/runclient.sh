@@ -6,7 +6,7 @@ do
     if [ -f "rbclient.pl.new" ]; then
         mv "rbclient.pl.new" "rbclient.pl"
     fi
-    perl -s rbclient.pl -username= -password= -archlist=arm,m68k,sh,mipsel,sdl -clientname=
+    perl -s rbclient.pl -username= -password= -archlist=arm,m68k,sh,mipsel,sdl,arm-eabi-gcc444 -clientname=
     res=$?
     if test "$res" -eq 22; then
       echo "Address the above issue(s), then restart!"

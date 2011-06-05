@@ -12,6 +12,7 @@ perl showbuilds.pl 1 > builds_all.html
 perl showsize.pl > sizes.html
 perl mktitlepics.pl
 perl cleanupdatadir.pl
+perl cia_result.pl $rev
 
 # make build-info for rbutil
 echo "[bleeding]" > build-info

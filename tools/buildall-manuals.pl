@@ -34,8 +34,13 @@ sub runone {
         return;
     }
 
+    my $now = time;
+
     mkdir "build-$dir";
     chdir "build-$dir";
+    if (open(NOBACKUP, ">.nobackup")) {
+        close NOBACKUP;
+    }
     print "Build in build-$dir\n" if($verbose);
 
     # build the manual(s)

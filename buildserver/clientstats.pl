@@ -37,7 +37,7 @@ if ($rows) {
 printf("<p>For these $num builds, the following %d build clients participated:\n",
        scalar @clist);
 
-print "<table><tr><th>Client</th> <th>Score</th> <th>Avg speed<br>(pts/sec)</th> <th>Round<br>speed</th> <th>Avg UL<br>speed</th> <th>Round<br>UL speed</th> <th>Builds</th> <th>Total time</th> <th>All times</th> </tr>\n";
+print "<table><tr><th>Client</th> <th>Score</th> <th>Calc speed<br>(pts/sec)</th> <th>Round<br>speed</th> <th>Avg UL<br>speed</th> <th>Round<br>UL speed</th> <th>Builds</th> <th>Total time</th> <th>All times</th> </tr>\n";
 
 for my $c (sort {$score{$b} <=> $score{$a}} @clist) {
     my ($speed, $ulspeed) = &getspeed($c);
@@ -84,6 +84,8 @@ if ($rows) {
            $totalwork / $totalspeed);
     printf("<br>Effective round speed was $ourspeed points/second, making us %d%% efficient.\n",
            ($ourspeed * 100 / $totalspeed) + 0.5);
+
+    print "<p>A detailed build chart is available on <a href='http://rasher.dk/rockbox/buildgraphs/graph.php?r=$rev&debug'>rasher's page</a>.\n";
           
 }
 

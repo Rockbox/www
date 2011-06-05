@@ -24,6 +24,7 @@ sub header {
     while(<HEAD>) {
         $_ =~ s:^<title>Rockbox<\/title>:<title>$t<\/title>:;
         $_ =~ s:^<h1>_PAGE_<\/h1>:<h1>$t<\/h1>:;
+#        $_ =~ s:(href|src)=([\'\"])/:\1=\2http\://www.rockbox.org/:g;
         print $_;
     }
     close(HEAD);
