@@ -1,39 +1,28 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -w
 #
 # This is the server-side implementation according to the concepts and
 # protocol posted here:
 #
-# http://www.rockbox.org/twiki/bin/view/Main/BuildServerRemake
+# http://www.rockbox.org/wiki/BuildServerRemake
+#
+# Copyright (C) 2010 Björn Stenberg
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
+# KIND, either express or implied.
 #
 
-# is this a test run or live?
-my $test = 0;
-
-# this is the local directory where clients upload logs and zips etc
-my $uploadpath="upload";
-
-# this is the local directory where zips and logs are moved to
-my $store="data";
+use strict;
 
 # the name of the server log
-my $logfile="logfile";
-
-if ($test) {
-    $uploadpath="upload_test";
-    $store="data_test";
-    $logfile="logfile_test";
-}
-
-# the minimum protocol version supported. The protocol version is provided
-# by the client
-my $minimumversion = 36;
-
-# if the client is found too old, this is a svn rev we tell the client to
-# use to pick an update
-my $updaterev = 29038;
+our $logfile="logfile";
 
 # read client block list every 10 minutes
-my $lastblockread = 0;
+our $lastblockread = 0;
 
 use IO::Socket;
 use IO::Select;
@@ -55,8 +44,6 @@ my $buildround;
 # if several build requests are recieved during a round, we only keep the last
 my $nextround;
 
-my %client;
-
 #
 # {$fileno}{'cmd'} for building incoming commands
 #  {'client'} 
@@ -69,9 +56,25 @@ my %client;
 my $started = time();
 my $wastedtime = 0; # sum of time spent by clients on cancelled builds
 
+our ( $setlastrev_sth, $dblog_sth, $submit_update_sth, $submit_new_sth);
+our %rbconfig;
+our %builds;
+our %client;
+our @buildids;
+our %blocked;
+our %buildclients; # clients involved this round
+our $buildstart;
+our $estimated_time;
+our $speculative;
+our $db;
+our $abandoned_builds;
+our $idle_clients;
+our %buildtimes;
+
 sub slog {
     if (open(L, ">>$logfile")) {
         print L strftime("%F %T ", localtime()), $_[0], "\n";
+        print "slog: $_[0]\n" if ($rbconfig{test});
         close(L);
     }
 }
@@ -79,6 +82,7 @@ sub slog {
 sub dlog {
     if (open(L, ">>debuglog")) {
         print L strftime("%F %T ", localtime()), $_[0], "\n";
+        print "dlog: $_[0]\n" if ($rbconfig{test});
         close(L);
     }
 }
@@ -86,7 +90,7 @@ sub dlog {
 sub dblog($$$)
 {
     return if (!$buildround);
-    return if ($test);
+    return if ($rbconfig{test});
 
     my ($cl, $key, $value) = @_;
 
@@ -132,7 +136,7 @@ sub build_clients {
 sub kill_build {
     my ($id)=@_;
 
-    my $num;
+    my $num = 0;
 
     # now kill this build on all clients still building it
     for my $cl (&build_clients) {
@@ -161,7 +165,7 @@ sub kill_build {
                 
                 my $cli = $client{$cl}{'client'};
                 
-                unlink <"$uploadpath/$cli-$id"*>;
+                unlink <"$rbconfig{uploaddir}/$cli-$id"*>;
                 delete $client{$cl}{btime}{$id};
             }
             else {
@@ -213,11 +217,11 @@ sub readblockfile {
             close B;
 
             for my $cl (&build_clients) {
-                my $cname = \$clients{$cl}{'client'};
-                my $cblocked = \$clients{$cl}{'blocked'};
+                my $cname = \$client{$cl}{'client'};
+                my $cblocked = \$client{$cl}{'blocked'};
                 if (defined $blocked{$$cname}) {
                     if (not $$cblocked) {
-                        slog "Adding client block for $$name. Reason: $blocked{$$name}.";
+                        slog "Adding client block for $$cname. Reason: $blocked{$$cname}.";
                     }
                     $$cblocked = 1;
                 }
@@ -239,7 +243,7 @@ sub updateclient {
     my $rh = $client{$cl}{'socket'};
 
     # tell client to update
-    command $rh, "UPDATE $rev";
+    command $rh, sprintf("UPDATE $rbconfig{updateurl}", $rev);
     $client{$cl}{'expect'}="_UPDATE";
     $client{$cl}{'bad'}="asked to update";
 
@@ -255,27 +259,16 @@ sub build {
     my $rh = $client{$fileno}{'socket'};
     my $cli = $client{$fileno}{'client'};
     my $rev = $buildround;
-    my $args = sprintf("%s %s %d %s %s %s",
-                       $id,
-                       $builds{$id}{'confopts'},
-                       $rev,
-                       $builds{$id}{'zip'},
-                       "mt", # TODO: add support for this
-                       $builds{$id}{'file'});
+    my $args = "$id:$rev:mt:$builds{$id}{result}:$builds{$id}{upload}:$builds{$id}{cmdline}";
 
     # tell client to build!
-    if ($test) {
-        my $ulsize = $builds{$id}{ulsize};
-        command $rh, "BUILD $args $ulsize";
-    }
-    else {
-        command $rh, "BUILD $args";
-    }
+    command $rh, "BUILD $args";
+    dlog "BUILD $args";
     $client{$fileno}{'expect'}="_BUILD";
     $client{$fileno}{idle} = 0;
 
     # when is this build to be regarded as overdue?
-    my $od;
+    my $od = '';
     if ($client{$fileno}{speed}) {
         my $ulspeed = $client{$fileno}{ulspeed} || 20000;
         $builds{$id}{overdue} = time() + ($builds{$id}{score} / $client{$fileno}{speed}) + $builds{$id}{ulsize} / $ulspeed + 15;
@@ -295,13 +288,15 @@ sub build {
     $builds{$id}{'handcount'}++;
     $builds{$id}{'clients'}{$fileno} = 1;
 
-    if (!$test) {
+    if (!$rbconfig{test}) {
         $setlastrev_sth->execute($cli, $buildround, $buildround);
         $buildclients{$cli} = 1;
     }
 
     # store the speed of the fastest client building
-    if ($client{$fileno}{speed} > $builds{$id}{topspeed}) {
+    
+    if ($client{$fileno}{speed} and
+        ($client{$fileno}{speed} > $builds{$id}{topspeed})) {
         $builds{$id}{topspeed} = $client{$fileno}{speed};
     }
 }
@@ -349,8 +344,8 @@ sub HELLO {
     my $fno = $rh->fileno;
 
     if(($version eq "commander") &&
-       ($archlist eq $rb_cmdpasswd) &&
-       (1 eq $rb_cmdenabled) &&
+       ($archlist eq $rbconfig{cmdpasswd}) &&
+       (1 eq $rbconfig{cmdenabled}) &&
        !$commander) {
         $commander++;
 
@@ -398,20 +393,15 @@ sub HELLO {
         $client{$fno}{'bad'} = 0; # not bad!
         $client{$fno}{'blocked'} = $blocked{$cli};
 
-        if($version < $minimumversion) {
-            updateclient($fno, $updaterev);
+        if($version < $rbconfig{apiversion}) {
+            updateclient($fno, $rbconfig{updaterevision});
             return;
         }
 
-        my ($speed, $ulspeed) = getspeed($cli, $lastrev);
+        my ($speed, $ulspeed) = getspeed($cli);
 
         # send OK
-        if ($test) {
-            command $rh, "_HELLO ok $speed $ulspeed";
-        }
-        else {
-            command $rh, "_HELLO ok";
-        }
+        command $rh, "_HELLO ok";
 
         $client{$fno}{avgspeed} = $speed;
         $client{$fno}{speed} = $speed; 
@@ -425,14 +415,14 @@ sub HELLO {
 
         if ($client{$fno}{blocked}) {
             slog "Blocked: client $cli blocked due to: $client{$fno}{blocked}";
-            privmessage $fno, sprintf  "Hello $cli. Your build client has been temporarily blocked by the administrators due to: $client{$fno}{blocked}. Please go to #rockbox to enable your client again.";
+            privmessage $fno, sprintf  "Hello $cli. Your build client has been temporarily blocked by the administrators due to: $client{$fno}{blocked}. $rbconfig{enablemsg}";
             return;
         }
         else {
 #            my $sock = $client{$fno}{socket};
 #            my($port,$iaddr) = sockaddr_in($sock);
             slog "Joined: client $cli host $host arch $archlist speed $speed";
-            privmessage $fno, sprintf  "Welcome $cli. Your build speed is $speed points/sec. Your upload speed is %d KB/s.", $ulspeed / 1024;
+            privmessage $fno, sprintf  "Welcome $cli. Your average build speed is $speed points/sec. Your average upload speed is %d KB/s.", $ulspeed / 1024;
             dblog($fno, "joined", "");
         }
         
@@ -538,14 +528,16 @@ sub COMPLETED {
 
     my $speed = $builds{$id}{score} / $took;
 
-    my $msg = &check_log(sprintf("$uploadpath/%s-%s.log", $cli, $id));
-    if ($msg) {
-        slog "Fatal build error: $msg. Blocking $cli.";
-        privmessage $cl, "Fatal build error: $msg. You have been temporarily disabled.";
-        $client{$cl}{'blocked'} = $msg;
-        $client{$cl}{'block_lift'} = time() + 600; # come back in 10 minutes
-        client_gone($cl);
-        return;
+    if (!$rbconfig{test}) {
+        my $msg = &check_log(sprintf("$rbconfig{uploaddir}/%s-%s.log", $cli, $id));
+        if ($msg) {
+            slog "Fatal build error: $msg. Blocking $cli.";
+            privmessage $cl, "Fatal build error: $msg. You have been temporarily disabled.";
+            $client{$cl}{'blocked'} = $msg;
+            $client{$cl}{'block_lift'} = time() + 600; # come back in 10 minutes
+            client_gone($cl);
+            return;
+        }
     }
 
     # mark build completed
@@ -559,7 +551,7 @@ sub COMPLETED {
         if (!$builds{$b}{done}) {
             $left++;
             my $cl = (keys %{$builds{$b}{clients}})[0];
-            my $spent = tv_interval($client{$cl}{btime}{$b}) * $client{$cl}{speed} if ($client{$cl}{speed});
+            my $spent = tv_interval($client{$cl}{btime}{$b}) * $client{$cl}{speed} if (exists $client{$cl}{speed});
             push @lefts, $b;
         }
     }
@@ -577,25 +569,32 @@ sub COMPLETED {
     # now kill this build on all clients still building it
     my $kills = kill_build($id);
 
-    if (!$test) {
+    if (!$rbconfig{test}) {
         # log this build in the database
         &db_submit($buildround, $id, $cli, $took, $ultime, $ulsize);
 
-        my $base=sprintf("$uploadpath/%s-%s", $cli, $id);
-                     
-        if($builds{$id}{'zip'} eq "zip") {
-            # if a zip was included in the build
-            rename("$base.zip", "$store/rockbox-$id.zip");
+        my $base=sprintf("$rbconfig{uploaddir}/%s-%s", $cli, $id);
+
+        my $result = $builds{$id}{'result'};
+        if (-f "$base-$result") {
+            # if a file was uploaded, move it to storage
+	    my $dest = "$rbconfig{storedir}/rockbox-$id.zip";
+            if (rename("$base-$result", $dest)) {
+		slog "Moved $base-$result to $dest";
+	    }
+	    else {
+		slog "Failed moving $base-$result to $dest: $!";
+	    }
         }
         # now move over the build log
-        rename("$base.log", "$store/$buildround-$id.log");
+        rename("$base.log", "$rbconfig{storedir}/$buildround-$id.log");
 
-        if ($rb_eachcomplete) {
+        if (-x $rbconfig{eachcomplete}) {
             my $start = time();
-            system("$rb_eachcomplete $id $cli $buildround");
+            system("$rbconfig{eachcomplete} $id $cli $buildround");
             my $took = time() - $start;
             if ($took > 1) {
-                slog "rb_eachcomplete took $took seconds";
+                slog "eachcomplete took $took seconds";
             }
         }
     }
@@ -656,7 +655,8 @@ sub check_log
 
 sub db_submit
 {
-    return unless ($rb_dbuser and $rb_dbpwd);
+    return unless ($rbconfig{dbuser} and $rbconfig{dbpwd});
+    return if ($rbconfig{test});
 
     my ($revision, $id, $client, $timeused, $ultime, $ulsize) = @_;
     if ($client) {
@@ -670,7 +670,7 @@ sub db_submit
 }
 
 # commands it will accept
-my %protocmd = (
+our %protocmd = (
     'HELLO' => 1,
     'COMPLETED' => 1,
     'UPLOADING' => 1,
@@ -685,6 +685,7 @@ my %protocmd = (
 
 
 sub parsecmd {
+    no strict 'refs';
     my ($rh, $cmdstr)=@_;
     
     if($cmdstr =~ /^([A-Z_]*) *(.*)/) {
@@ -719,8 +720,8 @@ sub fastclient {
     }
 
     if (!$s) {
-        # hand out zip builds before nozip
-        $s = $builds{$a}{'zip'} cmp $builds{$b}{'zip'};
+        # hand out upload builds before no-upload
+        $s = $builds{$a}{'upload'} cmp $builds{$b}{'upload'};
     }
 
     if(!$s) {
@@ -772,38 +773,63 @@ sub startround {
 
     &getbuilds();
 
-    # no zips during testing
-    if ($test) {
+    # no uploads during testing
+    if (0 and $rbconfig{test}) {
         for my $id (@buildids) {
-            $builds{$id}{zip} = 'nozip';
+            $builds{$id}{upload} = 0;
         }
     }
+
+    $buildround=$rev;
+    $buildstart=time();
+    $wastedtime = 0;
+    $speculative = 0;
+
+    resetbuildround();
 
     my $num_clients = scalar &build_clients;
     my $num_builds = scalar @buildids;
 
     slog "New round: $num_clients clients $num_builds builds rev $rev";
+    if (!$num_clients) {
+        slog "No clients connected. Round aborted.";
+        return;
+    }
+    if (!$num_builds) {
+        slog "No builds configured. Round aborted.";
+        return;
+    }
+
+    # disable targets that no client can build
+    for my $b (@buildids) {
+        my $found = 0;
+        for my $cl (&build_clients) {
+            if (&client_can_build($cl, $b)) {
+                $found = 1;
+                last;
+            }
+        }
+        if (not $found) {
+            slog "Nobody can build $b. Disabling target.";
+            $builds{$b}{done} = 1;
+        }
+    }
+    if (!builds_undone()) {
+        slog "No client can build any target! Round aborted.";
+        return;
+    }
 
     message sprintf "New build round started. Revision $rev, $num_builds builds, $num_clients clients.";
 
-    $buildround=$rev;
-    $buildstart=time();
-    $wastedtime = 0;
-    $phase = 1;
-    $countdown = 0;
-    $speculative = 0;
-
-    resetbuildround();
-
-    if (!$test) {
+    if (!$rbconfig{test}) {
 
         # run housekeeping script
-        if ($rb_roundstart) {
+        if (-x $rbconfig{roundstart}) {
             my $start = time();
-            system("$rb_roundstart $buildround");
+            system("$rbconfig{roundstart} $buildround");
             my $took = time() - $start;
             if ($took > 1) {
-                slog "rb_roundstart took $took seconds";
+                slog "rbconfig{roundstart} took $took seconds";
             }
         }
 
@@ -818,12 +844,33 @@ sub startround {
     }
 
     %buildclients = ();
+    
+    # calculate total connected farm speed
+    my $totspeed = 0;
+    for (&build_clients) {
+        $totspeed += $client{$_}{speed};
+    }
 
-    &bestfit_builds(1);
+    if ($totspeed) {
+        bestfit_builds();
+    }
+    else {
+        evenspread_builds();
+    }
+
+    if (1) {
+        # start all clients who aren't currently running
+        for my $c (&build_clients)
+        {
+            if (!scalar keys %{$client{$c}{btime}}) {
+                &start_next_build($c);
+            }
+        }
+    }
 }
 
 sub endround {
-    # end if a build round
+    # end of a build round
 
     if(!$buildround) {
         # avoid accidentally doing this twice
@@ -832,7 +879,7 @@ sub endround {
 
     my $inp = builds_in_progress();
     my $took = time() - $buildstart;
-    my $kills;
+    my $kills = 0;
 
     # kill all still handed out builds
     for my $id (@buildids) {
@@ -849,9 +896,9 @@ sub endround {
     resetbuildround();
 
     # clear upload dir
-    rmtree( $uploadpath, {keep_root => 1} );
+    rmtree( $rbconfig{uploaddir}, {keep_root => 1} );
 
-    if(!$test and $rb_roundend) {
+    if(!$rbconfig{test} and -x $rbconfig{roundend}) {
         my $rounds_sth = $db->prepare("INSERT INTO rounds (revision, took, clients) VALUES (?,?,?) ON DUPLICATE KEY UPDATE took=?,clients=?") or 
             slog "DBI: Can't prepare statement: ". $db->errstr;
         $rounds_sth->execute($buildround,
@@ -859,10 +906,10 @@ sub endround {
                              $took, scalar keys %buildclients);
 
         my $start = time();
-        system("$rb_roundend $buildround");
+        system("$rbconfig{roundend} $buildround");
         my $rbtook = time() - $start;
         if ($rbtook > 1) {
-            slog "rb_roundend took $rbtook seconds";
+            slog "roundend took $rbtook seconds";
         }
     }
     $buildround=0;
@@ -906,7 +953,7 @@ sub checkclients {
             if($exp) {
                 #slog "Alert: Waiting ${t}s for $exp from client $client{$cl}{client}!";
             }
-            command $rh, "PING 111";
+            command $rh, "PING";
             $client{$cl}{'ping'}=[gettimeofday];
             $client{$cl}{'expect'}="_PING";
         }
@@ -949,8 +996,7 @@ sub client_gone {
     # are any clients left?
     if ($buildround and (scalar &build_clients) == 0) {
         slog "Ending round due to lack of clients";
-        $buildround = 0;
-        $nextround = 0;
+        endround();
     }
 }
 
@@ -973,8 +1019,8 @@ sub bigsort
     }
 
     if (!$s) {
-        # do zip builds before non-zip builds
-        my $s = $builds{$a}{'zip'} cmp $builds{$b}{'zip'};
+        # do upload builds before no-upload builds
+        my $s = $builds{$a}{'upload'} cmp $builds{$b}{'upload'};
     }
 
     if (!$s) {
@@ -1007,8 +1053,8 @@ sub smallsort
     }
 
     if (!$s) {
-        # do nonzip builds before zip builds
-        my $s = $builds{$b}{'zip'} cmp $builds{$a}{'zip'};
+        # do no-upload builds before upload builds
+        my $s = $builds{$b}{'upload'} cmp $builds{$a}{'upload'};
     }
 
     if (!$s) {
@@ -1042,11 +1088,34 @@ sub client_eta($)
     return 0;
 }
 
+sub evenspread_builds 
+{
+    # First time ever == no client speed ratings.
+    # Abandon all ambitions of intelligence and just smear the builds
+    # evenly across all clients.
+    
+    for my $cl (&build_clients) {
+        $client{$cl}{points} = 0;
+    }
+
+    for my $build (@buildids) {
+        for my $cl (sort { $client{$a}{points} <=> $client{$b}{points} }
+                    &build_clients)
+        {
+            if (client_can_build($cl, $build)) {
+                $client{$cl}{queue}{$build} = 1;
+                $client{$cl}{points} += $builds{$build}{score};
+                $builds{$build}{assigned} = 1;
+                last;
+            }
+        }
+    }
+}
+
+
 my $firsttime = 0;
 sub bestfit_builds
 {
-    my ($start_builds) = @_;
-
     my %deduct;
     my %todo;
     my $totaldeduct;
@@ -1142,8 +1211,7 @@ sub bestfit_builds
             my $ultime = $builds{$b}{ulsize} / $ulspeed;
             my $endtime = $client{$c}{timeused} + $buildtime + $ultime - $lastultime;
             
-            if (client_can_build($c, $b) and
-                ($endtime < $maxtime))
+            if (client_can_build($c, $b) and ($endtime < $maxtime))
             {
                 $client{$c}{queue}{$b} = $buildtime || 1;
                 $client{$c}{ultime}{$b} = $ultime;
@@ -1156,12 +1224,12 @@ sub bestfit_builds
                 last if (!$speed);
             }
         }
-        $totleft += int($maxtime - $timeused);
+        $totleft += int($maxtime - $client{$c}{timeused});
     }
 
     # any unassigned builds?
     for my $b (@buildids) {
-        if (!$builds{$b}{assigned}) {
+        if (!$builds{$b}{assigned} and !$builds{$b}{done}) {
             # increase the margin and try again
             $margin += 5;
             dlog "*** $b unassigned, trying again";
@@ -1213,15 +1281,6 @@ sub bestfit_builds
 
     my $bcount = scalar @buildids;
     dlog "$bcount builds in $estimated_time seconds. $totleft seconds unused";
-
-    if ($start_builds) {
-        # start all clients who aren't currently running
-        for my $c (sort {$client{$a}{speed} <=> $client{$b}{speed}} &build_clients) {
-            if (!scalar keys %{$client{$c}{btime}}) {
-                &start_next_build($c);
-            }
-        }
-    }
 }
 
 sub start_next_build($)
@@ -1266,7 +1325,9 @@ sub start_next_build($)
             next if (!client_can_build($cl, $id));
             next if (defined $client{$cl}{btime}{$id});
             # don't start any build that would take >66% of round time
-            next if ($client{$cl}{roundspeed} and ($builds{$id}{score} / $client{$cl}{roundspeed} > $estimated_time * 2 / 3));
+            if ($estimated_time) {
+                next if ($client{$cl}{roundspeed} and ($builds{$id}{score} / $client{$cl}{roundspeed} > $estimated_time * 2 / 3));
+            }
             if (!$builds{$id}{done}) {
                 if ($builds{$id}{handcount} == 0) {
                     #dlog "$cli does unstarted $id";
@@ -1353,19 +1414,19 @@ sub estimate_eta
         my ($t, $id) = client_eta($cl);
         my $eta = int(time + $t);
         if ($t) {
-            if (not defined $buildstimes{$id} or
+            if (not defined $buildtimes{$id} or
                 $buildtimes{$id} > $eta)
             {
                 $buildtimes{$id} = $eta;
-                $buildhost{$id} = $client{$cl}{$client};
+                $buildhost{$id} = $client{$cl}{client};
             }
         }
         
         for $id (sort {$builds{$b}{score} <=> $builds{$a}{score}}
-                   $keys %{$client{$cl}{queue}})
+                 keys %{$client{$cl}{queue}})
         {
-            $eta += int($build{$id}{score} / $cspeed);
-            if (not defined $buildstimes{$id} or
+            $eta += int($builds{$id}{score} / $cspeed);
+            if (not defined $buildtimes{$id} or
                 $buildtimes{$id} > $eta)
             {
                 $buildtimes{$id} = $eta;
@@ -1399,29 +1460,28 @@ sub control {
         else {
             $nextround = $1;
         }
-        command $rh, "OK!";
     }
     elsif ($cmd =~ /^UPDATE (.*?) (\d+)/) {
         for my $cl (&build_clients) {
-            if ($clients{$cl}{client} eq "$1") {
+            if ($client{$cl}{client} eq "$1") {
                 &update_client($cl, $2);
             }
         }
     }
 }
 
-# Master socket for receiving new connections
-my $server = new IO::Socket::INET(
-	LocalPort => $test ? 19998 : 19999,
-	Proto => "tcp",
-	Listen => 150,
-	Reuse => 1)
-or die "socket: $!\n";
-
+readconfig();
 getbuilds("builds");
 db_connect();
+db_prepare();
 
-my $debug;
+# Master socket for receiving new connections
+my $server = new IO::Socket::INET(
+    LocalPort => $rbconfig{portnum},
+    Proto => "tcp",
+    Listen => 20,
+    Reuse => 1)
+or die "socket: $!\n";
 
 # Add the master socket to select mask
 my $read_set = new IO::Select();
@@ -1439,10 +1499,12 @@ dlog "=================== Server starts ===================";
 my $alldone = 0;
 $SIG{KILL} = sub { slog "Killed"; exit; };
 $SIG{INT} = sub { slog "Received interrupt"; $alldone = 1; };
+$SIG{PIPE} = sub {
+ slog "SIGPIPE";
+ };
 $SIG{__DIE__} = sub { slog(sprintf("Perl error: %s", @_)); };
 while(not $alldone) {
     my @handles = sort map $_->fileno, $read_set->handles;
-    warn "waiting on (@handles)\n" if($debug);
     my ($rh_set, $timeleft) =
         IO::Select->select($read_set, undef, undef, 1);
 

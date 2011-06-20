@@ -1,14 +1,10 @@
 #!/usr/bin/perl
-
-use DBI;
+require "rbmaster.pm";
 
 my $rev = $ARGV[0];
 my $build = $ARGV[1];
 
-eval 'require "secrets.pm"';
-my $dbpath = 'DBI:mysql:rockbox';
-my $db = DBI->connect($dbpath, $rb_dbuser, $rb_dbpwd) or
-    warn "DBI: Can't connect to database: ". DBI->errstr;
+db_connect();
 
 my $sth = $db->prepare("UPDATE builds SET errors=?,warnings=? WHERE revision=? and id=?") or
     warn "DBI: Can't prepare statement: ". $db->errstr;
@@ -43,6 +39,7 @@ if (open(LOG, "<data/$rev-$build.log")) {
                    ($line =~ /ld returned (\d+) exit status/) ||
                    ($line =~ /^svn: /) ||
                    ($line =~ /^Build Failure: /) ||
+#                   ($line =~ /^error:/i) ||
                    ($line =~ /^ *make: *\*\*\*/) )
             {
                 # error

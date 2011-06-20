@@ -1,26 +1,17 @@
-# secrets.pm is optional and may contain:
-#
-# The master commander password that must be presented when connecting
-# $rb_cmdpasswd = "secret";
-#
-# Enabling the commander concept
-# $rb_cmdenabled = 1;       enables the commander system
-#
-# The shell script run after each build is completed. The arguments for this
-# script is $buildid $client-$user.
-# NOTE: this script is called synchronously. Make it run fast.
-# $rb_eachcomplete = "scriptname.sh";
-#
-# The shell script run after each build round is completed. No arguments.
-# NOTE: this script is called synchronously. Make it run fast.
-# $rb_buildround = "scriptname.sh"
-#
-# The account details used to access the mysql database.
-# $rb_dbuser = 'dbuser';
-# $rb_dbpwd = 'dbpwd';
-#
 use DBI;
-eval 'require "secrets.pm"';
+
+sub readconfig {
+    %rbconfig = ();
+    open(F, "<rbmaster.conf");
+    while (<F>) {
+        if (/^([^#]\w+):\s*(.+)/) {
+            $rbconfig{$1} = $2;
+            chomp $rbconfig{$1};
+        }
+    }
+    close F;
+}
+
 
 sub getbuilds {
     my $filename="builds";
@@ -32,15 +23,17 @@ sub getbuilds {
 
     open(F, "<$filename");
     while(<F>) {
-        # sdl:nozip:recordersim:Recorder - Simulator:rockboxui:--target=recorder,--ram=2,--type=s
+        # arm-eabi-gcc444:0:ipodnano1gboot:iPod Nano 1G - Boot:bootloader-ipodnano1g.ipod:839:../tools/configure --target=ipodnano1g --type=b && make
+        next if (/^\#/);
         chomp;
-        my ($arch, $zip, $id, $name, $file, $confopts, $score) = split ':', $_;
+        my ($arch, $upload, $id, $name, $result, $score,
+            $cmdline) = split(':', $_);
         $builds{$id}{'arch'}=$arch;
-        $builds{$id}{'zip'}=$zip;
+        $builds{$id}{'upload'}=$upload;
         $builds{$id}{'name'}=$name;
-        $builds{$id}{'file'}=$file;
-        $builds{$id}{'confopts'}=$confopts;
+        $builds{$id}{'result'}=$result;
         $builds{$id}{'score'}=$score;
+        $builds{$id}{'cmdline'}=$cmdline;
         $builds{$id}{'handcount'} = 0; # not handed out to anyone
         $builds{$id}{'assigned'} = 0; # not assigned to anyone
         $builds{$id}{'done'} = 0; # not done
@@ -54,7 +47,12 @@ sub getbuilds {
     my @s = sort {$builds{$b}{score} <=> $builds{$a}{score}} keys %builds;
     $topscore = int($builds{$s[0]}{score} / 2);
 
-    db_connect() if (not $db);
+    return if ($rbconfig{test});
+
+    if (not $db) {
+        db_connect();
+        db_prepare();
+    }
 
     # get last revision
     my $rows = $getlastrev_sth->execute();
@@ -62,7 +60,7 @@ sub getbuilds {
     $getlastrev_sth->finish();
 
     # get last sizes
-    my $rows = $getsizes_sth->execute($lastrev);
+    $rows = $getsizes_sth->execute($lastrev);
     while (my ($id, $size) = $getsizes_sth->fetchrow_array())
     {
         $builds{$id}{ulsize} = $size;
@@ -73,7 +71,11 @@ sub getbuilds {
 
 sub getspeed($)
 {
-    db_connect() if (not $db);
+    return (0,0) if ($rbconfig{test});
+    if (not $db) {
+        db_connect();
+        db_prepare();
+    }
 
     my ($cli) = @_;
 
@@ -106,9 +108,6 @@ sub getspeed($)
             if (scalar @buildspeeds) {
                 ($bs += $_) for @buildspeeds;
                 my $bcount = scalar @buildspeeds;
-                if ($bcount < $rounds) {
-                    $bcount = $rounds;
-                }
                 $bs /= $bcount;
             }
             if (scalar @ulspeeds) {
@@ -122,50 +121,19 @@ sub getspeed($)
     return (0, 0);
 }
 
-sub old_getspeed($)
-{
-    db_connect() if (not $db);
-
-    my ($cli) = @_;
-    my $maxrows = 10;
-
-    my $rows = $getspeed_sth->execute($cli, $maxrows);
-    if ($rows > 0) {
-        #print "$rows rows\n";
-        my ($points, $time, $usize, $utime);
-
-        # fetch score for $avgcount latest revisions (build rounds)
-        while (my ($id, $tottime, $ultime, $ulsize) = $getspeed_sth->fetchrow_array()) {
-            $points += $builds{$id}{score};
-            $time += $tottime;
-            if ($ultime && $ulsize) {
-                $utime += $ultime;
-                $usize += $ulsize;
-            }
-        }
-        $getspeed_sth->finish();
-
-        my $ulspeed = 0;
-        if ($utime) {
-            $ulspeed = int($usize / $utime);
-        }
-
-        my $buildspeed = 0;
-        if ($time) {
-            $buildspeed = int($points / $time);
-        }
-
-        return ($buildspeed, $ulspeed);
-    }
-    return (0, 0);
-}
-
 sub db_connect
 {
-    my $dbpath = 'DBI:mysql:rockbox';
-    $db = DBI->connect($dbpath, $rb_dbuser, $rb_dbpwd) or
-        warn "DBI: Can't connect to database: ". DBI->errstr;
+    return if ($rbconfig{test});
+    readconfig() if (not $rbconfig{dbname});
 
+    my $dbpath = "DBI:$rbconfig{dbtype}:database=$rbconfig{dbname};host=$rbconfig{dbhost}";
+    $db = DBI->connect($dbpath, $rbconfig{dbuser}, $rbconfig{dbpwd}) or
+        warn "DBI: Can't connect to database: ". DBI->errstr;
+}
+
+sub db_prepare
+{
+    return if ($rbconfig{test});
     # prepare some statements for later execution:
 
     $submit_update_sth = $db->prepare("UPDATE builds SET client=?,timeused=?,ultime=?,ulsize=? WHERE revision=? and id=?") or

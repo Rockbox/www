@@ -27,6 +27,12 @@ if (-f $zip) {
             printf S "$build: $bytes $ram\n";
             close S;
         }
+	else {
+	    print "rev $rev build $build ramsize $ram\n";
+	}
         $sth->execute($ram, $bytes, $rev, $build);
     }
+}
+else {
+    print "No $zip found: $!\n";
 }
