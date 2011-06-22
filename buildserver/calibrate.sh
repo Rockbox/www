@@ -8,22 +8,17 @@ do
    zipneeded=`echo "$REPLY"|cut -f 2 -d ":"`
    shortname=`echo "$REPLY"|cut -f 3 -d ":"`
    nicename=`echo "$REPLY"|cut -f 4 -d ":"`
-   various=`echo "$REPLY"|cut -f 1-6 -d ":"`
-   args=`echo "$REPLY"|cut -f 6 -d ":"|tr ',' ' '`
+   various=`echo "$REPLY"|cut -f 1-5 -d ":"`
+   oldscore=`echo "$REPLY"|cut -f 6 -d ":"`
+   command=`echo "$REPLY"|cut -f 7 -d ":"`
    mkdir -p build-calibrate
    cd build-calibrate
    echo -n "building $nicename : "
-   if [ "$zipneeded" = "zip" ]
-   then
-      /usr/bin/time -f"%U+%S" sh -c "../tools/configure --no-ccache $args && make -j && make zip">/dev/null 2>../$shortname.buildtime
-   else
-      /usr/bin/time -f"%U+%S" sh -c "../tools/configure --no-ccache $args && make -j ">/dev/null 2>../$shortname.buildtime
-   fi
+   /usr/bin/time -f"%U+%S" sh -c "$command" >/dev/null 2>../$shortname.buildtime
    cd ..
    rm -rf build-calibrate
    score=`cat $shortname.buildtime|tail -1|bc -l|numprocess '*100'|numround`
    rm -f  $shortname.buildtime
    echo $score
-   echo "$various:$score" >> newbuildfile
+   echo "$various:$score:$command" >> newbuildfile
 done
-
