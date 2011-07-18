@@ -360,13 +360,13 @@ sub parsechunk {
             if (defined $regular{lc $nick}) {
                 $class = "regular";
             }
-            elsif (($nick eq "*") and ($message =~ /^<span class="nick_([^>]+)/)) {
+            elsif (($nick eq "*") and ($message =~ /^<span class='nick_([^']+)/)) {
                 $realnick = $1;
                 if (defined $regular{lc $realnick}) {
                     $class = "regular";
                 }
             }
-            my $n1 = "<span class=\"nick_$realnick\">";
+            my $n1 = "<span class=\'nick_$realnick\'>";
             my $n2 = "</span>";
             if ($nick =~ /[^\w\d_\-]/) {
                 $n1 = $n2 = "";
