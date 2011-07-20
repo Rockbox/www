@@ -339,7 +339,7 @@ sub parsechunk {
             # tag all nicks
             foreach my $nick (keys %nicks) {
                 if (index($message, $nick) > -1) {
-                    $message =~ s|\b\Q$nick\E\b|<span class='nick_$nick'>$nick</span>|g;
+                    $message =~ s|\b\Q$nick\E\b|<span class="nick_$nick">$nick</span>|g;
                 }
             }
 
@@ -348,9 +348,9 @@ sub parsechunk {
                 my $url = $1;
                 my $broken_url = $url;
  
-                if ($url =~ /<span class='nick_([^']+)/) {
+                if ($url =~ /<span class="nick_([^>]+)/) {
                     my $nick = $1;
-                    $url =~ s|<span class='nick_$nick'>$nick</span>|$nick|g;
+                    $url =~ s|<span class="nick_$nick">$nick</span>|$nick|g;
                     $message =~ s|$broken_url|$url|g;
                 }
             }
@@ -360,13 +360,13 @@ sub parsechunk {
             if (defined $regular{lc $nick}) {
                 $class = "regular";
             }
-            elsif (($nick eq "*") and ($message =~ /^<span class='nick_([^']+)/)) {
+            elsif (($nick eq "*") and ($message =~ /^<span class="nick_([^>]+)/)) {
                 $realnick = $1;
                 if (defined $regular{lc $realnick}) {
                     $class = "regular";
                 }
             }
-            my $n1 = "<span class=\'nick_$realnick\'>";
+            my $n1 = "<span class=\"nick_$realnick\">";
             my $n2 = "</span>";
             if ($nick =~ /[^\w\d_\-]/) {
                 $n1 = $n2 = "";
