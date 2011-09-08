@@ -46,15 +46,15 @@ if ($date =~ /(\d\d\d\d)(\d\d)(\d\d)/) {
     $title = "#rockbox $1-$2-$3";
 }
 
-my $gecko = 0;
+my $push = 0;
 if ($ENV{'HTTP_USER_AGENT'} =~ m|Gecko/2|) {
-    $gecko = 1;
+    $push = 1;
 }
-if ($ENV{'HTTP_USER_AGENT'} =~ m|Firefox/4|) {
-    $gecko = 0;
+if ($ENV{'HTTP_USER_AGENT'} =~ m|Firefox/[4-9]|) {
+    $push = 0;
 }
 
-if ($file eq "current.txt" and $gecko) {
+if ($file eq "current.txt" and $push) {
     my $delimiter = sprintf("delimiter%x%x%x", rand(2**31), rand(2**31), rand(2**31));
     print "Content-type: multipart/mixed;boundary=$delimiter\n\n";
     print "--$delimiter\n";
@@ -198,7 +198,7 @@ Seconds:
 END
     ;
 
-if (!$gecko) {
+if (!$push) {
     print "<p><b>Notice:</b> Only Gecko based browsers prior to FF4 support the multipart/mixed \"server push\" method used by this log reader to auto-update. Since you do not appear to use such a browser, this page will simply show the current log, and not automatically update.</p>\n";
 }
 
@@ -211,7 +211,7 @@ my $houranchor;
 print "<table class=irclog>\n";
 # pass 2: output html
 
-if ($file eq "current.txt" and $gecko) {
+if ($file eq "current.txt" and $push) {
     # go into tail chase mode
 
     # start auto-scrolling
