@@ -5,7 +5,9 @@ require "CGI.pm";
 $req = new CGI;
 
 $rev = $req->param('rev');
+$rev =~ s/[^\w]//g;
 $type = $req->param('type');
+$type =~ s/[^\w]//g;
 
 print "Content-Type: text/html\n\n";
 
