@@ -51,10 +51,11 @@ and Ondio
 <p>Work has begun on porting Rockbox to these players, but much remains before they are usable:
 
 <ul>
-<li><b>Cowon</b> iAudio 7, <b>Creative</b> ZVM, <b>Logik</b> Dax, <b>Meizu</b> M6 and M3
-<br><b>Onda</b> VX747, VX767 and VX777,
-<br><b>Tatung</b> Elio TPJ1022, <b>Sandisk</b> Sansa m200, c100,
-<br><b>Google</b> Android, <b>Apple</b> iPod Classic
+<li><b>Onda</b> VX747, VX767 and VX777</li>
+<li><b>Sandisk</b> Sansa m200, Fuze+, Clip Zip</li>
+<li><b>Google</b> Android</li>
+<li><b>Apple</b> iPod Classic</li>
+<li><b>Rockchip</b> rk27xx</li>
 </ul>
 
 <p>Click here for a <a href="/wiki/TargetStatus#New_Platforms_Currently_Under_De">status summary of unstable and unusable ports</a>.
