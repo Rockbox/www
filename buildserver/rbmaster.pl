@@ -661,11 +661,11 @@ sub db_submit
     my ($revision, $id, $client, $timeused, $ultime, $ulsize) = @_;
     if ($client) {
         $submit_update_sth->execute($client, $timeused, $ultime, $ulsize, $revision, $id) or
-            warn "DBI: Can't execute statement: ". $submit_update_sth->errstr;
+            slog "DBI: Can't execute statement: ". $submit_update_sth->errstr;
     }
     else {
         $submit_new_sth->execute($revision, $id) or
-            warn "DBI: Can't execute statement: ". $submit_new_sth->errstr;
+            slog "DBI: Can't execute statement: ". $submit_new_sth->errstr;
     }
 }
 
@@ -1019,8 +1019,13 @@ sub bigsort
     }
 
     if (!$s) {
+        # do few-client builds before many-client builds
+        $s = $builds{$a}{'canbuild'} <=> $builds{$b}{'canbuild'};
+    }
+
+    if (!$s) {
         # do upload builds before no-upload builds
-        my $s = $builds{$a}{'upload'} cmp $builds{$b}{'upload'};
+        $s = $builds{$a}{'upload'} cmp $builds{$b}{'upload'};
     }
 
     if (!$s) {
@@ -1127,6 +1132,16 @@ sub bestfit_builds
     for my $b (@buildids) {
         if (!$builds{$b}{done} and !$builds{$b}{uploading}) {
             $totwork += $builds{$b}{score};
+        }
+    }
+
+    # how many clients for each build?
+    for my $b (@buildids) {
+        $builds{$b}{canbuild} = 0;
+        for my $c (&build_clients) {
+            if (client_can_build($c, $b)) {
+                $builds{$b}{canbuild} += 1;
+            }
         }
     }
 
@@ -1605,4 +1620,4 @@ while(not $alldone) {
     checkclients();
     readblockfile();
 }
-warn "exiting.\n";
+slog "exiting.\n";
