@@ -127,7 +127,8 @@ sub db_connect
     readconfig() if (not $rbconfig{dbname});
 
     my $dbpath = "DBI:$rbconfig{dbtype}:database=$rbconfig{dbname};host=$rbconfig{dbhost}";
-    $db = DBI->connect($dbpath, $rbconfig{dbuser}, $rbconfig{dbpwd}) or
+    $db = DBI->connect($dbpath, $rbconfig{dbuser}, $rbconfig{dbpwd},
+                       {mysql_auto_reconnect => 1}) or
         warn "DBI: Can't connect to database: ". DBI->errstr;
 }
 
