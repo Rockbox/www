@@ -29,7 +29,7 @@ if (open(LOG, "<data/$rev-$build.log")) {
                 }
             }
             elsif (($line =~ /^([^:]*):(\d*):.*note: (.*)/) ||
-                   $line =~ /^In file included/)
+                   ($line =~ /^In file included/))
             {
                 # some gcc versions like to print notes every now and then
                 # we'll ignore those

@@ -64,7 +64,8 @@ while (<LOG>) {
                 push @o, "<a name=\"prob$prob\"></a>\n";
                 push @o, "<div class=\"gccwarn\">$line</div>\n";
             }
-            elsif ($line =~ /^([^:]*):(\d*):.*note: (.*)/)
+            elsif (($line =~ /^([^:]*):(\d*):.*note: (.*)/) ||
+                   ($line =~ /^In file included/))
             {
                 # some gcc versions like to print notes every now and then
                 # we'll ignore those
