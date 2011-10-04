@@ -69,6 +69,7 @@ arm-eabi-gcc444:1:zenvisionm60:Creative Zen Vision M 60GB - Normal:rockbox.zip:2
 arm-eabi-gcc444:1:zenvision:Creative Zen Vision - Normal:rockbox.zip:10373:../tools/configure --target=zenvision --type=n && make zip
 arm-eabi-gcc444:1:sansafuze:SanDisk Sansa Fuze - Normal:rockbox.zip:33321:../tools/configure --target=sansafuze --type=n && make zip
 arm-eabi-gcc444:1:sansafuzev2:SanDisk Sansa Fuzev2 - Normal:rockbox.zip:32777:../tools/configure --target=sansafuzev2 --type=n && make zip
+arm-eabi-gcc444:1:sansafuzeplus:SanDisk Sansa Fuze+ - Normal:rockbox.zip:29716:../tools/configure --target=sansafuzeplus --type=n && make zip
 arm-eabi-gcc444:1:sansaclip:SanDisk Sansa Clip - Normal:rockbox.zip:26099:../tools/configure --target=sansaclip --type=n && make zip
 arm-eabi-gcc444:1:sansaclipv2:SanDisk Sansa Clipv2 - Normal:rockbox.zip:26643:../tools/configure --target=sansaclipv2 --type=n && make zip
 arm-eabi-gcc444:1:sansaclipplus:SanDisk Sansa Clip+ - Normal:rockbox.zip:26632:../tools/configure --target=sansaclipplus --type=n && make zip
