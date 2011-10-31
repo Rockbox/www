@@ -52,7 +52,7 @@ and Ondio
 
 <ul>
 <li><b>Onda</b> VX747, VX767 and VX777</li>
-<li><b>Sandisk</b> Sansa m200, Fuze+, Clip Zip</li>
+<li><b>Sandisk</b> Sansa m200, Fuze+</li>
 <li><b>Google</b> Android</li>
 <li><b>HiFiMAN</b> HM-601/HM-602</li>
 <li><b>Apple</b> iPod Classic</li>
