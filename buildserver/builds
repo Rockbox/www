@@ -25,6 +25,7 @@ sdl:0:mrobe100sim:Olympus M-Robe 100 - Simulator:rockboxui:15622:../tools/config
 sdl:0:cowond2sim:Cowon D2 - Simulator:rockboxui:16634:../tools/configure --target=cowond2 --type=s && make
 sdl:0:zenvisionm30sim:Creative Zen Vision M 30GB - Simulator:rockboxui:16183:../tools/configure --target=zenvisionm30gb --type=s && make
 sdl:0:sansaclipsim:SanDisk Sansa Clip - Simulator:rockboxui:10993:../tools/configure --target=sansaclip --type=s && make
+sdl:0:sansaclipzipsim:SanDisk Sansa Clip Zip - Simulator:rockboxui:10993:../tools/configure --target=sansaclipzip --type=s && make
 sdl:0:sansafuzesim:SanDisk Sansa Fuze - Simulator:rockboxui:19120:../tools/configure --target=sansafuze --type=s && make
 sdl:0:sansam200v4sim:SanDisk Sansa m200v4 - Simulator:rockboxui:10452:../tools/configure --target=sansam200v4 --type=s && make
 sdl:0:gogearhdd1630sim:Philips HDD1630 - Simulator:rockboxui:16896:../tools/configure --target=gogearhdd1630 --type=s && make
@@ -73,6 +74,7 @@ arm-eabi-gcc444:1:sansafuzeplus:SanDisk Sansa Fuze+ - Normal:rockbox.zip:29716:.
 arm-eabi-gcc444:1:sansaclip:SanDisk Sansa Clip - Normal:rockbox.zip:26099:../tools/configure --target=sansaclip --type=n && make zip
 arm-eabi-gcc444:1:sansaclipv2:SanDisk Sansa Clipv2 - Normal:rockbox.zip:26643:../tools/configure --target=sansaclipv2 --type=n && make zip
 arm-eabi-gcc444:1:sansaclipplus:SanDisk Sansa Clip+ - Normal:rockbox.zip:26632:../tools/configure --target=sansaclipplus --type=n && make zip
+arm-eabi-gcc444:1:sansaclipzip:SanDisk Sansa Clip Zip - Normal:rockbox.zip:26632:../tools/configure --target=sansaclipzip --type=n && make zip
 arm-eabi-gcc444:1:sansae200v2:SanDisk Sansa e200v2 - Normal:rockbox.zip:33143:../tools/configure --target=sansae200v2 --type=n && make zip
 arm-eabi-gcc444:1:sansac200v2:SanDisk Sansa c200v2 - Normal:rockbox.zip:26981:../tools/configure --target=sansac200v2 --type=n && make zip
 arm-eabi-gcc444:1:sansam200v4:SanDisk Sansa m200v4 - Normal:rockbox.zip:24041:../tools/configure --target=sansam200v4 --type=n && make zip
@@ -124,6 +126,7 @@ arm-eabi-gcc444:0:sansam200v4boot:SanDisk Sansa m200v4 - Boot:bootloader-m200v4.
 arm-eabi-gcc444:0:sansaclipboot:SanDisk Sansa Clip - Boot:bootloader-clip.sansa:1235:../tools/configure --target=sansaclip --type=b && make
 arm-eabi-gcc444:0:sansaclipv2boot:SanDisk Sansa Clipv2 - Boot:bootloader-clipv2.sansa:717:../tools/configure --target=sansaclipv2 --type=b && make
 arm-eabi-gcc444:0:sansaclipplusboot:SanDisk Sansa Clip+ - Boot:bootloader-clipplus.sansa:709:../tools/configure --target=sansaclipplus --type=b && make
+arm-eabi-gcc444:0:sansaclipzipboot:SanDisk Sansa Clip zip - Boot:bootloader-clipzip.sansa:709:../tools/configure --target=sansaclipzip --type=b && make
 arm-eabi-gcc444:0:sansafuzeboot:SanDisk Sansa Fuze - Boot:bootloader-fuze.sansa:783:../tools/configure --target=sansafuze --type=b && make
 arm-eabi-gcc444:0:gogearhdd1630boot:Philips HDD1630 - Boot:FWImage.ebn:748:../tools/configure --target=gogearhdd1630 --type=b && make
 arm-eabi-gcc444:0:gogearhdd6330boot:Philips HDD6330 - Boot:FWImage.ebn:755:../tools/configure --target=gogearhdd6330 --type=b && make
@@ -164,6 +167,7 @@ sdl:0:mrobe100wps:Olympus M-Robe 100 - Checkwps:checkwps.mrobe100:132:../tools/c
 sdl:0:cowond2wps:Cowon D2 - Checkwps:checkwps.cowond2:136:../tools/configure --target=cowond2 --type=c && make
 sdl:0:zenvisionm30wps:Creative Zen Vision M 30GB - Checkwps:checkwps.zenvisionm30gb:132:../tools/configure --target=zenvisionm30gb --type=c && make
 sdl:0:sansaclipwps:SanDisk Sansa Clip - Checkwps:checkwps.sansaclip:128:../tools/configure --target=sansaclip --type=c && make
+sdl:0:sansaclipzipwps:SanDisk Sansa Clip Zip - Checkwps:checkwps.sansaclipzip:128:../tools/configure --target=sansaclipzip --type=c && make
 sdl:0:sansafuzewps:SanDisk Sansa Fuze - Checkwps:checkwps.sansafuze:137:../tools/configure --target=sansafuze --type=c && make
 arm-eabi-gcc444:0:sansafuzev2boot:SanDisk Sansa Fuzev2 - Boot:bootloader-fuzev2.sansa:750:../tools/configure --target=sansafuzev2 --type=b && make
 sdl:0:sansam200v4wps:SanDisk Sansa m200v4 - Checkwps:checkwps.sansam200v4:130:../tools/configure --target=sansam200v4 --type=c && make
