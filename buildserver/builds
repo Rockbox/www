@@ -26,6 +26,7 @@ sdl:0:cowond2sim:Cowon D2 - Simulator:rockboxui:17631:../tools/configure --targe
 sdl:0:zenvisionm30sim:Creative Zen Vision M 30GB - Simulator:rockboxui:17183:../tools/configure --target=zenvisionm30gb --type=s && make
 sdl:0:sansaclipsim:SanDisk Sansa Clip - Simulator:rockboxui:11711:../tools/configure --target=sansaclip --type=s && make
 sdl:0:sansaclipzipsim:SanDisk Sansa Clip Zip - Simulator:rockboxui:7811:../tools/configure --target=sansaclipzip --type=s && make
+sdl:0:sansaconnectsim:SanDisk Sansa Connect - Simulator:rockboxui:17572:../tools/configure --target=sansaconnect --type=s && make
 sdl:0:sansafuzesim:SanDisk Sansa Fuze - Simulator:rockboxui:20030:../tools/configure --target=sansafuze --type=s && make
 sdl:0:sansam200v4sim:SanDisk Sansa m200v4 - Simulator:rockboxui:11202:../tools/configure --target=sansam200v4 --type=s && make
 sdl:0:gogearhdd1630sim:Philips HDD1630 - Simulator:rockboxui:17842:../tools/configure --target=gogearhdd1630 --type=s && make
