@@ -94,7 +94,6 @@ sh:1:archosrecorder:Recorder - Normal:rockbox.zip:10588:../tools/configure --tar
 sh:1:archosrecorderv2:V2 Recorder - Normal:rockbox.zip:10405:../tools/configure --target=archosrecorderv2 --ram=2 --type=n && make zip
 sh:1:archosplayer:Player - Normal:rockbox.zip:4117:../tools/configure --target=archosplayer --ram=2 --type=n && make zip
 sh:1:archosfmrecorder:FM Recorder - Normal:rockbox.zip:10348:../tools/configure --target=archosfmrecorder --ram=2 --type=n && make zip
-sh:1:archosrecorder8mb:Recorder - Normal - 8MB:rockbox.zip:10428:../tools/configure --target=archosrecorder --ram=8 --type=n && make zip
 sh:1:archosondiosp:Ondio SP - Normal:rockbox.zip:9034:../tools/configure --target=archosondiosp --ram=2 --type=n && make zip
 sh:1:archosondiofm:Ondio FM - Normal:rockbox.zip:9391:../tools/configure --target=archosondiofm --ram=2 --type=n && make zip
 m68k-gcc452:0:iriverh100boot:iriver H100 - Boot:bootloader.iriver:1010:../tools/configure --target=iriverh100 --type=b && make
