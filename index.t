@@ -1,16 +1,16 @@
 #if 1
-        #define _LOGO_ <div style="max-width: 1000px;"><div align=center><img src="rockbox400.png" width=400 height=123 alt="Rockbox Logo"></div>
+        #define _LOGO_ <div style="max-width: 1000px;"><div align=center><img src="rb10years400.png" width=400 height=140 alt="Rockbox Logo"></div>
 #else
         #define _LOGO_ <img src="rdcwlogo.png" align=center width=400 height=123 alt="Rockbox Devcon West 2007">
 
 #endif
-#define _PAGE_ Open Source Jukebox Firmware
+#define _PAGE_ Free Music Player Firmware
 #define MAIN_PAGE
 #include "head.t"
 
 <p><table class='blurb' align=center><tr><td>
 <p class="ingress">
-Rockbox is an open source firmware for mp3 players, written from scratch. It runs on a wide range of players:
+Rockbox is a free replacement firmware for digital music players. It runs on a wide range of players:
 
 <p><h2>Stable ports</h2>
 <p>Rockbox runs well on these players, has a complete manual and is supported by <a href="/download/">the installer</a>:
@@ -81,6 +81,8 @@ and Ondio
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
+<tr><td nowrap>2011-09-03</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes391">Rockbox 3.9.1 is released</a></td></tr>
+
 <tr><td nowrap>2011-06-27</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes39">Rockbox 3.9 is released</a></td></tr>
 
 <tr><td nowrap>2011-04-06</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes381">Rockbox 3.8.1 is released</a></td></tr>
@@ -90,8 +92,6 @@ href="http://www.rockbox.org/wiki/SummerOfCode2011">Google Summer of Code
 2011</a> and we welcome students to apply for doing projects for and with
 us!</a></td></tr>
 
-<tr><td nowrap>2011-04-01</td><td>We apologize for the subtle April fool's joke this year.</td></tr>
-<tr><td nowrap>2011-02-27</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes38">Rockbox 3.8 is released</a></td></tr>
 </table>
 <small><a href="history.html">Older news</a>
 
