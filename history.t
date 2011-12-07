@@ -2,6 +2,8 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<p><i>2011-04-03</i>: Rockbox participates in the <a href="http://www.rockbox.org/wiki/SummerOfCode2011">Google Summer of Code 2011</a> and we welcome students to apply for doing projects for and with us!
+
 <p><i>2011-04-01</i>: We apologize for the subtle April fool's joke this year.
 <p><i>2011-02-27</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes38">Rockbox 3.8 is released</a>
 

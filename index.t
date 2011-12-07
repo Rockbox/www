@@ -81,16 +81,13 @@ and Ondio
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
+<tr><td nowrap>2011-09-03</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes310">Rockbox 3.10 is released</a></td></tr>
+
 <tr><td nowrap>2011-09-03</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes391">Rockbox 3.9.1 is released</a></td></tr>
 
 <tr><td nowrap>2011-06-27</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes39">Rockbox 3.9 is released</a></td></tr>
 
 <tr><td nowrap>2011-04-06</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes381">Rockbox 3.8.1 is released</a></td></tr>
-
-<tr><td nowrap>2011-04-03</td><td>Rockbox participates in the <a
-href="http://www.rockbox.org/wiki/SummerOfCode2011">Google Summer of Code
-2011</a> and we welcome students to apply for doing projects for and with
-us!</a></td></tr>
 
 </table>
 <small><a href="history.html">Older news</a>
