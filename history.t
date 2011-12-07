@@ -2,9 +2,12 @@
 #define HISTORY_PAGE
 #include "head.t"
 
-<tr><td nowrap>2010-11-26</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes371">Rockbox 3.7.1 is released</a></td></tr>
-<tr><td nowrap>2010-10-30</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes37">Rockbox 3.7 is released</a></td></tr>
-<tr><td nowrap>2010-06-03</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes36">Rockbox 3.6 is released</a></td></tr>
+<p><i>2011-04-01</i>: We apologize for the subtle April fool's joke this year.
+<p><i>2011-02-27</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes38">Rockbox 3.8 is released</a>
+
+<p><i>2010-11-26</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes371">Rockbox 3.7.1 is released</a>
+<p><i>2010-10-30</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes37">Rockbox 3.7 is released</a>
+<p><i>2010-06-03</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes36">Rockbox 3.6 is released</a>
 
 <p><i>2010-02-15</i>: Rockbox will be applying for Google Summer of Code 2010.  Please <a href="http://www.rockbox.org/wiki/SummerOfCode2010">suggest</a> possible projects or <a href="http://www.rockbox.org/irc/">ask</a> to be a mentor or student on our IRC channel.
 
