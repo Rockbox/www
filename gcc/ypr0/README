@@ -2,7 +2,7 @@ ct-ng-config is the .config file for crosstools-NG[1]. This builds
 a working toolchain for the Samsung YP-R0 app target, so Rockbox
 can be compiled as an app.
 
-alsalib.tar.gc has headers and runtime libraries for libasound found on
+alsalib.tar.gz has headers and runtime libraries for libasound found on
 the Samsung YP-R0. The headers are extracted from a debian .deb package
 (package: libasound2-dev (1.0.13-2), Debian etch [2]). The runtime libraries
 are extracted from the device (actually, from a OF update package [3]).
