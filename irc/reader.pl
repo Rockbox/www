@@ -19,6 +19,7 @@ use POSIX 'strftime', 'mktime';
 
 # hardcoded log format for dancer irc bot
 
+my $logdir = "/sites/rockbox.org/logbot/log";
 my $today = strftime "%Y%m%d", localtime;
 my $date = param('date') + 0;
 
@@ -80,7 +81,7 @@ if ($file =~ /[^\w\d\.\-]/) {
     goto foot;
 }
 
-if (!open FILE, "<$file") {
+if (!open FILE, "<$logdir/$file") {
     print "<p>$file: $!\n";
     goto foot;
 }

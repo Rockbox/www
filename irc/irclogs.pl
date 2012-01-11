@@ -2,7 +2,9 @@
 
 require "../date.pm";
 
-opendir(DIR, ".") or
+my $logdir = "/sites/rockbox.org/logbot/log";
+
+opendir(DIR, $logdir) or
     die "Can't opendir()";
 @logs = grep { /^rockbox-/ } readdir(DIR);
 closedir DIR;
