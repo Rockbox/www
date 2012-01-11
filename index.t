@@ -120,27 +120,13 @@ and Ondio
 
 <h2>Sponsors:</h2>
 <table class=sponsors><tr valign="top">
-<td>
+<td align='center'>
 <a href="http://www.haxx.se/"><img border=0 src="/haxx.png" width=90 height=31 alt="Haxx Logo"></a>
 <p>
 Haxx sponsors the main site, build server, svn server and various other resources
 </td>
 
-<td>
-<a href="http://www.videolan.org/"><img border=0 src="http://images.videolan.org/images/videolan-logo.png" width=100 height=47 alt="VideoLAN"></a>
-<p>
-VideoLAN sponsors a download server
-</td>
-
-<td>
-<a href="http://www.positive-internet.com/"><img border=0
-src="http://www.positive-internet.com/assets/templates/positive/images/logo-footer.gif" width=70
-height=87 alt="Positive Internet"></a>
-<p>
-Positive Internet sponsors a download server
-</td>
-
-<td>
+<td align='center'>
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post"><input type="hidden" name="cmd" value="_xclick"><input type="hidden" name="business" value="bjorn@haxx.se"><input type="hidden" name="item_name" value="Donation to the Rockbox project"><input type="hidden" name="no_shipping" value="1"><input type="hidden" name="cn" value="Note to the Rockbox team"><input type="hidden" name="currency_code" value="USD"><input type="hidden" name="tax" value="0"><input type="image" src="/paypal-donate.gif" name="submit"></form>
 <p>Many people have sponsored us with personal Paypal donations. Thank you!
 </td>
