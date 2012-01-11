@@ -859,8 +859,10 @@ sub startround {
     }
 
     if (1) {
-        # start all clients who aren't currently running
-        for my $c (&build_clients)
+        # start all clients who aren't currently running,
+        # those with allocated builds first
+        for my $c (sort { $client{$b}{points} <=> $client{$a}{points} }
+                   &build_clients)
         {
             if (!scalar keys %{$client{$c}{btime}}) {
                 &start_next_build($c);
