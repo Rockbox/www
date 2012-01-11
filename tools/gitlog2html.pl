@@ -91,6 +91,10 @@ while(<STDIN>) {
             if (1) {
                 my $br;
                 $what = "<small><a href='http://git.rockbox.org/?p=rockbox.git;a=commit;h=$hash'>$hash</a>:</small> ";
+                while ($b[$#b] eq "\n") {
+                    delete $b[$#b];
+                }
+
                 for my $l (@b) {
                     $l =~ s:&:&amp;:g;
                     $l =~ s:<:&lt;:g;
