@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<link rel="STYLESHEET" type="text/css" href="http://www.rockbox.org/style.css">
+<link rel="shortcut icon" href="http://www.rockbox.org/favicon.ico">
+<title>Rockbox - Open Source Jukebox Firmware</title>
+<meta name="author" content="Rockbox Contributors">
+<script type="text/javascript">
+function fsstrip() {
+    var expr = /[0-9]+/;
+    document.fsform.taskid.value = expr.exec(document.fsform.taskid.value);
+    return true;
+}
+</script>
+</head>
+<body>
+<table border=0 cellpadding=7 cellspacing=0>
+<tr valign="top">
+<td bgcolor="#6887bb" valign="top">
+<br>
+<div align="center"><a href="http://www.rockbox.org/">
+<img src="http://www.rockbox.org/rockbox100.png" width=99 height=30 border=0 alt="Rockbox.org home"></a>
+</div>
+<div style="margin-top:20px">
+<div class="submenu">
+Downloads
+</div>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/package.png' align='top'> <a class="menulink" href="http://www.rockbox.org/download/">releases</a><br>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/bomb.png' align='top'> <a class="menulink" href="http://build.rockbox.org">current build</a><br>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/style.png' align='top'> <a class="menulink" href="http://www.rockbox.org/twiki/bin/view/Main/RockboxExtras">extras</a>
+<div class="submenu">
+Documentation
+</div>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/page_white_acrobat.png' align='top'> <a class="menulink" href="http://www.rockbox.org/manual.shtml">manual</a><br>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/application_edit.png' align='top'> <a class="menulink" href="http://www.rockbox.org/twiki/">wiki</a><br>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/book_open.png' align='top'> <a class="menulink" href="http://www.rockbox.org/twiki/bin/view/Main/DocsIndex">index</a>
+<div class="submenu">
+Support
+</div>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/email.png' align='top'> <a class="menulink" href="http://www.rockbox.org/mail/">mailing lists</a><br>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/group.png' align='top'> <a class="menulink" href="http://www.rockbox.org/irc/">IRC</a><br>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/comment_edit.png' align='top'> <a class="menulink" href="http://forums.rockbox.org/">forums</a>
+<div class="submenu">
+Tracker
+</div>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/bug.png' align='top'> <a class="menulink" href="http://www.rockbox.org/tracker/index.php?type=2">bugs</a><br>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/brick.png' align='top'> <a class="menulink" href="http://www.rockbox.org/tracker/index.php?type=4">patches</a><br>
+<img width=16 height=16 src='http://www.rockbox.org/silk_icons/lightbulb.png' align='top'>&nbsp;<a class="menulink" href="http://www.rockbox.org/tracker/index.php?type=1">requests</a><br>
+<div class="submenu">
+Search
+</div>
+<form id="fsform" action="http://www.rockbox.org/tracker/index.php" method="get" onSubmit="return fsstrip();">
+<input id="taskid" name="show_task" type="text" size="10" maxlength="10" accesskey="t"><br>
+<input class="mainbutton" type="submit" value="Flyspray #">
+</form>
+<br>
+<form action="http://www.google.com/search">
+<input name=as_q size=10><br>
+<input value="Search" type=submit>
+<input type=hidden name=as_sitesearch value="www.rockbox.org">
+</form>
+<p><form action="https://www.paypal.com/cgi-bin/webscr" method="get">
+<input type="hidden" name="cmd" value="_xclick">
+<input type="hidden" name="business" value="bjorn@haxx.se">
+<input type="hidden" name="item_name" value="Donation to the Rockbox project">
+<input type="hidden" name="no_shipping" value="1">
+<input type="hidden" name="cn" value="Note to the Rockbox team">
+<input type="hidden" name="currency_code" value="USD">
+<input type="hidden" name="tax" value="0">
+<input type="image" src="http://www.rockbox.org/paypal-donate.gif" name="submit">
+</form>
+</div>
+
+</td>
+<td>
+<h1>Rockbox DevCon 2008</h1>
+
+<h2>Live video feed</h2>
+<p>Closed down, obviously.
+
+<p>This is what it looked like:
+<br><img src="webcam-people.jpg">
+
+<p>Petur is taking photos and uploading them <a href="http://picasaweb.google.com/peturbox/RockboxDevcon2008">here</a>.
+
+<p>Some movies, including the tower building, are <a href="http://www.dailymotion.com/group/RockboxDevcon2008">here</a>.
+
+<h2>Actual work</h2>
+<p>We'd had ~2 hours of meeting on saturday, recorded on
+<a href="meeting1.mp3">audio</a> (146MB MP3) and 
+<a href="http://www.ustream.tv/recorded/519641">video</a> (streamed flash).
+
+<h3>Some topics covered</h3>
+<p>(Quick summary by Björn, proper notes coming later)
+<dl>
+<dt>3.0 release:
+<dd>Yes we want one. No it won't be bug free. Only two real showstoppers identified: Freeze at end of playlist (<a href="http://www.rockbox.org/tracker/task/9110">#9110</a>) and playlist skipping bugs (<a href="http://www.rockbox.org/tracker/task/8977">#8977</a>). When those are fixed, we'll do a short feature freeze, cut away everything that doesn't work and release.
+
+<dt>GPL version:
+<dd>We are at v2, because we suspect some imported code is v2-only. We want to move to v2-or-later. V3 is not ruled out, but we'll take it one step at a time.
+
+<dt>Rockbox Steering Board:
+<dd>The Rockbox Steering Board will consist of five persons. The purpose of the board is to resolve issues that get stuck in IRC due to conflicting opinions. A nomination and voting procedure will be done among all committers. (Bagder will send mail with more details.)
+
+<dt>Menu and settings layout:
+<dd>Basically these are never-ending issues that we delegate to the RSB.
+
+<dt>pluginlib actions:
+<dd>Stop trying to shoehorn actions into plugins. Use/create a basic five key context (up/down/left/right/select), and use custom code for everything else.
+
+<dt>Plugins lingering in the tracker:
+<dd>Plugins don't have to work on all targets. We should be less afraid of committing.
+
+</dl>
+
+<h3>Meeting #2</h2>
+<p>Another ~2 hours of meeting on sunday.
+<a href="meeting2.mp3">Audio</a> (171MB MP3) and 
+<a href="http://www.ustream.tv/recorded/521865">video</a> (streamed flash).
+
+<dl>
+<dt>New forum guidelines:
+<dd>Rewrite the guidelines to make them a bit more friendly. Write reponse templates that every developer can use.
+
+<dt>IRC channels (add #rockbox-dev?):
+<dd>We all felt that improved signal/noise-ratio in #rockbox is desirable, but adding a new channel is not really an improvement.
+
+<dt>What to do with the feaure request tracker:
+<dd>We make it restricted for developers-only, so that requests are actually relevant. Use the assigned-to field to show who is interested in each item.
+
+<dt>How to stop the manual from lagging behind?
+<dd>
+
+<dt>How do we handle remotes in the manual?
+<dd>Remotes should be described in the text, next to the main unit button description. M3 gets the roles reversed: Using the remote is the normal case.
+
+<dt>What is the goal of RBUtil? What should it do and not?
+<dd>It should do things that help people use Rockbox. We should keep the console version up-to-date to help blind people. We need constructive help from blind people how to make the tools more accessible.
+
+</dl>
+
+</td></tr></table>
+</body>
+</html>
