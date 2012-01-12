@@ -131,6 +131,11 @@ PRE {
   overflow: hidden;
 }
 
+.sponsors td {
+  background-color: #c6d6f5;
+  padding: 1em;
+}
+
 
 .rockbox, .changetable, .bugs, .requests, .patches, .dailymod, .buildstatus, .archive, .buttontable, .changesummary, .tools, .latestmail, .twikichanges, .changetable_front, .news, .sponsors, .blurb
 {
