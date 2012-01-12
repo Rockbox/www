@@ -13,7 +13,7 @@ GITLOG="git log --name-status --abbrev-commit --date=iso --encoding=iso-8859-1"
 # recent commits
 ( cd ../trunk && git pull -q )
 ( cd ../trunk && $GITLOG -5 ) | perl tools/gitlog2html.pl > last5front.html
-( cd ../trunk && $GITLOG -15 ) | perl tools/gitlog2html.pl > lastsvn.html
+( cd ../trunk && $GITLOG -15 ) | perl tools/gitlog2html.pl > lastcode.html
 
 # commits since last release
 grep -v _PAGE_ head.html > since-release.html

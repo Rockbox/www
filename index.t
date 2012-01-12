@@ -103,7 +103,7 @@ and Ondio
 
 <tr><td colspan=2>
 
-<h3 class=frontpage><a href='recent.shtml#svn'>Code changes</a></h3>
+<h3 class=frontpage><a href='recent.shtml#code'>Code changes</a></h3>
 <!--#include file="last5front.html" -->
 <small>All commits <a href="since-release.html">since last release</a>,
  <a href="since-4weeks.html">last four weeks</a>,
