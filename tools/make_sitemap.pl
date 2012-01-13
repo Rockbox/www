@@ -100,8 +100,10 @@ my @htmlfiles =
 
 for my $file (@htmlfiles) {
     my $modtime = (stat("$htmldir/$file"))[9];
-    my $timestring = strftime("%FT%T+01:00", localtime($modtime));
-    $site .= "<url href='http://www.rockbox.org/$file' lastmod='$timestring' priority='0.9' />\n";
+    if ($modtime) {
+        my $timestring = strftime("%FT%T+01:00", localtime($modtime));
+        $site .= "<url href='http://www.rockbox.org/$file' lastmod='$timestring' priority='0.9' />\n";
+    }
 }
 
 
@@ -131,7 +133,7 @@ for my $file (readdir DIR) {
 closedir DIR;
 
 # irc
-my $ircdir = "/sites/rockbox.org/www/irc";
+my $ircdir = "/sites/rockbox.org/logbot/log";
 my $irc;
 opendir(DIR, $ircdir) or die "Failed opening irc dir: $!\n";
 for my $file (readdir DIR) {
