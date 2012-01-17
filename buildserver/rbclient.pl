@@ -15,7 +15,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 47;
+my $revision = 48;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -498,6 +498,13 @@ sub MESSAGE
     print $sock "_MESSAGE\n";
 }
 
+sub SYSTEM
+{
+    my ($cmd) = @_;
+    tprint "Server system command: $cmd\n";
+    system($cmd);
+}
+
 sub parsecmd
 {
     no strict 'refs';
@@ -511,7 +518,8 @@ sub parsecmd
                      'PING', 1,
                      'UPDATE', 1,
                      'CANCEL', 1,
-                     'MESSAGE', 1);
+                     'MESSAGE', 1,
+                     'SYSTEM', 1);
     
     if($cmdstr =~ /^([_A-Z]*) *(.*)/) {
         my $func = $1;
