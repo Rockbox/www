@@ -96,6 +96,7 @@ while(<STDIN>) {
                 }
 
                 for my $l (@b) {
+                    $l =~ s:^\s*::;
                     $l =~ s:&:&amp;:g;
                     $l =~ s:<:&lt;:g;
                     $l =~ s:>:&gt;:g;
@@ -105,6 +106,9 @@ while(<STDIN>) {
                     $what .= $l;
                     $br++;
                 }
+
+                # pull paragraphs together
+                $what =~ s/\n<br>(\w)/ \1/g;
             }
             print "<tr><td nowrap class=\"cstamp\">$when</td>\n",
             "<td class=\"cdesc\">$what</td>\n",
