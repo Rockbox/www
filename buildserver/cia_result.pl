@@ -8,11 +8,13 @@ if (!$rev) {
     exit;
 }
 
-my $user = `svnlook author /sites/svn/rockbox --revision $rev`;
+db_connect();
+
+chdir "/sites/rockbox.org/trunk";
+my $user = `git log -1 "--format=format:%an" $rev`;
 chomp $user;
 
-db_connect();
-my $sth = $db->prepare("SELECT sum(errors), sum(warnings) FROM builds WHERE revision=$rev") or
+my $sth = $db->prepare("SELECT sum(errors), sum(warnings) FROM builds WHERE revision='$rev'") or
     warn "DBI: Can't prepare statement: ". $db->errstr;
 my $rows = $sth->execute();
 if ($rows) {

@@ -23,7 +23,7 @@ my $maxrounds = 20;
 sub getdata {
     db_connect();
     my $maxrows = $maxrounds * scalar keys %builds;
-    my $sth = $db->prepare("SELECT revision,id,errors,warnings,client,timeused FROM builds ORDER BY revision DESC limit $maxrows") or
+    my $sth = $db->prepare("SELECT revision,id,errors,warnings,client,timeused FROM builds ORDER BY time DESC limit $maxrows") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
     my $rows = $sth->execute();
     if ($rows) {
@@ -44,12 +44,13 @@ sub getdata {
         }
     }
 
-    $csth = $db->prepare("SELECT revision,clients,took FROM rounds ORDER BY revision DESC limit $maxrounds");
+    $csth = $db->prepare("SELECT revision,clients,took,UNIX_TIMESTAMP(time) FROM rounds ORDER BY time DESC limit $maxrounds");
     my $rows = $csth->execute();
     if ($rows) {
-        while (my ($rev, $clients,$took) = $csth->fetchrow_array()) {
+        while (my ($rev, $clients,$took,$time) = $csth->fetchrow_array()) {
             $round{$rev}{clients} = $clients;
-            $round{$rev}{time} = $took;
+            $round{$rev}{took} = $took;
+            $round{$rev}{time} = $time;
         }
     }
 }
@@ -81,9 +82,9 @@ foreach my $b (keys %builds) {
 }
 
 print "<table class=\"buildstatus\" cellspacing=\"1\" cellpadding=\"0\"><tr>";
-print "<th>rev / time</th>";
+print "<th>revision</th><th>timestamp</th>";
 print "<th>score</th>";
-print "<th>time</th>";
+print "<th>btime</th>";
 foreach $t (sort {$builds{$a}{sortkey} cmp $builds{$b}{sortkey}} keys %alltypes) {
 
     my ($a1, $a2);
@@ -99,7 +100,7 @@ print "</tr>\n";
 my $numbuilds = scalar(keys %alltypes);
 my $js;
 if($buildrev) {
-    my $rounds_sth = $db->prepare("SELECT took FROM rounds ORDER BY revision DESC LIMIT 5") or 
+    my $rounds_sth = $db->prepare("SELECT took FROM rounds ORDER BY time DESC LIMIT 5") or 
         die "DBI: Can't prepare statement: ". $db->errstr;
     my $rows = $rounds_sth->execute();
     my $prevtime = 0;
@@ -131,18 +132,19 @@ if($buildrev) {
 #################
 
 my $count=0;
-for my $rev (sort {$b <=> $a} keys %compiles) {
+for my $rev (sort {$round{$b}{time} <=> $round{$a}{time}} keys %compiles) {
     my @types = keys %{$compiles{$rev}};
 
-    my $time = (stat("data/$rev-clients.html"))[9];
-    my $timestring = strftime("%H:%M", localtime $time);
+    #my $time = (stat("data/$rev-clients.html"))[9];
+    my $time = $round{$rev}{time};
+    my $timestring = strftime("%b %d %H:%M", localtime $time);
 
     print "<tr align=center>\n";
 
-    my $chlink = "<a class=\"bstamp\" href=\"http://svn.rockbox.org/viewvc.cgi?view=rev;revision=$rev\">$rev</a> $timestring";
+    my $chlink = "<a class=\"bstamp\" href=\"http://git.rockbox.org/?p=rockbox.git;a=commit;h=$rev\">$rev</a>";
 
     my $score=0;
-    print "<td nowrap>$chlink</td>\n";
+    print "<td>$chlink</td><td nowrap>$timestring</td>\n";
 
     my %servs;
     my %bt;
@@ -184,12 +186,12 @@ for my $rev (sort {$b <=> $a} keys %compiles) {
         push @tds, sprintf("<td class=\"%s\"><a class=\"blink\" href=\"shownewlog.cgi?rev=%s;type=%s\" title=\"Built by %s in %d secs\">%s</a></td>\n",
                            $class,
                            $rev, $type,
-                           $$b{client}, $$b{time},
+                           $$b{client}, $$b{took},
                            $text);
     }
     printf "<td>%d</td>", $score;
     printf("<td><a href=\"data/$rev-clients.html\">%d:%02d</a></td>",
-           $round{$rev}{time} / 60, $round{$rev}{time} % 60);
+           $round{$rev}{took} / 60, $round{$rev}{took} % 60);
     print @tds;
     print "</tr>\n";
     $count++;

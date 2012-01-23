@@ -4,6 +4,13 @@ use CGI 'param';
 use File::Copy;
 use File::Basename;
 
+sub ulog {
+    if (open(L, ">>$cwd/upload.log")) {
+        print L strftime("%F %T ", localtime()), $_[0], "\n";
+        close(L);
+    }
+}
+
 my $cwd = dirname $0;
 my $cgi = basename $0;
 
@@ -33,9 +40,11 @@ if (open OUTFILE, ">$destpath/$filename") {
     }
     close OUTFILE;
     print "Status: 200 Upload successful\n";
+    ulog "Uploaded upload/$filename";
 }
 else {
     print "Status: 502 File copy failed: $!\n";
+    ulog "Failed creating upload/$filename";
 }
 
 print "\n$destpath/$filename\n";

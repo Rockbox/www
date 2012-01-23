@@ -15,7 +15,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 48;
+my $revision = 50;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -259,22 +259,17 @@ sub startbuild
     my $pipe = new IO::Pipe();
     $builds{$id}{pipe} = $pipe;
 
-    # fix svn
-    my $buf = `svnversion`;
-    my $rev;
-    if ($buf =~ /(\d\w+)/) {
-        $rev = $1;
-        if ($rev =~ /M/) {
-            tprint "*** Your source tree is modified! Clean it up and restart.\n";
-            exit 22;
-        }
+    # check git
+    my $mod = `git status --porcelain --untracked-files=no`;
+    if ($mod =~ / M /) {
+        tprint "Your source tree is modified! Clean it up and restart.\n";
+        exit 22;
     }
-    if ($rev != $builds{$id}{rev}) {
-        # (using system() to make stderr messages appear on client console)
-        system("svn up -q -r $builds{$id}{rev}");
-    }
-    if ($?) { # abort if svn failed
-        tprint "*** Subversion error!\n";
+    # (using system() to make stderr messages appear on client console)
+    system("git remote update");
+    system("git checkout --quiet --force $builds{$id}{rev}");
+    if ($?) { # abort if git failed
+        tprint "*** git error!\n";
         return;
     }
 
@@ -566,6 +561,17 @@ sub testsystem
         }
     }
 
+    # check git
+    if (not -d ".git") {
+        `curl -o svn2git.sh http://www.rockbox.org/buildserver/svn2git.sh`;
+        `sh svn2git.sh`;
+    }
+
+    if (not -d ".git") {
+        tprint "git transition failed.\n";
+        exit 22;
+    }
+
     # check curl
     my $p = `which curl`;
     if (not $p =~ m|^/|) {
@@ -593,14 +599,14 @@ sub testsystem
     }
         
     # check that source tree is unmodified
-    my $rev = `svnversion`;
-    if ($rev =~ /M/) {
+    my $mod = `git status --porcelain --untracked-files=no`;
+    if ($mod =~ / M /) {
         tprint "Your source tree is modified! Clean it up and restart.\n";
         exit 22;
     }
 
-    # update svn to latest version
-    system("svn up");
+    # update to latest version
+    system("git fetch");
 }
 
 sub readconfig

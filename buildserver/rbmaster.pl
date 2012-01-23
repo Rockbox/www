@@ -296,7 +296,8 @@ sub build {
     # store the speed of the fastest client building
     
     if ($client{$fileno}{speed} and
-        ($client{$fileno}{speed} > $builds{$id}{topspeed})) {
+        ($client{$fileno}{speed} > $builds{$id}{topspeed}))
+    {
         $builds{$id}{topspeed} = $client{$fileno}{speed};
     }
 }
@@ -393,7 +394,7 @@ sub HELLO {
         $client{$fno}{'bad'} = 0; # not bad!
         $client{$fno}{'blocked'} = $blocked{$cli};
 
-        if($version < $rbconfig{apiversion}) {
+        if ($version < $rbconfig{apiversion}) {
             updateclient($fno, $rbconfig{updaterevision});
             return;
         }
@@ -550,8 +551,8 @@ sub COMPLETED {
     for my $b (@buildids) {
         if (!$builds{$b}{done}) {
             $left++;
-            my $cl = (keys %{$builds{$b}{clients}})[0];
-            my $spent = tv_interval($client{$cl}{btime}{$b}) * $client{$cl}{speed} if (exists $client{$cl}{speed});
+            #my $cl = (keys %{$builds{$b}{clients}})[0];
+            #my $spent = tv_interval($client{$cl}{btime}{$b}) * $client{$cl}{speed} if (exists $client{$cl}{speed});
             push @lefts, $b;
         }
     }
@@ -1470,7 +1471,7 @@ sub control {
     chomp $cmd;
     slog "Commander says: $cmd";
 
-    if($cmd =~ /^BUILD (\d+)/) {
+    if($cmd =~ /^BUILD (\w+)/) {
         if(!$buildround) {
             &startround($1);
         }

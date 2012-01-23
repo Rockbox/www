@@ -4,8 +4,13 @@ require "rbmaster.pm";
 my $dir="data";
 
 opendir(DIR, $dir) || die "can't opendir $dir: $!";
-my @logs = sort grep { /.sizes$/ && -f "$dir/$_" } readdir(DIR);
+my @logs = grep { /.sizes$/ && -f "$dir/$_" } readdir(DIR);
 closedir DIR;
+
+for my $f (@logs) {
+    my $time = (stat("$dir/$f"))[9];
+    $logtime{$f} = $time;
+}
 
 my %title;
 my $rounds;
@@ -22,6 +27,8 @@ sub singlefile {
     my %single;
     my $totaldelta=0;
     my $models=0;
+
+    print STDERR "$file\n";
 
     open(F, "<$file");
     while(<F>) {
@@ -48,6 +55,11 @@ sub singlefile {
 	    else {
 		$t = "<td>-</td>";
 	    }
+
+            if ($name =~ /cowond2/) {
+                print STDERR " $ram > $thisram{$name} ($ramdelta)\n";
+            }
+
             $title="\nRAM: $ramdelta/$ram bytes";
             $singleram{$1}=$t;
 
@@ -55,6 +67,10 @@ sub singlefile {
 
 	    if($this{$name} && $size) {
 		$delta = $size - $this{$name};
+            }
+
+            if ($name =~ /cowond2/) {
+                print STDERR " $size > $this{$name} ($delta)\n";
             }
 
             my $delta2 = ($delta + $ramdelta)/2;
@@ -77,6 +93,12 @@ sub singlefile {
 	    if($ram) {
 		$thisram{$name}=$ram;
 	    }
+
+            if ($name =~ /cowond2/) {
+                print STDERR " size: $size\n";
+                print STDERR " ramsize: $ram\n";
+            }
+
 	    $models++;
 	} 
     }
@@ -105,7 +127,7 @@ sub singlefile {
 }
 
 
-foreach my $l (@logs) {
+foreach my $l (sort { $logtime{$a} <=> $logtime{$b} } @logs) {
     if( -s "$dir/$l") {
 	singlefile("$dir/$l");
 	$rounds++;
@@ -127,11 +149,11 @@ print "<th>Delta</th>\n";
 print "</tr>\n";
 
 my $c;
-foreach my $l (reverse sort @logs) {
+foreach my $l (sort { $logtime{$b} <=> $logtime{$a} } @logs) {
     if($lines{"$dir/$l"}) {
-        $l =~ /^(\d+).sizes$/;
+        $l =~ /^(\w+).sizes$/;
         my $rev = $1;
-        $b = "<a class=\"bstamp\" href=\"http://svn.rockbox.org/viewvc.cgi?view=rev;revision=$rev\">$rev</a>";
+        $b = "<a class=\"bstamp\" href=\"http://git.rockbox.org/?p=rockbox.git;a=commit;h=$rev\">$rev</a>";
 
 	print "<tr><td nowrap>$b</td>";
 	print $lines{"$dir/$l"}."\n";

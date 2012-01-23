@@ -17,7 +17,7 @@ if (-f $zip) {
             elsif(/^RAM usage: (\d+)/i) {
                 $ram = $1;
             }
-            elsif(/^Version: *r(\d+)/i) {
+            elsif(/^Version: *(\w+)/i) {
                 $rev = $1;
             }
         }
@@ -32,7 +32,4 @@ if (-f $zip) {
 	}
         $sth->execute($ram, $bytes, $rev, $build);
     }
-}
-else {
-    print "No $zip found: $!\n";
 }

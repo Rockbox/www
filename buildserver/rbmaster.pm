@@ -19,8 +19,6 @@ sub getbuilds {
     %builds = ();
     @buildids = ();
 
-    system("svn up -q --non-interactive $filename");
-
     open(F, "<$filename");
     while(<F>) {
         # arm-eabi-gcc444:0:ipodnano1gboot:iPod Nano 1G - Boot:bootloader-ipodnano1g.ipod:839:../tools/configure --target=ipodnano1g --type=b && make
@@ -39,6 +37,7 @@ sub getbuilds {
         $builds{$id}{'done'} = 0; # not done
         $builds{$id}{'uploading'} = 0; # not uploading
         $builds{$id}{'ulsize'} = 0;
+        $buikds{$id}{'topspeed'} = 0;
 
         push @buildids, $id;
     }
@@ -79,7 +78,7 @@ sub getspeed($)
 
     my ($cli) = @_;
 
-    my $rows = $getspeed_sth->execute($cli, $lastrev-5);
+    my $rows = $getspeed_sth->execute($cli, 10);
     if ($rows > 0) {
         my @ulspeeds;
         my @buildspeeds;
@@ -146,10 +145,10 @@ sub db_prepare
     $setlastrev_sth = $db->prepare("INSERT INTO clients (name, lastrev) VALUES (?,?) ON DUPLICATE KEY UPDATE lastrev=?") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
 
-    $getspeed_sth = $db->prepare("SELECT id, timeused, ultime, ulsize FROM builds WHERE client=? AND errors = 0 AND warnings = 0 AND timeused > 0 AND revision >= ?") or
+    $getspeed_sth = $db->prepare("SELECT id, timeused, ultime, ulsize FROM builds WHERE client=? AND errors = 0 AND warnings = 0 AND timeused > 0 ORDER BY time DESC LIMIT ?") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
 
-    $getlastrev_sth = $db->prepare("SELECT revision FROM builds ORDER BY revision DESC LIMIT 1") or
+    $getlastrev_sth = $db->prepare("SELECT revision FROM builds ORDER BY time DESC LIMIT 1") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
 
     $getsizes_sth = $db->prepare("SELECT id,ulsize FROM builds WHERE revision = ?") or

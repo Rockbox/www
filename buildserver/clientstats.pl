@@ -69,7 +69,7 @@ for my $c (sort {$score{$b} <=> $score{$a}} @clist) {
 }
 print "</table>\n";
 
-$csth = $db->prepare("SELECT took FROM rounds WHERE revision=$rev");
+$csth = $db->prepare("SELECT took FROM rounds WHERE revision='$rev'");
 my $rows = $csth->execute();
 if ($rows) {
     my ($timeused) = $csth->fetchrow_array();
