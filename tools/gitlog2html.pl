@@ -9,38 +9,34 @@ my @mname = ('January', 'February', 'March', 'April', 'May',
              'June', 'July', 'August', 'September', 'October',
              'November', 'December' );
 
-my %action;
-
 my %skip_tags = ('Change-Id' => 1,
                  'git-svn-id' => 1);
 
 sub file2url {
-    my ($file, $rev)=@_;
+    my ($file, $a, $i, $rev)=@_;
     my $sfile = $file;
     my $urlroot="http://git.rockbox.org/?p=rockbox.git";
     $sfile =~ s:^/trunk::;
     $sfile =~ s:^/::;
 
     my $diff;
-    my $a = $action{$file};
-
     my $path = sprintf("<a class=\"fname\" href=\"$urlroot;a=blob;f=%s\">%s</a>",
                        $file, $sfile);
 
     if($a eq "R") {
-        $diff = " [<span class=\"fname\">rename</span>]";
+        $diff = "rename";
     }
     elsif($a eq "M") {
-        $diff = " [<a class=\"fname\" href=\"$urlroot;a=commitdiff;h=$rev\">diff</a>]";
+        $diff = "diff";
     }
     elsif($a eq "A") {
-        $diff = " [<span class=\"fname\">new</span>]";
+        $diff = "new";
     }
     elsif($a eq "D") {
-        $diff = " [<span class=\"fname\">deleted</span>]";
+        $diff = "deleted";
     }
 
-    return "$path $diff\n";
+    return "$path [<a class=\"fname\" href=\"$urlroot;a=commitdiff;h=$rev#patch$i\">$diff</a>]\n";
 }
 
 print "<table class=\"changetable_front\"><tr><th>when</th><th>what</th><th>where</th><th>who</th></tr>\n";
@@ -56,6 +52,7 @@ my $hash;
 my @b;
 my @f;
 my $rev;
+my $count = 0;
 
 # example:
 
@@ -83,7 +80,8 @@ while(<STDIN>) {
                 @f = @f[0 .. 29];
             }
             for(@f) {
-                $where .= sprintf("%s<br>", file2url($_, $hash));
+                my ($file, $action, $i) = @$_;
+                $where .= sprintf("%s<br>", file2url($file, $action, $i, $hash));
             }
             if ($manyfiles) {
                 $where .= "...and $manyfiles more files.";
@@ -137,13 +135,13 @@ while(<STDIN>) {
 
         undef @b;
         undef @f;
-        undef %action;
+        $count = 0;
     }
     elsif (/^([ACDMRTYXB])\s+(.+)/)
     {
         # file
-        $action{$2}=$1;
-        push @f, $2;
+        $count++;
+        push (@f, [$2, $1, $count]);
     }
     else {
         my $skip = 0;
