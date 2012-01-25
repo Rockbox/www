@@ -28,7 +28,7 @@ for (@zips) {
 }
 
 my @bleeding = `cat build-info`;
-if ($bleeding[2] =~ /rev = "(\d+)"/) {
+if ($bleeding[2] =~ /rev = \W*(\w+)/) {
     $rev = $1;
 }
 

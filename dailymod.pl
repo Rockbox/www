@@ -70,8 +70,8 @@ for(reverse sort keys %date) {
         if( -f "$basedir/daily/build-info") {
             open(R, "<$basedir/daily/build-info");
             while(<R>) {
-                if(/^rev = \D*(\d+)/) {
-                    $rev = "r$1";
+                if(/^rev = \W*(\w+)/) {
+                    $rev = $1;
                     last;
                 }
             }

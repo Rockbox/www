@@ -166,7 +166,7 @@ print <<END;
 
 <h2>rockbox-cvs</h2>
 <blockquote>
-<p>This list monitors the <a href="http://svn.rockbox.org">Subversion</a> commits and recieves one mail for each commit.
+<p>This list monitors the <a href="http://git.rockbox.org">Git</a> commits and recieves one mail for each commit.
 
 <p>To subscribe or unsubscribe: <a href="http://cool.haxx.se/mailman/listinfo/rockbox-cvs">go here</a>
 </blockquote>
