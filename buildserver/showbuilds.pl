@@ -126,7 +126,7 @@ if($buildrev) {
                           $dhour, $dmin, $dsec);
     }
 
-    printf("<tr><td colspan=3><a class=\"bstamp\" href=\"http://svn.rockbox.org/viewvc.cgi?view=rev;revision=$buildrev\">$buildrev</a> (in progress)</td><td class=\"building\" colspan=\"%d\">$text</td></tr>\n",
+    printf("<tr><td colspan=3><a class=\"bstamp\" href=\"http://git.rockbox.org/?p=rockbox.git;a=commit;h=$buildrev\">$buildrev</a> (in progress)</td><td class=\"building\" colspan=\"%d\">$text</td></tr>\n",
            $numbuilds);
 }
 #################
