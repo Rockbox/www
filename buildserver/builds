@@ -28,6 +28,7 @@ sdl:0:sansaclipsim:SanDisk Sansa Clip - Simulator:rockboxui:11711:../tools/confi
 sdl:0:sansaclipzipsim:SanDisk Sansa Clip Zip - Simulator:rockboxui:7811:../tools/configure --target=sansaclipzip --type=s && make
 sdl:0:sansaconnectsim:SanDisk Sansa Connect - Simulator:rockboxui:17572:../tools/configure --target=sansaconnect --type=s && make
 sdl:0:sansafuzesim:SanDisk Sansa Fuze - Simulator:rockboxui:20030:../tools/configure --target=sansafuze --type=s && make
+sdl:0:sansafuzeplussim:SanDisk Sansa Fuze+ - Simulator:rockboxui:20030:../tools/configure --target=sansafuzeplus --type=s && make
 sdl:0:sansam200v4sim:SanDisk Sansa m200v4 - Simulator:rockboxui:11202:../tools/configure --target=sansam200v4 --type=s && make
 sdl:0:gogearhdd1630sim:Philips HDD1630 - Simulator:rockboxui:17842:../tools/configure --target=gogearhdd1630 --type=s && make
 sdl:0:gogearhdd6330sim:Philips HDD6330 - Simulator:rockboxui:18087:../tools/configure --target=gogearhdd6330 --type=s && make
@@ -130,6 +131,8 @@ arm-eabi-gcc444:0:sansaclipplusboot:SanDisk Sansa Clip+ - Boot:bootloader-clippl
 arm-eabi-gcc444:0:sansaclipzipboot:SanDisk Sansa Clip Zip - Boot:bootloader-clipzip.sansa:768:../tools/configure --target=sansaclipzip --type=b && make
 arm-eabi-gcc444:0:sansaconnectboot:SanDisk Sansa Connect - Boot:bootloader-connect.sansa:861:../tools/configure --target=sansaconnect --type=b && make
 arm-eabi-gcc444:0:sansafuzeboot:SanDisk Sansa Fuze - Boot:bootloader-fuze.sansa:825:../tools/configure --target=sansafuze --type=b && make
+arm-eabi-gcc444:0:sansafuzev2boot:SanDisk Sansa Fuzev2 - Boot:bootloader-fuzev2.sansa:783:../tools/configure --target=sansafuzev2 --type=b && make
+arm-eabi-gcc444:0:sansafuzeplusboot:SanDisk Sansa Fuze+ - Boot:bootloader-fuzeplus.sansa:825:../tools/configure --target=sansafuzeplus --type=b && make
 arm-eabi-gcc444:0:gogearhdd1630boot:Philips HDD1630 - Boot:FWImage.ebn:781:../tools/configure --target=gogearhdd1630 --type=b && make
 arm-eabi-gcc444:0:gogearhdd6330boot:Philips HDD6330 - Boot:FWImage.ebn:796:../tools/configure --target=gogearhdd6330 --type=b && make
 arm-eabi-gcc444:0:samsungyh820boot:Samsung YH-820 - Boot:FW_YH820.mi4:775:../tools/configure --target=samsungyh820 --type=b && make
@@ -172,7 +175,7 @@ sdl:0:sansaclipwps:SanDisk Sansa Clip - Checkwps:checkwps.sansaclip:106:../tools
 sdl:0:sansaclipzipwps:SanDisk Sansa Clip Zip - Checkwps:checkwps.sansaclipzip:111:../tools/configure --target=sansaclipzip --type=c && make
 sdl:0:sansaconnectwps:SanDisk Sansa Connect - Checkwps:checkwps.sansaconnect:130:../tools/configure --target=sansaconnect --type=c && make
 sdl:0:sansafuzewps:SanDisk Sansa Fuze - Checkwps:checkwps.sansafuze:114:../tools/configure --target=sansafuze --type=c && make
-arm-eabi-gcc444:0:sansafuzev2boot:SanDisk Sansa Fuzev2 - Boot:bootloader-fuzev2.sansa:783:../tools/configure --target=sansafuzev2 --type=b && make
+sdl:0:sansafuzepluswps:SanDisk Sansa Fuze+ - Checkwps:checkwps.sansafuzeplus:114:../tools/configure --target=sansafuzeplus --type=c && make
 sdl:0:sansam200v4wps:SanDisk Sansa m200v4 - Checkwps:checkwps.sansam200v4:106:../tools/configure --target=sansam200v4 --type=c && make
 sdl:0:gogearhdd1630wps:Philips HDD1630 - Checkwps:checkwps.gogearhdd1630:111:../tools/configure --target=gogearhdd1630 --type=c && make
 sdl:0:gogearhdd6330wps:Philips HDD6330 - Checkwps:checkwps.gogearhdd6330:110:../tools/configure --target=gogearhdd6330 --type=c && make
