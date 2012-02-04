@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAABn///8M\u003d",
+        "filename": "buildserver/builds",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000644
+      },
+      "writtenOn": "2012-02-04T12:39:53Z",
+      "side": 1,
+      "message": "I\u0027m not sure if a 0 cost is handled well by the server. I copy a number from a similar target for this\nPlease pretend I added the same comment elsewhere :)",
+      "revId": "3b28776528cd7539a411fa41f6324d04985f5e65",
+      "serverId": "583131e1-1a33-4f2b-b8ec-82434880f207",
+      "unresolved": false
+    }
+  ]
+}
