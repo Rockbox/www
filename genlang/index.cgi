@@ -21,22 +21,30 @@ my $lang = CGI::param('lang');
 
 print "Content-Type: text/plain; charset=UTF8\n\n";
 
+my $use_svn = 0;
+my $version = "";
+# if rev contains a dot it's a version number. For everything up to 3.10 use
+# svn for now.
+if($rev =~ m/(\d)\.(\d)/) {
+    $version = $rev;
+    my @ver = split(/\./, $rev);
+    if($ver[0] == 3 && $ver[1] <= 10) {
+        $use_svn = 1;
+    }
+}
+# check if $rev is a svn revision number.
+# if it's less than 6 digits, has only digits and the value is less than 31647
+if($rev =~ m/^\d{1,5}$/) {
+    $use_svn = 1;
+}
+# store hash before modifying $rev
+my $hash = $rev;
+$hash =~ s/[^\da-f]//g;
+
 $rev =~ s/[^\d\.]//g;
 $target =~ s/[^a-z0-9]//g;
 $features =~ s/[^a-z0-9:_-]//g;
 $lang =~ s/[^a-z-]//g;
-my $rev_opt = "-r$rev";
-my $svn_path = "svn://svn.rockbox.org/rockbox/trunk";
-
-if ($rev =~ /\./) {
-    $rev =~ s/\./_/g;
-    $svn_path = "svn://svn.rockbox.org/rockbox/tags/v$rev";
-    $rev_opt = "";
-}
-elsif(($rev < 10000) || ($rev > 100000)) {
-    print "Bad rev input\n";
-    exit;
-}
 
 my $temp="/tmp/rockbox-genlang";
 
@@ -51,14 +59,39 @@ if( ! -d $temp ) {
 }
 
 #`svn cat -r$rev tools/genlang >temp/genlang-$rand`;
-my $cmd="svn cat $rev_opt $svn_path/apps/lang/$lang.lang >$temp/lang-$lang-$rand";
-#print "$cmd<br>";
-print `$cmd`;
-$cmd="svn cat $rev_opt $svn_path/apps/lang/english.lang >$temp/english-$rand";
-print `$cmd`;
+
+my $cmd1;
+my $cmd2;
+if($use_svn == 1) {
+    my $rev_opt = "-r$rev";
+    my $svn_path = "svn://svn.rockbox.org/rockbox/trunk";
+
+    if ($rev =~ /\./) {
+        $rev =~ s/\./_/g;
+        $svn_path = "svn://svn.rockbox.org/rockbox/tags/v$rev";
+        $rev_opt = "";
+    }
+    elsif(($rev < 10000) || ($rev > 100000)) {
+        print "Bad rev input\n";
+        exit;
+    }
+
+    $cmd1="svn cat $rev_opt $svn_path/apps/lang/$lang.lang >$temp/lang-$lang-$rand";
+    $cmd2="svn cat $rev_opt $svn_path/apps/lang/english.lang >$temp/english-$rand";
+}
+else {
+    # not sure if constructing the blob has to download this way is valid.
+    # Seems to work.
+    my $curl_opt = "http://git.rockbox.org/?p=rockbox.git;hb=$hash;a=blob_plain;f=apps/lang/";
+    $cmd1="curl -s '${curl_opt}$lang.lang' > $temp/lang-$lang-$rand";
+    $cmd2="curl -s '${curl_opt}english.lang' > $temp/english-$rand";
+}
+
+print `$cmd1`;
+print `$cmd2`;
 
 if(-s "$temp/lang-$lang-$rand" &&
-   -s "$temp/english-$rand" ) {
+    -s "$temp/english-$rand" ) {
     print `./genlang -t=$target:$features -e=$temp/english-$rand -o $temp/lang-$lang-$rand`;
 }
 else {
