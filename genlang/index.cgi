@@ -22,15 +22,10 @@ my $lang = CGI::param('lang');
 print "Content-Type: text/plain; charset=UTF8\n\n";
 
 my $use_svn = 0;
-my $version = "";
-# if rev contains a dot it's a version number. For everything up to 3.10 use
-# svn for now.
+my $is_release = 0;
+# if rev contains a dot it's a version number.
 if($rev =~ m/(\d)\.(\d)/) {
-    $version = $rev;
-    my @ver = split(/\./, $rev);
-    if($ver[0] == 3 && $ver[1] <= 10) {
-        $use_svn = 1;
-    }
+    $is_release = 1;
 }
 # check if $rev is a svn revision number.
 # if it's less than 6 digits, has only digits and the value is less than 31647
@@ -80,6 +75,11 @@ if($use_svn == 1) {
     $cmd2="svn cat $rev_opt $svn_path/apps/lang/english.lang >$temp/english-$rand";
 }
 else {
+    if($is_release == 1) {
+        # get hash using git ls-remote
+        $hash = `git ls-remote git://git.rockbox.org/rockbox.git refs/tags/v$rev-final`;
+        $hash =~ s/\s+.*\n?//;
+    }
     # not sure if constructing the blob has to download this way is valid.
     # Seems to work.
     my $curl_opt = "http://git.rockbox.org/?p=rockbox.git;hb=$hash;a=blob_plain;f=apps/lang/";
