@@ -28,8 +28,6 @@ sub singlefile {
     my $totaldelta=0;
     my $models=0;
 
-    print STDERR "$file\n";
-
     open(F, "<$file");
     while(<F>) {
 	if(/^([^ :]*) *: *(\d+) *(\d*)/) {
@@ -56,10 +54,6 @@ sub singlefile {
 		$t = "<td>-</td>";
 	    }
 
-            if ($name =~ /cowond2/) {
-                print STDERR " $ram > $thisram{$name} ($ramdelta)\n";
-            }
-
             $title="\nRAM: $ramdelta/$ram bytes";
             $singleram{$1}=$t;
 
@@ -67,10 +61,6 @@ sub singlefile {
 
 	    if($this{$name} && $size) {
 		$delta = $size - $this{$name};
-            }
-
-            if ($name =~ /cowond2/) {
-                print STDERR " $size > $this{$name} ($delta)\n";
             }
 
             my $delta2 = ($delta + $ramdelta)/2;
@@ -94,11 +84,6 @@ sub singlefile {
 		$thisram{$name}=$ram;
 	    }
 
-            if ($name =~ /cowond2/) {
-                print STDERR " size: $size\n";
-                print STDERR " ramsize: $ram\n";
-            }
-
 	    $models++;
 	} 
     }
@@ -107,7 +92,7 @@ sub singlefile {
     for my $t (sort {$builds{$a}{name} cmp $builds{$b}{name}} keys %title) {
         my $tx = $single{$t};
         if(!$tx) {
-            $tx="<td>&nbsp;</td>";
+            $tx="<td>n/a</td>";
         }
 	$lines{$file} .= $tx;
     }
