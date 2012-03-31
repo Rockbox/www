@@ -16,7 +16,7 @@ Rockbox is a free replacement firmware for digital music players. It runs on a w
 <p>Rockbox runs well on these players, has a complete manual and is supported by <a href="/download/">the installer</a>:
 <ul>
 
-<li><b>Apple</b>: iPod 1g through 5.5g, iPod Mini, iPod Nano 1g and iPod Nano 2g
+<li><b>Apple</b>: iPod 1g through 5.5g, iPod Mini, iPod Nano 1g
 
 <li><b>Archos</b>: Jukebox 5000, 6000, Studio, Recorder, FM Recorder, Recorder V2
 and Ondio
@@ -40,6 +40,7 @@ and Ondio
 <p>Rockbox runs on these players, but is incomplete, less usable or has problems that limit it to advanced users:
 
 <ul>
+<li><b>Apple</b>: iPod Nano 2g
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
 <li><b>MPIO</b>: <a href="/wiki/MPIOHD200Port">HD200</a>
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
@@ -83,6 +84,8 @@ and Ondio
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
+<tr><td nowrap>2012-03-31</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes311">Rockbox 3.11 is released</a></td></tr>
+
 <tr><td nowrap>2012-01-10</td><td><a href="http://www.rockbox.org/wiki/UsingGit">We have finally migrated to git</a></td></tr>
 
 <tr><td nowrap>2011-12-07</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes310">Rockbox 3.10 is released</a></td></tr>
@@ -90,8 +93,6 @@ and Ondio
 <tr><td nowrap>2011-09-03</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes391">Rockbox 3.9.1 is released</a></td></tr>
 
 <tr><td nowrap>2011-06-27</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes39">Rockbox 3.9 is released</a></td></tr>
-
-<tr><td nowrap>2011-04-06</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes381">Rockbox 3.8.1 is released</a></td></tr>
 
 </table>
 <small><a href="history.html">Older news</a>
