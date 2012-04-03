@@ -30,7 +30,7 @@ and Ondio
 
 <li><b>Packard Bell</b>: Vibe 500
 
-<li><b>SanDisk</b>: Sansa c200 (not v2), e200 and e200R series, Fuze, Clip and Clip+
+<li><b>SanDisk</b>: Sansa c200, e200 and e200R series, Fuze, Clip and Clip+
 
 <li><b>Toshiba</b>: Gigabeat X and F series
 </ul>
@@ -46,7 +46,7 @@ and Ondio
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
 <li><b>Philips</b>: <a href="/wiki/GoGearSA9200info">GoGear SA9200</a>, <a href="/wiki/GoGearHDD6330">GoGear HDD16x0</a> and <a href="/wiki/GoGearHDD6330">HDD63x0</a>
 <li><b>Samsung</b>: <a href="/wiki/SamsungYPR0">YP-R0</a>, <a href="/wiki/SamsungYH92xPort">YH-820</a>, <a href="/wiki/SamsungYH92xPort">YH-920</a> and <a href="/wiki/SamsungYH92xPort">YH-925</a>
-<li><b>SanDisk</b>: <a href="/wiki/SansaAMS">Sansa c200v2 series</a>, <a href="/wiki/SansaFuzePlusPort">Sansa Fuze+</a> and <a href="/wiki/SansaClip#Sansa_Clip_Zip_port_status">Sansa Clip Zip</a>
+<li><b>SanDisk</b>: <a href="/wiki/SansaFuzePlusPort">Sansa Fuze+</a> and <a href="/wiki/SansaClip#Sansa_Clip_Zip_port_status">Sansa Clip Zip</a>
 <li><b>Toshiba</b>: <a href="/wiki/GigabeatSPort">Gigabeat S</a>
 </ul>
 
