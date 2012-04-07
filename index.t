@@ -84,6 +84,8 @@ and Ondio
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
+<tr><td nowrap>2012-04-07</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes3111">Rockbox 3.11.1 is released</a></td></tr>
+
 <tr><td nowrap>2012-03-31</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes311">Rockbox 3.11 is released</a></td></tr>
 
 <tr><td nowrap>2012-01-10</td><td><a href="http://www.rockbox.org/wiki/UsingGit">We have finally migrated to git</a></td></tr>
@@ -91,8 +93,6 @@ and Ondio
 <tr><td nowrap>2011-12-07</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes310">Rockbox 3.10 is released</a></td></tr>
 
 <tr><td nowrap>2011-09-03</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes391">Rockbox 3.9.1 is released</a></td></tr>
-
-<tr><td nowrap>2011-06-27</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes39">Rockbox 3.9 is released</a></td></tr>
 
 </table>
 <small><a href="history.html">Older news</a>
