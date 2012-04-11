@@ -84,7 +84,7 @@ and Ondio
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
-<tr><td nowrap>2012-04-07</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes3111">Rockbox 3.11.1 is released</a></td></tr>
+<tr><td nowrap>2012-04-12</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes3112">Rockbox 3.11.2 is released</a></td></tr>
 
 <tr><td nowrap>2012-03-31</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes311">Rockbox 3.11 is released</a></td></tr>
 
