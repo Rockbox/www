@@ -88,6 +88,9 @@ arm-eabi-gcc444:1:samsungyh920:Samsung YH-920 - Normal:rockbox.zip:28536:../tool
 arm-eabi-gcc444:1:samsungyh925:Samsung YH-925 - Normal:rockbox.zip:30419:../tools/configure --target=samsungyh925 --type=n && make zip
 arm-eabi-gcc444:1:gogearsa9200:Philips SA9200 - Normal:rockbox.zip:30198:../tools/configure --target=gogearsa9200 --type=n && make zip
 arm-eabi-gcc444:1:vibe500:Packard Bell Vibe 500 - Normal:rockbox.zip:31153:../tools/configure --target=vibe500 --type=n && make zip
+arm-eabi-gcc444:1:rk27generic:Rockchip rk27xx - Normal:rockbox.zip:14018:../tools/configure --target=rk27generic --type=n && make zip
+arm-eabi-gcc444:1:hifimanhm60x:HiFiMAN HM-60x - Normal:rockbox.zip:30495:../tools/configure --target=hifimanhm60x --type=n && make zip
+arm-eabi-gcc444:1:hifimanhm801:HiFiMAN HM-801 - Normal:rockbox.zip:30937:../tools/configure --target=hifimanhm801 --type=n && make zip
 mipsel:1:ondavx747:Onda VX747 - Normal:rockbox.zip:31364:../tools/configure --target=ondavx747 --type=n && make zip
 mipsel:1:ondavx767:Onda VX767 - Normal:rockbox.zip:12878:../tools/configure --target=ondavx767 --type=n && make zip
 mipsel:1:ondavx777:Onda VX777 - Normal:rockbox.zip:30877:../tools/configure --target=ondavx777 --type=n && make zip
@@ -141,6 +144,9 @@ arm-eabi-gcc444:0:samsungyh925boot:Samsung YH-925 - Boot:FW_YH925.mi4:758:../too
 arm-eabi-gcc444:0:gogearsa9200boot:Philips SA9200 - Boot:FWImage.ebn:840:../tools/configure --target=gogearsa9200 --type=b && make
 arm-eabi-gcc444:0:vibe500boot:Packard Bell Vibe 500 - Boot:jukebox.mi4:812:../tools/configure --target=vibe500 --type=b && make
 arm-eabi-gcc444:0:zenvisionm30boot:Creative Zen Vision M 30GB - Boot:rockbox.zvmboot:844:../tools/configure --target=zenvisionm30gb --type=b && make
+arm-eabi-gcc444:0:rk27generic:Rockchip rk27xx - Boot:bootloader.rkw:1143:../tools/configure --target=rk27generic --type=b && make
+arm-eabi-gcc444:0:hifimanhm60x:HiFiMAN HM-60x - Boot:bootloader.rkw:1094:../tools/configure --target=hifimanhm60x --type=b && make
+arm-eabi-gcc444:0:hifimanhm801:HiFiMAN HM-801 - Boot:bootloader.rkw:1094:../tools/configure --target=hifimanhm801 --type=b && make
 sh:0:archosrecorderboot:Recorder - Boot:ajbrec.ajz:795:../tools/configure --target=archosrecorder --ram=2 --type=b && make
 sh:0:playerboot:Player - Boot:archos.mod:602:../tools/configure --target=archosplayer --ram=2 --type=b && make
 sh:0:archosfmrecorderboot:FM Recorder - Boot:ajbrec.ajz:673:../tools/configure --target=archosfmrecorder --ram=2 --type=b && make
@@ -187,6 +193,9 @@ sdl:0:ondavx747wps:Onda VX747 - Checkwps:checkwps.ondavx747:95:../tools/configur
 sdl:0:vibe500wps:Packard Bell Vibe 500 - Checkwps:checkwps.vibe500:93:../tools/configure --target=vibe500 --type=c && make
 sdl:0:mpiohd200wps:MPIO HD200 - Checkwps:checkwps.mpiohd200:91:../tools/configure --target=mpiohd200 --type=c && make
 sdl:0:mpiohd300wps:MPIO HD300 - Checkwps:checkwps.mpiohd300:93:../tools/configure --target=mpiohd300 --type=c && make
+sdl:0:rk27generic:Rockchip rk27xx - Checkwps:checkwps.rk27generic:99:../tools/configure --target=rk27generic --type=c && make
+sdl:0:hifimanhm60x:HiFiMAN HM-60x - Checkwps:checkwps.hifimanhm60x:76:../tools/configure --target=hifimanhm60x --type=c && make
+sdl:0:hifimanhm801:HiFiMAN HM-801 - Checkwps:checkwps.hifimanhm801:76:../tools/configure --target=hifimanhm801 --type=c && make
 sdl:0:playerdb:Player - Database:database.archosplayer:148:../tools/configure --target=archosplayer --ram=2 --type=d && make
 sdl:0:iriverh300db:iriver H300 - Database:database.iriverh300:345:../tools/configure --target=iriverh300 --type=d && make
 sdl:0:sdlapplication:SDL Application:rockbox:12954:../tools/configure --target=sdlapp --type=n --lcdwidth=640 --lcdheight=480 && make
