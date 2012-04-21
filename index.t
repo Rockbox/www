@@ -42,6 +42,7 @@ and Ondio
 <ul>
 <li><b>Apple</b>: iPod Nano 2g
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
+<li><b>HiFiMAN</b>: <a href="/wiki/HifimanPort">HM-601</a>, <a href="/wiki/HifimanPort">HM-602</a>, <a href="/wiki/HifimanPort">HM-603</a>, <a href="/wiki/HifimanPort">HM-801</a></li>
 <li><b>MPIO</b>: <a href="/wiki/MPIOHD200Port">HD200</a>
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
 <li><b>Philips</b>: <a href="/wiki/GoGearSA9200info">GoGear SA9200</a>, <a href="/wiki/GoGearHDD6330">GoGear HDD16x0</a> and <a href="/wiki/GoGearHDD6330">HDD63x0</a>
@@ -57,7 +58,6 @@ and Ondio
 <li><b>Onda</b> VX747, VX767 and VX777</li>
 <li><b>Sandisk</b> Sansa m200</li>
 <li><b>Google</b> Android</li>
-<li><b>HiFiMAN</b> HM-601/HM-602</li>
 <li><b>Apple</b> iPod Classic</li>
 <li><b>Rockchip</b> rk27xx</li>
 </ul>
