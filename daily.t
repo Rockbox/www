@@ -1,15 +1,10 @@
 #define _PAGE_ Daily builds
 #include "head.t"
 
-<h2>Daily Builds for Different Models</h2>
+<h2>Archived Development Builds</h2>
 
-<p>These are automated daily builds of the current code. They contain all the
-latest features. They may also contain bugs and/or undocumented changes... <a
-href="/twiki/bin/view/Main/DeviceChart">identify your model</a>
+<p>These are archived development builds, saved to enable easy testing of recent versions.
 
-<h2>Daily Build</h2>
-<a name="target_builds"></a>
-<a name="daily_builds"></a>
 <!--#include virtual="dailymod.pl" -->
 
 <h2>Donate</h2>
