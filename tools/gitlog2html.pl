@@ -50,6 +50,8 @@ my $whoshort;
 my $what;
 my $manyfiles = 0;
 my $hash;
+my $gerrit_url;
+my $gerrit_id;
 
 my @b;
 my @f;
@@ -90,7 +92,9 @@ while(<STDIN>) {
             }
             if (1) {
                 my $br;
-                $what = "<small><a href='http://git.rockbox.org/?p=rockbox.git;a=commit;h=$hash'>$hash</a>:</small> ";
+                my $g;
+                $g = " <a href=\"$gerrit_url\">G#$gerrit_id</a>" if ($gerrit_id);
+                $what = "<small><a href='http://git.rockbox.org/?p=rockbox.git;a=commit;h=$hash'>$hash</a>$g:</small> ";
                 while ($b[$#b] eq "\n") {
                     delete $b[$#b];
                 }
@@ -115,7 +119,8 @@ while(<STDIN>) {
             "<td nowrap class=\"cpath\">$where</td>\n",
             "<td class=\"cname\">$who</td>\n",
             "</tr>\n";
-            $when = $where = $what = $who = $whoshort = $manyfiles = "";
+            $when = $where = $what = $who = $whoshort = $manyfiles = 
+                $gerrit_url = $gerrit_id = "";
         }
         $hash = $tmp;
         next;
@@ -151,6 +156,12 @@ while(<STDIN>) {
             if (/^\s*(.+?):/)
             {
                 $skip = 1 if (defined $skip_tags{$1});
+                if ($l =~ /Reviewed-on: (.*)/) {
+                    $gerrit_url = $1;
+                    if ($gerrit_url =~ /(\d+)/) {
+                        $gerrit_id = $1;
+                    }
+                }
             }
             $l =~ s/\<.+//g; # remove email address
             push @b, "$l\n" unless ($skip);
