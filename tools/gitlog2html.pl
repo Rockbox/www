@@ -163,9 +163,7 @@ while(<STDIN>) {
                     }
                 }
             }
-            if ($l =~ /^Author:/) {
-                $l =~ s/\<.+//g; # remove email address
-            }
+            $l =~ s/<.+@.+>//g; # remove email addresses
             push @b, "$l\n" unless ($skip);
         }
     }
