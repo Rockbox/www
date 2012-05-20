@@ -15,7 +15,15 @@ perl showsize.pl > sizes.html
 perl mktitlepics.pl
 perl cleanupdatadir.pl
 
+rcbuild=0;
 if [ -e rcbuild.hash ]; then
+    hash=`cat rcbuild.hash`
+    if [ "a$hash" = "a$rev" ]; then
+        rcbuild=1;
+    fi
+fi
+
+if [ $rcbuild -eq 1 ]; then
     # publish the release candidate for rbutil
     mv build-info.release-candidate /sites/download.rockbox.org/release-candidate/build-info
     rm rcbuild.hash
@@ -29,3 +37,7 @@ else
     mv build-info /sites/download.rockbox.org/build-info.devbuild
 fi
 rm data/build_running
+
+# make build-info for rbutil
+cd /sites/download.rockbox.org
+sh .scripts/mkbuildinfo.sh
