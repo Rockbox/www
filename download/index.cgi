@@ -19,7 +19,7 @@ Rockbox $publicrelease was released on ${releasedate}. See the full <a href="$re
 
 <p> If you truly want to, you can still do the install <a href="byhand.cgi">manually</a>
 
-<p> <a href="http://download.rockbox.org/old_releases/">old releases</a>
+<p> <a href="http://download.rockbox.org/releases/">old releases</a>
 archive.
 
 HEAD
