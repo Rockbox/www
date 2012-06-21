@@ -178,7 +178,7 @@ Seconds:
 <a href="javascript:joins(1);">Show</a>
 <a href="javascript:joins(0);">Hide</a>
 
-| <a href="$file">View raw</a>
+| <a href="logs/$file">View raw</a>
 
 <br>Font:
 <a href="javascript:font('serif');"><span style='font-family: serif'>Serif</span></a>
