@@ -9,7 +9,7 @@ my $pwd = param('rcpw');
 
 if (!$hash) {
     print("<html><body><h2>Start a release-candidate build</h2>\n",
-          "<form action='rcbuild.cgi'>\n",
+          "<form action='rcbuild.cgi' autocomplete='off'>\n",
           "RC Hash <input name='rchash' type='text' size='10'><br>\n",
           "RC Pwd <input name='rcpw' type='password' size='10'><br>\n",
           "<input value='Build' type='submit'><br>\n",
