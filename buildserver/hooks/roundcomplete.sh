@@ -2,19 +2,6 @@
 
 rev=$1
 
-perl cia_result.pl $rev
-
-# talk to rasher before removing this
-cat data/$rev*.size > data/$rev.sizes
-
-perl clientstats.pl $rev > data/$rev-clients.html
-
-perl showbuilds.pl > builds.html
-perl showbuilds.pl 1 > builds_all.html
-perl showsize.pl > sizes.html
-perl mktitlepics.pl
-perl cleanupdatadir.pl
-
 rcbuild=0;
 if [ -e rcbuild.hash ]; then
     hash=`cat rcbuild.hash`
@@ -28,6 +15,19 @@ if [ $rcbuild -eq 1 ]; then
     mv build-info.release-candidate /sites/download.rockbox.org/release-candidate/build-info
     rm rcbuild.hash
 else
+    perl cia_result.pl $rev
+
+    # talk to rasher before removing this
+    cat data/$rev*.size > data/$rev.sizes
+
+    perl clientstats.pl $rev > data/$rev-clients.html
+
+    perl showbuilds.pl > builds.html
+    perl showbuilds.pl 1 > builds_all.html
+    perl showsize.pl > sizes.html
+    perl mktitlepics.pl
+    perl cleanupdatadir.pl
+
     # make build-info for rbutil
     echo "[bleeding]" > build-info
     date +'timestamp = "%Y%m%dT%H%M%SZ"' >> build-info
@@ -36,6 +36,7 @@ else
     echo '"' >> build-info
     mv build-info /sites/download.rockbox.org/build-info.devbuild
 fi
+
 rm data/build_running
 
 # make build-info for rbutil
