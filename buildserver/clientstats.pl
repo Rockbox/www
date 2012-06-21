@@ -37,7 +37,7 @@ if ($rows) {
 printf("<p>For these $num builds, the following %d build clients participated:\n",
        scalar @clist);
 
-print "<table><tr><th>Client</th> <th>Score</th> <th>Calc speed<br>(pts/sec)</th> <th>Round<br>speed</th> <th>Avg UL<br>speed</th> <th>Round<br>UL speed</th> <th>Builds</th> <th>Total time</th> <th>All times</th> </tr>\n";
+print "<table><tr><th>Client</th> <th>Score</th> <th>Est speed<br>(pts/sec)</th> <th>Round<br>speed</th> <th>Avg UL<br>speed</th> <th>Round<br>UL speed</th> <th>Builds</th> <th>Total time</th> <th>All times</th> </tr>\n";
 
 for my $c (sort {$score{$b} <=> $score{$a}} @clist) {
     my ($speed, $ulspeed) = &getspeed($c);
