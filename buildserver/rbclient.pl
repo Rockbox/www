@@ -15,7 +15,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 51;
+my $revision = 52;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -551,6 +551,7 @@ sub testsystem
                   "mipsel", ["mipsel-elf-gcc --version", "4.1.2"],
                   "sdl", ["sdl-config --version", ".*"],
                   "android15", ["android list target", "API level: 15"],
+                  "latex", ["pdflatex --version", "pdfTeX 3.1415926"],
                   );
 
     for (split ',', $archlist) {
