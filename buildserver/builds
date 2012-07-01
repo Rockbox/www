@@ -56,7 +56,7 @@ arm-eabi-gcc444:1:ipodvideo:iPod Video - Normal:rockbox.zip:35405:../tools/confi
 arm-eabi-gcc444:1:ipod3g:iPod 3G - Normal:rockbox.zip:31040:../tools/configure --target=ipod3g --type=n && make zip
 arm-eabi-gcc444:1:ipodmini2g:iPod Mini 2G - Normal:rockbox.zip:31548:../tools/configure --target=ipodmini2g --type=n && make zip
 arm-eabi-gcc444:1:ipodmini1g:iPod Mini 1G - Normal:rockbox.zip:31418:../tools/configure --target=ipodmini1g --type=n && make zip
-arm-eabi-gcc444:1:ipodclassic:iPod Classic - Normal:rockbox.zip:34577:../tools/configure --target=ipod6g --type=n && make zip
+arm-eabi-gcc444:1:ipod6g:iPod Classic - Normal:rockbox.zip:34577:../tools/configure --target=ipod6g --type=n && make zip
 arm-eabi-gcc444:1:iriverh10:iriver H10 - Normal:rockbox.zip:31374:../tools/configure --target=iriverh10 --type=n && make zip
 arm-eabi-gcc444:1:iriverh10_5gb:iriver H10 5GB - Normal:rockbox.zip:31064:../tools/configure --target=iriverh10_5gb --type=n && make zip
 arm-eabi-gcc444:1:gigabeatfx:Toshiba Gigabeat F - Normal:rockbox.zip:30796:../tools/configure --target=gigabeatfx --type=n && make zip
