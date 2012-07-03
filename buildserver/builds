@@ -202,4 +202,4 @@ sdl:0:sdlapplication:SDL Application:rockbox:12954:../tools/configure --target=s
 sdl:0:sdlapplicationwarble:SDL Application - warble:warble.sdlapp:5829:../tools/configure --target=sdlapp --type=w --lcdwidth=640 --lcdheight=480 && make
 android15:0:android480x800:Android 480x800:rockbox.apk:19614:../tools/configure --target=android --type=n --lcdwidth=480 --lcdheight=800 && make apk
 arm-ypr0-gcc446:1:samsungypr0:Samsung YP-R0 - Normal:rockbox.zip:39357:../tools/configure --target=samsungypr0 --type=n && make zip
-latex:0:iriverh120manual:iriver H120 - Manual:rockbox-iriverh120-autobuild.pdf:2000:../tools/configure --target=iriverh120 --type=s && make VERSION=autobuild manual
+latex:0:iriverh120manual:iriver H120 - Manual:manual/rockbox-build.pdf:2000:../tools/configure --target=iriverh120 --type=s && make MAKEFLAGS= manual
