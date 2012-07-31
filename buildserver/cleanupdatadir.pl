@@ -3,9 +3,9 @@
 my $cwd = `pwd`;
 chomp $cwd;
 
-# look up last 30 commits
+# look up last 25 commits
 chdir "/sites/rockbox.org/trunk";
-my @lines = `git log --oneline -30`;
+my @lines = `git log --oneline -25`;
 
 my %hash = ('rockbox' => 1); # leave files called "rockbox-*" (binaries)
 
@@ -15,14 +15,14 @@ for (@lines) {
     }
 }
 
-# remove all files that are not in last 20
+# remove all files that are not in last 25
 chdir "$cwd/data";
 opendir(DIR, ".") || die "can't opendir .: $!";
 my @files = readdir(DIR);
 closedir DIR;
 
 for my $f (@files) {
-    if ($f =~ /^(\w+)-/) {
+    if ($f =~ /^(\w+)/) {
         if (not defined $hash{$1}) {
             unlink $f or die "Failed to remove $f: $!";
         }
