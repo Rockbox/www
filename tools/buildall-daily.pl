@@ -40,7 +40,12 @@ if (open OUT, ">output/build-info") {
         
     print OUT "[release]\n";
     for my $model (&stablebuilds) {
-        print OUT "$model=$publicrelease\n";
+        if ($builds{$model}{'release'}) {
+            print OUT "$model=$builds{$model}{'release'}\n";
+        }
+        else {
+            print OUT "$model=$publicrelease\n";
+        }
     }
     
     print OUT "[status]\n";
