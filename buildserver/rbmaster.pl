@@ -512,6 +512,19 @@ sub COMPLETED {
         return;
     }
 
+    # check for build error
+    if (!$rbconfig{test}) {
+        my $msg = &check_log(sprintf("$rbconfig{uploaddir}/%s-%s.log", $cli, $id));
+        if ($msg) {
+            slog "Fatal build error: $msg. Blocking $cli.";
+            privmessage $cl, "Fatal build error: $msg. You have been temporarily disabled.";
+            $client{$cl}{'blocked'} = $msg;
+            $client{$cl}{'block_lift'} = time() + 600; # come back in 10 minutes
+            client_gone($cl);
+            return;
+        }
+    }
+
     # remove this build from this client
     delete $client{$cl}{queue}{$id};
     delete $client{$cl}{btime}{$id};
@@ -528,18 +541,6 @@ sub COMPLETED {
     $took = $client{$cl}{took}{$id};
 
     my $speed = $builds{$id}{score} / $took;
-
-    if (!$rbconfig{test}) {
-        my $msg = &check_log(sprintf("$rbconfig{uploaddir}/%s-%s.log", $cli, $id));
-        if ($msg) {
-            slog "Fatal build error: $msg. Blocking $cli.";
-            privmessage $cl, "Fatal build error: $msg. You have been temporarily disabled.";
-            $client{$cl}{'blocked'} = $msg;
-            $client{$cl}{'block_lift'} = time() + 600; # come back in 10 minutes
-            client_gone($cl);
-            return;
-        }
-    }
 
     # mark build completed
     $builds{$id}{'handcount'}--; # one less that builds this
