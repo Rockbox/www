@@ -28,7 +28,7 @@ and Ondio
 
 <li><b>Packard Bell</b>: Vibe 500
 
-<li><b>SanDisk</b>: Sansa c200, e200 and e200R series, Fuze, Clip and Clip+
+<li><b>SanDisk</b>: Sansa c200, e200 and e200R series, Fuze, Clip, Clip+ and Clip Zip
 
 <li><b>Toshiba</b>: Gigabeat X and F series
 </ul>
@@ -45,7 +45,7 @@ and Ondio
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>, M:robe 100
 <li><b>Philips</b>: <a href="/wiki/GoGearSA9200info">GoGear SA9200</a>, <a href="/wiki/GoGearHDD6330">GoGear HDD16x0</a> and <a href="/wiki/GoGearHDD6330">HDD63x0</a>
 <li><b>Samsung</b>: <a href="/wiki/SamsungYPR0">YP-R0</a>, <a href="/wiki/SamsungYH92xPort">YH-820</a>, <a href="/wiki/SamsungYH92xPort">YH-920</a> and <a href="/wiki/SamsungYH92xPort">YH-925</a>
-<li><b>SanDisk</b>: <a href="/wiki/SansaFuzePlusPort">Sansa Fuze+</a> and <a href="/wiki/SansaClip#Sansa_Clip_Zip_port_status">Sansa Clip Zip</a>
+<li><b>SanDisk</b>: <a href="/wiki/SansaFuzePlusPort">Sansa Fuze+</a>
 <li><b>Toshiba</b>: <a href="/wiki/GigabeatSPort">Gigabeat S</a>
 </ul>
 
@@ -54,10 +54,10 @@ and Ondio
 
 <ul>
 <li><b>Onda</b> VX747, VX767 and VX777</li>
-<li><b>Sandisk</b> Sansa m200</li>
 <li><b>Google</b> Android</li>
 <li><b>Apple</b> iPod Classic</li>
 <li><b>Rockchip</b> rk27xx</li>
+<li><b>Samsung</b> YP-R0</li>
 </ul>
 
 <p>Click here for a <a href="/wiki/TargetStatus#New_Platforms_Currently_Under_De">status summary of unstable and unusable ports</a>.
@@ -82,6 +82,8 @@ and Ondio
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
+<tr><td nowrap>2012-11-27</td><td>Forums software updated</td></tr>
+
 <tr><td nowrap>2012-10-06</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes312">Rockbox 3.12 is released</a></td></tr>
 
 <tr><td nowrap>2012-04-12</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes3112">Rockbox 3.11.2 is released</a></td></tr>
@@ -89,8 +91,6 @@ and Ondio
 <tr><td nowrap>2012-03-31</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes311">Rockbox 3.11 is released</a></td></tr>
 
 <tr><td nowrap>2012-01-10</td><td><a href="http://www.rockbox.org/wiki/UsingGit">We have finally migrated to git</a></td></tr>
-
-<tr><td nowrap>2011-12-07</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes310">Rockbox 3.10 is released</a></td></tr>
 
 </table>
 <small><a href="history.html">Older news</a>
