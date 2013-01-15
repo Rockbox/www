@@ -91,6 +91,8 @@ arm-eabi-gcc444:1:vibe500:Packard Bell Vibe 500 - Normal:rockbox.zip:31153:../to
 arm-eabi-gcc444:1:rk27generic:Rockchip rk27xx - Normal:rockbox.zip:14018:../tools/configure --target=rk27generic --type=n && make zip
 arm-eabi-gcc444:1:hifimanhm60x:HiFiMAN HM-60x - Normal:rockbox.zip:30495:../tools/configure --target=hifimanhm60x --type=n && make zip
 arm-eabi-gcc444:1:hifimanhm801:HiFiMAN HM-801 - Normal:rockbox.zip:30937:../tools/configure --target=hifimanhm801 --type=n && make zip
+arm-eabi-gcc444:1:creativezenxfi2:Creative Zen X-Fi2 - Normal:rockbox.zip:30937:../tools/configure --target=creativezenxfi2 --type=n && make zip
+arm-eabi-gcc444:1:creativezenxfi3:Creative Zen X-Fi3 - Normal:rockbox.zip:30937:../tools/configure --target=creativezenxfi3 --type=n && make zip
 mipsel:1:ondavx747:Onda VX747 - Normal:rockbox.zip:31364:../tools/configure --target=ondavx747 --type=n && make zip
 mipsel:1:ondavx767:Onda VX767 - Normal:rockbox.zip:12878:../tools/configure --target=ondavx767 --type=n && make zip
 mipsel:1:ondavx777:Onda VX777 - Normal:rockbox.zip:30877:../tools/configure --target=ondavx777 --type=n && make zip
@@ -147,6 +149,8 @@ arm-eabi-gcc444:0:zenvisionm30boot:Creative Zen Vision M 30GB - Boot:rockbox.zvm
 arm-eabi-gcc444:0:rk27genericboot:Rockchip rk27xx - Boot:bootloader.rkw:1143:../tools/configure --target=rk27generic --type=b && make
 arm-eabi-gcc444:0:hifimanhm60xboot:HiFiMAN HM-60x - Boot:bootloader.rkw:1094:../tools/configure --target=hifimanhm60x --type=b && make
 arm-eabi-gcc444:0:hifimanhm801boot:HiFiMAN HM-801 - Boot:bootloader.rkw:1094:../tools/configure --target=hifimanhm801 --type=b && make
+arm-eabi-gcc444:0:creativezenxfi2boot:Creative Zen X-Fi2 - Boot:bootloader-zenxfi2.creative:1100:../tools/configure --target=creativezenxfi2 --type=b && make
+arm-eabi-gcc444:0:creativezenxfi3boot:Creative Zen X-Fi3 - Boot:bootloader-zenxfi3.creative:1100:../tools/configure --target=creativezenxfi3 --type=b && make
 sh:0:archosrecorderboot:Recorder - Boot:ajbrec.ajz:795:../tools/configure --target=archosrecorder --ram=2 --type=b && make
 sh:0:playerboot:Player - Boot:archos.mod:602:../tools/configure --target=archosplayer --ram=2 --type=b && make
 sh:0:archosfmrecorderboot:FM Recorder - Boot:ajbrec.ajz:673:../tools/configure --target=archosfmrecorder --ram=2 --type=b && make
