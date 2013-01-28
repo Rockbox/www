@@ -130,7 +130,12 @@ Haxx sponsors the main site, build server, svn server and various other resource
 </td>
 
 <td align='center'>
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post"><input type="hidden" name="cmd" value="_xclick"><input type="hidden" name="business" value="bjorn@haxx.se"><input type="hidden" name="item_name" value="Donation to the Rockbox project"><input type="hidden" name="no_shipping" value="1"><input type="hidden" name="cn" value="Note to the Rockbox team"><input type="hidden" name="currency_code" value="USD"><input type="hidden" name="tax" value="0"><input type="image" src="/paypal-donate.gif" name="submit"></form>
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="585407">
+<input type="image" src="http://www.rockbox.org/paypal-donate.gif" border="0" name="submit" alt="">
+</form>
 <p>Many people have sponsored us with personal Paypal donations. Thank you!
 </td>
 </tr>
