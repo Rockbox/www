@@ -15,7 +15,7 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 53;
+my $revision = 54;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -545,6 +545,7 @@ sub testsystem
     my %compilers = (
                   "arm", ["arm-elf-gcc --version", "4.0.3"],
                   "arm-eabi-gcc444", ["arm-elf-eabi-gcc --version", "4.4.4"],
+                  "arm-ypr0-gcc446", ["arm-ypr0-linux-gnueabi-gcc --version", "4.4.6"],
                   "sh", ["sh-elf-gcc --version", "4.0.3"],
                   "m68k", ["m68k-elf-gcc --version", "3.4.6"],
                   "m68k-gcc452", ["m68k-elf-gcc --version", "4.5.2"],
