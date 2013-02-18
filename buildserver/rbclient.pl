@@ -557,6 +557,10 @@ sub testsystem
                   );
 
     for (split ',', $archlist) {
+        if (not exists $compilers{$_}){
+            tprint "Error: You specified unknownarch $_.\n";
+            exit 22;
+        }
         my $p = `$compilers{$_}[0]`;
         if (not $p =~ /$compilers{$_}[1]/) {
             tprint "Error: You specified arch $_ but the output of '$compilers{$_}[0]' did not include '$compilers{$_}[1]'.\n";
