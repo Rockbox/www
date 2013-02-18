@@ -49,7 +49,7 @@ my $os = `uname -s`;
 chomp $os;
 
 our $bits;
-if ($cpu eq "i686" or $cpu eq "i386" or $cpu eq "armv5tel") {
+if ($cpu eq "i686" or $cpu eq "i586" or $cpu eq "i386" or $cpu eq "armv5tel" or $cpu eq "armv6l") {
     $bits = 32;
 }
 elsif ($cpu eq "x86_64") {
