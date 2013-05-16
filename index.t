@@ -40,6 +40,7 @@ and Ondio
 <ul>
 <li><b>Apple</b>: iPod Nano 2g
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
+<li><b>HiFi E.T</b>: <a href="/wiki/HifietMAPort">MA9</a>
 <li><b>HiFiMAN</b>: <a href="/wiki/HifimanPort">HM-601</a>, <a href="/wiki/HifimanPort">HM-602</a>, <a href="/wiki/HifimanPort">HM-603</a>, <a href="/wiki/HifimanPort">HM-801</a></li>
 <li><b>MPIO</b>: <a href="/wiki/MPIOHD200Port">HD200</a>
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>, M:robe 100
