@@ -156,6 +156,9 @@ sub db_prepare
 
     $dblog_sth = $db->prepare("INSERT INTO log (revision,client,type,value) VALUES (?,?,?,?)") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
+
+    $get_build_results_sth = $db->prepare("SELECT sum(errors), sum(warnings) FROM builds WHERE revision=?") or
+        warn "DBI: Can't prepare statement: ". $db->errstr;
 }
 
 sub nicehead {

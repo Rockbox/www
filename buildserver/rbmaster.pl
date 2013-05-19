@@ -916,6 +916,20 @@ sub endround {
             slog "roundend took $rbtook seconds";
         }
     }
+
+    # pass round result to clients
+    my $rows = $get_build_results_sth->execute($db->quote($buildround));
+
+    if ($rows) {
+        my ($errors,$warnings) = $get_build_results_sth->fetchrow_array();
+        if ($errors or $warnings) {
+            message "Revision " . $buildround . "result: " . $errors . "errors " . $warnings . "warnings";
+        }
+        else {
+            message "Revision " . $buildround . " result: All green";
+        }
+    }
+
     $buildround=0;
 
     # recalculate speed values for all clients
