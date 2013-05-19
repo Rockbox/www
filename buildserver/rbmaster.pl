@@ -916,6 +916,24 @@ sub endround {
             slog "roundend took $rbtook seconds";
         }
     }
+
+    # pass round result to clients
+    chdir "/sites/rockbox.org/trunk";
+    my $author = `git log -1 "--format=format:%an" $buildround`;
+    chomp $author;
+
+    my $rows = $get_build_results_sth->execute();
+
+    if ($rows) {
+        my ($errors,$warnings) = $get_build_results_sth->fetchrow_array();
+        if ($errors or $warnings) {
+            message "Revision " . $buildround . "result: " . $errors . "errors " . $warnings . "warnings (" . $author . "committed)";
+        }
+        else {
+            message "Revision " . $buildround . " result: All green";
+        }
+    }
+
     $buildround=0;
 
     # recalculate speed values for all clients
