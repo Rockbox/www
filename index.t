@@ -56,7 +56,7 @@ and Ondio
 <ul>
 <li><b>Onda</b> VX747, VX767 and VX777</li>
 <li><b>Google</b> Android</li>
-<li><b>Apple</b> iPod Classic</li>
+<li><b>Apple</b> iPod Classic (6G)</li>
 <li><b>Rockchip</b> rk27xx</li>
 <li><b>Samsung</b> YP-R0</li>
 </ul>
