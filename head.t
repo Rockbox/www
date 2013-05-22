@@ -23,6 +23,15 @@ function fsstrip() {
     document.fsform.taskid.value = expr.exec(document.fsform.taskid.value);
     return true;
 }
+
+(function() {
+    var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+    t.parentNode.insertBefore(s, t);
+})();
+
 </script>
 </head>
 #else
@@ -86,7 +95,7 @@ Donate
 <input type="image" src="http://www.rockbox.org/paypal-donate.gif" border="0" name="submit" alt="">
 </form>
 
-<p><a href="http://flattr.com/thing/1371934/Rockbox-mp3-player-firmware" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
+<p><a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://www.rockbox.org"></a>
 
 </div>
 
