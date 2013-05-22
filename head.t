@@ -75,12 +75,19 @@ Search
 <input value="Web pages" type=submit>
 <input type=hidden name=as_sitesearch value="www.rockbox.org">
 </form>
+
+<div class="submenu">
+Donate
+</div>
 <p>
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 <input type="hidden" name="cmd" value="_s-xclick">
 <input type="hidden" name="hosted_button_id" value="585407">
 <input type="image" src="http://www.rockbox.org/paypal-donate.gif" border="0" name="submit" alt="">
 </form>
+
+<p><a href="http://flattr.com/thing/1371934/Rockbox-mp3-player-firmware" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
+
 </div>
 
 </td>
