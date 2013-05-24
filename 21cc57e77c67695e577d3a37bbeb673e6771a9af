@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "AAAASX///HI\u003d",
+        "filename": "buildserver/rbmaster.pl",
+        "patchSetId": 1
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2013-05-24T14:54:45Z",
+      "side": 1,
+      "message": "Put this in rbmaster.pm:db_prepare().",
+      "revId": "21cc57e77c67695e577d3a37bbeb673e6771a9af",
+      "serverId": "583131e1-1a33-4f2b-b8ec-82434880f207",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAASX///II\u003d",
         "filename": "buildserver/rbmaster.pl",
         "patchSetId": 1
@@ -13,6 +30,41 @@
       "writtenOn": "2013-05-22T01:57:36Z",
       "side": 1,
       "message": "Shouldn\u0027t you abandon the execute if the prepare failed?\n\nAlso, is a warning if the build wasn\u0027t found in the table appropriate?\n\nSomething along the lines of (untested):\n\nmy $sth \u003d $db-\u003eprepare(\u0027SELECT sum(errors), sum(warnings) FROM builds WHERE revision\u003d?\u0027);\nif ($sth) {\n    if ($sth-\u003eexecute($db-\u003equote($buildround)) {\n        my ($errors,$warnings) \u003d $sth-\u003efetchrow_array();\n        if ($errors or $warnings) {\n            message sprintf(\n                \u0027Revision %s result: %d errors, %d warnings (%s committed)\u0027,\n                $buildround, $errors, $warnings, $author\n            );\n        } else {\n            message sprintf(\n                \u0027Revision %s result: All green\u0027, $buildround\n            );\n        }\n    } else {\n        warn \u0027Unable to find build row from revision\u003d\u0027 . $buildround;\n    }\n} else {\n    warn \"DBI: Can\u0027t prepare statement: \". $db-\u003eerrstr;\n}",
+      "revId": "21cc57e77c67695e577d3a37bbeb673e6771a9af",
+      "serverId": "583131e1-1a33-4f2b-b8ec-82434880f207",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAASX///HE\u003d",
+        "filename": "buildserver/rbmaster.pl",
+        "patchSetId": 1
+      },
+      "lineNbr": 928,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2013-05-24T14:54:45Z",
+      "side": 1,
+      "message": "warn outputs are not useful since nothing monitors stdout or stderr from the server. Better use the slog function.",
+      "parentUuid": "AAAASX///II\u003d",
+      "revId": "21cc57e77c67695e577d3a37bbeb673e6771a9af",
+      "serverId": "583131e1-1a33-4f2b-b8ec-82434880f207",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAASX///HA\u003d",
+        "filename": "buildserver/rbmaster.pl",
+        "patchSetId": 1
+      },
+      "lineNbr": 933,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2013-05-24T14:54:45Z",
+      "side": 1,
+      "message": "If there is no formatting, there is no need for sprintf.",
       "revId": "21cc57e77c67695e577d3a37bbeb673e6771a9af",
       "serverId": "583131e1-1a33-4f2b-b8ec-82434880f207",
       "unresolved": false
