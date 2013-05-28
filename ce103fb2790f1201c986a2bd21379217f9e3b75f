@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAASX///GE\u003d",
+        "filename": "buildserver/rbmaster.pl",
+        "patchSetId": 3
+      },
+      "lineNbr": 921,
+      "author": {
+        "id": 1000059
+      },
+      "writtenOn": "2013-05-28T23:41:57Z",
+      "side": 1,
+      "message": "How about (linked to module comment);\n\nmy $rows \u003d $get_build_results_sth-\u003eexecute($db-\u003equote($buildround));",
+      "revId": "ce103fb2790f1201c986a2bd21379217f9e3b75f",
+      "serverId": "583131e1-1a33-4f2b-b8ec-82434880f207",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAASX///GI\u003d",
+        "filename": "buildserver/rbmaster.pm",
+        "patchSetId": 3
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000059
+      },
+      "writtenOn": "2013-05-28T23:41:57Z",
+      "side": 1,
+      "message": "Isn\u0027t $buildround out of scope here? How about;\n\n$get_build_results_sth \u003d $db-\u003eprepare(\u0027SELECT sum(errors), sum(warnings) FROM builds WHERE revision\u003d?\u0027) or",
+      "revId": "ce103fb2790f1201c986a2bd21379217f9e3b75f",
+      "serverId": "583131e1-1a33-4f2b-b8ec-82434880f207",
+      "unresolved": false
+    }
+  ]
+}
