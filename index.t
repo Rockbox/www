@@ -58,7 +58,6 @@ and Ondio
 <li><b>Google</b> Android</li>
 <li><b>Apple</b> iPod Classic (6G)</li>
 <li><b>Rockchip</b> rk27xx</li>
-<li><b>Samsung</b> YP-R0</li>
 </ul>
 
 <p>Click here for a <a href="/wiki/TargetStatus#New_Platforms_Currently_Under_De">status summary of unstable and unusable ports</a>.
