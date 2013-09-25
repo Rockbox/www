@@ -42,6 +42,8 @@ sdl:0:mpiohd200sim:MPIO HD200 - Simulator:rockboxui:19375:../tools/configure --t
 sdl:0:mpiohd300sim:MPIO HD300 - Simulator:rockboxui:20208:../tools/configure --target=mpiohd300 --type=s && make
 sdl:1:creativezenxfi2sim:Creative Zen X-Fi2 - Simulator:rockboxui:20000:../tools/configure --target=creativezenxfi2 --type=s && make
 sdl:1:creativezenxfi3sim:Creative Zen X-Fi3 - Simulator:rockboxui:20000:../tools/configure --target=creativezenxfi3 --type=s && make
+sdl:1:sonynwze360sim:Sony NWZ-E360 - Simulator:rockboxui:20000:../tools/configure --target=sonynwze360 --type=s && make
+sdl:1:sonynwze370sim:Sony NWZ-E370 - Simulator:rockboxui:20000:../tools/configure --target=sonynwze370 --type=s && make
 m68k-gcc452:1:iriverh100:iriver H100 - Normal:rockbox.zip:36852:../tools/configure --target=iriverh100 --type=n && make zip
 m68k-gcc452:1:iriverh120:iriver H120 - Normal:rockbox.zip:36220:../tools/configure --target=iriverh120 --type=n && make zip
 m68k-gcc452:1:iriverh300:iriver H300 - Normal:rockbox.zip:37421:../tools/configure --target=iriverh300 --type=n && make zip
@@ -96,6 +98,8 @@ arm-eabi-gcc444:1:hifimanhm801:HiFiMAN HM-801 - Normal:rockbox.zip:30937:../tool
 arm-eabi-gcc444:1:hifietma9:HiFi E.T MA9 - Normal:rockbox.zip:14018:../tools/configure --target=hifietma9 --type=n && make zip
 arm-eabi-gcc444:1:creativezenxfi2:Creative Zen X-Fi2 - Normal:rockbox.zip:30937:../tools/configure --target=creativezenxfi2 --type=n && make zip
 arm-eabi-gcc444:1:creativezenxfi3:Creative Zen X-Fi3 - Normal:rockbox.zip:30937:../tools/configure --target=creativezenxfi3 --type=n && make zip
+arm-eabi-gcc444:1:sonynwze360:Sony NWZ-E360 - Normal:rockbox.zip:30937:../tools/configure --target=sonynwze360 --type=n && make zip
+arm-eabi-gcc444:1:sonynwze370:Sony NWZ-E370 - Normal:rockbox.zip:30937:../tools/configure --target=sonynwze370 --type=n && make zip
 mipsel:1:ondavx747:Onda VX747 - Normal:rockbox.zip:31364:../tools/configure --target=ondavx747 --type=n && make zip
 mipsel:1:ondavx767:Onda VX767 - Normal:rockbox.zip:12878:../tools/configure --target=ondavx767 --type=n && make zip
 mipsel:1:ondavx777:Onda VX777 - Normal:rockbox.zip:30877:../tools/configure --target=ondavx777 --type=n && make zip
@@ -155,6 +159,8 @@ arm-eabi-gcc444:0:hifimanhm801boot:HiFiMAN HM-801 - Boot:bootloader.rkw:1094:../
 arm-eabi-gcc444:0:hifietma9boot:HiFi E.T MA9 - Boot:bootloader.rkw:1143:../tools/configure --target=hifietma9 --type=b && make
 arm-eabi-gcc444:0:creativezenxfi2boot:Creative Zen X-Fi2 - Boot:bootloader-zenxfi2.creative:1100:../tools/configure --target=creativezenxfi2 --type=b && make
 arm-eabi-gcc444:0:creativezenxfi3boot:Creative Zen X-Fi3 - Boot:bootloader-zenxfi3.creative:1100:../tools/configure --target=creativezenxfi3 --type=b && make
+arm-eabi-gcc444:0:sonynwze360boot:Sony NWZ-E360 - Boot:bootloader-nwze360.sony:1100:../tools/configure --target=sonynwze360 --type=b && make
+arm-eabi-gcc444:0:sonynwze370boot:Sony NWZ-E370 - Boot:bootloader-nwze370.sony:1100:../tools/configure --target=sonynwze370 --type=b && make
 sh:0:archosrecorderboot:Recorder - Boot:ajbrec.ajz:795:../tools/configure --target=archosrecorder --ram=2 --type=b && make
 sh:0:playerboot:Player - Boot:archos.mod:602:../tools/configure --target=archosplayer --ram=2 --type=b && make
 sh:0:archosfmrecorderboot:FM Recorder - Boot:ajbrec.ajz:673:../tools/configure --target=archosfmrecorder --ram=2 --type=b && make
