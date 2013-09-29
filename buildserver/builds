@@ -40,10 +40,10 @@ sdl:0:ondavx747sim:Onda VX747 - Simulator:rockboxui:20623:../tools/configure --t
 sdl:0:vibe500sim:Packard Bell Vibe 500 - Simulator:rockboxui:20756:../tools/configure --target=vibe500 --type=s && make
 sdl:0:mpiohd200sim:MPIO HD200 - Simulator:rockboxui:19375:../tools/configure --target=mpiohd200 --type=s && make
 sdl:0:mpiohd300sim:MPIO HD300 - Simulator:rockboxui:20208:../tools/configure --target=mpiohd300 --type=s && make
-sdl:1:creativezenxfi2sim:Creative Zen X-Fi2 - Simulator:rockboxui:20000:../tools/configure --target=creativezenxfi2 --type=s && make
-sdl:1:creativezenxfi3sim:Creative Zen X-Fi3 - Simulator:rockboxui:20000:../tools/configure --target=creativezenxfi3 --type=s && make
-sdl:1:sonynwze360sim:Sony NWZ-E360 - Simulator:rockboxui:20000:../tools/configure --target=sonynwze360 --type=s && make
-sdl:1:sonynwze370sim:Sony NWZ-E370 - Simulator:rockboxui:20000:../tools/configure --target=sonynwze370 --type=s && make
+sdl:0:creativezenxfi2sim:Creative Zen X-Fi2 - Simulator:rockboxui:20000:../tools/configure --target=creativezenxfi2 --type=s && make
+sdl:0:creativezenxfi3sim:Creative Zen X-Fi3 - Simulator:rockboxui:20000:../tools/configure --target=creativezenxfi3 --type=s && make
+sdl:0:sonynwze360sim:Sony NWZ-E360 - Simulator:rockboxui:20000:../tools/configure --target=sonynwze360 --type=s && make
+sdl:0:sonynwze370sim:Sony NWZ-E370 - Simulator:rockboxui:20000:../tools/configure --target=sonynwze370 --type=s && make
 m68k-gcc452:1:iriverh100:iriver H100 - Normal:rockbox.zip:36852:../tools/configure --target=iriverh100 --type=n && make zip
 m68k-gcc452:1:iriverh120:iriver H120 - Normal:rockbox.zip:36220:../tools/configure --target=iriverh120 --type=n && make zip
 m68k-gcc452:1:iriverh300:iriver H300 - Normal:rockbox.zip:37421:../tools/configure --target=iriverh300 --type=n && make zip
@@ -211,8 +211,10 @@ sdl:0:rk27genericwps:Rockchip rk27xx - Checkwps:checkwps.rk27generic:99:../tools
 sdl:0:hifimanhm60xwps:HiFiMAN HM-60x - Checkwps:checkwps.hifimanhm60x:76:../tools/configure --target=hifimanhm60x --type=c && make
 sdl:0:hifimanhm801wps:HiFiMAN HM-801 - Checkwps:checkwps.hifimanhm801:76:../tools/configure --target=hifimanhm801 --type=c && make
 sdl:0:hifietma9wps:HiFi E.T MA9 - Checkwps:checkwps.hifietma9:87:../tools/configure --target=hifietma9 --type=c && make
-sdl:1:creativezenxfi2wps:Creative Zen X-Fi2 - Checkwps:checkwps.creativezenxfi2:100:../tools/configure --target=creativezenxfi2 --type=c && make
-sdl:1:creativezenxfi3wps:Creative Zen X-Fi3 - Checkwps:checkwps.creativezenxfi3:100:../tools/configure --target=creativezenxfi3 --type=c && make
+sdl:0:creativezenxfi2wps:Creative Zen X-Fi2 - Checkwps:checkwps.creativezenxfi2:100:../tools/configure --target=creativezenxfi2 --type=c && make
+sdl:0:creativezenxfi3wps:Creative Zen X-Fi3 - Checkwps:checkwps.creativezenxfi3:100:../tools/configure --target=creativezenxfi3 --type=c && make
+sdl:0:sonynwze360wps:Sony NWZ-E360 - Checkwps:checkwps.sonynwze360:100:../tools/configure --target=sonynwze360 --type=c && make
+sdl:0:sonynwze370wps:Sony NWZ-E370 - Checkwps:checkwps.sonynwze370:100:../tools/configure --target=sonynwze370 --type=c && make
 sdl:0:playerdb:Player - Database:database.archosplayer:148:../tools/configure --target=archosplayer --ram=2 --type=d && make
 sdl:0:iriverh300db:iriver H300 - Database:database.iriverh300:345:../tools/configure --target=iriverh300 --type=d && make
 sdl:0:sdlapplication:SDL Application:rockbox:12954:../tools/configure --target=sdlapp --type=n --lcdwidth=640 --lcdheight=480 && make
