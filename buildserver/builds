@@ -43,7 +43,7 @@ sdl:0:mpiohd300sim:MPIO HD300 - Simulator:rockboxui:177240:../tools/configure --
 sdl:0:creativezenxfi2sim:Creative Zen X-Fi2 - Simulator:rockboxui:88050:../tools/configure --target=creativezenxfi2 --type=s && make
 sdl:0:creativezenxfi3sim:Creative Zen X-Fi3 - Simulator:rockboxui:87220:../tools/configure --target=creativezenxfi3 --type=s && make
 sdl:0:sonynwze360sim:Sony NWZ-E360 - Simulator:rockboxui:84660:../tools/configure --target=sonynwze360 --type=s && make
-    sdl:0:sonynwze370sim:Sony NWZ-E370 - Simulator:rockboxui:85370:../tools/configure --target=sonynwze370 --type=s && make
+sdl:0:sonynwze370sim:Sony NWZ-E370 - Simulator:rockboxui:85370:../tools/configure --target=sonynwze370 --type=s && make
 m68k-gcc452:1:iriverh100:iriver H100 - Normal:rockbox.zip:263320:../tools/configure --target=iriverh100 --type=n && make zip
 m68k-gcc452:1:iriverh120:iriver H120 - Normal:rockbox.zip:262370:../tools/configure --target=iriverh120 --type=n && make zip
 m68k-gcc452:1:iriverh300:iriver H300 - Normal:rockbox.zip:268770:../tools/configure --target=iriverh300 --type=n && make zip
