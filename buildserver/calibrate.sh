@@ -17,7 +17,7 @@ do
    /usr/bin/time -f"%U+%S" sh -c "$command" >/dev/null 2>../$shortname.buildtime
    cd ..
    rm -rf build-calibrate
-   score=`cat $shortname.buildtime|tail -1|bc -l|numprocess '*100'|numround`
+   score=`cat $shortname.buildtime|tail -1|bc -l|numprocess '*1000'|numround`
    rm -f  $shortname.buildtime
    echo $score
    echo "$various:$score:$command" >> newbuildfile
