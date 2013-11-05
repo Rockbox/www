@@ -96,6 +96,9 @@ arm-eabi-gcc444:1:rk27generic:Rockchip rk27xx - Normal:rockbox.zip:94800:../tool
 arm-eabi-gcc444:1:hifimanhm60x:HiFiMAN HM-60x - Normal:rockbox.zip:214980:../tools/configure --target=hifimanhm60x --type=n && make zip
 arm-eabi-gcc444:1:hifimanhm801:HiFiMAN HM-801 - Normal:rockbox.zip:218740:../tools/configure --target=hifimanhm801 --type=n && make zip
 arm-eabi-gcc444:1:hifietma9:HiFi E.T MA9 - Normal:rockbox.zip:93210:../tools/configure --target=hifietma9 --type=n && make zip
+arm-eabi-gcc444:1:hifietma9c:HiFi E.T MA9C - Normal:rockbox.zip:93210:../tools/configure --target=hifietma9c --type=n && make zip
+arm-eabi-gcc444:1:hifietma9c:HiFi E.T MA8 - Normal:rockbox.zip:93210:../tools/configure --target=hifietma8 --type=n && make zip
+arm-eabi-gcc444:1:hifietma9c:HiFi E.T MA8C - Normal:rockbox.zip:93210:../tools/configure --target=hifietma8c --type=n && make zip
 arm-eabi-gcc444:1:creativezenxfi2:Creative Zen X-Fi2 - Normal:rockbox.zip:105640:../tools/configure --target=creativezenxfi2 --type=n && make zip
 arm-eabi-gcc444:1:creativezenxfi3:Creative Zen X-Fi3 - Normal:rockbox.zip:104480:../tools/configure --target=creativezenxfi3 --type=n && make zip
 arm-eabi-gcc444:1:sonynwze360:Sony NWZ-E360 - Normal:rockbox.zip:100240:../tools/configure --target=sonynwze360 --type=n && make zip
@@ -157,6 +160,9 @@ arm-eabi-gcc444:0:rk27genericboot:Rockchip rk27xx - Boot:bootloader.rkw:7560:../
 arm-eabi-gcc444:0:hifimanhm60xboot:HiFiMAN HM-60x - Boot:bootloader.rkw:7550:../tools/configure --target=hifimanhm60x --type=b && make
 arm-eabi-gcc444:0:hifimanhm801boot:HiFiMAN HM-801 - Boot:bootloader.rkw:7550:../tools/configure --target=hifimanhm801 --type=b && make
 arm-eabi-gcc444:0:hifietma9boot:HiFi E.T MA9 - Boot:bootloader.rkw:7670:../tools/configure --target=hifietma9 --type=b && make
+arm-eabi-gcc444:0:hifietma9boot:HiFi E.T MA9C - Boot:bootloader.rkw:7670:../tools/configure --target=hifietma9c --type=b && make
+arm-eabi-gcc444:0:hifietma9boot:HiFi E.T MA8 - Boot:bootloader.rkw:7670:../tools/configure --target=hifietma8 --type=b && make
+arm-eabi-gcc444:0:hifietma9boot:HiFi E.T MA8C - Boot:bootloader.rkw:7670:../tools/configure --target=hifietma8c --type=b && make
 arm-eabi-gcc444:0:creativezenxfi2boot:Creative Zen X-Fi2 - Boot:bootloader-zenxfi2.creative:9630:../tools/configure --target=creativezenxfi2 --type=b && make
 arm-eabi-gcc444:0:creativezenxfi3boot:Creative Zen X-Fi3 - Boot:bootloader-zenxfi3.creative:9570:../tools/configure --target=creativezenxfi3 --type=b && make
 arm-eabi-gcc444:0:sonynwze360boot:Sony NWZ-E360 - Boot:bootloader-nwze360.sony:9410:../tools/configure --target=sonynwze360 --type=b && make
@@ -211,6 +217,9 @@ sdl:0:rk27genericwps:Rockchip rk27xx - Checkwps:checkwps.rk27generic:1350:../too
 sdl:0:hifimanhm60xwps:HiFiMAN HM-60x - Checkwps:checkwps.hifimanhm60x:1350:../tools/configure --target=hifimanhm60x --type=c && make
 sdl:0:hifimanhm801wps:HiFiMAN HM-801 - Checkwps:checkwps.hifimanhm801:1350:../tools/configure --target=hifimanhm801 --type=c && make
 sdl:0:hifietma9wps:HiFi E.T MA9 - Checkwps:checkwps.hifietma9:1360:../tools/configure --target=hifietma9 --type=c && make
+sdl:0:hifietma9wps:HiFi E.T MA9C - Checkwps:checkwps.hifietma9c:1360:../tools/configure --target=hifietma9c --type=c && make
+sdl:0:hifietma9wps:HiFi E.T MA8 - Checkwps:checkwps.hifietma8:1360:../tools/configure --target=hifietma8 --type=c && make
+sdl:0:hifietma9wps:HiFi E.T MA8C - Checkwps:checkwps.hifietma8c:1360:../tools/configure --target=hifietma8c --type=c && make
 sdl:0:creativezenxfi2wps:Creative Zen X-Fi2 - Checkwps:checkwps.creativezenxfi2:1380:../tools/configure --target=creativezenxfi2 --type=c && make
 sdl:0:creativezenxfi3wps:Creative Zen X-Fi3 - Checkwps:checkwps.creativezenxfi3:1370:../tools/configure --target=creativezenxfi3 --type=c && make
 sdl:0:sonynwze360wps:Sony NWZ-E360 - Checkwps:checkwps.sonynwze360:1370:../tools/configure --target=sonynwze360 --type=c && make
