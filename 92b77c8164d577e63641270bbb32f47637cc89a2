@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAaX///n8\u003d",
+        "filename": "buildserver/builds",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1000644
+      },
+      "writtenOn": "2013-11-06T13:17:48Z",
+      "side": 1,
+      "message": "Third field should be \"creativezenboot\" *(this is a unique identifier)\nSimilar for the next two lines",
+      "revId": "92b77c8164d577e63641270bbb32f47637cc89a2",
+      "serverId": "583131e1-1a33-4f2b-b8ec-82434880f207",
+      "unresolved": false
+    }
+  ]
+}
