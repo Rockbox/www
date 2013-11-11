@@ -44,6 +44,9 @@ sdl:0:creativezenxfi2sim:Creative Zen X-Fi2 - Simulator:rockboxui:88050:../tools
 sdl:0:creativezenxfi3sim:Creative Zen X-Fi3 - Simulator:rockboxui:87220:../tools/configure --target=creativezenxfi3 --type=s && make
 sdl:0:sonynwze360sim:Sony NWZ-E360 - Simulator:rockboxui:84660:../tools/configure --target=sonynwze360 --type=s && make
 sdl:0:sonynwze370sim:Sony NWZ-E370 - Simulator:rockboxui:85370:../tools/configure --target=sonynwze370 --type=s && make
+sdl:0:creativezensim:Creative ZEN - Simulator:rockboxui:85370:../tools/configure --target=creativezen --type=s && make
+sdl:0:creativezenxfisim:Creative ZEN X-Fi - Simulator:rockboxui:85370:../tools/configure --target=creativezenxfi --type=s && make
+sdl:0:creativezenmozaicsim:Creative ZEN Mozaic - Simulator:rockboxui:85370:../tools/configure --target=creativezenmozaic --type=s && make
 m68k-gcc452:1:iriverh100:iriver H100 - Normal:rockbox.zip:263320:../tools/configure --target=iriverh100 --type=n && make zip
 m68k-gcc452:1:iriverh120:iriver H120 - Normal:rockbox.zip:262370:../tools/configure --target=iriverh120 --type=n && make zip
 m68k-gcc452:1:iriverh300:iriver H300 - Normal:rockbox.zip:268770:../tools/configure --target=iriverh300 --type=n && make zip
