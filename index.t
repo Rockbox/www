@@ -61,7 +61,7 @@ and Ondio
 <li><b>Creative</b> Zen X-Fi 2 and Zen X-Fi 3</li>
 </ul>
 
-<p>Click here for a <a href="/wiki/TargetStatus#New_Platforms_Currently_Under_De">status summary of unstable and unusable ports</a>.
+<p>Click here for a <a href="/wiki/TargetStatus#New_Platforms_Currently_Under_Development">status summary of unstable and unusable ports</a>.
 
 <p>Quick links:
 <a href="/wiki/WhyRockbox">Why should you run Rockbox?</a>
