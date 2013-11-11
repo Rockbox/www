@@ -58,7 +58,8 @@ and Ondio
 <li><b>Google</b> Android</li>
 <li><b>Apple</b> iPod Classic (6G)</li>
 <li><b>Rockchip</b> rk27xx</li>
-<li><b>Creative</b> Zen X-Fi 2 and Zen X-Fi 3</li>
+<li><b>Creative</b>: <a href="/wiki/CreativeZENPort">Zen</a>, <a href="/wiki/CreativeZENMozaicPort">Zen Mozaic</a>, <a href="/wiki/CreativeZENXFiPort">Zen X-Fi</a>, <a href="/wiki/CreativeZENXFi2Port">Zen X-Fi 2</a> and <a href="/wiki/CreativeZENXFi3Port">Zen X-Fi 3</a></li>
+<li><b>Sony</b>: <a href="/wiki/SonyNWZE360Port">NWZ-E360</a> and <a href="/wiki/SonyNWZE370Port">NWZ-E370</a></li>
 </ul>
 
 <p>Click here for a <a href="/wiki/TargetStatus#New_Platforms_Currently_Under_Development">status summary of unstable and unusable ports</a>.
