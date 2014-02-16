@@ -47,6 +47,7 @@ sdl:0:sonynwze370sim:Sony NWZ-E370 - Simulator:rockboxui:85370:../tools/configur
 sdl:0:creativezensim:Creative ZEN - Simulator:rockboxui:85370:../tools/configure --target=creativezen --type=s && make
 sdl:0:creativezenxfisim:Creative ZEN X-Fi - Simulator:rockboxui:85370:../tools/configure --target=creativezenxfi --type=s && make
 sdl:0:creativezenmozaicsim:Creative ZEN Mozaic - Simulator:rockboxui:85370:../tools/configure --target=creativezenmozaic --type=s && make
+sdl:0:creativezenxfistyle:Creative ZEN X-Fi Style - Simulator:rockboxui:85370:../tools/configure --target=creativezenxfistyle --type=s && make
 m68k-gcc452:1:iriverh100:iriver H100 - Normal:rockbox.zip:263320:../tools/configure --target=iriverh100 --type=n && make zip
 m68k-gcc452:1:iriverh120:iriver H120 - Normal:rockbox.zip:262370:../tools/configure --target=iriverh120 --type=n && make zip
 m68k-gcc452:1:iriverh300:iriver H300 - Normal:rockbox.zip:268770:../tools/configure --target=iriverh300 --type=n && make zip
@@ -111,6 +112,7 @@ arm-eabi-gcc444:1:sonynwze370:Sony NWZ-E370 - Normal:rockbox.zip:100530:../tools
 arm-eabi-gcc444:1:creativezen:Creative ZEN - Normal:rockbox.zip:100530:../tools/configure --target=creativezen --type=n && make zip
 arm-eabi-gcc444:1:creativezenxfi:Creative ZEN X-Fi - Normal:rockbox.zip:100530:../tools/configure --target=creativezenxfi --type=n && make zip
 arm-eabi-gcc444:1:creativezenmozaic:Creative ZEN Mozaic - Normal:rockbox.zip:100530:../tools/configure --target=creativezenmozaic --type=n && make zip
+arm-eabi-gcc444:1:creativezenxfistyle:Creative ZEN X-Fi Style - Normal:rockbox.zip:100530:../tools/configure --target=creativezenxfistyle --type=n && make zip
 mipsel:1:ondavx747:Onda VX747 - Normal:rockbox.zip:212740:../tools/configure --target=ondavx747 --type=n && make zip
 mipsel:1:ondavx767:Onda VX767 - Normal:rockbox.zip:94300:../tools/configure --target=ondavx767 --type=n && make zip
 mipsel:1:ondavx777:Onda VX777 - Normal:rockbox.zip:211740:../tools/configure --target=ondavx777 --type=n && make zip
@@ -180,6 +182,7 @@ arm-eabi-gcc444:0:sonynwze370boot:Sony NWZ-E370 - Boot:bootloader-nwze370.sony:9
 arm-eabi-gcc444:0:creativezenboot:Creative ZEN - Boot:bootloader-zen.creative:9290:../tools/configure --target=creativezen --type=b && make
 arm-eabi-gcc444:0:creativezenxfiboot:Creative ZEN X-Fi - Boot:bootloader-zenxfi.creative:9290:../tools/configure --target=creativezenxfi --type=b && make
 arm-eabi-gcc444:0:creativezenmozaicboot:Creative ZEN Mozaic - Boot:bootloader-zenmozaic.creative:9290:../tools/configure --target=creativezenmozaic --type=b && make
+arm-eabi-gcc444:0:creativezenxfistyle:Creative ZEN X-Fi Style - Boot:bootloader-zenxfistyle.creative:9290:../tools/configure --target=creativezenxfistyle --type=b && make
 sh:0:archosrecorderboot:Recorder - Boot:ajbrec.ajz:6550:../tools/configure --target=archosrecorder --ram=2 --type=b && make
 sh:0:playerboot:Player - Boot:archos.mod:5990:../tools/configure --target=archosplayer --ram=2 --type=b && make
 sh:0:archosfmrecorderboot:FM Recorder - Boot:ajbrec.ajz:6510:../tools/configure --target=archosfmrecorder --ram=2 --type=b && make
