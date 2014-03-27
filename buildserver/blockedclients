@@ -3,3 +3,5 @@ glasschale-Rondom:Your client disconnects every 10 seconds
 fnarfbargle-uk-BradC:Your build environment is screwed up
 jakorasia-cg:Your SDL installation is broken
 Asuka-w1ll14m: build client seems to be broken
+storebror-daniel: "error: #error long int is not a 32bit or 64bit type"
+saint-[Saint]: spaces in build client path
