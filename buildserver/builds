@@ -251,3 +251,4 @@ android19:0:android480x800mips:Android 480x800 - MIPS:rockbox.apk:108720:../tool
 arm-ypr0-gcc446:1:samsungypr0:Samsung YP-R0 - Normal:rockbox.zip:271430:../tools/configure --target=samsungypr0 --type=n && make zip
 arm-ypr0-gcc446:1:samsungypr1:Samsung YP-R1 - Normal:rockbox.zip:271430:../tools/configure --target=samsungypr1 --type=n && make zip
 latex:0:iriverh120manual:iriver H120 - Manual:manual/rockbox-build.pdf:7800:../tools/configure --target=iriverh120 --type=s && make MAKEFLAGS= manual
+htmllatex:0:iriverh120htmlmanual:iriver H120 - HTML Manual:manual/rockbox-manual.zip:7800:../tools/configure --target=iriverh120 --type=s && make MAKEFLAGS= manual-zip
