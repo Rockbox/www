@@ -5,4 +5,3 @@ jakorasia-cg:Your SDL installation is broken
 Asuka-w1ll14m: build client seems to be broken
 storebror-daniel: "error: #error long int is not a 32bit or 64bit type"
 ares-obo: "configure didn't find sdl-config, which indicates that you don't have SDL (properly) installed. Please correct and re-run configure"
-pamaury-iridium-pamaury: "bookmark.c:(.text+0x538): undefined reference to `snprintf'" on various targets, only on this build client
