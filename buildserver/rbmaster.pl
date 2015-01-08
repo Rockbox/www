@@ -918,7 +918,7 @@ sub endround {
     }
 
     # pass round result to clients
-    my $rows = $get_build_results_sth->execute($db->quote($buildround));
+    my $rows = $get_build_results_sth->execute($buildround);
 
     if ($rows) {
         my ($errors,$warnings) = $get_build_results_sth->fetchrow_array();
