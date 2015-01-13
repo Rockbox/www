@@ -116,7 +116,6 @@ arm-eabi-gcc444:1:creativezenxfistyle:Creative ZEN X-Fi Style - Normal:rockbox.z
 mipsel:1:ondavx747:Onda VX747 - Normal:rockbox.zip:190360:../tools/configure --target=ondavx747 --type=n && make zip
 mipsel:1:ondavx767:Onda VX767 - Normal:rockbox.zip:83970:../tools/configure --target=ondavx767 --type=n && make zip
 mipsel:1:ondavx777:Onda VX777 - Normal:rockbox.zip:190030:../tools/configure --target=ondavx777 --type=n && make zip
-sh:1:archosrecorder:Recorder - Normal:rockbox.zip:63790:../tools/configure --target=archosrecorder --ram=2 --type=n && make zip
 sh:1:archosrecorderv2:V2 Recorder - Normal:rockbox.zip:63940:../tools/configure --target=archosrecorderv2 --ram=2 --type=n && make zip
 sh:1:archosplayer:Player - Normal:rockbox.zip:26390:../tools/configure --target=archosplayer --ram=2 --type=n && make zip
 sh:1:archosfmrecorder:FM Recorder - Normal:rockbox.zip:63950:../tools/configure --target=archosfmrecorder --ram=2 --type=n && make zip
