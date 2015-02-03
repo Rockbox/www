@@ -44,6 +44,7 @@ and Ondio
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
 <li><b>HiFi E.T</b>: <a href="/wiki/HifietMAPort">MA9</a>, <a href="/wiki/HifietMAPort">MA8</a>
 <li><b>HiFiMAN</b>: <a href="/wiki/HifimanPort">HM-601</a>, <a href="/wiki/HifimanPort">HM-602</a>, <a href="/wiki/HifimanPort">HM-603</a>, <a href="/wiki/HifimanPort">HM-801</a></li>
+<li><b>iBasso</b>: <a href="/wiki/IBassoDXPort">DX50</a>, <a href="/wiki/IBassoDXPort">DX90</a>
 <li><b>MPIO</b>: <a href="/wiki/MPIOHD200Port">HD200</a>
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
 <li><b>Philips</b>: <a href="/wiki/GoGearSA9200info">GoGear SA9200</a>, <a href="/wiki/GoGearHDD6330">GoGear HDD16x0</a> and <a href="/wiki/GoGearHDD6330">HDD63x0</a>
