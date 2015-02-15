@@ -247,8 +247,8 @@ sdl:0:sdlapplication:SDL Application:rockbox:128390:../tools/configure --target=
 sdl:0:sdlapplicationwarble:SDL Application - warble:warble.sdlapp:49500:../tools/configure --target=sdlapp --type=w --lcdwidth=640 --lcdheight=480 && make
 android19:0:android480x800:Android 480x800:rockbox.apk:42210:../tools/configure --target=android --type=n --lcdwidth=480 --lcdheight=800 && make apk
 android19:0:android480x800mips:Android 480x800 - MIPS:rockbox.apk:49340:../tools/configure --target=androidmips --type=n --lcdwidth=480 --lcdheight=800 && make apk
-android16:0:ibassodx50:iBasso DX50:rockbox.zip:110450:../tools/configure --target=ibassodx50 --type=n && make zip
-android16:0:ibassodx90:iBasso DX90:rockbox.zip:110450:../tools/configure --target=ibassodx90 --type=n && make zip
+android16:1:ibassodx50:iBasso DX50:rockbox.zip:110450:../tools/configure --target=ibassodx50 --type=n && make zip
+android16:1:ibassodx90:iBasso DX90:rockbox.zip:110450:../tools/configure --target=ibassodx90 --type=n && make zip
 arm-ypr0-gcc446:1:samsungypr0:Samsung YP-R0 - Normal:rockbox.zip:252910:../tools/configure --target=samsungypr0 --type=n && make zip
 arm-ypr0-gcc446:1:samsungypr1:Samsung YP-R1 - Normal:rockbox.zip:140340:../tools/configure --target=samsungypr1 --type=n && make zip
 latex:0:iriverh120manual:iriver H120 - Manual:manual/rockbox-build.pdf:5670:../tools/configure --target=iriverh120 --type=s && make MAKEFLAGS= manual
