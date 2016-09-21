@@ -96,6 +96,9 @@ and Ondio
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
+<tr><td nowrap>2013-03-05</td><td>Move ZEN X-Fi/X-Fi3/X-Fi Style/Mozaic,
+NWZ-E360/E370/E380 and Fuze+ to stable. Move ZEN and ZEN X-Fi2 to unstable</td></tr>
+
 <tr><td nowrap>2013-03-05</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes313">Rockbox 3.13 is released</a></td></tr>
 
 <tr><td nowrap>2012-11-27</td><td>Forums software updated</td></tr>
@@ -103,8 +106,6 @@ and Ondio
 <tr><td nowrap>2012-10-06</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes312">Rockbox 3.12 is released</a></td></tr>
 
 <tr><td nowrap>2012-04-12</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes3112">Rockbox 3.11.2 is released</a></td></tr>
-
-<tr><td nowrap>2012-03-31</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes311">Rockbox 3.11 is released</a></td></tr>
 
 </table>
 <small><a href="history.html">Older news</a>
