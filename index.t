@@ -22,6 +22,11 @@ Rockbox is a free replacement firmware for digital music players. It runs on a w
 and Ondio
 <li><b>Cowon</b>: iAudio X5, X5V, X5L, M5, M5L, M3 and M3L
 
+<li><b>Creative</b>: <a href="/wiki/CreativeZENMozaicPort">Zen Mozaic</a>,
+<a href="/wiki/CreativeZENXFiPort">Zen X-Fi</a>,
+<a href="/wiki/CreativeZENXFi3Port">Zen X-Fi 3</a> and
+<a href="/wiki/CreativeZENXFiStylePort">Zen X-Fi Style</a>
+
 <li><b>iriver</b>: iHP100 series, H100 series, H300 series and H10 series
 
 <li><b>MPIO</b>: HD300
@@ -30,7 +35,12 @@ and Ondio
 
 <li><b>Packard Bell</b>: Vibe 500
 
-<li><b>SanDisk</b>: Sansa c200, e200 and e200R series, Fuze, Clip, Clip+ and Clip Zip
+<li><b>Sony</b>: <a href="/wiki/SonyNWZE360Port">NWZ-E360</a>,
+<a href="/wiki/SonyNWZE370Port">NWZ-E370</a> and
+<a href="/wiki/SonyNWZE380">NWZ-E380</a> series
+
+<li><b>SanDisk</b>: Sansa c200, e200 and e200R series, Fuze and
+<a href="/wiki/SansaFuzePlusPort">Fuze+</a>, Clip, Clip+ and Clip Zip
 
 <li><b>Toshiba</b>: Gigabeat X and F series
 </ul>
@@ -41,7 +51,9 @@ and Ondio
 
 <ul>
 <li><b>Apple</b>: iPod Nano 2g
+<li><b>Creative</b>: <a href="/wiki/CreativeZENPort">Zen</a> and <a href="/wiki/CreativeZENXFi2Port">Zen X-Fi 2</a>
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
+
 <li><b>HiFi E.T</b>: <a href="/wiki/HifietMAPort">MA9</a>, <a href="/wiki/HifietMAPort">MA8</a>
 <li><b>HiFiMAN</b>: <a href="/wiki/HifimanPort">HM-601</a>, <a href="/wiki/HifimanPort">HM-602</a>, <a href="/wiki/HifimanPort">HM-603</a>, <a href="/wiki/HifimanPort">HM-801</a></li>
 <li><b>iBasso</b>: <a href="/wiki/IBassoDXPort">DX50</a>, <a href="/wiki/IBassoDXPort">DX90</a>
@@ -49,7 +61,6 @@ and Ondio
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
 <li><b>Philips</b>: <a href="/wiki/GoGearSA9200info">GoGear SA9200</a>, <a href="/wiki/GoGearHDD6330">GoGear HDD16x0</a> and <a href="/wiki/GoGearHDD6330">HDD63x0</a>
 <li><b>Samsung</b>: <a href="/wiki/SamsungYPR0">YP-R0</a>, <a href="/wiki/SamsungYH92xPort">YH-820</a>, <a href="/wiki/SamsungYH92xPort">YH-920</a> and <a href="/wiki/SamsungYH92xPort">YH-925</a>
-<li><b>SanDisk</b>: <a href="/wiki/SansaFuzePlusPort">Sansa Fuze+</a>
 <li><b>Toshiba</b>: <a href="/wiki/GigabeatSPort">Gigabeat S</a>
 </ul>
 
@@ -61,8 +72,6 @@ and Ondio
 <li><b>Google</b> Android</li>
 <li><b>Apple</b> iPod Classic (6G)</li>
 <li><b>Rockchip</b> rk27xx</li>
-<li><b>Creative</b>: <a href="/wiki/CreativeZENPort">Zen</a>, <a href="/wiki/CreativeZENMozaicPort">Zen Mozaic</a>, <a href="/wiki/CreativeZENXFiPort">Zen X-Fi</a>, <a href="/wiki/CreativeZENXFi2Port">Zen X-Fi 2</a>, <a href="/wiki/CreativeZENXFi3Port">Zen X-Fi 3</a> and <a href="/wiki/CreativeZENXFiStylePort">Zen X-Fi Style</a></li>
-<li><b>Sony</b>: <a href="/wiki/SonyNWZE360Port">NWZ-E360</a> and <a href="/wiki/SonyNWZE370Port">NWZ-E370</a></li>
 </ul>
 
 <p>Click here for a <a href="/wiki/TargetStatus#New_Platforms_Currently_Under_Development">status summary of unstable and unusable ports</a>.
