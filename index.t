@@ -35,6 +35,10 @@ and Ondio
 
 <li><b>Packard Bell</b>: Vibe 500
 
+<li><b>Philips</b>: <a href="/wiki/GoGearSA9200info">GoGear SA9200</a>, <a href="/wiki/GoGearHDD6330">GoGear HDD16x0</a> and <a href="/wiki/GoGearHDD6330">HDD63x0</a>
+
+<li><b>Samsung</b>: YH-820, YH-920 and YH-925
+
 <li><b>Sony</b>: <a href="/wiki/SonyNWZE360Port">NWZ-E360</a>,
 <a href="/wiki/SonyNWZE370Port">NWZ-E370</a> and
 <a href="/wiki/SonyNWZE380">NWZ-E380</a> series
@@ -59,8 +63,7 @@ and Ondio
 <li><b>iBasso</b>: <a href="/wiki/IBassoDXPort">DX50</a>, <a href="/wiki/IBassoDXPort">DX90</a>
 <li><b>MPIO</b>: <a href="/wiki/MPIOHD200Port">HD200</a>
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
-<li><b>Philips</b>: <a href="/wiki/GoGearSA9200info">GoGear SA9200</a>, <a href="/wiki/GoGearHDD6330">GoGear HDD16x0</a> and <a href="/wiki/GoGearHDD6330">HDD63x0</a>
-<li><b>Samsung</b>: <a href="/wiki/SamsungYPR0">YP-R0</a>, <a href="/wiki/SamsungYH92xPort">YH-820</a>, <a href="/wiki/SamsungYH92xPort">YH-920</a> and <a href="/wiki/SamsungYH92xPort">YH-925</a>
+<li><b>Samsung</b>: <a href="/wiki/SamsungYPR0">YP-R0</a>
 <li><b>Toshiba</b>: <a href="/wiki/GigabeatSPort">Gigabeat S</a>
 </ul>
 
