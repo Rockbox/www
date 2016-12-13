@@ -476,7 +476,7 @@ sub UPDATE
     my ($url) = @_;
     tprint "Update from $url\n";
 
-    `curl -o $perlfile.new "$url"`;
+    `curl -L -o $perlfile.new "$url"`;
     
     # This might fail, but runclient.sh will save us
     rename("$perlfile.new", $perlfile);
@@ -570,7 +570,7 @@ sub testsystem
 
     # check git
     if (not -d ".git") {
-        `curl -o svn2git.sh http://www.rockbox.org/buildserver/svn2git.sh`;
+        `curl -L -o svn2git.sh http://www.rockbox.org/buildserver/svn2git.sh`;
         `sh svn2git.sh`;
     }
 
