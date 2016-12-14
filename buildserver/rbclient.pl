@@ -38,7 +38,7 @@ our $port = $port || 19999;
 our $ulspeed = $ulspeed || 0;
 our $commandhook = $commandhook || '';
 
-my $upload_url = "http://$buildmaster/upload.cgi";
+my $upload_url = "https://$buildmaster/upload.cgi";
 
 my ($probecores) = &probecores;
 our $cores = $cores || $probecores;
@@ -570,7 +570,7 @@ sub testsystem
 
     # check git
     if (not -d ".git") {
-        `curl -L -o svn2git.sh http://www.rockbox.org/buildserver/svn2git.sh`;
+        `curl -L -o svn2git.sh https://www.rockbox.org/buildserver/svn2git.sh`;
         `sh svn2git.sh`;
     }
 
