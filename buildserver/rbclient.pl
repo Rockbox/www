@@ -15,7 +15,11 @@ use POSIX 'strftime';
 use POSIX ":sys_wait_h";
 
 my $perlfile = "rbclient.pl";
-my $revision = 55;
+
+# Increment this to have the buildmaster auto-update the cluster.
+# Remember to get someone to increment the corresponding value in
+# rbmaster.conf on the server!
+my $revision = 56;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -38,7 +42,7 @@ our $port = $port || 19999;
 our $ulspeed = $ulspeed || 0;
 our $commandhook = $commandhook || '';
 
-my $upload_url = "https://$buildmaster/upload.cgi";
+my $upload_url = "http://$buildmaster/upload.cgi";
 
 my ($probecores) = &probecores;
 our $cores = $cores || $probecores;
