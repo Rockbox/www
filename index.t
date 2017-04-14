@@ -13,7 +13,7 @@
 Rockbox is a free replacement firmware for digital music players. It runs on a wide range of players:
 
 <p><h2>Stable ports</h2>
-<p>Rockbox runs well on these players, has a complete manual and is supported by <a href="/download/">the installer</a>:
+<p>Rockbox runs well on these players, has installation instructions, and is supported by <a href="/download/">the installer</a>:
 <ul>
 
 <li><b>Apple</b>: iPod 1g through 5.5g, iPod Mini, iPod Nano 1g
