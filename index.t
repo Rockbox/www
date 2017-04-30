@@ -16,7 +16,7 @@ Rockbox is a free replacement firmware for digital music players. It runs on a w
 <p>Rockbox runs well on these players, has installation instructions, and is supported by <a href="/download/">the installer</a>:
 <ul>
 
-<li><b>Apple</b>: iPod 1g through 5.5g, iPod Mini, iPod Nano 1g
+<li><b>Apple</b>: iPod 1g through 5.5g, iPod Mini, iPod Nano 1g, iPod Nano 2g
 
 <li><b>Archos</b>: Jukebox 5000, 6000, Studio, Recorder, FM Recorder, Recorder V2
 and Ondio
@@ -54,7 +54,7 @@ and Ondio
 <p>Rockbox runs on these players, but is incomplete, less usable or has problems that limit it to advanced users:
 
 <ul>
-<li><b>Apple</b>: iPod Nano 2g
+<li><b>Apple</b>: iPod Classic
 <li><b>Creative</b>: <a href="/wiki/CreativeZENPort">Zen</a> and <a href="/wiki/CreativeZENXFi2Port">Zen X-Fi 2</a>
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
 
@@ -73,7 +73,6 @@ and Ondio
 <ul>
 <li><b>Onda</b> VX747, VX767 and VX777</li>
 <li><b>Google</b> Android</li>
-<li><b>Apple</b> iPod Classic (6G)</li>
 <li><b>Rockchip</b> rk27xx</li>
 </ul>
 
@@ -98,6 +97,8 @@ and Ondio
 <table class="news" summary="recent news">
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
+
+<tr><td nowrap>2017-05-01</td><td>Move iPod Nano 2G to stable. Move iPod Classic to unstable.</td></tr>
 
 <tr><td nowrap>2017-05-01</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes314">Rockbox 3.14 is released</a></td></tr>
 
