@@ -253,3 +253,4 @@ arm-ypr0-gcc446:1:samsungypr0:Samsung YP-R0 - Normal:rockbox.zip:252910:../tools
 arm-ypr0-gcc446:1:samsungypr1:Samsung YP-R1 - Normal:rockbox.zip:140340:../tools/configure --target=samsungypr1 --type=n && make zip
 latex:0:iriverh120manual:iriver H120 - Manual:manual/rockbox-build.pdf:5670:../tools/configure --target=iriverh120 --type=s && make MAKEFLAGS= manual
 latex:0:iriverh120htmlmanual:iriver H120 - HTML Manual:manual/rockbox-manual.zip:1700:../tools/configure --target=iriverh120 --type=s && make MAKEFLAGS= manual-zip
+arm-rb-gcc494:1:sonynwze580:Sony NWZ-E580 - Normal:rockbox.zip:198440:../tools/configure --target=sonynwze580 --type=n && make zip
