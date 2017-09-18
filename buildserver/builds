@@ -253,7 +253,7 @@ arm-ypr0-gcc446:1:samsungypr0:Samsung YP-R0 - Normal:rockbox.zip:40890:../tools/
 arm-ypr0-gcc446:1:samsungypr1:Samsung YP-R1 - Normal:rockbox.zip:28760:../tools/configure --target=samsungypr1 --type=n && make zip
 latex:0:iriverh120manual:iriver H120 - Manual:manual/rockbox-build.pdf:8070:../tools/configure --target=iriverh120 --type=s && make MAKEFLAGS= manual
 latex:0:iriverh120htmlmanual:iriver H120 - HTML Manual:manual/rockbox-manual.zip:24870:../tools/configure --target=iriverh120 --type=s && make MAKEFLAGS= manual-zip
-arm-rb-gcc494:1:sonynwze350:Sony NWZ-E450 - Normal:rockbox.zip:62540:../tools/configure --target=sonynwze350 --type=n && make zip
+arm-rb-gcc494:1:sonynwze350:Sony NWZ-E350 - Normal:rockbox.zip:62540:../tools/configure --target=sonynwze350 --type=n && make zip
 arm-rb-gcc494:1:sonynwze450:Sony NWZ-E450 - Normal:rockbox.zip:62540:../tools/configure --target=sonynwze450 --type=n && make zip
 arm-rb-gcc494:1:sonynwze460:Sony NWZ-E460 - Normal:rockbox.zip:163840:../tools/configure --target=sonynwze460 --type=n && make zip
 arm-rb-gcc494:1:sonynwze470:Sony NWZ-E470 - Normal:rockbox.zip:62340:../tools/configure --target=sonynwze470 --type=n && make zip
@@ -262,7 +262,7 @@ arm-rb-gcc494:1:sonynwza10:Sony NWZ-A10 - Normal:rockbox.zip:62300:../tools/conf
 arm-rb-gcc494:1:sonynwa20:Sony NW-A20 - Normal:rockbox.zip:62420:../tools/configure --target=sonynwa20 --type=n && make zip
 arm-rb-gcc494:1:sonynwza860-:Sony NWZ-A860 - Normal:rockbox.zip:62300:../tools/configure --target=sonynwza860 --type=n && make zip
 arm-rb-gcc494:1:sonynwzs750-:Sony NWZ-S750 - Normal:rockbox.zip:62300:../tools/configure --target=sonynwzs750 --type=n && make zip
-arm-rb-gcc494:0:sonynwze350boot:Sony NWZ-E450 - Boot:bootloader-nwze350.sony:4590:../tools/configure --target=sonynwze350 --type=b && make
+arm-rb-gcc494:0:sonynwze350boot:Sony NWZ-E350 - Boot:bootloader-nwze350.sony:4590:../tools/configure --target=sonynwze350 --type=b && make
 arm-rb-gcc494:0:sonynwze450boot:Sony NWZ-E450 - Boot:bootloader-nwze450.sony:4590:../tools/configure --target=sonynwze450 --type=b && make
 arm-rb-gcc494:0:sonynwze460boot:Sony NWZ-E460 - Boot:bootloader-nwze460.sony:4560:../tools/configure --target=sonynwze460 --type=b && make
 arm-rb-gcc494:0:sonynwze470boot:Sony NWZ-E470 - Boot:bootloader-nwze470.sony:4600:../tools/configure --target=sonynwze470 --type=b && make
