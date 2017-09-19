@@ -260,8 +260,8 @@ arm-rb-gcc494:1:sonynwze470:Sony NWZ-E470 - Normal:rockbox.zip:62340:../tools/co
 arm-rb-gcc494:1:sonynwze580:Sony NWZ-E580 - Normal:rockbox.zip:62470:../tools/configure --target=sonynwze580 --type=n && make zip
 arm-rb-gcc494:1:sonynwza10:Sony NWZ-A10 - Normal:rockbox.zip:62300:../tools/configure --target=sonynwza10 --type=n && make zip
 arm-rb-gcc494:1:sonynwa20:Sony NW-A20 - Normal:rockbox.zip:62420:../tools/configure --target=sonynwa20 --type=n && make zip
-arm-rb-gcc494:1:sonynwza860-:Sony NWZ-A860 - Normal:rockbox.zip:62300:../tools/configure --target=sonynwza860 --type=n && make zip
-arm-rb-gcc494:1:sonynwzs750-:Sony NWZ-S750 - Normal:rockbox.zip:62300:../tools/configure --target=sonynwzs750 --type=n && make zip
+arm-rb-gcc494:1:sonynwza860:Sony NWZ-A860 - Normal:rockbox.zip:62300:../tools/configure --target=sonynwza860 --type=n && make zip
+arm-rb-gcc494:1:sonynwzs750:Sony NWZ-S750 - Normal:rockbox.zip:62300:../tools/configure --target=sonynwzs750 --type=n && make zip
 arm-rb-gcc494:0:sonynwze350boot:Sony NWZ-E350 - Boot:bootloader-nwze350.sony:4590:../tools/configure --target=sonynwze350 --type=b && make
 arm-rb-gcc494:0:sonynwze450boot:Sony NWZ-E450 - Boot:bootloader-nwze450.sony:4590:../tools/configure --target=sonynwze450 --type=b && make
 arm-rb-gcc494:0:sonynwze460boot:Sony NWZ-E460 - Boot:bootloader-nwze460.sony:4560:../tools/configure --target=sonynwze460 --type=b && make
