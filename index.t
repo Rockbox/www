@@ -64,6 +64,9 @@ and Ondio
 <li><b>MPIO</b>: <a href="/wiki/MPIOHD200Port">HD200</a>
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
 <li><b>Samsung</b>: <a href="/wiki/SamsungYPR0">YP-R0</a>
+<li><b>Sony</b>: <a href="/wiki/SonyNWZE350">NWZ-E350</a>, <a href="/wiki/SonyNWZE450">NWZ-E450</a>, <a href="/wiki/SonyNWZE460">NWZ-E460</a>,
+<a href="/wiki/SonyNWZE470">NWZ-E470</a>, <a href="/wiki/SonyNWZE580">NWZ-E580</a>, <a href="/wiki/SonyNWZA860">NWZ-A860</a>,
+<a href="/wiki/SonyNWZA10">NWZ-A10</a> and <a href="/wiki/SonyNWA20">NW-A20</a> series
 <li><b>Toshiba</b>: <a href="/wiki/GigabeatSPort">Gigabeat S</a>
 </ul>
 
