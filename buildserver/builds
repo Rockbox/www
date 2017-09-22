@@ -249,8 +249,8 @@ android19:0:android480x800:Android 480x800:rockbox.apk:76920:../tools/configure 
 android19:0:android480x800mips:Android 480x800 - MIPS:rockbox.apk:83690:../tools/configure --target=androidmips --type=n --lcdwidth=480 --lcdheight=800 && make apk
 android16:1:ibassodx50:iBasso DX50:rockbox.zip:60:../tools/configure --target=ibassodx50 --type=n && make zip
 android16:1:ibassodx90:iBasso DX90:rockbox.zip:70:../tools/configure --target=ibassodx90 --type=n && make zip
-arm-ypr0-gcc446:1:samsungypr0:Samsung YP-R0 - Normal:rockbox.zip:207580:../tools/configure --target=samsungypr0 --type=n && make zip
-arm-ypr0-gcc446:1:samsungypr1:Samsung YP-R1 - Normal:rockbox.zip:118270:../tools/configure --target=samsungypr1 --type=n && make zip
+arm-rb-gcc494:1:samsungypr0:Samsung YP-R0 - Normal:rockbox.zip:207580:../tools/configure --target=samsungypr0 --type=n && make zip
+arm-rb-gcc494:1:samsungypr1:Samsung YP-R1 - Normal:rockbox.zip:118270:../tools/configure --target=samsungypr1 --type=n && make zip
 latex:0:iriverh120manual:iriver H120 - Manual:manual/rockbox-build.pdf:8070:../tools/configure --target=iriverh120 --type=s && make MAKEFLAGS= manual
 latex:0:iriverh120htmlmanual:iriver H120 - HTML Manual:manual/rockbox-manual.zip:24870:../tools/configure --target=iriverh120 --type=s && make MAKEFLAGS= manual-zip
 arm-rb-gcc494:1:sonynwze350:Sony NWZ-E350 - Normal:rockbox.zip:62540:../tools/configure --target=sonynwze350 --type=n && make zip
