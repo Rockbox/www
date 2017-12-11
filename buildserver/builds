@@ -1,7 +1,3 @@
-sdl:0:archosrecordersim:Recorder - Simulator:rockboxui:64800:../tools/configure --target=archosrecorder --ram=2 --type=s && make
-sdl:0:archosplayersim:Player - Simulator:rockboxui:26900:../tools/configure --target=archosplayer --ram=2 --type=s && make
-sdl:0:archosfmrecordersim:FM Recorder - Simulator:rockboxui:65730:../tools/configure --target=archosfmrecorder --ram=2 --type=s && make
-sdl:0:archosondiofmsim:Ondio FM - Simulator:rockboxui:60670:../tools/configure --target=archosondiofm --ram=2 --type=s && make
 sdl:0:iriverh120sim:iriver H120 - Simulator:rockboxui:196900:../tools/configure --target=iriverh120 --type=s && make
 sdl:0:iriverh300sim:iriver H300 - Simulator:rockboxui:233760:../tools/configure --target=iriverh300 --type=s && make
 sdl:0:ipodnano1gsim:iPod Nano 1G - Simulator:rockboxui:231250:../tools/configure --target=ipodnano1g --type=s && make
@@ -116,11 +112,6 @@ arm-eabi-gcc444:1:creativezenxfistyle:Creative ZEN X-Fi Style - Normal:rockbox.z
 mipsel:1:ondavx747:Onda VX747 - Normal:rockbox.zip:227890:../tools/configure --target=ondavx747 --type=n && make zip
 mipsel:1:ondavx767:Onda VX767 - Normal:rockbox.zip:86470:../tools/configure --target=ondavx767 --type=n && make zip
 mipsel:1:ondavx777:Onda VX777 - Normal:rockbox.zip:227750:../tools/configure --target=ondavx777 --type=n && make zip
-sh:1:archosrecorderv2:V2 Recorder - Normal:rockbox.zip:68020:../tools/configure --target=archosrecorderv2 --ram=2 --type=n && make zip
-sh:1:archosplayer:Player - Normal:rockbox.zip:29220:../tools/configure --target=archosplayer --ram=2 --type=n && make zip
-sh:1:archosfmrecorder:FM Recorder - Normal:rockbox.zip:68160:../tools/configure --target=archosfmrecorder --ram=2 --type=n && make zip
-sh:1:archosondiosp:Ondio SP - Normal:rockbox.zip:60290:../tools/configure --target=archosondiosp --ram=2 --type=n && make zip
-sh:1:archosondiofm:Ondio FM - Normal:rockbox.zip:62440:../tools/configure --target=archosondiofm --ram=2 --type=n && make zip
 m68k-gcc452:0:iriverh100boot:iriver H100 - Boot:bootloader.iriver:7590:../tools/configure --target=iriverh100 --type=b && make
 m68k-gcc452:0:iriverh120boot:iriver H120 - Boot:bootloader.iriver:7630:../tools/configure --target=iriverh120 --type=b && make
 m68k-gcc452:0:iriverh300boot:iriver H300 - Boot:rockbox.iriver:7920:../tools/configure --target=iriverh300 --type=b && make
@@ -182,14 +173,6 @@ arm-eabi-gcc444:0:creativezenboot:Creative ZEN - Boot:bootloader-zen.creative:97
 arm-eabi-gcc444:0:creativezenxfiboot:Creative ZEN X-Fi - Boot:bootloader-zenxfi.creative:9810:../tools/configure --target=creativezenxfi --type=b && make
 arm-eabi-gcc444:0:creativezenmozaicboot:Creative ZEN Mozaic - Boot:bootloader-zenmozaic.creative:9010:../tools/configure --target=creativezenmozaic --type=b && make
 arm-eabi-gcc444:0:creativezenxfistyleboot:Creative ZEN X-Fi Style - Boot:bootloader-zenxfistyle.creative:9260:../tools/configure --target=creativezenxfistyle --type=b && make
-sh:0:archosrecorderboot:Recorder - Boot:ajbrec.ajz:6470:../tools/configure --target=archosrecorder --ram=2 --type=b && make
-sh:0:playerboot:Player - Boot:archos.mod:5870:../tools/configure --target=archosplayer --ram=2 --type=b && make
-sh:0:archosfmrecorderboot:FM Recorder - Boot:ajbrec.ajz:6400:../tools/configure --target=archosfmrecorder --ram=2 --type=b && make
-sh:0:archosondiospboot:Ondio SP - Boot:ajbrec.ajz:6400:../tools/configure --target=archosondiosp --ram=2 --type=b && make
-sdl:0:playerwps:Player - Checkwps:checkwps.archosplayer:1140:../tools/configure --target=archosplayer --ram=2 --type=c && make
-sdl:0:archosrecorderwps:Recorder - Checkwps:checkwps.archosrecorder:1270:../tools/configure --target=archosrecorder --ram=2 --type=c && make
-sdl:0:archosfmrecorderwps:FM Recorder - Checkwps:checkwps.archosfmrecorder:1260:../tools/configure --target=archosfmrecorder --ram=2 --type=c && make
-sdl:0:archosondiofmwps:Ondio FM - Checkwps:checkwps.archosondiofm:1270:../tools/configure --target=archosondiofm --ram=2 --type=c && make
 sdl:0:iriverh120wps:iriver H120 - Checkwps:checkwps.iriverh120:1300:../tools/configure --target=iriverh120 --type=c && make
 sdl:0:iriverh300wps:iriver H300 - Checkwps:checkwps.iriverh300:1290:../tools/configure --target=iriverh300 --type=c && make
 sdl:0:ipodnano1gwps:iPod Nano - Checkwps:checkwps.ipodnano1g:1320:../tools/configure --target=ipodnano1g --type=c && make
@@ -241,7 +224,6 @@ sdl:0:creativezenxfi2wps:Creative Zen X-Fi2 - Checkwps:checkwps.creativezenxfi2:
 sdl:0:creativezenxfi3wps:Creative Zen X-Fi3 - Checkwps:checkwps.creativezenxfi3:1310:../tools/configure --target=creativezenxfi3 --type=c && make
 sdl:0:sonynwze360wps:Sony NWZ-E360 - Checkwps:checkwps.sonynwze360:1290:../tools/configure --target=sonynwze360 --type=c && make
 sdl:0:sonynwze370wps:Sony NWZ-E370 - Checkwps:checkwps.sonynwze370:1300:../tools/configure --target=sonynwze370 --type=c && make
-sdl:0:playerdb:Player - Database:database.archosplayer:1950:../tools/configure --target=archosplayer --ram=2 --type=d && make
 sdl:0:iriverh300db:iriver H300 - Database:database.iriverh300:4720:../tools/configure --target=iriverh300 --type=d && make
 sdl:0:sdlapplication:SDL Application:rockbox:131740:../tools/configure --target=sdlapp --type=n --lcdwidth=640 --lcdheight=480 && make
 sdl:0:sdlapplicationwarble:SDL Application - warble:warble.sdlapp:50430:../tools/configure --target=sdlapp --type=w --lcdwidth=640 --lcdheight=480 && make
