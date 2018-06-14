@@ -54,6 +54,7 @@ and Ondio
 <p>Rockbox runs on these players, but is incomplete, less usable or has problems that limit it to advanced users:
 
 <ul>
+<li><b>Agptek</b>: <a href="/wiki/AgptekRocker">Rocker (Benjie T6)</a>
 <li><b>Apple</b>: iPod Classic (6G)
 <li><b>Creative</b>: <a href="/wiki/CreativeZENPort">Zen</a> and <a href="/wiki/CreativeZENXFi2Port">Zen X-Fi 2</a>
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
