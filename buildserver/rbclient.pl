@@ -555,6 +555,7 @@ sub testsystem
                   "m68k", ["m68k-elf-gcc --version", "3.4.6"],
                   "m68k-gcc452", ["m68k-elf-gcc --version", "4.5.2"],
                   "mipsel", ["mipsel-elf-gcc --version", "4.1.2"],
+                  "mipsel-rb-gcc494", ["mipsel-rockbox-linux-gnu-gcc --version", "4.9.4"],
                   "sdl", ["sdl-config --version", ".*"],
                   "android16", ["android list target", "API level: 16"],
                   "android19", ["android list target", "API level: 19"],
