@@ -272,4 +272,4 @@ arm-rb-gcc494:0:sonynwa20boot:Sony NW-A20 - Boot:bootloader-nwa20.sony:4610:../t
 arm-rb-gcc494:0:sonynwza860boot:Sony NWZ-A860 - Boot:bootloader-nwza860.sony:4620:../tools/configure --target=sonynwza860 --type=b && make
 arm-rb-gcc494:0:sonynwzs750boot:Sony NWZ-S750 - Boot:bootloader-nwzs750.sony:4620:../tools/configure --target=sonynwzs750 --type=b && make
 mipsel-rb-gcc494:1:agptekrocker:Agptek Rocker - Normal:rockbox.zip:62540:../tools/configure --target=agptekrocker --type=n && make zip
-mipsel-rb-gcc494:1:agptekrocker:Agptek Rocker - Boot:bootloader.rocker:4620:../tools/configure --target=agptekrocker --type=b && make
+mipsel-rb-gcc494:0:agptekrocker:Agptek Rocker - Boot:bootloader.rocker:4620:../tools/configure --target=agptekrocker --type=b && make
