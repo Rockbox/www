@@ -113,9 +113,10 @@ arm-eabi-gcc444:1:creativezen:Creative ZEN - Normal:rockbox.zip:259990:../tools/
 arm-eabi-gcc444:1:creativezenxfi:Creative ZEN X-Fi - Normal:rockbox.zip:260420:../tools/configure --target=creativezenxfi --type=n && make zip
 arm-eabi-gcc444:1:creativezenmozaic:Creative ZEN Mozaic - Normal:rockbox.zip:244840:../tools/configure --target=creativezenmozaic --type=n && make zip
 arm-eabi-gcc444:1:creativezenxfistyle:Creative ZEN X-Fi Style - Normal:rockbox.zip:249900:../tools/configure --target=creativezenxfistyle --type=n && make zip
-mipsel:1:ondavx747:Onda VX747 - Normal:rockbox.zip:227890:../tools/configure --target=ondavx747 --type=n && make zip
-mipsel:1:ondavx767:Onda VX767 - Normal:rockbox.zip:86470:../tools/configure --target=ondavx767 --type=n && make zip
-mipsel:1:ondavx777:Onda VX777 - Normal:rockbox.zip:227750:../tools/configure --target=ondavx777 --type=n && make zip
+mipsel-gcc494:1:ondavx747:Onda VX747 - Normal:rockbox.zip:227890:../tools/configure --target=ondavx747 --type=n && make zip
+mipsel-gcc494:1:ondavx767:Onda VX767 - Normal:rockbox.zip:86470:../tools/configure --target=ondavx767 --type=n && make zip
+mipsel-gcc494:1:ondavx777:Onda VX777 - Normal:rockbox.zip:227750:../tools/configure --target=ondavx777 --type=n && make zip
+mipsel-gcc494:1:xduoox3:Xduoo X3 - Normal:rockbox.zip:227750:../tools/configure --target=xduoox3 --type=n && make zip
 sh:1:archosrecorderv2:V2 Recorder - Normal:rockbox.zip:68020:../tools/configure --target=archosrecorderv2 --ram=2 --type=n && make zip
 sh:1:archosplayer:Player - Normal:rockbox.zip:29220:../tools/configure --target=archosplayer --ram=2 --type=n && make zip
 sh:1:archosfmrecorder:FM Recorder - Normal:rockbox.zip:68160:../tools/configure --target=archosfmrecorder --ram=2 --type=n && make zip
@@ -129,7 +130,7 @@ m68k-gcc452:0:iaudiom5boot:iAudio M5 - Boot:m5_fw.bin:7540:../tools/configure --
 m68k-gcc452:0:iaudiom3boot:iAudio M3 - Boot:cowon_m3.bin:6750:../tools/configure --target=iaudiom3 --type=b && make
 m68k-gcc452:0:mpiohd200boot:MPIO HD200 - Boot:bootloader.mpio:6780:../tools/configure --target=mpiohd200 --type=b && make
 m68k-gcc452:0:mpiohd300boot:MPIO HD300 - Boot:bootloader.mpio:6910:../tools/configure --target=mpiohd300 --type=b && make
-mipsel:0:ondavx747boot:Onda VX747 - Boot:ccpmp.bin:8260:../tools/configure --target=ondavx747 --type=b && make
+mipsel-494:0:ondavx747boot:Onda VX747 - Boot:ccpmp.bin:8260:../tools/configure --target=ondavx747 --type=b && make
 arm-eabi-gcc444:0:ipodnano1gboot:iPod Nano 1G - Boot:bootloader-ipodnano1g.ipod:7460:../tools/configure --target=ipodnano1g --type=b && make
 arm-eabi-gcc444:0:ipodnano2gboot:iPod Nano 2G - Boot:bootloader-ipodnano2g.ipod:7690:../tools/configure --target=ipodnano2g --type=b && make
 arm-eabi-gcc444:0:ipodcolorboot:iPod Color - Boot:bootloader-ipodcolor.ipod:7450:../tools/configure --target=ipodcolor --type=b && make

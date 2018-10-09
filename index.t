@@ -69,6 +69,7 @@ and Ondio
 <a href="/wiki/SonyNWZE470">NWZ-E470</a>, <a href="/wiki/SonyNWZE580">NWZ-E580</a>, <a href="/wiki/SonyNWZA860">NWZ-A860</a>,
 <a href="/wiki/SonyNWZA10">NWZ-A10</a> and <a href="/wiki/SonyNWA20">NW-A20</a> series
 <li><b>Toshiba</b>: <a href="/wiki/GigabeatSPort">Gigabeat S</a>
+<li><b>Xduoo</b>: X3 (not X3 II)
 </ul>
 
 <h2>Unusable ports</h2>
