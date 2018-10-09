@@ -19,7 +19,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 58;
+my $revision = 59;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -555,6 +555,7 @@ sub testsystem
                   "m68k", ["m68k-elf-gcc --version", "3.4.6"],
                   "m68k-gcc452", ["m68k-elf-gcc --version", "4.5.2"],
                   "mipsel", ["mipsel-elf-gcc --version", "4.1.2"],
+                  "mipsel-gcc494", ["mipsel-elf-gcc --version", "4.9.4"],
                   "mipsel-rb-gcc494", ["mipsel-rockbox-linux-gnu-gcc --version", "4.9.4"],
                   "sdl", ["sdl-config --version", ".*"],
                   "android16", ["android list target", "API level: 16"],

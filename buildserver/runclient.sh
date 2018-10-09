@@ -12,7 +12,7 @@ do
     # arm-rb-gcc494   : linux based sony players, Samsung YP-R0 YP-R1
     # sh : SH-based players, i.e. the Archoses
     # m68k-gcc452 : coldfire-based players
-    # mipsel : MIPS-based players
+    # mipsel-494 : MIPS-based players
     # mipsel-rb-gcc494: linux based MIPS players i.e Agptek Rocker (Benjie T6)
     # sdl : Non-crosscompiled targets. Simulators, application, checkwps, database tool, ...
     # android16 : Android port
