@@ -130,7 +130,7 @@ m68k-gcc452:0:iaudiom5boot:iAudio M5 - Boot:m5_fw.bin:7540:../tools/configure --
 m68k-gcc452:0:iaudiom3boot:iAudio M3 - Boot:cowon_m3.bin:6750:../tools/configure --target=iaudiom3 --type=b && make
 m68k-gcc452:0:mpiohd200boot:MPIO HD200 - Boot:bootloader.mpio:6780:../tools/configure --target=mpiohd200 --type=b && make
 m68k-gcc452:0:mpiohd300boot:MPIO HD300 - Boot:bootloader.mpio:6910:../tools/configure --target=mpiohd300 --type=b && make
-mipsel-494:0:ondavx747boot:Onda VX747 - Boot:ccpmp.bin:8260:../tools/configure --target=ondavx747 --type=b && make
+mipsel-gcc494:0:ondavx747boot:Onda VX747 - Boot:ccpmp.bin:8260:../tools/configure --target=ondavx747 --type=b && make
 arm-eabi-gcc444:0:ipodnano1gboot:iPod Nano 1G - Boot:bootloader-ipodnano1g.ipod:7460:../tools/configure --target=ipodnano1g --type=b && make
 arm-eabi-gcc444:0:ipodnano2gboot:iPod Nano 2G - Boot:bootloader-ipodnano2g.ipod:7690:../tools/configure --target=ipodnano2g --type=b && make
 arm-eabi-gcc444:0:ipodcolorboot:iPod Color - Boot:bootloader-ipodcolor.ipod:7450:../tools/configure --target=ipodcolor --type=b && make
