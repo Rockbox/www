@@ -104,6 +104,9 @@ arm-eabi-gcc444:1:hifietma9c:HiFi E.T MA9C - Normal:rockbox.zip:84470:../tools/c
 arm-eabi-gcc444:1:hifietma8:HiFi E.T MA8 - Normal:rockbox.zip:84560:../tools/configure --target=hifietma8 --type=n && make zip
 arm-eabi-gcc444:1:hifietma8c:HiFi E.T MA8C - Normal:rockbox.zip:84510:../tools/configure --target=hifietma8c --type=n && make zip
 arm-eabi-gcc444:1:ihifi760:IHIFI 760 - Normal:rockbox.zip:84500:../tools/configure --target=ihifi760 --type=n && make zip
+arm-eabi-gcc444:1:ihifi770:IHIFI 770 - Normal:rockbox.zip:84500:../tools/configure --target=ihifi770 --type=n && make zip
+arm-eabi-gcc444:1:ihifi770C:IHIFI 770C - Normal:rockbox.zip:84500:../tools/configure --target=ihifi770c --type=n && make zip
+arm-eabi-gcc444:1:ihifi800:IHIFI 800 - Normal:rockbox.zip:84500:../tools/configure --target=ihifi800 --type=n && make zip
 arm-eabi-gcc444:1:ihifi960:IHIFI 960 - Normal:rockbox.zip:84460:../tools/configure --target=ihifi960 --type=n && make zip
 arm-eabi-gcc444:1:creativezenxfi2:Creative Zen X-Fi2 - Normal:rockbox.zip:92900:../tools/configure --target=creativezenxfi2 --type=n && make zip
 arm-eabi-gcc444:1:creativezenxfi3:Creative Zen X-Fi3 - Normal:rockbox.zip:247530:../tools/configure --target=creativezenxfi3 --type=n && make zip
