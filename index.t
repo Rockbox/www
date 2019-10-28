@@ -16,7 +16,7 @@ Rockbox is a free replacement firmware for digital music players. It runs on a w
 <p>Rockbox runs well on these players, has installation instructions, and is supported by <a href="/download/">the installer</a>:
 <ul>
 
-<li><b>Apple</b>: iPod 1g through 5.5g, iPod Mini, iPod Nano 1g, iPod Nano 2g
+<li><b>Apple</b>: iPod 1g through 6g (Classic), iPod Mini, iPod Nano 1g, iPod Nano 2g
 
 <li><b>Archos</b>: Jukebox 5000, 6000, Studio, Recorder, FM Recorder, Recorder V2
 and Ondio
@@ -55,7 +55,6 @@ and Ondio
 
 <ul>
 <li><b>Agptek</b>: <a href="/wiki/AgptekRocker">Rocker (Benjie T6)</a>
-<li><b>Apple</b>: iPod Classic (6G)
 <li><b>Creative</b>: <a href="/wiki/CreativeZENPort">Zen</a> and <a href="/wiki/CreativeZENXFi2Port">Zen X-Fi 2</a>
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
 
@@ -103,6 +102,8 @@ and Ondio
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
+<tr><td nowrap>2017-19-28</td><td>Move iPod Classic to stable.</td></tr>
+
 <tr><td nowrap>2017-05-01</td><td>Move iPod Nano 2G to stable. Move iPod Classic to unstable.</td></tr>
 
 <tr><td nowrap>2017-05-01</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes314">Rockbox 3.14 is released</a></td></tr>
@@ -113,8 +114,6 @@ NWZ-E360/E370/E380 and Fuze+ to stable. Move ZEN and ZEN X-Fi2 to unstable</td><
 <tr><td nowrap>2013-03-05</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes313">Rockbox 3.13 is released</a></td></tr>
 
 <tr><td nowrap>2012-11-27</td><td>Forums software updated</td></tr>
-
-<tr><td nowrap>2012-10-06</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes312">Rockbox 3.12 is released</a></td></tr>
 
 </table>
 <small><a href="history.html">Older news</a>
