@@ -102,6 +102,8 @@ and Ondio
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
+<tr><td nowrap>2019-11-15</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes315">Rockbox 3.15 is released</a></td></tr>
+
 <tr><td nowrap>2019-10-28</td><td>Move iPod Classic to stable.</td></tr>
 
 <tr><td nowrap>2017-05-01</td><td>Move iPod Nano 2G to stable. Move iPod Classic to unstable.</td></tr>
@@ -112,8 +114,6 @@ and Ondio
 NWZ-E360/E370/E380 and Fuze+ to stable. Move ZEN and ZEN X-Fi2 to unstable</td></tr>
 
 <tr><td nowrap>2013-03-05</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes313">Rockbox 3.13 is released</a></td></tr>
-
-<tr><td nowrap>2012-11-27</td><td>Forums software updated</td></tr>
 
 </table>
 <small><a href="history.html">Older news</a>

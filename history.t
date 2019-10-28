@@ -2,6 +2,8 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<p><i>2012-11-27</i>: Forums software updated
+
 <p><i>2012-10-06</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes312">Rockbox 3.12 is released</a>
 
 <p><i>2012-03-31</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes311">Rockbox 3.11 is released</a>
