@@ -102,7 +102,7 @@ and Ondio
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
-<tr><td nowrap>2017-19-28</td><td>Move iPod Classic to stable.</td></tr>
+<tr><td nowrap>2019-10-28</td><td>Move iPod Classic to stable.</td></tr>
 
 <tr><td nowrap>2017-05-01</td><td>Move iPod Nano 2G to stable. Move iPod Classic to unstable.</td></tr>
 
