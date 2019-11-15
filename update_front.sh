@@ -17,7 +17,7 @@ GITLOG="git log --name-status --abbrev-commit --date=iso --encoding=iso-8859-1"
 
 # commits since last release
 grep -v _PAGE_ head.html > since-release.html
-( cd ../trunk && $GITLOG HEAD...c7d6457cfdd3d39aa669ed4b08e6bdf80182d9e9 ) | perl tools/gitlog2html.pl >> since-release.html
+( cd ../trunk && $GITLOG HEAD...f72b9082c6515de52da3400aca2ee2b323e69793 ) | perl tools/gitlog2html.pl >> since-release.html
 cat foot.html >> since-release.html
 
 # commits last four weeks
