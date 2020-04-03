@@ -57,7 +57,6 @@ and Ondio
 <li><b>Agptek</b>: <a href="/wiki/AgptekRocker">Rocker (Benjie T6)</a>
 <li><b>Creative</b>: <a href="/wiki/CreativeZENPort">Zen</a> and <a href="/wiki/CreativeZENXFi2Port">Zen X-Fi 2</a>
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
-
 <li><b>HiFi E.T</b>: <a href="/wiki/HifietMAPort">MA9</a>, <a href="/wiki/HifietMAPort">MA8</a>
 <li><b>HiFiMAN</b>: <a href="/wiki/HifimanPort">HM-601</a>, <a href="/wiki/HifimanPort">HM-602</a>, <a href="/wiki/HifimanPort">HM-603</a>, <a href="/wiki/HifimanPort">HM-801</a></li>
 <li><b>iBasso</b>: <a href="/wiki/IBassoDXPort">DX50</a>, <a href="/wiki/IBassoDXPort">DX90</a>
@@ -68,7 +67,7 @@ and Ondio
 <a href="/wiki/SonyNWZE470">NWZ-E470</a>, <a href="/wiki/SonyNWZE580">NWZ-E580</a>, <a href="/wiki/SonyNWZA860">NWZ-A860</a>,
 <a href="/wiki/SonyNWZA10">NWZ-A10</a> and <a href="/wiki/SonyNWA20">NW-A20</a> series
 <li><b>Toshiba</b>: <a href="/wiki/GigabeatSPort">Gigabeat S</a>
-<li><b>Xduoo</b>: X3 (not X3 II)
+<li><b>xDuoo</b>: <a href="/wiki/XDuooX3">X3</a> (not X3 II)
 </ul>
 
 <h2>Unusable ports</h2>
