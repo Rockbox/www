@@ -26,3 +26,4 @@ amiconn     => Jens Arnold
 mattzz      => Matthias Wientapper
 pfavr       => Peter Favrholdt
 [av]bani    => Dan Hollis
+speachy     => Solomon Peachy
