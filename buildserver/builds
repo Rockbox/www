@@ -55,7 +55,7 @@ sdl:0:creativezenxfistylesim:Creative ZEN X-Fi Style - Simulator:rockboxui:21294
 sdl:0:agptekrockersim:Agptek Rocker - Simulator:rockboxui:212940:../tools/configure --target=agptekrocker --type=s && make
 sdl:0:xduoox3sim:Xduoo X3 - Simulator:rockboxui:12570:../tools/configure --target=xduoox3 --type=s && make
 sdl:0:ihifi770sim:IHIFI 770 - Simulator:rockboxui:212940:../tools/configure --target=ihifi770 --type=s && make
-sdl:0:ihifi770sim:IHIFI 770C - Simulator:rockboxui:212940:../tools/configure --target=ihifi770c --type=s && make
+sdl:0:ihifi770csim:IHIFI 770C - Simulator:rockboxui:212940:../tools/configure --target=ihifi770c --type=s && make
 sdl:0:ihifi800sim:IHIFI 800 - Simulator:rockboxui:212940:../tools/configure --target=ihifi800 --type=s && make
 ####
 # m68k-based native targets
