@@ -53,7 +53,10 @@ sdl:0:creativezenxfisim:Creative ZEN X-Fi - Simulator:rockboxui:221610:../tools/
 sdl:0:creativezenmozaicsim:Creative ZEN Mozaic - Simulator:rockboxui:210930:../tools/configure --target=creativezenmozaic --type=s && make
 sdl:0:creativezenxfistylesim:Creative ZEN X-Fi Style - Simulator:rockboxui:212940:../tools/configure --target=creativezenxfistyle --type=s && make
 sdl:0:agptekrockersim:Agptek Rocker - Simulator:rockboxui:212940:../tools/configure --target=agptekrocker --type=s && make
-sdl:0:xduoox3sim:Xduoo X3 - Simulator:rockboxui:12570:../tools/configure --target=xduoox3 --type=s && make zip
+sdl:0:xduoox3sim:Xduoo X3 - Simulator:rockboxui:12570:../tools/configure --target=xduoox3 --type=s && make
+sdl:0:ihifi770sim:IHIFI 770 - Simulator:rockboxui:212940:../tools/configure --target=ihifi770 --type=s && make
+sdl:0:ihifi770sim:IHIFI 770C - Simulator:rockboxui:212940:../tools/configure --target=ihifi770c --type=s && make
+sdl:0:ihifi800sim:IHIFI 800 - Simulator:rockboxui:212940:../tools/configure --target=ihifi800 --type=s && make
 ####
 # m68k-based native targets
 m68k-gcc452:1:iriverh100:iriver H100 - Normal:rockbox.zip:231880:../tools/configure --target=iriverh100 --type=n && make zip
@@ -305,6 +308,9 @@ sdl:0:hifietma9cwps:HiFi E.T MA9C - Checkwps:checkwps.hifietma9c:1260:../tools/c
 sdl:0:hifietma8wps:HiFi E.T MA8 - Checkwps:checkwps.hifietma8:1310:../tools/configure --target=hifietma8 --type=c && make
 sdl:0:hifietma8cwps:HiFi E.T MA8C - Checkwps:checkwps.hifietma8c:1300:../tools/configure --target=hifietma8c --type=c && make
 sdl:0:ihifi760wps:IHIFI 760 - Checkwps:checkwps.ihifi760:1300:../tools/configure --target=ihifi760 --type=c && make
+sdl:0:ihifi770wps:IHIFI 770 - Checkwps:checkwps.ihifi770:1300:../tools/configure --target=ihifi770 --type=c && make
+sdl:0:ihifi770cwps:IHIFI 770C - Checkwps:checkwps.ihifi770c:1300:../tools/configure --target=ihifi770c --type=c && make
+sdl:0:ihifi800wps:IHIFI 800 - Checkwps:checkwps.ihifi800:1300:../tools/configure --target=ihifi800 --type=c && make
 sdl:0:ihifi960wps:IHIFI 960 - Checkwps:checkwps.ihifi960:1290:../tools/configure --target=ihifi960 --type=c && make
 sdl:0:creativezenxfi2wps:Creative Zen X-Fi2 - Checkwps:checkwps.creativezenxfi2:1300:../tools/configure --target=creativezenxfi2 --type=c && make
 sdl:0:creativezenxfi3wps:Creative Zen X-Fi3 - Checkwps:checkwps.creativezenxfi3:1310:../tools/configure --target=creativezenxfi3 --type=c && make
