@@ -249,9 +249,13 @@ arm-rb-gcc494:0:sonynwzs750boot:Sony NWZ-S750 - Boot:bootloader-nwzs750.sony:462
 ###
 # MIPS hosted targets
 mipsel-rb-gcc494:1:agptekrocker:Agptek Rocker - Normal:rockbox.zip:62540:../tools/configure --target=agptekrocker --type=n && make zip
+mipsel-rb-gcc494:1:xduoox3ii:xDuoo X3ii - Normal:rockbox.zip:62540:../tools/configure --target=xduoox3ii --type=n && make zip
+mipsel-rb-gcc494:1:xduoox20:xDuoo X20 - Normal:rockbox.zip:62540:../tools/configure --target=xduoox20 --type=n && make zip
 ###
 # MIPS hosted bootloaders
 mipsel-rb-gcc494:0:agptekrockerboot:Agptek Rocker - Boot:bootloader.rocker:4620:../tools/configure --target=agptekrocker --type=b && make
+mipsel-rb-gcc494:0:xduoox3iiboot:xDuoo X3ii - Boot:bootloader.x3ii:4620:../tools/configure --target=xduoox3ii --type=b && make
+mipsel-rb-gcc494:0:xduoox20boot:xDuoo X20 - Boot:bootloader.x20:4620:../tools/configure --target=xduoox20 --type=b && make
 ###
 # Manuals
 latex:0:iriverh120manual:iriver H120 - Manual:manual/rockbox-build.pdf:8070:../tools/configure --target=iriverh120 --type=s && make MAKEFLAGS= manual
