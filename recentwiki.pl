@@ -1,7 +1,7 @@
 #!/usr/local/bin/perl
 
 require "CGI.pm";
-require "nicedate.pm";
+require "./nicedate.pm";
 
 sub recentwiki
 {

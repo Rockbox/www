@@ -3,7 +3,7 @@
 use POSIX;
 use Encode::Encoder;
 
-require 'nicedate.pm';
+require './nicedate.pm';
 
 my @mname = ('January', 'February', 'March', 'April', 'May',
              'June', 'July', 'August', 'September', 'October',

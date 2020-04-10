@@ -8,9 +8,9 @@ my $baseurl = "https://www.rockbox.org";
 my $htmldir = "/home/rockbox/www";
 
 ### flyspray
-my $dbpath = 'DBI:mysql:flyspray';
+my $dbpath = 'DBI:mysql:rbflyspray';
 my $dbuser = 'flyspray-ro';
-my $dbpwd = '';
+my $dbpwd = 'fsro';
 
 my $db = DBI->connect($dbpath, $dbuser, $dbpwd) or
     die "Failed opening db: $?";
@@ -108,15 +108,16 @@ for my $file (@htmlfiles) {
 
 
 # mail
-my $maildir = "/sites/maildump";
-my $mail;
-opendir(DIR, "$maildir") or die "Failed opening maillist dir: $!\n";
-for my $dir (readdir DIR) {
-    if ($dir =~ /^rockbox/ and -d "$maildir/$dir") {
-        $mail .= "<directory path='$maildir/$dir' url='$baseurl/mail/archive/$dir/'/>\n";
-    }
-}
-closedir DIR;
+# XXXFIXME
+#my $maildir = "/sites/maildump";
+#my $mail;
+#opendir(DIR, "$maildir") or die "Failed opening maillist dir: $!\n";
+#for my $dir (readdir DIR) {
+#    if ($dir =~ /^rockbox/ and -d "$maildir/$dir") {
+#        $mail .= "<directory path='$maildir/$dir' url='$baseurl/mail/archive/$dir/'/>\n";
+#    }
+#}
+#closedir DIR;
 
 # twiki
 my $twikidir = "/home/rockbox/foswiki/data/Main";
@@ -160,12 +161,14 @@ print CONFIG <<END
 >
 $flyspray
 $site
-$mail
 $twiki
 $irc
-
 </site>
 END
     ;
+
+#XXXFIXME add this to before $twiki
+# $mail
+
 
 close CONFIG;
