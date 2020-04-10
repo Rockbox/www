@@ -1,7 +1,0 @@
-<Files cgiirc.config>
-   <Limit GET POST>
-   deny from all
-   </Limit>
-</Files>
-
-#DirectoryIndex irc.cgi
