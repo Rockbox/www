@@ -19,8 +19,6 @@ all: $(OBJS)
 	@(cd irc && $(MAKE))
 	@(cd mail && $(MAKE))
 	@(cd devcon && $(MAKE))
-# XXX FIXME
-#	@(cd digest && $(MAKE))
 	@(cd doom && $(MAKE))
 
 head.tmpl: head.t
