@@ -18,6 +18,8 @@
 #ifndef _PAGE_
 <meta name="keywords" content="Rockbox,Archos,firmware,open source,computer,programming,software">
 #endif
+
+#ifdef FLATTR
 <script type="text/javascript">
 function fsstrip() {
     var expr = /[0-9]+/;
@@ -32,6 +34,7 @@ function fsstrip() {
     s.src = 'https://api.flattr.com/js/0.6/load.js?mode=auto';
     t.parentNode.insertBefore(s, t);
 })();
+#endif
 
 </script>
 </head>
@@ -96,7 +99,9 @@ Donate
 <input type="image" src="//www.rockbox.org/paypal-donate.gif" border="0" name="submit" alt="">
 </form>
 
+#ifdef FLATTR
 <p><a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="//www.rockbox.org"></a>
+#endif
 
 </div>
 

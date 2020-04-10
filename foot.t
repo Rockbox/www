@@ -3,6 +3,8 @@
 <small><i>Page was last modified __TIMESTAMP__</i> <a href="//www.rockbox.org/mail/">The Rockbox Crew</a></small>
 #endif
 </td></tr></table>
+#if 0
 <div style="display: none"><a href="mailto:aaa@haxx.se">aaa</a></div>
+#endif
 </body>
 </html>

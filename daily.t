@@ -10,7 +10,8 @@
 <h2>Donate</h2>
 
 <p>If you enjoy using Rockbox, consider donating to the project. While we
-develop the software in our spare time, equipment and players cost real money.
+develop the software in our spare time, bandwidth, equipment and players cost real money.</p>
+#if 0
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 <input type="hidden" name="cmd" value="_xclick">
 <input type="hidden" name="business" value="bjorn@haxx.se">
@@ -21,5 +22,6 @@ develop the software in our spare time, equipment and players cost real money.
 <input type="hidden" name="tax" value="0">
 <input type="image" src="/paypal-donate.gif" border="0" name="submit">
 </form>
+#endif
 
 #include "foot.t"
