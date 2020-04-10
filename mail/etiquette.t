@@ -1,5 +1,5 @@
 #define _PAGE_ Mailing Lists Etiquette
-#include "head.t"
+#include "../head.t"
 
 <p>
    The list below are specific to the rockbox.org mailing lists. Where
@@ -109,4 +109,4 @@
 <p>
       <a href="http://www.netmeister.org/news/learn2quote.html">"How do I quote correctly in Usenet"</a>
  
-#include "foot.t"
+#include "../foot.t"

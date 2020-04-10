@@ -121,7 +121,6 @@ NWZ-E360/E370/E380 and Fuze+ to stable. Move ZEN and ZEN X-Fi2 to unstable</td><
 
 <h3 class=frontpage><a href='recent.shtml#wiki'>Wiki</a></h3>
 <!--#include file="recentwiki_front.html" -->
-
 </td></tr>
 
 <tr><td colspan=2>
@@ -138,7 +137,6 @@ NWZ-E360/E370/E380 and Fuze+ to stable. Move ZEN and ZEN X-Fi2 to unstable</td><
 
 <h3 class=frontpage><a href='recent.shtml#mail'>Mail</a></h3>
 <!--#include file="threads_front.html" -->
-
 </td></tr>
 </table>
 

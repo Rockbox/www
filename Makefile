@@ -1,4 +1,4 @@
-ACTION=@echo preprocessing $@; rm -f $@; fcpp -WWW -Uunix -H -C -V -LL >$@
+ACTION=@echo preprocessing $@; rm -f $@; cpp -P >$@
 
 SRC := $(wildcard *.t)
 SOBJS := index.shtml manual.shtml recent.shtml daily.shtml
@@ -19,7 +19,8 @@ all: $(OBJS)
 	@(cd irc && $(MAKE))
 	@(cd mail && $(MAKE))
 	@(cd devcon && $(MAKE))
-	@(cd digest && $(MAKE))
+# XXX FIXME
+#	@(cd digest && $(MAKE))
 	@(cd doom && $(MAKE))
 
 head.tmpl: head.t

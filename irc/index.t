@@ -1,5 +1,5 @@
 #define _PAGE_ IRC
-#include "head.t"
+#include "../head.t"
 
 <p>We often hang out on <a href="irc://irc.freenode.net/rockbox">#rockbox</a>
 over at irc.freenode.net (freenode was once known as openprojects.net, see
@@ -30,4 +30,4 @@ for later reference.
 
 <p><a href="reader.txt">source code (perl) for log reader/formatter</a>
 
-#include "foot.t"
+#include "../foot.t"

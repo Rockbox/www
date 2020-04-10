@@ -1,5 +1,4 @@
-ACTION=@echo preprocessing $@; \
-  fcpp -WWW -I.. -Uunix -H -C -V -LL $< $@
+ACTION=@echo preprocessing $@; rm -f $@; cpp -P >$@
 
 SRC := $(wildcard *.t)
 OBJS := $(SRC:%.t=%.html)
@@ -19,13 +18,13 @@ index.html: index.t ../head.t news.t ../foot.t
 
 digest.mail: mail.t log.t mailify.pl
 	@echo mailifying $@;
-	fcpp -WWW -DMAKE_MAIL -Uunix -P -H -C -V -LL $< digest.temp
+	cpp -P -DMAKE_MAIL $< digest.temp
 	./mailify.pl < digest.temp > digest.mail
 
 digest.rss: digest.t digesthead.t log.raw
 	@echo rssing $@;
 	@rm -f $@;
-	@fcpp -WWW -DMAKE_RSS -Uunix -P -H -C -V -LL >$@ $<
+	@cpp -P -DMAKE_RSS $< digest.temp
 
 log.raw: log.t rssify.pl digesthead.t
 	./rssify.pl < $< >$@

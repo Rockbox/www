@@ -1,4 +1,4 @@
-ACTION=@echo preprocessing $@; rm -f $@; fcpp -WWW -Uunix -I.. -H -C -V -LL >$@
+ACTION=@echo preprocessing $@; rm -f $@; cpp -P >$@
 
 HTML = etiquette.html
 
