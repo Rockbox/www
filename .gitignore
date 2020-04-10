@@ -1,2 +1,17 @@
+# tmpfiles
 *~
-/*html
+# html output
+*html
+# irc stuff
+irc/logs
+# sitemap
+sitemap*gz
+sitemap*xml
+tools/sitemap*xml
+# buildmaster stuff
+buildserver/data
+buildserver/titles
+buildserver/logfile
+buildserver/rclog
+buildserver/rbmaster.conf
+buildserver/debuglog
