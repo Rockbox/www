@@ -1,6 +1,6 @@
-require "/sites/rockbox.org/www/builds.pm";
+require "/home/rockbox/rockbox_git_clone/tools/builds.pm";
 
-my $sitedir = "/sites/rockbox.org/www";
+my $sitedir = "/home/rockbox/www";
 
 sub playerpic {
     my $m = shift @_;
@@ -20,7 +20,7 @@ sub playerpic {
 sub header {
     my ($t) = @_;
     print "Content-Type: text/html\n\n";
-    open (HEAD, "/sites/rockbox.org/www/head.html");
+    open (HEAD, "/home/rockbox/www/head.html");
     while(<HEAD>) {
         $_ =~ s:^<title>Rockbox<\/title>:<title>$t<\/title>:;
         $_ =~ s:^<h1>_PAGE_<\/h1>:<h1>$t<\/h1>:;
@@ -31,7 +31,7 @@ sub header {
 }
 
 sub footer {
-    open (FOOT, "/sites/rockbox.org/www/foot.html");
+    open (FOOT, "/home/rockbox/www/foot.html");
     while(<FOOT>) {
         print $_;
     }

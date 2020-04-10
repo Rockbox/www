@@ -19,7 +19,7 @@ use POSIX 'strftime', 'mktime';
 
 # hardcoded log format for dancer irc bot
 
-my $logdir = "/sites/rockbox.org/logbot/log";
+my $logdir = "/home/rockbox/logbot/log";
 my $today = strftime "%Y%m%d", localtime;
 my $date = param('date') + 0;
 

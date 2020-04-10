@@ -1,10 +1,10 @@
 #!/usr/bin/perl
 
-require "rockbox.pm";
+require "./rockbox.pm";
 
-my $basedir = "/sites/download.rockbox.org";
+my $basedir = "/home/rockbox/download";
 my $baseurl = "https://download.rockbox.org";
-my $docbasedir = "/sites/download.rockbox.org/manual";
+my $docbasedir = "/home/rockbox/download/manual";
 
 sub getpages {
 
@@ -22,7 +22,7 @@ sub getpages {
 
 print "Content-type: text/html\n\n" unless ($ARGV[0]);
 
-opendir(DIR, "$basedir/daily") or next;
+opendir(DIR, "$basedir/daily") or die;
 my @files = sort grep { /^build-info/ } readdir(DIR);
 closedir DIR;
 

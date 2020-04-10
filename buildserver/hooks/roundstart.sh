@@ -8,7 +8,7 @@ perl showbuilds.pl $rev > builds.html
 if [ -e rcbuild.hash ]; then
     hash=`cat rcbuild.hash`
     if [ "a$hash" = "a$rev" ]; then
-        rcdir=/sites/download.rockbox.org/release-candidate
+        rcdir=/home/rockbox/download/release-candidate
         rm -rf $rcdir/*
         if [ ! -d $rcdir/$rev ]; then
             mkdir -p $rcdir/$rev

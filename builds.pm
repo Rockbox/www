@@ -1,1 +1,1 @@
-../trunk/tools/builds.pm
+../rockbox_git_clone/tools/builds.pm

@@ -12,7 +12,7 @@ fi
 
 if [ $rcbuild -eq 1 ]; then
     # publish the release candidate for rbutil
-    mv build-info.release-candidate /sites/download.rockbox.org/release-candidate/build-info
+    mv build-info.release-candidate /home/rockbox/download/release-candidate/build-info
     rm rcbuild.hash
 else
 
@@ -33,11 +33,11 @@ else
     echo -n 'rev = "' >> build-info
     echo -n $rev >> build-info
     echo '"' >> build-info
-    mv build-info /sites/download.rockbox.org/build-info.devbuild
+    mv build-info /home/rockbox/download/build-info.devbuild
 fi
 
 rm data/build_running
 
 # make build-info for rbutil
-cd /sites/download.rockbox.org
+cd /home/rockbox/download
 sh .scripts/mkbuildinfo.sh

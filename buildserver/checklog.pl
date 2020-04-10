@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-require "rbmaster.pm";
+require "./rbmaster.pm";
 
 my $rev = $ARGV[0];
 my $build = $ARGV[1];
@@ -38,7 +38,7 @@ if (open(LOG, "<data/$rev-$build.log")) {
                    ($line =~ /: undefined reference to/) ||
                    ($line =~ /gcc: .*: No such file or/) ||
                    ($line =~ /ld returned (\d+) exit status/) ||
-                   ($line =~ /^svn: /) ||
+                   ($line =~ /^git: /) ||
                    ($line =~ /^Build Failure: /) ||
 #                   ($line =~ /^error:/i) ||
                    ($line =~ /^ *make: *\*\*\*/) )

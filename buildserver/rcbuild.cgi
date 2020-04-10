@@ -23,13 +23,13 @@ if ($hash =~ /[^\da-fA-F]/ or length($hash) != 7) {
     exit;
 }
 
-$output = `(cd /sites/rockbox.org/trunk && git show --oneline $hash)`;
+$output = `(cd /home/rockbox/rockbox_git_clone && git show --oneline $hash)`;
 unless ($output =~ /^$hash/) {
     print "Nonexisting hash.";
     exit;
 }
 
-my $secret = `cat /sites/rockbox.org/rcbuild.passwd`;
+my $secret = `cat /home/rockbox/rcbuild.passwd`;
 chomp $secret;
 if ($pwd ne $secret) {
     print "Wrong password.\n";
@@ -47,7 +47,7 @@ if (-f "rcbuild.hash") {
     exit;
 }
 
-$secret = `cat /sites/rockbox.org/rbmaster.passwd`;
+$secret = `cat /home/rockbox/rbmaster.passwd`;
 chomp $secret;
 
 `echo $hash > rcbuild.hash`;

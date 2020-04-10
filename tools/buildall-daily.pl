@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 use POSIX 'strftime';
-require 'rockbox.pm';
+require './rockbox.pm';
 
 # copy latest build from build farm to download server
 

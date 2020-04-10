@@ -2,7 +2,7 @@
 
 require "../date.pm";
 
-my $logdir = "/sites/rockbox.org/logbot/log";
+my $logdir = "/home/rockbox/logbot/log";
 
 opendir(DIR, $logdir) or
     die "Can't opendir()";

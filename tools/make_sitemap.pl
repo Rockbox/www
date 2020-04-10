@@ -5,7 +5,7 @@ use DBI;
 
 
 my $baseurl = "https://www.rockbox.org";
-my $htmldir = "/sites/rockbox.org/www";
+my $htmldir = "/home/rockbox/www";
 
 ### flyspray
 my $dbpath = 'DBI:mysql:flyspray';
@@ -119,7 +119,7 @@ for my $dir (readdir DIR) {
 closedir DIR;
 
 # twiki
-my $twikidir = "/sites/rockbox.org/foswiki/data/Main";
+my $twikidir = "/home/rockbox/foswiki/data/Main";
 my $twiki;
 opendir(DIR, $twikidir) or die "Failed opening wiki dir: $!\n";
 for my $file (readdir DIR) {
@@ -133,7 +133,7 @@ for my $file (readdir DIR) {
 closedir DIR;
 
 # irc
-my $ircdir = "/sites/rockbox.org/logbot/log";
+my $ircdir = "/home/rockbox/logbot/log";
 my $irc;
 opendir(DIR, $ircdir) or die "Failed opening irc dir: $!\n";
 for my $file (readdir DIR) {
@@ -154,7 +154,7 @@ print CONFIG <<END
 <?xml version="1.0" encoding="UTF-8"?>
 <site
   base_url="https://www.rockbox.org/"
-  store_into="/sites/rockbox.org/www/sitemap.xml.gz"
+  store_into="/home/rockbox/www/sitemap.xml.gz"
   verbose="0"
   sitemap_type="web"
 >

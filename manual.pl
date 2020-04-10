@@ -1,8 +1,8 @@
 #!/usr/bin/perl
 
-require "rockbox.pm";
+require "./rockbox.pm";
 
-my $basedir = "/sites/download.rockbox.org/daily/manual";
+my $basedir = "/home/rockbox/download/daily/manual";
 
 for my $m (usablebuilds()) {
     opendir(DIR, "$basedir") or next;

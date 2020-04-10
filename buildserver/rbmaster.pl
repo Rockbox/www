@@ -32,7 +32,7 @@ use DBI;
 use Time::HiRes qw(gettimeofday tv_interval);
 use POSIX 'strftime';
 
-require 'rbmaster.pm';
+require './rbmaster.pm';
 
 # Each active connection gets an entry here, keyed by its filedes.
 my %conn;
@@ -204,8 +204,6 @@ sub builds_undone {
 
 sub readblockfile {
     if ($lastblockread + 600 < time()) {
-        system("svn update --non-interactive -q blockedclients");
-
         if (open B, "<blockedclients") {
             %blocked = ();
             for my $line (<B>) {

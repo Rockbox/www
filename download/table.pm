@@ -1,4 +1,4 @@
-require "/sites/rockbox.org/www/rockbox.pm";
+require "/home/rockbox/www/rockbox.pm";
 
 sub buildtable {
     print "<p><table class='rockbox' cellpadding=\"0\"><tr valign=top>\n";

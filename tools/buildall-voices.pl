@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-require "rockbox.pm";
+require "./rockbox.pm";
 
 my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) =
  localtime(time);
@@ -11,10 +11,7 @@ $year+=1900;
 $date=sprintf("%04d%02d%02d", $year,$mon, $mday);
 $shortdate=sprintf("%02d%02d%02d", $year%100,$mon, $mday);
 
-# path added for lame
-# we need the compilers' paths to preprocess the feature thing when building
-# voices
-$ENV{'PATH'}.=":/usr/local/bin:/usr/local/sh-elf/bin:/usr/local/m68k-elf/bin:/usr/local/arm-elf/bin";
+# 'lame' assumed to be on system path already!
 
 my $verbose;
 if($ARGV[0] eq "-v") {
@@ -69,7 +66,7 @@ sub buildit {
 
     `rm -rf * >/dev/null 2>&1`;
 
-    my $c = "../../trunk/tools/configure --no-ccache --type=av --target=$dir --ram=-1 --language=0 --tts=f --voice=-1";
+    my $c = "../../rockbox_git_clone/tools/configure --no-ccache --type=av --target=$dir --ram=-1 --language=0 --tts=f --voice=-1";
 
     print "C: $c\n" if($verbose);
     system($c);
@@ -97,8 +94,8 @@ sub buildinfo {
 # run make in tools first to make sure they're up-to-date
 `(cd tools && make ) >/dev/null 2>&1`;
 
-`rm -f /sites/rockbox.org/dailybuild-voices/voice-pool/*`;
-$ENV{'POOL'}="/sites/rockbox.org/dailybuild-voices/voice-pool";
+`rm -f /home/rockbox/dailybuild-voices/voice-pool/*`;
+$ENV{'POOL'}="/home/rockbox/dailybuild-voices/voice-pool";
 
 for my $b (&usablebuilds) {
     next if ($builds{$b}{voice}); # no variants
@@ -106,4 +103,4 @@ for my $b (&usablebuilds) {
     runone($b);
 }
 
-`rm -f /sites/rockbox.org/dailybuild-voices/voice-pool/*`;
+`rm -f /home/rockbox/dailybuild-voices/voice-pool/*`;

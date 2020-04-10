@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-require "rockbox.pm";
+require "./rockbox.pm";
 
 my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) =
  localtime(time);
@@ -10,8 +10,6 @@ $year+=1900;
 
 $date=sprintf("%04d%02d%02d", $year,$mon, $mday);
 $shortdate=sprintf("%02d%02d%02d", $year%100,$mon, $mday);
-
-$ENV{'PATH'}.=":/usr/local/sh-elf/bin:/usr/local/m68k-elf/bin:/usr/local/arm-elf/bin";
 
 my $verbose;
 if($ARGV[0] eq "-v") {
@@ -110,7 +108,7 @@ sub buildit {
 
 for my $build (&usablebuilds) {
     my $name = manualname($build);
-    next if (not -f "../trunk/manual/platform/$name.tex");
+    next if (not -f "../rockbox_git_clone/manual/platform/$name.tex");
     
     runone($name);
 }

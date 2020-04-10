@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 require "CGI.pm";
-require "rockbox.pm";
+require "./rockbox.pm";
 
 my $req = new CGI;
 
@@ -10,7 +10,8 @@ my $bin = $req->param('bin');
 my $fine=0;
 
 my $pic = playerpic($bin);
-my $basedir = "/sites/download.rockbox.org";
+my $basedir = "/home/rockbox/download";
+#XXX my $baseurl = "https://download.rockbox.org";
 my $baseurl = "http://download.rockbox.org";
 
 my $desc = $builds{$bin}{name};
@@ -131,8 +132,8 @@ for(reverse sort keys %date) {
             print "<td>&nbsp;</td>";
         }
 
-        my $fi = "/sites/download.rockbox.org/daily/voices/$m-$d-english.voice";
-        my $fi2 = "/sites/download.rockbox.org/daily/voices/$m-$d-english.zip";
+        my $fi = "/home/rockbox/download/daily/voices/$m-$d-english.voice";
+        my $fi2 = "/home/rockbox/download/daily/voices/$m-$d-english.zip";
         if ( -f $fi2) {
             my $size = (stat($fi2))[7];
             printf("<td><a href=\"http://download.rockbox.org/daily/voices/$m-$d-english.zip\" title=\"voice file for Rockbox $desc dated $nice\">voice zip</a> %d KB</td>",

@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 use POSIX 'strftime';
-require "rbmaster.pm";
+require "./rbmaster.pm";
 
 $ENV{'TZ'} = "UTC";
 

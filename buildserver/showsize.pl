@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-require "rbmaster.pm";
+require "./rbmaster.pm";
 
 my $dir="data";
 

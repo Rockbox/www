@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 use DBI;
-require 'rbmaster.pm';
+require './rbmaster.pm';
 
 &getbuilds("builds");
 
