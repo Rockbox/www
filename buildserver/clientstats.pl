@@ -87,7 +87,7 @@ if ($rows) {
     printf("<br>Effective round speed was $ourspeed points/second, making us %d%% efficient.\n",
            ($ourspeed * 100 / $totalspeed) + 0.5);
 
-    print "<p>A detailed build chart is available on <a href='http://rasher.dk/rockbox/buildgraphs/graph.php?r=$rev&debug'>rasher's page</a>.\n";
+#    print"<p>A detailed build chart is available on <a href='http://build.rockbox.org/buildgraphs/graph.php?r=$rev&debug'>here</a>.\n";
           
 }
 
