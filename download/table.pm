@@ -8,6 +8,7 @@ sub buildtable {
 
             # the release hash and the *release variables are from builds.pm
 
+### HTTPS me
             my $basedir="http://download.rockbox.org/release/$publicrelease";
             my $pack="$basedir/rockbox-$m-$publicrelease.zip";
             my $name= $builds{$m}{name};
@@ -21,7 +22,7 @@ sub buildtable {
             else {
                 my $docs = manualname($m);
                 my $voice = voicename($m);
-
+# XXX HTTPS
                 $mans="<br><a href=\"http://download.rockbox.org/release/$manualrelease/rockbox-$docs-$manualrelease.pdf\">Manual</a><br><a href=\"http://download.rockbox.org/release/$voicerelease/$voice-$voicerelease-english.zip\">Voice</a>";
             }
 

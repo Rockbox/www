@@ -79,19 +79,22 @@ for(reverse sort keys %date) {
             #my $page = getpages("$basedir/$file");
 
             #$o=sprintf("<a href=\"http://download.rockbox.org/manual/$file\">pdf</a> %dKB, ${page}p", $size/1024);
-            $o=sprintf("%s<a href=\"https://download.rockbox.org/daily/manual/$file\">pdf</a> <small>%d kB</small>", $o?"<br>":"", $size/1024);
+#XXXFIXME   $o=sprintf("%s<a href=\"https://download.rockbox.org/daily/manual/$file\">pdf</a> <small>%d kB</small>", $o?"<br>":"", $size/1024);
+            $o=sprintf("%s<a href=\"http://download.rockbox.org/daily/manual/$file\">pdf</a> <small>%d kB</small>", $o?"<br>":"", $size/1024);
         }
 
         $file = "rockbox-${m}-${d}-html.zip";
         if( -f "$basedir/$file") {
             my $size = (stat("$basedir/$file"))[7];
 
-            $o .= sprintf("%s<a href=\"https://download.rockbox.org/daily/manual/$file\">html-zip</a> <small>%d kB</small>", $o?"<br>":"", $size/1024);
+#XXXFIXME            $o .= sprintf("%s<a href=\"https://download.rockbox.org/daily/manual/$file\">html-zip</a> <small>%d kB</small>", $o?"<br>":"", $size/1024);
+            $o .= sprintf("%s<a href=\"http://download.rockbox.org/daily/manual/$file\">html-zip</a> <small>%d kB</small>", $o?"<br>":"", $size/1024);
         }
 
         $file = "rockbox-${m}";
         if( -d "$basedir/$file") {
-            $o .= sprintf("%s<a href=\"https://download.rockbox.org/daily/manual/$file/rockbox-build.html\">online</a>", $o?"<br>":"");
+#XXXFIXME       $o .= sprintf("%s<a href=\"https://download.rockbox.org/daily/manual/$file/rockbox-build.html\">online</a>", $o?"<br>":"");
+            $o .= sprintf("%s<a href=\"http://download.rockbox.org/daily/manual/$file/rockbox-build.html\">online</a>", $o?"<br>":"");
         }
         print "$o\n";
 
