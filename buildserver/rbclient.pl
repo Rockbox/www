@@ -19,7 +19,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 59;
+my $revision = 60;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -573,17 +573,6 @@ sub testsystem
             tprint "Error: You specified arch $_ but the output of '$compilers{$_}[0]' did not include '$compilers{$_}[1]'.\n";
             exit 22;
         }
-    }
-
-    # check git
-    if (not -d ".git") {
-        `curl -L -o svn2git.sh https://www.rockbox.org/buildserver/svn2git.sh`;
-        `sh svn2git.sh`;
-    }
-
-    if (not -d ".git") {
-        tprint "git transition failed.\n";
-        exit 22;
     }
 
     # check curl
