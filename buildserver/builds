@@ -220,8 +220,8 @@ sh:0:archosondiospboot:Ondio SP - Boot:ajbrec.ajz:6400:../tools/configure --targ
 # Android native targets
 android19:0:android480x800:Android 480x800:rockbox.apk:76920:../tools/configure --target=android --type=n --lcdwidth=480 --lcdheight=800 && make apk
 android19:0:android480x800mips:Android 480x800 - MIPS:rockbox.apk:83690:../tools/configure --target=androidmips --type=n --lcdwidth=480 --lcdheight=800 && make apk
-android16:1:ibassodx50:iBasso DX50:rockbox.zip:60:../tools/configure --target=ibassodx50 --type=n && make zip
-android16:1:ibassodx90:iBasso DX90:rockbox.zip:70:../tools/configure --target=ibassodx90 --type=n && make zip
+android-ndk10:1:ibassodx50:iBasso DX50:rockbox.zip:60:../tools/configure --target=ibassodx50 --type=n && make zip
+android-ndk10:1:ibassodx90:iBasso DX90:rockbox.zip:70:../tools/configure --target=ibassodx90 --type=n && make zip
 ###
 # ARM hosted targets
 arm-rb-gcc494:1:samsungypr0:Samsung YP-R0 - Normal:rockbox.zip:207580:../tools/configure --target=samsungypr0 --type=n && make zip
