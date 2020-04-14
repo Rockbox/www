@@ -35,7 +35,7 @@ sub getdata {
             }
             $compiles{$rev}{$id}{client} = $client;
             $clients{$rev}{$client} = 1;
-            $compiles{$rev}{$id}{time} = $time;
+            $compiles{$rev}{$id}{took} = $time;
             $alltypes{$id} = 1 if ($showallbuilds);
             if (scalar keys %compiles > $maxrounds) {
                 delete $compiles{$rev};
