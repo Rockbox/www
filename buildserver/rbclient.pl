@@ -47,22 +47,18 @@ my $upload_url = "http://$buildmaster/upload.cgi";
 my ($probecores) = &probecores;
 our $cores = $cores || $probecores;
 
+# All we really care about is 32/64-bit.
 my $cpu = `uname -m`;
 chomp $cpu;
-my $os = `uname -s`;
-chomp $os;
-
 our $bits;
-if ($cpu eq "i686" or $cpu eq "i586" or $cpu eq "i386" or $cpu eq "armv5tel" or $cpu eq "armv6l") {
+if ($cpu =~ /64/) {
+    $bits = 64;
+} else {
     $bits = 32;
 }
-elsif ($cpu eq "x86_64") {
-    $bits = 64;
-}
-else {
-    printf("Unrecognised cpu $cpu - please fix rbclient.pl to know of this\n");
-    exit 22;
-}
+
+my $os = `uname -s`;
+chomp $os;
 
 our $config;
 &readconfig($config) if ($config);
