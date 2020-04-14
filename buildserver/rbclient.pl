@@ -44,7 +44,7 @@ our $commandhook = $commandhook || '';
 
 my $upload_url = "http://$buildmaster/upload.cgi";
 
-my ($probecores) = &probecores;
+my $probecores = int(`nproc`);
 our $cores = $cores || $probecores;
 
 # All we really care about is 32/64-bit.
@@ -394,15 +394,6 @@ sub upload
     `curl $limit -s -F upfile=\@$file $upload_url`;
 }
 
-sub probecores
-{
-    open CPUINFO, "</proc/cpuinfo" or return 0;
-    my @cores = grep /^processor/i, <CPUINFO>;
-    close CPUINFO;
-
-    return (scalar @cores);
-}
-    
 sub _HELLO
 {
     if ($_[0] ne "ok") {
