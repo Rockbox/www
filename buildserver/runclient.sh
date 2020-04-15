@@ -15,8 +15,8 @@ do
     # mipsel-gcc494 : MIPS-based players
     # mipsel-rb-gcc494: linux based MIPS players i.e Agptek Rocker (Benjie T6)
     # sdl : Non-crosscompiled targets. Simulators, application, checkwps, database tool, ...
-    # android-ndk10: Android NDK 10e, supporting Android 4.1 (API 16) for ibasso dx50/dx90
-    # android19 : Android v4.4 (API 19), for generic android port
+    # android-ndk10: Android NDK 10e, for ibasso dx50/dx90
+    # android-ndk10sdk19: Android NDK 10e and SDK supporting v4.4 (API 19)
     # latex : manuual
 
     perl -s rbclient.pl -username= -password= -clientname= -archlist=m68k-gcc452,sh,mipsel-gcc494,sdl,arm-eabi-gcc444,arm-ypr0-gcc446,android16 -buildmaster=buildmaster.rockbox.org -port=19999

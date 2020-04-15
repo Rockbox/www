@@ -19,7 +19,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 61;
+my $revision = 62;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -534,33 +534,47 @@ sub testsystem
 
     # check compilers
     my %compilers = (
-                  "arm", ["arm-elf-gcc --version", "4.0.3"],
-                  "arm-eabi-gcc444", ["arm-elf-eabi-gcc --version", "4.4.4"],
-                  "arm-ypr0-gcc446", ["arm-ypr0-linux-gnueabi-gcc --version", "4.4.6"],
-                  "arm-rb-gcc494", ["arm-rockbox-linux-gnueabi-gcc --version", "4.9.4"],
-                  "sh", ["sh-elf-gcc --version", "4.0.3"],
-                  "m68k", ["m68k-elf-gcc --version", "3.4.6"],
-                  "m68k-gcc452", ["m68k-elf-gcc --version", "4.5.2"],
-                  "mipsel", ["mipsel-elf-gcc --version", "4.1.2"],
-                  "mipsel-gcc494", ["mipsel-elf-gcc --version", "4.9.4"],
-                  "mipsel-rb-gcc494", ["mipsel-rockbox-linux-gnu-gcc --version", "4.9.4"],
-                  "sdl", ["sdl-config --version", ".*"],
-                  "android-ndk10", ["cat $ENV{ANDROID_NDK_PATH}/RELEASE.TXT", "r10"],
-                  "android16", ["android list target", "API level: 16"],  # Obsolete, Nuke evenutally
-                  "android19", ["android list target", "API level: 19"],
-                  "latex", ["pdflatex --version", "pdfTeX 3.1415926"],
-                  );
+        # Obsolete tooling, nuke.
+        "arm" => (["arm-elf-gcc --version", "4.0.3"]),
+        "m68k" => (["m68k-elf-gcc --version", "3.4.6"]),
+        "mipsel" => (["mipsel-elf-gcc --version", "4.1.2"]),
+        "arm-ypr0-gcc446" => (["arm-ypr0-linux-gnueabi-gcc --version", "4.4.6"]),
+        "android16" => (["android list target", "API level: 16"]),
+        "android19" => (["android list target", "API level: 19"]),
+
+	# Hosted targets
+        "arm-rb-gcc494" => (["arm-rockbox-linux-gnueabi-gcc --version", "4.9.4"]),
+        "mipsel-rb-gcc494" => (["mipsel-rockbox-linux-gnu-gcc --version", "4.9.4"]),
+        "android-ndk10" => (["cat $ENV{ANDROID_NDK_PATH}/RELEASE.TXT", "r10"]),
+        "android-ndk10sdk19" => (["cat $ENV{ANDROID_NDK_PATH}/RELEASE.TXT", "r10"],
+			         ["android list target", "API level: 19"]),
+
+	# Active targets
+        "arm-eabi-gcc444" => (["arm-elf-eabi-gcc --version", "4.4.4"]),
+        "sh" => (["sh-elf-gcc --version", "4.0.3"]),
+        "m68k-gcc452" => (["m68k-elf-gcc --version", "4.5.2"]),
+        "mipsel-gcc494" => (["mipsel-elf-gcc --version", "4.9.4"]),
+
+        # Special stuff
+        "sdl" => (["sdl-config --version", ".*"]),
+        "latex" => (["pdflatex --version", "pdfTeX 3.1415926"]),
+        );
 
     for (split ',', $archlist) {
         if (not exists $compilers{$_}){
             tprint "Error: You specified unknownarch $_.\n";
             exit 22;
         }
-        my $p = `$compilers{$_}[0]`;
-        if (not $p =~ /$compilers{$_}[1]/) {
-            tprint "Error: You specified arch $_ but the output of '$compilers{$_}[0]' did not include '$compilers{$_}[1]'.\n";
-            exit 22;
-        }
+
+	my @items = $compilers{$_};
+
+	foreach my $item (@items) {
+	    my $p = `$$item[0]`;
+	    if (not $p =~ /$$item[1]/) {
+		tprint "Error: You specified arch $_ but the output of '$$item[0]' did not include '$$item[1]'.\n";
+		exit 22;
+	    }
+	}
     }
 
     # check curl
