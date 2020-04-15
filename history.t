@@ -2,6 +2,8 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<p><i>2020-04-26</i>: Infrastructure migrated
+
 <p><i>2012-11-27</i>: Forums software updated
 
 <p><i>2012-10-06</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes312">Rockbox 3.12 is released</a>
