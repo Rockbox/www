@@ -535,29 +535,29 @@ sub testsystem
     # check compilers
     my %compilers = (
         # Obsolete tooling, nuke.
-        "arm" => (["arm-elf-gcc --version", "4.0.3"]),
-        "m68k" => (["m68k-elf-gcc --version", "3.4.6"]),
-        "mipsel" => (["mipsel-elf-gcc --version", "4.1.2"]),
-        "arm-ypr0-gcc446" => (["arm-ypr0-linux-gnueabi-gcc --version", "4.4.6"]),
-        "android16" => (["android list target", "API level: 16"]),
-        "android19" => (["android list target", "API level: 19"]),
+        "arm" => { "arm-elf-gcc --version" => "4.0.3" },
+        "m68k" => { "m68k-elf-gcc --version" => "3.4.6"  },
+        "mipsel" => { "mipsel-elf-gcc --version" => "4.1.2" },
+        "arm-ypr0-gcc446" => { "arm-ypr0-linux-gnueabi-gcc --version", "4.4.6" },
+        "android16" => { "android list target" => "API level: 16" },
+        "android19" => { "android list target" => "API level: 19" },
 
 	# Hosted targets
-        "arm-rb-gcc494" => (["arm-rockbox-linux-gnueabi-gcc --version", "4.9.4"]),
-        "mipsel-rb-gcc494" => (["mipsel-rockbox-linux-gnu-gcc --version", "4.9.4"]),
-        "android-ndk10" => (["cat $ENV{ANDROID_NDK_PATH}/RELEASE.TXT", "r10"]),
-        "android-ndk10sdk19" => (["cat $ENV{ANDROID_NDK_PATH}/RELEASE.TXT", "r10"],
-			         ["android list target", "API level: 19"]),
+        "arm-rb-gcc494" => { "arm-rockbox-linux-gnueabi-gcc --version", "4.9.4" },
+        "mipsel-rb-gcc494" => { "mipsel-rockbox-linux-gnu-gcc --version", "4.9.4" },
+        "android-ndk10" => { "cat $ENV{ANDROID_NDK_PATH}/RELEASE.TXT", "r10" },
+        "android-ndk10sdk19" => { "cat $ENV{ANDROID_NDK_PATH}/RELEASE.TXT" => "r10",
+				      "$ENV{ANDROID_SDK_PATH}/tools/android list target" => "API level: 19" },
 
 	# Active targets
-        "arm-eabi-gcc444" => (["arm-elf-eabi-gcc --version", "4.4.4"]),
-        "sh" => (["sh-elf-gcc --version", "4.0.3"]),
-        "m68k-gcc452" => (["m68k-elf-gcc --version", "4.5.2"]),
-        "mipsel-gcc494" => (["mipsel-elf-gcc --version", "4.9.4"]),
+        "arm-eabi-gcc444" => { "arm-elf-eabi-gcc --version", "4.4.4" },
+        "sh" => { "sh-elf-gcc --version", "4.0.3" },
+        "m68k-gcc452" => { "m68k-elf-gcc --version", "4.5.2" },
+        "mipsel-gcc494" => { "mipsel-elf-gcc --version", "4.9.4" },
 
         # Special stuff
-        "sdl" => (["sdl-config --version", ".*"]),
-        "latex" => (["pdflatex --version", "pdfTeX 3.1415926"]),
+        "sdl" => {"sdl-config --version", ".*" },
+        "latex" => { "pdflatex --version", "pdfTeX 3.1415926" },
         );
 
     for (split ',', $archlist) {
@@ -566,12 +566,12 @@ sub testsystem
             exit 22;
         }
 
-	my @items = $compilers{$_};
+	my $items = $compilers{$_};
 
-	foreach my $item (@items) {
-	    my $p = `$$item[0]`;
-	    if (not $p =~ /$$item[1]/) {
-		tprint "Error: You specified arch $_ but the output of '$$item[0]' did not include '$$item[1]'.\n";
+	foreach my $item (keys (%{$items})) {
+	    my $p = `$item`;
+	    if (not $p =~ /$$items{$item}/) {
+		tprint "Error: You specified arch $_ but the output of '$item' did not include '$$items{$item}'.\n";
 		exit 22;
 	    }
 	}
