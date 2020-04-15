@@ -1668,5 +1668,6 @@ while(not $alldone) {
 
     checkclients();
     readblockfile();
+    readconfig();
 }
 slog "exiting.\n";
