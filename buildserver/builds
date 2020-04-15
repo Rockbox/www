@@ -218,8 +218,8 @@ sh:0:playerboot:Player - Boot:archos.mod:5870:../tools/configure --target=archos
 sh:0:archosfmrecorderboot:FM Recorder - Boot:ajbrec.ajz:6400:../tools/configure --target=archosfmrecorder --ram=2 --type=b && make
 sh:0:archosondiospboot:Ondio SP - Boot:ajbrec.ajz:6400:../tools/configure --target=archosondiosp --ram=2 --type=b && make
 # Android native targets
-android19:0:android480x800:Android 480x800:rockbox.apk:76920:../tools/configure --target=android --type=n --lcdwidth=480 --lcdheight=800 && make apk
-android19:0:android480x800mips:Android 480x800 - MIPS:rockbox.apk:83690:../tools/configure --target=androidmips --type=n --lcdwidth=480 --lcdheight=800 && make apk
+android-ndk10sdk19:0:android480x800:Android 480x800:rockbox.apk:76920:../tools/configure --target=android --type=n --lcdwidth=480 --lcdheight=800 && make apk
+android-ndk10sdk19:0:android480x800mips:Android 480x800 - MIPS:rockbox.apk:83690:../tools/configure --target=androidmips --type=n --lcdwidth=480 --lcdheight=800 && make apk
 android-ndk10:1:ibassodx50:iBasso DX50:rockbox.zip:80000:../tools/configure --target=ibassodx50 --type=n && make zip
 android-ndk10:1:ibassodx90:iBasso DX90:rockbox.zip:80000:../tools/configure --target=ibassodx90 --type=n && make zip
 ###
