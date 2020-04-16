@@ -14,7 +14,7 @@ if [ $rcbuild -eq 1 ]; then
     # publish the release candidate for rbutil
     mv build-info.release-candidate /sites/download.rockbox.org/release-candidate/build-info
     rm rcbuild.hash
-fi
+else
 
     # talk to rasher before removing this
     cat data/$rev*.size > data/$rev.sizes
