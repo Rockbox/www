@@ -1,5 +1,5 @@
-        #define _LOGO_ <div style="max-width: 1000px;"><div align=center><img src="rb10years400.png" width=400 height=140 alt="Rockbox Logo"></div>
 #if 1
+        #define _LOGO_ <div style="max-width: 1000px;"><div align=center><img src="rockbox400.png" width=400 height=123 alt="Rockbox Logo"></div>
 #else
         #define _LOGO_ <img src="rdcwlogo.png" align=center width=400 height=123 alt="Rockbox Devcon West 2007">
 
@@ -112,7 +112,7 @@ and Ondio
 <tr><td nowrap>2013-03-05</td><td>Move ZEN X-Fi/X-Fi3/X-Fi Style/Mozaic,
 NWZ-E360/E370/E380 and Fuze+ to stable. Move ZEN and ZEN X-Fi2 to unstable</td></tr>
 
-<tr><td nowrap>2013-03-05</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes313">Rockbox 3.13 is released</a></td></tr>
+<tr><td nowrap>2013-03-05</td><td><a href="//www.rockbox.org/wiki/ReleaseNotes313">Rockbox 3.13 is released</a></td></tr>
 
 </table>
 <small><a href="history.html">Older news</a>
@@ -130,8 +130,7 @@ NWZ-E360/E370/E380 and Fuze+ to stable. Move ZEN and ZEN X-Fi2 to unstable</td><
 <!--#include file="last5front.html" -->
 <small>All commits <a href="since-release.html">since last release</a>,
  <a href="since-4weeks.html">last four weeks</a>,
-<!-- <a href="http://twitter.com/rockboxcommits">twitter feed</a>, -->
- <a href="http://git.rockbox.org/?p=rockbox.git;a=rss">RSS feed</a>.
+ <a href="https://twitter.com/rockboxcommits">twitter feed</a>.
 </small>
 
 </td></tr>
@@ -146,7 +145,7 @@ NWZ-E360/E370/E380 and Fuze+ to stable. Move ZEN and ZEN X-Fi2 to unstable</td><
 <h2>Sponsors:</h2>
 <table class=sponsors><tr valign="top">
 <td align='center'>
-<a href="http://www.haxx.se/"><img border=0 src="/haxx.png" width=90 height=31 alt="Haxx Logo"></a>
+<a href="https://www.haxx.se/"><img border=0 src="/haxx.png" width=90 height=31 alt="Haxx Logo"></a>
 <p>
 Haxx sponsors the main site, build server, svn server and various other resources
 </td>
@@ -156,7 +155,7 @@ Haxx sponsors the main site, build server, svn server and various other resource
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 <input type="hidden" name="cmd" value="_s-xclick">
 <input type="hidden" name="hosted_button_id" value="585407">
-<input type="image" src="http://www.rockbox.org/paypal-donate.gif" border="0" name="submit" alt="">
+<input type="image" src="//www.rockbox.org/paypal-donate.gif" border="0" name="submit" alt="">
 </form>
 <p>Many people have sponsored us with personal Paypal donations. Thank you!
 </td>
