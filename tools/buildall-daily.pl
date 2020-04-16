@@ -9,7 +9,7 @@ while (-f "input/build_running") {
     sleep 10;
 }
 
-my @zips = `ls input/*.zip`;
+my @zips = `ls input/*.zip input/*tar.xz`;
 
 my $date = strftime("%Y%m%d", localtime);
 for (@zips) {
@@ -24,6 +24,17 @@ for (@zips) {
         `chmod a+r output/$model/rockbox-$model-$date.zip`;
         `ln -sf rockbox-$model-$date.zip output/$model/rockbox-$model.zip`;
         #print "cp $_ output/$model/rockbox-$model-$date.zip\n";
+    }
+    if (/rockbox-(.+?)\.tar.xz/) {
+        my $model = $1;
+        if (not -d "output/$model") {
+            mkdir "output/$model";
+            `chmod g+s output/$model`;
+        }
+        `cp $_ output/$model/rockbox-$model-$date.tar.xz`;
+        `chmod a+r output/$model/rockbox-$model-$date.tar.xz`;
+        `ln -sf rockbox-$model-$date.tar.xz output/$model/rockbox-$model.tar.xz`;
+        #print "cp $_ output/$model/rockbox-$model-$date.tar.xz\n";
     }
 }
 

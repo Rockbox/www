@@ -11,8 +11,7 @@ my $fine=0;
 
 my $pic = playerpic($bin);
 my $basedir = "/home/rockbox/download";
-#XXX my $baseurl = "https://download.rockbox.org";
-my $baseurl = "http://download.rockbox.org";
+my $baseurl = "//download.rockbox.org";
 
 my $desc = $builds{$bin}{name};
 
@@ -94,13 +93,9 @@ for(reverse sort keys %date) {
                    $size/1024);
         }
         elsif($bin eq "source") {
-            if (-f "$basedir/daily/source/rockbox-$d.tar.bz2") {
-                $size = (stat("$basedir/daily/source/rockbox-$d.tar.bz2"))[7];
-                print "<td><a href=\"daily/source/rockbox-$d.tar.bz2\">bz2 source</a></td>";
-            }
-            elsif(-f "$basedir/daily/source/rockbox-$d.7z") {
-                $size = (stat("$basedir/daily/source/rockbox-$d.7z"))[7];
-                print "<td><a href=\"daily/source/rockbox-$d.7z\">7zip source</a></td>";
+            if (-f "$basedir/daily/source/rockbox-source-$d.tar.xz") {
+                $size = (stat("$basedir/daily/source/rockbox-$d.tar.xz"))[7];
+                print "<td><a href=\"daily/source/rockbox-$d.tar.xz\">tar.xz source</a></td>";
             }
         }
         else {
@@ -121,7 +116,7 @@ for(reverse sort keys %date) {
             close(R);
         }
         if( -f "maps/$m/maps-rockbox-${m}-${d}.zip") {
-            $map = sprintf "<a href=\"http://www.rockbox.org/maps/$bin/maps-rockbox-${m}-${d}.zip\" title=\"map file for $desc built $nice\">maps</a>",
+            $map = sprintf "<a href=\"//www.rockbox.org/maps/$bin/maps-rockbox-${m}-${d}.zip\" title=\"map file for $desc built $nice\">maps</a>",
         }
         print "<td>$map</td>";
 
@@ -136,19 +131,19 @@ for(reverse sort keys %date) {
         my $fi2 = "/home/rockbox/download/daily/voices/$m-$d-english.zip";
         if ( -f $fi2) {
             my $size = (stat($fi2))[7];
-            printf("<td><a href=\"http://download.rockbox.org/daily/voices/$m-$d-english.zip\" title=\"voice file for Rockbox $desc dated $nice\">voice zip</a> %d KB</td>",
+            printf("<td><a href=\"//download.rockbox.org/daily/voices/$m-$d-english.zip\" title=\"voice file for Rockbox $desc dated $nice\">voice zip</a> %d KB</td>",
                    $size/1024);
         }
         elsif ( -f $fi) {
             my $size = (stat($fi))[7];
-            printf("<td><a href=\"http://download.rockbox.org/daily/voices/$m-$d-english.voice\" title=\"voice file for Rockbox $desc dated $nice\">english.voice</a> %d KB</td>",
+            printf("<td><a href=\"//download.rockbox.org/daily/voices/$m-$d-english.voice\" title=\"voice file for Rockbox $desc dated $nice\">english.voice</a> %d KB</td>",
                    $size/1024);
         }
         else {
             print "<td>absent</td>";
         }
 
-        print "<td title=\"The build done $nice has rev $rev\">$rev</td>";
+        print "<td title=\"The build done $nice has rev $rev\"><a href=\"http://git.rockbox.org/?p=rockbox.git;a=commit;h=$rev\">$rev</a></td>";
     }
     print "</tr>\n";
     $font1 = $font2 = "";
