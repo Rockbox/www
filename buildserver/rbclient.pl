@@ -19,7 +19,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 62;
+my $revision = 63;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -82,7 +82,7 @@ Insufficient parameters. You must specify:
   May include arm,m68k,sh,sdl,mipsel and should be a comma-separated list with
   no spaces
 
-optional setting: 
+optional setting:
 
 -cores=[num]
   Override rbclient\'s probed results
@@ -127,7 +127,7 @@ while (1) {
 
 our %conntype;
 
-$sock->blocking(0);    
+$sock->blocking(0);
 
 # Add the master socket to select mask
 my $read_set = new IO::Select();
@@ -151,7 +151,7 @@ $SIG{INT} = sub {
         if ($builds{$id}{pid}) {
             &killchild($id);
         }
-    }                
+    }
     exit -1;
 };
 
@@ -167,7 +167,7 @@ while (1) {
             my $data = <$rh>;
             if (length $data) {
                 $input .= $data;
-                
+
                 while (1) {
                     my $pos = index($input, "\n");
                     last if ($pos == -1);
@@ -183,7 +183,7 @@ while (1) {
                     if ($builds{$id}{pid}) {
                         &killchild($id);
                     }
-                }                
+                }
                 goto beginning;
             }
         }
@@ -196,7 +196,7 @@ while (1) {
                     my ($id, $pid) = ($1, $2);
                     tprint "child $id ($pid) is uploading\n";
                     print $sock "UPLOADING $id\n";
-                    
+
                     # we're no longer busy
                     $busy -= $builds{$id}{cores};
                     $builds{$id}{cores} = 0;
@@ -305,7 +305,7 @@ sub startbuild
         chdir "build-$id";
         my $logfile = "$base.log";
         my $log = ">> $logfile 2>&1";
-        
+
         my $cmdline = $builds{$id}{cmdline};
 
         if (not open DEST, ">$logfile") {
@@ -314,7 +314,7 @@ sub startbuild
         }
         # to keep all other scripts working, use the same output as buildall.pl:
         print DEST "Build Start Single\n";
-        
+
         printf DEST "Build Date: %s\n", strftime("%Y%m%dT%H%M%SZ", gmtime);
         print DEST "Build Type: $id\n";
         print DEST "Build Dir: $cwd/build-$id\n";
@@ -440,7 +440,7 @@ sub BUILD
     my ($buildparams) = @_;
     # ipodcolorboot:29961:mt:bootloader-ipodcolor.ipod:0:../tools/configure --target=ipodcolor --type=b && make
 
-    my ($id, $rev, $mt, $result, $upload, $cmdline) = 
+    my ($id, $rev, $mt, $result, $upload, $cmdline) =
         split(':', $buildparams);
 
     tprint "Got BUILD $buildparams\n";
@@ -468,7 +468,7 @@ sub UPDATE
     tprint "Update from $url\n";
 
     `curl -L -o $perlfile.new "$url"`;
-    
+
     # This might fail, but runclient.sh will save us
     rename("$perlfile.new", $perlfile);
 
@@ -506,7 +506,7 @@ sub parsecmd
                      'CANCEL', 1,
                      'MESSAGE', 1,
                      'SYSTEM', 1);
-    
+
     if($cmdstr =~ /^([_A-Z]*) *(.*)/) {
         my $func = $1;
         my $rest = $2;
@@ -534,7 +534,7 @@ sub testsystem
 
     # check compilers
     my %compilers = (
-        # Obsolete tooling, nuke.
+        # Completely obsolete tooling, nukeme.
         "arm" => { "arm-elf-gcc --version" => "4.0.3" },
         "m68k" => { "m68k-elf-gcc --version" => "3.4.6"  },
         "mipsel" => { "mipsel-elf-gcc --version" => "4.1.2" },
@@ -549,11 +549,16 @@ sub testsystem
         "android-ndk10sdk19" => { "cat $ENV{ANDROID_NDK_PATH}/RELEASE.TXT" => "r10",
 				      "$ENV{ANDROID_SDK_PATH}/tools/android list target" => "API level: 19" },
 
-	# Active targets
+	# Native targets (active tooling)
         "arm-eabi-gcc444" => { "arm-elf-eabi-gcc --version", "4.4.4" },
         "sh" => { "sh-elf-gcc --version", "4.0.3" },
         "m68k-gcc452" => { "m68k-elf-gcc --version", "4.5.2" },
         "mipsel-gcc494" => { "mipsel-elf-gcc --version", "4.9.4" },
+
+        # Native targets (Upcoming tooling)
+        "sh-gcc494" => { "sh-elf-gcc --version", "4.9.4" },
+        "arm-eabl-gcc494" => { "arm-elf-eabi-gcc --version", "4.9.4" },
+        "m68k-gcc494" => { "m68k-elf-gcc --version", "4.9.4" },
 
         # Special stuff
         "sdl" => {"sdl-config --version", ".*" },
@@ -602,7 +607,7 @@ sub testsystem
         tprint "An upgrade didn't complete. Rename $perlfile.new to $perlfile\n";
         exit 22;
     }
-        
+
     # check that source tree is unmodified
     my $mod = `git status --porcelain --untracked-files=no`;
     if ($mod =~ / M /) {

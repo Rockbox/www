@@ -7,7 +7,7 @@ portnum: 19999
 # client version numbers
 # if the client reports lower api version than 'apiversion', 
 # update client to 'updaterevision' by downloading 'updateurl'
-apiversion: 62
+apiversion: 63
 updaterevision: 1
 #updateurl: https://git.rockbox.org/?p=www.git;a=blob_plain;f=buildserver/rbclient.pl
 
