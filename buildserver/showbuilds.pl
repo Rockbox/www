@@ -126,8 +126,7 @@ if($buildrev) {
                           $dhour, $dmin, $dsec);
     }
 
-# https me
-    printf("<tr><td colspan=3><a class=\"bstamp\" href=\"http://git.rockbox.org/?p=rockbox.git;a=commit;h=$buildrev\">$buildrev</a> (in progress)</td><td class=\"building\" colspan=\"%d\">$text</td></tr>\n",
+    printf("<tr><td colspan=3><a class=\"bstamp\" href=\"//git.rockbox.org/?p=rockbox.git;a=commit;h=$buildrev\">$buildrev</a> (in progress)</td><td class=\"building\" colspan=\"%d\">$text</td></tr>\n",
            $numbuilds);
 }
 #################
@@ -143,7 +142,7 @@ for my $rev (sort {$round{$b}{time} <=> $round{$a}{time}} keys %compiles) {
     print "<tr align=center>\n";
 
 # https me
-    my $chlink = "<a class=\"bstamp\" href=\"http://git.rockbox.org/?p=rockbox.git;a=commit;h=$rev\">$rev</a>";
+    my $chlink = "<a class=\"bstamp\" href=\"//git.rockbox.org/?p=rockbox.git;a=commit;h=$rev\">$rev</a>";
 
     my $score=0;
     print "<td>$chlink</td><td nowrap>$timestring</td>\n";

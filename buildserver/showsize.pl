@@ -138,7 +138,7 @@ foreach my $l (sort { $logtime{$b} <=> $logtime{$a} } @logs) {
     if($lines{"$dir/$l"}) {
         $l =~ /^(\w+).sizes$/;
         my $rev = $1;
-        $b = "<a class=\"bstamp\" href=\"http://git.rockbox.org/?p=rockbox.git;a=commit;h=$rev\">$rev</a>";
+        $b = "<a class=\"bstamp\" href=\"//git.rockbox.org/?p=rockbox.git;a=commit;h=$rev\">$rev</a>";
 
 	print "<tr><td nowrap>$b</td>";
 	print $lines{"$dir/$l"}."\n";

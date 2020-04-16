@@ -17,7 +17,7 @@ my %skip_tags = ('Change-Id' => 1,
 sub file2url {
     my ($file, $a, $i, $rev)=@_;
     my $sfile = $file;
-    my $urlroot="https://git.rockbox.org/?p=rockbox.git";
+    my $urlroot="//git.rockbox.org/?p=rockbox.git";
     $sfile =~ s:^/trunk::;
     $sfile =~ s:^/::;
 
@@ -94,7 +94,7 @@ while(<STDIN>) {
                 my $br;
                 my $g;
                 $g = " <a href=\"$gerrit_url\">G#$gerrit_id</a>" if ($gerrit_id);
-                $what = "<small><a href='https://git.rockbox.org/?p=rockbox.git;a=commit;h=$hash'>$hash</a>$g:</small> ";
+                $what = "<small><a href='//git.rockbox.org/?p=rockbox.git;a=commit;h=$hash'>$hash</a>$g:</small> ";
                 while ($b[$#b] eq "\n") {
                     delete $b[$#b];
                 }
@@ -104,8 +104,8 @@ while(<STDIN>) {
                     $l =~ s:&:&amp;:g;
                     $l =~ s:<:&lt;:g;
                     $l =~ s:>:&gt;:g;
-                    $l =~ s!FS *\#(\d+)!<a href=\"https://www.rockbox.org/tracker/task/$1\">FS \#$1</a>!g;
-                    $l =~ s!\#(\d{4,})!<a href=\"https://www.rockbox.org/tracker/task/$1\">\#$1</a>!g;
+                    $l =~ s!FS *\#(\d+)!<a href=\"//www.rockbox.org/tracker/task/$1\">FS \#$1</a>!g;
+                    $l =~ s!\#(\d{4,})!<a href=\"//www.rockbox.org/tracker/task/$1\">\#$1</a>!g;
                     $what .= "<br>" if($br);
                     $what .= $l;
                     $br++;

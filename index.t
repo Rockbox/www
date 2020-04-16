@@ -1,8 +1,8 @@
 #if 1
-        #define _LOGO_ <div style="max-width: 1000px;"><div align=center><img src="rockbox400.png" width=400 height=123 alt="Rockbox Logo"></div>
+	#define _LOGO_ <div style="max-width: 1000px;"><div align=center><img src="rockbox400.png" width=400 height=123 alt="Rockbox Logo"></div>
 #else
         #define _LOGO_ <img src="rdcwlogo.png" align=center width=400 height=123 alt="Rockbox Devcon West 2007">
-
+        #define _LOGO_ <div style="max-width: 1000px;"><div align=center><img src="rb10years400.png" width=400 height=140 alt="Rockbox Logo"></div>
 #endif
 #define _PAGE_ Free Music Player Firmware
 #define MAIN_PAGE
@@ -101,13 +101,13 @@ and Ondio
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
-<tr><td nowrap>2019-11-15</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes315">Rockbox 3.15 is released</a></td></tr>
+<tr><td nowrap>2019-11-15</td><td><a href="//www.rockbox.org/wiki/ReleaseNotes315">Rockbox 3.15 is released</a></td></tr>
 
 <tr><td nowrap>2019-10-28</td><td>Move iPod Classic to stable.</td></tr>
 
 <tr><td nowrap>2017-05-01</td><td>Move iPod Nano 2G to stable. Move iPod Classic to unstable.</td></tr>
 
-<tr><td nowrap>2017-05-01</td><td><a href="http://www.rockbox.org/wiki/ReleaseNotes314">Rockbox 3.14 is released</a></td></tr>
+<tr><td nowrap>2017-05-01</td><td><a href="//www.rockbox.org/wiki/ReleaseNotes314">Rockbox 3.14 is released</a></td></tr>
 
 <tr><td nowrap>2013-03-05</td><td>Move ZEN X-Fi/X-Fi3/X-Fi Style/Mozaic,
 NWZ-E360/E370/E380 and Fuze+ to stable. Move ZEN and ZEN X-Fi2 to unstable</td></tr>

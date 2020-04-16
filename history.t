@@ -4,32 +4,32 @@
 
 <p><i>2012-11-27</i>: Forums software updated
 
-<p><i>2012-10-06</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes312">Rockbox 3.12 is released</a>
+<p><i>2012-10-06</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes312">Rockbox 3.12 is released</a>
 
-<p><i>2012-03-31</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes311">Rockbox 3.11 is released</a>
+<p><i>2012-03-31</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes311">Rockbox 3.11 is released</a>
 
-<p><i>2012-01-10</i>: <a href="http://www.rockbox.org/wiki/UsingGit">We have finally migrated to git</a>
+<p><i>2012-01-10</i>: <a href="//www.rockbox.org/wiki/UsingGit">We have finally migrated to git</a>
 
-<p><i>2011-09-03</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes391">Rockbox 3.9.1 is released</a>
+<p><i>2011-09-03</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes391">Rockbox 3.9.1 is released</a>
 
-<p><i>2011-06-27</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes39">Rockbox 3.9 is released</a>
+<p><i>2011-06-27</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes39">Rockbox 3.9 is released</a>
 
-<p><i>2011-04-06</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes381">Rockbox 3.8.1 is released</a>
+<p><i>2011-04-06</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes381">Rockbox 3.8.1 is released</a>
 
-<p><i>2011-04-03</i>: Rockbox participates in the <a href="http://www.rockbox.org/wiki/SummerOfCode2011">Google Summer of Code 2011</a> and we welcome students to apply for doing projects for and with us!
+<p><i>2011-04-03</i>: Rockbox participates in the <a href="//www.rockbox.org/wiki/SummerOfCode2011">Google Summer of Code 2011</a> and we welcome students to apply for doing projects for and with us!
 
 <p><i>2011-04-01</i>: We apologize for the subtle April fool's joke this year.
-<p><i>2011-02-27</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes38">Rockbox 3.8 is released</a>
+<p><i>2011-02-27</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes38">Rockbox 3.8 is released</a>
 
-<p><i>2010-11-26</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes371">Rockbox 3.7.1 is released</a>
-<p><i>2010-10-30</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes37">Rockbox 3.7 is released</a>
-<p><i>2010-06-03</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes36">Rockbox 3.6 is released</a>
+<p><i>2010-11-26</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes371">Rockbox 3.7.1 is released</a>
+<p><i>2010-10-30</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes37">Rockbox 3.7 is released</a>
+<p><i>2010-06-03</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes36">Rockbox 3.6 is released</a>
 
-<p><i>2010-02-15</i>: Rockbox will be applying for Google Summer of Code 2010.  Please <a href="http://www.rockbox.org/wiki/SummerOfCode2010">suggest</a> possible projects or <a href="http://www.rockbox.org/irc/">ask</a> to be a mentor or student on our IRC channel.
+<p><i>2010-02-15</i>: Rockbox will be applying for Google Summer of Code 2010.  Please <a href="//www.rockbox.org/wiki/SummerOfCode2010">suggest</a> possible projects or <a href="//www.rockbox.org/irc/">ask</a> to be a mentor or student on our IRC channel.
 
-<p><i>2010-02-03</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes35">Rockbox 3.5 is released</a>
+<p><i>2010-02-03</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes35">Rockbox 3.5 is released</a>
 
-<p><i>2009-09-24</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes34">Rockbox 3.4 is released</a>
+<p><i>2009-09-24</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes34">Rockbox 3.4 is released</a>
 
 <p><i>2009-09-16</i>: We moved the web site to a new server and migrated from twiki to foswiki.
 
@@ -37,21 +37,21 @@
 
 <p><i>2009-06-21</i>: <a href="/wiki/DevConEuro2009">DevConEuro2009</a> has ended
 
-<p><i>2009-06-19</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes33">Rockbox 3.3 is released</a>
+<p><i>2009-06-19</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes33">Rockbox 3.3 is released</a>
 
 <p><i>2009-03-24</i>: <a href="http://themes.rockbox.org/">themes.rockbox.org</a> is available
 
-<p><i>2009-03-23</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes32">Rockbox 3.2 is released</a>
+<p><i>2009-03-23</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes32">Rockbox 3.2 is released</a>
 
-<p><i>2009-03-18</i>: Rockbox has been accepted as a mentor organization for Google Summer of Code 2009. <a href="http://www.rockbox.org/wiki/SummerOfCode2009">Look here for project ideas.</a>
+<p><i>2009-03-18</i>: Rockbox has been accepted as a mentor organization for Google Summer of Code 2009. <a href="//www.rockbox.org/wiki/SummerOfCode2009">Look here for project ideas.</a>
 
-<p><i>2009-02-25</i>:The Rockbox USB stack is now enabled by default on <a href="http://forums.rockbox.org/index.php?topic=20752.0">all PP502x targets</a>.
+<p><i>2009-02-25</i>:The Rockbox USB stack is now enabled by default on <a href="//forums.rockbox.org/index.php?topic=20752.0">all PP502x targets</a>.
 
-<p><i>2008-12-23</i>: <a href="http://www.rockbox.org/wiki/ReleaseNotes31">Rockbox 3.1 is released</a>
+<p><i>2008-12-23</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes31">Rockbox 3.1 is released</a>
 
-<p><i>2008-09-23</i>: <a href="http://www.rockbox.org/twiki/bin/view/Main/ReleaseNotes30">Rockbox 3.0 is released</a>
+<p><i>2008-09-23</i>: <a href="//www.rockbox.org/twiki/bin/view/Main/ReleaseNotes30">Rockbox 3.0 is released</a>
 
-<p><i>2008-08-16</i>: <a href="http://www.rockbox.org/mail/archive/rockbox-dev-archive-2008-08/0032.shtml">Release 3.0 Feature Freeze</a>
+<p><i>2008-08-16</i>: <a href="//www.rockbox.org/mail/archive/rockbox-dev-archive-2008-08/0032.shtml">Release 3.0 Feature Freeze</a>
 
 <p><i>2008-06-29</i>: <a href="/devcon2008/">DevCon 2008</a> is over.
 
@@ -61,14 +61,14 @@
 
 <p><i>2007-11-23</i>: New USB stack with limited capability. Currently it only requests full charging power. Ignore driver popups from Windows.
 
-<p><i>2007-11-18</i>: <a href="http://www.rockbox.org/mail/archive/rockbox-archive-2007-11/0176.shtml">New voice codec used:</a> Speex!
+<p><i>2007-11-18</i>: <a href="//www.rockbox.org/mail/archive/rockbox-archive-2007-11/0176.shtml">New voice codec used:</a> Speex!
 
 <p><i>2007-09-19</i>: 1st and 2nd gen iPods are supported
 
 <p><i>2007-08-07</i>: We now offer daily built voice files on the <a
 href="/daily.shtml">daily build page</a>
 
-<p><i>2007-07-30</i>: The <a href="http://www.rockbox.org/mail/archive/rockbox-dev-archive-2007-07/0049.shtml">Tracker Cleanup Week</a> has begun!
+<p><i>2007-07-30</i>: The <a href="//www.rockbox.org/mail/archive/rockbox-dev-archive-2007-07/0049.shtml">Tracker Cleanup Week</a> has begun!
 
 <p><i>2007-06-20</i>: Added download mirrors, thanks to some new sponsors
 
@@ -83,19 +83,19 @@ connection
 
 <p><i>2007-05-06</i>: Scheduled server maintenance. build.rockbox.org and download.rockbox.org will be down approximately 00:00 to 10:00 CET.
 
-<p><i>2007-03-29</i>: Announcing the <a href=http://www.rockbox.org/twiki/bin/view/Main/DevCon2007>Rockbox International Developers Conference 2007</a> to be
+<p><i>2007-03-29</i>: Announcing the <a href=//www.rockbox.org/twiki/bin/view/Main/DevCon2007>Rockbox International Developers Conference 2007</a> to be
 held in Stockholm May 19-20 2007.
 
 <p><i>2007-03-15</i>: Rockbox has been accepted as a mentor organization of <a
-href="http://www.rockbox.org/twiki/bin/view/Main/SummerOfCode">Google's summer
+href="//www.rockbox.org/twiki/bin/view/Main/SummerOfCode">Google's summer
 of code 2007</a>
 
 <p><i>2007-03-10</i>: We welcome <a
-href="http://www.rockbox.org/mail/archive/rockbox-dev-archive-2007-03/0005.shtml">SanDisk
+href="//www.rockbox.org/mail/archive/rockbox-dev-archive-2007-03/0005.shtml">SanDisk
 Sansa E200</a> to the happy family of Rockbox targets.
 
 <p><i>2007-03-04</i>: We welcome <a
-href="http://www.rockbox.org/mail/archive/rockbox-archive-2007-03/0175.shtml">iAudio
+href="//www.rockbox.org/mail/archive/rockbox-archive-2007-03/0175.shtml">iAudio
 M5</a> to the happy family of Rockbox targets.
 
 <p><i>2007-01-24</i>: There's talk with <a href="/twiki/bin/view/Main/AustriaMicrosystems">AMS</a>.
@@ -112,7 +112,7 @@ reduce some load.
 <p><i>2006-12-14</i>: Michiel van der Kolk, sometimes known as HCl, is
 dead. He passed away yesterday. He will be missed and remembered as maestro of
 Rockboy and his eager work on the initial tag database amongst other
-things. <a href="http://forums.rockbox.org/index.php?topic=7694.0">more...</a>
+things. <a href="//forums.rockbox.org/index.php?topic=7694.0">more...</a>
 
 <p><i>2006-12-07</i>: Sansa e200 builds added to the CVS build table
 
@@ -130,7 +130,7 @@ brought back once we believe we have them "secured" properly.
 
 <p><i>2006-03-28</i>: <a
 href="mail/archive/rockbox-archive-2006-03/0502.shtml">Sound</a> on <a
-href="http://www.rockbox.org/twiki/bin/view/Main/IaudioPort">iAudio X5!</a>.
+href="//www.rockbox.org/twiki/bin/view/Main/IaudioPort">iAudio X5!</a>.
 
 <p><i>2006-03-17</i>: <a href="devcon2006/">The Rockbox International
 Developers Conference 2006</a>.
@@ -139,13 +139,13 @@ Developers Conference 2006</a>.
 
 <p><i>2006-02-23</i>: We have migrated to a new bugtracker: Flyspray. It's faster and better in practically every aspect. <a href="/tracker/">See it here</a>.
 
-<p><i>2006-01-28</i>: <a href="http://www.rockbox.org/mail/archive/rockbox-archive-2006-01/0543.shtml">Sound</a> on <a href="http://www.rockbox.org/twiki/bin/view/Main/IpodPort">iPod!</a>
+<p><i>2006-01-28</i>: <a href="//www.rockbox.org/mail/archive/rockbox-archive-2006-01/0543.shtml">Sound</a> on <a href="//www.rockbox.org/twiki/bin/view/Main/IpodPort">iPod!</a>
 
 <p><i>2005-12-06</i>: Unicode support!
 
 <p><i>2005-09-22</i>: Rockbox v2.5 is <a href="download/">released</a>.
 
-<p><i>2005-09-21</i>: The Wiki pages are now restored as much as possible with the exception of the <a href="http://www.rockbox.org/twiki/bin/view/Main/WpsGallery">WPS Gallery</a>. The Wiki has been upgraded and the hole is plugged. Backups are done manually currently - work is underway to fix the automatic system that failed us.
+<p><i>2005-09-21</i>: The Wiki pages are now restored as much as possible with the exception of the <a href="//www.rockbox.org/twiki/bin/view/Main/WpsGallery">WPS Gallery</a>. The Wiki has been upgraded and the hole is plugged. Backups are done manually currently - work is underway to fix the automatic system that failed us.
 
 <p><i>2005-09-19</i>: An oldish backup restored, work in progress on getting pages more up-to-date. Mailing lists are up again, but check that you are still subscribed!
 
@@ -156,7 +156,7 @@ Developers Conference 2006</a>.
 <p><i>2005-08-18</i>: At 13:59 CET. First multimeter "beep" for the h300.
 
 <p><i>2005-08-08</i>: We will have a <a
-href="http://www.rockbox.org/mail/archive/rockbox-archive-2005-08/0130.shtml">Feature
+href="//www.rockbox.org/mail/archive/rockbox-archive-2005-08/0130.shtml">Feature
 Freeze</a> starting on August 22nd, aiming at releasing Rockbox 2.5 on
 September 5.
 
@@ -164,10 +164,10 @@ September 5.
  H1xx.
 
 <p><i>2005-02-08</i>: <a
-href="http://www.rockbox.org/twiki/bin/view/Main/RockboxShots">Evidence</a> of
+href="//www.rockbox.org/twiki/bin/view/Main/RockboxShots">Evidence</a> of
 Rockbox <a
-href="http://www.rockbox.org/twiki/bin/view/Main/IriverBoot">booting</a> on <a
-href="http://www.rockbox.org/twiki/bin/view/Main/IriverPort">iRiver</a>.
+href="//www.rockbox.org/twiki/bin/view/Main/IriverBoot">booting</a> on <a
+href="//www.rockbox.org/twiki/bin/view/Main/IriverPort">iRiver</a>.
 
 <p><i>2004-12-23</i>: Rockbox v2.4 is <a href="download/">released</a>.
 
@@ -207,9 +207,9 @@ href="http://www.rockbox.org/twiki/bin/view/Main/IriverPort">iRiver</a>.
 
 <p><i>2003-07-09</i>: Rockbox started from <a href="/docs/flash.html">flash ROM</a> works
 
-<p><i>2003-06-30</i>: The plugin loader is now <a href="http://rockbox.haxx.se/mail/archive/rockbox-archive-2003-06/0707.shtml">alive</a>
+<p><i>2003-06-30</i>: The plugin loader is now <a href="//rockbox.haxx.se/mail/archive/rockbox-archive-2003-06/0707.shtml">alive</a>
 
-<p><i>2003-05-09</i>: The 400-file dir browser limit is <a href="http://rockbox.haxx.se/mail/archive/rockbox-archive-2003-05/0334.shtml">gone</a>.
+<p><i>2003-05-09</i>: The 400-file dir browser limit is <a href="//rockbox.haxx.se/mail/archive/rockbox-archive-2003-05/0334.shtml">gone</a>.
 
 <p><i>2003-05-03</i>: Finally, FM Radio support for FM Recorder models!
 
@@ -232,13 +232,13 @@ Linus had it for 2 hours before he took it apart and started drawing schematics.
 <p><i>2002-10-11</i>: Version 1.4 is released. <a href="download/">Grab it</a>.
 
 <p><i>2002-09-19</i>: We now support multiple languages. You can help by translating Rockbox to your language. No programming skills required.
-<a href="http://rockbox.haxx.se/mail/archive/rockbox-archive-2002-09/0856.shtml">See instructions here</a>
+<a href="//rockbox.haxx.se/mail/archive/rockbox-archive-2002-09/0856.shtml">See instructions here</a>
 
 <p><i>2002-09-13</i>: We took a big step and converted to an entirely new font system for the Recorder. Please bear with us as we smoothen out the initial quirks.
 
 <p><i>2002-09-03</i>: ROLO, the Rockbox Loader has been integrated into the CVS, allowing Archos or other Rockbox firmware being loaded by simply selecting the file!
 
-<p><i>2002-09-02</i>: <a href="http://rockbox.haxx.se/tshirt-contest/vote.html">Vote for your favourite tshirt designs!</a>
+<p><i>2002-09-02</i>: <a href="//rockbox.haxx.se/tshirt-contest/vote.html">Vote for your favourite tshirt designs!</a>
 
 <p><i>2002-08-28</i>: Version 1.3 is released. <a href="download/">Go fetch</a>.
 
@@ -275,7 +275,7 @@ If you like living on the edge, <a href="daily.shtml">here are daily builds</a>.
 <p><i>2002-05-26</i>: New web design. First player release drawing closer.
 
 <p><i>2002-05-03</i>: <b>SOUND!</b> Linus' experimental MAS code has 
-<a href="http://bjorn.haxx.se/rockbox/mail/archive/rockbox-archive-2002-05/0016.shtml">played our first 4 seconds of music</a>.
+<a href="//bjorn.haxx.se/rockbox/mail/archive/rockbox-archive-2002-05/0016.shtml">played our first 4 seconds of music</a>.
 
 <p><i>2002-04-27</i>: Julien Labruyére has generously donated an Archos Jukebox 6000 to the project. Thank you!
 
@@ -314,7 +314,7 @@ Development can now resume at full speed!
 
 <p><i>2002-01-29</i>: If you have feature requests or suggestions,
 please submit them to our
-<a href="http://sourceforge.net/projects/rockbox/">Sourceforge page</a>.
+<a href="//sourceforge.net/projects/rockbox/">Sourceforge page</a>.
 
 <p><i>2002-01-19</i>: Cool logo submitted by Thomas Saeys.
 

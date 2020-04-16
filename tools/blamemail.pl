@@ -12,7 +12,7 @@ if($blame[0]) {
         print FILE $_;
     }
     print FILE "\nThe entire thing of course visible here: ";
-    print FILE "http://build.rockbox.org/dev.cgi\n";
+    print FILE "//build.rockbox.org/dev.cgi\n";
     close FILE;
 
     my $cmd = "metasend -b -F tracker\@rockbox.org -s \"Rockbox Blame Game\" -t rockbox-cvs\@cool.haxx.se -f $mailfile -m text/plain -e 8bit";

@@ -44,10 +44,10 @@ sub nicefoot {
 
     print NICE <<MOO
 <p>
- Back to <a href="https://www.rockbox.org/daily.shtml">daily builds</a> / <a
- href="https://build.rockbox.org/">SVN builds</a>
+ Back to <a href="//www.rockbox.org/daily.shtml">daily builds</a> / <a
+ href="//build.rockbox.org/">SVN builds</a>
 <p>
- <a href="https://www.rockbox.org/twiki/bin/view/Main/BuildServer">How To Add a Build Server</a> to the build farm.
+ <a href="//www.rockbox.org/twiki/bin/view/Main/BuildServer">How To Add a Build Server</a> to the build farm.
 
 MOO
 ;
