@@ -1,0 +1,54 @@
+# test run - no uploads or database updates
+test: 1
+
+# which TCP port to use for client connections
+portnum: 19999
+
+# client version numbers
+# if the client reports lower api version than 'apiversion', 
+# update client to 'updaterevision' by downloading 'updateurl'
+apiversion: 62
+updaterevision: 1
+#updateurl: https://git.rockbox.org/?p=www.git;a=blob_plain;f=buildserver/rbclient.pl
+
+# if a client is disabled, this message tells him how to ask to get enabled
+enablemsg: Please go to #rockbox and ask to have your client re-enabled.
+
+# enable commander input
+cmdenabled: 1
+
+# The master commander password that must be presented when connecting
+cmdpasswd: somepasswd
+
+# database parameters.  dbtype can be anything handled by Perl::DBI
+dbtype: mysql
+dbhost: localhost
+dbname: rb_buildmaster
+dbuser: buildmaster
+dbpwd: someotherpasswd
+
+# this is the local directory where clients upload logs and zips etc
+uploaddir: upload
+
+# this is the local directory where zips and logs are moved to
+storedir: data
+
+# this is where titles are made
+titledir: titles
+
+### Hooks to run on various system events. 
+# NOTE: These script are executed synchronously. Make them run fast!
+
+# eachcomplete - runs after each completed build
+# parameters: $buildid $client $revision
+eachcomplete: hooks/buildcomplete.sh
+
+# roundstart - runs at the start of a build round
+# parameters: $revision
+roundstart: hooks/roundstart.sh
+
+# roundend - runs at the end of a build round
+# parameters: $revision
+roundend: hooks/roundcomplete.sh
+
+
