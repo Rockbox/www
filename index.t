@@ -130,8 +130,8 @@ NWZ-E360/E370/E380 and Fuze+ to stable. Move ZEN and ZEN X-Fi2 to unstable</td><
 <!--#include file="last5front.html" -->
 <small>All commits <a href="since-release.html">since last release</a>,
  <a href="since-4weeks.html">last four weeks</a>,
- <a href="http://cia.vc/stats/project/rockbox/.rss">RSS feed</a>,
- <a href="http://twitter.com/rockboxcommits">twitter feed</a>.
+<!-- <a href="http://twitter.com/rockboxcommits">twitter feed</a>, -->
+ <a href="http://git.rockbox.org/?p=rockbox.git;a=rss">RSS feed</a>.
 </small>
 
 </td></tr>
