@@ -4,7 +4,7 @@ use POSIX;
 use DBI;
 
 
-my $baseurl = "http://www.rockbox.org";
+my $baseurl = "https://www.rockbox.org";
 my $htmldir = "/sites/rockbox.org/www";
 
 ### flyspray
@@ -40,7 +40,7 @@ while (1) {
 
 for my $id (keys %tasktime) {
     my $timestring = strftime("%FT%T+01:00", localtime($tasktime{$id}));
-    $flyspray .= sprintf "<url href='http://www.rockbox.org/tracker/task/$id' lastmod='$timestring' priority='0.%d' />\n", $closed{$id} ? 1 : 5;
+    $flyspray .= sprintf "<url href='https://www.rockbox.org/tracker/task/$id' lastmod='$timestring' priority='0.%d' />\n", $closed{$id} ? 1 : 5;
 }
 
 ### html
@@ -57,7 +57,7 @@ for my $file (@hourly) {
     next if (not -f "$htmldir/$file");
     my $modtime = (stat("$htmldir/$file"))[9];
     my $timestring = strftime("%FT%T+01:00", localtime($modtime));
-    $site .= "<url href='http://www.rockbox.org/$file' lastmod='$timestring' changefreq='hourly' priority='0.9' />\n";
+    $site .= "<url href='https://www.rockbox.org/$file' lastmod='$timestring' changefreq='hourly' priority='0.9' />\n";
 }
 
 
@@ -70,7 +70,7 @@ my @daily = ( "daily.shtml",
 for my $file (@daily) {
     my $modtime = (stat("$htmldir/$file"))[9];
     my $timestring = strftime("%FT%T+01:00", localtime($modtime));
-    $site .= "<url href='http://www.rockbox.org/$file' lastmod='$timestring' changefreq='daily' priority='0.9' />\n";
+    $site .= "<url href='https://www.rockbox.org/$file' lastmod='$timestring' changefreq='daily' priority='0.9' />\n";
 }
 
 # static site html
@@ -102,7 +102,7 @@ for my $file (@htmlfiles) {
     my $modtime = (stat("$htmldir/$file"))[9];
     if ($modtime) {
         my $timestring = strftime("%FT%T+01:00", localtime($modtime));
-        $site .= "<url href='http://www.rockbox.org/$file' lastmod='$timestring' priority='0.9' />\n";
+        $site .= "<url href='https://www.rockbox.org/$file' lastmod='$timestring' priority='0.9' />\n";
     }
 }
 
@@ -127,7 +127,7 @@ for my $file (readdir DIR) {
         my $base = $1;
         my $modtime = (stat("$twikidir/$file"))[9];
         my $timestring = strftime("%FT%T+01:00", localtime($modtime));
-        $twiki .= "<url href='http://www.rockbox.org/wiki/$base' lastmod='$timestring' changefreq='weekly' priority='0.8' />\n";
+        $twiki .= "<url href='https://www.rockbox.org/wiki/$base' lastmod='$timestring' changefreq='weekly' priority='0.8' />\n";
     }
 }
 closedir DIR;
@@ -141,7 +141,7 @@ for my $file (readdir DIR) {
         my $date = $1;
         my $modtime = (stat("$ircdir/$file"))[9];
         my $timestring = strftime("%FT%T+01:00", localtime($modtime));
-        $irc .= "<url href='http://www.rockbox.org/irc/log-$date' lastmod='$timestring' changefreq='never' priority='0.2' />\n";
+        $irc .= "<url href='https://www.rockbox.org/irc/log-$date' lastmod='$timestring' changefreq='never' priority='0.2' />\n";
     }
 }
 closedir DIR;
@@ -153,7 +153,7 @@ open CONFIG, ">sitemap_config.xml" or die "Failed creating sitemap_config.xml: $
 print CONFIG <<END
 <?xml version="1.0" encoding="UTF-8"?>
 <site
-  base_url="http://www.rockbox.org/"
+  base_url="https://www.rockbox.org/"
   store_into="/sites/rockbox.org/www/sitemap.xml.gz"
   verbose="0"
   sitemap_type="web"

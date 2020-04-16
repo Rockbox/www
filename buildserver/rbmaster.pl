@@ -56,7 +56,7 @@ my $nextround;
 my $started = time();
 my $wastedtime = 0; # sum of time spent by clients on cancelled builds
 
-our ( $setlastrev_sth, $dblog_sth, $submit_update_sth, $submit_new_sth);
+our ( $setlastrev_sth, $dblog_sth, $submit_update_sth, $submit_new_sth, $get_build_results_sth );
 our %rbconfig;
 our %builds;
 our %client;
@@ -126,7 +126,7 @@ sub message {
 sub build_clients {
     my @list;
     for my $cl (keys %client) {
-        if($client{$cl}{'fine'}) {
+        if($client{$cl}{'fine'} and not $client{$cl}{'blocked'}) {
             push @list, $cl;
         }
     }
@@ -417,6 +417,7 @@ sub HELLO {
         if ($client{$fno}{blocked}) {
             slog "Blocked: client $cli blocked due to: $client{$fno}{blocked}";
             privmessage $fno, sprintf  "Hello $cli. Your build client has been temporarily blocked by the administrators due to: $client{$fno}{blocked}. $rbconfig{enablemsg}";
+            $client{$fno}{bad} = "blocked";
             return;
         }
         else {
@@ -632,6 +633,10 @@ sub check_log
             return "Out of disk space";
         }
 
+        if (grep /cannot open shared object file/, @log) {
+            return "Library not found";
+        }
+
         if (not grep /^Build Status/, @log) {
             return "Incomplete log file";
         }
@@ -700,6 +705,9 @@ sub parsecmd {
         }
         else {
             chomp $cmdstr;
+            if ($cmdstr =~ /([^\r]+)/) {
+                $cmdstr = $1;
+            }
             slog "Unknown input: $cmdstr";
         }
     }
@@ -918,15 +926,15 @@ sub endround {
     }
 
     # pass round result to clients
-    my $rows = $get_build_results_sth->execute($db->quote($buildround));
+    my $rows = $get_build_results_sth->execute($buildround);
 
     if ($rows) {
         my ($errors,$warnings) = $get_build_results_sth->fetchrow_array();
         if ($errors or $warnings) {
-            message "Revision " . $buildround . "result: " . $errors . "errors " . $warnings . "warnings";
+            message "Revision $buildround result: $errors errors $warnings warnings";
         }
         else {
-            message "Revision " . $buildround . " result: All green";
+            message "Revision $buildround result: All green";
         }
     }
 
@@ -1012,9 +1020,31 @@ sub client_gone {
     }
 
     # are any clients left?
-    if ($buildround and (scalar &build_clients) == 0) {
-        slog "Ending round due to lack of clients";
-        endround();
+    if ($buildround) {
+        if ((scalar &build_clients) == 0) {
+            slog "Ending round due to lack of clients";
+            endround();
+        }
+        else {
+            # disable targets that no client can build
+            for my $b (@buildids) {
+                my $found = 0;
+                for my $cl (&build_clients) {
+                    if (&client_can_build($cl, $b)) {
+                        $found = 1;
+                        last;
+                    }
+                }
+                if (not $found) {
+                    slog "Nobody can build $b. Disabling target.";
+                    $builds{$b}{done} = 1;
+                }
+            }
+            if (!builds_undone()) {
+                slog "No client can build any target. Round aborted.";
+                endround();
+            }
+        }
     }
 }
 
@@ -1538,10 +1568,11 @@ $SIG{PIPE} = sub {
 $SIG{__DIE__} = sub { slog(sprintf("Perl error: %s", @_)); };
 while(not $alldone) {
     my @handles = sort map $_->fileno, $read_set->handles;
-    my ($rh_set, $timeleft) =
-        IO::Select->select($read_set, undef, undef, 1);
+#    my ($rh_set, $timeleft) =
+#        IO::Select->select($read_set, undef, undef, 1);
+    my @ready = $read_set->can_read(1);
 
-    foreach my $rh (@$rh_set) {
+    foreach my $rh (@ready) {
         if (not exists $conn{$rh->fileno}) {
             slog "Fatal: Untracked rh!";
             die "untracked rh";
@@ -1554,6 +1585,8 @@ while(not $alldone) {
             $conn{$new->fileno} = { type => 'rbclient' };
             $new->blocking(0) or die "blocking: $!";
             $client{$new->fileno}{'socket'} = $new;
+            slog(sprintf("New client. Now %d clients and %d sockets.",
+                         scalar keys %client, scalar $read_set->handles()));
             my $peeraddr = $new->peeraddr;
             my $hostinfo = gethostbyaddr($peeraddr);
             if ($hostinfo) {
@@ -1605,7 +1638,7 @@ while(not $alldone) {
     }
 
     # loop over the clients and close the bad ones
-    foreach my $cl (&build_clients) {
+    for my $cl (keys %client) {
 
         my $err = $client{$cl}{'bad'};
         if($err) {

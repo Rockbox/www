@@ -2,6 +2,7 @@ Sitemap: http://www.rockbox.org/sitemap_index.xml
 User-agent: *
 Disallow: /wiki/bin/attach
 Disallow: /wiki/bin/changes
+Disallow: /wiki/bin/compare
 Disallow: /wiki/bin/edit
 Disallow: /wiki/bin/fresh
 Disallow: /wiki/bin/geturl
@@ -21,4 +22,6 @@ Disallow: /wiki/bin/statistics
 Disallow: /wiki/bin/upload
 Disallow: /wiki/bin/viewauth
 Disallow: /wiki/bin/viewfile
+Disallow: /wiki/System
+Disallow: /wiki/pub/System
 Disallow: /tracker*?

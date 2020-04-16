@@ -69,7 +69,7 @@ sub buildit {
 
     `rm -rf * >/dev/null 2>&1`;
 
-    my $c = "../tools/configure --type=av --target=$dir --ram=-1 --language=0 --tts=f --voice=-1";
+    my $c = "../../trunk/tools/configure --no-ccache --type=av --target=$dir --ram=-1 --language=0 --tts=f --voice=-1";
 
     print "C: $c\n" if($verbose);
     system($c);

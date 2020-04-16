@@ -153,7 +153,7 @@ for(reverse sort { $log{$a} cmp $log{$b} } keys %log) {
 
         my $list=file2list($_);
         my $listdesc = listname2desc($list);
-        my $listurl="http://www.rockbox.org/mail/#".$listrealname{$list};
+        my $listurl="//www.rockbox.org/mail/#".$listrealname{$list};
 
         print "<tr class=\"%s\">";
         my $line;
@@ -181,7 +181,7 @@ print "</table>\n";
 
 sub file2url {
     my ($file)=@_;
-    $file =~ s!^$tree!http://www.rockbox.org/mail/archive/!;
+    $file =~ s!^$tree!//www.rockbox.org/mail/archive/!;
     return $file;
 }
 

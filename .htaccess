@@ -1,81 +1,87 @@
+# spiders
+
+SetEnvIfNoCase User-agent 360Spider blocked=1
+SetEnvIfNoCase User-agent SemrushBot blocked=1
+SetEnvIfNoCase User-agent MegaIndex.ru blocked=1
+SetEnvIfNoCase User-agent Amazonbot/0.1 blocked=1
+
+deny from env=blocked
+
+deny from 101.226
+deny from 180.153
+deny from 182.118
+deny from 221.204
+
 deny from 69.41.161.28
+deny from 178.162.198.109 
+deny from 117.68.211.216
+
+# 72000 requests in a day:
+deny from 94.23.20.135
+# amazonbot
+deny from 54.83.173.213
 
 RedirectMatch ^/devconwest2007(.*) http://squisch.net/rockbox/dcw.html
-RedirectPermanent /patches.shtml http://www.rockbox.org/tracker/index.php?type=4
-RedirectPermanent /bugs.shtml http://www.rockbox.org/tracker/index.php?type=2
-RedirectPermanent /requests.shtml http://www.rockbox.org/tracker/index.php?type=1
-RedirectMatch ^/langs(.*) http://www.rockbox.org/wiki/LangFiles
-RedirectMatch ^/fonts(.*) http://www.rockbox.org/dl.cgi?bin=fonts
+RedirectPermanent /patches.shtml https://www.rockbox.org/tracker/index.php?type=4
+RedirectPermanent /bugs.shtml https://www.rockbox.org/tracker/index.php?type=2
+RedirectPermanent /requests.shtml https://www.rockbox.org/tracker/index.php?type=1
+RedirectMatch ^/langs(.*) https://www.rockbox.org/wiki/LangFiles
+RedirectMatch ^/fonts(.*) https://www.rockbox.org/dl.cgi?bin=fonts
 
 AddType application/octet-stream .mod .ajz .lng .fnt .voice
 AddType text/xml .rss
 AddDefaultcharset On
 
 ### FS #5617 - Redirect from static pages to wiki ###
-# Root
-#RedirectPermanent /activity.html http://www.rockbox.org/
-#RedirectPermanent /status.html http://www.rockbox.org/
-#RedirectPermanent /tools.html http://www.rockbox.org/
-#RedirectPermanent /usb-howto.html http://www.rockbox.org/
-#RedirectPermanent /lock.html http://www.rockbox.org/
 
-RedirectPermanent /bugs.html http://www.rockbox.org/tracker/index.php?type=2
-RedirectPermanent /cross-gcc.html http://www.rockbox.org/wiki/CrossCompiler
-RedirectPermanent /patches.html http://www.rockbox.org/tracker/index.php?type=4
-RedirectPermanent /requests.html http://www.rockbox.org/tracker/index.php?type=1
-RedirectPermanent /screenshots.html http://www.rockbox.org/wiki/ScreenShots
-RedirectPermanent /TODO http://www.rockbox.org/wiki/ReleaseTodo
+RedirectPermanent /bugs.html https://www.rockbox.org/tracker/index.php?type=2
+RedirectPermanent /cross-gcc.html https://www.rockbox.org/wiki/CrossCompiler
+RedirectPermanent /patches.html https://www.rockbox.org/tracker/index.php?type=4
+RedirectPermanent /requests.html https://www.rockbox.org/tracker/index.php?type=1
+RedirectPermanent /screenshots.html https://www.rockbox.org/wiki/ScreenShots
+RedirectPermanent /TODO https://www.rockbox.org/wiki/ReleaseTodo
 
 # /screenshots dir
-RedirectPermanent /screenshots/index.html http://www.rockbox.org/wiki/ScreenShots
-#RedirectPermanent /screenshots/ http://www.rockbox.org/wiki/ScreenShots
+RedirectPermanent /screenshots/index.html https://www.rockbox.org/wiki/ScreenShots
+#RedirectPermanent /screenshots/ https://www.rockbox.org/wiki/ScreenShots
 
 # /docs dir
-#RedirectPermanent /docs/mpeghdr.html http://www.rockbox.org/
-#RedirectPermanent /docs/rocklatin.html http://www.rockbox.org/
-#RedirectPermanent /docs/repairbattery.html http://www.rockbox.org/
-#RedirectPermanent /docs/repairlcd.html http://www.rockbox.org/
-#RedirectPermanent /docs/contributing.html http://www.rockbox.org/
-#RedirectPermanent /docs/license.html http://www.rockbox.org/
-RedirectPermanent /docs/rvf.html http://www.rockbox.org/wiki/VideoTutorial
-RedirectPermanent /docs/index.html http://www.rockbox.org/wiki/DocsIndex
-RedirectPermanent /docs/nodo.html http://www.rockbox.org/wiki/NoDo
-RedirectPermanent /docs/battery-faq.html http://www.rockbox.org/wiki/BatteryFAQ
-RedirectPermanent /docs/credits.html http://svn.rockbox.org/viewvc.cgi/trunk/docs/CREDITS
-RedirectPermanent /docs/cygwin_sdk.html http://www.rockbox.org/wiki/CygwinDevelopment
-RedirectPermanent /docs/custom_wps_format.html http://www.rockbox.org/wiki/CustomWPS
-RedirectPermanent /docs/datasheets.html http://www.rockbox.org/wiki/DataSheets
-RedirectPermanent /docs/devicechart.html http://www.rockbox.org/wiki/DeviceChart
-RedirectPermanent /docs/faq.html http://www.rockbox.org/wiki/GeneralFAQ
-RedirectPermanent /docs/features.html http://www.rockbox.org/wiki/FeatureComparison
-RedirectPermanent /docs/firsttime.html http://www.rockbox.org/wiki/DevelopmentGuide
-RedirectPermanent /docs/flash.html http://www.rockbox.org/wiki/FlashingRockbox
-RedirectPermanent /docs/how_to_compile.html http://www.rockbox.org/wiki/HowToCompile
-RedirectPermanent /docs/patch.html http://www.rockbox.org/wiki/WorkingWithPatches
-RedirectPermanent /docs/ports.html http://www.rockbox.org/wiki/PortPinAssignments
-RedirectPermanent /docs/rvf.html http://www.rockbox.org/wiki/VideoTutorial
-RedirectPermanent /docs/tools.html http://www.rockbox.org/wiki/UsefulTools
-#RedirectPermanent /docs/ http://www.rockbox.org/wiki/DocsIndex
+RedirectPermanent /docs/rvf.html https://www.rockbox.org/wiki/VideoTutorial
+RedirectPermanent /docs/index.html https://www.rockbox.org/wiki/DocsIndex
+RedirectPermanent /docs/nodo.html https://www.rockbox.org/wiki/NoDo
+RedirectPermanent /docs/battery-faq.html https://www.rockbox.org/wiki/BatteryFAQ
+RedirectPermanent /docs/credits.html https://git.rockbox.org/?p=rockbox.git;a=blob;f=docs/CREDITS
+RedirectPermanent /docs/cygwin_sdk.html https://www.rockbox.org/wiki/CygwinDevelopment
+RedirectPermanent /docs/custom_wps_format.html https://www.rockbox.org/wiki/CustomWPS
+RedirectPermanent /docs/datasheets.html https://www.rockbox.org/wiki/DataSheets
+RedirectPermanent /docs/devicechart.html https://www.rockbox.org/wiki/DeviceChart
+RedirectPermanent /docs/faq.html https://www.rockbox.org/wiki/GeneralFAQ
+RedirectPermanent /docs/features.html https://www.rockbox.org/wiki/FeatureComparison
+RedirectPermanent /docs/firsttime.html https://www.rockbox.org/wiki/DevelopmentGuide
+RedirectPermanent /docs/flash.html https://www.rockbox.org/wiki/FlashingRockbox
+RedirectPermanent /docs/how_to_compile.html https://www.rockbox.org/wiki/HowToCompile
+RedirectPermanent /docs/patch.html https://www.rockbox.org/wiki/WorkingWithPatches
+RedirectPermanent /docs/ports.html https://www.rockbox.org/wiki/PortPinAssignments
+RedirectPermanent /docs/rvf.html https://www.rockbox.org/wiki/VideoTutorial
+RedirectPermanent /docs/tools.html https://www.rockbox.org/wiki/UsefulTools
+#RedirectPermanent /docs/ https://www.rockbox.org/wiki/DocsIndex
 
 # /schematics dir
-RedirectPermanent /schematics/index.html http://www.rockbox.org/wiki/HardwareSchematics
-#RedirectPermanent /schematics/ http://www.rockbox.org/wiki/HardwareSchematics
+RedirectPermanent /schematics/index.html https://www.rockbox.org/wiki/HardwareSchematics
+#RedirectPermanent /schematics/ https://www.rockbox.org/wiki/HardwareSchematics
 
 # /sh-win dir
-RedirectPermanent /sh-win/index.html http://www.rockbox.org/wiki/CygwinDevelopment
-#RedirectPermanent /sh-win/ http://www.rockbox.org/wiki/CygwinDevelopment
+RedirectPermanent /sh-win/index.html https://www.rockbox.org/wiki/CygwinDevelopment
+#RedirectPermanent /sh-win/ https://www.rockbox.org/wiki/CygwinDevelopment
 
 # /mods dir
-#RedirectPermanent /mods/harddisk.html http://www.rockbox.org/
-RedirectPermanent /mods/index.html http://www.rockbox.org/wiki/DocsIndex#Hardware
-RedirectPermanent /mods/disassemble.html http://www.rockbox.org/wiki/DisassemblePlayer
-RedirectPermanent /mods/disassemble2.html http://www.rockbox.org/wiki/DisassemblePlayer2
-RedirectPermanent /mods/reassemble.html http://www.rockbox.org/wiki/ReassemblePlayer
-RedirectPermanent /mods/rs232.html http://www.rockbox.org/twiki
-#RedirectPermanent /mods/ http://www.rockbox.org/wiki/DocsIndex#Hardware
-
-RedirectMatch ^/viewcvs.cgi/(.*) http://svn.rockbox.org/viewvc.cgi/trunk/$1?view=log
-
+#RedirectPermanent /mods/harddisk.html https://www.rockbox.org/
+RedirectPermanent /mods/index.html https://www.rockbox.org/wiki/DocsIndex#Hardware
+RedirectPermanent /mods/disassemble.html https://www.rockbox.org/wiki/DisassemblePlayer
+RedirectPermanent /mods/disassemble2.html https://www.rockbox.org/wiki/DisassemblePlayer2
+RedirectPermanent /mods/reassemble.html https://www.rockbox.org/wiki/ReassemblePlayer
+RedirectPermanent /mods/rs232.html https://www.rockbox.org/twiki
+#RedirectPermanent /mods/ https://www.rockbox.org/wiki/DocsIndex#Hardware
 
 # rbutil compat links
 RedirectMatch ^/daily/build-info$ http://download.rockbox.org/daily/build-info

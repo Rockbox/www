@@ -16,7 +16,7 @@ print <<MOO
 
 <html>
 <head>
-<link rel="STYLESHEET" type="text/css" href="http://www.rockbox.org/style.css">
+<link rel="STYLESHEET" type="text/css" href="//www.rockbox.org/style.css">
 <title>Rockbox: $type $rev</title>
 <meta name="author" content="Daniel Stenberg, in perl">
 </head>

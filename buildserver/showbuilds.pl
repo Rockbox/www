@@ -92,7 +92,7 @@ foreach $t (sort {$builds{$a}{sortkey} cmp $builds{$b}{sortkey}} keys %alltypes)
         $a1 = "<a href='data/rockbox-$t.zip' >";
         $a2 = "</a>";
     }
-    print"<th>$a1<img border=0 width='16' height='130' title='$builds{$t}{name}' src=\"http://build.rockbox.org/titles/$t.png\">$a2</th>\n";
+    print"<th>$a1<img border=0 width='16' height='130' title='$builds{$t}{name}' src=\"//build.rockbox.org/titles/$t.png\">$a2</th>\n";
 }
 print "</tr>\n";
 

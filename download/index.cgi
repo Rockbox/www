@@ -1,5 +1,6 @@
 #!/usr/bin/perl
 
+use lib '.';
 require "/sites/rockbox.org/www/rockbox.pm";
 require "table.pm";
 

@@ -3,7 +3,7 @@
 require "rockbox.pm";
 
 my $basedir = "/sites/download.rockbox.org";
-my $baseurl = "http://download.rockbox.org";
+my $baseurl = "https://download.rockbox.org";
 my $docbasedir = "/sites/download.rockbox.org/manual";
 
 sub getpages {
@@ -90,7 +90,7 @@ for(reverse sort keys %date) {
             $file = "Rockbox-${d}-install.exe";
         }
         if( -f "$basedir/daily/$m/$file") {
-            printf "<a href=\"http://download.rockbox.org/daily/$dir$file\">latest</a> <small>($rev)</small><br>";
+            printf "<a href=\"https://download.rockbox.org/daily/$dir$file\">latest</a> <small>($rev)</small><br>";
         }
         print "<a href=\"/dl.cgi?bin=$m\">old</a>";
 
@@ -106,7 +106,7 @@ for(reverse sort keys %date) {
             #my $page = getpages("$docbasedir/$docfile");
 
 #            printf("<p><a href=\"http://download.rockbox.org/manual/$docfile\">manual</a><br><small>%dKB, $page pages</small>", $size/1024);
-            printf("<br><a href=\"http://download.rockbox.org/manual/$docfile\">manual</a> <small>%d kB</small>", $size/1024);
+            printf("<br><a href=\"https://download.rockbox.org/manual/$docfile\">manual</a> <small>%d kB</small>", $size/1024);
         }
 
         my $voicemod = voicename($m);

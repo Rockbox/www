@@ -93,4 +93,7 @@ deny from 203.144.143.3
 # spam harvester? syshost.biz
 deny from 69.41.161.28
 
+# amazonbot
+deny from 54.83.173.213
+
 allow from all

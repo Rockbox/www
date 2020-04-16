@@ -16,6 +16,7 @@ my $sth = $db->prepare("SELECT id,client,timeused,ultime,ulsize FROM builds WHER
 my $rows = $sth->execute($rev) + 0;
 if ($rows) {
     while (my ($id, $client, $time, $ultime, $ulsize) = $sth->fetchrow_array()) {
+        $client = lc $client;
         $clients{$client}{$id} = int($time + 0.5);
         $score{$client} += $builds{$id}{score};
         $num++;
@@ -28,7 +29,8 @@ $sth = $db->prepare("SELECT name FROM clients WHERE lastrev=?");
 $rows = $sth->execute($rev) + 0;
 if ($rows) {
     while (my ($name) = $sth->fetchrow_array()) {
-        push @clist, $name;
+        push @clist, lc $name;
+        $realname{lc $name} = $name;
     }
 }
 
@@ -65,7 +67,7 @@ for my $c (sort {$score{$b} <=> $score{$a}} @clist) {
         $roundulspeed = int($ul{$c}{ulsize} / $ul{$c}{ultime} / 1024);
     }
     $ulspeed = int($ulspeed / 1024);
-    print "<tr> <td>$c</td> <td>$sc</td> <td align=center>$speed</td> <td align=center>$roundspeed</td> <td align=center>$ulspeed</td> <td align=center>$roundulspeed</td> <td align=center>$numbuilds</td> <td align=center>$total</td> <td>$times</td> </tr>\n";
+    print "<tr> <td>$realname{$c}</td> <td>$sc</td> <td align=center>$speed</td> <td align=center>$roundspeed</td> <td align=center>$ulspeed</td> <td align=center>$roundulspeed</td> <td align=center>$numbuilds</td> <td align=center>$total</td> <td>$times</td> </tr>\n";
 }
 print "</table>\n";
 

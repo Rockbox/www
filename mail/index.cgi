@@ -94,7 +94,7 @@ intense traffic at times.
 
 <p> The list is only open for subscribers. You can not send mail to this list without being subscribed to it!
 
-<p><a href="http://cool.haxx.se/mailman/listinfo/rockbox">subscribe or unsubscribe to rockbox-users</a>
+<p><a href="//cool.haxx.se/mailman/listinfo/rockbox">subscribe or unsubscribe to rockbox-users</a>
 
 <p><b>Rockbox-users Archive</b>
 END
@@ -117,7 +117,7 @@ commit reviews, porting issues and how to write efficient code.
 <p>The list is only open for subscribers. You can not send mail to this list
 without being subscribed to it!
 
-<p><a href="http://cool.haxx.se/mailman/listinfo/rockbox-dev">subscribe or unsubscribe to rockbox-dev</a>
+<p><a href="//cool.haxx.se/mailman/listinfo/rockbox-dev">subscribe or unsubscribe to rockbox-dev</a>
 <p><b>Rockbox-dev Archive</b>
 END
 
@@ -146,7 +146,7 @@ print <<END;
 It will receive Rockbox project information on a weekly or biweekly
 basis. This list is read-only.
 
-<p><a href="http://cool.haxx.se/cgi-bin/mailman/listinfo/rockbox-news">subscribe</a>
+<p><a href="//cool.haxx.se/cgi-bin/mailman/listinfo/rockbox-news">subscribe</a>
 <p>
  <b>NOTE</b>: the previous list with this name, is no longer existing. You need to resubscribe if you want to receive these mails!
 
@@ -168,7 +168,7 @@ print <<END;
 <blockquote>
 <p>This list monitors the <a href="http://git.rockbox.org">Git</a> commits and recieves one mail for each commit.
 
-<p>To subscribe or unsubscribe: <a href="http://cool.haxx.se/mailman/listinfo/rockbox-cvs">go here</a>
+<p>To subscribe or unsubscribe: <a href="//cool.haxx.se/mailman/listinfo/rockbox-cvs">go here</a>
 </blockquote>
 <hr>
 
@@ -176,7 +176,7 @@ print <<END;
 <blockquote>
 <p>This list monitors the <a href="/tracker/">Flyspray</a> bug reports and feature requests and receives one mail for new and modified entries. It is read-only and unarchived.
 
-<p>To subscribe or unsubscribe: <a href="http://cool.haxx.se/mailman/listinfo/rockbox-sf">go here</a>
+<p>To subscribe or unsubscribe: <a href="//cool.haxx.se/mailman/listinfo/rockbox-sf">go here</a>
 
 END
 
