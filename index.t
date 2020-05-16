@@ -136,8 +136,10 @@ NWZ-E360/E370/E380 and Fuze+ to stable. Move ZEN and ZEN X-Fi2 to unstable</td><
 </td></tr>
 <tr><td colspan=2>
 
+#if 0
 <h3 class=frontpage><a href='recent.shtml#mail'>Mail</a></h3>
 <!--#include file="threads_front.html" -->
+#endif
 </td></tr>
 </table>
 
@@ -153,7 +155,7 @@ Haxx sponsors the main site, build server, svn server and various other resource
 
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 <input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="585407">
+<input type="hidden" name="hosted_button_id" value="BTE95P4QL87E4">
 <input type="image" src="//www.rockbox.org/paypal-donate.gif" border="0" name="submit" alt="">
 </form>
 <p>Many people have sponsored us with personal Paypal donations. Thank you!
