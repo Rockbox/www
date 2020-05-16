@@ -54,21 +54,22 @@ sub showarchs {
 
 }
 
-
+# XXX fixme
 sub archive {
     my ($prefix, $num)=@_;
 
-    my $some_dir="archive";
-    opendir(DIR, $some_dir) || die "can't opendir $some_dir: $!";
-    my @dirs = sort {$a cmp $b} grep { /^rockbox$prefix-archive-/ && -d "$some_dir/$_" } readdir(DIR);
-    closedir DIR;
+#    my $some_dir="archive";
+#    opendir(DIR, $some_dir) || die "can't opendir $some_dir: $!";
+#    my @dirs = sort {$a cmp $b} grep { /^rockbox$prefix-archive-/ && -d "$some_dir/$_" } readdir(DIR);
+#    closedir DIR;
 
-    &showarchs($prefix, $num, @dirs);
+#    &showarchs($prefix, $num, @dirs);
 
 }
 
 
 print <<END;
+<H1>NOTE:  Mailing list archives currently unavailable.</H1>
 
 <p>Note: <i>American ISP Verizon is blocking non-US mail!</i> You cannot sign
 up a verizon account to one of these lists, since it will just bounce and be
