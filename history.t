@@ -2,7 +2,7 @@
 #define HISTORY_PAGE
 #include "head.t"
 
-<p><i>2020-04-26</i>: Infrastructure migrated
+<p><i>2020-05-16</i>: Most infrastructure migrated to new hosts!
 
 <p><i>2012-11-27</i>: Forums software updated
 

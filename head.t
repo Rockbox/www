@@ -66,7 +66,7 @@ Documentation
 <div class="submenu">
 Support
 </div>
-<img width=16 height=16 src='//www.rockbox.org/silk_icons/comment_edit.png' align='top'> <a class="menulink" href="//forums.rockbox.org/">forums</a><br>
+<img width=16 height=16 src='//www.rockbox.org/silk_icons/comment_edit.png' align='top'> <a class="menulink" href="http://forums.rockbox.org/">forums</a><br>
 <img width=16 height=16 src='//www.rockbox.org/silk_icons/email.png' align='top'> <a class="menulink" href="//www.rockbox.org/mail/">mailing lists</a><br>
 <img width=16 height=16 src='//www.rockbox.org/silk_icons/group.png' align='top'> <a class="menulink" href="//www.rockbox.org/irc/">IRC</a>
 <div class="submenu">

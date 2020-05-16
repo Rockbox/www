@@ -101,7 +101,7 @@ and Ondio
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
-<tr><td nowrap>2020-04-26</td><td>Rockbox Infrastructure moved to new hosts!</td></tr>
+<tr><td nowrap>2020-05-16</td><td>Most rockbox infrastructure moved to new hosts!</td></tr>
 <tr><td nowrap>2019-11-15</td><td><a href="//www.rockbox.org/wiki/ReleaseNotes315">Rockbox 3.15 is released</a></td></tr>
 
 <tr><td nowrap>2019-10-28</td><td>Move iPod Classic to stable.</td></tr>
