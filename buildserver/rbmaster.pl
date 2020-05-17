@@ -593,6 +593,7 @@ sub COMPLETED {
         if (-x $rbconfig{eachcomplete}) {
             my $start = time();
             system("$rbconfig{eachcomplete} $id $cli $buildround");
+	    slog "exec: $rbconfig{eachcomplete} $id $cli $buildround ($?)";
             my $took = time() - $start;
             if ($took > 1) {
                 slog "eachcomplete took $took seconds";
@@ -835,6 +836,7 @@ sub startround {
         if (-x $rbconfig{roundstart}) {
             my $start = time();
             system("$rbconfig{roundstart} $buildround");
+	    slog "exec: $rbconfig{roundstart} $buildround ($?)";
             my $took = time() - $start;
             if ($took > 1) {
                 slog "rbconfig{roundstart} took $took seconds";
@@ -917,6 +919,7 @@ sub endround {
 
         my $start = time();
         system("$rbconfig{roundend} $buildround");
+        slog "exec: $rbconfig{roundend} $buildround ($?)";
         my $rbtook = time() - $start;
         if ($rbtook > 1) {
             slog "roundend took $rbtook seconds";
