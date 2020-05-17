@@ -11,7 +11,8 @@ my %hash = ('rockbox' => 1); # leave files called "rockbox-*" (binaries)
 
 for (@lines) {
     if (/^(\w+) /) {
-        $hash{$1} = 1;
+	$foo = substr($1, 0, 7);  # Truncate to LCD
+        $hash{$foo} = 1;
     }
 }
 
