@@ -17,6 +17,8 @@ my $rows = $sth->execute($rev) + 0;
 if ($rows) {
     while (my ($id, $client, $time, $ultime, $ulsize) = $sth->fetchrow_array()) {
         $client = lc $client;
+        next if (length($client) == 0 || $time == 0);  # Ignore builds that failed to execute.
+        $realname{lc $client} = $client;
         $clients{$client}{$id} = int($time + 0.5);
         $score{$client} += $builds{$id}{score};
         $num++;
@@ -25,13 +27,17 @@ if ($rows) {
     }
 }
 
-$sth = $db->prepare("SELECT name FROM clients WHERE lastrev=?");
-$rows = $sth->execute($rev) + 0;
-if ($rows) {
-    while (my ($name) = $sth->fetchrow_array()) {
-        push @clist, lc $name;
-        $realname{lc $name} = $name;
-    }
+#$sth = $db->prepare("SELECT name FROM clients WHERE lastrev=?");
+#$rows = $sth->execute($rev) + 0;
+#if ($rows) {
+#    while (my ($name) = $sth->fetchrow_array()) {
+#        push @clist, lc $name;
+#        $realname{lc $name} = $name;
+#    }
+#}
+
+foreach (keys(%realname)) {
+        push @clist, $_;
 }
 
 &nicehead("Build client stats, revision $rev");
@@ -87,7 +93,7 @@ if ($rows) {
     printf("<br>Effective round speed was $ourspeed points/second, making us %d%% efficient.\n",
            ($ourspeed * 100 / $totalspeed) + 0.5);
 
-#    print"<p>A detailed build chart is available on <a href=\"://build.rockbox.org/buildgraphs/graph.php?r=$rev&debug\">here</a>.\n";
+#    print"<p>A detailed build chart is available on <a href=\"//build.rockbox.org/buildgraphs/graph.php?r=$rev&debug\">here</a>.\n";
           
 }
 
