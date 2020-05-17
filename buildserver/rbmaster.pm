@@ -142,7 +142,7 @@ sub db_prepare
     $submit_new_sth = $db->prepare("INSERT INTO builds (revision,id) VALUES (?,?) ON DUPLICATE KEY UPDATE client='',timeused=0,ultime=0,ulsize=0,bogomips=0,warnings=0,errors=0,ramsize=0,binsize=0") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
 
-    $setlastrev_sth = $db->prepare("INSERT INTO clients (name, lastrev) VALUES (?,?) ON DUPLICATE KEY UPDATE lastrev=?") or
+    $setlastrev_sth = $db->prepare("INSERT INTO clients (name, lastrev) VALUES (?,?) ON DUPLICATE KEY UPDATE lastrev=?,totscore=0,builds=0,blocked=0") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
 
     $getspeed_sth = $db->prepare("SELECT id, timeused, ultime, ulsize FROM builds WHERE client=? AND errors = 0 AND warnings = 0 AND timeused > 5 ORDER BY time DESC LIMIT ?") or
