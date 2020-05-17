@@ -19,17 +19,18 @@ if (-f $zip) {
             }
             elsif(/^Version: *(\w+)/i) {
                 $rev = $1;
+		$shortrev = substr($rev, 0, 7);  # XXX this is... stupid.
             }
         }
         close(Z);
         
-        if (open(S, ">data/$rev-$build.size")) {
+        if (open(S, ">data/$shortrev-$build.size")) {
             printf S "$build: $bytes $ram\n";
             close S;
         }
 	else {
-	    print "rev $rev build $build ramsize $ram\n";
+	    print "rev $rev/$shortrev build $build ramsize $ram bytes $bytes\n";
 	}
-        $sth->execute($ram, $bytes, $rev, $build);
+        $sth->execute($ram, $bytes, $shortrev, $build);
     }
 }
