@@ -24,7 +24,8 @@ closedir DIR;
 
 for my $f (@files) {
     if ($f =~ /^(\w+)/) {
-        if (not defined $hash{$1}) {
+	$foo = substr($1, 0, 7); # Truncate to LCD..
+        if (not defined $hash{$foo}) {
             unlink $f or die "Failed to remove $f: $!";
         }
     }
