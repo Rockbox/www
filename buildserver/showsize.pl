@@ -128,7 +128,8 @@ MOO
 ;
 print "<table class=\"buildstatus\" cellspacing=\"1\" cellpadding=\"2\"><tr><th>Revision</th>\n";
 for my $t (sort {$builds{$a}{name} cmp $builds{$b}{name}} keys %title) {
-    print "<td><img width='16' height='130' alt=\"$t\" src=\"/titles/$t.png\"></td>\n";
+    print"<th><span class=\"rotate\">$t</span></th>\n";
+#    print "<th><img width='16' height='130' alt=\"$t\" src=\"/titles/$t.png\"></td>\n";
 }
 print "<th>Delta</th>\n";
 print "</tr>\n";

@@ -165,7 +165,22 @@ table.changetable_front, table.news, table.twikichanges, table.latestmail
 
 .buildstatus th
 {
- vertical-align: top;
+ vertical-align: bottom;
+ min-width: 1.25em;
+}
+
+.buildstatus th a
+{
+ text-decoration: none;
+}
+
+.rotate
+{
+ writing-mode: vertical-lr;
+ white-space: nowrap;
+ font-weight: normal;
+ text-orientation: sideways-right;
+ transform: rotate(180deg);
 }
 
 .fixed td {

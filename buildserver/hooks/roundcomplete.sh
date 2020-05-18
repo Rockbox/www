@@ -24,7 +24,7 @@ else
     perl showbuilds.pl > builds.html
     perl showbuilds.pl 1 > builds_all.html
     perl showsize.pl > sizes.html
-    perl mktitlepics.pl
+#    perl mktitlepics.pl
     perl cleanupdatadir.pl
 
     # make build-info for rbutil
