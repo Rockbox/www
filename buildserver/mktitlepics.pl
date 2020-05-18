@@ -10,6 +10,7 @@ sub getbuilds {
     open(F, "<$filename");
     while(<F>) {
         # sdl:nozip:recordersim:Recorder - Simulator:rockboxui:--target=recorder,--ram=2,--type=s
+	next if (/^#/);
         if($_ =~ /([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):(.*)/) {
             my ($arch, $zip, $id, $name, $file, $confopts) =
                 ($1, $2, $3, $4, $5, $6);
