@@ -20,6 +20,8 @@ for later reference.
 
 <h2>Logs</h2>
 
+<h3>Logs prior to 2020-May-18 are UTC-1; Logs for the 18th and newer are currently UTC+5</h3>
+
 <p><a href="log-today">Today's log</a> (live feed) <a href="current.txt">Raw text feed</a>
 
 <!--#include virtual="irclogs.pl" -->
