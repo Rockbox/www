@@ -5,25 +5,23 @@ sub buildtable {
     for my $m (sort byname keys %builds) {
         {
             next if ($builds{$m}{status} < 3);
-
+            $builds{$m}{release} = $publicrelease unless defined($builds{$m}{release});
             # the release hash and the *release variables are from builds.pm
 
-### HTTPS me
-            my $basedir="http://download.rockbox.org/release/$publicrelease";
-            my $pack="$basedir/rockbox-$m-$publicrelease.zip";
+            my $basedir="//download.rockbox.org/release/$builds{$m}{release}";
+            my $pack="$basedir/rockbox-$m-$builds{$m}{release}.zip";
             my $name= $builds{$m}{name};
             my $mans;
             if($m eq "source") {
-                $pack="$basedir/rockbox-$publicrelease.7z";
+                $pack="$basedir/rockbox-$builds{$m}{release}.7z";
             }
             elsif($m eq "fonts") {
-                $pack="$basedir/rockbox-fonts-$publicrelease.zip";
+                $pack="$basedir/rockbox-fonts-$builds{$m}{release}.zip";
             }
             else {
                 my $docs = manualname($m);
                 my $voice = voicename($m);
-# XXX HTTPS
-                $mans="<br><a href=\"http://download.rockbox.org/release/$manualrelease/rockbox-$docs-$manualrelease.pdf\">Manual</a><br><a href=\"http://download.rockbox.org/release/$voicerelease/$voice-$voicerelease-english.zip\">Voice</a>";
+                $mans="<br><a href=\"//download.rockbox.org/release/$builds{$m}{release}/rockbox-$docs-$builds{$m}{release}.pdf\">Manual</a><br><a href=\"http://download.rockbox.org/release/$builds{$m}{release}/$voice-$builds{$m}{release}-english.zip\">Voice</a>";
             }
 
             if($col++ > 6) {
