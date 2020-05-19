@@ -21,7 +21,11 @@ sub buildtable {
             else {
                 my $docs = manualname($m);
                 my $voice = voicename($m);
-                $mans="<br><a href=\"//download.rockbox.org/release/$builds{$m}{release}/rockbox-$docs-$builds{$m}{release}.pdf\">Manual</a><br><a href=\"http://download.rockbox.org/release/$builds{$m}{release}/$voice-$builds{$m}{release}-english.zip\">Voice</a>";
+		my $extra = "";
+		if ($builds{$m}{release} != $publicrelease) {
+		   $extra = "<br><a href=\"$basedir/rockbox-fonts-$builds{$m}{release}.zip\">Old Fonts</a>";
+		}
+                $mans="<br><a href=\"//$basedir/rockbox-$docs-$builds{$m}{release}.pdf\">Manual</a><br><a href=\"$basedir/$voice-$builds{$m}{release}-english.zip\">Voice</a>$extra";
             }
 
             if($col++ > 6) {
