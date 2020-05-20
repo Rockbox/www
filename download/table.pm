@@ -12,6 +12,7 @@ sub buildtable {
             my $pack="$basedir/rockbox-$m-$builds{$m}{release}.zip";
             my $name= $builds{$m}{name};
             my $mans;
+            my $obsolete = "";
             if($m eq "source") {
                 $pack="$basedir/rockbox-$builds{$m}{release}.7z";
             }
@@ -21,10 +22,11 @@ sub buildtable {
             else {
                 my $docs = manualname($m);
                 my $voice = voicename($m);
-		my $extra = "";
 		if ($builds{$m}{release} != $publicrelease) {
-		   $extra = "<br><a href=\"$basedir/rockbox-fonts-$builds{$m}{release}.zip\">Old Fonts</a>";
+                   $obsolete = "<br><br><i>Retired - v$builds{$m}{release}</i>";
 		}
+	        my $extra = "<br><a href=\"$basedir/rockbox-fonts-$builds{$m}{release}.zip\">Fonts</a>";
+	        $extra .= "<br><a href=\"$basedir/rockbox-$builds{$m}{release}.7z\">Source</a>";
                 $mans="<br><a href=\"//$basedir/rockbox-$docs-$builds{$m}{release}.pdf\">Manual</a><br><a href=\"$basedir/$voice-$builds{$m}{release}-english.zip\">Voice</a>$extra";
             }
 
@@ -32,7 +34,7 @@ sub buildtable {
                 print "</tr><tr valign=\"top\">";
                 $col=1;
             }
-            printf("<td align='center'><small><img border=\"0\" src=\"http://www.rockbox.org%s\" alt=\"$name\"><p>$name<br><a href=\"$pack\" title=\"$name\"><p>Firmware</a>$mans</small></td>\n",
+            printf("<td align='center'><small><img border=\"0\" src=\"http://www.rockbox.org%s\" alt=\"$name\"><p>$name<br><a href=\"$pack\" title=\"$name\"><p>Firmware</a>$mans</small>$obsolete</td>\n",
                    playerpic($m));
         }
     }

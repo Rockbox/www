@@ -13,9 +13,9 @@ Rockbox $publicrelease was released on ${releasedate}. See the full <a href="$re
 <p> We recommend using <a href="/twiki/bin/view/Main/RockboxUtility">Rockbox
 Utility</a> to install Rockbox, but if you insist you can do it manully.
 
-<p>Download the zip for your target below and unzip it to your device.
-<br>If this is your first install, you also want the <a href="//download.rockbox.org/release/$publicrelease/rockbox-fonts-$publicrelease.zip">Font Pack</a>.
-<br>If you want to peek under the hood, get the <a href="//download.rockbox.org/release/$publicrelease/rockbox-$publicrelease.7z">Source archive</a>.
+<p>Download the <i>Firmware</i> zip for your target below and unzip it to your device.
+<p>We also recommend grabbing the <i>Fonts</i> as well, and the <i>Voice</i> pack for english voice prompts.  Other languages can be generated via the Rockbox Utility.
+<p>If you want to peek under the hood get the <i>Source</i> archive.
 HEAD
     ;
 
