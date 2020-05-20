@@ -22,12 +22,14 @@ my $maxrounds = 20;
 
 sub getdata {
     db_connect();
+    my %found;
     my $maxrows = $maxrounds * scalar keys %builds;
     my $sth = $db->prepare("SELECT revision,id,errors,warnings,client,timeused FROM builds ORDER BY time DESC limit $maxrows") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
     my $rows = $sth->execute();
     if ($rows) {
         while (my ($rev,$id,$errors,$warnings,$client,$time) = $sth->fetchrow_array()) {
+            $found{$id}++;
             $compiles{$rev}{$id}{errors} = $errors;
             $compiles{$rev}{$id}{warnings} = $warnings;
             if ($errors>0 or $warnings>0) {
@@ -41,6 +43,9 @@ sub getdata {
                 delete $compiles{$rev};
                 last;
             }
+        }
+        foreach (keys(%found)) {
+           $alltypes{$_} = 1 if ($found{$_} != $maxrounds);
         }
     }
 
@@ -86,13 +91,19 @@ print "<th>revision</th><th>timestamp</th>";
 print "<th>score</th>";
 print "<th>btime</th>";
 foreach $t (sort {$builds{$a}{sortkey} cmp $builds{$b}{sortkey}} keys %alltypes) {
-
     my ($a1, $a2);
+    my $name;
+
     if (-f "data/rockbox-$t.zip") {
         $a1 = "<a href='data/rockbox-$t.zip' >";
         $a2 = "</a>";
     }
-    print"<th><span class=\"rotate\">$a1 $builds{$t}{name}$a2</span></th>\n";
+    if (defined($builds{$t}{name})) {
+      $name = $builds{$t}{name};
+    } else {
+      $name = "$t (retired)";
+    }
+    print"<th><span class=\"rotate\">$a1$name$a2</span></th>\n";
 #    print"<th>$a1<img border=0 width='16' height='130' title='$builds{$t}{name}' src=\"//build.rockbox.org/titles/$t.png\">$a2</th>\n";
 }
 print "</tr>\n";
