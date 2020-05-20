@@ -4,7 +4,7 @@ sub buildtable {
     print "<p><table class='rockbox' cellpadding=\"0\"><tr valign=top>\n";
     for my $m (sort byname keys %builds) {
         {
-            next if ($builds{$m}{status} < 3);
+            next if ($builds{$m}{status} < 3 && !defined($builds{$m}{release}));
             $builds{$m}{release} = $publicrelease unless defined($builds{$m}{release});
             # the release hash and the *release variables are from builds.pm
 
