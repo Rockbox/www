@@ -29,6 +29,18 @@ sub header {
     }
     close(HEAD);
 }
+sub header_b {
+    my ($t) = @_;
+#    print "Content-Type: text/html\n\n";
+    open (HEAD, "/home/rockbox/www/head.html");
+    while(<HEAD>) {
+        $_ =~ s:^<title>Rockbox<\/title>:<title>$t<\/title>:;
+        $_ =~ s:^<h1>_PAGE_<\/h1>:<h1>$t<\/h1>:;
+#        $_ =~ s:(href|src)=([\'\"])/:\1=\2//www.rockbox.org/:g;
+        print $_;
+    }
+    close(HEAD);
+}
 
 sub footer {
     open (FOOT, "/home/rockbox/www/foot.html");

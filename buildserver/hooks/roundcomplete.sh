@@ -21,6 +21,7 @@ else
     perl showbuilds.pl > builds.html
     perl showbuilds.pl 1 > builds_all.html
     perl showsize.pl > sizes.html
+    perl devbuilds.pl > devbuilds.html
 #    perl mktitlepics.pl
     perl cleanupdatadir.pl
 
