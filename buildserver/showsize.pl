@@ -1,122 +1,101 @@
 #!/usr/bin/perl
 require "./rbmaster.pm";
 
-my $dir="data";
+$ENV{'TZ'} = "UTC";
 
-opendir(DIR, $dir) || die "can't opendir $dir: $!";
-my @logs = grep { /.sizes$/ && -f "$dir/$_" } readdir(DIR);
-closedir DIR;
+my $rounds = 20;
+my @revisions;
+my %targets;
+my %compiles;
+my %lines;
+my %deltas;
 
-for my $f (@logs) {
-    my $time = (stat("$dir/$f"))[9];
-    $logtime{$f} = $time;
+sub getdata {
+    db_connect();
+    my %revs;    
+    my $maxrows = ($rounds + 1) * (scalar keys %builds);
+    my $sth = $db->prepare("SELECT time,revision,id,ramsize,binsize FROM builds WHERE ulsize != 0 ORDER BY time DESC, id ASC limit $maxrows") or
+        warn "DBI: Can't prepare statement: ". $db->errstr;
+    my $rows = $sth->execute();
+    if ($rows) {
+        while (my ($time,$rev,$id,$ramsize,$binsize) = $sth->fetchrow_array()) {
+	    $revs{$rev} = $time;
+	    $targets{$id} = 1;
+            $compiles{$rev}{$id}{ram} = $ramsize;
+            $compiles{$rev}{$id}{bin} = $binsize;
+	}
+    }
+    for my $r (sort {$revs{$a} cmp $revs{$b}} keys %revs) {
+	unshift(@revisions, $r);
+    }
 }
 
-my %title;
-my $rounds;
-my %lines;
-
-my %this;
-my %delta;
+# binsize ramsize per file.
 
 getbuilds();
+getdata();
 
-sub singlefile {
-    my($file)=@_;
-    my @o;
-    my %single;
-    my $totaldelta=0;
-    my $models=0;
+# Churn on data to build the table.
+for (my $i = 0; $i < $rounds ; $i++) {
+    my $totdelta = 0;
+    my $builds = 0;
+    my $rev = $revisions[$i];
+    
+    foreach my $id (sort(keys(%targets))) {
+	my $lastrev = 0;
+	if (!defined($compiles{$rev}{$id})) {
+	    # Build did not complete
+	    $compiles{$rev}{$id}{text} = '<td title="Build did not complete">n/a</td>';
+	    next;
+	}
+	for (my $j = $i+1 ; $j < ($rounds+1) ; $j++) {
+	    $lastrev = $revisions[$j];
+	    last if (defined($compiles{$lastrev}{$id}));
+	}
+	if ($lastrev eq 0) {
+	    # No successful previous build to reference
+	    $compiles{$rev}{$id}{text} = "<td class=\"$cl\" title=\"Bin: $compiles{$rev}{$id}{bin} Ram: $compiles{$rev}{$id}{ram}\"> ? </td>";	    
+	    next;
+	}
+	if ($compiles{$rev}{$id}{ram} == 0 || $compiles{$rev}{$id}{bin} == 0) {
+	    # Current build does not have numbers;
+	    $compiles{$rev}{$id}{text} = '<td title="Build does not have sizs stored"> - </td>';
+	    next;
+	}
+	if ($compiles{$lastrev}{$id}{bin} == 0 || $compiles{$lastrev}{$id}{ram} == 0) {
+	    # Last build does not have numbers;
+	    $compiles{$rev}{$id}{text} = "<td class=\"$cl\" title=\"Bin: $compiles{$rev}{$id}{bin} Ram: $compiles{$rev}{$id}{ram}\"> ? </td>";	    	    
+	    next;
+	}
+	
+	# Work out size deltas.
+	my $ramdelta = $compiles{$rev}{$id}{ram} - $compiles{$lastrev}{$id}{ram};
+	my $bindelta = $compiles{$rev}{$id}{bin} - $compiles{$lastrev}{$id}{bin};
 
-    open(F, "<$file");
-    while(<F>) {
-	if(/^([^ :]*) *: *(\d+) *(\d*)/) {
-	    my ($name, $size, $ram)=($1, $2, $3);
-	    $title{$name} += $size;
-	    my $delta = 0;
-            my $ramdelta = 0;
-            my $t;
-            $ram += 0;
-            my $title;
+	my $cl = "";
+	if ($ramdelta > 16) {
+	    $cl = "buildfail";
+	} elsif ($ramdelta < -16) {
+	    $cl = "buildok";
+	}
+	$compiles{$rev}{$id}{text} = "<td class=\"$cl\" title=\"Bin: $bindelta/$compiles{$rev}{$id}{bin} Ram: $ramdelta/$compiles{$rev}{$id}{ram}\">$ramdelta</td>";
 
-	    if($thisram{$name} && $ram) {
-		$ramdelta = $ram - $thisram{$name};
-		my $cl="";
-		if($ramdelta > 16) {
-		    $cl = "buildfail";
-		}
-		elsif($ramdelta < -16) {
-		    $cl="buildok";
-		} 
-		$t = "<td class=\"$cl\">$ramdelta</td>";
-	    }
-	    else {
-		$t = "<td>-</td>";
-	    }
-
-            $title="\nRAM: $ramdelta/$ram bytes";
-            $singleram{$1}=$t;
-
-            my $t2;
-
-	    if($this{$name} && $size) {
-		$delta = $size - $this{$name};
-            }
-
-            my $delta2 = ($delta + $ramdelta)/2;
-
-            my $cl="";
-            if($delta2 > 16) {
-                $cl = "buildfail";
-            }
-            elsif($delta2 < -16) {
-                $cl="buildok";
-            }
-
-            $t2 ="<td class=\"$cl\" title=\"Bin: $delta/$size bytes $title\">${delta2}</td>";
-
-            $single{$1} = $t2;
-	    $totaldelta += $delta2;
-	    if($size) {
-		$this{$name}=$size;
-	    }
-	    if($ram) {
-		$thisram{$name}=$ram;
-	    }
-
-	    $models++;
-	} 
-    }
-    close(F);
-
-    for my $t (sort {$builds{$a}{name} cmp $builds{$b}{name}} keys %title) {
-        my $tx = $single{$t};
-        if(!$tx) {
-            $tx="<td>n/a</td>";
-        }
-	$lines{$file} .= $tx;
+	$totdelta += $ramdelta;
+	$builds++;
     }
     
-    my $cl="";
-    if($models > 0) {
-	$totaldelta = sprintf("%d", $totaldelta/$models);
+    my $cl = "";    
+    if ($builds > 0) {
+	$deltas{$rev} = int($totdelta / $builds + 0.5);
+	if ($deltas{$rev} > 16) {
+	    $cl = "buildfail";
+	} elsif ($deltas{$rev} < -16) {
+	    $cl="buildok";
+	}
+    } else {
+	$deltas{$rev} = 0;
     }
-    if($totaldelta > 16) {
-	$cl = "buildfail";
-    }
-    elsif($totaldelta < -16) {
-	$cl="buildok";
-    } 
-    $lines{$file} .= "<td class=\"$cl\">$totaldelta</td>";
-
-}
-
-
-foreach my $l (sort { $logtime{$a} <=> $logtime{$b} } @logs) {
-    if( -s "$dir/$l") {
-	singlefile("$dir/$l");
-	$rounds++;
-    }
+    $deltas{$rev} = "<td class=\"$cl\">$deltas{$rev}</td>"
 }
 
 print <<MOO
@@ -126,30 +105,27 @@ print <<MOO
 
 MOO
 ;
-print "<table class=\"buildstatus\" cellspacing=\"1\" cellpadding=\"2\"><tr><th>Revision</th>\n";
-for my $t (sort {$builds{$a}{name} cmp $builds{$b}{name}} keys %title) {
+print "<table class=\"buildstatus\" cellspacing=\"1\" cellpadding=\"2\">\n";
+print "<tr><th>Revision</th>\n";
+foreach my $t (sort(keys(%targets))) {
     print"<th><span class=\"rotate\">$t</span></th>\n";
 #    print "<th><img width='16' height='130' alt=\"$t\" src=\"/titles/$t.png\"></td>\n";
 }
 print "<th>Delta</th>\n";
 print "</tr>\n";
 
-my $c;
-foreach my $l (sort { $logtime{$b} <=> $logtime{$a} } @logs) {
-    if($lines{"$dir/$l"}) {
-        $l =~ /^(\w+).sizes$/;
-        my $rev = $1;
-        $b = "<a class=\"bstamp\" href=\"//git.rockbox.org/?p=rockbox.git;a=commit;h=$rev\">$rev</a>";
+for (my $i = 0; $i < $rounds ; $i++) {
+    my $rev = $revisions[$i];
+    print "<tr>\n";
+    print "<td nowrap><a class=\"bstamp\" href=\"//git.rockbox.org/?p=rockbox.git;a=commit;h=$rev\">$rev</a></td>\n";
 
-	print "<tr><td nowrap>$b</td>";
-	print $lines{"$dir/$l"}."\n";
-	print "<td><a href=\"/data/$l\">log</a></td>";
-	print "</tr>\n";
-
-	if($c++ > 18) {
-	    last;
-	}
+    foreach my $id (sort(keys(%targets))) {
+	print "$compiles{$rev}{$id}{text}\n";
     }
+
+    print "$deltas{$rev}\n";
+    print "</tr>\n";
 }
+
 print "</table>";
 
