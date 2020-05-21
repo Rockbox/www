@@ -63,7 +63,7 @@ $color3 = 0xf5;
 
 
 print "<tr>";
-for(('Date', 'Package', 'Maps', 'Changes', 'Voice', 'Rev')) {
+for(('Date', 'Package', 'Maps', 'Sources', 'Changes', 'Voice', 'Rev')) {
     print "<th>$_</th>";
 }
 print "</tr>";
@@ -95,7 +95,7 @@ for(reverse sort keys %date) {
         elsif($bin eq "source") {
             if (-f "$basedir/daily/source/rockbox-source-$d.tar.xz") {
                 $size = (stat("$basedir/daily/source/rockbox-$d.tar.xz"))[7];
-                print "<td><a href=\"daily/source/rockbox-$d.tar.xz\">tar.xz source</a></td>";
+                print "<td><a href=\"$baseurl/daily/source/rockbox-source-$d.tar.xz\">tar.xz source</a></td>";
             }
         }
         else {
@@ -119,6 +119,12 @@ for(reverse sort keys %date) {
             $map = sprintf "<a href=\"//www.rockbox.org/maps/$bin/maps-rockbox-${m}-${d}.zip\" title=\"map file for $desc built $nice\">maps</a>",
         }
         print "<td>$map</td>";
+
+            if (-f "$basedir/daily/source/rockbox-source-$d.tar.xz") {
+                $size = (stat("$basedir/daily/source/rockbox-$d.tar.xz"))[7];
+                print "<td><a href=\"$baseurl/daily/source/rockbox-source-$d.tar.xz\">source</a></td>";
+            }
+
 
         if ( -f "$basedir/daily/changelogs/changes-$d.html") {
             print "<td><a href=\"$baseurl/daily/changelogs/changes-$d.html\" title=\"changelog for Rockbox $nice\">changelog</a></td>";
