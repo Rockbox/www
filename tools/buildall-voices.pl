@@ -46,7 +46,7 @@ sub runone {
     my $o="build-$dir/english.voice";
     if (-f $o) {
         my $newo="output/$dir-$date-english.zip";
-        system("cp $o output/$dir-$date-english.voice");
+#        system("cp $o output/$dir-$date-english.voice");
         system("mkdir -p .rockbox/langs");
         system("cp $o .rockbox/langs");
         system("zip -q -r $newo .rockbox");
