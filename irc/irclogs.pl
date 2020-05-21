@@ -2,12 +2,20 @@
 
 require "../date.pm";
 
-my $logdir = "/home/rockbox/download/irc-logs";
+my $logdir = "/home/rockbox/download/irc-logs/";
 
-opendir(DIR, $logdir) or
-    die "Can't opendir()";
-@logs = grep { /^rockbox-/ } readdir(DIR);
-closedir DIR;
+open FLIST, "-|", "find $logdir -name 'rockbox*.txt'" or
+  die "Can't execute find: $!";
+
+my @logs;
+
+while (<FLIST>) {
+  chomp;
+  s/$logdir(.*)/$1/;
+  push @logs, $_;
+}
+
+close DIR;
 
 print "Content-type: text/html\n\n";
 print "<table class=archive>\n";

@@ -22,6 +22,7 @@ use POSIX 'strftime', 'mktime';
 my $logdir = "/home/rockbox/download/irc-logs";
 my $today = strftime "%Y%m%d", localtime;
 my $date = param('date') + 0;
+my $year = 0;
 
 if ($date == 0) {
     print "Location: http://www.rockbox.org/irc/log-$today\n\n";
@@ -45,6 +46,7 @@ if (open NICKS, "<committers.txt") {
 
 if ($date =~ /(\d\d\d\d)(\d\d)(\d\d)/) {
     $title = "#rockbox $1-$2-$3";
+    $year = $1;
 }
 
 my $push = 0;
@@ -81,12 +83,16 @@ if ($file =~ /[^\w\d\.\-]/) {
     goto foot;
 }
 
-if ($file ne "current.txt") {
-  $file = "$logdir/$file";
+my $realfile;
+
+if ($file eq "current.txt") {
+    $realfile = $file;
+} else {
+    $realfile = "$logdir/$year/$file";
 }
 
-if (!open FILE, "<$file") {
-    print "<p>$file: $!\n";
+if (!open FILE, "<$realfile") {
+    print "<p>$realfile: $!  ...\n";
     goto foot;
 }
 my @lines = <FILE>;
@@ -182,7 +188,7 @@ Seconds:
 <a href="javascript:joins(1);">Show</a>
 <a href="javascript:joins(0);">Hide</a>
 
-| <a href="logs/$file">View raw</a>
+| <a href="//download.rockbox.org/irc-logs/$year/$file">View raw</a>
 
 <br>Font:
 <a href="javascript:font('serif');"><span style='font-family: serif'>Serif</span></a>

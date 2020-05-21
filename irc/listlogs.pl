@@ -1,9 +1,19 @@
 #!/usr/bin/perl
 
-opendir DIR, "logs" or
-    die "Can't opendir(): $!";
-my @logs = grep { /^rockbox-/ } readdir(DIR);
-closedir DIR;
+my $base = "logs/";
+
+open FLIST, "-|", "find $base -name 'rockbox*.txt'" or
+  die "Can't execute find: $!";
+
+my @logs;
+
+while (<FLIST>) {
+  chomp;
+  s/$base(.*)/$1/;
+  push @logs, $_;
+}
+
+close DIR;
 
 print "Content-type: text/html\n\n<html><body>\n";
 
