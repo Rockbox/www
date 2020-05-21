@@ -16,9 +16,6 @@ if [ $rcbuild -eq 1 ]; then
     rm rcbuild.hash
 else
 
-    # talk to rasher before removing this
-    cat data/$rev*.size > data/$rev.sizes
-
     perl clientstats.pl $rev > data/$rev-clients.html
 
     perl showbuilds.pl > builds.html

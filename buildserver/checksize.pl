@@ -24,13 +24,8 @@ if (-f $zip) {
         }
         close(Z);
         
-        if (open(S, ">data/$shortrev-$build.size")) {
-            printf S "$build: $bytes $ram\n";
-            close S;
-        }
-	else {
-	    print "rev $rev/$shortrev build $build ramsize $ram bytes $bytes\n";
-	}
+        print "rev $rev/$shortrev build $build ramsize $ram bytes $bytes\n";
+
         $sth->execute($ram, $bytes, $shortrev, $build);
     }
 }
