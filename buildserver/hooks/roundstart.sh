@@ -18,3 +18,5 @@ if [ -e rcbuild.hash ]; then
 fi
 #rm -f data/rockbox-*.zip
 #rm -f data/rockbox.7z
+
+(cd ../../rockbox_git_clone && git pull -q --stat )
