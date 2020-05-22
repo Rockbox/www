@@ -129,19 +129,24 @@ for my $file (readdir DIR) {
 closedir DIR;
 
 # irc
-my $ircdir = "/home/rockbox/logbot/log";
+my $ircdir = "/home/rockbox/download/irc-logs/";
 my $irc;
-opendir(DIR, $ircdir) or die "Failed opening irc dir: $!\n";
-for my $file (readdir DIR) {
-    if ($file =~ /^rockbox-(.+?).txt/) {
-        my $date = $1;
-        my $modtime = (stat("$ircdir/$file"))[9];
-        my $timestring = strftime("%FT%T+01:00", localtime($modtime));
-        $irc .= "<url href='https://www.rockbox.org/irc/log-$date' lastmod='$timestring' changefreq='never' priority='0.2' />\n";
+
+open FLIST, "-|", "find $ircdir -name 'rockbox*.txt'" or
+  die "Can't execute find: $!";
+
+while (<FLIST>) {
+  chomp;
+  s/$ircdir(.*)/$1/;
+  if (/rockbox-(.+?).txt/) {
+      my $date = $1;
+      my $modtime = (stat("$ircdir/$_"))[9];
+      my $timestring = strftime("%FT%T+01:00", localtime($modtime));
+      $irc .= "<url href='https://www.rockbox.org/irc/log-$date' lastmod='$timestring' changefreq='never' priority='0.2' />\n";
     }
 }
-closedir DIR;
 
+close DIR;
 
 # output config file
 open CONFIG, ">sitemap_config.xml" or die "Failed creating sitemap_config.xml: $!";
