@@ -5,9 +5,9 @@
 
 <script type="text/javascript">
   var GOOG_FIXURL_LANG = 'en';
-  var GOOG_FIXURL_SITE = 'http://www.rockbox.org/';
+  var GOOG_FIXURL_SITE = 'https://www.rockbox.org/';
 </script>
-<script type="text/javascript" 
+<script type="text/javascript"
     src="http://linkhelp.clients.google.com/tbproxy/lh/wm/fixurl.js"></script>
 
 #include "foot.t"

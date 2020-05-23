@@ -50,5 +50,3 @@ roundstart: hooks/roundstart.sh
 # roundend - runs at the end of a build round
 # parameters: $revision
 roundend: hooks/roundcomplete.sh
-
-

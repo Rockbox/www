@@ -56,7 +56,7 @@ Downloads
 <img width=16 height=16 src='//www.rockbox.org/silk_icons/package.png' align='top'> <a class="menulink" href="//www.rockbox.org/download/">release</a><br>
 <img width=16 height=16 src='//www.rockbox.org/silk_icons/bomb.png' align='top'> <a class="menulink" href="//build.rockbox.org">dev builds</a><br>
 <img width=16 height=16 src='//www.rockbox.org/silk_icons/style.png' align='top'> <a class="menulink" href="//www.rockbox.org/wiki/RockboxExtras">extras</a><br>
-<img width=16 height=16 src='//www.rockbox.org/silk_icons/palette.png' align='top'> <a class="menulink" href="http://themes.rockbox.org/">themes</a>
+<img width=16 height=16 src='//www.rockbox.org/silk_icons/palette.png' align='top'> <a class="menulink" href="//themes.rockbox.org/">themes</a>
 <div class="submenu">
 Documentation
 </div>
@@ -66,7 +66,7 @@ Documentation
 <div class="submenu">
 Support
 </div>
-<img width=16 height=16 src='//www.rockbox.org/silk_icons/comment_edit.png' align='top'> <a class="menulink" href="http://forums.rockbox.org/">forums</a><br>
+<img width=16 height=16 src='//www.rockbox.org/silk_icons/comment_edit.png' align='top'> <a class="menulink" href="//forums.rockbox.org/">forums</a><br>
 <img width=16 height=16 src='//www.rockbox.org/silk_icons/email.png' align='top'> <a class="menulink" href="//www.rockbox.org/mail/">mailing lists</a><br>
 <img width=16 height=16 src='//www.rockbox.org/silk_icons/group.png' align='top'> <a class="menulink" href="//www.rockbox.org/irc/">IRC</a>
 <div class="submenu">

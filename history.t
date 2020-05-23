@@ -2,6 +2,8 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<p><i>2020-05-23</i>: https enabled on all www sites!
+
 <p><i>2020-05-16</i>: Most infrastructure migrated to new hosts!
 
 <p><i>2012-11-27</i>: Forums software updated
@@ -41,7 +43,7 @@
 
 <p><i>2009-06-19</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes33">Rockbox 3.3 is released</a>
 
-<p><i>2009-03-24</i>: <a href="http://themes.rockbox.org/">themes.rockbox.org</a> is available
+<p><i>2009-03-24</i>: <a href="//themes.rockbox.org/">themes.rockbox.org</a> is available
 
 <p><i>2009-03-23</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes32">Rockbox 3.2 is released</a>
 

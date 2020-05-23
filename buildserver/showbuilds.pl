@@ -153,7 +153,6 @@ for my $rev (sort {$round{$b}{time} <=> $round{$a}{time}} keys %compiles) {
 
     print "<tr align=center>\n";
 
-# https me
     my $chlink = "<a class=\"bstamp\" href=\"//git.rockbox.org/?p=rockbox.git;a=commit;h=$rev\">$rev</a>";
 
     my $score=0;
