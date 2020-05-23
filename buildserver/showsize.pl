@@ -79,8 +79,17 @@ for (my $i = 0; $i < $rounds ; $i++) {
 	    $cl = "buildok";
 	}
 	$compiles{$rev}{$id}{text} = "<td class=\"$cl\" title=\"Bin: $bindelta/$compiles{$rev}{$id}{bin} Ram: $ramdelta/$compiles{$rev}{$id}{ram}\">$ramdelta</td>";
+#	$totdelta += $ramdelta;
 
-	$totdelta += $ramdelta;
+	$cl = "";
+	if ($bindelta > 16) {
+	    $cl = "buildfail";
+	} elsif ($bindelta < -16) {
+	    $cl = "buildok";
+	}
+	$compiles{$rev}{$id}{text} = "<td class=\"$cl\" title=\"Bin: $bindelta/$compiles{$rev}{$id}{bin} Ram: $ramdelta/$compiles{$rev}{$id}{ram}\">$bindelta</td>";
+	$totdelta += $bindelta;
+
 	$builds++;
     }
     
