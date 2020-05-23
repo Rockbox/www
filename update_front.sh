@@ -11,7 +11,7 @@ LAST_RELEASE="v3.15-final"
 perl recentwiki.pl 5 > recentwiki_front.html
 perl recentwiki.pl 20 > recentwiki.html
 
-GITLOG="git log --name-status --abbrev-commit --date=iso --encoding=iso-8859-1"
+GITLOG="git log --name-status --abbrev-commit --date=iso --encoding=utf8 --pretty=fuller"
 
 # recent commits
 # ( cd $GITDIR && git pull -q )  # Now handled by cron

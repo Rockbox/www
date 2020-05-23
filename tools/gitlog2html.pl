@@ -129,7 +129,7 @@ while(<STDIN>) {
     {
         $who = $1;
     }
-    elsif (/^Date: (.+)/) 
+    elsif (/^CommitDate: (.+)/)
     {
         my $date = $1;
         if($date =~ /(\d\d\d\d)-(\d\d)-(\d\d)/) {
