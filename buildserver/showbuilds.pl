@@ -32,7 +32,7 @@ sub getdata {
             $found{$id}++;
             $compiles{$rev}{$id}{errors} = $errors;
             $compiles{$rev}{$id}{warnings} = $warnings;
-            if ($errors>0 or $warnings>0) {
+            if (($errors>0 or $warnings>0) && defined($builds{$id}{name})) {
                 $alltypes{$id} = 1;
             }
             $compiles{$rev}{$id}{client} = $client;
@@ -45,7 +45,7 @@ sub getdata {
             }
         }
         foreach (keys(%found)) {
-           $alltypes{$_} = 1 if ($found{$_} != $maxrounds);
+           $alltypes{$_} = 1 if ($found{$_} != $maxrounds && defined($builds{$_}{name}));
         }
     }
 
