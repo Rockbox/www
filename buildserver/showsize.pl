@@ -79,6 +79,9 @@ for (my $i = 0; $i < $rounds ; $i++) {
 	    $cl = "buildok";
 	}
 	$compiles{$rev}{$id}{text} = "<td class=\"$cl\" title=\"Bin: $bindelta/$compiles{$rev}{$id}{bin} Ram: $ramdelta/$compiles{$rev}{$id}{ram}\">$ramdelta</td>";
+#	if ($ramdelta) {
+#            $builds++;
+#        }
 #	$totdelta += $ramdelta;
 
 	$cl = "";
@@ -90,7 +93,9 @@ for (my $i = 0; $i < $rounds ; $i++) {
 	$compiles{$rev}{$id}{text} = "<td class=\"$cl\" title=\"Bin: $bindelta/$compiles{$rev}{$id}{bin} Ram: $ramdelta/$compiles{$rev}{$id}{ram}\">$bindelta</td>";
 	$totdelta += $bindelta;
 
-	$builds++;
+	if ($bindelta) {
+            $builds++;
+        }
     }
     
     my $cl = "";    
@@ -120,7 +125,7 @@ foreach my $t (sort(keys(%targets))) {
     print"<th><span class=\"rotate\">$t</span></th>\n";
 #    print "<th><img width='16' height='130' alt=\"$t\" src=\"/titles/$t.png\"></td>\n";
 }
-print "<th>Delta</th>\n";
+print "<th>Avg Change Delta</th>\n";
 print "</tr>\n";
 
 for (my $i = 0; $i < $rounds ; $i++) {
