@@ -25,8 +25,27 @@ sub getdata {
             $compiles{$rev}{$id}{bin} = $binsize;
 	}
     }
-    for my $r (sort {$revs{$a} cmp $revs{$b}} keys %revs) {
-	unshift(@revisions, $r);
+
+#    for my $r (sort {$revs{$a} cmp $revs{$b}} keys %revs) {
+#	unshift(@revisions, $r);
+#    }
+
+    $csth = $db->prepare("SELECT revision,clients,took,UNIX_TIMESTAMP(time) FROM rounds ORDER BY time DESC limit $rounds");
+    my $rows = $csth->execute();
+    if ($rows) {
+        while (my ($rev, $clients,$took,$time) = $csth->fetchrow_array()) {
+	    push(@revisions, $rev);
+            $round{$rev}{clients} = $clients;
+            $round{$rev}{took} = $took;
+            $round{$rev}{time} = $time;
+
+            #If a round completely failed, compensate!
+            if (!defined($compiles{$rev})) {
+                foreach my $id (keys(%found)) {
+                   $compiles{$rev}{$id} = {};
+                }
+            }
+        }
     }
 }
 

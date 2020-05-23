@@ -56,6 +56,13 @@ sub getdata {
             $round{$rev}{clients} = $clients;
             $round{$rev}{took} = $took;
             $round{$rev}{time} = $time;
+
+            #If a round completely failed, compensate!
+	    if (!defined($compiles{$rev})) {
+		foreach my $id (keys(%found)) {
+		   $compiles{$rev}{$id} = {};
+                }
+            }
         }
     }
 }
@@ -144,7 +151,7 @@ if($buildrev) {
 #################
 
 my $count=0;
-for my $rev (sort {$round{$b}{time} <=> $round{$a}{time}} keys %compiles) {
+for my $rev (sort {$round{$b}{time} <=> $round{$a}{time}} keys %round) {
     my @types = keys %{$compiles{$rev}};
 
     #my $time = (stat("data/$rev-clients.html"))[9];
