@@ -1,6 +1,10 @@
 #!/usr/bin/perl
+use Cwd;
 
 require "./rockbox.pm";
+
+my $basedir = "/home/rockbox/rockbox_git_clone";
+my $cwd = getcwd();
 
 my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) =
  localtime(time);
@@ -34,19 +38,19 @@ sub runone {
 
     my $now = time;
 
-    mkdir "build-$dir";
-    chdir "build-$dir";
+    mkdir "$basedir/build-$dir";
+    chdir "$basedir/build-$dir";
     if (open(NOBACKUP, ">.nobackup")) {
         close NOBACKUP;
     }
-    print "Build in build-$dir\n" if($verbose);
+    print "Build in $basedir/build-$dir\n" if($verbose);
 
     # build the manual(s)
     $a = buildit($dir);
 
-    chdir "..";
+    chdir $cwd;
 
-    my $o="build-$dir/manual/rockbox-build.pdf";
+    my $o="$basedir/build-$dir/manual/rockbox-build.pdf";
     if (-f $o) {
         my $newo="output/rockbox-$dir-$date.pdf";
         system("cp $o output/rockbox-$dir.pdf");
@@ -58,7 +62,7 @@ sub runone {
         print "*** error: no pdf file $o\n" if($verbose);
     }
 
-    $o="build-$dir/rockbox-manual.zip";
+    $o="$basedir/build-$dir/rockbox-manual.zip";
     if (-f $o) {
         my $newo="output/rockbox-$dir-$date-html.zip";
         system("cp $o output/rockbox-$dir-html.zip");
@@ -69,7 +73,7 @@ sub runone {
         print "*** error: no zip file $o\n" if($verbose);
     }
 
-    $o="build-$dir/html";
+    $o="$basedir/build-$dir/html";
     if (-d $o) {
         my $newo="output/rockbox-$dir";
         system("rm -rf $newo");
@@ -80,8 +84,8 @@ sub runone {
         print "*** error: no html dir $o\n" if($verbose);
     }
 
-    print "remove all contents in build-$dir\n" if($verbose);
-    system("rm -rf build-$dir");
+    print "remove all contents in $basedir/build-$dir\n" if($verbose);
+    system("rm -rf $basedir/build-$dir");
 
     return $a;
 };
@@ -91,7 +95,7 @@ sub buildit {
 
     `rm -rf * >/dev/null 2>&1`;
 
-    my $c = "../tools/configure --target=$target --type=m --ram=-1";
+    my $c = "$basedir/tools/configure --target=$target --type=m --ram=-1";
 
     print "C: $c\n" if($verbose);
     system($c);
@@ -104,7 +108,7 @@ sub buildit {
 }
 
 # run make in tools first to make sure they're up-to-date
-`(cd tools && make ) >/dev/null 2>&1`;
+`(cd $basedir/tools && make ) >/dev/null 2>&1`;
 
 for my $build (&usablebuilds) {
     my $name = manualname($build);
