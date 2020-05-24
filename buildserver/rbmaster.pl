@@ -40,9 +40,8 @@ my %conn;
 # this is $rev while we're in a build round, 0 otherwise
 my $buildround;
 
-# revision to build after the current buildround.
-# if several build requests are recieved during a round, we only keep the last
-my $nextround;
+# revisions to build after the current buildround.
+my @nextrounds;
 
 #
 # {$fileno}{'cmd'} for building incoming commands
@@ -949,9 +948,8 @@ sub endround {
         $client{$cl}{ulspeed} = $ulspeed; 
     }
 
-    if ($nextround) {
+    if (my $nextround = shift(@nextrounds)) {
         &startround($nextround);
-        $nextround = 0;
     }
 }
 
@@ -1520,9 +1518,8 @@ sub control {
     if($cmd =~ /^BUILD (\w+)/) {
         if(!$buildround) {
             &startround($1);
-        }
-        else {
-            $nextround = $1;
+        } else {
+            push(@nextrounds, $1);
         }
     }
     elsif ($cmd =~ /^UPDATE (.*?) (\d+)/) {
