@@ -322,17 +322,18 @@ sub parsechunk {
             }
 
             # tag flyspray
-            $message =~ s!FS *\#(\d+)!<a target="_blank" href=\"http://www.rockbox.org/tracker/task/$1\">FS \#$1</a>!g;
-            $message =~ s!fs*\#(\d+)!<a target="_blank" href=\"http://www.rockbox.org/tracker/task/$1\">fs\#$1</a>!g;
+            $message =~ s!FS *\#(\d+)!<a target="_blank" href=\"https://www.rockbox.org/tracker/task/$1\">FS \#$1</a>!g;
+            $message =~ s!fs*\#(\d+)!<a target="_blank" href=\"https://www.rockbox.org/tracker/task/$1\">fs\#$1</a>!g;
 
             # tag svn revisions
-            $message =~ s!(\b\s)r(\d+)(\b)!$1<a target="_blank" href=\"http://svn.rockbox.org/viewvc.cgi?view=rev&revision=$2\">r$2</a>$3!g;
+#            $message =~ s!(\b\s)r(\d+)(\b)!$1<a target="_blank" href=\"http://svn.rockbox.org/viewvc.cgi?view=rev&revision=$2\">r$2</a>$3!g;
 
             # tag git revisions (WIP)
-            $message =~ s!Revision (\w+)(\b)!<a target="_blank" href=\"https://git.rockbox.org/?p=rockbox.git;a=commit;h=$1\">Revision $1</a>$3!g;
+#            $message =~ s!Revision (\w+)(\b)!<a target="_blank" href=\"https://git.rockbox.org/?p=rockbox.git;a=commit;h=$1\">Revision $1</a>$3!g;
+            $message =~ s!Revision (\w+)(\b)!<a target="_blank" href=\"https://git.rockbox.org/cgit/rockbox.git/commit/?id=$1\">Revision $1</a>$3!g;
 
             # tag gerrit ids
-            $message =~ s!\s+g\#(\d+)!<a target="_blank" href=\"http://gerrit.rockbox.org/r/$1\">g\#$1</a>!g;
+            $message =~ s!\s+g\#(\d+)!<a target="_blank" href=\"https://gerrit.rockbox.org/r/$1\">g\#$1</a>!g;
 
             # escape text that looks like the multipart delimiter
             $message =~ s!--!&minus;&minus;!g;
