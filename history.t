@@ -2,6 +2,8 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<p><i>2020-05-27</i>: gerrit and git moved to new hosts.  Github integration fixed, and https enabled for gerrit.
+
 <p><i>2020-05-23</i>: https enabled on all www sites!
 
 <p><i>2020-05-16</i>: Most infrastructure migrated to new hosts!
