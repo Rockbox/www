@@ -54,33 +54,20 @@ sub showarchs {
 
 }
 
-# XXX fixme
 sub archive {
     my ($prefix, $num)=@_;
 
-#    my $some_dir="archive";
-#    opendir(DIR, $some_dir) || die "can't opendir $some_dir: $!";
-#    my @dirs = sort {$a cmp $b} grep { /^rockbox$prefix-archive-/ && -d "$some_dir/$_" } readdir(DIR);
-#    closedir DIR;
+    my $some_dir="archive";
+    opendir(DIR, $some_dir) || die "can't opendir $some_dir: $!";
+    my @dirs = sort {$a cmp $b} grep { /^rockbox$prefix-archive-/ && -d "$some_dir/$_" } readdir(DIR);
+    closedir DIR;
 
-#    &showarchs($prefix, $num, @dirs);
-
+    &showarchs($prefix, $num, @dirs);
 }
 
 
 print <<END;
-<H1>NOTE:  Mailing list archives currently unavailable.</H1>
-
-<p>Note: <i>American ISP Verizon is blocking non-US mail!</i> You cannot sign
-up a verizon account to one of these lists, since it will just bounce and be
-taken off the list again. Use an account from a more intelligent company. More
-information <a
-href="http://www.theregister.com/2005/01/21/verizon_class_action/">here</a>.
-<hr>
-<h2>Etiquette</h2>
-<blockquote>
 <p>
-
 Our mailing lists have several hundred subscribers each and we want order and
 <a href="etiquette.html">proper netiquette</a> to be followed for things to
 run smooth. <b>Please</b> read this before you decide to post to any of our
@@ -149,7 +136,7 @@ basis. This list is read-only.
 
 <p><a href="//cool.haxx.se/cgi-bin/mailman/listinfo/rockbox-news">subscribe</a>
 <p>
- <b>NOTE</b>: the previous list with this name, is no longer existing. You need to resubscribe if you want to receive these mails!
+<b>NOTE</b>: the previous list with this name, is no longer existing. You need to resubscribe if you want to receive these mails!
 
 
 <h2>rockbox-announce</h2>

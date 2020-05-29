@@ -143,7 +143,7 @@ NWZ-E360/E370/E380 and Fuze+ to stable. Move ZEN and ZEN X-Fi2 to unstable</td><
 </td></tr>
 <tr><td colspan=2>
 
-#if 0
+#if 1
 <h3 class=frontpage><a href='recent.shtml#mail'>Mail</a></h3>
 <!--#include file="threads_front.html" -->
 #endif

@@ -1,9 +1,9 @@
 #!/usr/bin/perl
 
-require "nicedate.pm";
+require "./nicedate.pm";
 require "CGI.pm";
 
-my $tree="/sites/maildump";
+my $tree="/home/rockbox/mailinglists/html";
 
 my %listnames = ('rockbox' => 'Users',
                  'rockbox-dev' => 'Devel');

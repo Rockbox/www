@@ -3,9 +3,9 @@
 GITDIR="../rockbox_git_clone"
 LAST_RELEASE="v3.15-final"
 
-# recent mails  XXX FIXME
-#perl last20threads.pl 5 1 > threads_front.html
-#perl last20threads.pl 20 1 > threads.html
+# recent mails
+perl last20threads.pl 5 1 > threads_front.html
+perl last20threads.pl 20 1 > threads.html
 
 # recent wiki edits
 perl recentwiki.pl 5 > recentwiki_front.html
