@@ -11,6 +11,9 @@ perl last20threads.pl 20 1 > threads.html
 perl recentwiki.pl 5 > recentwiki_front.html
 perl recentwiki.pl 20 > recentwiki.html
 
+# Latest daily build stuff (have to put it somewhere..)
+perl dailymod.pl > dailymod.html
+
 GITLOG="git log --name-status --abbrev-commit --date=iso --encoding=utf8 --pretty=fuller"
 
 # recent commits

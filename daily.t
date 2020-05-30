@@ -5,7 +5,7 @@
 
 <p>These are archived development builds, saved to enable easy testing of recent versions.
 
-<!--#include virtual="dailymod.cgi" -->
+<!--#include file="dailymod.html" -->
 
 <h2>Donate</h2>
 
