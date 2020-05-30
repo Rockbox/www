@@ -24,11 +24,11 @@ for later reference.
 
 <p><a href="log-today">Today's log</a> (live feed) <a href="current.txt">Raw text feed</a>
 
-<!--#include virtual="irclogs.pl" -->
+<!--#include virtual="irclogs.cgi" -->
 
 <p><a href="log-today">Today's log</a> (live feed)
 
-<p><a href="listlogs.pl">list all raw logs</a>
+<p><a href="listlogs.cgi">list all raw logs</a>
 
 <p><a href="reader.txt">source code (perl) for log reader/formatter</a>
 

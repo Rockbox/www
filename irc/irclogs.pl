@@ -48,7 +48,7 @@ for (reverse sort keys %y) {
             }
             else {
                 #print "<td><a href=\"rockbox-$y$zp$zpd.txt\">$zpd</a></td>";
-                #print "<td><a href=\"reader.pl?date=$y$zp$zpd\">$zpd</a></td>";
+                #print "<td><a href=\"reader.cgi?date=$y$zp$zpd\">$zpd</a></td>";
                 print "<td><a href=\"log-$y$zp$zpd\">$zpd</a></td>";
             }
         }
