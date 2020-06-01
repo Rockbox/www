@@ -47,7 +47,7 @@ MOO
 
 my %date;
 my $dir = $bin;
-opendir(DIR, "$basedir/daily/$dir") or next;
+opendir(DIR, "$basedir/daily/$dir");
 for(grep { /^rockbox/ } readdir(DIR)) {
     /(\d{8})/;
     $date{$1}=$1;
