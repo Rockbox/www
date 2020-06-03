@@ -7,6 +7,13 @@ my $req = new CGI;
 
 my $bin = $req->param('bin');
 
+# Bots gonna bot.  Explcitly return an error.
+if ($bin =~ /^\// ||
+    $bin =~ /^\./) {
+   print $req->header('type text/html', '400 Bad Request');
+   exit(0);
+}
+
 my $fine=0;
 
 my $pic = playerpic($bin);
