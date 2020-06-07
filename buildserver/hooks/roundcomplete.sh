@@ -19,7 +19,7 @@ else
     perl clientstats.pl $rev > data/$rev-clients.html
 
     perl showbuilds.pl > builds.html.new && mv builds.html.new builds.html
-    perl showbuilds.pl 1 > builds_all.html.new && builds_all.html.new builds_all.html
+    perl showbuilds.pl 1 > builds_all.html.new && mv builds_all.html.new builds_all.html
     perl showsize.pl > sizes.html.new && mv sizes.html.new sizes.html
     perl devbuilds.pl > devbuilds.html.new && mv devbuilds.html.new devbuilds.html
 #    perl mktitlepics.pl
