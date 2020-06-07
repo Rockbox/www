@@ -19,7 +19,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 63;
+my $revision = 64;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -42,7 +42,7 @@ our $port = $port || 19999;
 our $ulspeed = $ulspeed || 0;
 our $commandhook = $commandhook || '';
 
-my $upload_url = "http://$buildmaster/upload.cgi";
+my $upload_url = "https://$buildmaster/upload.cgi";
 
 my $probecores = int(`nproc`);
 our $cores = $cores || $probecores;
