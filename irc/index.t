@@ -10,11 +10,11 @@ for later reference.
 <p>If you don't want to install an IRC client or are locked behind a firewall, try Freenode's <a href="https://webchat.freenode.net/?channels=rockbox">web client</a>.
 
 <p>
-<a href="/twiki/bin/view/Main/IrcGuidelines">How to behave in the IRC channel<a>
+<a href="/wiki/IrcGuidelines">How to behave in the IRC channel<a>
 <p>
-<a href="/twiki/bin/view/Main/IrcNicks">Nick reference</a>
+<a href="/wiki/IrcNicks">Nick reference</a>
 <p>
-<a href="/twiki/bin/view/Main/IrcTalk">IRC lingo explained</a>
+<a href="/wiki/IrcTalk">IRC lingo explained</a>
 <p>
 <a href="http://rasher.dk/rockbox/ircstats/">Cool statistics</a>
 

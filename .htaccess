@@ -57,7 +57,7 @@ RedirectPermanent /mods/index.html https://www.rockbox.org/wiki/DocsIndex#Hardwa
 RedirectPermanent /mods/disassemble.html https://www.rockbox.org/wiki/DisassemblePlayer
 RedirectPermanent /mods/disassemble2.html https://www.rockbox.org/wiki/DisassemblePlayer2
 RedirectPermanent /mods/reassemble.html https://www.rockbox.org/wiki/ReassemblePlayer
-RedirectPermanent /mods/rs232.html https://www.rockbox.org/twiki
+RedirectPermanent /mods/rs232.html https://www.rockbox.org/wiki
 #RedirectPermanent /mods/ https://www.rockbox.org/wiki/DocsIndex#Hardware
 
 # rbutil compat links

@@ -55,7 +55,7 @@
 
 <p><i>2008-12-23</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes31">Rockbox 3.1 is released</a>
 
-<p><i>2008-09-23</i>: <a href="//www.rockbox.org/twiki/bin/view/Main/ReleaseNotes30">Rockbox 3.0 is released</a>
+<p><i>2008-09-23</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes30">Rockbox 3.0 is released</a>
 
 <p><i>2008-08-16</i>: <a href="//www.rockbox.org/mail/archive/rockbox-dev-archive-2008-08/0032.shtml">Release 3.0 Feature Freeze</a>
 
@@ -89,11 +89,11 @@ connection
 
 <p><i>2007-05-06</i>: Scheduled server maintenance. build.rockbox.org and download.rockbox.org will be down approximately 00:00 to 10:00 CET.
 
-<p><i>2007-03-29</i>: Announcing the <a href=//www.rockbox.org/twiki/bin/view/Main/DevCon2007>Rockbox International Developers Conference 2007</a> to be
+<p><i>2007-03-29</i>: Announcing the <a href=//www.rockbox.org/wiki/DevCon2007>Rockbox International Developers Conference 2007</a> to be
 held in Stockholm May 19-20 2007.
 
 <p><i>2007-03-15</i>: Rockbox has been accepted as a mentor organization of <a
-href="//www.rockbox.org/twiki/bin/view/Main/SummerOfCode">Google's summer
+href="//www.rockbox.org/wiki/SummerOfCode">Google's summer
 of code 2007</a>
 
 <p><i>2007-03-10</i>: We welcome <a
@@ -104,7 +104,7 @@ Sansa E200</a> to the happy family of Rockbox targets.
 href="//www.rockbox.org/mail/archive/rockbox-archive-2007-03/0175.shtml">iAudio
 M5</a> to the happy family of Rockbox targets.
 
-<p><i>2007-01-24</i>: There's talk with <a href="/twiki/bin/view/Main/AustriaMicrosystems">AMS</a>.
+<p><i>2007-01-24</i>: There's talk with <a href="//wiki/AustriaMicrosystems">AMS</a>.
 
 <p><i>2007-01-11</i>: We are changing version control system from CVS to Subversion.
 
@@ -136,7 +136,7 @@ brought back once we believe we have them "secured" properly.
 
 <p><i>2006-03-28</i>: <a
 href="mail/archive/rockbox-archive-2006-03/0502.shtml">Sound</a> on <a
-href="//www.rockbox.org/twiki/bin/view/Main/IaudioPort">iAudio X5!</a>.
+href="//www.rockbox.org/wiki/IaudioPort">iAudio X5!</a>.
 
 <p><i>2006-03-17</i>: <a href="devcon2006/">The Rockbox International
 Developers Conference 2006</a>.
@@ -145,19 +145,19 @@ Developers Conference 2006</a>.
 
 <p><i>2006-02-23</i>: We have migrated to a new bugtracker: Flyspray. It's faster and better in practically every aspect. <a href="/tracker/">See it here</a>.
 
-<p><i>2006-01-28</i>: <a href="//www.rockbox.org/mail/archive/rockbox-archive-2006-01/0543.shtml">Sound</a> on <a href="//www.rockbox.org/twiki/bin/view/Main/IpodPort">iPod!</a>
+<p><i>2006-01-28</i>: <a href="//www.rockbox.org/mail/archive/rockbox-archive-2006-01/0543.shtml">Sound</a> on <a href="//www.rockbox.org/wiki/IpodPort">iPod!</a>
 
 <p><i>2005-12-06</i>: Unicode support!
 
 <p><i>2005-09-22</i>: Rockbox v2.5 is <a href="download/">released</a>.
 
-<p><i>2005-09-21</i>: The Wiki pages are now restored as much as possible with the exception of the <a href="//www.rockbox.org/twiki/bin/view/Main/WpsGallery">WPS Gallery</a>. The Wiki has been upgraded and the hole is plugged. Backups are done manually currently - work is underway to fix the automatic system that failed us.
+<p><i>2005-09-21</i>: The Wiki pages are now restored as much as possible with the exception of the <a href="//www.rockbox.org/wiki/WpsGallery">WPS Gallery</a>. The Wiki has been upgraded and the hole is plugged. Backups are done manually currently - work is underway to fix the automatic system that failed us.
 
 <p><i>2005-09-19</i>: An oldish backup restored, work in progress on getting pages more up-to-date. Mailing lists are up again, but check that you are still subscribed!
 
 <p><i>2005-09-17</i>: Some nice gentleman deleted our entire Wiki (and more) using a security hole in TWiki. The mailing list is also dead until we sort this out.
 
-<p><i>2005-08-24</i>: Linus ran his first <a href=/twiki/bin/view/Main/IriverBDM>BDM session</a> on his H320.
+<p><i>2005-08-24</i>: Linus ran his first <a href=/wiki/IriverBDM>BDM session</a> on his H320.
 
 <p><i>2005-08-18</i>: At 13:59 CET. First multimeter "beep" for the h300.
 
@@ -170,16 +170,16 @@ September 5.
  H1xx.
 
 <p><i>2005-02-08</i>: <a
-href="//www.rockbox.org/twiki/bin/view/Main/RockboxShots">Evidence</a> of
+href="//www.rockbox.org/wiki/RockboxShots">Evidence</a> of
 Rockbox <a
-href="//www.rockbox.org/twiki/bin/view/Main/IriverBoot">booting</a> on <a
-href="//www.rockbox.org/twiki/bin/view/Main/IriverPort">iRiver</a>.
+href="//www.rockbox.org/wiki/IriverBoot">booting</a> on <a
+href="//www.rockbox.org/wiki/IriverPort">iRiver</a>.
 
 <p><i>2004-12-23</i>: Rockbox v2.4 is <a href="download/">released</a>.
 
-<p><i>2004-12-17</i>: Rockbox started from <a href="/twiki/bin/view/Main/FlashingRockbox">flash ROM</a> finally available for players.
+<p><i>2004-12-17</i>: Rockbox started from <a href="/wiki/FlashingRockbox">flash ROM</a> finally available for players.
 
-<p><i>2004-12-16</i>: The <a href="/twiki/bin/view/Main/RockboxManual">Rockbox 2.3 manual</a> is out. Thanks go to Christi Alice Scarborough for her outstanding work!
+<p><i>2004-12-16</i>: The <a href="/wiki/RockboxManual">Rockbox 2.3 manual</a> is out. Thanks go to Christi Alice Scarborough for her outstanding work!
 
 <p><i>2004-11-09</i>: Some downtime due to planned server maintenance (replaced a harddisk).
 
@@ -187,9 +187,9 @@ href="//www.rockbox.org/twiki/bin/view/Main/IriverPort">iRiver</a>.
 
 <p><i>2004-10-26</i>: Rockbox v2.3 is <a href="download/">released</a>.
 
-<p><i>2004-10-26</i>: iRiver progress: the LCD driver <a href="/twiki/bin/view/Main/IriverPort#Writing_an_LCD_driver_">is working</a>!
+<p><i>2004-10-26</i>: iRiver progress: the LCD driver <a href="/wiki/IriverPort#Writing_an_LCD_driver_">is working</a>!
 
-<p><i>2004-10-05</i>: Call for help: We need information from Ondio owners for our <a href="/twiki/bin/view/Main/ArchosOndio">Archos Ondio port</a>.
+<p><i>2004-10-05</i>: Call for help: We need information from Ondio owners for our <a href="/wiki/ArchosOndio">Archos Ondio port</a>.
 
 <p><i>2004-10-01</i>: Touchdown! The Coldfire BDM wiggler is working on the iHP-120 target! Time for some sweet GDB debugging...
 

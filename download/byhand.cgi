@@ -10,7 +10,7 @@ print <<HEAD
 <p>
 Rockbox $publicrelease was released on ${releasedate}. See the full <a href="$releasenotes">Release Notes</a>
 
-<p> We recommend using <a href="/twiki/bin/view/Main/RockboxUtility">Rockbox
+<p> We recommend using <a href="/wiki/RockboxUtility">Rockbox
 Utility</a> to install Rockbox, but if you insist you can do it manully.
 
 <p>Download the <i>Firmware</i> zip for your target below and unzip it to your device.

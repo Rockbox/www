@@ -12,9 +12,9 @@ Rockbox $publicrelease was released on ${releasedate}. See the full <a href="$re
 
 <h2>Option 1: Automatic install</h2>
 <p>
-<a title="Download Installer" href="/twiki/bin/view/Main/RockboxUtility#Download"><img border="0" src="download-installer.png" width="248" height="110" alt="Download Installer"></a>
+<a title="Download Installer" href="/wiki/RockboxUtility#Download"><img border="0" src="download-installer.png" width="248" height="110" alt="Download Installer"></a>
 
-<p>Download and run the <a href="/twiki/bin/view/Main/RockboxUtility">Rockbox Utility</a>.
+<p>Download and run the <a href="/wiki/RockboxUtility">Rockbox Utility</a>.
 
 <h2>Option 2: Manual install</h2>
 
