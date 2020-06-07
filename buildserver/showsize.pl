@@ -13,22 +13,6 @@ my %deltas;
 sub getdata {
     db_connect();
     my %revs;    
-    my $maxrows = ($rounds + 1) * (scalar keys %builds);
-    my $sth = $db->prepare("SELECT time,revision,id,ramsize,binsize FROM builds WHERE ulsize != 0 ORDER BY time DESC, id ASC limit $maxrows") or
-        warn "DBI: Can't prepare statement: ". $db->errstr;
-    my $rows = $sth->execute();
-    if ($rows) {
-        while (my ($time,$rev,$id,$ramsize,$binsize) = $sth->fetchrow_array()) {
-	    $revs{$rev} = $time;
-	    $targets{$id} = 1;
-            $compiles{$rev}{$id}{ram} = $ramsize;
-            $compiles{$rev}{$id}{bin} = $binsize;
-	}
-    }
-
-#    for my $r (sort {$revs{$a} cmp $revs{$b}} keys %revs) {
-#	unshift(@revisions, $r);
-#    }
 
     $csth = $db->prepare("SELECT revision,clients,took,UNIX_TIMESTAMP(time) FROM rounds ORDER BY time DESC limit $rounds");
     my $rows = $csth->execute();
@@ -47,6 +31,26 @@ sub getdata {
             }
         }
     }
+
+    my $maxrows = ($rounds + 1) * (scalar keys %builds);
+    my $list = "'" . join("','", keys(%round)) . "'";
+
+    my $sth = $db->prepare("SELECT time,revision,id,ramsize,binsize FROM builds WHERE revision in ($list) and ulsize != 0 ORDER BY time DESC, id ASC limit $maxrows") or
+        warn "DBI: Can't prepare statement: ". $db->errstr;
+    my $rows = $sth->execute();
+    if ($rows) {
+        while (my ($time,$rev,$id,$ramsize,$binsize) = $sth->fetchrow_array()) {
+	    $revs{$rev} = $time;
+	    $targets{$id} = 1;
+            $compiles{$rev}{$id}{ram} = $ramsize;
+            $compiles{$rev}{$id}{bin} = $binsize;
+	}
+    }
+
+#    for my $r (sort {$revs{$a} cmp $revs{$b}} keys %revs) {
+#	unshift(@revisions, $r);
+#    }
+
 }
 
 # binsize ramsize per file.

@@ -23,8 +23,29 @@ my $maxrounds = 20;
 sub getdata {
     db_connect();
     my %found;
+
+    # First figure out the last N rounds..
+    $csth = $db->prepare("SELECT revision,clients,took,UNIX_TIMESTAMP(time) FROM rounds ORDER BY time DESC limit $maxrounds");
+    my $rows = $csth->execute();
+    if ($rows) {
+        while (my ($rev, $clients,$took,$time) = $csth->fetchrow_array()) {
+            $round{$rev}{clients} = $clients;
+            $round{$rev}{took} = $took;
+            $round{$rev}{time} = $time;
+
+            #If a round completely failed, compensate!
+	    if (!defined($compiles{$rev})) {
+		foreach my $id (keys(%found)) {
+		   $compiles{$rev}{$id} = {};
+                }
+            }
+        }
+    }
+
     my $maxrows = ($maxrounds + 1) * (scalar keys %builds);
-    my $sth = $db->prepare("SELECT revision,id,errors,warnings,client,timeused FROM builds ORDER BY time DESC, id ASC limit $maxrows") or
+
+    my $list = "'" . join("','", keys(%round)) . "'";
+    my $sth = $db->prepare("SELECT revision,id,errors,warnings,client,timeused FROM builds where revision in ($list) ORDER BY time DESC, id ASC limit $maxrows") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
     my $rows = $sth->execute();
     if ($rows) {
@@ -48,23 +69,6 @@ sub getdata {
         }
         foreach (keys(%found)) {
            $alltypes{$_} = 1 if ($found{$_} != $maxrounds && defined($builds{$_}{name}));
-        }
-    }
-
-    $csth = $db->prepare("SELECT revision,clients,took,UNIX_TIMESTAMP(time) FROM rounds ORDER BY time DESC limit $maxrounds");
-    my $rows = $csth->execute();
-    if ($rows) {
-        while (my ($rev, $clients,$took,$time) = $csth->fetchrow_array()) {
-            $round{$rev}{clients} = $clients;
-            $round{$rev}{took} = $took;
-            $round{$rev}{time} = $time;
-
-            #If a round completely failed, compensate!
-	    if (!defined($compiles{$rev})) {
-		foreach my $id (keys(%found)) {
-		   $compiles{$rev}{$id} = {};
-                }
-            }
         }
     }
 }
