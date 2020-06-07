@@ -3,7 +3,7 @@
 rev=$1
 
 touch data/build_running
-perl showbuilds.pl $rev > builds.html
+perl showbuilds.pl $rev > builds.html.new && mv builds.html.new builds.html
 
 if [ -e rcbuild.hash ]; then
     hash=`cat rcbuild.hash`

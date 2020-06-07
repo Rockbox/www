@@ -18,20 +18,20 @@ else
 
     perl clientstats.pl $rev > data/$rev-clients.html
 
-    perl showbuilds.pl > builds.html
-    perl showbuilds.pl 1 > builds_all.html
-    perl showsize.pl > sizes.html
-    perl devbuilds.pl > devbuilds.html
+    perl showbuilds.pl > builds.html.new && mv builds.html.new builds.html
+    perl showbuilds.pl 1 > builds_all.html.new && builds_all.html.new builds_all.html
+    perl showsize.pl > sizes.html.new && mv sizes.html.new sizes.html
+    perl devbuilds.pl > devbuilds.html.new && mv devbuilds.html.new devbuilds.html
 #    perl mktitlepics.pl
     perl cleanupdatadir.pl
 
     # make build-info for rbutil
-    echo "[bleeding]" > build-info
-    date +'timestamp = "%Y%m%dT%H%M%SZ"' >> build-info
-    echo -n 'rev = "' >> build-info
-    echo -n $rev >> build-info
-    echo '"' >> build-info
-    mv build-info /home/rockbox/download/build-info.devbuild
+    echo "[bleeding]" > build-info.new
+    date +'timestamp = "%Y%m%dT%H%M%SZ"' >> build-info.new
+    echo -n 'rev = "' >> build-info.new
+    echo -n $rev >> build-info.new
+    echo '"' >> build-info.new
+    mv build-info.new /home/rockbox/download/build-info.devbuild
 
     # Update translation stuff
     (cd ../../translate ; \
