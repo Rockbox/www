@@ -14,6 +14,8 @@ sub getdata {
     db_connect();
     my %revs;    
 
+    $rounds++;
+
     $csth = $db->prepare("SELECT revision,clients,took,UNIX_TIMESTAMP(time) FROM rounds ORDER BY time DESC limit $rounds");
     my $rows = $csth->execute();
     if ($rows) {
@@ -51,6 +53,8 @@ sub getdata {
 #	unshift(@revisions, $r);
 #    }
 
+  $rounds--;
+  unshift(@revisions);
 }
 
 # binsize ramsize per file.
