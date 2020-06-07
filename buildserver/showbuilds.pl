@@ -32,10 +32,12 @@ sub getdata {
             $found{$id}++;
             $compiles{$rev}{$id}{errors} = $errors;
             $compiles{$rev}{$id}{warnings} = $warnings;
-            if (($errors>0 or $warnings>0) && defined($builds{$id}{name})) {
+            if (($errors>0 or $warnings>0 or $client eq '') && defined($builds{$id}{name})) {
                 $alltypes{$id} = 1;
             }
-            $compiles{$rev}{$id}{client} = $client;
+            if ($client ne '') {
+                $compiles{$rev}{$id}{client} = $client;
+            }
             $clients{$rev}{$client} = 1;
             $compiles{$rev}{$id}{took} = $time;
             $alltypes{$id} = 1 if ($showallbuilds);
