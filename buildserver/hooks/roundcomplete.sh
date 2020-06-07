@@ -34,11 +34,13 @@ else
     mv build-info.new /home/rockbox/download/build-info.devbuild
 
     # Update translation stuff
-    (cd ../../translate ; \
-     php update.php; \
-     python2 fontstats.py > foo.ini && mv foo.ini fontcoverage.ini ; \
+    touch ../../translate/need_update
+
+#    (cd ../../translate ; \
+#     php update.php; \
+#     python2 fontstats.py > foo.ini && mv foo.ini fontcoverage.ini ; \
 #     python2 fontstats.py missing > foo.ini && mv foo.ini missingchars.ini ; \
-    )
+#    )
 fi
 
 rm data/build_running
