@@ -33,14 +33,13 @@ else
     echo '"' >> build-info.new
     mv build-info.new /home/rockbox/download/build-info.devbuild
 
-    # Update translation stuff
-    touch ../../translate/need_update
+    # udpate local git repo
+    (cd ../../rockbox_git_clone && git pull -q --stat )
 
-#    (cd ../../translate ; \
-#     php update.php; \
-#     python2 fontstats.py > foo.ini && mv foo.ini fontcoverage.ini ; \
-#     python2 fontstats.py missing > foo.ini && mv foo.ini missingchars.ini ; \
-#    )
+    # Mark themesite and translate as needing to be updated
+    # see $HOME/update_site.sh for details
+    touch ../../translate/need_update
+    touch ../../themes/need_update
 fi
 
 rm data/build_running
