@@ -113,15 +113,7 @@ archive("-dev", -1);
 
 print <<END;
 
-<p> Available on Gmane as <a
-href="news://news.gmane.io/gmane.comp.systems.archos.rockbox.devel">NEWS</a>
-, <a
-href="http://news.gmane.org/gmane.comp.systems.archos.rockbox.devel">HTML</a>,
-<a
-href="http://rss.gmane.org/topics/excerpts/gmane.comp.systems.archos.rockbox.devel">RSS</a>
-etc.  Note that you still need to be subscribed to the list to post to it
-through gmane!
-
+<p>This list is also archived as a newgroup on Gmane. Connect your news reader to <a href="news://news.gmane.io">news.gmane.io</a> and look for the group <a href="news://news.gmane.io/gmane.comp.systems.archos.rockbox.devel">gmane.comp.systems.archos.rockbox.devel</a>. Note that you still need to be subscribed to the list to post to it through Gmane!
 END
 
 
