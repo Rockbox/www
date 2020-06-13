@@ -91,7 +91,7 @@ archive("", -1);
 
 print <<END;
 
-<p>This list is also archived as a newgroup on gmane.org. Connect your news reader to <a href="news://news.gmane.org">news.gmane.org</a> and look for the group <a href="news://news.gmane.org/gmane.comp.systems.archos.rockbox.general">gmane.comp.systems.archos.rockbox.general</a>. Note that you still need to be subscribed to the list to post to it through gmane!
+<p>This list is also archived as a newgroup on Gmane. Connect your news reader to <a href="news://news.gmane.io">news.gmane.io</a> and look for the group <a href="news://news.gmane.io/gmane.comp.systems.archos.rockbox.general">gmane.comp.systems.archos.rockbox.general</a>. Note that you still need to be subscribed to the list to post to it through gmane!
 END
 
 print <<END;
@@ -113,8 +113,8 @@ archive("-dev", -1);
 
 print <<END;
 
-<p> Available on gmane.org as both <a
-href="news://news.gmane.org/gmane.comp.systems.archos.rockbox.devel">NEWS</a>
+<p> Available on Gmane as <a
+href="news://news.gmane.io/gmane.comp.systems.archos.rockbox.devel">NEWS</a>
 , <a
 href="http://news.gmane.org/gmane.comp.systems.archos.rockbox.devel">HTML</a>,
 <a
