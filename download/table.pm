@@ -27,7 +27,12 @@ sub buildtable {
 		}
 	        my $extra = "<br><a href=\"$basedir/rockbox-fonts-$builds{$m}{release}.zip\">Fonts</a>";
 	        $extra .= "<br><a href=\"$basedir/rockbox-$builds{$m}{release}.7z\">Source</a>";
-                $mans="<br><a href=\"//$basedir/rockbox-$docs-$builds{$m}{release}.pdf\">Manual</a><br><a href=\"$basedir/$voice-$builds{$m}{release}-english.zip\">Voice</a>$extra";
+		$mans = "";
+		if (-f "../../download/release/$builds{$m}{release}/rockbox-$docs-$builds{$m}{release}.pdf") {
+                  $mans .= "<br><a href=\"//$basedir/rockbox-$docs-$builds{$m}{release}.pdf\">Manual</a>";
+                }
+		$mans .= "<br><a href=\"$basedir/$voice-$builds{$m}{release}-english.zip\">Voice</a>";
+		$mans .= "$extra";
             }
 
             if($col++ > 6) {
