@@ -25,7 +25,7 @@ sub showarchs {
     for(@dirs) {
         if($_ =~ /(\d\d\d\d)-(\d\d)/) {
             $years{$1}=1;
-            $mons{$2}=1;
+            $mons{"$1-$2"}=1;
         }
     }
 
@@ -35,18 +35,17 @@ sub showarchs {
 
     for(reverse @syears) {
         my $thisyear=$_;
-        my $pr=0;
 
         print "<tr>\n";
-        for(@dirs) {
-            if($_ =~ /$thisyear-(\d\d)/) {
-                my $mon=$1;
+        print "<th>$thisyear</th>\n";
 
-                if(!$pr++) {
-                    print "<th>$thisyear</th>\n";
-                }
-                print "<td><a href=\"archive/$_/\">".&MonthNameEng($mon)."</a></td>\n";
-            }
+        for (my $i = 1 ; $i <= 12 ; $i++) {
+          my $mon = sprintf("%02d", $i);
+          if (defined($mons{"$thisyear-$mon"})) {
+              print "<td><a href=\"archive/$_/\">".&MonthNameEng($mon)."</a></td>\n";
+          } else {
+	      print "<td></td>\n";
+	  }
         }
         print "</tr>\n";
     }
