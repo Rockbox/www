@@ -145,9 +145,10 @@ print <<END;
 
 <h2>rockbox-cvs</h2>
 <blockquote>
-<p>This list monitors the <a href="http://git.rockbox.org">Git</a> commits and recieves one mail for each commit.
+<p>This list monitors the <a href="//git.rockbox.org">Git</a> commits and recieves one mail for each commit.  It is read-only and unarchived.
 
 <p>To subscribe or unsubscribe: <a href="//cool.haxx.se/mailman/listinfo/rockbox-cvs">go here</a>
+
 </blockquote>
 <hr>
 
@@ -161,6 +162,6 @@ END
 
 print "</blockquote><hr><h2>Bounce removal</h2>\n";
 
-print "<p>If your email address bounces repeatedly, you will be removed from the list without further notice.";
+print "<p>If your email address bounces repeatedly, you will be removed from the lists without further notice.";
 
 &footer();
