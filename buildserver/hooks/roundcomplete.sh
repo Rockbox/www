@@ -23,7 +23,6 @@ else
     perl showsize.pl > sizes.html.new && mv sizes.html.new sizes.html
     perl devbuilds.pl > devbuilds.html.new && mv devbuilds.html.new devbuilds.html
 #    perl mktitlepics.pl
-    perl cleanupdatadir.pl
 
     # make build-info for rbutil
     echo "[bleeding]" > build-info.new
@@ -36,10 +35,14 @@ else
     # udpate local git repo
     (cd ../../rockbox_git_clone && git pull -q --stat )
 
+    # Cleanup.  Must happen AFTER git update
+    perl cleanupdatadir.pl
+
     # Mark themesite and translate as needing to be updated
     # see $HOME/update_site.sh for details
     touch ../../translate/need_update
     touch ../../themes/need_update
+
 fi
 
 rm data/build_running
