@@ -5,7 +5,7 @@ use File::Copy;
 use File::Basename;
 
 sub ulog {
-    if (open(L, ">>$cwd/upload.log")) {
+    if (open(L, ">>/home/rockbox/www/buildserver/upload.log")) {
         print L strftime("%F %T ", localtime()), $_[0], "\n";
         close(L);
     }
