@@ -14,7 +14,7 @@ perl recentwiki.pl 20 > recentwiki.html
 # Latest daily build stuff (have to put it somewhere..)
 perl dailymod.pl > dailymod.html
 
-GITLOG="git log --name-status --abbrev-commit --date=iso --encoding=utf8 --pretty=fuller"
+GITLOG="git log --name-status --abbrev-commit --date=iso-local --encoding=utf8 --pretty=fuller"
 
 # recent commits
 # ( cd $GITDIR && git pull -q )  # Now handled by cron

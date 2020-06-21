@@ -60,16 +60,20 @@ my $count = 0;
 
 # example:
 
-# commit e4af358
-# Author: Peter Lecky <lecky_lists@nextra.sk>
-# Date:   2012-01-10 00:06:02 -0500
-# 
-#     FS#12516 - Slovak lang update
-#     
-#     Change-Id: I4bca90cd3d757ff37f616f47c41dd78537db6a80
-#     Signed-off-by: Rafaël Carré <funman@videolan.org>
-# 
-# M       apps/lang/slovak.lang
+#commit a686dbfaa4
+#Author:     Dominik Riebeling <Dominik.Riebeling@gmail.com>
+#AuthorDate: 2019-11-01 12:32:27 +0100
+#Commit:     Dominik Riebeling <Dominik.Riebeling@gmail.com>
+#CommitDate: 2020-06-21 09:07:17 +0200
+#
+#    sbtools: Avoid calling pkg-config on each compiler invocation.
+#    
+#    Only expand pkg-config calls once by making the compiler flags simply
+#    expanded variables. Makes things more predicable and slightly faster.
+#    
+#    Change-Id: Ie2ed066f205a95ec8a7708cefeb29e9989815db6
+#
+#M       utils/imxtools/sbtools/Makefile
 
 while(<STDIN>) {
     my $l = $_;
