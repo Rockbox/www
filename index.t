@@ -153,6 +153,7 @@ NWZ-E360/E370/E380 and Fuze+ to stable. Move ZEN and ZEN X-Fi2 to unstable</td><
 </td></tr>
 </table>
 
+#if 0
 <h2>Sponsors:</h2>
 <table class=sponsors><tr valign="top">
 <td align='center'>
@@ -172,6 +173,7 @@ Haxx sponsors the main site, build server, svn server and various other resource
 </td>
 </tr>
 </table>
+#endif
 </div>
 
 #include "foot.t"
