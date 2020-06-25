@@ -1,8 +1,2 @@
-# client:reason
-glasschale-Rondom:Your client disconnects every 10 seconds
-fnarfbargle-uk-BradC:Your build environment is screwed up
-jakorasia-cg:Your SDL installation is broken
-Asuka-w1ll14m: build client seems to be broken
-storebror-daniel: "error: #error long int is not a 32bit or 64bit type"
-ares-obo: "configure didn't find sdl-config, which indicates that you don't have SDL (properly) installed. Please correct and re-run configure"
-atom270-zagor: "/usr/bin/ld: /usr/lib/gcc/i586-linux-gnu/4.9/../../../i386-linux-gnu/crti.o: unrecognized relocation (0x2b) in section `.init' "
+# clientname:freeformreasontext
+#storebror-daniel: "error: #error long int is not a 32bit or 64bit type"
