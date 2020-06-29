@@ -42,7 +42,7 @@ sub showarchs {
         for (my $i = 1 ; $i <= 12 ; $i++) {
           my $mon = sprintf("%02d", $i);
           if (defined($mons{"$thisyear-$mon"})) {
-              print "<td><a href=\"archive/$_/\">".&MonthNameEng($mon)."</a></td>\n";
+              print "<td><a href=\"archive/rockbox${prefix}-archive-$thisyear-$mon\">".&MonthNameEng($mon)."</a></td>\n";
           } else {
 	      print "<td></td>\n";
 	  }
