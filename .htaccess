@@ -66,3 +66,5 @@ RedirectMatch ^/daily/fonts/rockbox-fonts.zip$ http://download.rockbox.org/daily
 RedirectMatch ^/voices/(.*) http://download.rockbox.org/daily/voices/$1
 RedirectMatch ^/manual/(.*) http://download.rockbox.org/daily/manual/$1
 
+# irc compat links  -- note, this needs to be in main http config for some reason
+RewriteRule ^/irc/rockbox-([0-9][0-9][0-9][0-9])(.*).txt$ http://download.rockbox.org/irc-logs/$1/rockbox-$1$2.txt [L,R=permanent]
