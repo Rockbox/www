@@ -781,6 +781,9 @@ sub startround {
 
     &getbuilds();
 
+    # Initialize
+    $builds{$id}{topspeed} = 0;
+
     # no uploads during testing
     if (0 and $rbconfig{test}) {
         for my $id (@buildids) {
