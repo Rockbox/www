@@ -291,7 +291,6 @@ sub build {
     }
 
     # store the speed of the fastest client building
-    
     if ($client{$fileno}{speed} and
         ($client{$fileno}{speed} > $builds{$id}{topspeed}))
     {
@@ -781,9 +780,6 @@ sub startround {
 
     &getbuilds();
 
-    # Initialize
-    $builds{$id}{topspeed} = 0;
-
     # no uploads during testing
     if (0 and $rbconfig{test}) {
         for my $id (@buildids) {
@@ -813,6 +809,8 @@ sub startround {
 
     # disable targets that no client can build
     for my $b (@buildids) {
+        $builds{$b}{topspeed} = 0;
+
         my $found = 0;
         for my $cl (&build_clients) {
             if (&client_can_build($cl, $b)) {
@@ -1405,6 +1403,7 @@ sub start_next_build($)
 
                     # don't start building this if someone faster
                     # is already building it
+                    # XXX this is broken, I think.
                     #next if ($builds{$id}{topspeed} > $client{$cl}{speed})
                 }
                 &build($cl, $id);
