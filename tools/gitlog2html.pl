@@ -42,16 +42,62 @@ sub file2url {
     return "$path [<a class=\"fname\" href=\"$urlroot/diff/$sfile?id=$rev\">$diff</a>]\n";
 }
 
+sub dumpoutput {
+    my ($h, $when, $what, $who, $gerrit_url, $files, $text) = @_;
+    my @f = @$files;
+    my @b = @$text;
+    my $where = '';
+
+            if (scalar @f > 30) {
+                $manyfiles = scalar(@f) - 30;
+                @f = @f[0 .. 29];
+            }
+            for (@f) {
+                my ($file, $action, $i) = @$_;
+                $where .= sprintf("%s<br>", file2url($file, $action, $i, $h));
+            }
+            if ($manyfiles) {
+                $where .= "...and $manyfiles more files.";
+            }
+            if (1) {
+                my $br;
+                my $g = '';
+                $g = " <a href=\"$gerrit_url\">G#$gerrit_id</a>" if ($gerrit_id);
+                $what = "<small><a href='$urlroot/diff/?id=$h'>$h</a>$g:</small> ";
+                while ($b[$#b] eq "\n") {
+                    delete $b[$#b];
+                }
+
+                for my $l (@b) {
+                    $l =~ s:^\s*::;
+                    $l =~ s:&:&amp;:g;
+                    $l =~ s:<:&lt;:g;
+                    $l =~ s:>:&gt;:g;
+                    $l =~ s!FS *\#(\d+)!<a href=\"//www.rockbox.org/tracker/task/$1\">FS \#$1</a>!g;
+                    $l =~ s!\#(\d{4,})!<a href=\"//www.rockbox.org/tracker/task/$1\">\#$1</a>!g;
+                    $what .= "<br>" if($br);
+                    $what .= $l;
+                    $br++;
+                }
+
+                # pull paragraphs together
+                $what =~ s/\n<br>(\w)/ $1/g;
+            }
+            print "<tr><td nowrap class=\"cstamp\">$when</td>\n",
+            "<td class=\"cdesc\">$what</td>\n",
+            "<td nowrap class=\"cpath\">$where</td>\n",
+            "<td class=\"cname\">$who</td>\n",
+            "</tr>\n";
+}
+
 print "<table class=\"changetable_front\"><tr><th>when</th><th>what</th><th>where</th><th>who</th></tr>\n";
 
 my $when;
-my $where;
 my $who;
-my $whoshort;
 my $what;
 my $manyfiles = 0;
 my $hash;
-my $gerrit_url;
+my $gerrit_url = '';
 my $gerrit_id;
 
 my @b;
@@ -81,52 +127,12 @@ while(<STDIN>) {
 
     if (/^commit (\w+)/)
     {
-        my $tmp = $1;
         if($b[0] || $f[0]) {
-            if (scalar @f > 30) {
-                $manyfiles = scalar(@f) - 30;
-                @f = @f[0 .. 29];
-            }
-            for(@f) {
-                my ($file, $action, $i) = @$_;
-                $where .= sprintf("%s<br>", file2url($file, $action, $i, $hash));
-            }
-            if ($manyfiles) {
-                $where .= "...and $manyfiles more files.";
-            }
-            if (1) {
-                my $br;
-                my $g;
-                $g = " <a href=\"$gerrit_url\">G#$gerrit_id</a>" if ($gerrit_id);
-                $what = "<small><a href='$urlroot/diff/?id=$hash'>$hash</a>$g:</small> ";
-                while ($b[$#b] eq "\n") {
-                    delete $b[$#b];
-                }
-
-                for my $l (@b) {
-                    $l =~ s:^\s*::;
-                    $l =~ s:&:&amp;:g;
-                    $l =~ s:<:&lt;:g;
-                    $l =~ s:>:&gt;:g;
-                    $l =~ s!FS *\#(\d+)!<a href=\"//www.rockbox.org/tracker/task/$1\">FS \#$1</a>!g;
-                    $l =~ s!\#(\d{4,})!<a href=\"//www.rockbox.org/tracker/task/$1\">\#$1</a>!g;
-                    $what .= "<br>" if($br);
-                    $what .= $l;
-                    $br++;
-                }
-
-                # pull paragraphs together
-                $what =~ s/\n<br>(\w)/ $1/g;
-            }
-            print "<tr><td nowrap class=\"cstamp\">$when</td>\n",
-            "<td class=\"cdesc\">$what</td>\n",
-            "<td nowrap class=\"cpath\">$where</td>\n",
-            "<td class=\"cname\">$who</td>\n",
-            "</tr>\n";
-            $when = $where = $what = $who = $whoshort = $manyfiles = 
+            dumpoutput($hash, $when, $what, $who, $gerrit_url, \@f, \@b);
+            $when = $what = $who = $manyfiles = 
                 $gerrit_url = $gerrit_id = "";
         }
-        $hash = $tmp;
+        $hash = $1;
         next;
     }
     elsif (/^Author: ([^<]+)/)
@@ -143,7 +149,6 @@ while(<STDIN>) {
                 $when = &reltime($t);
             }
         }
-
         undef @b;
         undef @f;
         $count = 0;
@@ -171,6 +176,10 @@ while(<STDIN>) {
             push @b, "$_\n" unless ($skip);
         }
     }
+}
+
+if($b[0] || $f[0]) {
+     dumpoutput($hash, $when, $what, $who, $gerrit_url, \@f, \@b);
 }
 
 print "</table>\n";
