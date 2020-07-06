@@ -75,7 +75,7 @@ and Ondio
 <a href="/wiki/SonyNWZA10">NWZ-A10</a>,
 and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <li><b>Toshiba</b>: <a href="/wiki/GigabeatSPort">Gigabeat S</a>
-<li><b>xDuoo</b>: <a href="/wiki/XDuooX3">X3</a> X3ii, and X20
+<li><b>xDuoo</b>: <a href="/wiki/XDuooX3">X3</a> <a href="/wiki/XDuooX3ii">X3ii</a>, and <a href="/wiki/XDuooX3ii">X20</a>
 </ul>
 
 <h2>Unusable ports</h2>
