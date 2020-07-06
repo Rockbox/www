@@ -14,15 +14,16 @@ my %skip_tags = ('Change-Id' => 1,
                  'Reviewed-on' => 1,
                  'Reviewed-by' => 1);
 
+my $urlroot="//git.rockbox.org/cgit/rockbox.git";
+
 sub file2url {
     my ($file, $a, $i, $rev)=@_;
     my $sfile = $file;
-    my $urlroot="//git.rockbox.org/?p=rockbox.git";
     $sfile =~ s:^/trunk::;
     $sfile =~ s:^/::;
 
     my $diff;
-    my $path = sprintf("<a class=\"fname\" href=\"$urlroot;a=blob;f=%s\">%s</a>",
+    my $path = sprintf("<a class=\"fname\" href=\"$urlroot/tree/$sfile?id=$rev\">%s</a>",
                        $file, $sfile);
 
     if($a eq "R") {
@@ -38,7 +39,7 @@ sub file2url {
         $diff = "deleted";
     }
 
-    return "$path [<a class=\"fname\" href=\"$urlroot;a=commitdiff;h=$rev#patch$i\">$diff</a>]\n";
+    return "$path [<a class=\"fname\" href=\"$urlroot/diff/$sfile?id=$rev\">$diff</a>]\n";
 }
 
 print "<table class=\"changetable_front\"><tr><th>when</th><th>what</th><th>where</th><th>who</th></tr>\n";
@@ -76,8 +77,7 @@ my $count = 0;
 #M       utils/imxtools/sbtools/Makefile
 
 while(<STDIN>) {
-    my $l = $_;
-    chomp $l;
+    chomp;
 
     if (/^commit (\w+)/)
     {
@@ -98,7 +98,7 @@ while(<STDIN>) {
                 my $br;
                 my $g;
                 $g = " <a href=\"$gerrit_url\">G#$gerrit_id</a>" if ($gerrit_id);
-                $what = "<small><a href='//git.rockbox.org/?p=rockbox.git;a=commit;h=$hash'>$hash</a>$g:</small> ";
+                $what = "<small><a href='$urlroot/diff/?id=$hash'>$hash</a>$g:</small> ";
                 while ($b[$#b] eq "\n") {
                     delete $b[$#b];
                 }
@@ -116,7 +116,7 @@ while(<STDIN>) {
                 }
 
                 # pull paragraphs together
-                $what =~ s/\n<br>(\w)/ \1/g;
+                $what =~ s/\n<br>(\w)/ $1/g;
             }
             print "<tr><td nowrap class=\"cstamp\">$when</td>\n",
             "<td class=\"cdesc\">$what</td>\n",
@@ -160,15 +160,15 @@ while(<STDIN>) {
             if (/^\s*(.+?):/)
             {
                 $skip = 1 if (defined $skip_tags{$1});
-                if ($l =~ /Reviewed-on: (.*)/) {
+                if (/Reviewed-on: (.*)/) {
                     $gerrit_url = $1;
                     if ($gerrit_url =~ /(\d+)/) {
                         $gerrit_id = $1;
                     }
                 }
             }
-            $l =~ s/<.+@.+>//g; # remove email addresses
-            push @b, "$l\n" unless ($skip);
+            $_ =~ s/<.+@.+>//g; # remove email addresses
+            push @b, "$_\n" unless ($skip);
         }
     }
 }
