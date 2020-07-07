@@ -21,9 +21,10 @@ sub getbuilds {
 
     open(F, "<$filename");
     while(<F>) {
-        # arm-eabi-gcc444:0:ipodnano1gboot:iPod Nano 1G - Boot:bootloader-ipodnano1g.ipod:839:../tools/configure --target=ipodnano1g --type=b && make
-        next if (/^\#/);
         chomp;
+        next if (/^\#/);
+        next if (/^\s*$/);
+        # arm-eabi-gcc444:0:ipodnano1gboot:iPod Nano 1G - Boot:bootloader-ipodnano1g.ipod:839:../tools/configure --target=ipodnano1g --type=b && make
         my ($arch, $upload, $id, $name, $result, $score,
             $cmdline) = split(':', $_);
         $builds{$id}{'arch'}=$arch;
@@ -114,7 +115,7 @@ sub getspeed($)
                 $us /= scalar @ulspeeds;
             }
         }
-        
+
         return (int $bs, int $us);
     }
     return (0, 0);

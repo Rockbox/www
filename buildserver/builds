@@ -59,7 +59,6 @@ sdl:0:ihifi770csim:IHIFI 770C - Simulator:rockboxui:212940:../tools/configure --
 sdl:0:ihifi800sim:IHIFI 800 - Simulator:rockboxui:212940:../tools/configure --target=ihifi800 --type=s && make
 sdl:0:samsungypr0:Samsung YP-R0 - Simulator:rockboxui:207580:../tools/configure --target=samsungypr0 --type=s && make
 sdl:0:samsungypr1:Samsung YP-R1 - Simulator:rockboxui:118270:../tools/configure --target=samsungypr1 --type=s && make
-
 ####
 # m68k-based native targets
 m68k-gcc452:1:iriverh100:iriver H100 - Normal:rockbox.zip:231880:../tools/configure --target=iriverh100 --type=n && make zip
