@@ -46,6 +46,7 @@ sub dumpoutput {
     my ($h, $when, $what, $who, $gerrit_url, $files, $text) = @_;
     my @f = @$files;
     my @b = @$text;
+    my $manyfiles = 0;
     my $where = '';
 
             if (scalar @f > 30) {
@@ -95,7 +96,6 @@ print "<table class=\"changetable_front\"><tr><th>when</th><th>what</th><th>wher
 my $when;
 my $who;
 my $what;
-my $manyfiles = 0;
 my $hash;
 my $gerrit_url = '';
 my $gerrit_id;
@@ -129,8 +129,7 @@ while(<STDIN>) {
     {
         if($b[0] || $f[0]) {
             dumpoutput($hash, $when, $what, $who, $gerrit_url, \@f, \@b);
-            $when = $what = $who = $manyfiles = 
-                $gerrit_url = $gerrit_id = "";
+            $when = $what = $who = $gerrit_url = $gerrit_id = "";
         }
         $hash = $1;
         next;
