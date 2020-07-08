@@ -115,7 +115,7 @@ for(reverse sort keys %date) {
 
         if ( -f $voicefile ) {
             my $size = (stat($voicefile))[7];
-            printf("<br><a href=\"$voiceurl\">voice</a> <small>%d kB</small>",
+            printf("<br><a href=\"$voiceurl\">voice (EN)</a> <small>%d kB</small>",
                    $size/1024);
         }
         print "</td>\n";
