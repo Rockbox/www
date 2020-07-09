@@ -87,23 +87,12 @@ for(reverse sort keys %date) {
             $file = "Rockbox-${d}-install.exe";
         }
         if( -f "$basedir/daily/$m/$file") {
-            printf "<a href=\"//download.rockbox.org/daily/$dir$file\">latest</a> <small>($rev)</small><br>";
+            printf "<a href=\"//download.rockbox.org/daily/$dir$file\">latest</a> <small>($rev)</small>";
         }
-        print "<a href=\"/dl.cgi?bin=$m\">old</a>";
 
         my $docm = $m;
         if (defined $builds{$m}{manual}) {
             $docm = $builds{$m}{manual};
-        }
-
-        my $docfile = "rockbox-${docm}.pdf";
-        if( -f "$docbasedir/$docfile") {
-            my $size = (stat("$docbasedir/$docfile"))[7];
-
-            #my $page = getpages("$docbasedir/$docfile");
-
-#            printf("<p><a href=\"//download.rockbox.org/manual/$docfile\">manual</a><br><small>%dKB, $page pages</small>", $size/1024);
-            printf("<br><a href=\"//download.rockbox.org/manual/$docfile\">manual</a> <small>%d kB</small>", $size/1024);
         }
 
         my $voicemod = voicename($m);
@@ -115,6 +104,21 @@ for(reverse sort keys %date) {
             printf("<br><a href=\"$voiceurl\">voice (EN)</a> <small>%d kB</small>",
                    $size/1024);
         }
+
+        my $docfile = "rockbox-${docm}.pdf";
+        if( -f "$docbasedir/$docfile") {
+            my $size = (stat("$docbasedir/$docfile"))[7];
+
+            #my $page = getpages("$docbasedir/$docfile");
+
+#            printf("<p><a href=\"//download.rockbox.org/manual/$docfile\">manual</a><br><small>%dKB, $page pages</small>", $size/1024);
+            printf("<br><a href=\"//download.rockbox.org/manual/$docfile\">manual</a> <small>%d kB</small>", $size/1024);
+        } else {
+	  print "<br>\n";
+	}
+
+        print "<br><a href=\"/dl.cgi?bin=$m\">older builds</a>";
+
         print "</td>\n";
 
 	if ($count == $split) {
