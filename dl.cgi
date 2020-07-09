@@ -40,7 +40,11 @@ sub showother {
 
 if(!$pic) {
     print "$bin is not a fine binary name, try one of these:<p>\n";
-    print `./dailymod.pl`;
+    open(FILE, "dailymod.html");
+    while (<FILE>) {
+        print;
+    }
+    close FILE;
     exit;
 }
 
@@ -169,6 +173,10 @@ print "</table>\n";
 
 print "<br clear=all><p>\n";
 
-print `./dailymod.pl 1`;
+open(FILE, "dailymod.html");
+while (<FILE>) {
+    print;
+}
+close FILE;
 
 footer();

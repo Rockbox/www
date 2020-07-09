@@ -19,9 +19,6 @@ sub getpages {
     return 0;
 }
 
-
-# print "Content-type: text/html\n\n" unless ($ARGV[0]);
-
 opendir(DIR, "$basedir/daily") or die;
 my @files = sort grep { /^build-info/ } readdir(DIR);
 closedir DIR;
@@ -128,4 +125,3 @@ for(reverse sort keys %date) {
     last;
 }
 print "</table>\n";
-
