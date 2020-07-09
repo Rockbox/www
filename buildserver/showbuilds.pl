@@ -151,7 +151,7 @@ if($buildrev) {
                           $dhour, $dmin, $dsec);
     }
 
-    printf("<tr><td align=\"center\"><a class=\"bstamp\" href=\"//git.rockbox.org/?p=rockbox.git;a=commit;h=$buildrev\">$buildrev</a><td colspan=\"3\" align=\"center\">(in progress)</td><td class=\"building\" colspan=\"%d\">$text</td></tr>\n",
+    printf("<tr><td align=\"center\"><a class=\"bstamp\" href=\"//git.rockbox.org/cgit/rockbox.git/commit?id=$buildrev\">$buildrev</a><td colspan=\"3\" align=\"center\">(in progress)</td><td class=\"building\" colspan=\"%d\">$text</td></tr>\n",
            $numbuilds);
 }
 #################

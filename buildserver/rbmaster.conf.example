@@ -9,7 +9,7 @@ portnum: 19999
 # update client to 'updaterevision' by downloading 'updateurl'
 apiversion: 63
 updaterevision: 1
-#updateurl: https://git.rockbox.org/?p=www.git;a=blob_plain;f=buildserver/rbclient.pl
+#updateurl: https://git.rockbox.org/cgit/www.git/plain/buildserver/rbclient.pl
 
 # if a client is disabled, this message tells him how to ask to get enabled
 enablemsg: Please go to #rockbox and ask to have your client re-enabled.

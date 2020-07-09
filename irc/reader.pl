@@ -329,7 +329,6 @@ sub parsechunk {
 #            $message =~ s!(\b\s)r(\d+)(\b)!$1<a target="_blank" href=\"http://svn.rockbox.org/viewvc.cgi?view=rev&revision=$2\">r$2</a>$3!g;
 
             # tag git revisions (WIP)
-#            $message =~ s!Revision (\w+)(\b)!<a target="_blank" href=\"https://git.rockbox.org/?p=rockbox.git;a=commit;h=$1\">Revision $1</a>$3!g;
             $message =~ s!Revision (\w+)(\b)!<a target="_blank" href=\"https://git.rockbox.org/cgit/rockbox.git/commit/?id=$1\">Revision $1</a>$3!g;
 
             # tag gerrit ids

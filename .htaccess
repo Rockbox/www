@@ -27,7 +27,7 @@ RedirectPermanent /docs/rvf.html https://www.rockbox.org/wiki/VideoTutorial
 RedirectPermanent /docs/index.html https://www.rockbox.org/wiki/DocsIndex
 RedirectPermanent /docs/nodo.html https://www.rockbox.org/wiki/NoDo
 RedirectPermanent /docs/battery-faq.html https://www.rockbox.org/wiki/BatteryFAQ
-RedirectPermanent /docs/credits.html https://git.rockbox.org/?p=rockbox.git;a=blob;f=docs/CREDITS
+RedirectPermanent /docs/credits.html https://git.rockbox.org/cgit/rockbox.git/plain/docs/CREDITS
 RedirectPermanent /docs/cygwin_sdk.html https://www.rockbox.org/wiki/CygwinDevelopment
 RedirectPermanent /docs/custom_wps_format.html https://www.rockbox.org/wiki/CustomWPS
 RedirectPermanent /docs/datasheets.html https://www.rockbox.org/wiki/DataSheets
