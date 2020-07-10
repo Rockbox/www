@@ -102,16 +102,15 @@ for my $file (@htmlfiles) {
 
 
 # mail
-# XXXFIXME
-#my $maildir = "/sites/maildump";
-#my $mail;
-#opendir(DIR, "$maildir") or die "Failed opening maillist dir: $!\n";
-#for my $dir (readdir DIR) {
-#    if ($dir =~ /^rockbox/ and -d "$maildir/$dir") {
-#        $mail .= "<directory path='$maildir/$dir' url='$baseurl/mail/archive/$dir/'/>\n";
-#    }
-#}
-#closedir DIR;
+my $maildir = "/home/rockbox/mailinglists/html";
+my $mail;
+opendir(DIR, "$maildir") or die "Failed opening maillist dir: $!\n";
+for my $dir (readdir DIR) {
+    if ($dir =~ /^rockbox/ and -d "$maildir/$dir") {
+        $mail .= "<directory path='$maildir/$dir' url='$baseurl/mail/archive/$dir/'/>\n";
+    }
+}
+closedir DIR;
 
 # twiki
 my $twikidir = "/home/rockbox/foswiki/data/Main";
@@ -160,14 +159,13 @@ print CONFIG <<END
 >
 $flyspray
 $site
+$mail
 $twiki
 $irc
 </site>
 END
     ;
 
-#XXXFIXME add this to before $twiki
-# $mail
 
 
 close CONFIG;
