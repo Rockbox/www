@@ -17,9 +17,6 @@ while (<FLIST>) {
 
 close DIR;
 
-print "Content-type: text/html\n\n";
-print "<table class=archive>\n";
-
 my %y;
 my %ym;
 my %ymd;
@@ -30,9 +27,22 @@ for (@logs) {
     $ymd{$1.$2.$3}++;
 }
 
+print "Content-type: text/html\n\n";
+
+print "<p>";
+
 for (reverse sort keys %y) {
-    my $y =$_;
+ my $y =$_;
+ print "<a href=\"#${y}\">$y</a> ";
+}
+print "</p>";
+
+print "<table class=archive>\n";
+
+for (reverse sort keys %y) {
     # print "Y: $y => \n";
+    my $y =$_;
+    print "<tr><th><a name=\"$y\">$y</a></th></tr>\n";
     foreach my $i (0 .. 11) {
         my $m= 12-$i;
         my $zp = sprintf("%02d", $m);
