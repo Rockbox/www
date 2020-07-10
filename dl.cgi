@@ -114,19 +114,19 @@ for(reverse sort keys %date) {
         }
 
         # maps!
-#        $map="";
-#        $rev="";
+        $rev="";
 
-#        if( -f "$basedir/daily/build-info-${d}") {
-#            open(R, "<$basedir/daily/build-info-${d}");
-#            while(<R>) {
-#                if(/^rev = (\w+)/) {
-#                    $rev = $1;
-#                    last;
-#                }
-#            }
-#            close(R);
-#        }
+        if( -f "$basedir/daily/build-info-${d}") {
+            open(R, "<$basedir/daily/build-info-${d}");
+            while(<R>) {
+                if(/^rev = (\w+)/) {
+                    $rev = $1;
+                    last;
+                }
+            }
+            close(R);
+        }
+#        $map="";
 #        if( -f "maps/$m/maps-rockbox-${m}-${d}.zip") {
 #            $map = sprintf "<a href=\"//www.rockbox.org/maps/$bin/maps-rockbox-${m}-${d}.zip\" title=\"map file for $desc built $nice\">maps</a>",
 #        }
