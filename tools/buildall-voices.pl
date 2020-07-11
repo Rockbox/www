@@ -25,9 +25,9 @@ if($ARGV[0]) {
     print "only build $doonly\n" if($verbose);
 }
 
-# made once for all targets
+# made once for all target + language combos
 sub runone {
-    my ($dir, $lang, $engine, $voice, $engine_opts)=@_;
+    my ($dir, $name, $lang, $engine, $voice, $engine_opts)=@_;
     my $a;
 
     if($doonly && ($doonly ne $dir)) {
@@ -47,8 +47,7 @@ sub runone {
 
     my $o="build-$dir/$lang.voice";
     if (-f $o) {
-        my $newo="output/$dir-$date-$lang.zip";
-#        system("cp $o output/$dir-$date-$lang.voice");
+        my $newo="output/$dir-$date-$name.zip";
         system("mkdir -p .rockbox/langs");
         system("cp $o .rockbox/langs");
         system("zip -q -r $newo .rockbox");
@@ -102,10 +101,16 @@ $ENV{'POOL'}="/home/rockbox/dailybuild-voices/voice-pool";
 for my $b (&usablebuilds) {
     next if ($builds{$b}{voice}); # no variants
 
-    runone($b, "english", "f", "-1", "");
-#    runone($b, "english", "e", "-1", ""); 
-#    runone($b, "francais", "e", "-1", "");
-#    runone($b, "polski", "e", "-1", "");
+    for my $v (&allvoices) {
+	my %voice = $voices{$v};
+
+#	print " runone $b $v ($voices{$v}->{lang} via $voices{$v}->{defengine})\n";
+#	runone($b, $v, $voices{$v}->{lang}, $voices{$v}->{defengine},
+#	       "-1", $voices{$v}->{engines}->{$voices{$v}->{defengine}};
+
+    }
+
+    runone($b, "english", "english", "f", "-1", "");
 }
 
 `rm -f /home/rockbox/dailybuild-voices/voice-pool/*`;
