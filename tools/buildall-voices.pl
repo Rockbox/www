@@ -27,26 +27,28 @@ if($ARGV[0]) {
 
 # made once for all targets
 sub runone {
-    my ($dir)=@_;
+    my ($dir, $lang, $engine, $voice, $engine_opts)=@_;
     my $a;
 
     if($doonly && ($doonly ne $dir)) {
         return;
     }
 
+    print "*** LANGUAGE: $lang\n";
+
     mkdir "build-$dir";
     chdir "build-$dir";
     print "Build in build-$dir\n" if($verbose);
 
     # build the manual(s)
-    $a = buildit($dir);
+    $a = buildit($dir, $lang, $engine, $voice, $engine_opts);
 
     chdir "..";
 
-    my $o="build-$dir/english.voice";
+    my $o="build-$dir/$lang.voice";
     if (-f $o) {
-        my $newo="output/$dir-$date-english.zip";
-#        system("cp $o output/$dir-$date-english.voice");
+        my $newo="output/$dir-$date-$lang.zip";
+#        system("cp $o output/$dir-$date-$lang.voice");
         system("mkdir -p .rockbox/langs");
         system("cp $o .rockbox/langs");
         system("zip -q -r $newo .rockbox");
@@ -62,11 +64,11 @@ sub runone {
 };
 
 sub buildit {
-    my ($dir)=@_;
+    my ($dir, $lang, $engine, $voice, $engine_opts)=@_;
 
     `rm -rf * >/dev/null 2>&1`;
 
-    my $c = "../../rockbox_git_clone/tools/configure --no-ccache --type=av --target=$dir --ram=-1 --language=0 --tts=f --voice=-1";
+    my $c = "../../rockbox_git_clone/tools/configure --no-ccache --type=av --target=$dir --ram=-1 --language=$lang --tts=$engine --voice=$voice --ttsopts='$ttsopts'";
 
     print "C: $c\n" if($verbose);
     system($c);
@@ -84,7 +86,7 @@ sub buildinfo {
     open(F, ">output/build-info");
     print F "[voices]\ndate = \"$date\"\nrev = $rev\n";
     close(F);
-    
+
     # store info for this particular date
     open(F, ">output/build-info-$date");
     print F "[voices]\ndate = \"$date\"\nrev = $rev\n";
@@ -100,7 +102,10 @@ $ENV{'POOL'}="/home/rockbox/dailybuild-voices/voice-pool";
 for my $b (&usablebuilds) {
     next if ($builds{$b}{voice}); # no variants
 
-    runone($b);
+    runone($b, "english", "f", "-1", "");
+#    runone($b, "english", "e", "-1", ""); 
+#    runone($b, "francais", "e", "-1", "");
+#    runone($b, "polski", "e", "-1", "");
 }
 
 `rm -f /home/rockbox/dailybuild-voices/voice-pool/*`;
