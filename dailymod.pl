@@ -41,7 +41,7 @@ for(reverse sort keys %date) {
     $color1 -= 0x18;
     $color2 -= 0x18;
     $color3 -= 0x18;
-    
+
     my $count = 0;
     my $x = 0;
     my @head;
@@ -95,16 +95,21 @@ for(reverse sort keys %date) {
             $docm = $builds{$m}{manual};
         }
 
+	# Voices
         my $voicemod = voicename($m);
-        my $voicefile="$basedir/daily/voices/${voicemod}-${d}-english.zip";
-        my $voiceurl="$baseurl/daily/voices/${voicemod}-${d}-english.zip";
 
-        if ( -f $voicefile ) {
-            my $size = (stat($voicefile))[7];
-            printf("<br><a href=\"$voiceurl\">voice (EN)</a> <small>%d kB</small>",
+	for my $v (&allvoices) {
+            my $voicefile="$basedir/daily/voices/${voicemod}-${d}-$v.zip";
+            my $voiceurl="$baseurl/daily/voices/${voicemod}-${d}-$v.zip";
+
+            if ( -f $voicefile ) {
+                my $size = (stat($voicefile))[7];
+                printf("<br><a href=\"$voiceurl\">voice ($voices{$v}->{short})</a> <small>%d kB</small>",
                    $size/1024);
-        }
+            }
+	}
 
+	# Documentation
         my $docfile = "rockbox-${docm}.pdf";
         if( -f "$docbasedir/$docfile") {
             my $size = (stat("$docbasedir/$docfile"))[7];

@@ -91,7 +91,7 @@ for(reverse sort keys %date) {
     $color1 -= 0x18;
     $color2 -= 0x18;
     $color3 -= 0x18;
-    
+
     {
         my $n=0;
         my $m = $bin;
@@ -145,21 +145,18 @@ for(reverse sort keys %date) {
             print "<td>&nbsp;</td>";
         }
 
-        my $fi = "/home/rockbox/download/daily/voices/$m-$d-english.voice";
-        my $fi2 = "/home/rockbox/download/daily/voices/$m-$d-english.zip";
-        if ( -f $fi2) {
-            my $size = (stat($fi2))[7];
-            printf("<td><a href=\"//download.rockbox.org/daily/voices/$m-$d-english.zip\" title=\"voice file for Rockbox $desc dated $nice\">voice zip (EN)</a> %d KB</td>",
-                   $size/1024);
-        }
-        elsif ( -f $fi) {
-            my $size = (stat($fi))[7];
-            printf("<td><a href=\"//download.rockbox.org/daily/voices/$m-$d-english.voice\" title=\"voice file for Rockbox $desc dated $nice\">english.voice</a> %d KB</td>",
-                   $size/1024);
-        }
-        else {
-            print "<td>absent</td>";
-        }
+	# Voices
+        my $voicemod = voicename($m);
+	print "<td>";
+	for my $v (&allvoices) {
+            my $fi = "/home/rockbox/download/daily/voices/$voicemod-$d-$v.zip";
+            if ( -f $fi) {
+                my $size = (stat($fi))[7];
+                printf("<a href=\"//download.rockbox.org/daily/voices/$voicemod-$d-$v.zip\" title=\"voice file for Rockbox $desc dated $nice\">$voices{$v}->{short}</a> %d KB<br>",
+                       $size/1024);
+            }
+	print "</td>\n";
+	}
 
         print "<td title=\"The build done $nice has rev $rev\"><a href=\"//git.rockbox.org/cgit/rockbox.git/commit/?id=$rev\">$rev</a></td>";
     }
