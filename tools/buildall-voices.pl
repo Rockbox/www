@@ -67,7 +67,7 @@ sub buildit {
 
     `rm -rf * >/dev/null 2>&1`;
 
-    my $c = "../../rockbox_git_clone/tools/configure --no-ccache --type=av --target=$dir --ram=-1 --language=$lang --tts=$engine --voice=$voice --ttsopts='$ttsopts'";
+    my $c = "../../rockbox_git_clone/tools/configure --no-ccache --type=av --target=$dir --ram=-1 --language=$lang --tts=$engine --voice=$voice --ttsopts='$engine_opts'";
 
     print "C: $c\n" if($verbose);
     system($c);
