@@ -49,9 +49,12 @@ if(!$pic) {
 }
 
 print <<MOO
+<p>
 These are automated daily builds of the latest code. They contain all the
-latest features. They may also contain bugs and/or undocumented changes...
-The top line is the latest. This build is for $desc.
+latest features, but may also contain bugs and/or undocumented changes.
+The top line is the latest. 
+<p>
+For other players, see the <a href="daily.shtml">daily builds</a> page.
 <p>
 MOO
     ;
@@ -171,10 +174,10 @@ print "</table>\n";
 
 print "<br clear=all><p>\n";
 
-open(FILE, "dailymod.html");
-while (<FILE>) {
-    print;
-}
-close FILE;
+#open(FILE, "dailymod.html");
+#while (<FILE>) {
+#    print;
+#}
+#close FILE;
 
 footer();
