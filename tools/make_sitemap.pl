@@ -85,7 +85,6 @@ my @htmlfiles =
         "devcon2008/index.html",
         "doom/index.html",
         "download/index.html",
-        "genlang/lang.html",
         "history.html",
         "irc/cgiirc/index.html",
         "lock.html",
