@@ -23,6 +23,7 @@ $beware
 
 <p>
 <a href="dev.cgi">Autobuilder details</a> &middot; 
+<a href="//www.rockbox.org/manual.shtml">Manuals</a> &middot;
 <a href="//www.rockbox.org/daily.shtml">Archived developer builds</a>
 HEAD
     ;
