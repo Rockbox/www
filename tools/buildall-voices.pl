@@ -27,27 +27,25 @@ if($ARGV[0]) {
 
 # made once for all target + language combos
 sub runone {
-    my ($dir, $name, $lang, $engine, $voice, $engine_opts)=@_;
+    my ($target, $name, $lang, $engine, $voice, $engine_opts)=@_;
     my $a;
 
-    if($doonly && ($doonly ne $dir)) {
+    if($doonly && ($doonly ne $target)) {
         return;
     }
 
     print "*** LANGUAGE: $lang\n";
 
-    mkdir "build-$dir";
-    chdir "build-$dir";
-    print "Build in build-$dir\n" if($verbose);
+    mkdir "build-$target-$lang";
+    chdir "build-$target-$lang";
+    print "Build in build-$target-$lang\n" if($verbose);
 
-    # build the manual(s)
-    $a = buildit($dir, $lang, $engine, $voice, $engine_opts);
+    # build the voice(s)
+    $a = buildit($target, $lang, $engine, $voice, $engine_opts);
 
-    chdir "..";
-
-    my $o="build-$dir/$lang.voice";
+    my $o="$lang.voice";
     if (-f $o) {
-        my $newo="output/$dir-$date-$name.zip";
+        my $newo="../output/$target-$date-$name.zip";
         system("mkdir -p .rockbox/langs");
         system("cp $o .rockbox/langs");
         system("zip -q -r $newo .rockbox");
@@ -56,18 +54,20 @@ sub runone {
         print "moved $o to $newo\n" if($verbose);
     }
 
-    print "remove all contents in build-$dir\n" if($verbose);
-    system("rm -rf build-$dir");
+    chdir "..";
+
+    print "remove all contents in build-$target-$lang\n" if($verbose);
+    system("rm -rf build-$target-$lang");
 
     return $a;
 };
 
 sub buildit {
-    my ($dir, $lang, $engine, $voice, $engine_opts)=@_;
+    my ($target, $lang, $engine, $voice, $engine_opts)=@_;
 
     `rm -rf * >/dev/null 2>&1`;
 
-    my $c = "../../rockbox_git_clone/tools/configure --no-ccache --type=av --target=$dir --ram=-1 --language=$lang --tts=$engine --voice=$voice --ttsopts='$engine_opts'";
+    my $c = "../../rockbox_git_clone/tools/configure --no-ccache --type=av --target=$target --ram=-1 --language=$lang --tts=$engine --voice=$voice --ttsopts='$engine_opts'";
 
     print "C: $c\n" if($verbose);
     system($c);
@@ -100,13 +100,12 @@ $ENV{'POOL'}="/home/rockbox/dailybuild-voices/voice-pool";
 
 for my $b (&usablebuilds) {
     next if ($builds{$b}{voice}); # no variants
-
     for my $v (&allvoices) {
-	my %voice = $voices{$v};
+        my %voice = $voices{$v};
 
-#	print " runone $b $v ($voices{$v}->{lang} via $voices{$v}->{defengine})\n";
+#        print " runone $b $v ($voices{$v}->{lang} via $voices{$v}->{defengine})\n";
 #	runone($b, $v, $voices{$v}->{lang}, $voices{$v}->{defengine},
-#	       "-1", $voices{$v}->{engines}->{$voices{$v}->{defengine}};
+#	       "-1", $voices{$v}->{engines}->{$voices{$v}->{defengine}});
 
     }
 
