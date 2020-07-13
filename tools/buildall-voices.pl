@@ -104,12 +104,12 @@ for my $b (&usablebuilds) {
         my %voice = $voices{$v};
 
 #        print " runone $b $v ($voices{$v}->{lang} via $voices{$v}->{defengine})\n";
-#	runone($b, $v, $voices{$v}->{lang}, $voices{$v}->{defengine},
-#	       "-1", $voices{$v}->{engines}->{$voices{$v}->{defengine}});
+	runone($b, $v, $voices{$v}->{lang}, $voices{$v}->{defengine},
+	       "-1", $voices{$v}->{engines}->{$voices{$v}->{defengine}});
 
     }
 
-    runone($b, "english", "english", "f", "-1", "");
+#    runone($b, "english", "english", "f", "-1", "");
 }
 
 `rm -f /home/rockbox/dailybuild-voices/voice-pool/*`;
