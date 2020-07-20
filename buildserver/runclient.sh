@@ -27,6 +27,7 @@ do
     ####### Special
     # sdl : Non-crosscompiled targets. Simulators, application, checkwps, database tool, ...
     # latex : manuual
+    # dummy : does nothing
 
     ####### Android
     # android-ndk10          : Android NDK 10e, eg iBasso dx50/dx90
