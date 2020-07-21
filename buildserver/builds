@@ -1,5 +1,8 @@
 #### Rockbox Builds ####
 # arch:upload:name:score:cmdline
+#  or
+# arch1,arch2,archN:upload:name:score:cmdline
+#  all sub-fields must be met
 ####
 # Simulator targets
 #sdl:0:archosrecordersim:Recorder - Simulator:rockboxui:64800:../tools/configure --target=archosrecorder --ram=2 --type=s && make
@@ -261,10 +264,10 @@ mipsel-rb-gcc494:0:xduoox3iiboot:xDuoo X3ii - Boot:bootloader.x3ii:4620:../tools
 mipsel-rb-gcc494:0:xduoox20boot:xDuoo X20 - Boot:bootloader.x20:4620:../tools/configure --target=xduoox20 --type=b && make
 ###
 # Manuals
-latex:0:iriverh120manual:iriver H120 - Manual:manual/rockbox-build.pdf:8070:../tools/configure --target=iriverh120 --type=n && make MAKEFLAGS= manual
-latex:0:iriverh120htmlmanual:iriver H120 - HTML Manual:manual/rockbox-manual.zip:24870:../tools/configure --target=iriverh120 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
-latex:0:ipodmini2gmanual:iPod Mini 2G - Manual:manual/rockbox-build.pdf:8070:../tools/configure --target=ipodmini2g --type=n && make MAKEFLAGS= manual
-latex:0:ipodmini2ghtmlmanual:iPod Mini 2G - HTML Manual:manual/rockbox-manual.zip:24870:../tools/configure --target=ipodmini2g --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+m68k-gcc452,latex:0:iriverh120manual:iriver H120 - Manual:manual/rockbox-build.pdf:8070:../tools/configure --target=iriverh120 --type=n && make MAKEFLAGS= manual
+m68k-gcc452,latex:0:iriverh120htmlmanual:iriver H120 - HTML Manual:manual/rockbox-manual.zip:24870:../tools/configure --target=iriverh120 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+arm-eabi-gcc444,latex:0:ipodmini2gmanual:iPod Mini 2G - Manual:manual/rockbox-build.pdf:8070:../tools/configure --target=ipodmini2g --type=n && make MAKEFLAGS= manual
+arm-eabi-gcc444,latex:0:ipodmini2ghtmlmanual:iPod Mini 2G - HTML Manual:manual/rockbox-manual.zip:24870:../tools/configure --target=ipodmini2g --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 ####
 # CheckWPS builds
 sdl:0:playerwps:Player - Checkwps:checkwps.archosplayer:1140:../tools/configure --target=archosplayer --ram=2 --type=c && make
