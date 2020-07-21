@@ -380,7 +380,7 @@ sub HELLO {
 
         $client{$fno}{'client'} = $cli;
         for (split(/,/, $archlist)) {
-            $client{$fno}{'archlist'}{$_} = 1;
+            $client{$fno}{'archlist'}{$_} = 1;  ## XXX log this into database?
         }
         $client{$fno}{'cpu'} = $cpu;
         $client{$fno}{'bits'} = $bits;
@@ -989,16 +989,18 @@ sub checkclients {
 sub client_can_build {
     my ($cl, $id)=@_;
 
-    # figure out the arch of this build
-    my $arch = $builds{$id}{'arch'};
+    # get the archlist of this build
+    my @arch = split(",", $builds{$id}{'arch'});
 
-    # see if this arch is among the supported archs for this client
-    if(defined $client{$cl}{'archlist'}{$arch}) {
-        # yes it can build
-        return 1;
+    # Make sure the clients support all pieces
+    foreach (@arch) {
+      # see if this arch is among the supported archs for this client
+      if(! defined($client{$cl}{'archlist'}{$_})) {
+        return 0;
+      }
     }
     
-    return 0; # no cannot build
+    return 1; # We can build!
 }
 
 sub client_gone {
