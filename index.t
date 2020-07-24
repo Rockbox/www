@@ -110,6 +110,7 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
+<tr><td nowrap>2020-07-24</td><td>All Archos targets have been retired.</td></tr>
 <tr><td nowrap>2020-05-27</td><td>Rockbox git and gerrit services moved to new hosts!</td></tr>
 <tr><td nowrap>2020-05-16</td><td>Most rockbox infrastructure moved to new hosts!</td></tr>
 <tr><td nowrap>2019-11-15</td><td><a href="//www.rockbox.org/wiki/ReleaseNotes315">Rockbox 3.15 is released</a></td></tr>
