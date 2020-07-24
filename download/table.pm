@@ -22,7 +22,7 @@ sub buildtable {
             else {
                 my $docs = manualname($m);
                 my $voice = voicename($m);
-		if ($builds{$m}{release} != $publicrelease) {
+		if ($builds{$m}{status} == 0 || $builds{$m}{release} != $publicrelease) {
                    $obsolete = "<br><br><i>Retired - v$builds{$m}{release}</i>";
 		}
 	        my $extra = "<br><a href=\"$basedir/rockbox-fonts-$builds{$m}{release}.zip\">Fonts</a>";
