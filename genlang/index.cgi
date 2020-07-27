@@ -68,7 +68,7 @@ print `$cmd2`;
 
 if(-s "$temp/lang-$lang-$rand" &&
     -s "$temp/english-$rand" ) {
-    system("./genlang -u -e=$temp/english-$rand $temp/lang-$lang-$rand > $temp/lang-$lang-patched-$rand");
+    system("./updatelang $temp/english-$rand $temp/lang-$lang-$rand $temp/lang-$lang-patched-$rand");
     print `./genlang -t=$target:$features -e=$temp/english-$rand -o $temp/lang-$lang-patched-$rand`;
 }
 else {
