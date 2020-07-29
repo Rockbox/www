@@ -114,17 +114,7 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <tr><td nowrap>2020-05-27</td><td>Rockbox git and gerrit services moved to new hosts!</td></tr>
 <tr><td nowrap>2020-05-16</td><td>Most rockbox infrastructure moved to new hosts!</td></tr>
 <tr><td nowrap>2019-11-15</td><td><a href="//www.rockbox.org/wiki/ReleaseNotes315">Rockbox 3.15 is released</a></td></tr>
-
 <tr><td nowrap>2019-10-28</td><td>Move iPod Classic to stable.</td></tr>
-
-<tr><td nowrap>2017-05-01</td><td>Move iPod Nano 2G to stable. Move iPod Classic to unstable.</td></tr>
-
-<tr><td nowrap>2017-05-01</td><td><a href="//www.rockbox.org/wiki/ReleaseNotes314">Rockbox 3.14 is released</a></td></tr>
-
-<tr><td nowrap>2013-03-05</td><td>Move ZEN X-Fi/X-Fi3/X-Fi Style/Mozaic,
-NWZ-E360/E370/E380 and Fuze+ to stable. Move ZEN and ZEN X-Fi2 to unstable</td></tr>
-
-<tr><td nowrap>2013-03-05</td><td><a href="//www.rockbox.org/wiki/ReleaseNotes313">Rockbox 3.13 is released</a></td></tr>
 
 </table>
 <small><a href="history.html">Older news</a>
