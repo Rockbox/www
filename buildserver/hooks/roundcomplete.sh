@@ -32,11 +32,11 @@ else
     echo '"' >> build-info.new
     mv build-info.new /home/rockbox/download/build-info.devbuild
 
-    (cd ../../rockbox_git_clone/tools && ./build-info.pl > build-info.new && \
-     mv build-info.new /home/rockbox/download/build-info.release)
-
     # udpate local git repo
     (cd ../../rockbox_git_clone && git pull -q --stat )
+
+    (cd ../../rockbox_git_clone/tools && ./build-info.pl > build-info.new && \
+     mv build-info.new /home/rockbox/download/build-info.release)
 
     # Cleanup.  Must happen AFTER git update
     perl cleanupdatadir.pl
