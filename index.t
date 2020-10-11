@@ -54,7 +54,7 @@ and Ondio
 
 <ul>
 <li><b>Agptek</b>: <a href="/wiki/AgptekRocker">Rocker (aka Benjie T6)</a>
-<li><b>AIGO</b>: <a href="/wiki/AigoErosQ">Eros Q / K</a> (aka HIFI WALKER H2, AGPTek H3, and Surfans F20)
+<li><b>AIGO</b>: <a href="/wiki/AIGOErosQK">Eros Q / K</a> (aka HIFI WALKER H2, AGPTek H3, and Surfans F20)
 <li><b>Creative</b>: <a href="/wiki/CreativeZENPort">Zen</a> and <a href="/wiki/CreativeZENXFi2Port">Zen X-Fi 2</a>
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
 <li><b>HiFi E.T</b>: <a href="/wiki/HifietMAPort">MA9</a>, <a href="/wiki/HifietMAPort">MA8</a>
