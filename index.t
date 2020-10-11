@@ -53,7 +53,8 @@ and Ondio
 <p>Rockbox runs on these players, but is incomplete, less usable or has problems that limit it to advanced users:
 
 <ul>
-<li><b>Agptek</b>: <a href="/wiki/AgptekRocker">Rocker (Benjie T6)</a>
+<li><b>Agptek</b>: <a href="/wiki/AgptekRocker">Rocker (aka Benjie T6)</a>
+<li><b>AIGO</b>: <a href="/wiki/AigoErosQ">Eros Q / K</a> (aka HIFI WALKER H2, AGPTek H3, and Surfans F20)
 <li><b>Creative</b>: <a href="/wiki/CreativeZENPort">Zen</a> and <a href="/wiki/CreativeZENXFi2Port">Zen X-Fi 2</a>
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
 <li><b>HiFi E.T</b>: <a href="/wiki/HifietMAPort">MA9</a>, <a href="/wiki/HifietMAPort">MA8</a>
@@ -75,13 +76,14 @@ and Ondio
 <a href="/wiki/SonyNWZA10">NWZ-A10</a>,
 and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <li><b>Toshiba</b>: <a href="/wiki/GigabeatSPort">Gigabeat S</a>
-<li><b>xDuoo</b>: <a href="/wiki/XDuooX3">X3</a> <a href="/wiki/XDuooX3ii">X3ii</a>, and <a href="/wiki/XDuooX3ii">X20</a>
+<li><b>xDuoo</b>: <a href="/wiki/XDuooX3">X3</a>, <a href="/wiki/XDuooX3ii">X3ii</a>, and <a href="/wiki/XDuooX3ii">X20</a>
 </ul>
 
 <h2>Unusable ports</h2>
 <p>Work has begun on porting Rockbox to these players, but much remains before they are usable:
 
 <ul>
+<li><b>FiiO</b>: <a href="/wiki/FiioM3K">M3K</a>
 <li><b>Onda</b>: VX747, VX767 and VX777</li>
 <li><b>iHIFI</b> 760, 770, 770C, 800, and 960</li>
 <li><b>Google</b> Android</li>
@@ -110,6 +112,7 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
+<tr><td nowrap>2020-10-11</td><td>EROS Q / K (and their clones) are now supported!</td></tr>
 <tr><td nowrap>2020-07-24</td><td>All Archos targets have been <a href="//www.rockbox.org/mail/archive//rockbox-dev-archive-2020-07/0019.shtml">retired</a>.</td></tr>
 <tr><td nowrap>2020-05-27</td><td>Rockbox git and gerrit services moved to new hosts!</td></tr>
 <tr><td nowrap>2020-05-16</td><td>Most rockbox infrastructure moved to new hosts!</td></tr>

@@ -2,6 +2,8 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<p><i>2020-10-11</i>: EROS Q / K (and their clones) are now supported!
+
 <p><i>2020-07-24</i>: All Achos targets have been <a href="//www.rockbox.org/mail/archive//rockbox-dev-archive-2020-07/0019.shtml">retired</a>.
 
 <p><i>2020-05-27</i>: gerrit and git moved to new hosts.  Github integration fixed, and https enabled for gerrit.
