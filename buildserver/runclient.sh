@@ -9,14 +9,14 @@ do
 
     ############### Possible values for archlist are:
 
-    ####### Native (Actively used)
+    ####### (Obsolete)
     # arm-eabi-gcc444        : needed for ARM-based traditional targets
     # m68k-gcc452            : coldfire-based players
-    # mipsel-gcc494          : MIPS-based players
 
-    ####### Native (Newer toolchains that will be deployed soon)
+    ####### Native targets
     # m68k-gcc494            : m68k-based players
     # arm-eabi-gcc494        | arm-based players
+    # mipsel-gcc494          : MIPS-based players
 
     ####### Hosted
     # mipsel-rb-gcc494       : linux based MIPS players, eg Agptek Rocker (Benjie T6)
@@ -31,7 +31,8 @@ do
     # android-ndk10          : Android NDK 10e, eg iBasso dx50/dx90
     # android-ndk10sdk19     : Android NDK 10e and SDK+tools supporting API 19 (4.4/KitKat)
 
-    perl -s rbclient.pl -username= -password= -clientname= -archlist=m68k-gcc452,mipsel-gcc494,sdl,arm-eabi-gcc444,arm-ypr0-gcc446,android16 -buildmaster=buildmaster.rockbox.org -port=19999
+    # CHANGEME:  This list includes native targets only.
+    perl -s rbclient.pl -username= -password= -clientname= -archlist=m68k-gcc494,mipsel-gcc494,arm-eabi-gcc494 -buildmaster=buildmaster.rockbox.org -port=19999
     res=$?
     if test "$res" -eq 22; then
       echo "Address the above issue(s), then restart!"
