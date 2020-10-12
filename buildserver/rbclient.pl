@@ -541,14 +541,16 @@ sub testsystem
         "android-ndk10sdk19" => { "cat $ENV{ANDROID_NDK_PATH}/RELEASE.TXT" => "r10",
 				      "$ENV{ANDROID_SDK_PATH}/tools/android list target" => "API level: 19" },
 
+	# Nuked obsolete targets
+        "sh" => { "sh-elf-gcc --version", "4.0.3" },
+        "sh-gcc494" => { "sh-elf-gcc --version", "4.9.4" },
+
 	# Native targets (active tooling)
         "arm-eabi-gcc444" => { "arm-elf-eabi-gcc --version", "4.4.4" },
-        "sh" => { "sh-elf-gcc --version", "4.0.3" },
         "m68k-gcc452" => { "m68k-elf-gcc --version", "4.5.2" },
         "mipsel-gcc494" => { "mipsel-elf-gcc --version", "4.9.4" },
 
         # Native targets (Upcoming tooling)
-        "sh-gcc494" => { "sh-elf-gcc --version", "4.9.4" },
         "arm-eabl-gcc494" => { "arm-elf-eabi-gcc --version", "4.9.4" },
         "m68k-gcc494" => { "m68k-elf-gcc --version", "4.9.4" },
 
