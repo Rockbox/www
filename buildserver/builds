@@ -62,141 +62,141 @@ sdl:0:samsungypr0sim:Samsung YP-R0 - Simulator:rockboxui:207580:../tools/configu
 #sdl:0:samsungypr1sim:Samsung YP-R1 - Simulator:rockboxui:118270:../tools/configure --target=samsungypr1 --type=s && make
 ####
 # m68k-based native targets
-m68k-gcc452:1:iriverh100:iriver H100 - Normal:rockbox.zip:231880:../tools/configure --target=iriverh100 --type=n && make zip
-m68k-gcc452:1:iriverh120:iriver H120 - Normal:rockbox.zip:231830:../tools/configure --target=iriverh120 --type=n && make zip
-m68k-gcc452:1:iriverh300:iriver H300 - Normal:rockbox.zip:283180:../tools/configure --target=iriverh300 --type=n && make zip
-m68k-gcc452:1:iaudiox5:iAudio X5 - Normal:rockbox.zip:258520:../tools/configure --target=iaudiox5 --type=n && make zip
-m68k-gcc452:1:iaudiom5:iAudio M5 - Normal:rockbox.zip:207860:../tools/configure --target=iaudiom5 --type=n && make zip
-m68k-gcc452:1:iaudiom3:iAudio M3 - Normal:rockbox.zip:195240:../tools/configure --target=iaudiom3 --type=n && make zip
-m68k-gcc452:1:mpiohd200:MPIO HD200 - Normal:rockbox.zip:195170:../tools/configure --target=mpiohd200 --type=n && make zip
-m68k-gcc452:1:mpiohd300:MPIO HD300 - Normal:rockbox.zip:202020:../tools/configure --target=mpiohd300 --type=n && make zip
+m68k-gcc494:1:iriverh100:iriver H100 - Normal:rockbox.zip:231880:../tools/configure --target=iriverh100 --type=n && make zip
+m68k-gcc494:1:iriverh120:iriver H120 - Normal:rockbox.zip:231830:../tools/configure --target=iriverh120 --type=n && make zip
+m68k-gcc494:1:iriverh300:iriver H300 - Normal:rockbox.zip:283180:../tools/configure --target=iriverh300 --type=n && make zip
+m68k-gcc494:1:iaudiox5:iAudio X5 - Normal:rockbox.zip:258520:../tools/configure --target=iaudiox5 --type=n && make zip
+m68k-gcc494:1:iaudiom5:iAudio M5 - Normal:rockbox.zip:207860:../tools/configure --target=iaudiom5 --type=n && make zip
+m68k-gcc494:1:iaudiom3:iAudio M3 - Normal:rockbox.zip:195240:../tools/configure --target=iaudiom3 --type=n && make zip
+m68k-gcc494:1:mpiohd200:MPIO HD200 - Normal:rockbox.zip:195170:../tools/configure --target=mpiohd200 --type=n && make zip
+m68k-gcc494:1:mpiohd300:MPIO HD300 - Normal:rockbox.zip:202020:../tools/configure --target=mpiohd300 --type=n && make zip
 ####
 # m68k-based native bootloaders
-m68k-gcc452:0:iriverh100boot:iriver H100 - Boot:bootloader.iriver:7590:../tools/configure --target=iriverh100 --type=b && make
-m68k-gcc452:0:iriverh120boot:iriver H120 - Boot:bootloader.iriver:7630:../tools/configure --target=iriverh120 --type=b && make
-m68k-gcc452:0:iriverh300boot:iriver H300 - Boot:rockbox.iriver:7920:../tools/configure --target=iriverh300 --type=b && make
-m68k-gcc452:0:iaudiox5boot:iAudio X5 - Boot:x5_fw.bin:7890:../tools/configure --target=iaudiox5 --type=b && make
-m68k-gcc452:0:iaudiom5boot:iAudio M5 - Boot:m5_fw.bin:7540:../tools/configure --target=iaudiom5 --type=b && make
-m68k-gcc452:0:iaudiom3boot:iAudio M3 - Boot:cowon_m3.bin:6750:../tools/configure --target=iaudiom3 --type=b && make
-m68k-gcc452:0:mpiohd200boot:MPIO HD200 - Boot:bootloader.mpio:6780:../tools/configure --target=mpiohd200 --type=b && make
-m68k-gcc452:0:mpiohd300boot:MPIO HD300 - Boot:bootloader.mpio:6910:../tools/configure --target=mpiohd300 --type=b && make
+m68k-gcc494:0:iriverh100boot:iriver H100 - Boot:bootloader.iriver:7590:../tools/configure --target=iriverh100 --type=b && make
+m68k-gcc494:0:iriverh120boot:iriver H120 - Boot:bootloader.iriver:7630:../tools/configure --target=iriverh120 --type=b && make
+m68k-gcc494:0:iriverh300boot:iriver H300 - Boot:rockbox.iriver:7920:../tools/configure --target=iriverh300 --type=b && make
+m68k-gcc494:0:iaudiox5boot:iAudio X5 - Boot:x5_fw.bin:7890:../tools/configure --target=iaudiox5 --type=b && make
+m68k-gcc494:0:iaudiom5boot:iAudio M5 - Boot:m5_fw.bin:7540:../tools/configure --target=iaudiom5 --type=b && make
+m68k-gcc494:0:iaudiom3boot:iAudio M3 - Boot:cowon_m3.bin:6750:../tools/configure --target=iaudiom3 --type=b && make
+m68k-gcc494:0:mpiohd200boot:MPIO HD200 - Boot:bootloader.mpio:6780:../tools/configure --target=mpiohd200 --type=b && make
+m68k-gcc494:0:mpiohd300boot:MPIO HD300 - Boot:bootloader.mpio:6910:../tools/configure --target=mpiohd300 --type=b && make
 ####
 # ARM-based native targets
-arm-eabi-gcc444:1:ipodnano1g:iPod Nano 1G - Normal:rockbox.zip:265350:../tools/configure --target=ipodnano1g --type=n && make zip
-arm-eabi-gcc444:1:ipodnano2g:iPod Nano 2G - Normal:rockbox.zip:263660:../tools/configure --target=ipodnano2g --type=n && make zip
-arm-eabi-gcc444:1:ipodcolor:iPod Color - Normal:rockbox.zip:265900:../tools/configure --target=ipodcolor --type=n && make zip
-arm-eabi-gcc444:1:ipod4g:iPod 4G Grayscale - Normal:rockbox.zip:206430:../tools/configure --target=ipod4g --type=n && make zip
-arm-eabi-gcc444:1:ipodvideo:iPod Video - Normal:rockbox.zip:268010:../tools/configure --target=ipodvideo --type=n && make zip
-arm-eabi-gcc444:1:ipod3g:iPod 3G - Normal:rockbox.zip:197490:../tools/configure --target=ipod3g --type=n && make zip
-arm-eabi-gcc444:1:ipodmini2g:iPod Mini 2G - Normal:rockbox.zip:201820:../tools/configure --target=ipodmini2g --type=n && make zip
-arm-eabi-gcc444:1:ipodmini1g:iPod Mini 1G - Normal:rockbox.zip:201610:../tools/configure --target=ipodmini1g --type=n && make zip
-arm-eabi-gcc444:1:ipod6g:iPod Classic - Normal:rockbox.zip:265060:../tools/configure --target=ipod6g --type=n && make zip
-arm-eabi-gcc444:1:iriverh10:iriver H10 - Normal:rockbox.zip:244130:../tools/configure --target=iriverh10 --type=n && make zip
-arm-eabi-gcc444:1:iriverh10_5gb:iriver H10 5GB - Normal:rockbox.zip:242610:../tools/configure --target=iriverh10_5gb --type=n && make zip
-arm-eabi-gcc444:1:gigabeatfx:Toshiba Gigabeat F - Normal:rockbox.zip:237080:../tools/configure --target=gigabeatfx --type=n && make zip
-arm-eabi-gcc444:1:gigabeats:Toshiba Gigabeat S - Normal:rockbox.zip:246540:../tools/configure --target=gigabeats --type=n && make zip
-arm-eabi-gcc444:1:sansae200:SanDisk Sansa e200 - Normal:rockbox.zip:265240:../tools/configure --target=sansae200 --type=n && make zip
-arm-eabi-gcc444:1:sansac200:SanDisk Sansa c200 - Normal:rockbox.zip:234690:../tools/configure --target=sansac200 --type=n && make zip
-arm-eabi-gcc444:1:ipod1g2g:iPod 1G/2G - Normal:rockbox.zip:195940:../tools/configure --target=ipod1g2g --type=n && make zip
-arm-eabi-gcc444:1:mrobe500:Olympus M-Robe 500 - Normal:rockbox.zip:192500:../tools/configure --target=mrobe500 --type=n && make zip
-arm-eabi-gcc444:1:mrobe100:Olympus M-Robe 100 - Normal:rockbox.zip:179680:../tools/configure --target=mrobe100 --type=n && make zip
-arm-eabi-gcc444:1:cowond2:Cowon D2 - Normal:rockbox.zip:236820:../tools/configure --target=cowond2 --type=n && make zip
-arm-eabi-gcc444:1:zenvisionm30:Creative Zen Vision M 30GB - Normal:rockbox.zip:234500:../tools/configure --target=zenvisionm30gb --type=n && make zip
-arm-eabi-gcc444:1:zenvisionm60:Creative Zen Vision M 60GB - Normal:rockbox.zip:234460:../tools/configure --target=zenvisionm60gb --type=n && make zip
-arm-eabi-gcc444:1:zenvision:Creative Zen Vision - Normal:rockbox.zip:82630:../tools/configure --target=zenvision --type=n && make zip
-arm-eabi-gcc444:1:sansafuze:SanDisk Sansa Fuze - Normal:rockbox.zip:264580:../tools/configure --target=sansafuze --type=n && make zip
-arm-eabi-gcc444:1:sansafuzev2:SanDisk Sansa Fuzev2 - Normal:rockbox.zip:263350:../tools/configure --target=sansafuzev2 --type=n && make zip
-arm-eabi-gcc444:1:sansafuzeplus:SanDisk Sansa Fuze+ - Normal:rockbox.zip:249280:../tools/configure --target=sansafuzeplus --type=n && make zip
-arm-eabi-gcc444:1:sansaclip:SanDisk Sansa Clip - Normal:rockbox.zip:182970:../tools/configure --target=sansaclip --type=n && make zip
-arm-eabi-gcc444:1:sansaclipv2:SanDisk Sansa Clipv2 - Normal:rockbox.zip:182650:../tools/configure --target=sansaclipv2 --type=n && make zip
-arm-eabi-gcc444:1:sansaclipplus:SanDisk Sansa Clip+ - Normal:rockbox.zip:182940:../tools/configure --target=sansaclipplus --type=n && make zip
-arm-eabi-gcc444:1:sansaclipzip:SanDisk Sansa Clip Zip - Normal:rockbox.zip:232210:../tools/configure --target=sansaclipzip --type=n && make zip
-arm-eabi-gcc444:1:sansaconnect:SanDisk Sansa Connect - Normal:rockbox.zip:234210:../tools/configure --target=sansaconnect --type=n && make zip
-arm-eabi-gcc444:1:sansae200v2:SanDisk Sansa e200v2 - Normal:rockbox.zip:264120:../tools/configure --target=sansae200v2 --type=n && make zip
-arm-eabi-gcc444:1:sansac200v2:SanDisk Sansa c200v2 - Normal:rockbox.zip:231880:../tools/configure --target=sansac200v2 --type=n && make zip
-arm-eabi-gcc444:1:sansam200v4:SanDisk Sansa m200v4 - Normal:rockbox.zip:175140:../tools/configure --target=sansam200v4 --type=n && make zip
-arm-eabi-gcc444:1:gogearhdd1630:Philips HDD1630 - Normal:rockbox.zip:243120:../tools/configure --target=gogearhdd1630 --type=n && make zip
-arm-eabi-gcc444:1:gogearhdd6330:Philips HDD6330 - Normal:rockbox.zip:245530:../tools/configure --target=gogearhdd6330 --type=n && make zip
-arm-eabi-gcc444:1:samsungyh820:Samsung YH-820 - Normal:rockbox.zip:233900:../tools/configure --target=samsungyh820 --type=n && make zip
-arm-eabi-gcc444:1:samsungyh920:Samsung YH-920 - Normal:rockbox.zip:188810:../tools/configure --target=samsungyh920 --type=n && make zip
-arm-eabi-gcc444:1:samsungyh925:Samsung YH-925 - Normal:rockbox.zip:243290:../tools/configure --target=samsungyh925 --type=n && make zip
-arm-eabi-gcc444:1:gogearsa9200:Philips SA9200 - Normal:rockbox.zip:238180:../tools/configure --target=gogearsa9200 --type=n && make zip
-arm-eabi-gcc444:1:vibe500:Packard Bell Vibe 500 - Normal:rockbox.zip:243690:../tools/configure --target=vibe500 --type=n && make zip
-arm-eabi-gcc444:1:rk27generic:Rockchip rk27xx - Normal:rockbox.zip:85410:../tools/configure --target=rk27generic --type=n && make zip
-arm-eabi-gcc444:1:hifimanhm60x:HiFiMAN HM-60x - Normal:rockbox.zip:235360:../tools/configure --target=hifimanhm60x --type=n && make zip
-arm-eabi-gcc444:1:hifimanhm801:HiFiMAN HM-801 - Normal:rockbox.zip:238340:../tools/configure --target=hifimanhm801 --type=n && make zip
-arm-eabi-gcc444:1:hifietma9:HiFi E.T MA9 - Normal:rockbox.zip:84490:../tools/configure --target=hifietma9 --type=n && make zip
-arm-eabi-gcc444:1:hifietma9c:HiFi E.T MA9C - Normal:rockbox.zip:84470:../tools/configure --target=hifietma9c --type=n && make zip
-arm-eabi-gcc444:1:hifietma8:HiFi E.T MA8 - Normal:rockbox.zip:84560:../tools/configure --target=hifietma8 --type=n && make zip
-arm-eabi-gcc444:1:hifietma8c:HiFi E.T MA8C - Normal:rockbox.zip:84510:../tools/configure --target=hifietma8c --type=n && make zip
-arm-eabi-gcc444:1:ihifi760:IHIFI 760 - Normal:rockbox.zip:84500:../tools/configure --target=ihifi760 --type=n && make zip
-arm-eabi-gcc444:1:ihifi770:IHIFI 770 - Normal:rockbox.zip:84500:../tools/configure --target=ihifi770 --type=n && make zip
-arm-eabi-gcc444:1:ihifi770c:IHIFI 770C - Normal:rockbox.zip:84500:../tools/configure --target=ihifi770c --type=n && make zip
-arm-eabi-gcc444:1:ihifi800:IHIFI 800 - Normal:rockbox.zip:84500:../tools/configure --target=ihifi800 --type=n && make zip
-arm-eabi-gcc444:1:ihifi960:IHIFI 960 - Normal:rockbox.zip:84460:../tools/configure --target=ihifi960 --type=n && make zip
-arm-eabi-gcc444:1:creativezenxfi2:Creative Zen X-Fi2 - Normal:rockbox.zip:92900:../tools/configure --target=creativezenxfi2 --type=n && make zip
-arm-eabi-gcc444:1:creativezenxfi3:Creative Zen X-Fi3 - Normal:rockbox.zip:247530:../tools/configure --target=creativezenxfi3 --type=n && make zip
-arm-eabi-gcc444:1:sonynwze360:Sony NWZ-E360 - Normal:rockbox.zip:244070:../tools/configure --target=sonynwze360 --type=n && make zip
-arm-eabi-gcc444:1:sonynwze370:Sony NWZ-E370 - Normal:rockbox.zip:241150:../tools/configure --target=sonynwze370 --type=n && make zip
-arm-eabi-gcc444:1:creativezen:Creative ZEN - Normal:rockbox.zip:259990:../tools/configure --target=creativezen --type=n && make zip
-arm-eabi-gcc444:1:creativezenxfi:Creative ZEN X-Fi - Normal:rockbox.zip:260420:../tools/configure --target=creativezenxfi --type=n && make zip
-arm-eabi-gcc444:1:creativezenmozaic:Creative ZEN Mozaic - Normal:rockbox.zip:244840:../tools/configure --target=creativezenmozaic --type=n && make zip
-arm-eabi-gcc444:1:creativezenxfistyle:Creative ZEN X-Fi Style - Normal:rockbox.zip:249900:../tools/configure --target=creativezenxfistyle --type=n && make zip
+arm-eabi-gcc494:1:ipodnano1g:iPod Nano 1G - Normal:rockbox.zip:265350:../tools/configure --target=ipodnano1g --type=n && make zip
+arm-eabi-gcc494:1:ipodnano2g:iPod Nano 2G - Normal:rockbox.zip:263660:../tools/configure --target=ipodnano2g --type=n && make zip
+arm-eabi-gcc494:1:ipodcolor:iPod Color - Normal:rockbox.zip:265900:../tools/configure --target=ipodcolor --type=n && make zip
+arm-eabi-gcc494:1:ipod4g:iPod 4G Grayscale - Normal:rockbox.zip:206430:../tools/configure --target=ipod4g --type=n && make zip
+arm-eabi-gcc494:1:ipodvideo:iPod Video - Normal:rockbox.zip:268010:../tools/configure --target=ipodvideo --type=n && make zip
+arm-eabi-gcc494:1:ipod3g:iPod 3G - Normal:rockbox.zip:197490:../tools/configure --target=ipod3g --type=n && make zip
+arm-eabi-gcc494:1:ipodmini2g:iPod Mini 2G - Normal:rockbox.zip:201820:../tools/configure --target=ipodmini2g --type=n && make zip
+arm-eabi-gcc494:1:ipodmini1g:iPod Mini 1G - Normal:rockbox.zip:201610:../tools/configure --target=ipodmini1g --type=n && make zip
+arm-eabi-gcc494:1:ipod6g:iPod Classic - Normal:rockbox.zip:265060:../tools/configure --target=ipod6g --type=n && make zip
+arm-eabi-gcc494:1:iriverh10:iriver H10 - Normal:rockbox.zip:244130:../tools/configure --target=iriverh10 --type=n && make zip
+arm-eabi-gcc494:1:iriverh10_5gb:iriver H10 5GB - Normal:rockbox.zip:242610:../tools/configure --target=iriverh10_5gb --type=n && make zip
+arm-eabi-gcc494:1:gigabeatfx:Toshiba Gigabeat F - Normal:rockbox.zip:237080:../tools/configure --target=gigabeatfx --type=n && make zip
+arm-eabi-gcc494:1:gigabeats:Toshiba Gigabeat S - Normal:rockbox.zip:246540:../tools/configure --target=gigabeats --type=n && make zip
+arm-eabi-gcc494:1:sansae200:SanDisk Sansa e200 - Normal:rockbox.zip:265240:../tools/configure --target=sansae200 --type=n && make zip
+arm-eabi-gcc494:1:sansac200:SanDisk Sansa c200 - Normal:rockbox.zip:234690:../tools/configure --target=sansac200 --type=n && make zip
+arm-eabi-gcc494:1:ipod1g2g:iPod 1G/2G - Normal:rockbox.zip:195940:../tools/configure --target=ipod1g2g --type=n && make zip
+arm-eabi-gcc494:1:mrobe500:Olympus M-Robe 500 - Normal:rockbox.zip:192500:../tools/configure --target=mrobe500 --type=n && make zip
+arm-eabi-gcc494:1:mrobe100:Olympus M-Robe 100 - Normal:rockbox.zip:179680:../tools/configure --target=mrobe100 --type=n && make zip
+arm-eabi-gcc494:1:cowond2:Cowon D2 - Normal:rockbox.zip:236820:../tools/configure --target=cowond2 --type=n && make zip
+arm-eabi-gcc494:1:zenvisionm30:Creative Zen Vision M 30GB - Normal:rockbox.zip:234500:../tools/configure --target=zenvisionm30gb --type=n && make zip
+arm-eabi-gcc494:1:zenvisionm60:Creative Zen Vision M 60GB - Normal:rockbox.zip:234460:../tools/configure --target=zenvisionm60gb --type=n && make zip
+arm-eabi-gcc494:1:zenvision:Creative Zen Vision - Normal:rockbox.zip:82630:../tools/configure --target=zenvision --type=n && make zip
+arm-eabi-gcc494:1:sansafuze:SanDisk Sansa Fuze - Normal:rockbox.zip:264580:../tools/configure --target=sansafuze --type=n && make zip
+arm-eabi-gcc494:1:sansafuzev2:SanDisk Sansa Fuzev2 - Normal:rockbox.zip:263350:../tools/configure --target=sansafuzev2 --type=n && make zip
+arm-eabi-gcc494:1:sansafuzeplus:SanDisk Sansa Fuze+ - Normal:rockbox.zip:249280:../tools/configure --target=sansafuzeplus --type=n && make zip
+arm-eabi-gcc494:1:sansaclip:SanDisk Sansa Clip - Normal:rockbox.zip:182970:../tools/configure --target=sansaclip --type=n && make zip
+arm-eabi-gcc494:1:sansaclipv2:SanDisk Sansa Clipv2 - Normal:rockbox.zip:182650:../tools/configure --target=sansaclipv2 --type=n && make zip
+arm-eabi-gcc494:1:sansaclipplus:SanDisk Sansa Clip+ - Normal:rockbox.zip:182940:../tools/configure --target=sansaclipplus --type=n && make zip
+arm-eabi-gcc494:1:sansaclipzip:SanDisk Sansa Clip Zip - Normal:rockbox.zip:232210:../tools/configure --target=sansaclipzip --type=n && make zip
+arm-eabi-gcc494:1:sansaconnect:SanDisk Sansa Connect - Normal:rockbox.zip:234210:../tools/configure --target=sansaconnect --type=n && make zip
+arm-eabi-gcc494:1:sansae200v2:SanDisk Sansa e200v2 - Normal:rockbox.zip:264120:../tools/configure --target=sansae200v2 --type=n && make zip
+arm-eabi-gcc494:1:sansac200v2:SanDisk Sansa c200v2 - Normal:rockbox.zip:231880:../tools/configure --target=sansac200v2 --type=n && make zip
+arm-eabi-gcc494:1:sansam200v4:SanDisk Sansa m200v4 - Normal:rockbox.zip:175140:../tools/configure --target=sansam200v4 --type=n && make zip
+arm-eabi-gcc494:1:gogearhdd1630:Philips HDD1630 - Normal:rockbox.zip:243120:../tools/configure --target=gogearhdd1630 --type=n && make zip
+arm-eabi-gcc494:1:gogearhdd6330:Philips HDD6330 - Normal:rockbox.zip:245530:../tools/configure --target=gogearhdd6330 --type=n && make zip
+arm-eabi-gcc494:1:samsungyh820:Samsung YH-820 - Normal:rockbox.zip:233900:../tools/configure --target=samsungyh820 --type=n && make zip
+arm-eabi-gcc494:1:samsungyh920:Samsung YH-920 - Normal:rockbox.zip:188810:../tools/configure --target=samsungyh920 --type=n && make zip
+arm-eabi-gcc494:1:samsungyh925:Samsung YH-925 - Normal:rockbox.zip:243290:../tools/configure --target=samsungyh925 --type=n && make zip
+arm-eabi-gcc494:1:gogearsa9200:Philips SA9200 - Normal:rockbox.zip:238180:../tools/configure --target=gogearsa9200 --type=n && make zip
+arm-eabi-gcc494:1:vibe500:Packard Bell Vibe 500 - Normal:rockbox.zip:243690:../tools/configure --target=vibe500 --type=n && make zip
+arm-eabi-gcc494:1:rk27generic:Rockchip rk27xx - Normal:rockbox.zip:85410:../tools/configure --target=rk27generic --type=n && make zip
+arm-eabi-gcc494:1:hifimanhm60x:HiFiMAN HM-60x - Normal:rockbox.zip:235360:../tools/configure --target=hifimanhm60x --type=n && make zip
+arm-eabi-gcc494:1:hifimanhm801:HiFiMAN HM-801 - Normal:rockbox.zip:238340:../tools/configure --target=hifimanhm801 --type=n && make zip
+arm-eabi-gcc494:1:hifietma9:HiFi E.T MA9 - Normal:rockbox.zip:84490:../tools/configure --target=hifietma9 --type=n && make zip
+arm-eabi-gcc494:1:hifietma9c:HiFi E.T MA9C - Normal:rockbox.zip:84470:../tools/configure --target=hifietma9c --type=n && make zip
+arm-eabi-gcc494:1:hifietma8:HiFi E.T MA8 - Normal:rockbox.zip:84560:../tools/configure --target=hifietma8 --type=n && make zip
+arm-eabi-gcc494:1:hifietma8c:HiFi E.T MA8C - Normal:rockbox.zip:84510:../tools/configure --target=hifietma8c --type=n && make zip
+arm-eabi-gcc494:1:ihifi760:IHIFI 760 - Normal:rockbox.zip:84500:../tools/configure --target=ihifi760 --type=n && make zip
+arm-eabi-gcc494:1:ihifi770:IHIFI 770 - Normal:rockbox.zip:84500:../tools/configure --target=ihifi770 --type=n && make zip
+arm-eabi-gcc494:1:ihifi770c:IHIFI 770C - Normal:rockbox.zip:84500:../tools/configure --target=ihifi770c --type=n && make zip
+arm-eabi-gcc494:1:ihifi800:IHIFI 800 - Normal:rockbox.zip:84500:../tools/configure --target=ihifi800 --type=n && make zip
+arm-eabi-gcc494:1:ihifi960:IHIFI 960 - Normal:rockbox.zip:84460:../tools/configure --target=ihifi960 --type=n && make zip
+arm-eabi-gcc494:1:creativezenxfi2:Creative Zen X-Fi2 - Normal:rockbox.zip:92900:../tools/configure --target=creativezenxfi2 --type=n && make zip
+arm-eabi-gcc494:1:creativezenxfi3:Creative Zen X-Fi3 - Normal:rockbox.zip:247530:../tools/configure --target=creativezenxfi3 --type=n && make zip
+arm-eabi-gcc494:1:sonynwze360:Sony NWZ-E360 - Normal:rockbox.zip:244070:../tools/configure --target=sonynwze360 --type=n && make zip
+arm-eabi-gcc494:1:sonynwze370:Sony NWZ-E370 - Normal:rockbox.zip:241150:../tools/configure --target=sonynwze370 --type=n && make zip
+arm-eabi-gcc494:1:creativezen:Creative ZEN - Normal:rockbox.zip:259990:../tools/configure --target=creativezen --type=n && make zip
+arm-eabi-gcc494:1:creativezenxfi:Creative ZEN X-Fi - Normal:rockbox.zip:260420:../tools/configure --target=creativezenxfi --type=n && make zip
+arm-eabi-gcc494:1:creativezenmozaic:Creative ZEN Mozaic - Normal:rockbox.zip:244840:../tools/configure --target=creativezenmozaic --type=n && make zip
+arm-eabi-gcc494:1:creativezenxfistyle:Creative ZEN X-Fi Style - Normal:rockbox.zip:249900:../tools/configure --target=creativezenxfistyle --type=n && make zip
 ####
 # ARM-based native bootloaders
-arm-eabi-gcc444:0:ipodnano1gboot:iPod Nano 1G - Boot:bootloader-ipodnano1g.ipod:7460:../tools/configure --target=ipodnano1g --type=b && make
-arm-eabi-gcc444:0:ipodnano2gboot:iPod Nano 2G - Boot:bootloader-ipodnano2g.ipod:7690:../tools/configure --target=ipodnano2g --type=b && make
-arm-eabi-gcc444:0:ipodcolorboot:iPod Color - Boot:bootloader-ipodcolor.ipod:7450:../tools/configure --target=ipodcolor --type=b && make
-arm-eabi-gcc444:0:ipod4gboot:iPod 4G Grayscale - Boot:bootloader-ipod4g.ipod:7240:../tools/configure --target=ipod4g --type=b && make
-arm-eabi-gcc444:0:ipod6gboot:iPod Classic - Boot:bootloader-ipod6g.ipod:8500:../tools/configure --target=ipod6g --type=b && make
-arm-eabi-gcc444:0:ipodvideoboot:iPod Video - Boot:bootloader-ipodvideo.ipod:7460:../tools/configure --target=ipodvideo --type=b && make
-arm-eabi-gcc444:0:ipod3gboot:iPod 3G - Boot:bootloader-ipod3g.ipod:6710:../tools/configure --target=ipod3g --type=b && make
-arm-eabi-gcc444:0:ipodmini2gboot:iPod Mini 2G - Boot:bootloader-ipodmini2g.ipod:7260:../tools/configure --target=ipodmini2g --type=b && make
-arm-eabi-gcc444:0:ipodmini1gboot:iPod Mini 1G - Boot:bootloader-ipodmini1g.ipod:7210:../tools/configure --target=ipodmini1g --type=b && make
-arm-eabi-gcc444:0:h10boot:iriver H10 - Boot:H10_20GC.mi4:7520:../tools/configure --target=iriverh10 --type=b && make
-arm-eabi-gcc444:0:gigabeatfxboot:Toshiba Gigabeat F - Boot:FWIMG01.DAT:6800:../tools/configure --target=gigabeatfx --type=b && make
-arm-eabi-gcc444:0:gigabeatsboot:Toshiba Gigabeat S - Boot:nk.bin:8910:../tools/configure --target=gigabeats --type=b && make
-arm-eabi-gcc444:0:sansae200boot:SanDisk Sansa e200 - Boot:PP5022.mi4:7630:../tools/configure --target=sansae200 --type=b && make
-arm-eabi-gcc444:0:sansac200boot:SanDisk Sansa c200 - Boot:firmware.mi4:7140:../tools/configure --target=sansac200 --type=b && make
-arm-eabi-gcc444:0:ipod1g2gboot:iPod 1G/2G - Boot:bootloader-ipod1g2g.ipod:6590:../tools/configure --target=ipod1g2g --type=b && make
-arm-eabi-gcc444:0:mrobe100boot:Olympus M-Robe 100 - Boot:pp5020.mi4:7020:../tools/configure --target=mrobe100 --type=b && make
-arm-eabi-gcc444:0:cowond2boot:Cowon D2 - Boot:bootloader-cowond2.bin:7150:../tools/configure --target=cowond2 --type=b && make
-arm-eabi-gcc444:0:sansae200v2boot:SanDisk Sansa e200v2 - Boot:bootloader-e200v2.sansa:7460:../tools/configure --target=sansae200v2 --type=b && make
-arm-eabi-gcc444:0:sansac200v2boot:SanDisk Sansa c200v2 - Boot:bootloader-c200v2.sansa:12440:../tools/configure --target=sansac200v2 --type=b && make
-arm-eabi-gcc444:0:sansam200v4boot:SanDisk Sansa m200v4 - Boot:bootloader-m200v4.sansa:11370:../tools/configure --target=sansam200v4 --type=b && make
-arm-eabi-gcc444:0:sansaclipboot:SanDisk Sansa Clip - Boot:bootloader-clip.sansa:11570:../tools/configure --target=sansaclip --type=b && make
-arm-eabi-gcc444:0:sansaclipv2boot:SanDisk Sansa Clipv2 - Boot:bootloader-clipv2.sansa:7190:../tools/configure --target=sansaclipv2 --type=b && make
-arm-eabi-gcc444:0:sansaclipplusboot:SanDisk Sansa Clip+ - Boot:bootloader-clipplus.sansa:7280:../tools/configure --target=sansaclipplus --type=b && make
-arm-eabi-gcc444:0:sansaclipzipboot:SanDisk Sansa Clip Zip - Boot:bootloader-clipzip.sansa:7400:../tools/configure --target=sansaclipzip --type=b && make
-arm-eabi-gcc444:0:sansaconnectboot:SanDisk Sansa Connect - Boot:bootloader-connect.sansa:7060:../tools/configure --target=sansaconnect --type=b && make
-arm-eabi-gcc444:0:sansafuzeboot:SanDisk Sansa Fuze - Boot:bootloader-fuze.sansa:7510:../tools/configure --target=sansafuze --type=b && make
-arm-eabi-gcc444:0:sansafuzev2boot:SanDisk Sansa Fuzev2 - Boot:bootloader-fuzev2.sansa:7540:../tools/configure --target=sansafuzev2 --type=b && make
-arm-eabi-gcc444:0:sansafuzeplusboot:SanDisk Sansa Fuze+ - Boot:bootloader-fuzeplus.sansa:9530:../tools/configure --target=sansafuzeplus --type=b && make
-arm-eabi-gcc444:0:gogearhdd1630boot:Philips HDD1630 - Boot:FWImage.ebn:7060:../tools/configure --target=gogearhdd1630 --type=b && make
-arm-eabi-gcc444:0:gogearhdd6330boot:Philips HDD6330 - Boot:FWImage.ebn:7140:../tools/configure --target=gogearhdd6330 --type=b && make
-arm-eabi-gcc444:0:samsungyh820boot:Samsung YH-820 - Boot:FW_YH820.mi4:6990:../tools/configure --target=samsungyh820 --type=b && make
-arm-eabi-gcc444:0:samsungyh920boot:Samsung YH-920 - Boot:PP5020.mi4:7010:../tools/configure --target=samsungyh920 --type=b && make
-arm-eabi-gcc444:0:samsungyh925boot:Samsung YH-925 - Boot:FW_YH925.mi4:7000:../tools/configure --target=samsungyh925 --type=b && make
-arm-eabi-gcc444:0:gogearsa9200boot:Philips SA9200 - Boot:FWImage.ebn:7530:../tools/configure --target=gogearsa9200 --type=b && make
-arm-eabi-gcc444:0:vibe500boot:Packard Bell Vibe 500 - Boot:jukebox.mi4:7300:../tools/configure --target=vibe500 --type=b && make
-arm-eabi-gcc444:0:zenvisionm30boot:Creative Zen Vision M 30GB - Boot:rockbox.zvmboot:7520:../tools/configure --target=zenvisionm30gb --type=b && make
-arm-eabi-gcc444:0:rk27genericboot:Rockchip rk27xx - Boot:bootloader.rkw:7550:../tools/configure --target=rk27generic --type=b && make
-arm-eabi-gcc444:0:hifimanhm60xboot:HiFiMAN HM-60x - Boot:bootloader.rkw:7580:../tools/configure --target=hifimanhm60x --type=b && make
-arm-eabi-gcc444:0:hifimanhm801boot:HiFiMAN HM-801 - Boot:bootloader.rkw:7500:../tools/configure --target=hifimanhm801 --type=b && make
-arm-eabi-gcc444:0:hifietma9boot:HiFi E.T MA9 - Boot:bootloader.rkw:7660:../tools/configure --target=hifietma9 --type=b && make
-arm-eabi-gcc444:0:hifietma9cboot:HiFi E.T MA9C - Boot:bootloader.rkw:7670:../tools/configure --target=hifietma9c --type=b && make
-arm-eabi-gcc444:0:hifietma8boot:HiFi E.T MA8 - Boot:bootloader.rkw:7690:../tools/configure --target=hifietma8 --type=b && make
-arm-eabi-gcc444:0:hifietma8cboot:HiFi E.T MA8C - Boot:bootloader.rkw:7660:../tools/configure --target=hifietma8c --type=b && make
-arm-eabi-gcc444:0:ihifi760boot:IHIFI 760 - Boot:bootloader.rkw:7540:../tools/configure --target=ihifi760 --type=b && make
-arm-eabi-gcc444:0:ihifi960boot:IHIFI 960 - Boot:bootloader.rkw:7560:../tools/configure --target=ihifi960 --type=b && make
-arm-eabi-gcc444:0:creativezenxfi2boot:Creative Zen X-Fi2 - Boot:bootloader-zenxfi2.creative:9360:../tools/configure --target=creativezenxfi2 --type=b && make
-arm-eabi-gcc444:0:creativezenxfi3boot:Creative Zen X-Fi3 - Boot:bootloader-zenxfi3.creative:9330:../tools/configure --target=creativezenxfi3 --type=b && make
-arm-eabi-gcc444:0:sonynwze360boot:Sony NWZ-E360 - Boot:bootloader-nwze360.sony:9070:../tools/configure --target=sonynwze360 --type=b && make
-arm-eabi-gcc444:0:sonynwze370boot:Sony NWZ-E370 - Boot:bootloader-nwze370.sony:9030:../tools/configure --target=sonynwze370 --type=b && make
-arm-eabi-gcc444:0:creativezenboot:Creative ZEN - Boot:bootloader-zen.creative:9780:../tools/configure --target=creativezen --type=b && make
-arm-eabi-gcc444:0:creativezenxfiboot:Creative ZEN X-Fi - Boot:bootloader-zenxfi.creative:9810:../tools/configure --target=creativezenxfi --type=b && make
-arm-eabi-gcc444:0:creativezenmozaicboot:Creative ZEN Mozaic - Boot:bootloader-zenmozaic.creative:9010:../tools/configure --target=creativezenmozaic --type=b && make
-arm-eabi-gcc444:0:creativezenxfistyleboot:Creative ZEN X-Fi Style - Boot:bootloader-zenxfistyle.creative:9260:../tools/configure --target=creativezenxfistyle --type=b && make
+arm-eabi-gcc494:0:ipodnano1gboot:iPod Nano 1G - Boot:bootloader-ipodnano1g.ipod:7460:../tools/configure --target=ipodnano1g --type=b && make
+arm-eabi-gcc494:0:ipodnano2gboot:iPod Nano 2G - Boot:bootloader-ipodnano2g.ipod:7690:../tools/configure --target=ipodnano2g --type=b && make
+arm-eabi-gcc494:0:ipodcolorboot:iPod Color - Boot:bootloader-ipodcolor.ipod:7450:../tools/configure --target=ipodcolor --type=b && make
+arm-eabi-gcc494:0:ipod4gboot:iPod 4G Grayscale - Boot:bootloader-ipod4g.ipod:7240:../tools/configure --target=ipod4g --type=b && make
+arm-eabi-gcc494:0:ipod6gboot:iPod Classic - Boot:bootloader-ipod6g.ipod:8500:../tools/configure --target=ipod6g --type=b && make
+arm-eabi-gcc494:0:ipodvideoboot:iPod Video - Boot:bootloader-ipodvideo.ipod:7460:../tools/configure --target=ipodvideo --type=b && make
+arm-eabi-gcc494:0:ipod3gboot:iPod 3G - Boot:bootloader-ipod3g.ipod:6710:../tools/configure --target=ipod3g --type=b && make
+arm-eabi-gcc494:0:ipodmini2gboot:iPod Mini 2G - Boot:bootloader-ipodmini2g.ipod:7260:../tools/configure --target=ipodmini2g --type=b && make
+arm-eabi-gcc494:0:ipodmini1gboot:iPod Mini 1G - Boot:bootloader-ipodmini1g.ipod:7210:../tools/configure --target=ipodmini1g --type=b && make
+arm-eabi-gcc494:0:h10boot:iriver H10 - Boot:H10_20GC.mi4:7520:../tools/configure --target=iriverh10 --type=b && make
+arm-eabi-gcc494:0:gigabeatfxboot:Toshiba Gigabeat F - Boot:FWIMG01.DAT:6800:../tools/configure --target=gigabeatfx --type=b && make
+arm-eabi-gcc494:0:gigabeatsboot:Toshiba Gigabeat S - Boot:nk.bin:8910:../tools/configure --target=gigabeats --type=b && make
+arm-eabi-gcc494:0:sansae200boot:SanDisk Sansa e200 - Boot:PP5022.mi4:7630:../tools/configure --target=sansae200 --type=b && make
+arm-eabi-gcc494:0:sansac200boot:SanDisk Sansa c200 - Boot:firmware.mi4:7140:../tools/configure --target=sansac200 --type=b && make
+arm-eabi-gcc494:0:ipod1g2gboot:iPod 1G/2G - Boot:bootloader-ipod1g2g.ipod:6590:../tools/configure --target=ipod1g2g --type=b && make
+arm-eabi-gcc494:0:mrobe100boot:Olympus M-Robe 100 - Boot:pp5020.mi4:7020:../tools/configure --target=mrobe100 --type=b && make
+arm-eabi-gcc494:0:cowond2boot:Cowon D2 - Boot:bootloader-cowond2.bin:7150:../tools/configure --target=cowond2 --type=b && make
+arm-eabi-gcc494:0:sansae200v2boot:SanDisk Sansa e200v2 - Boot:bootloader-e200v2.sansa:7460:../tools/configure --target=sansae200v2 --type=b && make
+arm-eabi-gcc494:0:sansac200v2boot:SanDisk Sansa c200v2 - Boot:bootloader-c200v2.sansa:12440:../tools/configure --target=sansac200v2 --type=b && make
+arm-eabi-gcc494:0:sansam200v4boot:SanDisk Sansa m200v4 - Boot:bootloader-m200v4.sansa:11370:../tools/configure --target=sansam200v4 --type=b && make
+arm-eabi-gcc494:0:sansaclipboot:SanDisk Sansa Clip - Boot:bootloader-clip.sansa:11570:../tools/configure --target=sansaclip --type=b && make
+arm-eabi-gcc494:0:sansaclipv2boot:SanDisk Sansa Clipv2 - Boot:bootloader-clipv2.sansa:7190:../tools/configure --target=sansaclipv2 --type=b && make
+arm-eabi-gcc494:0:sansaclipplusboot:SanDisk Sansa Clip+ - Boot:bootloader-clipplus.sansa:7280:../tools/configure --target=sansaclipplus --type=b && make
+arm-eabi-gcc494:0:sansaclipzipboot:SanDisk Sansa Clip Zip - Boot:bootloader-clipzip.sansa:7400:../tools/configure --target=sansaclipzip --type=b && make
+arm-eabi-gcc494:0:sansaconnectboot:SanDisk Sansa Connect - Boot:bootloader-connect.sansa:7060:../tools/configure --target=sansaconnect --type=b && make
+arm-eabi-gcc494:0:sansafuzeboot:SanDisk Sansa Fuze - Boot:bootloader-fuze.sansa:7510:../tools/configure --target=sansafuze --type=b && make
+arm-eabi-gcc494:0:sansafuzev2boot:SanDisk Sansa Fuzev2 - Boot:bootloader-fuzev2.sansa:7540:../tools/configure --target=sansafuzev2 --type=b && make
+arm-eabi-gcc494:0:sansafuzeplusboot:SanDisk Sansa Fuze+ - Boot:bootloader-fuzeplus.sansa:9530:../tools/configure --target=sansafuzeplus --type=b && make
+arm-eabi-gcc494:0:gogearhdd1630boot:Philips HDD1630 - Boot:FWImage.ebn:7060:../tools/configure --target=gogearhdd1630 --type=b && make
+arm-eabi-gcc494:0:gogearhdd6330boot:Philips HDD6330 - Boot:FWImage.ebn:7140:../tools/configure --target=gogearhdd6330 --type=b && make
+arm-eabi-gcc494:0:samsungyh820boot:Samsung YH-820 - Boot:FW_YH820.mi4:6990:../tools/configure --target=samsungyh820 --type=b && make
+arm-eabi-gcc494:0:samsungyh920boot:Samsung YH-920 - Boot:PP5020.mi4:7010:../tools/configure --target=samsungyh920 --type=b && make
+arm-eabi-gcc494:0:samsungyh925boot:Samsung YH-925 - Boot:FW_YH925.mi4:7000:../tools/configure --target=samsungyh925 --type=b && make
+arm-eabi-gcc494:0:gogearsa9200boot:Philips SA9200 - Boot:FWImage.ebn:7530:../tools/configure --target=gogearsa9200 --type=b && make
+arm-eabi-gcc494:0:vibe500boot:Packard Bell Vibe 500 - Boot:jukebox.mi4:7300:../tools/configure --target=vibe500 --type=b && make
+arm-eabi-gcc494:0:zenvisionm30boot:Creative Zen Vision M 30GB - Boot:rockbox.zvmboot:7520:../tools/configure --target=zenvisionm30gb --type=b && make
+arm-eabi-gcc494:0:rk27genericboot:Rockchip rk27xx - Boot:bootloader.rkw:7550:../tools/configure --target=rk27generic --type=b && make
+arm-eabi-gcc494:0:hifimanhm60xboot:HiFiMAN HM-60x - Boot:bootloader.rkw:7580:../tools/configure --target=hifimanhm60x --type=b && make
+arm-eabi-gcc494:0:hifimanhm801boot:HiFiMAN HM-801 - Boot:bootloader.rkw:7500:../tools/configure --target=hifimanhm801 --type=b && make
+arm-eabi-gcc494:0:hifietma9boot:HiFi E.T MA9 - Boot:bootloader.rkw:7660:../tools/configure --target=hifietma9 --type=b && make
+arm-eabi-gcc494:0:hifietma9cboot:HiFi E.T MA9C - Boot:bootloader.rkw:7670:../tools/configure --target=hifietma9c --type=b && make
+arm-eabi-gcc494:0:hifietma8boot:HiFi E.T MA8 - Boot:bootloader.rkw:7690:../tools/configure --target=hifietma8 --type=b && make
+arm-eabi-gcc494:0:hifietma8cboot:HiFi E.T MA8C - Boot:bootloader.rkw:7660:../tools/configure --target=hifietma8c --type=b && make
+arm-eabi-gcc494:0:ihifi760boot:IHIFI 760 - Boot:bootloader.rkw:7540:../tools/configure --target=ihifi760 --type=b && make
+arm-eabi-gcc494:0:ihifi960boot:IHIFI 960 - Boot:bootloader.rkw:7560:../tools/configure --target=ihifi960 --type=b && make
+arm-eabi-gcc494:0:creativezenxfi2boot:Creative Zen X-Fi2 - Boot:bootloader-zenxfi2.creative:9360:../tools/configure --target=creativezenxfi2 --type=b && make
+arm-eabi-gcc494:0:creativezenxfi3boot:Creative Zen X-Fi3 - Boot:bootloader-zenxfi3.creative:9330:../tools/configure --target=creativezenxfi3 --type=b && make
+arm-eabi-gcc494:0:sonynwze360boot:Sony NWZ-E360 - Boot:bootloader-nwze360.sony:9070:../tools/configure --target=sonynwze360 --type=b && make
+arm-eabi-gcc494:0:sonynwze370boot:Sony NWZ-E370 - Boot:bootloader-nwze370.sony:9030:../tools/configure --target=sonynwze370 --type=b && make
+arm-eabi-gcc494:0:creativezenboot:Creative ZEN - Boot:bootloader-zen.creative:9780:../tools/configure --target=creativezen --type=b && make
+arm-eabi-gcc494:0:creativezenxfiboot:Creative ZEN X-Fi - Boot:bootloader-zenxfi.creative:9810:../tools/configure --target=creativezenxfi --type=b && make
+arm-eabi-gcc494:0:creativezenmozaicboot:Creative ZEN Mozaic - Boot:bootloader-zenmozaic.creative:9010:../tools/configure --target=creativezenmozaic --type=b && make
+arm-eabi-gcc494:0:creativezenxfistyleboot:Creative ZEN X-Fi Style - Boot:bootloader-zenxfistyle.creative:9260:../tools/configure --target=creativezenxfistyle --type=b && make
 ####
 # MIPS-based native targets
 mipsel-gcc494:1:ondavx747:Onda VX747 - Normal:rockbox.zip:227890:../tools/configure --target=ondavx747 --type=n && make zip
@@ -252,10 +252,10 @@ mipsel-rb-gcc494:0:fiiom3kboot:FiiO M3K - Bootloader:bootloader.m3k:4620:../tool
 mipsel-rb-gcc494:0:aigoerosqboot:AIGO Eros Q/K - Bootloader:bootloader.erosq:4620:../tools/configure --target=erosq --type=b && make
 ###
 # Manuals
-m68k-gcc452,latex:0:iriverh120manual:iriver H120 - Manual:manual/rockbox-build.pdf:8070:../tools/configure --target=iriverh120 --type=n && make MAKEFLAGS= manual
-m68k-gcc452,latex:0:iriverh120htmlmanual:iriver H120 - HTML Manual:manual/rockbox-manual.zip:24870:../tools/configure --target=iriverh120 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
-arm-eabi-gcc444,latex:0:ipodmini2gmanual:iPod Mini 2G - Manual:manual/rockbox-build.pdf:8070:../tools/configure --target=ipodmini2g --type=n && make MAKEFLAGS= manual
-arm-eabi-gcc444,latex:0:ipodmini2ghtmlmanual:iPod Mini 2G - HTML Manual:manual/rockbox-manual.zip:24870:../tools/configure --target=ipodmini2g --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+m68k-gcc494,latex:0:iriverh120manual:iriver H120 - Manual:manual/rockbox-build.pdf:8070:../tools/configure --target=iriverh120 --type=n && make MAKEFLAGS= manual
+m68k-gcc494,latex:0:iriverh120htmlmanual:iriver H120 - HTML Manual:manual/rockbox-manual.zip:24870:../tools/configure --target=iriverh120 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+arm-eabi-gcc494,latex:0:ipodmini2gmanual:iPod Mini 2G - Manual:manual/rockbox-build.pdf:8070:../tools/configure --target=ipodmini2g --type=n && make MAKEFLAGS= manual
+arm-eabi-gcc494,latex:0:ipodmini2ghtmlmanual:iPod Mini 2G - HTML Manual:manual/rockbox-manual.zip:24870:../tools/configure --target=ipodmini2g --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 ####
 # CheckWPS builds
 sdl:0:iriverh120wps:iriver H120 - Checkwps:checkwps.iriverh120:1300:../tools/configure --target=iriverh120 --type=c && make
