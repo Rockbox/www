@@ -160,7 +160,7 @@ arm-eabi-gcc494:0:sansae200boot:SanDisk Sansa e200 - Boot:PP5022.mi4:7630:../too
 arm-eabi-gcc494:0:sansac200boot:SanDisk Sansa c200 - Boot:firmware.mi4:7140:../tools/configure --target=sansac200 --type=b && make
 arm-eabi-gcc494:0:ipod1g2gboot:iPod 1G/2G - Boot:bootloader-ipod1g2g.ipod:6590:../tools/configure --target=ipod1g2g --type=b && make
 arm-eabi-gcc494:0:mrobe100boot:Olympus M-Robe 100 - Boot:pp5020.mi4:7020:../tools/configure --target=mrobe100 --type=b && make
-arm-eabi-gcc494:0:mrobe500boot:Olympus M-Robe 500 - Boot:rockbox.zvmboot:7020:../tools/configure --target=mrobe500 --type=b && make
+arm-eabi-gcc494:0:mrobe500boot:Olympus M-Robe 500 - Boot:rockbox.mrboot:7020:../tools/configure --target=mrobe500 --type=b && make
 arm-eabi-gcc494:0:cowond2boot:Cowon D2 - Boot:bootloader-cowond2.bin:7150:../tools/configure --target=cowond2 --type=b && make
 arm-eabi-gcc494:0:sansae200v2boot:SanDisk Sansa e200v2 - Boot:bootloader-e200v2.sansa:7460:../tools/configure --target=sansae200v2 --type=b && make
 arm-eabi-gcc494:0:sansac200v2boot:SanDisk Sansa c200v2 - Boot:bootloader-c200v2.sansa:12440:../tools/configure --target=sansac200v2 --type=b && make
