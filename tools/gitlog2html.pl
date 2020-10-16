@@ -26,7 +26,7 @@ sub file2url {
     my $path = sprintf("<a class=\"fname\" href=\"$urlroot/tree/$sfile?id=$rev\">%s</a>",
                        $file, $sfile);
 
-    if($a eq "R") {
+    if($a eq "R" || $a =~ /R\d+/) {
         $diff = "rename";
     }
     elsif($a eq "M") {
@@ -152,7 +152,7 @@ while(<STDIN>) {
         undef @f;
         $count = 0;
     }
-    elsif (/^([ACDMRTYXB])\s+(.+)/)
+    elsif (/^([ACDMRTYXB])\d*\s+(.+)/)
     {
         # file
         $count++;
