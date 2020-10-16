@@ -46,6 +46,7 @@ and Ondio
 <a href="/wiki/SansaFuzePlusPort">Fuze+</a>, Clip, Clip+ and Clip Zip
 
 <li><b>Toshiba</b>: Gigabeat X and F series
+<li><b>xDuoo</b>: <a href="/wiki/XDuooX3">X3</a>
 </ul>
 
 <h2>Unstable ports</h2>
@@ -76,7 +77,7 @@ and Ondio
 <a href="/wiki/SonyNWZA10">NWZ-A10</a>,
 and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <li><b>Toshiba</b>: <a href="/wiki/GigabeatSPort">Gigabeat S</a>
-<li><b>xDuoo</b>: <a href="/wiki/XDuooX3">X3</a>, <a href="/wiki/XDuooX3ii">X3ii</a>, and <a href="/wiki/XDuooX3ii">X20</a>
+<li><b>xDuoo</b>: <a href="/wiki/XDuooX3ii">X3ii</a>, and <a href="/wiki/XDuooX3ii">X20</a>
 </ul>
 
 <h2>Unusable ports</h2>
@@ -112,6 +113,7 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
+<tr><td nowrap>2020-10-16</td><td>Move xDuoo X3 to stable.</td></tr>
 <tr><td nowrap>2020-10-11</td><td>EROS Q / K (and their clones) are now supported!</td></tr>
 <tr><td nowrap>2020-07-24</td><td>All Archos targets have been <a href="//www.rockbox.org/mail/archive//rockbox-dev-archive-2020-07/0019.shtml">retired</a>.</td></tr>
 <tr><td nowrap>2020-05-27</td><td>Rockbox git and gerrit services moved to new hosts!</td></tr>
