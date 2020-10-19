@@ -47,6 +47,7 @@ sdl:0:creativezenxfi2sim:Creative Zen X-Fi2 - Simulator:rockboxui:84450:../tools
 sdl:0:creativezenxfi3sim:Creative Zen X-Fi3 - Simulator:rockboxui:212820:../tools/configure --target=creativezenxfi3 --type=s && make
 sdl:0:sonynwze360sim:Sony NWZ-E360 - Simulator:rockboxui:209020:../tools/configure --target=sonynwze360 --type=s && make
 sdl:0:sonynwze370sim:Sony NWZ-E370 - Simulator:rockboxui:207990:../tools/configure --target=sonynwze370 --type=s && make
+sdl:0:sonynwza860sim:Sony NWZ-A860 - Simulator:rockboxui:207990:../tools/configure --target=sonynwza860 --type=s && make
 sdl:0:creativezensim:Creative ZEN - Simulator:rockboxui:222030:../tools/configure --target=creativezen --type=s && make
 sdl:0:creativezenxfisim:Creative ZEN X-Fi - Simulator:rockboxui:221610:../tools/configure --target=creativezenxfi --type=s && make
 sdl:0:creativezenmozaicsim:Creative ZEN Mozaic - Simulator:rockboxui:210930:../tools/configure --target=creativezenmozaic --type=s && make
