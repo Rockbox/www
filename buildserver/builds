@@ -76,7 +76,7 @@ m68k-gcc494:1:mpiohd300:MPIO HD300 - Normal:rockbox.zip:202020:../tools/configur
 # m68k-based native bootloaders
 m68k-gcc494:0:iriverh100boot:iriver H100 - Boot:bootloader.iriver:7590:../tools/configure --target=iriverh100 --type=b && make
 m68k-gcc494:0:iriverh120boot:iriver H120 - Boot:bootloader.iriver:7630:../tools/configure --target=iriverh120 --type=b && make
-m68k-gcc494:0:iriverh300boot:iriver H300 - Boot:rockbox.iriver:7920:../tools/configure --target=iriverh300 --type=b && make
+m68k-gcc494:0:iriverh300boot:iriver H300 - Boot:bootloader.iriver:7920:../tools/configure --target=iriverh300 --type=b && make
 m68k-gcc494:0:iaudiox5boot:iAudio X5 - Boot:x5_fw.bin:7890:../tools/configure --target=iaudiox5 --type=b && make
 m68k-gcc494:0:iaudiom5boot:iAudio M5 - Boot:m5_fw.bin:7540:../tools/configure --target=iaudiom5 --type=b && make
 m68k-gcc494:0:iaudiom3boot:iAudio M3 - Boot:cowon_m3.bin:6750:../tools/configure --target=iaudiom3 --type=b && make
