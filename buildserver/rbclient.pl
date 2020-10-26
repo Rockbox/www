@@ -19,7 +19,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 66;
+my $revision = 67;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -210,11 +210,6 @@ while (1) {
                     delete $conntype{$rh->fileno};
                     close $rh;
 
-                    my $dir = "$cwd/build-$id";
-                    if (-d $dir) {
-                        rmtree $dir;
-                    }
-
                     my $timespent = time() - $builds{$id}{started};
                     if ($status eq "ok") {
                         tprint "Completed build $id\n";
@@ -334,6 +329,8 @@ sub startbuild
             `($cmdline) $log`;
         }
 
+        my $ok = "ok";
+
         # report
         open DEST, ">>$logfile";
         if (-f $builds{$id}{result}) {
@@ -342,6 +339,7 @@ sub startbuild
         else {
             print DEST "Build Failure: No '$builds{$id}{result}' was produced.\n";
             print DEST "Build Status: Failed\n";
+            $ok = "nofile";
         }
         my $tooktime = time() - $starttime;
         print DEST "Build Time: $tooktime\n";
@@ -370,8 +368,13 @@ sub startbuild
         }
 
         tprint "child: $id ($$) done\n";
-        print $pipe "done $id $$ $ultime $ulsize ok\n";
+        print $pipe "done $id $$ $ultime $ulsize $ok\n";
         close $pipe;
+
+        if (-d "build-$id") {
+            rmtree "build-$id";
+        }
+
         exit;
     }
 }
