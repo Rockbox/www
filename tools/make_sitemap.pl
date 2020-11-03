@@ -48,9 +48,8 @@ my $site;
 # hourly
 my @hourly = ( "index.shtml",
                "recent.shtml",
-               "since-12months.html",
                "since-4weeks.html",
-               "since34.html",
+               "since-release.html",
                 );
 
 for my $file (@hourly) {
@@ -86,7 +85,6 @@ my @htmlfiles =
         "doom/index.html",
         "download/index.html",
         "history.html",
-        "irc/cgiirc/index.html",
         "lock.html",
         "mail/etiquette.html",
         "nospam.html",
@@ -112,7 +110,7 @@ for my $dir (readdir DIR) {
 }
 closedir DIR;
 
-# twiki
+# wiki
 my $twikidir = "/home/rockbox/foswiki/data/Main";
 my $twiki;
 opendir(DIR, $twikidir) or die "Failed opening wiki dir: $!\n";
@@ -155,7 +153,6 @@ print CONFIG <<END
   base_url="https://www.rockbox.org/"
   store_into="/home/rockbox/www/sitemap.xml.gz"
   verbose="0"
-  sitemap_type="web"
 >
 $flyspray
 $site
