@@ -46,7 +46,7 @@ if ($bleeding[2] =~ /rev = \W*(\w+)/) {
 if (open OUT, ">output/build-info") {
     print OUT
         "[dailies]\n".
-        "date = \"$date\"\n".
+        "timestamp = \"$date\"\n".
         "rev = $rev\n";
         
     print OUT "[release]\n";
@@ -70,7 +70,7 @@ if (open OUT, ">output/build-info") {
 if (open OUT, ">output/build-info-$date") {
     print OUT
         "[dailies]\n".
-        "date = \"$date\"\n".
+        "timestamp = \"$date\"\n".
         "rev = $rev\n";
     close OUT;
 
