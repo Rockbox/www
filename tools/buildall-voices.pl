@@ -81,15 +81,29 @@ sub buildinfo {
        return;
     }
 
+    my @voices=&allvoices();
+
     # store info for the latest build
     open(F, ">output/build-info");
-    print F "[voices]\ndate = \"$date\"\nrev = $rev\n";
+    print F "[voices]\n";
+    print F "3.15=english\n";  # Needed for all Archos targets
+    print F "3.13=english\n";  # Needed for Archos recorder only
+    print F "daily=";
+    print F join(",",@voices);
+    print F "\n";
     close(F);
 
     # store info for this particular date
     open(F, ">output/build-info-$date");
-    print F "[voices]\ndate = \"$date\"\nrev = $rev\n";
+    print F "[voices]\n";
+    print F "3.15=english\n";  # Needed for all Archos targets
+    print F "3.13=english\n";  # Needed for Archos recorder only
+    print F "daily=";
+    print F join(",",@voices);
     close(F);
+
+    `cp "output/build-info" "../download/build-info.voice"`;
+    `(cd ../download ; . .scripts/mkbuildinfo.sh )`
 }
 
 # run make in tools first to make sure they're up-to-date
@@ -113,3 +127,5 @@ for my $b (&usablebuilds) {
 }
 
 `rm -f /home/rockbox/dailybuild-voices/voice-pool/*`;
+
+&buildinfo;
