@@ -73,4 +73,8 @@ if (open OUT, ">output/build-info-$date") {
         "date = \"$date\"\n".
         "rev = $rev\n";
     close OUT;
+
+    # update build-info
+    `cp "output/build-info-$date ../download/build-info.daily"`
+    `(cd ../download ; . .scripts/mkbuildinfo.sh )`
 }
