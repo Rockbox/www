@@ -75,6 +75,6 @@ if (open OUT, ">output/build-info-$date") {
     close OUT;
 
     # update build-info
-    `cp "output/build-info-$date ../download/build-info.daily"`
-    `(cd ../download ; . .scripts/mkbuildinfo.sh )`
+    `cp "output/build-info-$date ../download/build-info.daily"`;
+    `(cd ../download ; . .scripts/mkbuildinfo.sh )`;
 }

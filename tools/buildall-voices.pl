@@ -103,7 +103,7 @@ sub buildinfo {
     close(F);
 
     `cp "output/build-info" "../download/build-info.voice"`;
-    `(cd ../download ; . .scripts/mkbuildinfo.sh )`
+    `(cd ../download ; . .scripts/mkbuildinfo.sh )`;
 }
 
 # run make in tools first to make sure they're up-to-date
