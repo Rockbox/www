@@ -47,7 +47,7 @@ if (open OUT, ">output/build-info") {
     print OUT
         "[dailies]\n".
         "timestamp = \"$date\"\n".
-        "rev = $rev\n";
+        "rev = \"$rev\"\n";
         
     print OUT "[release]\n";
     for my $model (&stablebuilds) {
@@ -71,7 +71,7 @@ if (open OUT, ">output/build-info-$date") {
     print OUT
         "[dailies]\n".
         "timestamp = \"$date\"\n".
-        "rev = $rev\n";
+        "rev = \"$rev\"\n";
     close OUT;
 
     # update build-info
