@@ -7,11 +7,11 @@ OBJS := $(SRC:%.t=%.html) $(SOBJS) head.tmpl
 
 .SUFFIXES: .t .html
 
-%.html : %.t head.t
+%.html : %.t head.t foot.t
 	$(ACTION) $<
 	@sed -i '/^$$/d' $@
 
-%.shtml : %.t head.t
+%.shtml : %.t head.t foot.t
 	$(ACTION) $<
 	@sed -i '/^$$/d' $@
 
@@ -21,11 +21,11 @@ all: $(OBJS)
 	@(cd devcon && $(MAKE))
 	@(cd doom && $(MAKE))
 
-head.tmpl: head.t
+head.tmpl: head.t foot.t
 	$(ACTION) -DTWIKI $<
 	sed -i '/^$$/d' $@
 
-indextop.html: indextop.t head.t
+indextop.html: indextop.t head.t foot.t
 
 clean:
 	rm $(OBJS)
