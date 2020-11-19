@@ -158,7 +158,8 @@ print "</tr>\n";
 for (my $i = 0; $i < $rounds ; $i++) {
     my $rev = $revisions[$i];
     print "<tr>\n";
-    print "<td nowrap><a class=\"bstamp\" href=\"//git.rockbox.org/cgit/rockbox.git/commit/?id=$rev\">$rev</a></td>\n";
+    my $shortrev = substr($rev, 0, 8);
+    print "<td nowrap><a class=\"bstamp\" href=\"//git.rockbox.org/cgit/rockbox.git/commit/?id=$rev\">$shortrev</a></td>\n";
 
     foreach my $id (sort(keys(%targets))) {
 	print "$compiles{$rev}{$id}{text}\n";

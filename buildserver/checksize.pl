@@ -17,14 +17,13 @@ if (-f $zip) {
             elsif(/^RAM usage: (\d+)/i) {
                 $ram = $1;
             }
-            elsif(/^Version: *(\w+)/i) {
-                $rev = $1;
-		$shortrev = substr($rev, 0, 7);  # XXX this is... stupid.
+            elsif(/^Version: *(\w+)-.*/i) {
+                $shortrev = $1;
             }
         }
         close(Z);
         
-        print "rev $rev/$shortrev build $build ramsize $ram bytes $bytes\n";
+        print "rev $shortrev build $build ramsize $ram bytes $bytes\n";
 
         $sth->execute($ram, $bytes, $shortrev, $build);
     }
