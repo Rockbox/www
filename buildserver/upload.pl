@@ -19,7 +19,7 @@ my $filename = param("upfile");
 my $fh = CGI::upload("upfile");
 
 $filename =~ s/[\;\:\!\?\*\"\'\,\ \\\/]/_/g;
-print STDERR "Uploading $filename\n";
+#print STDERR "Uploading $filename\n";
 
 print "Content-type: text/plain\n";
 
@@ -39,7 +39,7 @@ my $bytesread = 0;
 if (open OUTFILE, ">$destpath/$filename") {
     my ($rval, $buffer);
     while ($rval = read($fh,$buffer,1024)) {
-        print STDERR "read $rval\n";
+#        print STDERR "read $rval\n";
         $bytesread += $rval;
         print OUTFILE $buffer;
     }
@@ -54,4 +54,4 @@ if ($bytesread > 0) {
 }
 
 print "\n$destpath/$filename\n";
-print STDERR "$destpath/$filename\n";
+#print STDERR "$destpath/$filename\n";
