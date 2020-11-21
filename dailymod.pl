@@ -99,8 +99,8 @@ for(reverse sort keys %date) {
         my $voicemod = voicename($m);
 
 	for my $v (&allvoices) {
-            my $voicefile="$basedir/daily/voices/${voicemod}-${d}-$v.zip";
-            my $voiceurl="$baseurl/daily/voices/${voicemod}-${d}-$v.zip";
+            my $voicefile="$basedir/daily/${voicemod}/voice-${voicemod}-${d}-$v.zip";
+            my $voiceurl="$baseurl/daily/${voicemod}/voice-${voicemod}-${d}-$v.zip";
 
             if ( -f $voicefile ) {
                 my $size = (stat($voicefile))[7];

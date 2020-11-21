@@ -152,10 +152,10 @@ for(reverse sort keys %date) {
         my $voicemod = voicename($m);
 	print "<td>";
 	for my $v (&allvoices) {
-            my $fi = "$basedir/daily/voices/$voicemod-$d-$v.zip";
+            my $fi = "$basedir/daily/$voicemod/voice-$voicemod-$d-$v.zip";
             if ( -f $fi) {
                 my $size = (stat($fi))[7];
-                printf("<a href=\"//download.rockbox.org/daily/voices/$voicemod-$d-$v.zip\" title=\"voice file for Rockbox $desc dated $nice\">$voices{$v}->{short}</a> %d KB<br>",
+                printf("<a href=\"//download.rockbox.org/daily/$voicemod/voice-$voicemod-$d-$v.zip\" title=\"voice file for Rockbox $desc dated $nice\">$voices{$v}->{short}</a> %d KB<br>",
                        $size/1024);
             }
 	}

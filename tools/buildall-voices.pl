@@ -45,13 +45,14 @@ sub runone {
 
     my $o="$lang.voice";
     if (-f $o) {
-        my $newo="../output/$target-$date-$name.zip";
+        my $newo="../output/$target/voice-$target-$date-$name.zip";
         system("mkdir -p .rockbox/langs");
         system("cp $o .rockbox/langs");
         system("zip -q -r $newo .rockbox");
         system("rm -rf .rockbox");
         `chmod a+r $newo`;
         print "moved $o to $newo\n" if($verbose);
+        system("cd ../output/$target ; ln -sf voice-$target-$date-$name.zip voice-$target-$name.zip");
     }
 
     chdir "..";
@@ -84,7 +85,7 @@ sub buildinfo {
     my @voices=&allvoices();
 
     # store info for the latest build
-    open(F, ">output/build-info");
+    open(F, ">output/build-info-voice");
     print F "[voices]\n";
     print F "3.15=english\n";  # Needed for all Archos targets
     print F "3.13=english\n";  # Needed for Archos recorder only
@@ -94,7 +95,7 @@ sub buildinfo {
     close(F);
 
     # store info for this particular date
-    open(F, ">output/build-info-$date");
+    open(F, ">output/build-info-voice-$date");
     print F "[voices]\n";
     print F "3.15=english\n";  # Needed for all Archos targets
     print F "3.13=english\n";  # Needed for Archos recorder only
@@ -102,7 +103,7 @@ sub buildinfo {
     print F join(",",@voices);
     close(F);
 
-    `cp "output/build-info" "../download/build-info.voice"`;
+    `cp "output/build-info-voice" "../download/build-info.voice"`;
     `(cd ../download ; . .scripts/mkbuildinfo.sh )`;
 }
 
