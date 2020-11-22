@@ -51,9 +51,9 @@ if (open OUT, ">output/build-info") {
         "timestamp = \"$date\"\n".
         "rev = \"$rev\"\n";
 
-    print OUT "[daily]\n"
+    print OUT "[daily]\n";
     for (@targets) {
-        print OUT "$_=$date,https://download.rockbox.org/$_/rockbox-$_-$date.zip\n";
+        print OUT "$_=$date,https://download.rockbox.org/daily/$_/rockbox-$_-$date.zip\n";
     }
 
     close OUT;
@@ -65,9 +65,11 @@ if (open OUT, ">output/build-info-$date") {
         "timestamp = \"$date\"\n".
         "rev = \"$rev\"\n";
 
-    print OUT "[daily]\n"
+    print OUT "[daily]\n";
+    print OUT "voiceurl=https://download.rockbox.org/daily/%TARGET%/voice-%TARGET%-%REVISION%-%LANG%.zip\n";
+    print OUT "sourceurl=https://download.rockbox.org/daily/source/rockbox-source-%REVISION%.tar.xz\n";
     for (@targets) {
-        print OUT "$_=$date,https://download.rockbox.org/$_/rockbox-$_-$date.zip\n";
+        print OUT "$_=$date,https://download.rockbox.org/daily/$_/rockbox-$_-$date.zip\n";
     }
 
     close OUT;
