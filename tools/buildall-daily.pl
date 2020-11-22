@@ -52,10 +52,15 @@ if (open OUT, ">output/build-info-$date") {
         "rev = \"$rev\"\n";
 
     print OUT "[daily]\n";
-    print OUT "voiceurl=https://download.rockbox.org/daily/%TARGET%/voice-%TARGET%-%REVISION%-%LANG%.zip\n";
-    print OUT "sourceurl=https://download.rockbox.org/daily/source/rockbox-source-%REVISION%.tar.xz\n";
+    print OUT "build_url=https://download.rockbox.org/daily/%MODEL/rockbox-%MODEL%-%VERSION%.zip\n";
+    print OUT "voice_url=https://download.rockbox.org/daily/%MODEL%/voice-%MODEL%-%VERSION%-%LANGUAGE%.zip\n";
+    print OUT "manual_url=https://download.rockbox.org/daily/manual/rockbox-%MODEL%-%VERSION%%FORMAT%\n";
+    print OUT "source_url=https://download.rockbox.org/daily/source/rockbox-source-%VERSION%.tar.xz\n";
+# XXX print OUT "font_url=https://download.rockbox.org/daily/rockbox-fonts.zip\n";
+
     for (@targets) {
-        print OUT "$_=$date,https://download.rockbox.org/daily/$_/rockbox-$_-$date.zip\n";
+#        print OUT "$_=$date,https://download.rockbox.org/daily/$_/rockbox-$_-$date.zip\n";
+        print OUT "$_=$date\n";
     }
 
     close OUT;

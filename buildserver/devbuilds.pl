@@ -75,6 +75,7 @@ print F "timestamp=\"$date\"\n";
 print F "rev=\"$ARGV[0]\"\n";
 print F "[development]\n";
 for my $m (usablebuilds()) {
-    print F "$m=$revs{$m},https://build.rockbox.org/data/rockbox-$m.zip\n";
+#    print F "$m=$revs{$m},https://build.rockbox.org/data/rockbox-$m.zip\n";
+    print F "$m=$revs{$m}\n";
 }
 close(F);
