@@ -41,15 +41,15 @@ for (@zips) {
 }
 
 my @bleeding = `cat build-info`;
-if ($bleeding[2] =~ /rev = \W*(\w+)/) {
+if ($bleeding[2] =~ /rev\s?=\s?\"?(\w+)\"?/) {
     $rev = $1;
 }
 
 if (open OUT, ">output/build-info-$date") {
     print OUT
         "[dailies]\n".
-        "timestamp = \"$date\"\n".
-        "rev = \"$rev\"\n";
+        "timestamp=\"$date\"\n".
+        "rev=\"$rev\"\n";
 
     print OUT "[daily]\n";
     print OUT "build_url=https://download.rockbox.org/daily/%MODEL/rockbox-%MODEL%-%VERSION%.zip\n";
