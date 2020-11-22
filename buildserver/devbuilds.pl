@@ -74,6 +74,13 @@ print F "[bleeding]\n";
 print F "timestamp=\"$date\"\n";
 print F "rev=\"$ARGV[0]\"\n";
 print F "[development]\n";
+print F "build_url=https://build.rockbox.org/data/rockbox-%MODEL%.zip\n";
+print F "source_url=https://build.rockbox.org/data/rockbox-source.tar.xz\n";
+print F "; No voice or manuals currently generated for dev builds\n";
+print F "voice_url=https://download.rockbox.org/daily/%MODEL%/voice-%MODEL%-%VERSION%-%LANGUAGE%.zip\n";
+print F "manual_url=https://download.rockbox.org/daily/manual/rockbox-%MODEL%-%VERSION%%FORMAT%\n";
+# XXX print F "font_url=https://download.rockbox.org/daily/rockbox-fonts.zip\n";
+
 for my $m (usablebuilds()) {
 #    print F "$m=$revs{$m},https://build.rockbox.org/data/rockbox-$m.zip\n";
     print F "$m=$revs{$m}\n";
