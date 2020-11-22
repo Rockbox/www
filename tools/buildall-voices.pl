@@ -84,16 +84,6 @@ sub buildinfo {
 
     my @voices=&allvoices();
 
-    # store info for the latest build
-    open(F, ">output/build-info-voice");
-    print F "[voices]\n";
-    print F "3.15=english\n";  # Needed for all Archos targets
-    print F "3.13=english\n";  # Needed for Archos recorder only
-    print F "daily=";
-    print F join(",",@voices);
-    print F "\n";
-    close(F);
-
     # store info for this particular date
     open(F, ">output/build-info-voice-$date");
     print F "[voices]\n";
@@ -103,8 +93,9 @@ sub buildinfo {
     print F join(",",@voices);
     close(F);
 
-    `cp "output/build-info-voice" "../download/build-info.voice"`;
-    `(cd ../download ; . .scripts/mkbuildinfo.sh )`;
+   `cp "output/build-info-voice-$date" "output/build-info-voice"`;
+   `cp "output/build-info-voice-$date" "../download/build-info.voice"`;
+   `(cd ../download ; . .scripts/mkbuildinfo.sh )`;
 }
 
 # run make in tools first to make sure they're up-to-date

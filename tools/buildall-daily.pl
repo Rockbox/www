@@ -45,20 +45,6 @@ if ($bleeding[2] =~ /rev = \W*(\w+)/) {
     $rev = $1;
 }
 
-if (open OUT, ">output/build-info") {
-    print OUT
-        "[dailies]\n".
-        "timestamp = \"$date\"\n".
-        "rev = \"$rev\"\n";
-
-    print OUT "[daily]\n";
-    for (@targets) {
-        print OUT "$_=$date,https://download.rockbox.org/daily/$_/rockbox-$_-$date.zip\n";
-    }
-
-    close OUT;
-}
-
 if (open OUT, ">output/build-info-$date") {
     print OUT
         "[dailies]\n".
@@ -73,9 +59,9 @@ if (open OUT, ">output/build-info-$date") {
     }
 
     close OUT;
-
 }
 
 # update build-info.daily
+`cp "output/build-info-$date" "output/build-info"`;
 `cp "output/build-info-$date" "../download/build-info.daily"`;
 `(cd ../download ; . .scripts/mkbuildinfo.sh )`;
