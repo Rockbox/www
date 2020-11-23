@@ -40,6 +40,10 @@ for (@zips) {
     }
 }
 
+# update fonts
+`mkdir build-x ; cd build-x ; ../../rockbox_git_clone/tools/configure --target=10 --type=N ; make fontzip ; mv rockbox-fonts.zip ../output/fonts/rockbox-fonts-$date.zip ; cd - ; rm -Rf build-x`;
+`cd output/fonts ; ln -sf rockbox-fonts-$date.zip rockbox-fonts.zip`;
+
 my @bleeding = `cat build-info`;
 if ($bleeding[2] =~ /rev\s?=\s?\"?(\w+)\"?/) {
     $rev = $1;
@@ -56,7 +60,7 @@ if (open OUT, ">output/build-info-$date") {
     print OUT "voice_url=https://download.rockbox.org/daily/%MODEL%/voice-%MODEL%-%VERSION%-%LANGUAGE%.zip\n";
     print OUT "manual_url=https://download.rockbox.org/daily/manual/rockbox-%MODEL%-%VERSION%%FORMAT%\n";
     print OUT "source_url=https://download.rockbox.org/daily/source/rockbox-source-%VERSION%.tar.xz\n";
-# XXX print OUT "font_url=https://download.rockbox.org/daily/rockbox-fonts.zip\n";
+    print OUT "font_url=https://download.rockbox.org/daily/fonts/rockbox-fonts-%VERSION%.zip\n";
 
     for (@targets) {
 #        print OUT "$_=$date,https://download.rockbox.org/daily/$_/rockbox-$_-$date.zip\n";
