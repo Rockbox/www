@@ -122,7 +122,7 @@ for(reverse sort keys %date) {
         if( -f "$basedir/daily/build-info-${d}") {
             open(R, "<$basedir/daily/build-info-${d}");
             while(<R>) {
-                if(/^rev = "?(\w+)"?/) {
+                if(/^rev\s?=\s?"?(\w+)"?/) {
                     $rev = $1;
                     last;
                 }
