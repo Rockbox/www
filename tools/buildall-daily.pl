@@ -56,7 +56,7 @@ if (open OUT, ">output/build-info-$date") {
         "rev=\"$rev\"\n";
 
     print OUT "[daily]\n";
-    print OUT "build_url=https://download.rockbox.org/daily/%MODEL/rockbox-%MODEL%-%VERSION%.zip\n";
+    print OUT "build_url=https://download.rockbox.org/daily/%MODEL%/rockbox-%MODEL%-%VERSION%.zip\n";
     print OUT "voice_url=https://download.rockbox.org/daily/%MODEL%/voice-%MODEL%-%VERSION%-%LANGUAGE%.zip\n";
     print OUT "manual_url=https://download.rockbox.org/daily/manual/rockbox-%MODEL%-%VERSION%%FORMAT%\n";
     print OUT "source_url=https://download.rockbox.org/daily/source/rockbox-source-%VERSION%.tar.xz\n";
