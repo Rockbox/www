@@ -11,6 +11,20 @@ $year+=1900;
 $date=sprintf("%04d%02d%02d", $year,$mon, $mday);
 $shortdate=sprintf("%02d%02d%02d", $year%100,$mon, $mday);
 
+# Parallelization
+my $rotor = 0;
+my $rotor_circ = 0;
+my $row = 0;
+my $proc_count = 0;
+my @children = ();
+my $kid = 0;
+my $error = 0;
+my $retval = 0;
+
+if (defined($ENV{"NUM_PARALLEL"})) {
+    $proc_count = $ENV{"NUM_PARALLEL"};
+};
+
 # 'lame' assumed to be on system path already!
 
 my $verbose;
@@ -46,6 +60,8 @@ sub runone {
     my $o="$lang.voice";
     if (-f $o) {
         my $newo="../output/$target/voice-$target-$date-$name.zip";
+        system("mkdir -p .rockbox/langs");
+        system("mkdir -p ../output/$target");
         system("mkdir -p .rockbox/langs");
         system("cp $o .rockbox/langs");
         system("zip -q -r $newo .rockbox");
@@ -101,23 +117,60 @@ sub buildinfo {
 # run make in tools first to make sure they're up-to-date
 `(cd tools && make ) >/dev/null 2>&1`;
 
+# Clean out, and set up a new pool.
 `rm -f /home/rockbox/dailybuild-voices/voice-pool/*`;
 $ENV{'POOL'}="/home/rockbox/dailybuild-voices/voice-pool";
 
-for my $b (&usablebuilds) {
-    next if ($builds{$b}{voice}); # no variants
-    for my $v (&allvoices) {
-        my %voice = $voices{$v};
-
-#        print " runone $b $v ($voices{$v}->{lang} via $voices{$v}->{defengine})\n";
-	runone($b, $v, $voices{$v}->{lang}, $voices{$v}->{defengine},
-	       "-1", $voices{$v}->{engines}->{$voices{$v}->{defengine}});
-
+# Fork off the children!
+if ($proc_count > 1) {
+    $rotor_circ = $proc_count;
+    for (my $child_no = 0; $child_no < $proc_count; $child_no++) {
+        $kid = fork();
+        if ($kid == 0) {
+            last;
+        } else {
+            push @children, $kid;
+            $rotor++;
+        }
     }
-
-#    runone($b, "english", "english", "f", "-1", "");
 }
 
+if ($proc_count > 1 && $kid > 0) {
+    # Parent in parallel case, does nothing but wait for children
+    while ($proc_count > 0 && $kid > 0) {
+        $kid = waitpid(-1, 0);
+        if ($kid > 0 && $? > 0) {
+            $error++;
+        }
+    }
+    $retval = $error;
+} else {
+    # Child!  Do some work!
+    my $currrow = 0;
+
+    for my $b (&usablebuilds) {
+	next if ($builds{$b}{voice}); # no variants
+
+	for my $v (&allvoices) {
+	    my %voice = $voices{$v};
+
+	    # for great parallelism!
+	    next if ($rotor_circ && ($currow++ % $rotor_circ) != $rotor);
+
+#            print " runone $b $v ($voices{$v}->{lang} via $voices{$v}->{defengine})\n";
+	    runone($b, $v, $voices{$v}->{lang}, $voices{$v}->{defengine},
+		   "-1", $voices{$v}->{engines}->{$voices{$v}->{defengine}});
+
+	}
+
+#        runone($b, "english", "english", "f", "-1", "");
+    }
+}
+
+# Clean up the old pool
 `rm -f /home/rockbox/dailybuild-voices/voice-pool/*`;
 
+# And finally, report the buildinfo
 &buildinfo;
+
+exit($retval);
