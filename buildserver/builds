@@ -244,14 +244,14 @@ arm-rb-gcc494:0:sonynwzs750boot:Sony NWZ-S750 - Boot:bootloader-nwzs750.sony:462
 mipsel-rb-gcc494:1:agptekrocker:Agptek Rocker - Normal:rockbox.zip:62540:../tools/configure --target=agptekrocker --type=n && make zip
 mipsel-rb-gcc494:1:xduoox3ii:xDuoo X3ii - Normal:rockbox.zip:62540:../tools/configure --target=xduoox3ii --type=n && make zip
 mipsel-rb-gcc494:1:xduoox20:xDuoo X20 - Normal:rockbox.zip:62540:../tools/configure --target=xduoox20 --type=n && make zip
-mipsel-rb-gcc494:1:fiiom3k:FiiO M3K - Normal:rockbox.zip:62540:../tools/configure --target=fiiom3k --type=n && make zip
+mipsel-rb-gcc494:1:fiiom3klinux:FiiO M3K (Linux) - Normal:rockbox.zip:62540:../tools/configure --target=fiiom3klinux --type=n && make zip
 mipsel-rb-gcc494:1:aigoerosq:AIGO EROS Q/K - Normal:rockbox.zip:62540:../tools/configure --target=aigoerosq --type=n && make zip
 ###
 # MIPS hosted bootloaders
 mipsel-rb-gcc494:0:agptekrockerboot:Agptek Rocker - Boot:bootloader.rocker:4620:../tools/configure --target=agptekrocker --type=b && make
 mipsel-rb-gcc494:0:xduoox3iiboot:xDuoo X3ii - Boot:bootloader.x3ii:4620:../tools/configure --target=xduoox3ii --type=b && make
 mipsel-rb-gcc494:0:xduoox20boot:xDuoo X20 - Boot:bootloader.x20:4620:../tools/configure --target=xduoox20 --type=b && make
-mipsel-rb-gcc494:0:fiiom3kboot:FiiO M3K - Bootloader:bootloader.m3k:4620:../tools/configure --target=fiiom3k --type=b && make
+mipsel-rb-gcc494:0:fiiom3klinuxboot:FiiO M3K (Linux) - Bootloader:bootloader.m3k:4620:../tools/configure --target=fiiom3klinux --type=b && make
 mipsel-rb-gcc494:0:aigoerosqboot:AIGO Eros Q/K - Bootloader:bootloader.erosq:4620:../tools/configure --target=aigoerosq --type=b && make
 ###
 # Manuals
@@ -319,7 +319,7 @@ sdl:0:agptekrockerwps:Agptek Rocker - Checkwps:checkwps.agptekrocker:1300:../too
 sdl:0:xduoox3wps:Xduoo X3 - Checkwps:checkwps.xduoox3:1300:../tools/configure --target=xduoox3 --type=c && make
 sdl:0:xduoox3iiwps:Xduoo X3ii - Checkwps:checkwps.xduoox3ii:1300:../tools/configure --target=xduoox3ii --type=c && make
 sdl:0:xduoox20wps:Xduoo X20 - Checkwps:checkwps.xduoox20:1300:../tools/configure --target=xduoox20 --type=c && make
-sdl:0:fiiom3kwps:FiiO M3K - Checkwps:checkwps.fiiom3k:1300:../tools/configure --target=fiiom3k --type=c && make
+sdl:0:fiiom3linuxkwps:FiiO M3K (Linux) - Checkwps:checkwps.fiiom3klinux:1300:../tools/configure --target=fiiom3klinux --type=c && make
 sdl:0:aigoerosqwps:AIGO EROS Q/K - Checkwps:checkwps.aigoerosq:1300:../tools/configure --target=aigoerosq --type=c && make
 ###
 # Database targets
