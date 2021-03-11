@@ -2,6 +2,8 @@
 
 require "./rockbox.pm";
 
+use POSIX qw(strftime);
+
 my $basedir = "/home/rockbox/download";
 my $baseurl = "//download.rockbox.org";
 my $docbasedir = "/home/rockbox/download/manual";
@@ -29,6 +31,8 @@ for (@files) {
 }
 
 my $split = 8;
+
+print "<p><b>Unless otherwise noted, these were all generated on ". strftime("%Y-%m-%d", localtime()) . "</b></p>\n";
 
 for(reverse sort keys %date) {
     my $d = $_;
