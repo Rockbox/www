@@ -43,11 +43,12 @@ header_b("Rockbox Development Builds");
 
 print <<HEAD
 <p>
- These builds are provided fresh after <b>every</b> source code change.  If
- builds are not currently showing, wait 5-10 minutes and then refresh the page.
+ These builds are updated <b>every</b> source code change, and the links 
+ always point at the most recent successful build for a given player.
 <p>
  Since these builds are generated from actively developed source, at times
  they may be buggy or even unusable.
+<p>
  We appreciate your feedback on any issues you may encounter.
 
 $beware
@@ -58,7 +59,7 @@ $beware
 <p>
 <a href="dev.cgi">Autobuilder details</a> &middot;
 <a href="//www.rockbox.org/manual.shtml">Manuals</a> &middot;
-<a href="//www.rockbox.org/daily.shtml">Archived developer builds</a>
+<a href="//www.rockbox.org/daily.shtml">Daily snapshot builds and voice files</a>
 HEAD
     ;
 
