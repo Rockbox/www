@@ -2,8 +2,6 @@
 
 require "./rockbox.pm";
 
-use POSIX qw(strftime);
-
 my $basedir = "/home/rockbox/download";
 my $baseurl = "//download.rockbox.org";
 my $docbasedir = "/home/rockbox/download/manual";
@@ -32,14 +30,26 @@ for (@files) {
 
 my $split = 8;
 
-print "<p><b>Unless otherwise noted, these were all generated on ". strftime("%Y-%m-%d", localtime()) . "</b></p>\n";
-
 for(reverse sort keys %date) {
     my $d = $_;
     my $nice = $d;
     if($d =~ /20(\d\d)(\d\d)(\d\d)/) {
         $nice = "20$1-$2-$3";
     }
+
+    my $rev;
+    if( -f "$basedir/daily/build-info") {
+        open(R, "<$basedir/daily/build-info");
+        while(<R>) {
+            if(/rev\s?=\s?\"?(\w+)\"?/) {
+                $rev = $1;
+                last;
+            }
+        }
+        close(R);
+    }
+
+    print "<p><b>All of these builds were generated using the <a href=\"//download.rockbox.org/daily/source/rockbox-source-${d}.tar.xz\">${d} source code snapshot</a> corresponding to <a href=\"//git.rockbox.org/cgit/rockbox.git/commit/?id=${rev}\">revision ${rev}</a></b></p>\n";
     print "<table class=rockbox cellpadding=\"0\">\n";
 
     $color1 -= 0x18;
@@ -67,31 +77,21 @@ for(reverse sort keys %date) {
             print "<!-- $m --><tr valign=\"top\">$head[$x]</tr>\n<tr valign=\"top\">\n";
             $x++;
         }
-        my $rev;
-        if( -f "$basedir/daily/build-info") {
-            open(R, "<$basedir/daily/build-info");
-            while(<R>) {
-                if(/rev\s?=\s?\"?(\w+)\"?/) {
-                    $rev = $1;
-                    last;
-                }
-            }
-            close(R);
-        }
 
         my $icon = playerpic($m);
         printf "<td><img alt=\"$m\" src=\"$icon\"><br>";
         # new-style full zip:
-        my $file = "rockbox-${m}.zip";
+        my $file = "rockbox-${m}-${d}.zip";
         my $dir = "$m/";
         if($m eq "source") {
-            $file = "rockbox-${d}.7z";
+            $file = "rockbox-${d}.tar.xz";
         }
         elsif($m eq "install") {
             $file = "Rockbox-${d}-install.exe";
         }
         if( -f "$basedir/daily/$m/$file") {
-            printf "<a href=\"//download.rockbox.org/daily/$dir$file\">latest</a> <small>($rev)</small>";
+            my $size = (stat("$basedir/daily/$m/$file"))[7] / 1024;
+            printf "<a href=\"//download.rockbox.org/daily/$dir$file\">rockbox</a> <small>%d kB</small>", $size;
         }
 
         my $docm = $m;
