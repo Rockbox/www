@@ -113,6 +113,7 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
+<tr><td nowrap>2021-03-16</td><td>mitxela created an <a href="https://www.youtube.com/watch?v=Qw-VvGsYpSU">Ode to Rockbox</a> on YouTube.</td></tr>
 <tr><td nowrap>2020-10-16</td><td>Move xDuoo X3 to stable.</td></tr>
 <tr><td nowrap>2020-10-11</td><td>EROS Q / K (and their clones) are now supported!</td></tr>
 <tr><td nowrap>2020-07-24</td><td>All Archos targets have been <a href="//www.rockbox.org/mail/archive//rockbox-dev-archive-2020-07/0019.shtml">retired</a>.</td></tr>
