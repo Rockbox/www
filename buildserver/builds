@@ -62,6 +62,7 @@ sdl:0:ihifi770csim:IHIFI 770C - Simulator:rockboxui:212940:../tools/configure --
 sdl:0:ihifi800sim:IHIFI 800 - Simulator:rockboxui:212940:../tools/configure --target=ihifi800 --type=s && make
 sdl:0:samsungypr0sim:Samsung YP-R0 - Simulator:rockboxui:207580:../tools/configure --target=samsungypr0 --type=s && make
 #sdl:0:samsungypr1sim:Samsung YP-R1 - Simulator:rockboxui:118270:../tools/configure --target=samsungypr1 --type=s && make
+#sdl:0:fiiom3ksim:FiiO M3K - Simulator:rockboxui:207850:../tools/configure --target=fiiom3k --type=s && make
 ####
 # m68k-based native targets
 m68k-gcc494:1:iriverh100:iriver H100 - Normal:rockbox.zip:231880:../tools/configure --target=iriverh100 --type=n && make zip
@@ -324,6 +325,7 @@ sdl:0:xduoox3iiwps:Xduoo X3ii - Checkwps:checkwps.xduoox3ii:1300:../tools/config
 sdl:0:xduoox20wps:Xduoo X20 - Checkwps:checkwps.xduoox20:1300:../tools/configure --target=xduoox20 --type=c && make
 sdl:0:fiiom3linuxkwps:FiiO M3K (Linux) - Checkwps:checkwps.fiiom3klinux:1300:../tools/configure --target=fiiom3klinux --type=c && make
 sdl:0:aigoerosqwps:AIGO EROS Q/K - Checkwps:checkwps.aigoerosq:1300:../tools/configure --target=aigoerosq --type=c && make
+sdl:0:fiiom3kwps:FiiO M3K - Checkwps:checkwps.fiiom3k:1300:../tools/configure --target=fiiom3k --type=c && make
 ###
 # Database targets
 sdl:0:iriverh300db:iriver H300 - Database:database.iriverh300:4720:../tools/configure --target=iriverh300 --type=d && make
