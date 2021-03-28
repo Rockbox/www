@@ -206,10 +206,12 @@ mipsel-gcc494:1:ondavx747:Onda VX747 - Normal:rockbox.zip:227890:../tools/config
 mipsel-gcc494:1:ondavx767:Onda VX767 - Normal:rockbox.zip:86470:../tools/configure --target=ondavx767 --type=n && make zip
 mipsel-gcc494:1:ondavx777:Onda VX777 - Normal:rockbox.zip:227750:../tools/configure --target=ondavx777 --type=n && make zip
 mipsel-gcc494:1:xduoox3:Xduoo X3 - Normal:rockbox.zip:227750:../tools/configure --target=xduoox3 --type=n && make zip
+mipsel-gcc494:1:fiiom3k:FiiO M3K - Normal:rockbox.zip:227750:../tools/configure --target=fiiom3k --type=n && make zip
 ####
 # MIPS-based native bootloaders
 mipsel-gcc494:0:ondavx747boot:Onda VX747 - Boot:ccpmp.bin:8260:../tools/configure --target=ondavx747 --type=b && make
 mipsel-gcc494:0:xduoox3boot:Xduoo X3 - Boot:bootloader-x3.bin:10000:../tools/configure --target=xduoox3 --type=b && make
+mipsel-gcc494:0:fiiom3kboot:FiiO M3K - Boot:bootloader-m3k.bin:10000:../tools/configure --target=fiiom3k --type=b && make
 # Android native targets
 android-ndk10sdk19:0:android480x800:Android 480x800:rockbox.apk:76920:../tools/configure --target=android --type=n --lcdwidth=480 --lcdheight=800 && make apk
 android-ndk10sdk19:0:android480x800mips:Android 480x800 - MIPS:rockbox.apk:83690:../tools/configure --target=androidmips --type=n --lcdwidth=480 --lcdheight=800 && make apk
