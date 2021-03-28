@@ -2,7 +2,7 @@
 #define HISTORY_PAGE
 #include "head.t"
 
-<p><i>2021-03-27</i>: Native bare-metal port to the M3K!
+<p><i>2021-03-27</i>: Native bare-metal port to the <a href="/wiki/FiioM3K">FiiO M3K</a>!
 
 <p><i>2021-03-16</i>: mitxela created an <a href="https://www.youtube.com/watch?v=Qw-VvGsYpSU">Ode to Rockbox</a> on YouTube.
 

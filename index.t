@@ -113,7 +113,7 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
-<tr><td nowrap>2021-03-27</td><td>Native bare-metal port to the M3K!</td></tr>
+<tr><td nowrap>2021-03-27</td><td>Native bare-metal port to the <a href="/wiki/FiioM3K">FiiO M3K</a>!</td></tr>
 <tr><td nowrap>2021-03-16</td><td>mitxela created an <a href="https://www.youtube.com/watch?v=Qw-VvGsYpSU">Ode to Rockbox</a> on YouTube.</td></tr>
 <tr><td nowrap>2020-10-16</td><td>Move xDuoo X3 to stable.</td></tr>
 <tr><td nowrap>2020-10-11</td><td>EROS Q / K (and their clones) are now supported!</td></tr>
