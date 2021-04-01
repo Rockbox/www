@@ -49,6 +49,8 @@ print <<HEAD
  Since these builds are generated from actively developed source, at times
  they may be buggy or even unusable.
 <p>
+ Please note that targets/builds we consider <i>unusable</i> are not included on this list.
+<p>
  We appreciate your feedback on any issues you may encounter.
 
 $beware
