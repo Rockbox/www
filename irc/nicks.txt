@@ -28,3 +28,5 @@ pfavr       => Peter Favrholdt
 [av]bani    => Dan Hollis
 speachy     => Solomon Peachy
 amichronic  => Aidan MacDonald
+_bilgus	    => William Wingus
+bilgus	    => William Wingus
