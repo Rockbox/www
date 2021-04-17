@@ -27,3 +27,4 @@ mattzz      => Matthias Wientapper
 pfavr       => Peter Favrholdt
 [av]bani    => Dan Hollis
 speachy     => Solomon Peachy
+amichronic  => Aidan MacDonald

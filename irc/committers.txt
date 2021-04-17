@@ -14,6 +14,7 @@ alexp Alex Parker
 aliask Will Robertson
 alle Alexander Levin
 amiconn Jens Arnold
+amachronic Aidan MacDonald
 archivator Delyan Kratunov
 austriancoder Christian Gmeiner
 b0hoon Szymon Dziok
