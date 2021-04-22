@@ -332,7 +332,7 @@ sub parsechunk {
             $message =~ s!Revision (\w+)(\b)!<a target="_blank" href=\"https://git.rockbox.org/cgit/rockbox.git/commit/?id=$1\">Revision $1</a>$3!g;
 
             # tag gerrit ids
-            $message =~ s!\s*g\#(\d+)!<a target="_blank" href=\"https://gerrit.rockbox.org/r/c/rockbox/+/$1\">g\#$1</a>!g;
+            $message =~ s!\s*g\#(\d+)! <a target="_blank" href=\"https://gerrit.rockbox.org/r/c/rockbox/+/$1\">g\#$1</a>!g;
 
             # escape text that looks like the multipart delimiter
             $message =~ s!--!&minus;&minus;!g;
