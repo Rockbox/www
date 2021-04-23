@@ -58,6 +58,7 @@ and Ondio
 <li><b>AIGO</b>: <a href="/wiki/AIGOErosQK">Eros Q / K</a> (aka HIFI WALKER H2, AGPTek H3, and Surfans F20)
 <li><b>Creative</b>: <a href="/wiki/CreativeZENPort">Zen</a> and <a href="/wiki/CreativeZENXFi2Port">Zen X-Fi 2</a>
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
+<li><b>FiiO</b>: <a href="/wiki/FiioM3K">M3K</a>
 <li><b>HiFi E.T</b>: <a href="/wiki/HifietMAPort">MA9</a>, <a href="/wiki/HifietMAPort">MA8</a>
 <li><b>HiFiMAN</b>: <a href="/wiki/HifimanPort">HM-601</a>, <a href="/wiki/HifimanPort">HM-602</a>, <a href="/wiki/HifimanPort">HM-603</a>, <a href="/wiki/HifimanPort">HM-801</a></li>
 <li><b>iBasso</b>: <a href="/wiki/IBassoDXPort">DX50</a>, <a href="/wiki/IBassoDXPort">DX90</a>
@@ -84,7 +85,6 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <p>Work has begun on porting Rockbox to these players, but much remains before they are usable:
 
 <ul>
-<li><b>FiiO</b>: <a href="/wiki/FiioM3K">M3K</a>
 <li><b>Onda</b>: VX747, VX767 and VX777</li>
 <li><b>iHIFI</b> 760, 770, 770C, 800, and 960</li>
 <li><b>Google</b> Android</li>
