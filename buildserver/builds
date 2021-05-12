@@ -213,7 +213,6 @@ mipsel-gcc494:1:fiiom3k:FiiO M3K - Normal:rockbox.zip:227750:../tools/configure 
 mipsel-gcc494:0:ondavx747boot:Onda VX747 - Boot:ccpmp.bin:8260:../tools/configure --target=ondavx747 --type=b && make
 mipsel-gcc494:0:xduoox3boot:Xduoo X3 - Boot:bootloader-x3.bin:10000:../tools/configure --target=xduoox3 --type=b && make
 mipsel-gcc494:0:fiiom3kboot:FiiO M3K - Boot:bootloader.m3k:10000:../tools/configure --target=fiiom3k --type=b && make
-mipsel-gcc494:0:fiiom3kspl:FiiO M3K - SPL:spl.m3k:10000:../tools/configure --target=fiiom3k --type=x && make
 # Android native targets
 android-ndk10sdk19:0:android480x800:Android 480x800:rockbox.apk:76920:../tools/configure --target=android --type=n --lcdwidth=480 --lcdheight=800 && make apk
 android-ndk10sdk19:0:android480x800mips:Android 480x800 - MIPS:rockbox.apk:83690:../tools/configure --target=androidmips --type=n --lcdwidth=480 --lcdheight=800 && make apk
