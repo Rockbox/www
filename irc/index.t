@@ -1,19 +1,16 @@
 #define _PAGE_ IRC
 #include "../head.t"
 
-<p>We often hang out on <a href="irc://irc.libera.chat/rockbox">#rockbox</a>
-over at irc.libera.chat (libera was formed after a hostile takeover of freenode, see
-<a href="http://libera.chat/">their web site</a> for more information).
-Since there is a great deal of technical discussion, we log these sessions
-for later reference.
+<p>Most development-related discussions take place on <a href="irc://irc.libera.chat/rockbox">#rockbox</a> over at 
+irc.libera.chat. Since there is a great deal of technical discussion, we log these sessions for later reference.
 
-<!--  XXX no web client yet
+<p>Liberachat was formed after a hostile takeover of freenode; please see <a href="http://libera.chat/">Liberachat's 
+web site</a> for more information.  <b>Please note that the old #rockbox and #rockbox-community channels on Freenode are
+no longer logged or monitored, and we do not expect to retain operational control for much longer!</b></p>
 
 <p>If you don't want to install an IRC client or are locked behind a 
-firewall, try Libera's <a 
-href="https://webchat.freenode.net/?channels=rockbox">web client</a>.
-
--->
+firewall, try using <a href="https://kiwiirc.com/nextclient/?settings=e05b29849a8b86299dbe8d14e7b2a811">Kiwi IRC</a>.
+</p>
 
 <p>
 <a href="/wiki/IrcGuidelines">How to behave in the IRC channel<a>
