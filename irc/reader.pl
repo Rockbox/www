@@ -293,14 +293,16 @@ sub parsechunk {
 
         last if ($hour > 0 and param('test'));
 
-        #print "$line";
+#        print "$line";
 
         if ($hour > $lasthour) {
             printf "<tr><td class=hourbar colspan=3><a name='%02d:00' href='#%02d:00'>%02d:00</a></td></tr>\n", $hour, $hour, $hour;
             $lasthour = $hour;
         }
 
-        $string =~ s|[-]||g;
+# This seems to be intended to strip out control characters
+# but ropes in other stuff too...
+#        $string =~ s|[-]||g;
 
         if ($action eq "#") {
             my ($nick, $message);
@@ -360,6 +362,12 @@ sub parsechunk {
                 }
             }
 
+            # remove color codes
+            $message =~ s|\x03\d+||g;
+
+            # remove control codes
+            $message =~ s|[\x00-\x1f]||g;
+
             # remove any nick-highlightning inside hrefs
             if ($message =~ /href=\"([^\"]+)/) {
                 my $url = $1;
@@ -388,9 +396,6 @@ sub parsechunk {
             if ($nick =~ /[^\w\d_\-]/) {
                 $n1 = $n2 = "";
             }
-
-            # remove control codes
-            $message =~ s|[\000-\037]||g;
 
             print("<tr valign=top class='row$realnick'>",
                   "<td class=time><a name='$hour:$minute:$second' href='$ENV{query}#$hour:$minute:$second'>$hour:$minute",
