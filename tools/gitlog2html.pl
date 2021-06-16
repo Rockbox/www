@@ -64,7 +64,7 @@ sub dumpoutput {
                 my $br;
                 my $g = '';
                 $g = " <a href=\"$gerrit_url\">G#$gerrit_id</a>" if ($gerrit_id);
-                $what = "<small><a href='$urlroot/diff/?id=$h'>$h</a>$g:</small> ";
+                $what = "<small><a href='$urlroot/commit/?id=$h'>$h</a>$g:</small> ";
                 while ($b[$#b] eq "\n") {
                     delete $b[$#b];
                 }
