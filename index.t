@@ -66,6 +66,7 @@ and Ondio
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
 <li><b>Samsung</b>: <a href="/wiki/SamsungYPR0">YP-R0</a>, <a href="/wiki/SamsungYPR1">YP-R1</a>
 <li><b>SanDisk</b>: <a href="/wiki/SansaConnect">Sansa Connect</a>
+<li><b>Shanling</b>: <a href="/wiki/ShanlingQ1Port">Shanling Q1</a>
 <li><b>Sony</b>:
 <a href="/wiki/SonyNWZE350">NWZ-E350</a>,
 <a href="/wiki/SonyNWZE360Port">NWZ-E360</a>,
