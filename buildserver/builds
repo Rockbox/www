@@ -215,7 +215,7 @@ mipsel-gcc494:1:shanlingq1:Shanling Q1 - Normal:rockbox.zip:227750:../tools/conf
 mipsel-gcc494:0:ondavx747boot:Onda VX747 - Boot:ccpmp.bin:8260:../tools/configure --target=ondavx747 --type=b && make
 mipsel-gcc494:0:xduoox3boot:Xduoo X3 - Boot:bootloader-x3.bin:10000:../tools/configure --target=xduoox3 --type=b && make
 mipsel-gcc494:0:fiiom3kboot:FiiO M3K - Boot:bootloader.m3k:10000:../tools/configure --target=fiiom3k --type=b && make
-mipsel-gcc494:0:shanlingq1boot:Shanling Q1 - Bootl:bootloader.q1:10000:../tools/configure --target=shanlingq1 --type=b && make
+mipsel-gcc494:0:shanlingq1boot:Shanling Q1 - Boot:bootloader.q1:10000:../tools/configure --target=shanlingq1 --type=b && make
 # Android native targets
 android-ndk10sdk19:0:android480x800:Android 480x800:rockbox.apk:76920:../tools/configure --target=android --type=n --lcdwidth=480 --lcdheight=800 && make apk
 android-ndk10sdk19:0:android480x800mips:Android 480x800 - MIPS:rockbox.apk:83690:../tools/configure --target=androidmips --type=n --lcdwidth=480 --lcdheight=800 && make apk
@@ -328,6 +328,7 @@ sdl:0:xduoox20wps:Xduoo X20 - Checkwps:checkwps.xduoox20:1300:../tools/configure
 sdl:0:fiiom3linuxkwps:FiiO M3K (Linux) - Checkwps:checkwps.fiiom3klinux:1300:../tools/configure --target=fiiom3klinux --type=c && make
 sdl:0:aigoerosqwps:AIGO EROS Q/K - Checkwps:checkwps.aigoerosq:1300:../tools/configure --target=aigoerosq --type=c && make
 sdl:0:fiiom3kwps:FiiO M3K - Checkwps:checkwps.fiiom3k:1300:../tools/configure --target=fiiom3k --type=c && make
+sdl:0:shanlingq1wps:Shanling Q1 - Checkwps:checkwps.shanlingq1:1300:../tools/configure --target=shanlingq1 --type=c && make
 ###
 # Database targets
 sdl:0:iriverh300db:iriver H300 - Database:database.iriverh300:4720:../tools/configure --target=iriverh300 --type=d && make

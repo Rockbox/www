@@ -66,6 +66,7 @@ and Ondio
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
 <li><b>Samsung</b>: <a href="/wiki/SamsungYPR0">YP-R0</a>, <a href="/wiki/SamsungYPR1">YP-R1</a>
 <li><b>SanDisk</b>: <a href="/wiki/SansaConnect">Sansa Connect</a>
+<li><b>Shanling</b>: <a href="/wiki/ShanlingQ1Port">Shanling Q1</a>
 <li><b>Sony</b>:
 <a href="/wiki/SonyNWZE350">NWZ-E350</a>,
 <a href="/wiki/SonyNWZE360Port">NWZ-E360</a>,
@@ -114,6 +115,7 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
+<tr><td nowrap>2021-07-15</td><td>New port to the <a href="/wiki/ShanlingQ1Port">Shanling Q1</a>!</td></tr>
 <tr><td nowrap>2021-05-23</td><td>We have moved our IRC channels over to the <a href="https://libera.chat">libera</a> network.</td></tr>
 <tr><td nowrap>2021-03-27</td><td>Native bare-metal port to the <a href="/wiki/FiioM3K">FiiO M3K</a>!</td></tr>
 <tr><td nowrap>2021-03-16</td><td>mitxela created an <a href="https://www.youtube.com/watch?v=Qw-VvGsYpSU">Ode to Rockbox</a> on YouTube.</td></tr>
