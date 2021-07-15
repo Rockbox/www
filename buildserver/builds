@@ -53,10 +53,11 @@ sdl:0:creativezenxfisim:Creative ZEN X-Fi - Simulator:rockboxui:221610:../tools/
 sdl:0:creativezenmozaicsim:Creative ZEN Mozaic - Simulator:rockboxui:210930:../tools/configure --target=creativezenmozaic --type=s && make
 sdl:0:creativezenxfistylesim:Creative ZEN X-Fi Style - Simulator:rockboxui:212940:../tools/configure --target=creativezenxfistyle --type=s && make
 sdl:0:agptekrockersim:Agptek Rocker - Simulator:rockboxui:212940:../tools/configure --target=agptekrocker --type=s && make
-sdl:0:xduoox3sim:Xduoo X3 - Simulator:rockboxui:12570:../tools/configure --target=xduoox3 --type=s && make
-sdl:0:xduoox3iisim:Xduoo X3ii - Simulator:rockboxui:21940:../tools/configure --target=xduoox3ii --type=s && make
-sdl:0:xduoox20sim:Xduoo X20 - Simulator:rockboxui:21940:../tools/configure --target=xduoox20 --type=s && make
-sdl:0:aigoerosqsim:AIGO EROS Q/K - Simulator:rockboxui:21940:../tools/configure --target=aigoerosq --type=s && make
+sdl:0:xduoox3sim:Xduoo X3 - Simulator:rockboxui:112570:../tools/configure --target=xduoox3 --type=s && make
+sdl:0:xduoox3iisim:Xduoo X3ii - Simulator:rockboxui:221940:../tools/configure --target=xduoox3ii --type=s && make
+sdl:0:xduoox20sim:Xduoo X20 - Simulator:rockboxui:221940:../tools/configure --target=xduoox20 --type=s && make
+sdl:0:aigoerosqsim:AIGO EROS Q/K - Simulator:rockboxui:221940:../tools/configure --target=aigoerosq --type=s && make
+sdl:0:shanlingq1sim:Shanling Q1 - Simulator:rockboxui:221940:../tools/configure --target=shanlingq1 --type=s && make
 sdl:0:ihifi770sim:IHIFI 770 - Simulator:rockboxui:212940:../tools/configure --target=ihifi770 --type=s && make
 sdl:0:ihifi770csim:IHIFI 770C - Simulator:rockboxui:212940:../tools/configure --target=ihifi770c --type=s && make
 sdl:0:ihifi800sim:IHIFI 800 - Simulator:rockboxui:212940:../tools/configure --target=ihifi800 --type=s && make
@@ -208,11 +209,13 @@ mipsel-gcc494:1:ondavx767:Onda VX767 - Normal:rockbox.zip:86470:../tools/configu
 mipsel-gcc494:1:ondavx777:Onda VX777 - Normal:rockbox.zip:227750:../tools/configure --target=ondavx777 --type=n && make zip
 mipsel-gcc494:1:xduoox3:Xduoo X3 - Normal:rockbox.zip:227750:../tools/configure --target=xduoox3 --type=n && make zip
 mipsel-gcc494:1:fiiom3k:FiiO M3K - Normal:rockbox.zip:227750:../tools/configure --target=fiiom3k --type=n && make zip
+mipsel-gcc494:1:shanlingq1:Shanling Q1 - Normal:rockbox.zip:227750:../tools/configure --target=shanlingq1 --type=n && make zip
 ####
 # MIPS-based native bootloaders
 mipsel-gcc494:0:ondavx747boot:Onda VX747 - Boot:ccpmp.bin:8260:../tools/configure --target=ondavx747 --type=b && make
 mipsel-gcc494:0:xduoox3boot:Xduoo X3 - Boot:bootloader-x3.bin:10000:../tools/configure --target=xduoox3 --type=b && make
 mipsel-gcc494:0:fiiom3kboot:FiiO M3K - Boot:bootloader.m3k:10000:../tools/configure --target=fiiom3k --type=b && make
+mipsel-gcc494:0:shanlingq1boot:Shanling Q1 - Bootl:bootloader.q1:10000:../tools/configure --target=shanlingq1 --type=b && make
 # Android native targets
 android-ndk10sdk19:0:android480x800:Android 480x800:rockbox.apk:76920:../tools/configure --target=android --type=n --lcdwidth=480 --lcdheight=800 && make apk
 android-ndk10sdk19:0:android480x800mips:Android 480x800 - MIPS:rockbox.apk:83690:../tools/configure --target=androidmips --type=n --lcdwidth=480 --lcdheight=800 && make apk
