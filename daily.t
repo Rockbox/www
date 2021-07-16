@@ -1,9 +1,13 @@
-#define _PAGE_ Daily builds
+#define _PAGE_ Daily development builds
 #include "head.t"
 
 <h2>Archived Development Builds</h2>
 
-<p>These are archived development builds, saved to enable easy testing of recent versions.
+<p>These are archived development builds, saved to enable easy testing of recent versions.</p>
+<p>
+<a href="//build.rockbox.org">Latest development builds (updated after every commit)</a> &middot;
+<a href="//build.rockbox.org/dev.cgi">Autobuilder details</a>
+</p>
 
 <!--#include file="dailymod.html" -->
 
