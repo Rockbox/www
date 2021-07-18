@@ -210,7 +210,7 @@ mipsel-gcc494:1:ondavx777:Onda VX777 - Normal:rockbox.zip:227750:../tools/config
 mipsel-gcc494:1:xduoox3:Xduoo X3 - Normal:rockbox.zip:227750:../tools/configure --target=xduoox3 --type=n && make zip
 mipsel-gcc494:1:fiiom3k:FiiO M3K - Normal:rockbox.zip:227750:../tools/configure --target=fiiom3k --type=n && make zip
 mipsel-gcc494:1:shanlingq1:Shanling Q1 - Normal:rockbox.zip:227750:../tools/configure --target=shanlingq1 --type=n && make zip
-mipsel-gcc494:1:erosqnative:AIGO EROS Q/K (Native) - Normal:rockbox.zip:227750:../tools/configure --target=erosqnative --type=n && make
+mipsel-gcc494:1:erosqnative:AIGO EROS Q/K (Native) - Normal:rockbox.zip:227750:../tools/configure --target=erosqnative --type=n && make zip
 ####
 # MIPS-based native bootloaders
 mipsel-gcc494:0:ondavx747boot:Onda VX747 - Boot:ccpmp.bin:8260:../tools/configure --target=ondavx747 --type=b && make
