@@ -26,6 +26,9 @@ sub recentwiki
     push @ret, "<tr><th>when</th><th>what</th><th>who</th></tr>\n";
     for ($i=0; $max>0 && $i<$#array; $i++) {
         my ($subject, $user, $date)=split("\t", $data{$array[$i]});
+	next if ($subject =~ /WikiUsers/);
+	next if ($subject =~ /Registrations/);
+
         if (!$done{$subject}) {
             $max--;
             $done{$subject}=1;
