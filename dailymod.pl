@@ -50,6 +50,11 @@ for(reverse sort keys %date) {
     }
 
     print "<p><b>All of these builds were generated using the <a href=\"//download.rockbox.org/daily/source/rockbox-source-${d}.tar.xz\">${d} source code snapshot</a> corresponding to <a href=\"//git.rockbox.org/cgit/rockbox.git/commit/?id=${rev}\">revision ${rev}</a></b></p>\n";
+    if (-f "$basedir/daily/changelogs/changes-${d}.html") {
+        print "<p><a href=\"https://download.rockbox.org/daily/changelogs/changes-${d}.html\">Changes from the previous daily build</a></p>\n";
+    } else {
+        print "<p>No changes from the previous daily build\n";
+    }
     print "<table class=rockbox cellpadding=\"0\">\n";
 
     $color1 -= 0x18;
