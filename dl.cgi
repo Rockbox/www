@@ -77,7 +77,7 @@ $color3 = 0xf5;
 
 
 print "<tr>";
-for(('Date', 'Package', 'Sources', 'Changes', 'Voice', 'Rev')) {  # 'Maps'
+for(('Date', 'Rev', 'Package', 'Sources', 'Changes', 'Voice', 'Manual')) {  # 'Maps'
     print "<th>$_</th>";
 }
 print "</tr>";
@@ -95,6 +95,20 @@ for(reverse sort keys %date) {
     $color2 -= 0x18;
     $color3 -= 0x18;
 
+    $rev="";
+
+    if( -f "$basedir/daily/build-info-${d}") {
+        open(R, "<$basedir/daily/build-info-${d}");
+        while(<R>) {
+            if(/^rev\s?=\s?"?(\w+)"?/) {
+                $rev = $1;
+                last;
+            }
+        }
+        close(R);
+    }
+
+    print "<td title=\"The build done $nice has rev $rev\"><a href=\"//git.rockbox.org/cgit/rockbox.git/commit/?id=$rev\">$rev</a></td>";
     {
         my $n=0;
         my $m = $bin;
@@ -117,18 +131,6 @@ for(reverse sort keys %date) {
         }
 
         # maps!
-        $rev="";
-
-        if( -f "$basedir/daily/build-info-${d}") {
-            open(R, "<$basedir/daily/build-info-${d}");
-            while(<R>) {
-                if(/^rev\s?=\s?"?(\w+)"?/) {
-                    $rev = $1;
-                    last;
-                }
-            }
-            close(R);
-        }
 #        $map="";
 #        if( -f "maps/$m/maps-rockbox-${m}-${d}.zip") {
 #            $map = sprintf "<a href=\"//www.rockbox.org/maps/$bin/maps-rockbox-${m}-${d}.zip\" title=\"map file for $desc built $nice\">maps</a>",
@@ -139,7 +141,6 @@ for(reverse sort keys %date) {
                 $size = (stat("$basedir/daily/source/rockbox-$d.tar.xz"))[7];
                 print "<td><a href=\"$baseurl/daily/source/rockbox-source-$d.tar.xz\">source</a></td>";
             }
-
 
         if ( -f "$basedir/daily/changelogs/changes-$d.html") {
             print "<td><a href=\"$baseurl/daily/changelogs/changes-$d.html\" title=\"changelog for Rockbox $nice\">changelog</a></td>";
@@ -161,7 +162,15 @@ for(reverse sort keys %date) {
 	}
 	print "</td>\n";
 
-        print "<td title=\"The build done $nice has rev $rev\"><a href=\"//git.rockbox.org/cgit/rockbox.git/commit/?id=$rev\">$rev</a></td>";
+	# Manual!
+	print "<td>";
+            if (-f "$basedir/daily/manual/rockbox-${m}-${d}.pdf") {
+                print "<br/><a href=\"$baseurl/daily/manual/rockbox-${m}-${d}.pdf\">pdf</a>";
+            }
+            if (-f "$basedir/daily/manual/rockbox-${m}-${d}-html.zip") {
+                print "<br/><a href=\"$baseurl/daily/manual/rockbox-${m}-${d}-html.zip\">html-zip</a>";
+            }
+	print "</td>\n";
     }
     print "</tr>\n";
     $font1 = $font2 = "";
