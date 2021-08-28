@@ -82,7 +82,7 @@ for(reverse sort keys %date) {
             $o=sprintf("%s<a href=\"//download.rockbox.org/daily/manual/$file\">pdf</a> <small>%d kB</small>", $o?"<br>":"", $size/1024);
         }
 
-        $file = "rockbox-${m}-${d}-html.zip";
+        $file = "rockbox-${m}-html.zip";
         if( -f "$basedir/$file") {
             my $size = (stat("$basedir/$file"))[7];
 
