@@ -77,7 +77,7 @@ $color3 = 0xf5;
 
 
 print "<tr>";
-for(('Date', 'Rev', 'Package', 'Sources', 'Changes', 'Voice', 'Manual')) {  # 'Maps'
+for(('Date', 'Commit ID', 'Binary Package', 'Source Code', 'Changes', 'Voice', 'Manual')) {  # 'Maps'
     print "<th>$_</th>";
 }
 print "</tr>";
@@ -139,7 +139,7 @@ for(reverse sort keys %date) {
 
             if (-f "$basedir/daily/source/rockbox-source-$d.tar.xz") {
                 $size = (stat("$basedir/daily/source/rockbox-$d.tar.xz"))[7];
-                print "<td><a href=\"$baseurl/daily/source/rockbox-source-$d.tar.xz\">source</a></td>";
+                print "<td><a title=\"Rockbox source code for $d\" href=\"$baseurl/daily/source/rockbox-source-$d.tar.xz\">tar.xz source</a></td>";
             }
 
         if ( -f "$basedir/daily/changelogs/changes-$d.html") {
