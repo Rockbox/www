@@ -115,7 +115,7 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
-<tr><td nowrap>2021-08-30</td><td>Mailing lists moved to new host. Please see <a href="/mail/">mail</a>page for more info.</td></tr>
+<tr><td nowrap>2021-08-30</td><td>Mailing lists moved to new host. See the <a href="/mail/">mail</a> page for more info.</td></tr>
 <tr><td nowrap>2021-07-15</td><td>New port to the <a href="/wiki/ShanlingQ1Port">Shanling Q1</a>!</td></tr>
 <tr><td nowrap>2021-05-23</td><td>We have moved our IRC channels over to the <a href="https://libera.chat">libera</a> network.</td></tr>
 <tr><td nowrap>2021-03-27</td><td>Native bare-metal port to the <a href="/wiki/FiioM3K">FiiO M3K</a>!</td></tr>
