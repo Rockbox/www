@@ -111,10 +111,10 @@ END
 archive("-dev", -1);
 
 print <<END;
-
 <p>This list is also archived as a newgroup on Gmane. Connect your news reader to <a href="news://news.gmane.io">news.gmane.io</a> and look for the group <a href="news://news.gmane.io/gmane.comp.systems.archos.rockbox.devel">gmane.comp.systems.archos.rockbox.devel</a>. Note that you still need to be subscribed to the list to post to it through Gmane!
 END
 
+print <<END;
 </blockquote>
 <hr>
 
