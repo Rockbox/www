@@ -115,6 +115,7 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
+<tr><td nowrap>2021-08-30</td><td>Mailing lists moved to new host. Please see <a href="/mail/">mail</a>page for more info.</td></tr>
 <tr><td nowrap>2021-07-15</td><td>New port to the <a href="/wiki/ShanlingQ1Port">Shanling Q1</a>!</td></tr>
 <tr><td nowrap>2021-05-23</td><td>We have moved our IRC channels over to the <a href="https://libera.chat">libera</a> network.</td></tr>
 <tr><td nowrap>2021-03-27</td><td>Native bare-metal port to the <a href="/wiki/FiioM3K">FiiO M3K</a>!</td></tr>
@@ -122,9 +123,6 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <tr><td nowrap>2020-10-16</td><td>Move xDuoo X3 to stable.</td></tr>
 <tr><td nowrap>2020-10-11</td><td>EROS Q / K (and their clones) are now supported!</td></tr>
 <tr><td nowrap>2020-07-24</td><td>All Archos targets have been <a href="//www.rockbox.org/mail/archive//rockbox-dev-archive-2020-07/0019.shtml">retired</a>.</td></tr>
-<tr><td nowrap>2020-05-27</td><td>Rockbox git and gerrit services moved to new hosts!</td></tr>
-<tr><td nowrap>2020-05-16</td><td>Most rockbox infrastructure moved to new hosts!</td></tr>
-<tr><td nowrap>2019-11-15</td><td><a href="//www.rockbox.org/wiki/ReleaseNotes315">Rockbox 3.15 is released</a></td></tr>
 
 </table>
 <small><a href="history.html">Older news</a>
