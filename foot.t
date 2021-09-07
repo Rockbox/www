@@ -4,7 +4,7 @@
 #endif
 </td></tr></table>
 #if 0
-<div style="display: none"><a href="mailto:aaa@haxx.se">aaa</a></div>
+<div style="display: none"><a href="mailto:aaa@rockbox.org">aaa</a></div>
 #endif
 </body>
 </html>
