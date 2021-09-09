@@ -2,7 +2,7 @@
 
 require "../date.pm";
 
-my $logdir = "/home/rockbox/download/irc-logs/";
+my $logdir = "/home/rockbox/irc-logs/";
 
 open FLIST, "-|", "find $logdir -name 'rockbox*.txt'" or
   die "Can't execute find: $!";

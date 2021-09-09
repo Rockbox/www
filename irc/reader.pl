@@ -19,13 +19,13 @@ use POSIX 'strftime', 'mktime';
 
 # hardcoded log format for dancer irc bot
 
-my $logdir = "/home/rockbox/download/irc-logs";
+my $logdir = "/home/rockbox/irc-logs";
 my $today = strftime "%Y%m%d", localtime;
 my $date = param('date') + 0;
 my $year = 0;
 
 if ($date == 0) {
-    print "Location: http://www.rockbox.org/irc/log-$today\n\n";
+    print "Location: https://www.rockbox.org/irc/log-$today\n\n";
     exit;
 }
 elsif ($date == $today) {
@@ -188,7 +188,7 @@ Seconds:
 <a href="javascript:joins(1);">Show</a>
 <a href="javascript:joins(0);">Hide</a>
 
-| <a href="//download.rockbox.org/irc-logs/$year/$file">View raw</a>
+| <a href="//www.rockbox.org/irc/logs/$year/$file">View raw</a>
 
 <br>Font:
 <a href="javascript:font('serif');"><span style='font-family: serif'>Serif</span></a>
