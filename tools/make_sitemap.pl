@@ -125,7 +125,7 @@ for my $file (readdir DIR) {
 closedir DIR;
 
 # irc
-my $ircdir = "/home/rockbox/download/irc-logs/";
+my $ircdir = "/home/rockbox/irc-logs/";
 my $irc;
 
 open FLIST, "-|", "find $ircdir -name 'rockbox*.txt'" or
