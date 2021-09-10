@@ -57,7 +57,7 @@ sub runone {
         system("mv $o $newo");
         `chmod a+r $newo`;
         print "moved $o to $newo\n" if($verbose);
-        system("cd ../daily/$dir ; ln -sf ../manual/rockbox-$dir.pdf manual-$dir.pdf");
+        system("cd ../download/daily/$dir ; ln -sf ../manual/rockbox-$dir.pdf manual-$dir.pdf");
     }
     else  {
         print "*** error: no pdf file $o\n" if($verbose);
