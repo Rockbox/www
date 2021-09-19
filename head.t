@@ -3,10 +3,11 @@
 #define TITLE(_x) <h1>_x</h1>
 
 #ifndef TWIKI
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "//www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="STYLESHEET" type="text/css" href="//www.rockbox.org/style.css">
 <link rel="shortcut icon" href="//www.rockbox.org/favicon.ico">
 #ifdef _PAGE_
@@ -16,27 +17,8 @@
 #endif
 <meta name="author" content="Rockbox Contributors">
 #ifndef _PAGE_
-<meta name="keywords" content="Rockbox,Archos,firmware,open source,computer,programming,software">
+<meta name="keywords" content="Rockbox,firmware,open source,computer,programming,software" />
 #endif
-
-#ifdef FLATTR
-<script type="text/javascript">
-function fsstrip() {
-    var expr = /[0-9]+/;
-    document.fsform.taskid.value = expr.exec(document.fsform.taskid.value);
-    return true;
-}
-
-(function() {
-    var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
-    s.type = 'text/javascript';
-    s.async = true;
-    s.src = 'https://api.flattr.com/js/0.6/load.js?mode=auto';
-    t.parentNode.insertBefore(s, t);
-})();
-#endif
-
-</script>
 </head>
 #else
 %TMPL:DEF{"rockboxmenu"}%
@@ -45,7 +27,7 @@ function fsstrip() {
 <table border=0 cellpadding=7 cellspacing=0>
 <tr valign="top">
 <td bgcolor=MENUBG valign="top" rowspan=7 class='leftmenu'>
-<br>
+<br />
 <div align="center"><a href="//www.rockbox.org/">
 <img src="//www.rockbox.org/rockbox100.png" width=99 height=30 border=0 alt="Rockbox.org home"></a>
 </div>

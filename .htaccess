@@ -7,7 +7,6 @@ RedirectMatch ^/fonts(.*) https://www.rockbox.org/dl.cgi?bin=fonts
 
 AddType application/octet-stream .mod .ajz .lng .fnt .voice
 AddType text/xml .rss
-AddDefaultcharset On
 
 ### FS #5617 - Redirect from static pages to wiki ###
 
