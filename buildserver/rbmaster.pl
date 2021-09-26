@@ -586,7 +586,11 @@ sub COMPLETED {
 	    }
         }
         # now move over the build log
-        rename("$base.log", "$rbconfig{storedir}/$buildround-$id.log");
+        if (rename("$base.log", "$rbconfig{storedir}/$buildround-$id.log")) {
+             slog("Moved $base.log to $rbconfig{storedir}/$buildround-$id.log");
+        } else {
+             slog("Failed moving $base.log to $rbconfig{storedir}/$buildround-$id.log: $!");
+        }
 
         if (-x $rbconfig{eachcomplete}) {
             my $start = time();
