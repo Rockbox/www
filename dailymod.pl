@@ -55,6 +55,7 @@ for(reverse sort keys %date) {
     } else {
         print "<p>No changes from the previous daily build\n";
     }
+    print "<p><i>Please note that generating these new builds takes upwards of a couple of hours, and if you visit this page while builds are in progress you may see it only partially updated.<br/> Please check back later if what you want is missing, or use the 'older builds' links to grab something from a previous daily build.</i>\n";
     print "<table class=rockbox cellpadding=\"0\">\n";
 
     $color1 -= 0x18;
