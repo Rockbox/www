@@ -19,7 +19,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 69;
+my $revision = 70;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -544,7 +544,7 @@ sub testsystem
         "mipsel-rb-gcc494" => { "mipsel-rockbox-linux-gnu-gcc --version", "4.9.4" },
         "android-ndk10" => { "cat $ENV{ANDROID_NDK_PATH}/RELEASE.TXT", "r10" },
         "android-ndk10sdk19" => { "cat $ENV{ANDROID_NDK_PATH}/RELEASE.TXT" => "r10",
-				      "$ENV{ANDROID_SDK_PATH}/tools/android list target" => "API level: 19" },
+				      "$ENV{ANDROID_SDK_PATH}/tools/bin/avdmanager list target" => "API level: 19" },
 
         # Native targets
         "mipsel-gcc494" => { "mipsel-elf-gcc --version", "4.9.4" },
