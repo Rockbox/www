@@ -19,7 +19,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 70;
+my $revision = 71;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -558,7 +558,7 @@ sub testsystem
 
         # Special stuff
         "sdl" => {"sdl-config --version", ".*" },
-        "latex" => { "pdflatex --version", "Live 2020" },
+        "latex" => { "pdflatex --version", "Live 202[01]" },
         "dummy" => { "/bin/true", ".*" },
         );
 
