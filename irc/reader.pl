@@ -50,12 +50,12 @@ if ($date =~ /(\d\d\d\d)(\d\d)(\d\d)/) {
 }
 
 my $push = 0;
-if ($ENV{'HTTP_USER_AGENT'} =~ m|Gecko/2|) {
-    $push = 1;
-}
-if ($ENV{'HTTP_USER_AGENT'} =~ m|Firefox/[4-9]|) {
-    $push = 0;
-}
+#if ($ENV{'HTTP_USER_AGENT'} =~ m|Gecko/2|) {
+#    $push = 1;
+#}
+#if ($ENV{'HTTP_USER_AGENT'} =~ m|Firefox/[4-9]|) {
+#    $push = 0;
+#}
 
 if ($file eq "current.txt" and $push) {
     my $delimiter = sprintf("delimiter%x%x%x", rand(2**31), rand(2**31), rand(2**31));
