@@ -235,43 +235,43 @@ print "<table class=irclog>\n";
 #</script>
 #END
 #;
-
-    my $needtodie = 0;
-    $SIG{PIPE} = $SIG{HUP} = $SIG{INT} = $SIG{TERM} = sub { $needtodie = 1 };
-    # Pipe isn't bad?
-    #$SIG{PIPE} = 'IGNORE';
-
-    $SIG{__DIE__} = sub { 
-        printf STDERR "Program ending: @_\n";
-    };
-
-    $| = 1; # autoflush
-
-    my $keepalive = 0;
-    seek(FILE,0,0); # back to the beginning
-    for (;;) {
-        seek(LOG, 0, 1);
-        @lines = <FILE>;
-        if (scalar @lines) {
-            &parsechunk(\@lines);
-            $keepalive = 0;
-        }
-        exit if ($needtodie);
-        sleep 1;
-
-        if (++$keepalive > 15) {
-            print "<!-- keepalive -->\n";
-            $keepalive = 0;
-        }
-        
-        # check the time, abort tail chase if clock_hour < $lasthour
-        last if ((localtime())[2] < $lasthour);
-    }
-}
-else {
+#
+#    my $needtodie = 0;
+#    $SIG{PIPE} = $SIG{HUP} = $SIG{INT} = $SIG{TERM} = sub { $needtodie = 1 };
+#    # Pipe isn't bad?
+#    #$SIG{PIPE} = 'IGNORE';
+#
+#    $SIG{__DIE__} = sub { 
+#        printf STDERR "Program ending: @_\n";
+#    };
+#
+#    $| = 1; # autoflush
+#
+#    my $keepalive = 0;
+#    seek(FILE,0,0); # back to the beginning
+#    for (;;) {
+#        seek(LOG, 0, 1);
+#        @lines = <FILE>;
+#        if (scalar @lines) {
+#            &parsechunk(\@lines);
+#            $keepalive = 0;
+#        }
+#        exit if ($needtodie);
+#        sleep 1;
+#
+#        if (++$keepalive > 15) {
+#            print "<!-- keepalive -->\n";
+#            $keepalive = 0;
+#        }
+#        
+#        # check the time, abort tail chase if clock_hour < $lasthour
+#        last if ((localtime())[2] < $lasthour);
+#    }
+#}
+#else {
     # just parse the lines
     &parsechunk(\@lines);
-}
+#}
 
 close FILE;
 print "</table>\n";
