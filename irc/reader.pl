@@ -57,15 +57,15 @@ my $push = 0;
 #    $push = 0;
 #}
 
-if ($file eq "current.txt" and $push) {
-    my $delimiter = sprintf("delimiter%x%x%x", rand(2**31), rand(2**31), rand(2**31));
-    print "Content-type: multipart/mixed;boundary=$delimiter\n\n";
-    print "--$delimiter\n";
+#if ($file eq "current.txt" and $push) {
+#    my $delimiter = sprintf("delimiter%x%x%x", rand(2**31), rand(2**31), rand(2**31));
+#    print "Content-type: multipart/mixed;boundary=$delimiter\n\n";
+#    print "--$delimiter\n";
+#    print "Content-type: text/html\n\n";
+#}
+#else {
     print "Content-type: text/html\n\n";
-}
-else {
-    print "Content-type: text/html\n\n";
-}
+#}
 
 print <<END
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
@@ -150,7 +150,8 @@ if ($file eq "current.txt") {
                        strftime "%Y%m%d", localtime(time - 86400));
     $nextday = sprintf("<a href='log-%s'>Next day</a>",
                        strftime "%Y%m%d", localtime(time + 86400));
-    $autoscroll = "<label for=autoscroll><input type=checkbox id=autoscroll onclick='autoscroll = !autoscroll;'> Autoscroll</label> |";
+#    $autoscroll = "<label for=autoscroll><input type=checkbox id=autoscroll onclick='autoscroll = !autoscroll;'> Autoscroll</label> |";
+    $autoscroll = "";
 }
 else {
     $file =~ /(\d\d\d\d)(\d\d)(\d\d)/;
@@ -209,9 +210,9 @@ Seconds:
 END
     ;
 
-if (!$push) {
-    print "<p><b>Notice:</b> Only Gecko based browsers prior to FF4 support the multipart/mixed \"server push\" method used by this log reader to auto-update. Since you do not appear to use such a browser, this page will simply show the current log, and not automatically update.</p>\n";
-}
+#if (!$push) {
+#    print "<p><b>Notice:</b> Only Gecko based browsers prior to FF4 support the multipart/mixed \"server push\" method used by this log reader to auto-update. Since you do not appear to use such a browser, this page will simply show the current log, and not automatically update.</p>\n";
+#}
 
 $date =~ m/(\d\d\d\d)(\d\d)(\d\d)/;
 print "<h2>#rockbox log for $1-$2-$3</h2>\n";
@@ -222,18 +223,18 @@ my $houranchor;
 print "<table class=irclog>\n";
 # pass 2: output html
 
-if ($file eq "current.txt" and $push) {
-    # go into tail chase mode
-
-    # start auto-scrolling
-    print <<END
-<script type="text/javascript">
-<!--
-setInterval("scroll_to_bottom()", 2000);
--->
-</script>
-END
-;
+#if ($file eq "current.txt" and $push) {
+#    # go into tail chase mode
+#
+#    # start auto-scrolling
+#    print <<END
+#<script type="text/javascript">
+#<!--
+#setInterval("scroll_to_bottom()", 2000);
+#-->
+#</script>
+#END
+#;
 
     my $needtodie = 0;
     $SIG{PIPE} = $SIG{HUP} = $SIG{INT} = $SIG{TERM} = sub { $needtodie = 1 };
