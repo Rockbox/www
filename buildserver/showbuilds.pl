@@ -167,7 +167,7 @@ for my $rev (sort {$round{$b}{time} <=> $round{$a}{time}} keys %round) {
     print "<tr align=center>\n";
 
     my $shortrev = substr($rev, 0, 8);
-    my $chlink = "<a class=\"bstamp\" href=\"//git.rockbox.org/?p=rockbox.git;a=commit;h=$rev\">$shortrev</a>";
+    my $chlink = "<a class=\"bstamp\" href=\"//git.rockbox.org/cgit/rockbox.git/?id=$rev\">$shortrev</a>";
 
     my $score=0;
     print "<td>$chlink</td><td nowrap>$timestring</td>\n";
