@@ -117,9 +117,8 @@ for (my $i = 0; $i < $rounds ; $i++) {
 #	} elsif ($bindelta < -16) {
 #	    $cl = "buildok";
 #	}
-	$compiles{$rev}{$id}{text} = "<td class=\"$cl\" title=\"Bin: $bindelta/$compiles{$rev}{$id}{bin} Ram: $ramdelta/$compiles{$rev}{$id}{ram}\">$bindelta</td>";
+#	$compiles{$rev}{$id}{text} = "<td class=\"$cl\" title=\"Bin: $bindelta/$compiles{$rev}{$id}{bin} Ram: $ramdelta/$compiles{$rev}{$id}{ram}\">$bindelta</td>";
 #	$totdelta += $bindelta;
-
 #	if ($bindelta) {
 #            $builds++;
 #        }
