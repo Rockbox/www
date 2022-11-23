@@ -106,23 +106,23 @@ for (my $i = 0; $i < $rounds ; $i++) {
 	    $cl = "buildok";
 	}
 	$compiles{$rev}{$id}{text} = "<td class=\"$cl\" title=\"Bin: $bindelta/$compiles{$rev}{$id}{bin} Ram: $ramdelta/$compiles{$rev}{$id}{ram}\">$ramdelta</td>";
-#	if ($ramdelta) {
-#            $builds++;
-#        }
-#	$totdelta += $ramdelta;
-
-	$cl = "";
-	if ($bindelta > 16) {
-	    $cl = "buildfail";
-	} elsif ($bindelta < -16) {
-	    $cl = "buildok";
-	}
-	$compiles{$rev}{$id}{text} = "<td class=\"$cl\" title=\"Bin: $bindelta/$compiles{$rev}{$id}{bin} Ram: $ramdelta/$compiles{$rev}{$id}{ram}\">$bindelta</td>";
-	$totdelta += $bindelta;
-
-	if ($bindelta) {
+	$totdelta += $ramdelta;
+	if ($ramdelta) {
             $builds++;
         }
+
+#	$cl = "";
+#	if ($bindelta > 16) {
+#	    $cl = "buildfail";
+#	} elsif ($bindelta < -16) {
+#	    $cl = "buildok";
+#	}
+	$compiles{$rev}{$id}{text} = "<td class=\"$cl\" title=\"Bin: $bindelta/$compiles{$rev}{$id}{bin} Ram: $ramdelta/$compiles{$rev}{$id}{ram}\">$bindelta</td>";
+#	$totdelta += $bindelta;
+
+#	if ($bindelta) {
+#            $builds++;
+#        }
     }
     
     my $cl = "";    
@@ -141,8 +141,8 @@ for (my $i = 0; $i < $rounds ; $i++) {
 
 print <<MOO
 
-<p> File size deltas of the binary main Rockbox images during the most recent
- commits. Hover over the delta to get the exact file size in bytes.
+<p> RAM and binary size deltas of the main Rockbox images during the most
+    recent commits.  Hover over the delta to get the exact size in bytes.
 
 MOO
 ;
