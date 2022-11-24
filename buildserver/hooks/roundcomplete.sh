@@ -21,6 +21,7 @@ else
     perl showbuilds.pl > builds.html.new && mv builds.html.new builds.html
     perl showbuilds.pl 1 > builds_all.html.new && mv builds_all.html.new builds_all.html
     perl showsize.pl > sizes.html.new && mv sizes.html.new sizes.html
+    perl showsize.pl 1 > sizes2.html.new && mv sizes2.html.new sizes2.html
     perl devbuilds.pl $rev > devbuilds.html.new && mv devbuilds.html.new devbuilds.html
     # created by devbuilds.pl
     mv build-info.new /home/rockbox/download/build-info.devbuild
