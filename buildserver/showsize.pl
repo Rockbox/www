@@ -8,11 +8,18 @@ my @revisions;
 my %targets;
 my %compiles;
 my %lines;
-my %deltas;
+my %deltas1;
+my %deltas2;
+
+if (defined($ARGV[0])) {
+    $mode = 'bin';
+} else {
+    $mode = 'ram';
+}
 
 sub getdata {
     db_connect();
-    my %revs;    
+    my %revs;
 
     $rounds++;
 
@@ -64,15 +71,18 @@ getdata();
 
 # Churn on data to build the table.
 for (my $i = 0; $i < $rounds ; $i++) {
-    my $totdelta = 0;
-    my $builds = 0;
+    my $totdelta1 = 0;
+    my $totdelta2 = 0;
+    my $builds1 = 0;
+    my $builds2 = 0;
     my $rev = $revisions[$i];
-    
+
     foreach my $id (sort(keys(%targets))) {
 	my $lastrev = 0;
 	if (!defined($compiles{$rev}{$id})) {
 	    # Build did not complete
-	    $compiles{$rev}{$id}{text} = '<td title="Build did not complete">n/a</td>';
+	    $compiles{$rev}{$id}{text1} = '<td title="Build did not complete">n/a</td>';
+	    $compiles{$rev}{$id}{text2} = '<td title="Build did not complete">n/a</td>';
 	    next;
 	}
 	for (my $j = $i+1 ; $j < ($rounds+1) ; $j++) {
@@ -81,20 +91,23 @@ for (my $i = 0; $i < $rounds ; $i++) {
 	}
 	if ($lastrev eq 0) {
 	    # No successful previous build to reference
-	    $compiles{$rev}{$id}{text} = "<td class=\"$cl\" title=\"Bin: $compiles{$rev}{$id}{bin} Ram: $compiles{$rev}{$id}{ram}\"> ? </td>";	    
+	    $compiles{$rev}{$id}{text1} = "<td class=\"$cl\" title=\"Bin: $compiles{$rev}{$id}{bin} Ram: $compiles{$rev}{$id}{ram}\"> ? </td>";
+	    $compiles{$rev}{$id}{text2} = "<td class=\"$cl\" title=\"Bin: $compiles{$rev}{$id}{bin} Ram: $compiles{$rev}{$id}{ram}\"> ? </td>";
 	    next;
 	}
 	if ($compiles{$rev}{$id}{ram} == 0 || $compiles{$rev}{$id}{bin} == 0) {
 	    # Current build does not have numbers;
-	    $compiles{$rev}{$id}{text} = '<td title="Build does not have sizs stored"> - </td>';
+	    $compiles{$rev}{$id}{text1} = '<td title="Build does not have sizs stored"> - </td>';
+	    $compiles{$rev}{$id}{text2} = '<td title="Build does not have sizs stored"> - </td>';
 	    next;
 	}
 	if ($compiles{$lastrev}{$id}{bin} == 0 || $compiles{$lastrev}{$id}{ram} == 0) {
 	    # Last build does not have numbers;
-	    $compiles{$rev}{$id}{text} = "<td class=\"$cl\" title=\"Bin: $compiles{$rev}{$id}{bin} Ram: $compiles{$rev}{$id}{ram}\"> ? </td>";	    	    
+	    $compiles{$rev}{$id}{text1} = "<td class=\"$cl\" title=\"Bin: $compiles{$rev}{$id}{bin} Ram: $compiles{$rev}{$id}{ram}\"> ? </td>";
+	    $compiles{$rev}{$id}{text2} = "<td class=\"$cl\" title=\"Bin: $compiles{$rev}{$id}{bin} Ram: $compiles{$rev}{$id}{ram}\"> ? </td>";
 	    next;
 	}
-	
+
 	# Work out size deltas.
 	my $ramdelta = $compiles{$rev}{$id}{ram} - $compiles{$lastrev}{$id}{ram};
 	my $bindelta = $compiles{$rev}{$id}{bin} - $compiles{$lastrev}{$id}{bin};
@@ -105,51 +118,61 @@ for (my $i = 0; $i < $rounds ; $i++) {
 	} elsif ($ramdelta < -16) {
 	    $cl = "buildok";
 	}
-	$compiles{$rev}{$id}{text} = "<td class=\"$cl\" title=\"Bin: $bindelta/$compiles{$rev}{$id}{bin} Ram: $ramdelta/$compiles{$rev}{$id}{ram}\">$ramdelta</td>";
-	$totdelta += $ramdelta;
+	$compiles{$rev}{$id}{text1} = "<td class=\"$cl\" title=\"Bin: $bindelta/$compiles{$rev}{$id}{bin} Ram: $ramdelta/$compiles{$rev}{$id}{ram}\">$ramdelta</td>";
+	$totdelta1 += $ramdelta;
 	if ($ramdelta) {
-            $builds++;
+            $builds1++;
         }
 
-#	$cl = "";
-#	if ($bindelta > 16) {
-#	    $cl = "buildfail";
-#	} elsif ($bindelta < -16) {
-#	    $cl = "buildok";
-#	}
-#	$compiles{$rev}{$id}{text} = "<td class=\"$cl\" title=\"Bin: $bindelta/$compiles{$rev}{$id}{bin} Ram: $ramdelta/$compiles{$rev}{$id}{ram}\">$bindelta</td>";
-#	$totdelta += $bindelta;
-#	if ($bindelta) {
-#            $builds++;
-#        }
-    }
-    
-    my $cl = "";    
-    if ($builds > 0) {
-	$deltas{$rev} = int($totdelta / $builds + 0.5);
-	if ($deltas{$rev} > 16) {
+	$cl = "";
+	if ($bindelta > 16) {
 	    $cl = "buildfail";
-	} elsif ($deltas{$rev} < -16) {
+	} elsif ($bindelta < -16) {
+	    $cl = "buildok";
+	}
+	$compiles{$rev}{$id}{text2} = "<td class=\"$cl\" title=\"Bin: $bindelta/$compiles{$rev}{$id}{bin} Ram: $ramdelta/$compiles{$rev}{$id}{ram}\">$bindelta</td>";
+	$totdelta2 += $bindelta;
+	if ($bindelta) {
+            $builds2++;
+        }
+    }
+
+    my $cl = "";
+    if ($builds1 > 0) {
+	$deltas1{$rev} = int($totdelta1 / $builds1 + 0.5);
+	if ($deltas1{$rev} > 16) {
+	    $cl = "buildfail";
+	} elsif ($deltas1{$rev} < -16) {
 	    $cl="buildok";
 	}
     } else {
-	$deltas{$rev} = 0;
+	$deltas1{$rev} = 0;
     }
-    $deltas{$rev} = "<td class=\"$cl\">$deltas{$rev}</td>"
+    $deltas1{$rev} = "<td class=\"$cl\">$deltas1{$rev}</td>";
+
+    my $cl = "";
+    if ($builds2 > 0) {
+	$deltas2{$rev} = int($totdelta2 / $builds2 + 0.5);
+	if ($deltas2{$rev} > 16) {
+	    $cl = "buildfail";
+	} elsif ($deltas2{$rev} < -16) {
+	    $cl="buildok";
+	}
+    } else {
+	$deltas2{$rev} = 0;
+    }
+    $deltas2{$rev} = "<td class=\"$cl\">$deltas2{$rev}</td>";
 }
 
 print <<MOO
-
-<p> RAM and binary size deltas of the main Rockbox images during the most
-    recent commits.  Hover over the delta to get the exact size in bytes.
-
+<p> Size deltas of the main Rockbox images during the most
+    recent commits.  Hover over the delta to get the exact size in bytes.  Current mode: $mode </p>
 MOO
 ;
 print "<table class=\"buildstatus\" cellspacing=\"1\" cellpadding=\"2\">\n";
 print "<tr><th>Revision</th>\n";
 foreach my $t (sort(keys(%targets))) {
     print"<th><span class=\"rotate\">$t</span></th>\n";
-#    print "<th><img width='16' height='130' alt=\"$t\" src=\"/titles/$t.png\"></td>\n";
 }
 print "<th>Avg Change Delta</th>\n";
 print "</tr>\n";
@@ -161,12 +184,18 @@ for (my $i = 0; $i < $rounds ; $i++) {
     print "<td nowrap><a class=\"bstamp\" href=\"//git.rockbox.org/cgit/rockbox.git/commit/?id=$rev\">$shortrev</a></td>\n";
 
     foreach my $id (sort(keys(%targets))) {
-	print "$compiles{$rev}{$id}{text}\n";
+	if ($mode eq 'bin') {
+	    print "$compiles{$rev}{$id}{text2}\n";
+	} else {
+	    print "$compiles{$rev}{$id}{text1}\n";
+	}
     }
-
-    print "$deltas{$rev}\n";
+    if ($mode eq 'bin') {
+	print "$deltas2{$rev}\n";
+    } else {
+	print "$deltas1{$rev}\n";
+    }
     print "</tr>\n";
 }
 
 print "</table>";
-
