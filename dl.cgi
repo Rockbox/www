@@ -77,7 +77,7 @@ $color3 = 0xf5;
 
 
 print "<tr>";
-for(('Date', 'Commit ID', 'Binary Package', 'Source Code', 'Changes', 'Voice', 'Manual')) {  # 'Maps'
+for(('Date', 'Commit ID', 'Binary Package', 'Source Code', 'Fonts', 'Changes', 'Voice', 'Manual')) {  # 'Maps'
     print "<th>$_</th>";
 }
 print "</tr>";
@@ -119,15 +119,8 @@ for(reverse sort keys %date) {
             $size = (stat("$basedir/daily/$m/rockbox-${m}-${d}.zip"))[7];
             printf("<td><a title=\"Rockbox zip package for ${desc} built $nice\" href=\"$baseurl/daily/$bin/rockbox-${m}-${d}.zip\">Rockbox</a> %d KB</td>",
                    $size/1024);
-        }
-        elsif($bin eq "source") {
-            if (-f "$basedir/daily/source/rockbox-source-$d.tar.xz") {
-                $size = (stat("$basedir/daily/source/rockbox-$d.tar.xz"))[7];
-                print "<td><a href=\"$baseurl/daily/source/rockbox-source-$d.tar.xz\">tar.xz source</a></td>";
-            }
-        }
-        else {
-            print "<td></td>";
+        } else {
+            print "<td>nbsp;</td>";
         }
 
         # maps!
@@ -138,8 +131,13 @@ for(reverse sort keys %date) {
 #        print "<td>$map</td>";
 
             if (-f "$basedir/daily/source/rockbox-source-$d.tar.xz") {
-                $size = (stat("$basedir/daily/source/rockbox-$d.tar.xz"))[7];
-                print "<td><a title=\"Rockbox source code for $d\" href=\"$baseurl/daily/source/rockbox-source-$d.tar.xz\">tar.xz source</a></td>";
+                $size = int((stat("$basedir/daily/source/rockbox-source-$d.tar.xz"))[7] / 1024);
+                print "<td><a title=\"Rockbox source code for $d\" href=\"$baseurl/daily/source/rockbox-source-$d.tar.xz\">tar.xz source</a> $size KB</td>";
+            }
+
+            if (-f "$basedir/daily/fonts/rockbox-fonts-$d.zip") {
+                $size = int((stat("$basedir/daily/fonts/rockbox-fonts-$d.zip"))[7] / 1024);
+                print "<td><a title=\"Rockbox fonts for $d\" href=\"$baseurl/daily/fonts/rockbox-fonts-$d.zip\">fonts zip</a> $size KB</td>";
             }
 
         if ( -f "$basedir/daily/changelogs/changes-$d.html") {
