@@ -55,6 +55,7 @@ for(reverse sort keys %date) {
     } else {
         print "<p>No changes from the previous daily build\n";
     }
+    print "<p><a href=\"https://download.rockbox.org/daily/fonts/rockbox-fonts-${d}.zip\">Fonts file for the ${d} builds</a></p>";
     print "<p><i>Please note that generating these new builds takes upwards of a couple of hours, and if you visit this page while builds are in progress you may see it only partially updated.<br/> Please check back later if what you want is missing, or use the 'older builds' links to grab something from a previous daily build.</i>\n";
     print "<table class=rockbox cellpadding=\"0\">\n";
 
