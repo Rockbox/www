@@ -144,7 +144,7 @@ for(reverse sort keys %date) {
             print "<td><a href=\"$baseurl/daily/changelogs/changes-$d.html\" title=\"changelog for Rockbox $nice\">changelog</a></td>";
         }
         else {
-            print "<td>&nbsp;</td>";
+            print "<td>(no changes)</td>";
         }
 
 	# Voices
