@@ -166,13 +166,27 @@ for (my $i = 0; $i < $rounds ; $i++) {
 
 print <<MOO
 <p> Size deltas of the main Rockbox images during the most
-    recent commits.  Hover over the delta to get the exact size in bytes.  Current mode: $mode </p>
+    recent commits. Hover over the delta to get the exact size in bytes.</br>
+    If the build was successful the name is a download link.  
+  Current mode: $mode </p>
 MOO
 ;
 print "<table class=\"buildstatus\" cellspacing=\"1\" cellpadding=\"2\">\n";
 print "<tr><th>Revision</th>\n";
 foreach my $t (sort(keys(%targets))) {
-    print"<th><span class=\"rotate\">$t</span></th>\n";
+    my $a1 = "";
+    my $a2 = "";
+    my $name = "";
+    if (defined($builds{$t}{name})) {
+      $name = $builds{$t}{name};
+    } else {
+      $name = "$t (retired)";
+    }
+    if (-f "data/rockbox-$t.zip") {
+        $a1 = "<a href='data/rockbox-$t.zip' >";
+        $a2 = "</a>";
+    }
+    print"<th><span class=\"rotate\">$a1$name$a2</span></th>\n";
 }
 print "<th>Avg Change Delta</th>\n";
 print "</tr>\n";
