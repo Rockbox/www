@@ -32,6 +32,7 @@ bluebrother Dominik Riebeling
 bobc Bob Cousins
 buschel Andree Buschmann
 christi Christi Scarborough
+chris_s Christian Soffke
 creposucre Laurent Gautier
 dan_a Daniel Ankers
 debauched_sloth Greg White
