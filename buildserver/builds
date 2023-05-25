@@ -337,6 +337,7 @@ sdl:0:shanlingq1wps:Shanling Q1 - Checkwps:checkwps.shanlingq1:186:../tools/conf
 ###
 # Database targets
 sdl:0:iriverh300db:iriver H300 - Database:database.iriverh300:986:../tools/configure --target=iriverh300 --type=d && make
+sdl:0:xduoox3iidb:Xduoo X3ii - Database:database.xduoox3ii:986:../tools/configure --target=xduoox3ii --type=d && make
 ###
 # SDL and Warble targets
 sdl:0:sdlapplication:SDL Application:rockbox:28535:../tools/configure --target=sdlapp --type=n --lcdwidth=640 --lcdheight=480 && make
