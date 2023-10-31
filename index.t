@@ -138,7 +138,6 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <!--#include file="last5front.html" -->
 <small>All commits <a href="since-release.html">since last release</a>,
  <a href="since-4weeks.html">last four weeks</a>,
- <a href="https://twitter.com/rockboxcommits">twitter feed</a>.
 </small>
 
 </td></tr>
