@@ -31,7 +31,7 @@ sub buildtable {
 		if (-f "../../download/release/$builds{$m}{release}/rockbox-$docs-$builds{$m}{release}.pdf") {
                   $mans .= "<br><a href=\"//$basedir/rockbox-$docs-$builds{$m}{release}.pdf\">Manual</a>";
                 }
-		$mans .= "<br><a href=\"$basedir/$voice-$builds{$m}{release}-english.zip\">Voice</a>";
+		$mans .= "<br><a href=\"$basedir/$voice-$builds{$m}{release}-english.zip\">Voice (EN)</a>";
 		$mans .= "$extra";
             }
 
