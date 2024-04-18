@@ -118,8 +118,8 @@ sub buildinfo {
 `(cd tools && make ) >/dev/null 2>&1`;
 
 # Set up the voice pool
-#`rm -f /home/rockbox/dailybuild-voices/voice-pool/*`;
-$ENV{'POOL'}="/home/rockbox/dailybuild-voices/voice-pool";
+#`rm -f /home/rockbox/scratch/voice-pool/*`;
+$ENV{'POOL'}="/home/rockbox/scratch/voice-pool";
 
 # Fork off the children!
 if ($proc_count > 1) {
@@ -168,7 +168,7 @@ if ($proc_count > 1 && $kid > 0) {
 }
 
 # Clean up the old pool
-#`rm -f /home/rockbox/dailybuild-voices/voice-pool/*`;
+#`rm -f /home/rockbox/scratch/voice-pool/*`;
 
 # And finally, report the buildinfo
 &buildinfo;
