@@ -2,6 +2,9 @@
 
 require "./rockbox.pm";
 
+my $pool_dir = "/home/rockbox/scratch/voice-pool";
+my $source_dir = "/home/rockbox/rockbox_git_clone";
+
 my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) =
  localtime(time);
 
@@ -24,8 +27,6 @@ my $retval = 0;
 if (defined($ENV{"NUM_PARALLEL"})) {
     $proc_count = $ENV{"NUM_PARALLEL"};
 };
-
-# 'lame' assumed to be on system path already!
 
 my $verbose;
 if($ARGV[0] eq "-v") {
@@ -84,7 +85,7 @@ sub buildit {
 
     `rm -rf * >/dev/null 2>&1`;
 
-    my $c = "../../rockbox_git_clone/tools/configure --no-ccache --type=av --target=$target --ram=-1 --language=$lang --tts=$engine --voice=$voice --ttsopts='$engine_opts'";
+    my $c = "$source_dir/tools/configure --no-ccache --type=av --target=$target --ram=-1 --language=$lang --tts=$engine --voice=$voice --ttsopts='$engine_opts'";
 
     print "C: $c\n" if($verbose);
     system($c);
@@ -118,8 +119,10 @@ sub buildinfo {
 `(cd tools && make ) >/dev/null 2>&1`;
 
 # Set up the voice pool
-#`rm -f /home/rockbox/scratch/voice-pool/*`;
-$ENV{'POOL'}="/home/rockbox/scratch/voice-pool";
+$ENV{'POOL'}=$pool_dir;
+
+# Nuke pool files older than voice.pl
+system("find $pool_dir -type f -not -newer $source_dir/tools/voice.pl -exec rm {} \;");
 
 # Fork off the children!
 if ($proc_count > 1) {
@@ -167,8 +170,8 @@ if ($proc_count > 1 && $kid > 0) {
     }
 }
 
-# Clean up the old pool
-#`rm -f /home/rockbox/scratch/voice-pool/*`;
+# Clean up the old pool?
+#`rm -f $pool_dir/*`;
 
 # And finally, report the buildinfo
 &buildinfo;
