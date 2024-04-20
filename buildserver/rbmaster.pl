@@ -3,7 +3,7 @@
 # This is the server-side implementation according to the concepts and
 # protocol posted here:
 #
-# http://www.rockbox.org/wiki/BuildServerRemake
+# https://www.rockbox.org/wiki/BuildServerRemake
 #
 # Copyright (C) 2010 Björn Stenberg
 #
