@@ -69,14 +69,14 @@ sdl:0:samsungypr0sim:Samsung YP-R0 - Simulator:rockboxui:51262:../tools/configur
 sdl:0:fiiom3ksim:FiiO M3K - Simulator:rockboxui:46662:../tools/configure --target=fiiom3k --type=s && make
 ####
 # m68k-based native targets
-m68k-gcc494:1:iriverh100:iriver H100 - Normal:rockbox.zip:25056:../tools/configure --target=iriverh100 --type=n && make zip
-m68k-gcc494:1:iriverh120:iriver H120 - Normal:rockbox.zip:25061:../tools/configure --target=iriverh120 --type=n && make zip
-m68k-gcc494:1:iriverh300:iriver H300 - Normal:rockbox.zip:30972:../tools/configure --target=iriverh300 --type=n && make zip
-m68k-gcc494:1:iaudiox5:iAudio X5 - Normal:rockbox.zip:28470:../tools/configure --target=iaudiox5 --type=n && make zip
-m68k-gcc494:1:iaudiom5:iAudio M5 - Normal:rockbox.zip:22730:../tools/configure --target=iaudiom5 --type=n && make zip
-m68k-gcc494:1:iaudiom3:iAudio M3 - Normal:rockbox.zip:21381:../tools/configure --target=iaudiom3 --type=n && make zip
-m68k-gcc494:1:mpiohd200:MPIO HD200 - Normal:rockbox.zip:21389:../tools/configure --target=mpiohd200 --type=n && make zip
-m68k-gcc494:1:mpiohd300:MPIO HD300 - Normal:rockbox.zip:22030:../tools/configure --target=mpiohd300 --type=n && make zip
+m68k-gcc494:1:iriverh100:iriver H100:rockbox.zip:25056:../tools/configure --target=iriverh100 --type=n && make zip
+m68k-gcc494:1:iriverh120:iriver H120:rockbox.zip:25061:../tools/configure --target=iriverh120 --type=n && make zip
+m68k-gcc494:1:iriverh300:iriver H300:rockbox.zip:30972:../tools/configure --target=iriverh300 --type=n && make zip
+m68k-gcc494:1:iaudiox5:iAudio X5:rockbox.zip:28470:../tools/configure --target=iaudiox5 --type=n && make zip
+m68k-gcc494:1:iaudiom5:iAudio M5:rockbox.zip:22730:../tools/configure --target=iaudiom5 --type=n && make zip
+m68k-gcc494:1:iaudiom3:iAudio M3:rockbox.zip:21381:../tools/configure --target=iaudiom3 --type=n && make zip
+m68k-gcc494:1:mpiohd200:MPIO HD200:rockbox.zip:21389:../tools/configure --target=mpiohd200 --type=n && make zip
+m68k-gcc494:1:mpiohd300:MPIO HD300:rockbox.zip:22030:../tools/configure --target=mpiohd300 --type=n && make zip
 ####
 # m68k-based native bootloaders
 m68k-gcc494:0:iriverh100boot:iriver H100 - Boot:bootloader.iriver:821:../tools/configure --target=iriverh100 --type=b && make
@@ -89,66 +89,66 @@ m68k-gcc494:0:mpiohd200boot:MPIO HD200 - Boot:bootloader.mpio:742:../tools/confi
 m68k-gcc494:0:mpiohd300boot:MPIO HD300 - Boot:bootloader.mpio:756:../tools/configure --target=mpiohd300 --type=b && make
 ####
 # ARM-based native targets
-arm-eabi-gcc494:1:ipodnano1g:iPod Nano 1G - Normal:rockbox.zip:48763:../tools/configure --target=ipodnano1g --type=n && make zip
-arm-eabi-gcc494:1:ipodnano2g:iPod Nano 2G - Normal:rockbox.zip:48996:../tools/configure --target=ipodnano2g --type=n && make zip
-arm-eabi-gcc494:1:ipodcolor:iPod Color - Normal:rockbox.zip:48864:../tools/configure --target=ipodcolor --type=n && make zip
-arm-eabi-gcc494:1:ipod4g:iPod 4G Grayscale - Normal:rockbox.zip:27068:../tools/configure --target=ipod4g --type=n && make zip
-arm-eabi-gcc494:1:ipodvideo:iPod Video - Normal:rockbox.zip:49360:../tools/configure --target=ipodvideo --type=n && make zip
-arm-eabi-gcc494:1:ipod3g:iPod 3G - Normal:rockbox.zip:26065:../tools/configure --target=ipod3g --type=n && make zip
-arm-eabi-gcc494:1:ipodmini2g:iPod Mini 2G - Normal:rockbox.zip:26353:../tools/configure --target=ipodmini2g --type=n && make zip
-arm-eabi-gcc494:1:ipodmini1g:iPod Mini 1G - Normal:rockbox.zip:26389:../tools/configure --target=ipodmini1g --type=n && make zip
-arm-eabi-gcc494:1:ipod6g:iPod Classic - Normal:rockbox.zip:48385:../tools/configure --target=ipod6g --type=n && make zip
-arm-eabi-gcc494:1:iriverh10:iriver H10 - Normal:rockbox.zip:46108:../tools/configure --target=iriverh10 --type=n && make zip
-arm-eabi-gcc494:1:iriverh10_5gb:iriver H10 5GB - Normal:rockbox.zip:45930:../tools/configure --target=iriverh10_5gb --type=n && make zip
-arm-eabi-gcc494:1:gigabeatfx:Toshiba Gigabeat F - Normal:rockbox.zip:45281:../tools/configure --target=gigabeatfx --type=n && make zip
-arm-eabi-gcc494:1:gigabeats:Toshiba Gigabeat S - Normal:rockbox.zip:46027:../tools/configure --target=gigabeats --type=n && make zip
-arm-eabi-gcc494:1:sansae200:SanDisk Sansa e200 - Normal:rockbox.zip:48846:../tools/configure --target=sansae200 --type=n && make zip
-arm-eabi-gcc494:1:sansac200:SanDisk Sansa c200 - Normal:rockbox.zip:45363:../tools/configure --target=sansac200 --type=n && make zip
-arm-eabi-gcc494:1:ipod1g2g:iPod 1G/2G - Normal:rockbox.zip:25860:../tools/configure --target=ipod1g2g --type=n && make zip
-arm-eabi-gcc494:1:mrobe500:Olympus M-Robe 500 - Normal:rockbox.zip:25369:../tools/configure --target=mrobe500 --type=n && make zip
-arm-eabi-gcc494:1:mrobe100:Olympus M-Robe 100 - Normal:rockbox.zip:23717:../tools/configure --target=mrobe100 --type=n && make zip
-arm-eabi-gcc494:1:cowond2:Cowon D2 - Normal:rockbox.zip:44710:../tools/configure --target=cowond2 --type=n && make zip
-arm-eabi-gcc494:1:zenvisionm30:Creative Zen Vision M 30GB - Normal:rockbox.zip:44121:../tools/configure --target=zenvisionm30gb --type=n && make zip
-arm-eabi-gcc494:1:zenvisionm60:Creative Zen Vision M 60GB - Normal:rockbox.zip:44253:../tools/configure --target=zenvisionm60gb --type=n && make zip
-arm-eabi-gcc494:1:zenvision:Creative Zen Vision - Normal:rockbox.zip:11996:../tools/configure --target=zenvision --type=n && make zip
-arm-eabi-gcc494:1:sansafuze:SanDisk Sansa Fuze - Normal:rockbox.zip:49004:../tools/configure --target=sansafuze --type=n && make zip
-arm-eabi-gcc494:1:sansafuzev2:SanDisk Sansa Fuzev2 - Normal:rockbox.zip:48185:../tools/configure --target=sansafuzev2 --type=n && make zip
-arm-eabi-gcc494:1:sansafuzeplus:SanDisk Sansa Fuze+ - Normal:rockbox.zip:46361:../tools/configure --target=sansafuzeplus --type=n && make zip
-arm-eabi-gcc494:1:sansaclip:SanDisk Sansa Clip - Normal:rockbox.zip:28420:../tools/configure --target=sansaclip --type=n && make zip
-arm-eabi-gcc494:1:sansaclipv2:SanDisk Sansa Clipv2 - Normal:rockbox.zip:24228:../tools/configure --target=sansaclipv2 --type=n && make zip
-arm-eabi-gcc494:1:sansaclipplus:SanDisk Sansa Clip+ - Normal:rockbox.zip:24272:../tools/configure --target=sansaclipplus --type=n && make zip
-arm-eabi-gcc494:1:sansaclipzip:SanDisk Sansa Clip Zip - Normal:rockbox.zip:45132:../tools/configure --target=sansaclipzip --type=n && make zip
-arm-eabi-gcc494:1:sansaconnect:SanDisk Sansa Connect - Normal:rockbox.zip:44658:../tools/configure --target=sansaconnect --type=n && make zip
-arm-eabi-gcc494:1:sansae200v2:SanDisk Sansa e200v2 - Normal:rockbox.zip:48868:../tools/configure --target=sansae200v2 --type=n && make zip
-arm-eabi-gcc494:1:sansac200v2:SanDisk Sansa c200v2 - Normal:rockbox.zip:34951:../tools/configure --target=sansac200v2 --type=n && make zip
-arm-eabi-gcc494:1:sansam200v4:SanDisk Sansa m200v4 - Normal:rockbox.zip:27401:../tools/configure --target=sansam200v4 --type=n && make zip
-arm-eabi-gcc494:1:gogearhdd1630:Philips HDD1630 - Normal:rockbox.zip:45951:../tools/configure --target=gogearhdd1630 --type=n && make zip
-arm-eabi-gcc494:1:gogearhdd6330:Philips HDD6330 - Normal:rockbox.zip:46340:../tools/configure --target=gogearhdd6330 --type=n && make zip
-arm-eabi-gcc494:1:samsungyh820:Samsung YH-820 - Normal:rockbox.zip:45797:../tools/configure --target=samsungyh820 --type=n && make zip
-arm-eabi-gcc494:1:samsungyh920:Samsung YH-920 - Normal:rockbox.zip:24918:../tools/configure --target=samsungyh920 --type=n && make zip
-arm-eabi-gcc494:1:samsungyh925:Samsung YH-925 - Normal:rockbox.zip:46086:../tools/configure --target=samsungyh925 --type=n && make zip
-arm-eabi-gcc494:1:gogearsa9200:Philips SA9200 - Normal:rockbox.zip:45310:../tools/configure --target=gogearsa9200 --type=n && make zip
-arm-eabi-gcc494:1:vibe500:Packard Bell Vibe 500 - Normal:rockbox.zip:45953:../tools/configure --target=vibe500 --type=n && make zip
-arm-eabi-gcc494:1:rk27generic:Rockchip rk27xx - Normal:rockbox.zip:12425:../tools/configure --target=rk27generic --type=n && make zip
-arm-eabi-gcc494:1:hifimanhm60x:HiFiMAN HM-60x - Normal:rockbox.zip:44761:../tools/configure --target=hifimanhm60x --type=n && make zip
-arm-eabi-gcc494:1:hifimanhm801:HiFiMAN HM-801 - Normal:rockbox.zip:45136:../tools/configure --target=hifimanhm801 --type=n && make zip
-arm-eabi-gcc494:1:hifietma9:HiFi E.T MA9 - Normal:rockbox.zip:12321:../tools/configure --target=hifietma9 --type=n && make zip
-arm-eabi-gcc494:1:hifietma9c:HiFi E.T MA9C - Normal:rockbox.zip:12351:../tools/configure --target=hifietma9c --type=n && make zip
-arm-eabi-gcc494:1:hifietma8:HiFi E.T MA8 - Normal:rockbox.zip:12341:../tools/configure --target=hifietma8 --type=n && make zip
-arm-eabi-gcc494:1:hifietma8c:HiFi E.T MA8C - Normal:rockbox.zip:12325:../tools/configure --target=hifietma8c --type=n && make zip
-arm-eabi-gcc494:1:ihifi760:IHIFI 760 - Normal:rockbox.zip:12298:../tools/configure --target=ihifi760 --type=n && make zip
-arm-eabi-gcc494:1:ihifi770:IHIFI 770 - Normal:rockbox.zip:45326:../tools/configure --target=ihifi770 --type=n && make zip
-arm-eabi-gcc494:1:ihifi770c:IHIFI 770C - Normal:rockbox.zip:45392:../tools/configure --target=ihifi770c --type=n && make zip
-arm-eabi-gcc494:1:ihifi800:IHIFI 800 - Normal:rockbox.zip:45290:../tools/configure --target=ihifi800 --type=n && make zip
-arm-eabi-gcc494:1:ihifi960:IHIFI 960 - Normal:rockbox.zip:12302:../tools/configure --target=ihifi960 --type=n && make zip
-arm-eabi-gcc494:1:creativezenxfi2:Creative Zen X-Fi2 - Normal:rockbox.zip:46432:../tools/configure --target=creativezenxfi2 --type=n && make zip
-arm-eabi-gcc494:1:creativezenxfi3:Creative Zen X-Fi3 - Normal:rockbox.zip:46081:../tools/configure --target=creativezenxfi3 --type=n && make zip
-arm-eabi-gcc494:1:sonynwze360:Sony NWZ-E360 - Normal:rockbox.zip:45689:../tools/configure --target=sonynwze360 --type=n && make zip
-arm-eabi-gcc494:1:sonynwze370:Sony NWZ-E370 - Normal:rockbox.zip:45326:../tools/configure --target=sonynwze370 --type=n && make zip
-arm-eabi-gcc494:1:creativezen:Creative ZEN - Normal:rockbox.zip:47798:../tools/configure --target=creativezen --type=n && make zip
-arm-eabi-gcc494:1:creativezenxfi:Creative ZEN X-Fi - Normal:rockbox.zip:47757:../tools/configure --target=creativezenxfi --type=n && make zip
-arm-eabi-gcc494:1:creativezenmozaic:Creative ZEN Mozaic - Normal:rockbox.zip:45854:../tools/configure --target=creativezenmozaic --type=n && make zip
-arm-eabi-gcc494:1:creativezenxfistyle:Creative ZEN X-Fi Style - Normal:rockbox.zip:46524:../tools/configure --target=creativezenxfistyle --type=n && make zip
+arm-eabi-gcc494:1:ipodnano1g:iPod Nano 1G:rockbox.zip:48763:../tools/configure --target=ipodnano1g --type=n && make zip
+arm-eabi-gcc494:1:ipodnano2g:iPod Nano 2G:rockbox.zip:48996:../tools/configure --target=ipodnano2g --type=n && make zip
+arm-eabi-gcc494:1:ipodcolor:iPod Color:rockbox.zip:48864:../tools/configure --target=ipodcolor --type=n && make zip
+arm-eabi-gcc494:1:ipod4g:iPod 4G Grayscale:rockbox.zip:27068:../tools/configure --target=ipod4g --type=n && make zip
+arm-eabi-gcc494:1:ipodvideo:iPod Video:rockbox.zip:49360:../tools/configure --target=ipodvideo --type=n && make zip
+arm-eabi-gcc494:1:ipod3g:iPod 3G:rockbox.zip:26065:../tools/configure --target=ipod3g --type=n && make zip
+arm-eabi-gcc494:1:ipodmini2g:iPod Mini 2G:rockbox.zip:26353:../tools/configure --target=ipodmini2g --type=n && make zip
+arm-eabi-gcc494:1:ipodmini1g:iPod Mini 1G:rockbox.zip:26389:../tools/configure --target=ipodmini1g --type=n && make zip
+arm-eabi-gcc494:1:ipod6g:iPod Classic:rockbox.zip:48385:../tools/configure --target=ipod6g --type=n && make zip
+arm-eabi-gcc494:1:iriverh10:iriver H10:rockbox.zip:46108:../tools/configure --target=iriverh10 --type=n && make zip
+arm-eabi-gcc494:1:iriverh10_5gb:iriver H10 5GB:rockbox.zip:45930:../tools/configure --target=iriverh10_5gb --type=n && make zip
+arm-eabi-gcc494:1:gigabeatfx:Toshiba Gigabeat F:rockbox.zip:45281:../tools/configure --target=gigabeatfx --type=n && make zip
+arm-eabi-gcc494:1:gigabeats:Toshiba Gigabeat S:rockbox.zip:46027:../tools/configure --target=gigabeats --type=n && make zip
+arm-eabi-gcc494:1:sansae200:SanDisk Sansa e200:rockbox.zip:48846:../tools/configure --target=sansae200 --type=n && make zip
+arm-eabi-gcc494:1:sansac200:SanDisk Sansa c200:rockbox.zip:45363:../tools/configure --target=sansac200 --type=n && make zip
+arm-eabi-gcc494:1:ipod1g2g:iPod 1G/2G:rockbox.zip:25860:../tools/configure --target=ipod1g2g --type=n && make zip
+arm-eabi-gcc494:1:mrobe500:Olympus M-Robe 500:rockbox.zip:25369:../tools/configure --target=mrobe500 --type=n && make zip
+arm-eabi-gcc494:1:mrobe100:Olympus M-Robe 100:rockbox.zip:23717:../tools/configure --target=mrobe100 --type=n && make zip
+arm-eabi-gcc494:1:cowond2:Cowon D2:rockbox.zip:44710:../tools/configure --target=cowond2 --type=n && make zip
+arm-eabi-gcc494:1:zenvisionm30:Creative Zen Vision M 30GB:rockbox.zip:44121:../tools/configure --target=zenvisionm30gb --type=n && make zip
+arm-eabi-gcc494:1:zenvisionm60:Creative Zen Vision M 60GB:rockbox.zip:44253:../tools/configure --target=zenvisionm60gb --type=n && make zip
+arm-eabi-gcc494:1:zenvision:Creative Zen Vision:rockbox.zip:11996:../tools/configure --target=zenvision --type=n && make zip
+arm-eabi-gcc494:1:sansafuze:SanDisk Sansa Fuze:rockbox.zip:49004:../tools/configure --target=sansafuze --type=n && make zip
+arm-eabi-gcc494:1:sansafuzev2:SanDisk Sansa Fuzev2:rockbox.zip:48185:../tools/configure --target=sansafuzev2 --type=n && make zip
+arm-eabi-gcc494:1:sansafuzeplus:SanDisk Sansa Fuze+:rockbox.zip:46361:../tools/configure --target=sansafuzeplus --type=n && make zip
+arm-eabi-gcc494:1:sansaclip:SanDisk Sansa Clip:rockbox.zip:28420:../tools/configure --target=sansaclip --type=n && make zip
+arm-eabi-gcc494:1:sansaclipv2:SanDisk Sansa Clipv2:rockbox.zip:24228:../tools/configure --target=sansaclipv2 --type=n && make zip
+arm-eabi-gcc494:1:sansaclipplus:SanDisk Sansa Clip+:rockbox.zip:24272:../tools/configure --target=sansaclipplus --type=n && make zip
+arm-eabi-gcc494:1:sansaclipzip:SanDisk Sansa Clip Zip:rockbox.zip:45132:../tools/configure --target=sansaclipzip --type=n && make zip
+arm-eabi-gcc494:1:sansaconnect:SanDisk Sansa Connect:rockbox.zip:44658:../tools/configure --target=sansaconnect --type=n && make zip
+arm-eabi-gcc494:1:sansae200v2:SanDisk Sansa e200v2:rockbox.zip:48868:../tools/configure --target=sansae200v2 --type=n && make zip
+arm-eabi-gcc494:1:sansac200v2:SanDisk Sansa c200v2:rockbox.zip:34951:../tools/configure --target=sansac200v2 --type=n && make zip
+arm-eabi-gcc494:1:sansam200v4:SanDisk Sansa m200v4:rockbox.zip:27401:../tools/configure --target=sansam200v4 --type=n && make zip
+arm-eabi-gcc494:1:gogearhdd1630:Philips HDD1630:rockbox.zip:45951:../tools/configure --target=gogearhdd1630 --type=n && make zip
+arm-eabi-gcc494:1:gogearhdd6330:Philips HDD6330:rockbox.zip:46340:../tools/configure --target=gogearhdd6330 --type=n && make zip
+arm-eabi-gcc494:1:samsungyh820:Samsung YH-820:rockbox.zip:45797:../tools/configure --target=samsungyh820 --type=n && make zip
+arm-eabi-gcc494:1:samsungyh920:Samsung YH-920:rockbox.zip:24918:../tools/configure --target=samsungyh920 --type=n && make zip
+arm-eabi-gcc494:1:samsungyh925:Samsung YH-925:rockbox.zip:46086:../tools/configure --target=samsungyh925 --type=n && make zip
+arm-eabi-gcc494:1:gogearsa9200:Philips SA9200:rockbox.zip:45310:../tools/configure --target=gogearsa9200 --type=n && make zip
+arm-eabi-gcc494:1:vibe500:Packard Bell Vibe 500:rockbox.zip:45953:../tools/configure --target=vibe500 --type=n && make zip
+arm-eabi-gcc494:1:rk27generic:Rockchip rk27xx:rockbox.zip:12425:../tools/configure --target=rk27generic --type=n && make zip
+arm-eabi-gcc494:1:hifimanhm60x:HiFiMAN HM-60x:rockbox.zip:44761:../tools/configure --target=hifimanhm60x --type=n && make zip
+arm-eabi-gcc494:1:hifimanhm801:HiFiMAN HM-801:rockbox.zip:45136:../tools/configure --target=hifimanhm801 --type=n && make zip
+arm-eabi-gcc494:1:hifietma9:HiFi E.T MA9:rockbox.zip:12321:../tools/configure --target=hifietma9 --type=n && make zip
+arm-eabi-gcc494:1:hifietma9c:HiFi E.T MA9C:rockbox.zip:12351:../tools/configure --target=hifietma9c --type=n && make zip
+arm-eabi-gcc494:1:hifietma8:HiFi E.T MA8:rockbox.zip:12341:../tools/configure --target=hifietma8 --type=n && make zip
+arm-eabi-gcc494:1:hifietma8c:HiFi E.T MA8C:rockbox.zip:12325:../tools/configure --target=hifietma8c --type=n && make zip
+arm-eabi-gcc494:1:ihifi760:IHIFI 760:rockbox.zip:12298:../tools/configure --target=ihifi760 --type=n && make zip
+arm-eabi-gcc494:1:ihifi770:IHIFI 770:rockbox.zip:45326:../tools/configure --target=ihifi770 --type=n && make zip
+arm-eabi-gcc494:1:ihifi770c:IHIFI 770C:rockbox.zip:45392:../tools/configure --target=ihifi770c --type=n && make zip
+arm-eabi-gcc494:1:ihifi800:IHIFI 800:rockbox.zip:45290:../tools/configure --target=ihifi800 --type=n && make zip
+arm-eabi-gcc494:1:ihifi960:IHIFI 960:rockbox.zip:12302:../tools/configure --target=ihifi960 --type=n && make zip
+arm-eabi-gcc494:1:creativezenxfi2:Creative Zen X-Fi2:rockbox.zip:46432:../tools/configure --target=creativezenxfi2 --type=n && make zip
+arm-eabi-gcc494:1:creativezenxfi3:Creative Zen X-Fi3:rockbox.zip:46081:../tools/configure --target=creativezenxfi3 --type=n && make zip
+arm-eabi-gcc494:1:sonynwze360:Sony NWZ-E360:rockbox.zip:45689:../tools/configure --target=sonynwze360 --type=n && make zip
+arm-eabi-gcc494:1:sonynwze370:Sony NWZ-E370:rockbox.zip:45326:../tools/configure --target=sonynwze370 --type=n && make zip
+arm-eabi-gcc494:1:creativezen:Creative ZEN:rockbox.zip:47798:../tools/configure --target=creativezen --type=n && make zip
+arm-eabi-gcc494:1:creativezenxfi:Creative ZEN X-Fi:rockbox.zip:47757:../tools/configure --target=creativezenxfi --type=n && make zip
+arm-eabi-gcc494:1:creativezenmozaic:Creative ZEN Mozaic:rockbox.zip:45854:../tools/configure --target=creativezenmozaic --type=n && make zip
+arm-eabi-gcc494:1:creativezenxfistyle:Creative ZEN X-Fi Style:rockbox.zip:46524:../tools/configure --target=creativezenxfistyle --type=n && make zip
 ####
 # ARM-based native bootloaders
 arm-eabi-gcc494:0:ipodnano1gboot:iPod Nano 1G - Boot:bootloader-ipodnano1g.ipod:1070:../tools/configure --target=ipodnano1g --type=b && make
@@ -207,13 +207,13 @@ arm-eabi-gcc494:0:creativezenmozaicboot:Creative ZEN Mozaic - Boot:bootloader-ze
 arm-eabi-gcc494:0:creativezenxfistyleboot:Creative ZEN X-Fi Style - Boot:bootloader-zenxfistyle.creative:1313:../tools/configure --target=creativezenxfistyle --type=b && make
 ####
 # MIPS-based native targets
-mipsel-gcc494:1:ondavx747:Onda VX747 - Normal:rockbox.zip:47447:../tools/configure --target=ondavx747 --type=n && make zip
-mipsel-gcc494:1:ondavx767:Onda VX767 - Normal:rockbox.zip:13329:../tools/configure --target=ondavx767 --type=n && make zip
-mipsel-gcc494:1:ondavx777:Onda VX777 - Normal:rockbox.zip:47485:../tools/configure --target=ondavx777 --type=n && make zip
-mipsel-gcc494:1:xduoox3:Xduoo X3 - Normal:rockbox.zip:24281:../tools/configure --target=xduoox3 --type=n && make zip
-mipsel-gcc494:1:fiiom3k:FiiO M3K - Normal:rockbox.zip:45980:../tools/configure --target=fiiom3k --type=n && make zip
-mipsel-gcc494:1:shanlingq1:Shanling Q1 - Normal:rockbox.zip:46423:../tools/configure --target=shanlingq1 --type=n && make zip
-mipsel-gcc494:1:erosqnative:AIGO EROS Q/K (Native) - Normal:rockbox.zip:46222:../tools/configure --target=erosqnative --type=n && make zip
+mipsel-gcc494:1:ondavx747:Onda VX747:rockbox.zip:47447:../tools/configure --target=ondavx747 --type=n && make zip
+mipsel-gcc494:1:ondavx767:Onda VX767:rockbox.zip:13329:../tools/configure --target=ondavx767 --type=n && make zip
+mipsel-gcc494:1:ondavx777:Onda VX777:rockbox.zip:47485:../tools/configure --target=ondavx777 --type=n && make zip
+mipsel-gcc494:1:xduoox3:Xduoo X3:rockbox.zip:24281:../tools/configure --target=xduoox3 --type=n && make zip
+mipsel-gcc494:1:fiiom3k:FiiO M3K:rockbox.zip:45980:../tools/configure --target=fiiom3k --type=n && make zip
+mipsel-gcc494:1:shanlingq1:Shanling Q1:rockbox.zip:46423:../tools/configure --target=shanlingq1 --type=n && make zip
+mipsel-gcc494:1:erosqnative:AIGO EROS Q/K (Native):rockbox.zip:46222:../tools/configure --target=erosqnative --type=n && make zip
 ####
 # MIPS-based native bootloaders
 mipsel-gcc494:0:ondavx747boot:Onda VX747 - Boot:ccpmp.bin:1142:../tools/configure --target=ondavx747 --type=b && make
@@ -228,17 +228,17 @@ android-ndk10:1:ibassodx50:iBasso DX50:rockbox.zip:50480:../tools/configure --ta
 android-ndk10:1:ibassodx90:iBasso DX90:rockbox.zip:50445:../tools/configure --target=ibassodx90 --type=n && make zip
 ###
 # ARM hosted targets
-arm-rb-gcc494:1:samsungypr0:Samsung YP-R0 - Normal:rockbox.zip:53864:../tools/configure --target=samsungypr0 --type=n && make zip
-arm-rb-gcc494:1:samsungypr1:Samsung YP-R1 - Normal:rockbox.zip:20163:../tools/configure --target=samsungypr1 --type=n && make zip
-arm-rb-gcc494:1:sonynwze350:Sony NWZ-E350 - Normal:rockbox.zip:48830:../tools/configure --target=sonynwze350 --type=n && make zip
-arm-rb-gcc494:1:sonynwze450:Sony NWZ-E450 - Normal:rockbox.zip:48944:../tools/configure --target=sonynwze450 --type=n && make zip
-arm-rb-gcc494:1:sonynwze460:Sony NWZ-E460 - Normal:rockbox.zip:48930:../tools/configure --target=sonynwze460 --type=n && make zip
-arm-rb-gcc494:1:sonynwze470:Sony NWZ-E470 - Normal:rockbox.zip:48857:../tools/configure --target=sonynwze470 --type=n && make zip
-arm-rb-gcc494:1:sonynwze580:Sony NWZ-E580 - Normal:rockbox.zip:48843:../tools/configure --target=sonynwze580 --type=n && make zip
-arm-rb-gcc494:1:sonynwza10:Sony NWZ-A10 - Normal:rockbox.zip:49004:../tools/configure --target=sonynwza10 --type=n && make zip
-arm-rb-gcc494:1:sonynwa20:Sony NW-A20 - Normal:rockbox.zip:49036:../tools/configure --target=sonynwa20 --type=n && make zip
-arm-rb-gcc494:1:sonynwza860:Sony NWZ-A860 - Normal:rockbox.zip:13909:../tools/configure --target=sonynwza860 --type=n && make zip
-arm-rb-gcc494:1:sonynwzs750:Sony NWZ-S750 - Normal:rockbox.zip:48873:../tools/configure --target=sonynwzs750 --type=n && make zip
+arm-rb-gcc494:1:samsungypr0:Samsung YP-R0:rockbox.zip:53864:../tools/configure --target=samsungypr0 --type=n && make zip
+arm-rb-gcc494:1:samsungypr1:Samsung YP-R1:rockbox.zip:20163:../tools/configure --target=samsungypr1 --type=n && make zip
+arm-rb-gcc494:1:sonynwze350:Sony NWZ-E350:rockbox.zip:48830:../tools/configure --target=sonynwze350 --type=n && make zip
+arm-rb-gcc494:1:sonynwze450:Sony NWZ-E450:rockbox.zip:48944:../tools/configure --target=sonynwze450 --type=n && make zip
+arm-rb-gcc494:1:sonynwze460:Sony NWZ-E460:rockbox.zip:48930:../tools/configure --target=sonynwze460 --type=n && make zip
+arm-rb-gcc494:1:sonynwze470:Sony NWZ-E470:rockbox.zip:48857:../tools/configure --target=sonynwze470 --type=n && make zip
+arm-rb-gcc494:1:sonynwze580:Sony NWZ-E580:rockbox.zip:48843:../tools/configure --target=sonynwze580 --type=n && make zip
+arm-rb-gcc494:1:sonynwza10:Sony NWZ-A10:rockbox.zip:49004:../tools/configure --target=sonynwza10 --type=n && make zip
+arm-rb-gcc494:1:sonynwa20:Sony NW-A20:rockbox.zip:49036:../tools/configure --target=sonynwa20 --type=n && make zip
+arm-rb-gcc494:1:sonynwza860:Sony NWZ-A860:rockbox.zip:13909:../tools/configure --target=sonynwza860 --type=n && make zip
+arm-rb-gcc494:1:sonynwzs750:Sony NWZ-S750:rockbox.zip:48873:../tools/configure --target=sonynwzs750 --type=n && make zip
 ###
 # ARM hosted bootloaders
 arm-rb-gcc494:0:sonynwze350boot:Sony NWZ-E350 - Boot:bootloader-nwze350.sony:829:../tools/configure --target=sonynwze350 --type=b && make
@@ -252,11 +252,11 @@ arm-rb-gcc494:0:sonynwza860boot:Sony NWZ-A860 - Boot:bootloader-nwza860.sony:842
 arm-rb-gcc494:0:sonynwzs750boot:Sony NWZ-S750 - Boot:bootloader-nwzs750.sony:818:../tools/configure --target=sonynwzs750 --type=b && make
 ###
 # MIPS hosted targets
-mipsel-rb-gcc494:1:agptekrocker:Agptek Rocker - Normal:rockbox.zip:52761:../tools/configure --target=agptekrocker --type=n && make zip
-mipsel-rb-gcc494:1:xduoox3ii:xDuoo X3ii - Normal:rockbox.zip:54045:../tools/configure --target=xduoox3ii --type=n && make zip
-mipsel-rb-gcc494:1:xduoox20:xDuoo X20 - Normal:rockbox.zip:54044:../tools/configure --target=xduoox20 --type=n && make zip
-mipsel-rb-gcc494:1:fiiom3klinux:FiiO M3K (Linux) - Normal:rockbox.zip:52797:../tools/configure --target=fiiom3klinux --type=n && make zip
-mipsel-rb-gcc494:1:aigoerosq:AIGO EROS Q/K - Normal:rockbox.zip:54462:../tools/configure --target=aigoerosq --type=n && make zip
+mipsel-rb-gcc494:1:agptekrocker:Agptek Rocker:rockbox.zip:52761:../tools/configure --target=agptekrocker --type=n && make zip
+mipsel-rb-gcc494:1:xduoox3ii:xDuoo X3ii:rockbox.zip:54045:../tools/configure --target=xduoox3ii --type=n && make zip
+mipsel-rb-gcc494:1:xduoox20:xDuoo X20:rockbox.zip:54044:../tools/configure --target=xduoox20 --type=n && make zip
+mipsel-rb-gcc494:1:fiiom3klinux:FiiO M3K (Linux):rockbox.zip:52797:../tools/configure --target=fiiom3klinux --type=n && make zip
+mipsel-rb-gcc494:1:aigoerosq:AIGO EROS Q/K:rockbox.zip:54462:../tools/configure --target=aigoerosq --type=n && make zip
 ###
 # MIPS hosted bootloaders
 mipsel-rb-gcc494:0:agptekrockerboot:Agptek Rocker - Boot:bootloader.rocker:964:../tools/configure --target=agptekrocker --type=b && make
