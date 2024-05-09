@@ -19,7 +19,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 72;
+my $revision = 73;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -550,11 +550,6 @@ sub testsystem
         "mipsel-gcc494" => { "mipsel-elf-gcc --version", "4.9.4" },
         "arm-eabi-gcc494" => { "arm-elf-eabi-gcc --version", "4.9.4" },
         "m68k-gcc494" => { "m68k-elf-gcc --version", "4.9.4" },
-
-	# Nuked obsolete toolchains
-        "sh" => { "sh-elf-gcc --version", "4.0.3" },
-        "arm-eabi-gcc444" => { "arm-elf-eabi-gcc --version", "4.4.4" },
-        "m68k-gcc452" => { "m68k-elf-gcc --version", "4.5.2" },
 
         # Special stuff
         "sdl" => {"sdl-config --version", ".*" },

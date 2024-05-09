@@ -9,10 +9,6 @@ do
 
     ############### Possible values for archlist are:
 
-    ####### (Obsolete)
-    # arm-eabi-gcc444        : needed for ARM-based traditional targets
-    # m68k-gcc452            : coldfire-based players
-
     ####### Native targets
     # m68k-gcc494            : m68k-based players
     # arm-eabi-gcc494        | arm-based players
@@ -20,7 +16,7 @@ do
 
     ####### Hosted
     # mipsel-rb-gcc494       : linux based MIPS players, eg Agptek Rocker (Benjie T6)
-    # arm-rb-gcc494          : linux based sony players, eg Samsung YP-R0 YP-R1
+    # arm-rb-gcc494          : linux based ARM players, eg Samsung YP-R0/YP-R1
 
     ####### Special
     # sdl : Non-crosscompiled targets. Simulators, application, checkwps, database tool, ...
