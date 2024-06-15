@@ -148,8 +148,9 @@ my ($prevday, $nextday);
 if ($file eq "current.txt") {
     $prevday = sprintf("<a href='log-%s'>Previous day</a>",
                        strftime "%Y%m%d", localtime(time - 86400));
-    $nextday = sprintf("<a href='log-%s'>Next day</a>",
-                       strftime "%Y%m%d", localtime(time + 86400));
+#    $nextday = sprintf("<a href='log-%s'>Next day</a>",
+#                       strftime "%Y%m%d", localtime(time + 86400));
+     $nextday  = "Next Day";
 #    $autoscroll = "<label for=autoscroll><input type=checkbox id=autoscroll onclick='autoscroll = !autoscroll;'> Autoscroll</label> |";
     $autoscroll = "";
 }
