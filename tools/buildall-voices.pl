@@ -65,7 +65,7 @@ sub runone {
         system("mkdir -p ../output/$target");
         system("mkdir -p .rockbox/langs");
         system("cp $o .rockbox/langs");
-        system("cp $lang.talk .rockbox/langs");
+        system("cp $lang.lng.talk .rockbox/langs");
         system("cp InvalidVoice_$lang.talk .rockbox/langs");
         system("zip -q -r $newo .rockbox");
         system("rm -rf .rockbox");
