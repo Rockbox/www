@@ -70,6 +70,8 @@ our $abandoned_builds;
 our $idle_clients;
 our %buildtimes;
 
+die if (!defined($ENV{'ROCKBOX_GIT_DIR'}));
+
 sub slog {
     if (open(L, ">>$logfile")) {
         print L strftime("%F %T ", localtime()), $_[0], "\n";

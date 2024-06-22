@@ -27,9 +27,9 @@ else
     mv build-info.new /home/rockbox/download/build-info.devbuild
 
     # udpate local git repo
-    (cd ../../rockbox_git_clone && git pull -q --stat )
+    (cd $ROCKBOX_GIT_DIR && git pull -q --stat )
 
-    (cd ../../rockbox_git_clone/tools && ./build-info.pl > build-info.new && \
+    (cd $ROCKBOX_GIT_DIR/tools && ./build-info.pl > build-info.new && \
      mv build-info.new /home/rockbox/download/build-info.release)
 
     # Cleanup.  Must happen AFTER git update

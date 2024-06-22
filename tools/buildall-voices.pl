@@ -3,7 +3,7 @@
 require "./rockbox.pm";
 
 my $pool_dir = "/home/rockbox/scratch/voice-pool";
-my $source_dir = "/home/rockbox/rockbox_git_clone";
+my $source_dir = $ENV{'ROCKBOX_GIT_DIR'};
 
 my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) =
  localtime(time);

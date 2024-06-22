@@ -4,7 +4,7 @@ my $cwd = `pwd`;
 chomp $cwd;
 
 # look up last 25 commits
-chdir "/home/rockbox/rockbox_git_clone";
+chdir $ENV{'ROCKBOX_GIT_DIR'};
 my @lines = `git log --oneline -25`;
 
 my %hash = ('rockbox' => 1); # leave files called "rockbox-*" (binaries)

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-GITDIR="../rockbox_git_clone"
+GITDIR="$ROCKBOX_GIT_DIR"
 LAST_RELEASE="v3.15-final"
 
 # recent mails

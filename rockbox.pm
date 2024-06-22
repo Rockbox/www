@@ -1,4 +1,4 @@
-require "/home/rockbox/rockbox_git_clone/tools/builds.pm";
+require "$ENV{ROCKBOX_GIT_DIR}/tools/builds.pm";
 
 my $sitedir = "/home/rockbox/www";
 

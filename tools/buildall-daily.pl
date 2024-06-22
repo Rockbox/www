@@ -2,6 +2,8 @@
 use POSIX 'strftime';
 require './rockbox.pm';
 
+my $source_dir = $ENV{'ROCKBOX_GIT_DIR'};
+
 # copy latest build from build farm to download server
 
 while (-f "input/build_running") {
@@ -41,7 +43,7 @@ for (@zips) {
 }
 
 # update fonts
-`mkdir build-x ; cd build-x ; ../../rockbox_git_clone/tools/configure --target=10 --type=N ; make fontzip ; mv rockbox-fonts.zip ../output/fonts/rockbox-fonts-$date.zip ; cd - ; rm -Rf build-x`;
+`mkdir build-x ; cd build-x ; $source_dir/tools/configure --target=10 --type=N ; make fontzip ; mv rockbox-fonts.zip ../output/fonts/rockbox-fonts-$date.zip ; cd - ; rm -Rf build-x`;
 `cd output/fonts ; ln -sf rockbox-fonts-$date.zip rockbox-fonts.zip`;
 
 my @bleeding = `cat build-info`;
