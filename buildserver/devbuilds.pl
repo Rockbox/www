@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 
-require "../rockbox.pm";
+push (@INC, "./");
+require "rockbox.pm";
 
 my $basedir = "/home/rockbox/build";
 my %revs;
