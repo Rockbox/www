@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+push (@INC, "./");
+
 require "./rockbox.pm";
 
 my $basedir = "/home/rockbox/download";

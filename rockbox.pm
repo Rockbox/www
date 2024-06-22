@@ -1,4 +1,4 @@
-require "builds.pm";
+require "./builds.pm";
 
 my $sitedir = "/home/rockbox/www";
 
