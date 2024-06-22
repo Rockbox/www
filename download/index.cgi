@@ -1,7 +1,8 @@
 #!/usr/bin/perl
 
 use lib '.';
-require "/home/rockbox/www/rockbox.pm";
+use lib '..';
+require "../rockbox.pm";
 require "table.pm";
 
 header("Rockbox $publicrelease Download");
