@@ -150,7 +150,7 @@ if($buildrev) {
                           $dhour, $dmin, $dsec);
     }
 
-    my $shortrev = substr($buildrev, 0, 8);
+    my $shortrev = substr($buildrev, 0, 10);
     printf("<tr><td align=\"center\"><a class=\"bstamp\" href=\"//git.rockbox.org/cgit/rockbox.git/commit/?id=$buildrev\">$shortrev</a><td colspan=\"3\" align=\"center\">(in progress)</td><td class=\"building\" colspan=\"%d\">$text</td></tr>\n",
            $numbuilds);
 }
