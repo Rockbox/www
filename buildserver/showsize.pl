@@ -194,7 +194,7 @@ print "</tr>\n";
 for (my $i = 0; $i < $rounds ; $i++) {
     my $rev = $revisions[$i];
     print "<tr>\n";
-    my $shortrev = substr($rev, 0, 8);
+    my $shortrev = substr($rev, 0, 10);
     print "<td nowrap><a class=\"bstamp\" href=\"//git.rockbox.org/cgit/rockbox.git/commit/?id=$rev\">$shortrev</a></td>\n";
 
     foreach my $id (sort(keys(%targets))) {

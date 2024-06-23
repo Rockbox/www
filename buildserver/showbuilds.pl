@@ -166,7 +166,7 @@ for my $rev (sort {$round{$b}{time} <=> $round{$a}{time}} keys %round) {
 
     print "<tr align=center>\n";
 
-    my $shortrev = substr($rev, 0, 8);
+    my $shortrev = substr($rev, 0, 10);
     my $chlink = "<a class=\"bstamp\" href=\"//git.rockbox.org/cgit/rockbox.git/commit/?id=$rev\">$shortrev</a>";
 
     my $score=0;
