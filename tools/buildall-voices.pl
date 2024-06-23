@@ -1,5 +1,4 @@
-#!/usr/bin/perl
-
+#!/usr/bin/perl -w
 require "./rockbox.pm";
 
 my $pool_dir = "/home/rockbox/scratch/voice-pool";
@@ -11,8 +10,8 @@ my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) =
 $mon+=1;
 $year+=1900;
 
-$date=sprintf("%04d%02d%02d", $year,$mon, $mday);
-$shortdate=sprintf("%02d%02d%02d", $year%100,$mon, $mday);
+my $date=sprintf("%04d%02d%02d", $year,$mon, $mday);
+my $shortdate=sprintf("%02d%02d%02d", $year%100,$mon, $mday);
 
 # Parallelization
 my $rotor = 0;
@@ -28,7 +27,7 @@ if (defined($ENV{"NUM_PARALLEL"})) {
     $proc_count = $ENV{"NUM_PARALLEL"};
 };
 
-my $verbose;
+my $verbose = 0;
 if($ARGV[0] eq "-v") {
     $verbose =1;
     shift @ARGV;
@@ -93,7 +92,7 @@ sub buildit {
     system($c);
 
     print "Run 'make voice'\n" if($verbose);
-    `make voice`;
+    system("make voice");
 }
 
 sub buildinfo {
@@ -106,10 +105,10 @@ sub buildinfo {
     # store info for this particular date
     open(F, ">output/build-info-voice-$date");
     print F "[voices]\n";
+    print F "; 4.0=" . join(",", @voices) . "\n";
     print F "3.15=english\n";  # Needed for all Archos targets
     print F "3.13=english\n";  # Needed for Archos recorder only
-    print F "daily=";
-    print F join(",",@voices);
+    print F "daily=" . join(",",@voices) . "\n";
     close(F);
 
    `cp "output/build-info-voice-$date" "output/build-info-voice"`;
@@ -124,7 +123,7 @@ sub buildinfo {
 $ENV{'POOL'}=$pool_dir;
 
 # Nuke pool files older than voice.pl
-system("find $pool_dir -type f -not -newer $source_dir/tools/voice.pl -exec rm {} \;");
+#system("find $pool_dir -type f -not -newer $source_dir/tools/voice.pl -exec rm {} \;");
 
 # Fork off the children!
 if ($proc_count > 1) {
@@ -151,21 +150,27 @@ if ($proc_count > 1 && $kid > 0) {
     $retval = $error;
 } else {
     # Child!  Do some work!
-    my $currrow = 0;
+    my $currow = 0;
 
     for my $b (&usablebuilds) {
-	next if ($builds{$b}{voice}); # no variants
-
 	for my $v (&allvoices) {
-	    my %voice = $voices{$v};
+	    my %voice = %{$voices{$v}};
 
 	    # for great parallelism!
 	    next if ($rotor_circ && ($currow++ % $rotor_circ) != $rotor);
 
-#            print " runone $b $v ($voices{$v}->{lang} via $voices{$v}->{defengine})\n";
-	    runone($b, $v, $voices{$v}->{lang}, $voices{$v}->{defengine},
-		   "-1", $voices{$v}->{engines}->{$voices{$v}->{defengine}});
+	    my $engine = $voice{"defengine"};
+            my ($opts, $vf);
+	    if ($engine eq 'piper') {
+                $vf = $voice{"engines"}->{$engine};
+                $opts = "";
+            } else {
+                $vf = -1;
+                $opts = $voice{"engines"}->{$engine};
+            }
+#            print " runone $b $v ($voice{lang} via $engine)\n";
 
+	    runone($b, $v, $voice{"lang"}, $engine, $vf, $opts);
 	}
 
 #        runone($b, "english", "english", "f", "-1", "");
