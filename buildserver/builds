@@ -18,6 +18,7 @@ sdl:0:iaudiom5sim:iAudio M5 - Simulator:rockboxui:38504:../tools/configure --tar
 sdl:0:iaudiom3sim:iAudio M3 - Simulator:rockboxui:36598:../tools/configure --target=iaudiom3 --type=s && make
 sdl:0:ipod4gsim:iPod 4G Grayscale - Simulator:rockboxui:41321:../tools/configure --target=ipod4g --type=s && make
 sdl:0:ipodvideosim:iPod Video - Simulator:rockboxui:52001:../tools/configure --target=ipodvideo --type=s && make
+sdl:0:ipod6gsim:iPod Classic - Simulator:rockboxui:52001:../tools/configure --target=ipod6g --type=s && make
 sdl:0:ipodmini2gsim:iPod Mini 2G - Simulator:rockboxui:40416:../tools/configure --target=ipodmini2g --type=s && make
 sdl:0:h10sim:iriver H10 - Simulator:rockboxui:47583:../tools/configure --target=iriverh10 --type=s && make
 sdl:0:gigabeatfxsim:Toshiba Gigabeat F - Simulator:rockboxui:46713:../tools/configure --target=gigabeatfx --type=s && make
