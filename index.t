@@ -55,7 +55,7 @@ and Ondio
 
 <ul>
 <li><b>Agptek</b>: <a href="/wiki/AgptekRocker">Rocker (aka Benjie T6)</a>
-<li><b>AIGO</b>: <a href="/wiki/AIGOErosQK">Eros Q / K</a> (aka HIFI WALKER H2, AGPTek H3, and Surfans F20)
+<li><b>AIGO</b>: <a href="/wiki/AIGOErosQK">Eros Q / Eros K</a> (aka HIFI WALKER H2, AGPTek H3, and Surfans F20)
 <li><b>Creative</b>: <a href="/wiki/CreativeZENPort">Zen</a> and <a href="/wiki/CreativeZENXFi2Port">Zen X-Fi 2</a>
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
 <li><b>FiiO</b>: <a href="/wiki/FiioM3K">M3K</a>
@@ -66,7 +66,7 @@ and Ondio
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
 <li><b>Samsung</b>: <a href="/wiki/SamsungYPR0">YP-R0</a>, <a href="/wiki/SamsungYPR1">YP-R1</a>
 <li><b>SanDisk</b>: <a href="/wiki/SansaConnect">Sansa Connect</a>
-<li><b>Shanling</b>: <a href="/wiki/ShanlingQ1Port">Shanling Q1</a>
+<li><b>Shanling</b>: <a href="/wiki/ShanlingQ1Port">Q1</a>
 <li><b>Sony</b>:
 <a href="/wiki/SonyNWZE350">NWZ-E350</a>,
 <a href="/wiki/SonyNWZE360Port">NWZ-E360</a>,
