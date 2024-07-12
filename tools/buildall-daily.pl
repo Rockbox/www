@@ -11,7 +11,7 @@ while (-f "input/build_running") {
     sleep 10;
 }
 
-my @zips = `ls input/*.zip input/*tar.xz`;
+my @zips = `ls input/*.zip input/*tar.xz | grep -v manual`;
 my @targets;
 
 my $date = strftime("%Y%m%d", localtime);
