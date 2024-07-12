@@ -107,16 +107,18 @@ foreach $t (sort {$builds{$a}{sortkey} cmp $builds{$b}{sortkey}} keys %alltypes)
     my ($a1, $a2);
     my $name;
     
-    my $ext = ".zip";
+    my $ext = "zip";
 
-    if ($name =~ /manualhtml/) {
-        $ext = ".zip";
-    } elsif ($name =~ /manual/) {
-        $ext = ".pdf";
+    if ($t =~ /manual/) {
+        if ($t =~ /htmlmanual/) {
+            $ext = "zip";
+        } else {
+            $ext = "pdf";
+        }
     }
 
-    if (-f "data/rockbox-$t$ext") {
-        $a1 = "<a href='data/rockbox-$t$ext' >";
+    if (-f "data/rockbox-$t.$ext") {
+        $a1 = "<a href='data/rockbox-$t.$ext' >";
         $a2 = "</a>";
     }
 
