@@ -88,7 +88,7 @@ foreach my $b (keys %builds) {
     $text =~ s/Win32/Win/;
     $text =~ s/- +-/-/g;
     $text =~ s/Grayscale/Gray/;
-    $text =~ s/Sim - Win/Sim32/;
+    $text =~ s/Sim - Win/SimW32/;
     $text =~ s/Toshiba *//i;
     $text =~ s/SanDisk *//i;
     $text =~ s/Olympus *//i;
@@ -106,11 +106,20 @@ print "<th>btime</th>";
 foreach $t (sort {$builds{$a}{sortkey} cmp $builds{$b}{sortkey}} keys %alltypes) {
     my ($a1, $a2);
     my $name;
+    
+    my $ext = ".zip";
 
-    if (-f "data/rockbox-$t.zip") {
-        $a1 = "<a href='data/rockbox-$t.zip' >";
+    if ($name =~ /manualhtml/) {
+        $ext = ".zip";
+    } elsif ($name =~ /manual/) {
+        $ext = ".pdf";
+    }
+
+    if (-f "data/rockbox-$t$ext") {
+        $a1 = "<a href='data/rockbox-$t$ext' >";
         $a2 = "</a>";
     }
+
     if (defined($builds{$t}{name})) {
       $name = $builds{$t}{name};
     } else {
