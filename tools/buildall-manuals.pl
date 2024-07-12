@@ -51,7 +51,7 @@ sub runone {
 
     chdir $cwd;
 
-    my $o="build-$dir/manual/rockbox-build.pdf";
+    my $o="build-$dir/rockbox-manual.pdf";
     if (-f $o) {
         my $newo="output/rockbox-$dir-$date.pdf";
         system("cp $o output/rockbox-$dir.pdf");
