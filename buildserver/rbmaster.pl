@@ -45,10 +45,10 @@ my @nextrounds;
 
 #
 # {$fileno}{'cmd'} for building incoming commands
-#  {'client'} 
-#  {'archs'} 
+#  {'client'}
+#  {'archs'}
 #  {'cpu'} - string for stats
-#  {'bits'} 32 / 64 
+#  {'bits'} 32 / 64
 #  {'os'}
 #
 
@@ -158,14 +158,14 @@ sub kill_build {
                 dblog($cl, "cancelled", $id);
 
                 $wastedtime += $took;
-                
+
                 # tell client to cancel!
                 command $rh, "CANCEL $id";
                 $client{$cl}{'expect'}="_CANCEL";
                 $num++;
-                
+
                 my $cli = $client{$cl}{'client'};
-                
+
                 unlink <"$rbconfig{uploaddir}/$cli-$id"*>;
                 delete $client{$cl}{btime}{$id};
             }
@@ -403,8 +403,8 @@ sub HELLO {
         command $rh, "_HELLO ok";
 
         $client{$fno}{avgspeed} = $speed;
-        $client{$fno}{speed} = $speed; 
-        $client{$fno}{ulspeed} = $ulspeed; 
+        $client{$fno}{speed} = $speed;
+        $client{$fno}{ulspeed} = $ulspeed;
 
         if ($client{$fno}{block_lift} and $client{$fno}{block_lift} < time()) {
             delete $client{$fno}{blocked};
@@ -425,7 +425,7 @@ sub HELLO {
             privmessage $fno, sprintf  "Welcome $cli. Your average build speed is $speed points/sec. Your average upload speed is %d KB/s.", $ulspeed / 1024;
             dblog($fno, "joined", "");
         }
-        
+
         $client{$fno}{'fine'} = 1;
 
         if ($buildround) {
@@ -440,7 +440,7 @@ sub UPLOADING {
     $builds{$id}{uploading} = 1;
     command $rh, "_UPLOADING";
     dblog($cl, "uploading", "$id");
-    
+
     $client{$cl}{took}{$id} = tv_interval($client{$cl}{btime}{$id});
 
     # how is he doing?
@@ -579,7 +579,8 @@ sub COMPLETED {
         my $result = $builds{$id}{'result'};
         if (-f "$base-$result") {
             # if a file was uploaded, move it to storage
-	    my $dest = "$rbconfig{storedir}/rockbox-$id.zip";
+	    my ($ext) = $result =~ /(\.[^.]+)$/;
+	    my $dest = "$rbconfig{storedir}/rockbox-$id.$ext";
             if (rename("$base-$result", $dest)) {
 		slog "Moved $base-$result to $dest";
 	    }
@@ -697,7 +698,7 @@ our %protocmd = (
 sub parsecmd {
     no strict 'refs';
     my ($rh, $cmdstr)=@_;
-    
+
     if($cmdstr =~ /^([A-Z_]*) *(.*)/) {
         my $func = $1;
         my $rest = $2;
@@ -849,7 +850,7 @@ sub startround {
             }
         }
 
-        my $sth = $db->prepare("DELETE FROM log WHERE revision=?") or 
+        my $sth = $db->prepare("DELETE FROM log WHERE revision=?") or
             slog "DBI: Can't prepare statement: ". $db->errstr;
         $sth->execute($buildround);
 
@@ -860,7 +861,7 @@ sub startround {
     }
 
     %buildclients = ();
-    
+
     # calculate total connected farm speed
     my $totspeed = 0;
     for (&build_clients) {
@@ -917,7 +918,7 @@ sub endround {
     rmtree( $rbconfig{uploaddir}, {keep_root => 1} );
 
     if(!$rbconfig{test} and -x $rbconfig{roundend}) {
-        my $rounds_sth = $db->prepare("INSERT INTO rounds (revision, took, clients) VALUES (?,?,?) ON DUPLICATE KEY UPDATE took=?,clients=?") or 
+        my $rounds_sth = $db->prepare("INSERT INTO rounds (revision, took, clients) VALUES (?,?,?) ON DUPLICATE KEY UPDATE took=?,clients=?") or
             slog "DBI: Can't prepare statement: ". $db->errstr;
         $rounds_sth->execute($buildround,
                              $took, scalar keys %buildclients,
@@ -951,8 +952,8 @@ sub endround {
     for my $cl (&build_clients) {
         my ($speed, $ulspeed) = getspeed($client{$cl}{client}, $buildround);
         $client{$cl}{avgspeed} = $speed;
-        $client{$cl}{speed} = $speed; 
-        $client{$cl}{ulspeed} = $ulspeed; 
+        $client{$cl}{speed} = $speed;
+        $client{$cl}{ulspeed} = $ulspeed;
     }
 
     if (my $nextround = shift(@nextrounds)) {
@@ -1005,7 +1006,7 @@ sub client_can_build {
         return 0;
       }
     }
-    
+
     return 1; # We can build!
 }
 
@@ -1067,7 +1068,7 @@ sub bigsort
         # delay handing out builds that are being uploaded right now
         $s = $builds{$a}{'uploading'} <=> $builds{$b}{'uploading'};
     }
-    
+
     if ($usecount and !$s) {
         # 'handcount' is the number of times the build has been handed out
         # to a client. Get the lowest one first.
@@ -1106,7 +1107,7 @@ sub smallsort
         # delay handing out builds that are being uploaded right now
         $s = $builds{$a}{'uploading'} <=> $builds{$b}{'uploading'};
     }
-    
+
     if (!$s) {
         # 'handcount' is the number of times the build has been handed out
         # to a client. Get the lowest one first.
@@ -1149,12 +1150,12 @@ sub client_eta($)
     return 0;
 }
 
-sub evenspread_builds 
+sub evenspread_builds
 {
     # First time ever == no client speed ratings.
     # Abandon all ambitions of intelligence and just smear the builds
     # evenly across all clients.
-    
+
     for my $cl (&build_clients) {
         $client{$cl}{points} = 0;
     }
@@ -1236,13 +1237,13 @@ sub bestfit_builds
     }
     slog sprintf "Realistic time with $margin margin: $estimated_time seconds (%+d)", $diff;
     dlog "----- margin $margin --- estimated_time $estimated_time --------";
-    
+
     # loop through all clients, slowest first
     # give each client as much work as it can do in the estimated time
     for my $c (sort {$client{$a}{speed} <=> $client{$b}{speed}} &build_clients)
     {
         next if ($client{$c}{blocked});
-        
+
         $client{$c}{queue} = ();
 
         my $speed = $client{$c}{speed};
@@ -1269,7 +1270,7 @@ sub bestfit_builds
         for my $b (&$sort_order)
         {
             next if ($builds{$b}{assigned});
-            
+
             my $buildtime = 0;
             if ($speed) {
                 $buildtime = $builds{$b}{score} / $speed;
@@ -1278,10 +1279,10 @@ sub bestfit_builds
             # no single build must use more than 75% of total time
             # or it will likely be "overtaken" by other clients
             next if ($buildtime > $estimated_time * 3 / 4);
-            
+
             my $ultime = $builds{$b}{ulsize} / $ulspeed;
             my $endtime = $client{$c}{timeused} + $buildtime + $ultime - $lastultime;
-            
+
             if (client_can_build($c, $b) and ($endtime < $maxtime))
             {
                 $client{$c}{queue}{$b} = $buildtime || 1;
@@ -1389,7 +1390,7 @@ sub start_next_build($)
             }
         }
     }
-    
+
     if (1) {
         # help with other builds, speculatively
         for my $id (&smallbuilds) {
@@ -1419,7 +1420,7 @@ sub start_next_build($)
             }
         }
     }
-        
+
     # there's nothing for me to do!
     $client{$cl}{idle} = 1;
     slog "Client $client{$cl}{client} is idle.";
@@ -1493,7 +1494,7 @@ sub estimate_eta
                 $buildhost{$id} = $client{$cl}{client};
             }
         }
-        
+
         for $id (sort {$builds{$b}{score} <=> $builds{$a}{score}}
                  keys %{$client{$cl}{queue}})
         {
@@ -1628,7 +1629,7 @@ while(not $alldone) {
             }
             else {
                 if ($type eq 'commander') {
-                    slog "Commander left";                
+                    slog "Commander left";
                     delete $conn{$fileno};
                     $read_set->remove($rh);
                     $rh->close;
@@ -1636,7 +1637,7 @@ while(not $alldone) {
                 }
                 else {
                     $client{$fileno}{fine} = 1;
-                    
+
                     if (not $client{$fileno}{'bad'}) {
                         $client{$fileno}{'bad'}="connection lost";
                     }
