@@ -2,6 +2,9 @@
 require './rbmaster.pm';
 
 my $build = $ARGV[0];
+
+exit(0) if ($build =~ /manual/);
+
 my $zip = "data/rockbox-$build.zip";
 
 db_connect();
@@ -22,7 +25,7 @@ if (-f $zip) {
             }
         }
         close(Z);
-        
+
         print "rev $shortrev build $build ramsize $ram bytes $bytes\n";
 
         $sth->execute($ram, $bytes, $shortrev, $build);

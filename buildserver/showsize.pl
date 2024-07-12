@@ -50,7 +50,9 @@ sub getdata {
     if ($rows) {
         while (my ($time,$rev,$id,$ramsize,$binsize) = $sth->fetchrow_array()) {
 	    $revs{$rev} = $time;
-	    $targets{$id} = 1;
+	    if ($id !~ /manual/) {
+		$targets{$id} = 1;
+	    }
             $compiles{$rev}{$id}{ram} = $ramsize;
             $compiles{$rev}{$id}{bin} = $binsize;
 	}
@@ -167,7 +169,7 @@ for (my $i = 0; $i < $rounds ; $i++) {
 print <<MOO
 <p> Size deltas of the main Rockbox images during the most
     recent commits. Hover over the delta to get the exact size in bytes.</br>
-    If the build was successful the name is a download link.  
+    If the build was successful the name is a download link.
   Current mode: $mode </p>
 MOO
 ;
