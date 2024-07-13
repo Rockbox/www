@@ -579,7 +579,7 @@ sub COMPLETED {
         my $result = $builds{$id}{'result'};
         if (-f "$base-$result") {
             # if a file was uploaded, move it to storage
-	    my ($ext) = $result =~ /(\.[^.]+)$/;
+	    my ($ext) = $result =~ /\.([^.]+)$/;
 	    my $dest = "$rbconfig{storedir}/rockbox-$id.$ext";
             if (rename("$base-$result", $dest)) {
 		slog "Moved $base-$result to $dest";
