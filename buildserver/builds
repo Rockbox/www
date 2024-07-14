@@ -272,7 +272,7 @@ m68k-gcc494,latex:1:iriverh120htmlmanual:iriver H120 - HTML Manual:rockbox-manua
 m68k-gcc494,latex:1:iaudiox5manual:iAudio X5 - Manual:rockbox-manual.pdf:1113:../tools/configure --target=iaudiox5 --type=n && make MAKEFLAGS= manual
 m68k-gcc494,latex:1:iaudiox5htmlmanual:iAudio X5 - HTML Manual:rockbox-manual.zip:2863:../tools/configure --target=iaudiox5 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 m68k-gcc494,latex:1:iaudiom3manual:iAudio M3 - Manual:rockbox-manual.pdf:1113:../tools/configure --target=iaudiom3 --type=n && make MAKEFLAGS= manual
-m68k-gcc494,latex:1:iaudiom3htmlmanual:iAudio M5 - HTML Manual:rockbox-manual.zip:2863:../tools/configure --target=iaudiom3 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+m68k-gcc494,latex:1:iaudiom3htmlmanual:iAudio M3 - HTML Manual:rockbox-manual.zip:2863:../tools/configure --target=iaudiom3 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 m68k-gcc494,latex:1:iaudiom5manual:iAudio M5 - Manual:rockbox-manual.pdf:1113:../tools/configure --target=iaudiom5 --type=n && make MAKEFLAGS= manual
 m68k-gcc494,latex:1:iaudiom5htmlmanual:iAudio M5 - HTML Manual:rockbox-manual.zip:2863:../tools/configure --target=iaudiom5 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 arm-eabi-gcc494,latex:1:cowond2manual:Cowon D2 - Manual:rockbox-manual.pdf:1113:../tools/configure --target=cowond2 --type=n && make MAKEFLAGS= manual
