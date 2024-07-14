@@ -88,7 +88,7 @@ for(reverse sort keys %date) {
         }
 
 	printf "<td>\n";
-        my $icon = playerpic($m);'
+        my $icon = playerpic($m);
         printf "<table cellpadding=\"0\" cellspacing=\"0\" align=\"center\"><tr><td height=\"85px\"><img alt=\"$m\" src=\"$icon\"></td></tr></table><br/>";
         # new-style full zip:
         my $file = "rockbox-${m}-${d}.zip";
