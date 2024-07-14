@@ -277,10 +277,32 @@ m68k-gcc494,latex:1:iaudiom5manual:iAudio M5 - Manual:rockbox-manual.pdf:1113:..
 m68k-gcc494,latex:1:iaudiom5htmlmanual:iAudio M5 - HTML Manual:rockbox-manual.zip:2863:../tools/configure --target=iaudiom5 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 arm-eabi-gcc494,latex:1:cowond2manual:Cowon D2 - Manual:rockbox-manual.pdf:1113:../tools/configure --target=cowond2 --type=n && make MAKEFLAGS= manual
 arm-eabi-gcc494,latex:1:cowond2htmlmanual:Cowon D2 - HTML Manual:rockbox-manual.zip:2863:../tools/configure --target=cowond2 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+arm-eabi-gcc494,latex:1:ipod1g2gmanual:iPod 1G/2G - Manual:rockbox-manual.pdf:1056:../tools/configure --target=ipod1g2g --type=n && make MAKEFLAGS= manual
+arm-eabi-gcc494,latex:1:ipod1g2ghtmlmanual:iPod 1G/2G - HTML Manual:rockbox-manual.zip:2708:../tools/configure --target=ipod1g2g --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+arm-eabi-gcc494,latex:1:ipod3gmanual:iPod 3G - Manual:rockbox-manual.pdf:1056:../tools/configure --target=ipod3g --type=n && make MAKEFLAGS= manual
+arm-eabi-gcc494,latex:1:ipod3ghtmlmanual:iPod 3G - HTML Manual:rockbox-manual.zip:2708:../tools/configure --target=ipod3g --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+arm-eabi-gcc494,latex:1:ipod4gmanual:iPod 4G - Manual:rockbox-manual.pdf:1056:../tools/configure --target=ipod4g --type=n && make MAKEFLAGS= manual
+arm-eabi-gcc494,latex:1:ipod4ghtmlmanual:iPod 4G - HTML Manual:rockbox-manual.zip:2708:../tools/configure --target=ipod4g --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+arm-eabi-gcc494,latex:1:ipodcolormanual:iPod Color - Manual:rockbox-manual.pdf:1056:../tools/configure --target=ipodcolor --type=n && make MAKEFLAGS= manual
+arm-eabi-gcc494,latex:1:ipodcolorhtmlmanual:iPod Color - HTML Manual:rockbox-manual.zip:2708:../tools/configure --target=ipodcolor --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+arm-eabi-gcc494,latex:1:ipodvideogmanual:iPod Video - Manual:rockbox-manual.pdf:1056:../tools/configure --target=ipodvideo --type=n && make MAKEFLAGS= manual
+arm-eabi-gcc494,latex:1:ipodvideoghtmlmanual:iPod Video - HTML Manual:rockbox-manual.zip:2708:../tools/configure --target=ipodvideo --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+arm-eabi-gcc494,latex:1:ipod6gmanual:iPod 6G - Manual:rockbox-manual.pdf:1056:../tools/configure --target=ipod6g --type=n && make MAKEFLAGS= manual
+arm-eabi-gcc494,latex:1:ipod6ghtmlmanual:iPod 6G - HTML Manual:rockbox-manual.zip:2708:../tools/configure --target=ipod6g --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+arm-eabi-gcc494,latex:1:ipodmini1gmanual:iPod Mini 1G - Manual:rockbox-manual.pdf:1056:../tools/configure --target=ipodmini1g --type=n && make MAKEFLAGS= manual
+arm-eabi-gcc494,latex:1:ipodmini1ghtmlmanual:iPod Mini 1G - HTML Manual:rockbox-manual.zip:2708:../tools/configure --target=ipodmini1g --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 arm-eabi-gcc494,latex:1:ipodmini2gmanual:iPod Mini 2G - Manual:rockbox-manual.pdf:1056:../tools/configure --target=ipodmini2g --type=n && make MAKEFLAGS= manual
 arm-eabi-gcc494,latex:1:ipodmini2ghtmlmanual:iPod Mini 2G - HTML Manual:rockbox-manual.zip:2708:../tools/configure --target=ipodmini2g --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+arm-eabi-gcc494,latex:1:ipodnano1gmanual:iPod Nano 1G - Manual:rockbox-manual.pdf:1056:../tools/configure --target=ipodnano1g --type=n && make MAKEFLAGS= manual
+arm-eabi-gcc494,latex:1:ipodnano1ghtmlmanual:iPod Nano 1G - HTML Manual:rockbox-manual.zip:2708:../tools/configure --target=ipodnano1g --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+arm-eabi-gcc494,latex:1:ipodnano2gmanual:iPod Nano 2G - Manual:rockbox-manual.pdf:1056:../tools/configure --target=ipodnano2g --type=n && make MAKEFLAGS= manual
+arm-eabi-gcc494,latex:1:ipodnano2ghtmlmanual:iPod Nano 2G - HTML Manual:rockbox-manual.zip:2708:../tools/configure --target=ipodnano2g --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 mipsel-gcc494,latex:1:erosqnativemanual:AIGO EROS Q/K - Manual:rockbox-manual.pdf:1113:../tools/configure --target=erosqnative --type=n && make MAKEFLAGS= manual
 mipsel-gcc494,latex:1:erosqnativehtmlmanual:AIGO EROS Q/K - HTML Manual:rockbox-manual.zip:2863:../tools/configure --target=erosqnative --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+mipsel-gcc494,latex:1:fiiom3kmanual:FiiO M3K - Manual:rockbox-manual.pdf:1113:../tools/configure --target=fiiom3k --type=n && make MAKEFLAGS= manual
+mipsel-gcc494,latex:1:fiiom3khtmlmanual:FiiO M3K - HTML Manual:rockbox-manual.zip:2863:../tools/configure --target=fiiom3k --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+mipsel-rb-gcc494,latex:1:agptekrockermanual:Agptek Rocker - Manual:rockbox-manual.pdf:1113:../tools/configure --target=agptekrocker --type=n && make MAKEFLAGS= manual
+mipsel-rb-gcc494,latex:1:agptekrockermanual:Agptek Rocker - HTML Manual:rockbox-manual.zip:2863:../tools/configure --target=agptekrocker --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 
 ####
 # CheckWPS builds
@@ -294,6 +316,7 @@ sdl:0:iaudiom5wps:iAudio M5 - Checkwps:checkwps.iaudiom5:182:../tools/configure 
 sdl:0:iaudiom3wps:iAudio M3 - Checkwps:checkwps.iaudiom3:184:../tools/configure --target=iaudiom3 --type=c && make
 sdl:0:ipod4gwps:iPod 4G Grayscale - Checkwps:checkwps.ipod4g:183:../tools/configure --target=ipod4g --type=c && make
 sdl:0:ipodvideowps:iPod Video - Checkwps:checkwps.ipodvideo:175:../tools/configure --target=ipodvideo --type=c && make
+sdl:0:ipodmini1gwps:iPod Mini 1G - Checkwps:checkwps.ipodmini1g:184:../tools/configure --target=ipodmini1g --type=c && make
 sdl:0:ipodmini2gwps:iPod Mini 2G - Checkwps:checkwps.ipodmini2g:184:../tools/configure --target=ipodmini2g --type=c && make
 sdl:0:h10wps:iriver H10 - Checkwps:checkwps.iriverh10:183:../tools/configure --target=iriverh10 --type=c && make
 sdl:0:gigabeatfxwps:Toshiba Gigabeat F - Checkwps:checkwps.gigabeatfx:184:../tools/configure --target=gigabeatfx --type=c && make
