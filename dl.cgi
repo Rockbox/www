@@ -162,11 +162,15 @@ for(reverse sort keys %date) {
 
 	# Manual!
 	print "<td>";
-            if (-f "$basedir/daily/manual/rockbox-${m}-${d}.pdf") {
-                print "<br/><a href=\"$baseurl/daily/manual/rockbox-${m}-${d}.pdf\">pdf</a>";
+            my $fi = "$basedir/daily/manual/rockbox-${m}-${d}.pdf";
+            if (-f $fi) {
+                my $size = (stat($fi))[7];
+                printf("<br/><a href=\"$fi\">pdf</a> %d KB", $size/1024);
             }
-            if (-f "$basedir/daily/manual/rockbox-${m}-${d}-html.zip") {
-                print "<br/><a href=\"$baseurl/daily/manual/rockbox-${m}-${d}-html.zip\">html-zip</a>";
+            $fi = "$basedir/daily/manual/rockbox-${m}-${d}-html.zip";
+            if (-f $fi) {
+                my $size = (stat($fi))[7];
+                printf("<br/><a href=\"$fi\">html-zip</a> %d KB", $size/1024);
             }
 	print "</td>\n";
     }
