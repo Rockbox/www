@@ -87,8 +87,9 @@ for(reverse sort keys %date) {
             $x++;
         }
 
+	printf "<td>\n";
         my $icon = playerpic($m);
-        printf "<td><img alt=\"$m\" src=\"$icon\"><br>";
+        printf "<table align=\"center\"><tr><td height=\"85px\"><img alt=\"$m\" src=\"$icon\"></td></tr></table><br/>";
         # new-style full zip:
         my $file = "rockbox-${m}-${d}.zip";
         my $dir = "$m/";
@@ -130,7 +131,18 @@ for(reverse sort keys %date) {
             #my $page = getpages("$docbasedir/$docfile");
 
 #            printf("<p><a href=\"//download.rockbox.org/manual/$docfile\">manual</a><br><small>%dKB, $page pages</small>", $size/1024);
-            printf("<br><a href=\"//download.rockbox.org/manual/$docfile\">manual</a> <small>%d kB</small>", $size/1024);
+            printf("<br><a href=\"//download.rockbox.org/manual/$docfile\">manual (pdf)</a> <small>%d kB</small>", $size/1024);
+        } else {
+	  print "<br>\n";
+	}
+        $docfile = "rockbox-${docm}-html.zip";
+        if( -f "$docbasedir/$docfile") {
+            my $size = (stat("$docbasedir/$docfile"))[7];
+
+            #my $page = getpages("$docbasedir/$docfile");
+
+#            printf("<p><a href=\"//download.rockbox.org/manual/$docfile\">manual</a><br><small>%dKB, $page pages</small>", $size/1024);
+            printf("<br><a href=\"//download.rockbox.org/manual/$docfile\">manual (html)</a> <small>%d kB</small>", $size/1024);
         } else {
 	  print "<br>\n";
 	}
