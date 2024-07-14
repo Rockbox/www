@@ -87,14 +87,11 @@ for(reverse sort keys %date) {
             my $size = (stat("$basedir/$file"))[7];
 
             $o .= sprintf("%s<a href=\"//download.rockbox.org/daily/manual/$file\">html-zip</a> <small>%d kB</small>", $o?"<br>":"", $size/1024);
-        }
 
-        $file = "rockbox-${m}";
-        if( -d "$basedir/$file") {
+            $file = "rockbox-${m}";
             $o .= sprintf("%s<a href=\"//download.rockbox.org/daily/manual/$file/rockbox-build.html\">online</a>", $o?"<br>":"");
         }
         print "$o\n";
-
 
 	$count++;
 	if ($count == $split) {
