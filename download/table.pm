@@ -29,7 +29,10 @@ sub buildtable {
 	        $extra .= "<br><a href=\"$basedir/rockbox-$builds{$m}{release}.7z\">Source</a>";
 		$mans = "";
 		if (-f "../../download/release/$builds{$m}{release}/rockbox-$docs-$builds{$m}{release}.pdf") {
-                  $mans .= "<br><a href=\"//$basedir/rockbox-$docs-$builds{$m}{release}.pdf\">Manual</a>";
+                  $mans .= "<br><a href=\"//$basedir/rockbox-$docs-$builds{$m}{release}.pdf\">PDF Manual</a>";
+                }
+		if (-f "../../download/release/$builds{$m}{release}/rockbox-$docs-$builds{$m}{release}-html.zip") {
+                  $mans .= "<br><a href=\"//$basedir/rockbox-$docs-$builds{$m}{release}-html.zip\">HTML Manual</a>";
                 }
 		$mans .= "<br><a href=\"$basedir/$voice-$builds{$m}{release}-english.zip\">Voice (EN)</a>";
 		$mans .= "$extra";
