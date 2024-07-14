@@ -29,12 +29,17 @@ sub buildtable {
 	        $extra .= "<br><a href=\"$basedir/rockbox-$builds{$m}{release}.7z\">Source</a>";
 		$mans = "";
 		if (-f "../../download/release/$builds{$m}{release}/rockbox-$docs-$builds{$m}{release}.pdf") {
-                  $mans .= "<br><a href=\"//$basedir/rockbox-$docs-$builds{$m}{release}.pdf\">PDF Manual</a>";
+                  $mans .= "<br><a href=\"$basedir/rockbox-$docs-$builds{$m}{release}.pdf\">PDF Manual</a>";
                 }
 		if (-f "../../download/release/$builds{$m}{release}/rockbox-$docs-$builds{$m}{release}-html.zip") {
-                  $mans .= "<br><a href=\"//$basedir/rockbox-$docs-$builds{$m}{release}-html.zip\">HTML Manual</a>";
+                  $mans .= "<br><a href=\"$basedir/rockbox-$docs-$builds{$m}{release}-html.zip\">HTML Manual</a>";
                 }
-		$mans .= "<br><a href=\"$basedir/$voice-$builds{$m}{release}-english.zip\">Voice (EN)</a>";
+
+		foreach my $v (&allvoices) {
+		  if (-f "../../download/release/$builds{$m}{release}/$voice-$builds{$m}{release}-$v.zip") {
+		    $mans .= "<br><a href=\"$basedir/$voice-$builds{$m}{release}-$v.zip\">Voice ($voices{$v}{short})</a>";
+                  }
+		}
 		$mans .= "$extra";
             }
 
