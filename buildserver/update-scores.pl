@@ -22,10 +22,12 @@ while (<STDIN>) {
     my $oldscore = $row[5];
     my $build = $row[6];
 
-    my @tmp = split(/&/,$build);
+    my @tmp = split(/&|/,$build);
     my $conf = $tmp[0] . " --no-ccache ";
-    my $build = $tmp[2] . " -j$jobs ";
-    $build =~ s/(.*)zip/$1/;
+
+    $build = $tmp[2] . " -j$jobs ";
+
+    $build =~ s/make zip/make/;  # Leave out the zip
 
     system("$conf > /dev/null");
     system("make clean > /dev/null");
