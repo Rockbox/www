@@ -115,13 +115,12 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
-<tr><td nowrap>2023-10-14</td><td>Due to the erratic new management, use of the @rockboxcommits twitter handle has been discontinued.</td></tr>
+<tr><td nowrap>2023-10-14</td><td>Due to erratic new management, use of the @rockboxcommits twitter handle has been discontinued.</td></tr>
 <tr><td nowrap>2021-08-30</td><td>Mailing lists movaed to new host. See the <a href="/mail/">mail</a> page for more info.</td></tr>
 <tr><td nowrap>2021-07-15</td><td>New port to the <a href="/wiki/ShanlingQ1Port">Shanling Q1</a>!</td></tr>
 <tr><td nowrap>2021-05-23</td><td>We have moved our IRC channels over to the <a href="https://libera.chat">libera</a> network.</td></tr>
 <tr><td nowrap>2021-03-27</td><td>Native bare-metal port to the <a href="/wiki/FiioM3K">FiiO M3K</a>!</td></tr>
 <tr><td nowrap>2021-03-16</td><td>mitxela created an <a href="https://www.youtube.com/watch?v=Qw-VvGsYpSU">Ode to Rockbox</a> on YouTube.</td></tr>
-<tr><td nowrap>2020-10-16</td><td>Move xDuoo X3 to stable.</td></tr>
 
 </table>
 <small><a href="history.html">Older news</a>

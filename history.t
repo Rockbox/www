@@ -22,9 +22,19 @@
 
 <p><i>2020-05-16</i>: Most infrastructure migrated to new hosts!
 
+<p><i>2019-11-15</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes315">Rockbox 3.15 is released</a>
+
+<p><i>2017-05-01</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes314">Rockbox 3.14 is released</a>
+
+<p><i>2013-03-05</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes313">Rockbox 3.13 is released</a>
+
 <p><i>2012-11-27</i>: Forums software updated
 
 <p><i>2012-10-06</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes312">Rockbox 3.12 is released</a>
+
+<p><i>2012-04-12</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes3112">Rockbox 3.11.2 is released</a>
+
+<p><i>2012-04-08</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes3111">Rockbox 3.11.1 is released</a>
 
 <p><i>2012-03-31</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes311">Rockbox 3.11 is released</a>
 
