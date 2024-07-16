@@ -304,7 +304,7 @@ mipsel-gcc494,latex:1:erosqnativehtmlmanual:AIGO EROS Q/K - HTML Manual:rockbox-
 mipsel-gcc494,latex:1:fiiom3kmanual:FiiO M3K - Manual:rockbox-manual.pdf:1525:../tools/configure --target=fiiom3k --type=n && make MAKEFLAGS= manual
 mipsel-gcc494,latex:1:fiiom3khtmlmanual:FiiO M3K - HTML Manual:rockbox-manual.zip:3843:../tools/configure --target=fiiom3k --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 mipsel-rb-gcc494,latex:1:agptekrockermanual:Agptek Rocker - Manual:rockbox-manual.pdf:1422:../tools/configure --target=agptekrocker --type=n && make MAKEFLAGS= manual
-mipsel-rb-gcc494,latex:1:agptekrockermanual:Agptek Rocker - HTML Manual:rockbox-manual.zip:3674:../tools/configure --target=agptekrocker --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+mipsel-rb-gcc494,latex:1:agptekrockerhtmlmanual:Agptek Rocker - HTML Manual:rockbox-manual.zip:3674:../tools/configure --target=agptekrocker --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 ####
 # CheckWPS builds
 sdl:0:iriverh120wps:iriver H120 - Checkwps:checkwps.iriverh120:237:../tools/configure --target=iriverh120 --type=c && make
