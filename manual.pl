@@ -4,7 +4,7 @@ require "./rockbox.pm";
 
 my $basedir = "/home/rockbox/download/daily/manual";
 
-for my $m (usablebuilds()) {
+for my $m (manualbuilds()) {
     opendir(DIR, "$basedir") or next;
     my @files = sort grep { /^rockbox/ } readdir(DIR);
     closedir DIR;
@@ -41,7 +41,7 @@ for(reverse sort keys %date) {
     my $x = 0;
     my @head;
 
-    foreach my $t (usablebuilds()) {
+    foreach my $t (manualbuilds()) {
         my $show = $builds{$t}{name};
         $head[$x] .= "<th>$show</th>\n";
 	$count++;
@@ -54,7 +54,7 @@ for(reverse sort keys %date) {
 
     $x=1;
     $count = 0;
-    for my $b (usablebuilds()) {
+    for my $b (manualbuilds()) {
         my $m = manualname($b);
         my $pic = playerpic($b);
         printf "<td><img alt=\"$m\" src=\"$pic\"><br>";

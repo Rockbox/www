@@ -113,7 +113,7 @@ sub buildit {
 # run make in tools first to make sure they're up-to-date
 `(cd $source_dir/tools && make ) >/dev/null 2>&1`;
 
-for my $build (&usablebuilds) {
+for my $build (&manualbuilds) {
     my $name = manualname($build);
     next if (not -f "$source_dir/manual/platform/$name.tex");
     
