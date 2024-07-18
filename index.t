@@ -47,7 +47,7 @@ and Ondio
 <a href="/wiki/SansaFuzePlusPort">Fuze+</a>, Clip, Clip+ and Clip Zip
 
 <li><b>Toshiba</b>: Gigabeat X and F series
-<li><b>xDuoo</b>: <a href="/wiki/XDuooX3">X3</a>
+<li><b>xDuoo</b>: <a href="/wiki/XDuooX3">X3, <a href="/wiki/XDuooX3ii">X3ii</a>, and <a href="/wiki/XDuooX3ii">X20</a>
 </ul>
 
 <h2>Unstable ports</h2>
@@ -80,7 +80,6 @@ and Ondio
 <a href="/wiki/SonyNWZA10">NWZ-A10</a>,
 and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <li><b>Toshiba</b>: <a href="/wiki/GigabeatSPort">Gigabeat S</a>
-<li><b>xDuoo</b>: <a href="/wiki/XDuooX3ii">X3ii</a>, and <a href="/wiki/XDuooX3ii">X20</a>
 </ul>
 
 <h2>Unusable ports</h2>
@@ -115,7 +114,7 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
-<tr><td nowrap>2024-07-17</td><td>AGPTek Rocker promoted to Stable.</td></tr>
+<tr><td nowrap>2024-07-17</td><td>AGPTek Rocker, xDuoo X3ii and xDuoo X20 promoted to Stable.</td></tr>
 <tr><td nowrap>2023-10-14</td><td>Due to erratic new management, use of the @rockboxcommits twitter handle has been discontinued.</td></tr>
 <tr><td nowrap>2021-08-30</td><td>Mailing lists movaed to new host. See the <a href="/mail/">mail</a> page for more info.</td></tr>
 <tr><td nowrap>2021-07-15</td><td>New port to the <a href="/wiki/ShanlingQ1Port">Shanling Q1</a>!</td></tr>
