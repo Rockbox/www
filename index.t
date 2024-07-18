@@ -21,6 +21,7 @@ Rockbox is a free replacement firmware for digital music players. It runs on a w
 
 <li><b>Apple</b>: iPod 1g through 6g (Classic), iPod Mini, iPod Nano 1g, iPod Nano 2g
 
+<li><b>Agptek</b>: <a href="/wiki/AgptekRocker">Rocker (aka Benjie T6)</a>
 <li><b>Archos</b>: Jukebox 5000, 6000, Studio, Recorder, FM Recorder, Recorder V2
 and Ondio
 <li><b>Cowon</b>: iAudio X5, X5V, X5L, M5, M5L, M3 and M3L
@@ -54,7 +55,6 @@ and Ondio
 <p>Rockbox runs on these players, but is incomplete, less usable or has problems that limit it to advanced users:
 
 <ul>
-<li><b>Agptek</b>: <a href="/wiki/AgptekRocker">Rocker (aka Benjie T6)</a>
 <li><b>AIGO</b>: <a href="/wiki/AIGOErosQK">Eros Q / Eros K</a> (aka HIFI WALKER H2, AGPTek H3, and Surfans F20)
 <li><b>Creative</b>: <a href="/wiki/CreativeZENPort">Zen</a> and <a href="/wiki/CreativeZENXFi2Port">Zen X-Fi 2</a>
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
@@ -115,6 +115,7 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
+<tr><td nowrap>2024-07-17</td><td>AGPTek Rocker promoted to Stable.</td></tr>
 <tr><td nowrap>2023-10-14</td><td>Due to erratic new management, use of the @rockboxcommits twitter handle has been discontinued.</td></tr>
 <tr><td nowrap>2021-08-30</td><td>Mailing lists movaed to new host. See the <a href="/mail/">mail</a> page for more info.</td></tr>
 <tr><td nowrap>2021-07-15</td><td>New port to the <a href="/wiki/ShanlingQ1Port">Shanling Q1</a>!</td></tr>
