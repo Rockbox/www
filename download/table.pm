@@ -6,6 +6,8 @@ sub buildtable {
         {
             next if ($builds{$m}{status} < 3 && !defined($builds{$m}{release}));
             $builds{$m}{release} = $publicrelease unless defined($builds{$m}{release});
+            next if ($builds{$m}{release} > $publicrelease);
+
             # the release hash and the *release variables are from builds.pm
 
             my $basedir="//download.rockbox.org/release/$builds{$m}{release}";
