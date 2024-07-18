@@ -79,9 +79,9 @@ print F "rev=\"$ARGV[0]\"\n";
 print F "[development]\n";
 print F "build_url=https://build.rockbox.org/data/rockbox-%TARGET%.zip\n";
 print F "source_url=https://build.rockbox.org/data/rockbox-source.tar.xz\n";
-print F "; No voice or manuals currently generated for dev builds\n";
+print F "; No voices currently generated for dev builds\n";
 print F "voice_url=https://download.rockbox.org/daily/%TARGET%/voice-%TARGET%-%VERSION%-%LANGUAGE%.zip\n";
-print F "manual_url=https://download.rockbox.org/daily/manual/rockbox-%TARGET%-%VERSION%%FORMAT%\n";
+print F "manual_url=https://build.rockbox.org/data/rockbox-%TARGET%-%FORMAT%\n";
 print F "font_url=https://download.rockbox.org/daily/fonts/rockbox-fonts-%VERSION%.zip\n";
 
 for my $m (usablebuilds()) {
