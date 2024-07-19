@@ -2,6 +2,14 @@
 
 rev=$1
 
+if [ -z "$ROCKBOX_GIT_DIR" ] ; then
+  ROCKBOX_GIT_DIR=/home/rockbox/rockbox_git_clone
+fi
+
+if [ -z "$ROCKBOX_DL_DIR" ] ; then
+  ROCKBOX_DL_DIR=/home/rockbox/download
+fi
+
 rcbuild=0;
 if [ -e rcbuild.hash ]; then
     hash=`cat rcbuild.hash`
@@ -12,7 +20,7 @@ fi
 
 if [ $rcbuild -eq 1 ]; then
     # publish the release candidate for rbutil
-    mv build-info.release-candidate /home/rockbox/download/release-candidate/build-info
+    mv build-info.release-candidate ${ROCKBOX_DL_DIR}/release-candidate/build-info
     rm rcbuild.hash
 else
 
@@ -24,13 +32,13 @@ else
     perl showsize.pl 1 > sizes2.html.new && mv sizes2.html.new sizes2.html
     perl devbuilds.pl $rev > devbuilds.html.new && mv devbuilds.html.new devbuilds.html
     # created by devbuilds.pl
-    mv build-info.new /home/rockbox/download/build-info.devbuild
+    mv build-info.new ${ROCKBOX_DL_DIR}/build-info.devbuild
 
     # udpate local git repo
     (cd $ROCKBOX_GIT_DIR && git pull -q --stat )
 
     (cd $ROCKBOX_GIT_DIR/tools && ./build-info.pl > build-info.new && \
-     mv build-info.new /home/rockbox/download/build-info.release)
+     mv build-info.new ${ROCKBOX_DL_DIR}/build-info.release)
 
     # Cleanup.  Must happen AFTER git update
     perl cleanupdatadir.pl
@@ -45,5 +53,5 @@ fi
 rm data/build_running
 
 # make build-info for rbutil
-cd /home/rockbox/download
+cd ${ROCKBOX_DL_DIR}
 sh .scripts/mkbuildinfo.sh
