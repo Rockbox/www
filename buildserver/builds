@@ -227,6 +227,7 @@ mipsel-gcc494:0:erosqnativeboot:AIGO EROS Q/K (Native) - Boot:bootloader.erosq:1
 # Android native targets
 android-ndk10sdk19:0:android480x800:Android 480x800:rockbox.apk:20835:../tools/configure --target=android --type=n --lcdwidth=480 --lcdheight=800 && make apk
 #android-ndk10sdk19:0:android480x800mips:Android 480x800 - MIPS:rockbox.apk:22147:../tools/configure --target=androidmips --type=n --lcdwidth=480 --lcdheight=800 && make apk
+#android-ndk10sdk19:0:android480x800x86:Android 480x800 - x86:rockbox.apk:22147:../tools/configure --target=androidx86 --type=n --lcdwidth=480 --lcdheight=800 && make apk
 android-ndk10:1:ibassodx50:iBasso DX50:rockbox.zip:53589:../tools/configure --target=ibassodx50 --type=n && make zip
 android-ndk10:1:ibassodx90:iBasso DX90:rockbox.zip:53517:../tools/configure --target=ibassodx90 --type=n && make zip
 ###
