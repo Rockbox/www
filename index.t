@@ -88,8 +88,8 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <ul>
 <li><b>Onda</b>: VX747, VX767 and VX777</li>
 <li><b>iHIFI</b> 760, 770, 770C, 800, and 960</li>
-<li><b>Google</b> Android</li>
-<li><b>Rockchip</b> rk27xx</li>
+<li><b>Google</b> Android (4.4 and older only)</li>
+<li><b>Rockchip</b> rk27xx (generic)</li>
 </ul>
 
 <p>Click here for a <a href="/wiki/TargetStatus#New_Platforms_Currently_Under_Development">status summary of unstable and unusable ports</a>.
