@@ -97,4 +97,6 @@ for my $m (usablebuilds()) {
 #    print F "$m=$revs{$m},https://build.rockbox.org/data/rockbox-$m.zip\n";
     print F "$m=$revs{$m}\n";
 }
+
+print F "\n";
 close(F);

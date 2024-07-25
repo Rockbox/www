@@ -109,6 +109,7 @@ sub buildinfo {
     print F "3.15=english\n";  # Needs to stay for Archos targets
     print F "3.13=english\n";  # Needed for Archos recorder v1 only
     print F "daily=" . join(",",@voices) . "\n";
+    print F "\n";
     close(F);
 
    `cp "output/build-info-voice-$date" "output/build-info-voice"`;

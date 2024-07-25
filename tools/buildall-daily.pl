@@ -69,6 +69,7 @@ if (open OUT, ">output/build-info-$date") {
         print OUT "$_=$date\n";
     }
 
+    print OUT "\n";
     close OUT;
 }
 
