@@ -85,6 +85,7 @@ open(F, ">build-info.new");
 print F "[bleeding]\n";
 print F "timestamp=\"$date\"\n";
 print F "rev=\"$ARGV[0]\"\n";
+print F "\n";
 print F "[development]\n";
 print F "build_url=https://build.rockbox.org/data/rockbox-%TARGET%.zip\n";
 print F "source_url=https://build.rockbox.org/data/rockbox-source.tar.xz\n";
