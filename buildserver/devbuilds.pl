@@ -30,12 +30,12 @@ sub buildtable {
             }
             my $manual;
             if (-r "$basedir/data/rockbox-${m}manual.pdf") {
-               $pack="data/rockbox-${m}manual.pdf";
-               $manual .= "<br/><a href=\"$pack\">PDF Manual</a>";
+               my $f="data/rockbox-${m}manual.pdf";
+               $manual .= "<br/><a href=\"$f\">PDF Manual</a>";
             }
             if (-r "$basedir/data/rockbox-${m}htmlmanual.zip") {
-               $pack="data/rockbox-${m}htmlmanual.zip";
-               $manual .= "<br/><a href=\"$pack\">HTML Manual</a>";
+               my $f="data/rockbox-${m}htmlmanual.zip";
+               $manual .= "<br/><a href=\"$f\">HTML Manual</a>";
             }
             printf("<td align='center'><a href=\"$pack\" title=\"$name\"><img border=\"0\" src=\"//www.rockbox.org%s\" alt=\"$name\"><p>$name</a><br><small>$rev</small>$manual</td>\n",
                    playerpic($m));
