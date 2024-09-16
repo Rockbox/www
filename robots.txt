@@ -1,4 +1,4 @@
-Sitemap: http://www.rockbox.org/sitemap_index.xml
+Sitemap: https://www.rockbox.org/sitemap_index.xml
 User-agent: *
 Disallow: /wiki/bin/attach
 Disallow: /wiki/bin/changes
