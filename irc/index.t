@@ -9,7 +9,7 @@ web site</a> for more information.  <b>Please note that the old #rockbox and #ro
 no longer logged or monitored, and we do not expect to retain operational control for much longer!</b></p>
 
 <p>If you don't want to install an IRC client or are locked behind a 
-firewall, try using <a href="https://kiwiirc.com/nextclient/?settings=e05b29849a8b86299dbe8d14e7b2a811">Kiwi IRC</a>.
+firewall, try using <a href="https://web.libera.chat/?nick=WebGuest?#rockbox">Kiwi IRC</a>.
 </p>
 
 <p>
