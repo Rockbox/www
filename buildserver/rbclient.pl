@@ -19,7 +19,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 73;
+my $revision = 74;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -79,7 +79,7 @@ Insufficient parameters. You must specify:
   your toaster. Right?
 
 -archlist=[list,of,archs]
-  May include arm,m68k,sh,sdl,mipsel and should be a comma-separated list with
+  May include arm,m68k,sh,sdl,sdl2,mipsel and should be a comma-separated list with
   no spaces
 
 optional setting:
@@ -553,6 +553,7 @@ sub testsystem
 
         # Special stuff
         "sdl" => {"sdl-config --version", ".*" },
+        "sdl2" => {"sdl2-config --version", ".*" },
         "latex" => { "pdflatex --version", "Live 202?" },
         "dummy" => { "/bin/true", ".*" },
         );

@@ -20,6 +20,7 @@ do
 
     ####### Special
     # sdl : Non-crosscompiled targets. Simulators, application, checkwps, database tool, ...
+    # sdl2 : (will replace 'sdl')
     # latex : manuual
     # dummy : does nothing
 
