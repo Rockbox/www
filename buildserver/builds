@@ -10,66 +10,66 @@
 #
 ####
 # Simulator targets
-sdl:0:iriverh120sim:iriver H120 - Simulator:rockboxui:51305:../tools/configure --target=iriverh120 --type=s && make
-sdl:0:iriverh300sim:iriver H300 - Simulator:rockboxui:63155:../tools/configure --target=iriverh300 --type=s && make
-sdl:0:ipodnano1gsim:iPod Nano 1G - Simulator:rockboxui:62121:../tools/configure --target=ipodnano1g --type=s && make
-sdl:0:ipodnano2gsim:iPod Nano 2G - Simulator:rockboxui:61823:../tools/configure --target=ipodnano2g --type=s && make
-sdl:0:ipodcolorsim:iPod Color - Simulator:rockboxui:62380:../tools/configure --target=ipodcolor --type=s && make
-sdl:0:iaudiox5sim:iAudio X5 - Simulator:rockboxui:58160:../tools/configure --target=iaudiox5 --type=s && make
-sdl:0:iaudiom5sim:iAudio M5 - Simulator:rockboxui:46688:../tools/configure --target=iaudiom5 --type=s && make
-sdl:0:iaudiom3sim:iAudio M3 - Simulator:rockboxui:44402:../tools/configure --target=iaudiom3 --type=s && make
-sdl:0:ipod4gsim:iPod 4G Grayscale - Simulator:rockboxui:49405:../tools/configure --target=ipod4g --type=s && make
-sdl:0:ipodvideosim:iPod Video - Simulator:rockboxui:62946:../tools/configure --target=ipodvideo --type=s && make
-sdl:0:ipod6gsim:iPod Classic - Simulator:rockboxui:62651:../tools/configure --target=ipod6g --type=s && make
-sdl:0:ipodmini2gsim:iPod Mini 2G - Simulator:rockboxui:48492:../tools/configure --target=ipodmini2g --type=s && make
-sdl:0:h10sim:iriver H10 - Simulator:rockboxui:57603:../tools/configure --target=iriverh10 --type=s && make
-sdl:0:gigabeatfxsim:Toshiba Gigabeat F - Simulator:rockboxui:56989:../tools/configure --target=gigabeatfx --type=s && make
-sdl:0:gigabeatssim:Toshiba Gigabeat S - Simulator:rockboxui:58278:../tools/configure --target=gigabeats --type=s && make
-sdl:0:sansae200sim:SanDisk Sansa e200 - Simulator:rockboxui:62756:../tools/configure --target=sansae200 --type=s && make
-sdl:0:sansae200v2sim:SanDisk Sansa e200v2 - Simulator:rockboxui:62737:../tools/configure --target=sansae200v2 --type=s && make
-sdl:0:sansac200sim:SanDisk Sansa c200 - Simulator:rockboxui:56496:../tools/configure --target=sansac200 --type=s && make
-sdl:0:sansac200v2sim:SanDisk Sansa c200v2 - Simulator:rockboxui:43652:../tools/configure --target=sansac200v2 --type=s && make
-sdl:0:mrobe500sim:Olympus M-Robe 500 - Simulator:rockboxui:46099:../tools/configure --target=mrobe500 --type=s && make
-sdl:0:mrobe100sim:Olympus M-Robe 100 - Simulator:rockboxui:42641:../tools/configure --target=mrobe100 --type=s && make
-sdl:0:cowond2sim:Cowon D2 - Simulator:rockboxui:57450:../tools/configure --target=cowond2 --type=s && make
-sdl:0:zenvisionm30sim:Creative Zen Vision M 30GB - Simulator:rockboxui:56342:../tools/configure --target=zenvisionm30gb --type=s && make
-sdl:0:sansaclipsim:SanDisk Sansa Clip - Simulator:rockboxui:33372:../tools/configure --target=sansaclip --type=s && make
-sdl:0:sansaclipzipsim:SanDisk Sansa Clip Zip - Simulator:rockboxui:57482:../tools/configure --target=sansaclipzip --type=s && make
-sdl:0:sansaconnectsim:SanDisk Sansa Connect - Simulator:rockboxui:56769:../tools/configure --target=sansaconnect --type=s && make
-sdl:0:sansafuzesim:SanDisk Sansa Fuze - Simulator:rockboxui:62638:../tools/configure --target=sansafuze --type=s && make
-sdl:0:sansafuzeplussim:SanDisk Sansa Fuze+ - Simulator:rockboxui:58181:../tools/configure --target=sansafuzeplus --type=s && make
-sdl:0:sansam200v4sim:SanDisk Sansa m200v4 - Simulator:rockboxui:31801:../tools/configure --target=sansam200v4 --type=s && make
-sdl:0:gogearhdd1630sim:Philips HDD1630 - Simulator:rockboxui:57286:../tools/configure --target=gogearhdd1630 --type=s && make
-sdl:0:gogearhdd6330sim:Philips HDD6330 - Simulator:rockboxui:57704:../tools/configure --target=gogearhdd6330 --type=s && make
-sdl:0:gogearsa9200sim:Philips SA9200 - Simulator:rockboxui:56599:../tools/configure --target=gogearsa9200 --type=s && make
-sdl:0:samsungyh820sim:Samsung YH-820 - Simulator:rockboxui:57181:../tools/configure --target=samsungyh820 --type=s && make
-sdl:0:samsungyh920sim:Samsung YH-920 - Simulator:rockboxui:45692:../tools/configure --target=samsungyh920 --type=s && make
-sdl:0:samsungyh925sim:Samsung YH-925 - Simulator:rockboxui:57556:../tools/configure --target=samsungyh925 --type=s && make
-sdl:0:ondavx747sim:Onda VX747 - Simulator:rockboxui:57247:../tools/configure --target=ondavx747 --type=s && make
-sdl:0:vibe500sim:Packard Bell Vibe 500 - Simulator:rockboxui:57236:../tools/configure --target=vibe500 --type=s && make
-sdl:0:mpiohd200sim:MPIO HD200 - Simulator:rockboxui:44257:../tools/configure --target=mpiohd200 --type=s && make
-sdl:0:mpiohd300sim:MPIO HD300 - Simulator:rockboxui:45558:../tools/configure --target=mpiohd300 --type=s && make
-sdl:0:creativezenxfi2sim:Creative Zen X-Fi2 - Simulator:rockboxui:58395:../tools/configure --target=creativezenxfi2 --type=s && make
-sdl:0:creativezenxfi3sim:Creative Zen X-Fi3 - Simulator:rockboxui:57939:../tools/configure --target=creativezenxfi3 --type=s && make
-sdl:0:sonynwze360sim:Sony NWZ-E360 - Simulator:rockboxui:57067:../tools/configure --target=sonynwze360 --type=s && make
-sdl:0:sonynwze370sim:Sony NWZ-E370 - Simulator:rockboxui:56672:../tools/configure --target=sonynwze370 --type=s && make
-sdl:0:sonynwza860sim:Sony NWZ-A860 - Simulator:rockboxui:21155:../tools/configure --target=sonynwza860 --type=s && make
-sdl:0:creativezensim:Creative ZEN - Simulator:rockboxui:59566:../tools/configure --target=creativezen --type=s && make
-sdl:0:creativezenxfisim:Creative ZEN X-Fi - Simulator:rockboxui:59489:../tools/configure --target=creativezenxfi --type=s && make
-sdl:0:creativezenmozaicsim:Creative ZEN Mozaic - Simulator:rockboxui:57509:../tools/configure --target=creativezenmozaic --type=s && make
-sdl:0:creativezenxfistylesim:Creative ZEN X-Fi Style - Simulator:rockboxui:58000:../tools/configure --target=creativezenxfistyle --type=s && make
-sdl:0:agptekrockersim:Agptek Rocker - Simulator:rockboxui:56054:../tools/configure --target=agptekrocker --type=s && make
-sdl:0:xduoox3sim:Xduoo X3 - Simulator:rockboxui:39574:../tools/configure --target=xduoox3 --type=s && make
-sdl:0:xduoox3iisim:Xduoo X3ii - Simulator:rockboxui:57639:../tools/configure --target=xduoox3ii --type=s && make
-sdl:0:xduoox20sim:Xduoo X20 - Simulator:rockboxui:57474:../tools/configure --target=xduoox20 --type=s && make
-sdl:0:aigoerosqsim:AIGO EROS Q/K - Simulator:rockboxui:58086:../tools/configure --target=aigoerosq --type=s && make
-sdl:0:shanlingq1sim:Shanling Q1 - Simulator:rockboxui:57242:../tools/configure --target=shanlingq1 --type=s && make
-sdl:0:ihifi770sim:IHIFI 770 - Simulator:rockboxui:56255:../tools/configure --target=ihifi770 --type=s && make
-sdl:0:ihifi770csim:IHIFI 770C - Simulator:rockboxui:56266:../tools/configure --target=ihifi770c --type=s && make
-sdl:0:ihifi800sim:IHIFI 800 - Simulator:rockboxui:56203:../tools/configure --target=ihifi800 --type=s && make
-sdl:0:samsungypr0sim:Samsung YP-R0 - Simulator:rockboxui:62221:../tools/configure --target=samsungypr0 --type=s && make
-#sdl:0:samsungypr1sim:Samsung YP-R1 - Simulator:rockboxui:118270:../tools/configure --target=samsungypr1 --type=s && make
-sdl:0:fiiom3ksim:FiiO M3K - Simulator:rockboxui:57722:../tools/configure --target=fiiom3k --type=s && make
+sdl2:0:iriverh120sim:iriver H120 - Simulator:rockboxui:51305:../tools/configure --target=iriverh120 --type=s && make
+sdl2:0:iriverh300sim:iriver H300 - Simulator:rockboxui:63155:../tools/configure --target=iriverh300 --type=s && make
+sdl2:0:ipodnano1gsim:iPod Nano 1G - Simulator:rockboxui:62121:../tools/configure --target=ipodnano1g --type=s && make
+sdl2:0:ipodnano2gsim:iPod Nano 2G - Simulator:rockboxui:61823:../tools/configure --target=ipodnano2g --type=s && make
+sdl2:0:ipodcolorsim:iPod Color - Simulator:rockboxui:62380:../tools/configure --target=ipodcolor --type=s && make
+sdl2:0:iaudiox5sim:iAudio X5 - Simulator:rockboxui:58160:../tools/configure --target=iaudiox5 --type=s && make
+sdl2:0:iaudiom5sim:iAudio M5 - Simulator:rockboxui:46688:../tools/configure --target=iaudiom5 --type=s && make
+sdl2:0:iaudiom3sim:iAudio M3 - Simulator:rockboxui:44402:../tools/configure --target=iaudiom3 --type=s && make
+sdl2:0:ipod4gsim:iPod 4G Grayscale - Simulator:rockboxui:49405:../tools/configure --target=ipod4g --type=s && make
+sdl2:0:ipodvideosim:iPod Video - Simulator:rockboxui:62946:../tools/configure --target=ipodvideo --type=s && make
+sdl2:0:ipod6gsim:iPod Classic - Simulator:rockboxui:62651:../tools/configure --target=ipod6g --type=s && make
+sdl2:0:ipodmini2gsim:iPod Mini 2G - Simulator:rockboxui:48492:../tools/configure --target=ipodmini2g --type=s && make
+sdl2:0:h10sim:iriver H10 - Simulator:rockboxui:57603:../tools/configure --target=iriverh10 --type=s && make
+sdl2:0:gigabeatfxsim:Toshiba Gigabeat F - Simulator:rockboxui:56989:../tools/configure --target=gigabeatfx --type=s && make
+sdl2:0:gigabeatssim:Toshiba Gigabeat S - Simulator:rockboxui:58278:../tools/configure --target=gigabeats --type=s && make
+sdl2:0:sansae200sim:SanDisk Sansa e200 - Simulator:rockboxui:62756:../tools/configure --target=sansae200 --type=s && make
+sdl2:0:sansae200v2sim:SanDisk Sansa e200v2 - Simulator:rockboxui:62737:../tools/configure --target=sansae200v2 --type=s && make
+sdl2:0:sansac200sim:SanDisk Sansa c200 - Simulator:rockboxui:56496:../tools/configure --target=sansac200 --type=s && make
+sdl2:0:sansac200v2sim:SanDisk Sansa c200v2 - Simulator:rockboxui:43652:../tools/configure --target=sansac200v2 --type=s && make
+sdl2:0:mrobe500sim:Olympus M-Robe 500 - Simulator:rockboxui:46099:../tools/configure --target=mrobe500 --type=s && make
+sdl2:0:mrobe100sim:Olympus M-Robe 100 - Simulator:rockboxui:42641:../tools/configure --target=mrobe100 --type=s && make
+sdl2:0:cowond2sim:Cowon D2 - Simulator:rockboxui:57450:../tools/configure --target=cowond2 --type=s && make
+sdl2:0:zenvisionm30sim:Creative Zen Vision M 30GB - Simulator:rockboxui:56342:../tools/configure --target=zenvisionm30gb --type=s && make
+sdl2:0:sansaclipsim:SanDisk Sansa Clip - Simulator:rockboxui:33372:../tools/configure --target=sansaclip --type=s && make
+sdl2:0:sansaclipzipsim:SanDisk Sansa Clip Zip - Simulator:rockboxui:57482:../tools/configure --target=sansaclipzip --type=s && make
+sdl2:0:sansaconnectsim:SanDisk Sansa Connect - Simulator:rockboxui:56769:../tools/configure --target=sansaconnect --type=s && make
+sdl2:0:sansafuzesim:SanDisk Sansa Fuze - Simulator:rockboxui:62638:../tools/configure --target=sansafuze --type=s && make
+sdl2:0:sansafuzeplussim:SanDisk Sansa Fuze+ - Simulator:rockboxui:58181:../tools/configure --target=sansafuzeplus --type=s && make
+sdl2:0:sansam200v4sim:SanDisk Sansa m200v4 - Simulator:rockboxui:31801:../tools/configure --target=sansam200v4 --type=s && make
+sdl2:0:gogearhdd1630sim:Philips HDD1630 - Simulator:rockboxui:57286:../tools/configure --target=gogearhdd1630 --type=s && make
+sdl2:0:gogearhdd6330sim:Philips HDD6330 - Simulator:rockboxui:57704:../tools/configure --target=gogearhdd6330 --type=s && make
+sdl2:0:gogearsa9200sim:Philips SA9200 - Simulator:rockboxui:56599:../tools/configure --target=gogearsa9200 --type=s && make
+sdl2:0:samsungyh820sim:Samsung YH-820 - Simulator:rockboxui:57181:../tools/configure --target=samsungyh820 --type=s && make
+sdl2:0:samsungyh920sim:Samsung YH-920 - Simulator:rockboxui:45692:../tools/configure --target=samsungyh920 --type=s && make
+sdl2:0:samsungyh925sim:Samsung YH-925 - Simulator:rockboxui:57556:../tools/configure --target=samsungyh925 --type=s && make
+sdl2:0:ondavx747sim:Onda VX747 - Simulator:rockboxui:57247:../tools/configure --target=ondavx747 --type=s && make
+sdl2:0:vibe500sim:Packard Bell Vibe 500 - Simulator:rockboxui:57236:../tools/configure --target=vibe500 --type=s && make
+sdl2:0:mpiohd200sim:MPIO HD200 - Simulator:rockboxui:44257:../tools/configure --target=mpiohd200 --type=s && make
+sdl2:0:mpiohd300sim:MPIO HD300 - Simulator:rockboxui:45558:../tools/configure --target=mpiohd300 --type=s && make
+sdl2:0:creativezenxfi2sim:Creative Zen X-Fi2 - Simulator:rockboxui:58395:../tools/configure --target=creativezenxfi2 --type=s && make
+sdl2:0:creativezenxfi3sim:Creative Zen X-Fi3 - Simulator:rockboxui:57939:../tools/configure --target=creativezenxfi3 --type=s && make
+sdl2:0:sonynwze360sim:Sony NWZ-E360 - Simulator:rockboxui:57067:../tools/configure --target=sonynwze360 --type=s && make
+sdl2:0:sonynwze370sim:Sony NWZ-E370 - Simulator:rockboxui:56672:../tools/configure --target=sonynwze370 --type=s && make
+sdl2:0:sonynwza860sim:Sony NWZ-A860 - Simulator:rockboxui:21155:../tools/configure --target=sonynwza860 --type=s && make
+sdl2:0:creativezensim:Creative ZEN - Simulator:rockboxui:59566:../tools/configure --target=creativezen --type=s && make
+sdl2:0:creativezenxfisim:Creative ZEN X-Fi - Simulator:rockboxui:59489:../tools/configure --target=creativezenxfi --type=s && make
+sdl2:0:creativezenmozaicsim:Creative ZEN Mozaic - Simulator:rockboxui:57509:../tools/configure --target=creativezenmozaic --type=s && make
+sdl2:0:creativezenxfistylesim:Creative ZEN X-Fi Style - Simulator:rockboxui:58000:../tools/configure --target=creativezenxfistyle --type=s && make
+sdl2:0:agptekrockersim:Agptek Rocker - Simulator:rockboxui:56054:../tools/configure --target=agptekrocker --type=s && make
+sdl2:0:xduoox3sim:Xduoo X3 - Simulator:rockboxui:39574:../tools/configure --target=xduoox3 --type=s && make
+sdl2:0:xduoox3iisim:Xduoo X3ii - Simulator:rockboxui:57639:../tools/configure --target=xduoox3ii --type=s && make
+sdl2:0:xduoox20sim:Xduoo X20 - Simulator:rockboxui:57474:../tools/configure --target=xduoox20 --type=s && make
+sdl2:0:aigoerosqsim:AIGO EROS Q/K - Simulator:rockboxui:58086:../tools/configure --target=aigoerosq --type=s && make
+sdl2:0:shanlingq1sim:Shanling Q1 - Simulator:rockboxui:57242:../tools/configure --target=shanlingq1 --type=s && make
+sdl2:0:ihifi770sim:IHIFI 770 - Simulator:rockboxui:56255:../tools/configure --target=ihifi770 --type=s && make
+sdl2:0:ihifi770csim:IHIFI 770C - Simulator:rockboxui:56266:../tools/configure --target=ihifi770c --type=s && make
+sdl2:0:ihifi800sim:IHIFI 800 - Simulator:rockboxui:56203:../tools/configure --target=ihifi800 --type=s && make
+sdl2:0:samsungypr0sim:Samsung YP-R0 - Simulator:rockboxui:62221:../tools/configure --target=samsungypr0 --type=s && make
+#sdl2:0:samsungypr1sim:Samsung YP-R1 - Simulator:rockboxui:118270:../tools/configure --target=samsungypr1 --type=s && make
+sdl2:0:fiiom3ksim:FiiO M3K - Simulator:rockboxui:57722:../tools/configure --target=fiiom3k --type=s && make
 ####
 # m68k-based native targets
 m68k-gcc494:1:iriverh100:iriver H100:rockbox.zip:27455:../tools/configure --target=iriverh100 --type=n && make zip
@@ -386,5 +386,5 @@ sdl:0:iriverh300db:iriver H300 - Database:database.iriverh300:1118:../tools/conf
 sdl:0:xduoox3iidb:Xduoo X3ii - Database:database.xduoox3ii:1105:../tools/configure --target=xduoox3ii --type=d && make
 ###
 # SDL and Warble targets
-sdl:0:sdlapplication:SDL Application:rockbox:34823:../tools/configure --target=sdlapp --type=n --lcdwidth=640 --lcdheight=480 && make
-sdl:0:sdlapplicationwarble:SDL Application - warble:warble.sdlapp:12605:../tools/configure --target=sdlapp --type=w --lcdwidth=640 --lcdheight=480 && make
+sdl2:0:sdlapplication:SDL Application:rockbox:34823:../tools/configure --target=sdlapp --type=n --lcdwidth=640 --lcdheight=480 && make
+sdl2:0:sdlapplicationwarble:SDL Application - warble:warble.sdlapp:12605:../tools/configure --target=sdlapp --type=w --lcdwidth=640 --lcdheight=480 && make
