@@ -317,73 +317,73 @@ m68k-gcc494,latex:1:iriverh300htmlmanual:iriver H320/340 - HTML Manual:rockbox-m
 
 ####
 # CheckWPS builds
-sdl:0:iriverh120wps:iriver H120 - Checkwps:checkwps.iriverh120:237:../tools/configure --target=iriverh120 --type=c && make
-sdl:0:iriverh300wps:iriver H300 - Checkwps:checkwps.iriverh300:239:../tools/configure --target=iriverh300 --type=c && make
-sdl:0:ipodnano1gwps:iPod Nano - Checkwps:checkwps.ipodnano1g:239:../tools/configure --target=ipodnano1g --type=c && make
-sdl:0:ipodnano2gwps:iPod Nano 2G - Checkwps:checkwps.ipodnano2g:240:../tools/configure --target=ipodnano2g --type=c && make
-sdl:0:ipodcolorwps:iPod Color - Checkwps:checkwps.ipodcolor:238:../tools/configure --target=ipodcolor --type=c && make
-sdl:0:iaudiox5wps:iAudio X5 - Checkwps:checkwps.iaudiox5:242:../tools/configure --target=iaudiox5 --type=c && make
-sdl:0:iaudiom5wps:iAudio M5 - Checkwps:checkwps.iaudiom5:239:../tools/configure --target=iaudiom5 --type=c && make
-sdl:0:iaudiom3wps:iAudio M3 - Checkwps:checkwps.iaudiom3:238:../tools/configure --target=iaudiom3 --type=c && make
-sdl:0:ipod4gwps:iPod 4G Grayscale - Checkwps:checkwps.ipod4g:238:../tools/configure --target=ipod4g --type=c && make
-sdl:0:ipodvideowps:iPod Video - Checkwps:checkwps.ipodvideo:243:../tools/configure --target=ipodvideo --type=c && make
-sdl:0:ipodmini1gwps:iPod Mini 1G - Checkwps:checkwps.ipodmini1g:237:../tools/configure --target=ipodmini1g --type=c && make
-sdl:0:ipodmini2gwps:iPod Mini 2G - Checkwps:checkwps.ipodmini2g:233:../tools/configure --target=ipodmini2g --type=c && make
-sdl:0:h10wps:iriver H10 - Checkwps:checkwps.iriverh10:236:../tools/configure --target=iriverh10 --type=c && make
-sdl:0:gigabeatfxwps:Toshiba Gigabeat F - Checkwps:checkwps.gigabeatfx:236:../tools/configure --target=gigabeatfx --type=c && make
-sdl:0:gigabeatswps:Toshiba Gigabeat S - Checkwps:checkwps.gigabeats:238:../tools/configure --target=gigabeats --type=c && make
-sdl:0:sansae200wps:SanDisk Sansa e200 - Checkwps:checkwps.sansae200:240:../tools/configure --target=sansae200 --type=c && make
-sdl:0:sansae200v2wps:SanDisk Sansa e200v2 - Checkwps:checkwps.sansae200v2:236:../tools/configure --target=sansae200v2 --type=c && make
-sdl:0:sansac200wps:SanDisk Sansa c200 - Checkwps:checkwps.sansac200:240:../tools/configure --target=sansac200 --type=c && make
-sdl:0:sansac200v2wps:SanDisk Sansa c200v2 - Checkwps:checkwps.sansac200v2:242:../tools/configure --target=sansac200v2 --type=c && make
-sdl:0:mrobe500wps:Olympus M-Robe 500 - Checkwps:checkwps.mrobe500:241:../tools/configure --target=mrobe500 --type=c && make
-sdl:0:mrobe100wps:Olympus M-Robe 100 - Checkwps:checkwps.mrobe100:235:../tools/configure --target=mrobe100 --type=c && make
-sdl:0:cowond2wps:Cowon D2 - Checkwps:checkwps.cowond2:235:../tools/configure --target=cowond2 --type=c && make
-sdl:0:zenvisionm30wps:Creative Zen Vision M 30GB - Checkwps:checkwps.zenvisionm30gb:236:../tools/configure --target=zenvisionm30gb --type=c && make
-sdl:0:sansaclipwps:SanDisk Sansa Clip - Checkwps:checkwps.sansaclip:235:../tools/configure --target=sansaclip --type=c && make
-sdl:0:sansaclipzipwps:SanDisk Sansa Clip Zip - Checkwps:checkwps.sansaclipzip:237:../tools/configure --target=sansaclipzip --type=c && make
-sdl:0:sansaconnectwps:SanDisk Sansa Connect - Checkwps:checkwps.sansaconnect:241:../tools/configure --target=sansaconnect --type=c && make
-sdl:0:sansafuzewps:SanDisk Sansa Fuze - Checkwps:checkwps.sansafuze:238:../tools/configure --target=sansafuze --type=c && make
-sdl:0:sansafuzepluswps:SanDisk Sansa Fuze+ - Checkwps:checkwps.sansafuzeplus:240:../tools/configure --target=sansafuzeplus --type=c && make
-sdl:0:sansam200v4wps:SanDisk Sansa m200v4 - Checkwps:checkwps.sansam200v4:234:../tools/configure --target=sansam200v4 --type=c && make
-sdl:0:gogearhdd1630wps:Philips HDD1630 - Checkwps:checkwps.gogearhdd1630:241:../tools/configure --target=gogearhdd1630 --type=c && make
-sdl:0:gogearhdd6330wps:Philips HDD6330 - Checkwps:checkwps.gogearhdd6330:243:../tools/configure --target=gogearhdd6330 --type=c && make
-sdl:0:gogearsa9200wps:Philips SA9200 - Checkwps:checkwps.gogearsa9200:238:../tools/configure --target=gogearsa9200 --type=c && make
-sdl:0:samsungyh820wps:Samsung YH-820 - Checkwps:checkwps.samsungyh820:239:../tools/configure --target=samsungyh820 --type=c && make
-sdl:0:samsungyh920wps:Samsung YH-920 - Checkwps:checkwps.samsungyh920:241:../tools/configure --target=samsungyh920 --type=c && make
-sdl:0:samsungyh925wps:Samsung YH-925 - Checkwps:checkwps.samsungyh925:239:../tools/configure --target=samsungyh925 --type=c && make
-sdl:0:ondavx747wps:Onda VX747 - Checkwps:checkwps.ondavx747:240:../tools/configure --target=ondavx747 --type=c && make
-sdl:0:vibe500wps:Packard Bell Vibe 500 - Checkwps:checkwps.vibe500:243:../tools/configure --target=vibe500 --type=c && make
-sdl:0:mpiohd200wps:MPIO HD200 - Checkwps:checkwps.mpiohd200:224:../tools/configure --target=mpiohd200 --type=c && make
-sdl:0:mpiohd300wps:MPIO HD300 - Checkwps:checkwps.mpiohd300:239:../tools/configure --target=mpiohd300 --type=c && make
-sdl:0:rk27genericwps:Rockchip rk27xx - Checkwps:checkwps.rk27generic:237:../tools/configure --target=rk27generic --type=c && make
-sdl:0:hifimanhm60xwps:HiFiMAN HM-60x - Checkwps:checkwps.hifimanhm60x:238:../tools/configure --target=hifimanhm60x --type=c && make
-sdl:0:hifimanhm801wps:HiFiMAN HM-801 - Checkwps:checkwps.hifimanhm801:241:../tools/configure --target=hifimanhm801 --type=c && make
-sdl:0:hifietma9wps:HiFi E.T MA9 - Checkwps:checkwps.hifietma9:236:../tools/configure --target=hifietma9 --type=c && make
-sdl:0:hifietma9cwps:HiFi E.T MA9C - Checkwps:checkwps.hifietma9c:236:../tools/configure --target=hifietma9c --type=c && make
-sdl:0:hifietma8wps:HiFi E.T MA8 - Checkwps:checkwps.hifietma8:236:../tools/configure --target=hifietma8 --type=c && make
-sdl:0:hifietma8cwps:HiFi E.T MA8C - Checkwps:checkwps.hifietma8c:240:../tools/configure --target=hifietma8c --type=c && make
-sdl:0:ihifi760wps:IHIFI 760 - Checkwps:checkwps.ihifi760:238:../tools/configure --target=ihifi760 --type=c && make
-sdl:0:ihifi770wps:IHIFI 770 - Checkwps:checkwps.ihifi770:240:../tools/configure --target=ihifi770 --type=c && make
-sdl:0:ihifi770cwps:IHIFI 770C - Checkwps:checkwps.ihifi770c:239:../tools/configure --target=ihifi770c --type=c && make
-sdl:0:ihifi800wps:IHIFI 800 - Checkwps:checkwps.ihifi800:239:../tools/configure --target=ihifi800 --type=c && make
-sdl:0:ihifi960wps:IHIFI 960 - Checkwps:checkwps.ihifi960:235:../tools/configure --target=ihifi960 --type=c && make
-sdl:0:creativezenxfi2wps:Creative Zen X-Fi2 - Checkwps:checkwps.creativezenxfi2:240:../tools/configure --target=creativezenxfi2 --type=c && make
-sdl:0:creativezenxfi3wps:Creative Zen X-Fi3 - Checkwps:checkwps.creativezenxfi3:237:../tools/configure --target=creativezenxfi3 --type=c && make
-sdl:0:sonynwze360wps:Sony NWZ-E360 - Checkwps:checkwps.sonynwze360:241:../tools/configure --target=sonynwze360 --type=c && make
-sdl:0:sonynwze370wps:Sony NWZ-E370 - Checkwps:checkwps.sonynwze370:238:../tools/configure --target=sonynwze370 --type=c && make
-sdl:0:agptekrockerwps:Agptek Rocker - Checkwps:checkwps.agptekrocker:238:../tools/configure --target=agptekrocker --type=c && make
-sdl:0:xduoox3wps:Xduoo X3 - Checkwps:checkwps.xduoox3:233:../tools/configure --target=xduoox3 --type=c && make
-sdl:0:xduoox3iiwps:Xduoo X3ii - Checkwps:checkwps.xduoox3ii:233:../tools/configure --target=xduoox3ii --type=c && make
-sdl:0:xduoox20wps:Xduoo X20 - Checkwps:checkwps.xduoox20:236:../tools/configure --target=xduoox20 --type=c && make
-sdl:0:fiiom3linuxkwps:FiiO M3K (Linux) - Checkwps:checkwps.fiiom3klinux:233:../tools/configure --target=fiiom3klinux --type=c && make
-sdl:0:aigoerosqwps:AIGO EROS Q/K - Checkwps:checkwps.aigoerosq:233:../tools/configure --target=aigoerosq --type=c && make
-sdl:0:fiiom3kwps:FiiO M3K - Checkwps:checkwps.fiiom3k:238:../tools/configure --target=fiiom3k --type=c && make
-sdl:0:shanlingq1wps:Shanling Q1 - Checkwps:checkwps.shanlingq1:241:../tools/configure --target=shanlingq1 --type=c && make
+sdl2:0:iriverh120wps:iriver H120 - Checkwps:checkwps.iriverh120:237:../tools/configure --target=iriverh120 --type=c && make
+sdl2:0:iriverh300wps:iriver H300 - Checkwps:checkwps.iriverh300:239:../tools/configure --target=iriverh300 --type=c && make
+sdl2:0:ipodnano1gwps:iPod Nano - Checkwps:checkwps.ipodnano1g:239:../tools/configure --target=ipodnano1g --type=c && make
+sdl2:0:ipodnano2gwps:iPod Nano 2G - Checkwps:checkwps.ipodnano2g:240:../tools/configure --target=ipodnano2g --type=c && make
+sdl2:0:ipodcolorwps:iPod Color - Checkwps:checkwps.ipodcolor:238:../tools/configure --target=ipodcolor --type=c && make
+sdl2:0:iaudiox5wps:iAudio X5 - Checkwps:checkwps.iaudiox5:242:../tools/configure --target=iaudiox5 --type=c && make
+sdl2:0:iaudiom5wps:iAudio M5 - Checkwps:checkwps.iaudiom5:239:../tools/configure --target=iaudiom5 --type=c && make
+sdl2:0:iaudiom3wps:iAudio M3 - Checkwps:checkwps.iaudiom3:238:../tools/configure --target=iaudiom3 --type=c && make
+sdl2:0:ipod4gwps:iPod 4G Grayscale - Checkwps:checkwps.ipod4g:238:../tools/configure --target=ipod4g --type=c && make
+sdl2:0:ipodvideowps:iPod Video - Checkwps:checkwps.ipodvideo:243:../tools/configure --target=ipodvideo --type=c && make
+sdl2:0:ipodmini1gwps:iPod Mini 1G - Checkwps:checkwps.ipodmini1g:237:../tools/configure --target=ipodmini1g --type=c && make
+sdl2:0:ipodmini2gwps:iPod Mini 2G - Checkwps:checkwps.ipodmini2g:233:../tools/configure --target=ipodmini2g --type=c && make
+sdl2:0:h10wps:iriver H10 - Checkwps:checkwps.iriverh10:236:../tools/configure --target=iriverh10 --type=c && make
+sdl2:0:gigabeatfxwps:Toshiba Gigabeat F - Checkwps:checkwps.gigabeatfx:236:../tools/configure --target=gigabeatfx --type=c && make
+sdl2:0:gigabeatswps:Toshiba Gigabeat S - Checkwps:checkwps.gigabeats:238:../tools/configure --target=gigabeats --type=c && make
+sdl2:0:sansae200wps:SanDisk Sansa e200 - Checkwps:checkwps.sansae200:240:../tools/configure --target=sansae200 --type=c && make
+sdl2:0:sansae200v2wps:SanDisk Sansa e200v2 - Checkwps:checkwps.sansae200v2:236:../tools/configure --target=sansae200v2 --type=c && make
+sdl2:0:sansac200wps:SanDisk Sansa c200 - Checkwps:checkwps.sansac200:240:../tools/configure --target=sansac200 --type=c && make
+sdl2:0:sansac200v2wps:SanDisk Sansa c200v2 - Checkwps:checkwps.sansac200v2:242:../tools/configure --target=sansac200v2 --type=c && make
+sdl2:0:mrobe500wps:Olympus M-Robe 500 - Checkwps:checkwps.mrobe500:241:../tools/configure --target=mrobe500 --type=c && make
+sdl2:0:mrobe100wps:Olympus M-Robe 100 - Checkwps:checkwps.mrobe100:235:../tools/configure --target=mrobe100 --type=c && make
+sdl2:0:cowond2wps:Cowon D2 - Checkwps:checkwps.cowond2:235:../tools/configure --target=cowond2 --type=c && make
+sdl2:0:zenvisionm30wps:Creative Zen Vision M 30GB - Checkwps:checkwps.zenvisionm30gb:236:../tools/configure --target=zenvisionm30gb --type=c && make
+sdl2:0:sansaclipwps:SanDisk Sansa Clip - Checkwps:checkwps.sansaclip:235:../tools/configure --target=sansaclip --type=c && make
+sdl2:0:sansaclipzipwps:SanDisk Sansa Clip Zip - Checkwps:checkwps.sansaclipzip:237:../tools/configure --target=sansaclipzip --type=c && make
+sdl2:0:sansaconnectwps:SanDisk Sansa Connect - Checkwps:checkwps.sansaconnect:241:../tools/configure --target=sansaconnect --type=c && make
+sdl2:0:sansafuzewps:SanDisk Sansa Fuze - Checkwps:checkwps.sansafuze:238:../tools/configure --target=sansafuze --type=c && make
+sdl2:0:sansafuzepluswps:SanDisk Sansa Fuze+ - Checkwps:checkwps.sansafuzeplus:240:../tools/configure --target=sansafuzeplus --type=c && make
+sdl2:0:sansam200v4wps:SanDisk Sansa m200v4 - Checkwps:checkwps.sansam200v4:234:../tools/configure --target=sansam200v4 --type=c && make
+sdl2:0:gogearhdd1630wps:Philips HDD1630 - Checkwps:checkwps.gogearhdd1630:241:../tools/configure --target=gogearhdd1630 --type=c && make
+sdl2:0:gogearhdd6330wps:Philips HDD6330 - Checkwps:checkwps.gogearhdd6330:243:../tools/configure --target=gogearhdd6330 --type=c && make
+sdl2:0:gogearsa9200wps:Philips SA9200 - Checkwps:checkwps.gogearsa9200:238:../tools/configure --target=gogearsa9200 --type=c && make
+sdl2:0:samsungyh820wps:Samsung YH-820 - Checkwps:checkwps.samsungyh820:239:../tools/configure --target=samsungyh820 --type=c && make
+sdl2:0:samsungyh920wps:Samsung YH-920 - Checkwps:checkwps.samsungyh920:241:../tools/configure --target=samsungyh920 --type=c && make
+sdl2:0:samsungyh925wps:Samsung YH-925 - Checkwps:checkwps.samsungyh925:239:../tools/configure --target=samsungyh925 --type=c && make
+sdl2:0:ondavx747wps:Onda VX747 - Checkwps:checkwps.ondavx747:240:../tools/configure --target=ondavx747 --type=c && make
+sdl2:0:vibe500wps:Packard Bell Vibe 500 - Checkwps:checkwps.vibe500:243:../tools/configure --target=vibe500 --type=c && make
+sdl2:0:mpiohd200wps:MPIO HD200 - Checkwps:checkwps.mpiohd200:224:../tools/configure --target=mpiohd200 --type=c && make
+sdl2:0:mpiohd300wps:MPIO HD300 - Checkwps:checkwps.mpiohd300:239:../tools/configure --target=mpiohd300 --type=c && make
+sdl2:0:rk27genericwps:Rockchip rk27xx - Checkwps:checkwps.rk27generic:237:../tools/configure --target=rk27generic --type=c && make
+sdl2:0:hifimanhm60xwps:HiFiMAN HM-60x - Checkwps:checkwps.hifimanhm60x:238:../tools/configure --target=hifimanhm60x --type=c && make
+sdl2:0:hifimanhm801wps:HiFiMAN HM-801 - Checkwps:checkwps.hifimanhm801:241:../tools/configure --target=hifimanhm801 --type=c && make
+sdl2:0:hifietma9wps:HiFi E.T MA9 - Checkwps:checkwps.hifietma9:236:../tools/configure --target=hifietma9 --type=c && make
+sdl2:0:hifietma9cwps:HiFi E.T MA9C - Checkwps:checkwps.hifietma9c:236:../tools/configure --target=hifietma9c --type=c && make
+sdl2:0:hifietma8wps:HiFi E.T MA8 - Checkwps:checkwps.hifietma8:236:../tools/configure --target=hifietma8 --type=c && make
+sdl2:0:hifietma8cwps:HiFi E.T MA8C - Checkwps:checkwps.hifietma8c:240:../tools/configure --target=hifietma8c --type=c && make
+sdl2:0:ihifi760wps:IHIFI 760 - Checkwps:checkwps.ihifi760:238:../tools/configure --target=ihifi760 --type=c && make
+sdl2:0:ihifi770wps:IHIFI 770 - Checkwps:checkwps.ihifi770:240:../tools/configure --target=ihifi770 --type=c && make
+sdl2:0:ihifi770cwps:IHIFI 770C - Checkwps:checkwps.ihifi770c:239:../tools/configure --target=ihifi770c --type=c && make
+sdl2:0:ihifi800wps:IHIFI 800 - Checkwps:checkwps.ihifi800:239:../tools/configure --target=ihifi800 --type=c && make
+sdl2:0:ihifi960wps:IHIFI 960 - Checkwps:checkwps.ihifi960:235:../tools/configure --target=ihifi960 --type=c && make
+sdl2:0:creativezenxfi2wps:Creative Zen X-Fi2 - Checkwps:checkwps.creativezenxfi2:240:../tools/configure --target=creativezenxfi2 --type=c && make
+sdl2:0:creativezenxfi3wps:Creative Zen X-Fi3 - Checkwps:checkwps.creativezenxfi3:237:../tools/configure --target=creativezenxfi3 --type=c && make
+sdl2:0:sonynwze360wps:Sony NWZ-E360 - Checkwps:checkwps.sonynwze360:241:../tools/configure --target=sonynwze360 --type=c && make
+sdl2:0:sonynwze370wps:Sony NWZ-E370 - Checkwps:checkwps.sonynwze370:238:../tools/configure --target=sonynwze370 --type=c && make
+sdl2:0:agptekrockerwps:Agptek Rocker - Checkwps:checkwps.agptekrocker:238:../tools/configure --target=agptekrocker --type=c && make
+sdl2:0:xduoox3wps:Xduoo X3 - Checkwps:checkwps.xduoox3:233:../tools/configure --target=xduoox3 --type=c && make
+sdl2:0:xduoox3iiwps:Xduoo X3ii - Checkwps:checkwps.xduoox3ii:233:../tools/configure --target=xduoox3ii --type=c && make
+sdl2:0:xduoox20wps:Xduoo X20 - Checkwps:checkwps.xduoox20:236:../tools/configure --target=xduoox20 --type=c && make
+sdl2:0:fiiom3linuxkwps:FiiO M3K (Linux) - Checkwps:checkwps.fiiom3klinux:233:../tools/configure --target=fiiom3klinux --type=c && make
+sdl2:0:aigoerosqwps:AIGO EROS Q/K - Checkwps:checkwps.aigoerosq:233:../tools/configure --target=aigoerosq --type=c && make
+sdl2:0:fiiom3kwps:FiiO M3K - Checkwps:checkwps.fiiom3k:238:../tools/configure --target=fiiom3k --type=c && make
+sdl2:0:shanlingq1wps:Shanling Q1 - Checkwps:checkwps.shanlingq1:241:../tools/configure --target=shanlingq1 --type=c && make
 ###
 # Database targets
-sdl:0:iriverh300db:iriver H300 - Database:database.iriverh300:1118:../tools/configure --target=iriverh300 --type=d && make
-sdl:0:xduoox3iidb:Xduoo X3ii - Database:database.xduoox3ii:1105:../tools/configure --target=xduoox3ii --type=d && make
+sdl2:0:iriverh300db:iriver H300 - Database:database.iriverh300:1118:../tools/configure --target=iriverh300 --type=d && make
+sdl2:0:xduoox3iidb:Xduoo X3ii - Database:database.xduoox3ii:1105:../tools/configure --target=xduoox3ii --type=d && make
 ###
 # SDL and Warble targets
 sdl2:0:sdlapplication:SDL Application:rockbox:34823:../tools/configure --target=sdlapp --type=n --lcdwidth=640 --lcdheight=480 && make
