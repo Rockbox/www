@@ -360,7 +360,7 @@ sub parsechunk {
             # tag all nicks
             foreach my $nick (keys %nicks) {
                 if (index($message, $nick) > -1) {
-                    $message =~ s|\b\Q$nick\E\b|<span class="nick_$nick">$nick</span>|g;
+                    $message =~ s|\b\Q$nick\E\b|<span class='nick_$nick'>$nick</span>|g;
                 }
             }
 
@@ -374,10 +374,9 @@ sub parsechunk {
             if ($message =~ /href=\"([^\"]+)/) {
                 my $url = $1;
                 my $broken_url = $url;
- 
-                if ($url =~ /<span class="nick_([^>]+)/) {
+                if ($url =~ /<span class='nick_([^>]+)'/) {
                     my $nick = $1;
-                    $url =~ s|<span class="nick_$nick">$nick</span>|$nick|g;
+                    $url =~ s|<span class='nick_$nick'>$nick</span>|$nick|g;
                     $message =~ s|$broken_url|$url|g;
                 }
             }
