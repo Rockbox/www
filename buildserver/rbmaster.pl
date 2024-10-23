@@ -1675,7 +1675,7 @@ while(not $alldone) {
         }
     }
 
-    #assign_overdue_builds();
+    assign_overdue_builds();
 
     checkclients();
     readblockfile();
