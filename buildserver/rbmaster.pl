@@ -1441,7 +1441,7 @@ sub assign_abandoned_builds
         for my $id (&bigbuilds) {
             if (!$builds{$id}{assigned}) {
                 for my $c (sort {$client{$b}{speed} <=> $client{$a}{speed}} &build_clients) {
-                    if (!scalar keys %{$client{$c}{queue}}) {
+                    if (!scalar keys %{$client{$c}{queue}} && &client_can_build($c, $id)) {
                         $client{$c}{queue}{$id} = $builds{$id}{score};
                         $abandoned_builds -= 1;
                         $idle_clients -= 1;
@@ -1465,7 +1465,7 @@ sub assign_overdue_builds
             # give it to the fastest idle client
 
             for my $cl (sort {$client{$b}{roundspeed} <=> $client{$a}{roundspeed}} &build_clients) {
-                if (not keys %{$client{$cl}{btime}}) {
+                if (not keys %{$client{$cl}{btime}} && client_can_build($cl, $id)) {
                     slog "Overdue: $client{$cl}{client} ($client{$cl}{speed}) starts overdue build $id";
                     &build($cl, $id);
                     last;
