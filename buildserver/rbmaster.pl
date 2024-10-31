@@ -1465,7 +1465,7 @@ sub assign_overdue_builds
             # give it to the fastest idle client
 
             for my $cl (sort {$client{$b}{roundspeed} <=> $client{$a}{roundspeed}} &build_clients) {
-                if (not keys %{$client{$cl}{btime}} && client_can_build($cl, $id)) {
+                if (not keys %{$client{$cl}{btime}} && &client_can_build($cl, $id)) {
                     slog "Overdue: $client{$cl}{client} ($client{$cl}{speed}) starts overdue build $id";
                     &build($cl, $id);
                     last;
