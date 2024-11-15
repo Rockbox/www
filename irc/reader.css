@@ -50,6 +50,7 @@
 
 .nick {
  text-align: right;
+ white-space: nowrap;
 }
 
 .hourbar {
