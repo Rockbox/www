@@ -48,11 +48,12 @@ sub runone {
         return;
     }
 
-    print "*** LANGUAGE: $lang\n";
+    print "*** LANGUAGE: $lang / $name\n";
 
-    mkdir "build-$target-$lang";
-    chdir "build-$target-$lang";
-    print "Build in build-$target-$lang\n" if($verbose);
+    my $dir = "build-$target-$name";
+    mkdir $dir;
+    chdir $dir;
+    print "Build in $dir\n" if($verbose);
 
     # build the voice(s)
     $a = buildit($target, $lang, $engine, $voice, $engine_opts);
@@ -75,8 +76,8 @@ sub runone {
 
     chdir "..";
 
-    print "remove all contents in build-$target-$lang\n" if($verbose);
-    system("rm -rf build-$target-$lang");
+    print "remove all contents in $dir\n" if($verbose);
+    system("rm -rf $dir");
 
     return $a;
 };
