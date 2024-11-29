@@ -262,7 +262,7 @@ sub build {
 
     # tell client to build!
     command $rh, "BUILD $args";
-    dlog "BUILD $args";
+    dlog ">> $cli >> BUILD $args";
     $client{$fileno}{'expect'}="_BUILD";
     $client{$fileno}{idle} = 0;
 
@@ -1384,7 +1384,7 @@ sub start_next_build($)
                 $client{$cl}{queue}{$id} = 1;
                 $builds{$id}{assigned} = 1;
                 $abandoned_builds -= 1;
-                #dlog "$cli does abandoned $id";
+                dlog "$cli does abandoned $id";
                 &build($cl, $id);
                 return;
             }
@@ -1402,7 +1402,7 @@ sub start_next_build($)
             }
             if (!$builds{$id}{done}) {
                 if ($builds{$id}{handcount} == 0) {
-                    #dlog "$cli does unstarted $id";
+                    dlog "$cli does unstarted $id";
                 }
                 else {
                     if (!$speculative) {

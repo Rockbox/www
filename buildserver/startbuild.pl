@@ -1,3 +1,4 @@
+#!/usr/bin/perl
 use IO::Socket;
 
 my $secret = $ARGV[0];

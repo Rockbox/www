@@ -5,8 +5,10 @@ use File::Copy;
 use File::Basename;
 use POSIX qw(strftime);
 
+my $destpath="/var/lib/rbmaster/upload";
+my $logfile="/var/lib/rbmaster/upload.log";
 sub ulog {
-    if (open(L, ">>/home/rockbox/www/buildserver/upload.log")) {
+    if (open(L, ">>$logfile")) {
         print L strftime("%F %T ", localtime()) . $_[0] . "\n";
         close(L);
     }
@@ -27,8 +29,6 @@ print "Content-type: text/plain\n";
 #    printf "$_: %s\n", param($_);
 #}
 #exit;
-
-my $destpath="$cwd/upload";
 
 if (-f "$destpath/$filename") {
     print "Status: 403 Cannot overwrite file\n";
@@ -53,5 +53,5 @@ if ($bytesread > 0) {
     ulog "Failed creating upload/$filename";
 }
 
-print "\n$destpath/$filename\n";
+print "\n$filename uploaded\n";
 #print STDERR "$destpath/$filename\n";
