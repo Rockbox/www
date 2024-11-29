@@ -777,6 +777,7 @@ sub resetbuildround {
     # mark all done builds as not done, not handed out
     for my $id (@buildids) {
         $builds{$id}{'done'}=0;
+        $builds{$id}{'overdue'}=0;
         $builds{$id}{'handcount'}=0;
     }
 }
