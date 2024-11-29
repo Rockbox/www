@@ -916,7 +916,8 @@ sub endround {
     resetbuildround();
 
     # clear upload dir
-    rmtree( $rbconfig{uploaddir}, {keep_root => 1} );
+#    rmtree( $rbconfig{uploaddir}, {keep_root => 1} ); ## XXX nukes the root if it's a symlink!
+    system("rm -Rf $rbconfig{uploaddir}/");
 
     if(!$rbconfig{test} and -x $rbconfig{roundend}) {
         my $rounds_sth = $db->prepare("INSERT INTO rounds (revision, took, clients) VALUES (?,?,?) ON DUPLICATE KEY UPDATE took=?,clients=?") or
