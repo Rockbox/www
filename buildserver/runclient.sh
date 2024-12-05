@@ -19,9 +19,9 @@ do
     # arm-rb-gcc494          : linux based ARM players, eg Samsung YP-R0/YP-R1
 
     ####### Special
-    # sdl : Non-crosscompiled targets. Simulators, application, checkwps, database tool, ...
-    # sdl2 : (will replace 'sdl')
-    # latex : manuual
+    # sdl2 : Non-crosscompiled targets. Simulators, application, checkwps, database tool, ...
+    # latex : manuals
+    # qt6 :  For building rbutil and themeeditor
     # dummy : does nothing
 
     ####### Android
