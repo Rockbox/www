@@ -388,3 +388,6 @@ sdl2:0:xduoox3iidb:Xduoo X3ii - Database:database.xduoox3ii:1105:../tools/config
 # SDL and Warble targets
 sdl2:0:sdlapplication:SDL Application:rockbox:34823:../tools/configure --target=sdlapp --type=n --lcdwidth=640 --lcdheight=480 && make
 sdl2:0:sdlapplicationwarble:SDL Application - warble:warble.sdlapp:12605:../tools/configure --target=sdlapp --type=w --lcdwidth=640 --lcdheight=480 && make
+###
+# QT-based stuff
+#qt6:0:rbutil:Rockbox Utility:rbutilqt/RockboxUtility:228:cmake ../utils && make
