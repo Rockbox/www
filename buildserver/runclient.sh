@@ -21,6 +21,7 @@ do
     ####### Special
     # sdl2 : Non-crosscompiled targets. Simulators, application, checkwps, database tool, ...
     # latex : manuals
+    # qt5 :  For building rbutil and themeeditor
     # qt6 :  For building rbutil and themeeditor
     # dummy : does nothing
 
