@@ -390,4 +390,5 @@ sdl2:0:sdlapplication:SDL Application:rockbox:34823:../tools/configure --target=
 sdl2:0:sdlapplicationwarble:SDL Application - warble:warble.sdlapp:12605:../tools/configure --target=sdlapp --type=w --lcdwidth=640 --lcdheight=480 && make
 ###
 # QT-based stuff
-#qt6:0:rbutil:Rockbox Utility:rbutilqt/RockboxUtility:228:cmake ../utils && make
+#qt5:0:rbutil:Rockbox Utility - QT5:rbutilqt/RockboxUtility:228:cmake ../utils && make
+#qt6:0:rbutil:Rockbox Utility - QT6:rbutilqt/RockboxUtility:228:cmake ../utils && make
