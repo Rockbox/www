@@ -22,7 +22,7 @@ while (<STDIN>) {
     my $oldscore = $row[5];
     my $build = $row[6];
 
-    my @tmp = split(/&|/,$build);
+    my @tmp = split(/&&/,$build);
     my $conf = $tmp[0] . " --no-ccache ";
 
     $build = $tmp[2] . " -j$jobs ";

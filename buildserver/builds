@@ -135,10 +135,10 @@ arm-eabi-gcc494:1:vibe500:Packard Bell Vibe 500:rockbox.zip:48699:../tools/confi
 arm-eabi-gcc494:1:rk27generic:Rockchip rk27xx:rockbox.zip:13344:../tools/configure --target=rk27generic --type=n && make zip
 arm-eabi-gcc494:1:hifimanhm60x:HiFiMAN HM-60x:rockbox.zip:47532:../tools/configure --target=hifimanhm60x --type=n && make zip
 arm-eabi-gcc494:1:hifimanhm801:HiFiMAN HM-801:rockbox.zip:47941:../tools/configure --target=hifimanhm801 --type=n && make zip
-arm-eabi-gcc494:1:hifietma9:HiFi E.T MA9:rockbox.zip:13275:../tools/configure --target=hifietma9 --type=n && make zip
-arm-eabi-gcc494:1:hifietma9c:HiFi E.T MA9C:rockbox.zip:13252:../tools/configure --target=hifietma9c --type=n && make zip
-arm-eabi-gcc494:1:hifietma8:HiFi E.T MA8:rockbox.zip:13273:../tools/configure --target=hifietma8 --type=n && make zip
-arm-eabi-gcc494:1:hifietma8c:HiFi E.T MA8C:rockbox.zip:13257:../tools/configure --target=hifietma8c --type=n && make zip
+arm-eabi-gcc494:1:hifietma9:HiFi E.T MA9:rockbox.zip:49356:../tools/configure --target=hifietma9 --type=n && make zip
+arm-eabi-gcc494:1:hifietma9c:HiFi E.T MA9C:rockbox.zip:49317:../tools/configure --target=hifietma9c --type=n && make zip
+arm-eabi-gcc494:1:hifietma8:HiFi E.T MA8:rockbox.zip:49325:../tools/configure --target=hifietma8 --type=n && make zip
+arm-eabi-gcc494:1:hifietma8c:HiFi E.T MA8C:rockbox.zip:49345:../tools/configure --target=hifietma8c --type=n && make zip
 arm-eabi-gcc494:1:ihifi760:IHIFI 760:rockbox.zip:13247:../tools/configure --target=ihifi760 --type=n && make zip
 arm-eabi-gcc494:1:ihifi770:IHIFI 770:rockbox.zip:48141:../tools/configure --target=ihifi770 --type=n && make zip
 arm-eabi-gcc494:1:ihifi770c:IHIFI 770C:rockbox.zip:48137:../tools/configure --target=ihifi770c --type=n && make zip
