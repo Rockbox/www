@@ -86,6 +86,7 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <p>Work has begun on porting Rockbox to these players, but much remains before they are usable:
 
 <ul>
+<li><b>Creative</b>: Zen V</li>
 <li><b>Onda</b>: VX747, VX767 and VX777</li>
 <li><b>iHIFI</b> 760, 770, 770C, 800, and 960</li>
 <li><b>Google</b> Android (4.4 and older only)</li>
