@@ -149,6 +149,7 @@ arm-eabi-gcc494:1:creativezenxfi3:Creative Zen X-Fi3:rockbox.zip:49043:../tools/
 arm-eabi-gcc494:1:sonynwze360:Sony NWZ-E360:rockbox.zip:48519:../tools/configure --target=sonynwze360 --type=n && make zip
 arm-eabi-gcc494:1:sonynwze370:Sony NWZ-E370:rockbox.zip:48090:../tools/configure --target=sonynwze370 --type=n && make zip
 arm-eabi-gcc494:1:creativezen:Creative ZEN:rockbox.zip:50655:../tools/configure --target=creativezen --type=n && make zip
+arm-eabi-gcc494:1:creativezenv:Creative ZEN V:rockbox.zip:14554:../tools/configure --target=creativezenv --type=n && make zip
 arm-eabi-gcc494:1:creativezenxfi:Creative ZEN X-Fi:rockbox.zip:50591:../tools/configure --target=creativezenxfi --type=n && make zip
 arm-eabi-gcc494:1:creativezenmozaic:Creative ZEN Mozaic:rockbox.zip:48603:../tools/configure --target=creativezenmozaic --type=n && make zip
 arm-eabi-gcc494:1:creativezenxfistyle:Creative ZEN X-Fi Style:rockbox.zip:49203:../tools/configure --target=creativezenxfistyle --type=n && make zip
@@ -205,6 +206,7 @@ arm-eabi-gcc494:0:creativezenxfi3boot:Creative Zen X-Fi3 - Boot:bootloader-zenxf
 arm-eabi-gcc494:0:sonynwze360boot:Sony NWZ-E360 - Boot:bootloader-nwze360.sony:1390:../tools/configure --target=sonynwze360 --type=b && make
 arm-eabi-gcc494:0:sonynwze370boot:Sony NWZ-E370 - Boot:bootloader-nwze370.sony:1392:../tools/configure --target=sonynwze370 --type=b && make
 arm-eabi-gcc494:0:creativezenboot:Creative ZEN - Boot:bootloader-zen.creative:1466:../tools/configure --target=creativezen --type=b && make
+arm-eabi-gcc494:0:creativezenvboot:Creative ZEN V - Boot:bootloader-zenv.creative:1362:../tools/configure --target=creativezenv --type=b && make zip
 arm-eabi-gcc494:0:creativezenxfiboot:Creative ZEN X-Fi - Boot:bootloader-zenxfi.creative:1444:../tools/configure --target=creativezenxfi --type=b && make
 arm-eabi-gcc494:0:creativezenmozaicboot:Creative ZEN Mozaic - Boot:bootloader-zenmozaic.creative:1386:../tools/configure --target=creativezenmozaic --type=b && make
 arm-eabi-gcc494:0:creativezenxfistyleboot:Creative ZEN X-Fi Style - Boot:bootloader-zenxfistyle.creative:1409:../tools/configure --target=creativezenxfistyle --type=b && make
