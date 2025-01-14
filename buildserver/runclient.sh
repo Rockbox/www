@@ -1,6 +1,10 @@
 #!/bin/sh
 trap "exit" INT
 
+# Set this to where you want temporary build files to reside
+# If not set, files will live under the rockbox git directory
+#BUILDROOT=/tmp
+
 while true
 do
     if [ -f "rbclient.pl.new" ]; then
