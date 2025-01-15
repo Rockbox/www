@@ -20,7 +20,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 79;
+my $revision = 80;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -303,7 +303,12 @@ sub startbuild
         }
 
 	my $rbdir=getcwd();
-	my $builddir = "$buildroot/build-$id";
+	my $builddir;
+	if (length($buildroot)) {
+           $builddir = "$buildroot/build-$id";
+        } else {
+           $builddir = "$rbdir/build-$id";
+	}
 	mkdir $builddir;
         chdir $builddir;
         my $logfile = "$base.log";
