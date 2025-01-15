@@ -4,6 +4,7 @@
 #
 
 use strict;
+use Cwd;
 use IO::Socket;
 use IO::Select;
 use IO::File;
@@ -19,7 +20,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 77;
+my $revision = 78;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -41,9 +42,9 @@ our $buildmaster = $buildmaster || 'buildmaster.rockbox.org';
 our $port = $port || 19999;
 our $ulspeed = $ulspeed || 0;
 our $commandhook = $commandhook || '';
+our $buildroot = $buildroot || '';
 
 my $upload_url = "https://$buildmaster/upload.cgi";
-
 my $probecores = int(`nproc`);
 our $cores = $cores || $probecores;
 
@@ -97,6 +98,10 @@ optional setting:
   Run this script whenever a command comes in, with the command itself as the
   first argument, and the command parameters in the second argument. This can
   be used for fancy monitoring of the client.
+
+-buildroot=[directory]
+  Directory to use for temporary build files.  Defaults to the current
+  working directory
 
 You can also specify -config=file where parameters are stored as 'label: value'
 
@@ -297,15 +302,14 @@ sub startbuild
             rmtree "build-$id";
         }
 
-        if (defined $ENV{'BUILDROOT'}) {
-            chdir "$ENV{BUILDROOT}";
-        }
-        mkdir "build-$id";
-        chdir "build-$id";
+	my $rbdir=getcwd();
+	my $builddir = "$buildroot-build-$id";
+	mkdir $builddir;
+        chdir $builddir;
         my $logfile = "$base.log";
         my $log = ">> $logfile 2>&1";
 
-        my $cmdline = $builds{$id}{cmdline};
+        my $cmdline = $rbdir . '/' . $builds{$id}{cmdline};
 
         if (not open DEST, ">$logfile") {
             tprint "Failed creating log file $logfile: $!\n";
@@ -316,7 +320,7 @@ sub startbuild
 
         printf DEST "Build Date: %s\n", strftime("%Y%m%dT%H%M%SZ", gmtime);
         print DEST "Build Type: $id\n";
-        print DEST "Build Dir: $cwd/build-$id\n";
+        print DEST "Build Dir: $builddir\n";
         print DEST "Build Client: $clientname-$username\n";
         print DEST "Build Command: $cmdline\n";
         close DEST;
@@ -447,7 +451,7 @@ sub CANCEL
 sub BUILD
 {
     my ($buildparams) = @_;
-    # ipodcolorboot:29961:mt:bootloader-ipodcolor.ipod:0:../tools/configure --target=ipodcolor --type=b && make
+    # ipodcolorboot:29961:mt:bootloader-ipodcolor.ipod:0:tools/configure --target=ipodcolor --type=b && make
 
     my ($id, $rev, $mt, $result, $upload, $cmdline) =
         split(':', $buildparams);
@@ -641,6 +645,9 @@ sub readconfig
         }
         elsif (/^cores:\s*(.*)/) {
             $cores = $1;
+        }
+        elsif (/^buildroot:\s*(.*)/) {
+            $buildroot = $1;
         }
     }
     close CFG;

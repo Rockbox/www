@@ -3,7 +3,6 @@ trap "exit" INT
 
 # Set this to where you want temporary build files to reside
 # If not set, files will live under the rockbox git directory
-#export BUILDROOT=/tmp
 
 while true
 do
@@ -34,7 +33,7 @@ do
     # android-ndk10sdk19     : Android NDK 10e and SDK+tools supporting API 19 (4.4/KitKat)
 
     # CHANGEME:  This list includes native targets only.
-    perl -s rbclient.pl -username= -password= -clientname= -archlist=m68k-gcc494,mipsel-gcc494,arm-eabi-gcc494 -buildmaster=buildmaster.rockbox.org -port=19999
+    perl -s rbclient.pl -username= -password= -clientname= -buildroot= -archlist=m68k-gcc494,mipsel-gcc494,arm-eabi-gcc494 -buildmaster=buildmaster.rockbox.org -port=19999
     res=$?
     if test "$res" -eq 22; then
       echo "Address the above issue(s), then restart!"
