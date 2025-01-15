@@ -421,7 +421,7 @@ sub HELLO {
         else {
 #            my $sock = $client{$fno}{socket};
 #            my($port,$iaddr) = sockaddr_in($sock);
-            slog "Joined: client $cli host $host arch $archlist speed $speed";
+            slog "Joined: client $cli ver $version host $host arch $archlist speed $speed";
             privmessage $fno, sprintf  "Welcome $cli. Your average build speed is $speed points/sec. Your average upload speed is %d KB/s.", $ulspeed / 1024;
             dblog($fno, "joined", "");
         }
