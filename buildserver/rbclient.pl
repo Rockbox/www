@@ -20,7 +20,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 80;
+my $revision = 81;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -57,6 +57,7 @@ if ($cpu =~ /64/) {
 } else {
     $bits = 32;
 }
+my $rbdir=getcwd();
 
 my $os = `uname -s`;
 chomp $os;
@@ -298,17 +299,17 @@ sub startbuild
         # find/use it
         my $base="$clientname-$username-$id";
 
-        if (-d "build-$id") {
-            rmtree "build-$id";
-        }
-
-	my $rbdir=getcwd();
 	my $builddir;
 	if (length($buildroot)) {
            $builddir = "$buildroot/build-$id";
         } else {
            $builddir = "$rbdir/build-$id";
 	}
+
+        if (-d $builddir) {
+            rmtree $builddir;
+        }
+
 	mkdir $builddir;
         chdir $builddir;
         my $logfile = "$base.log";
@@ -386,8 +387,8 @@ sub startbuild
 
 	# Clean up
 	chdir "..";
-        if (-d "build-$id") {
-            rmtree "build-$id";
+        if (-d $builddir) {
+            rmtree $builddir;
         }
 
         exit;
@@ -676,10 +677,16 @@ sub killchild
         waitpid $pid, 0;
     }
 
-    my $dir = "$cwd/build-$id";
-    if (-d $dir) {
-        tprint "Removing $dir\n";
-        rmtree $dir;
+    my $builddir;
+    if (length($buildroot)) {
+       $builddir = "$buildroot/build-$id";
+    } else {
+       $builddir = "$rbdir/build-$id";
+    }
+
+    if (-d $builddir) {
+        tprint "Removing $builddir\n";
+        rmtree $builddir;
     }
 
     delete $builds{$id};
