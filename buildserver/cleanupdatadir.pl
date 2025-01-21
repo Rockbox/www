@@ -15,7 +15,7 @@ my %hash = ('rockbox' => 1); # leave files called "rockbox-*" (binaries)
 
 for (@lines) {
     if (/^(\w+) /) {
-	$foo = substr($1, 0, 7);  # Truncate to LCD
+	$foo = substr($1, 0, 10);  # Truncate to LCD
         $hash{$foo} = 1;
     }
 }
@@ -28,7 +28,7 @@ closedir DIR;
 for my $f (@files) {
     my $f2 = basename($f);
     if ($f2 =~ /^(\w+)/) {
-	$foo = substr($1, 0, 7); # Truncate to LCD..
+	$foo = substr($1, 0, 10); # Truncate to LCD..
         if (not defined $hash{$foo}) {
 #	    print "removing $f\n";
             unlink "$datadir/$f" or die "Failed to remove $datadir/$f: $!";
