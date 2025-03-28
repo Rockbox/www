@@ -14,7 +14,7 @@ Rockbox $publicrelease was released on ${releasedate}. See the full <a href="$re
 Utility</a> to install Rockbox, but if you insist you can do it manully.
 
 <p>Download the <i>Firmware</i> zip for your target below and unzip it to your device.
-<p>We also recommend grabbing the <i>Fonts</i> as well, and the <i>Voice</i> pack for english voice prompts.  Other languages can be generated via the Rockbox Utility.
+<p>We also recommend grabbing the <i>Fonts</i> as well, and a <i>Voice</i> pack for voice prompts.  Other languages can be generated via the Rockbox Utility.
 <p>If you want to peek under the hood get the <i>Source</i> archive.
 HEAD
     ;
