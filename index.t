@@ -16,36 +16,28 @@
 Rockbox is a free replacement firmware for digital music players. It runs on a wide range of players:
 
 <p><h2>Stable ports</h2>
-<p>Rockbox runs well on these players, has installation instructions, and is supported by <a href="/download/">the installer</a>:
+<p>Rockbox runs well on these players, has installation instructions, and most are supported by the Rockbox Utility:
 <ul>
 
+<li><b>AIGO</b>: <a href="/wiki/AIGOErosQK">Eros Q / Eros K</a> (aka HIFI WALKER H2, AGPTek H3, and Surfans F20)
 <li><b>Apple</b>: iPod 1g through 6g (Classic), iPod Mini, iPod Nano 1g, iPod Nano 2g
-
 <li><b>Agptek</b>: <a href="/wiki/AgptekRocker">Rocker (aka Benjie T6)</a>
-<li><b>Archos</b>: Jukebox 5000, 6000, Studio, Recorder, FM Recorder, Recorder V2
-and Ondio
+<li><b>Archos</b>: Jukebox 5000, 6000, Studio, Recorder, FM Recorder, Recorder V2 and Ondio
 <li><b>Cowon</b>: iAudio X5, X5V, X5L, M5, M5L, M3 and M3L
 
 <li><b>Creative</b>: <a href="/wiki/CreativeZENMozaicPort">Zen Mozaic</a>,
 <a href="/wiki/CreativeZENXFiPort">Zen X-Fi</a>,
 <a href="/wiki/CreativeZENXFi3Port">Zen X-Fi 3</a> and
 <a href="/wiki/CreativeZENXFiStylePort">Zen X-Fi Style</a>
-
+<li><b>FiiO</b>: <a href="/wiki/FiioM3K">M3K</a>
 <li><b>iriver</b>: iHP100 series, H100 series, H300 series and H10 series
-
 <li><b>MPIO</b>: HD300
-
 <li><b>Olympus</b>: M:Robe 100
-
 <li><b>Packard Bell</b>: Vibe 500
-
 <li><b>Philips</b>: <a href="/wiki/GoGearSA9200info">GoGear SA9200</a>, <a href="/wiki/GoGearHDD6330">GoGear HDD16x0</a> and <a href="/wiki/GoGearHDD6330">HDD63x0</a>
-
 <li><b>Samsung</b>: YH-820, YH-920 and YH-925
-
-<li><b>SanDisk</b>: Sansa c200, e200 and e200R series, Fuze and
-<a href="/wiki/SansaFuzePlusPort">Fuze+</a>, Clip, Clip+ and Clip Zip
-
+<li><b>SanDisk</b>: Sansa c200, e200 and e200R series, Fuze and <a href="/wiki/SansaFuzePlusPort">Fuze+</a>, Clip, Clip+ and Clip Zip
+<li><b>Shanling</b>: <a href="/wiki/ShanlingQ1Port">Q1</a>
 <li><b>Toshiba</b>: Gigabeat X and F series
 <li><b>xDuoo</b>: <a href="/wiki/XDuooX3">X3, <a href="/wiki/XDuooX3ii">X3ii</a>, and <a href="/wiki/XDuooX3ii">X20</a>
 </ul>
@@ -55,10 +47,8 @@ and Ondio
 <p>Rockbox runs on these players, but is incomplete, less usable or has problems that limit it to advanced users:
 
 <ul>
-<li><b>AIGO</b>: <a href="/wiki/AIGOErosQK">Eros Q / Eros K</a> (aka HIFI WALKER H2, AGPTek H3, and Surfans F20)
 <li><b>Creative</b>: <a href="/wiki/CreativeZENPort">Zen</a> and <a href="/wiki/CreativeZENXFi2Port">Zen X-Fi 2</a>
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
-<li><b>FiiO</b>: <a href="/wiki/FiioM3K">M3K</a>
 <li><b>HiFi E.T</b>: <a href="/wiki/HifietMAPort">MA9</a>, <a href="/wiki/HifietMAPort">MA8</a>
 <li><b>HiFiMAN</b>: <a href="/wiki/HifimanPort">HM-601</a>, <a href="/wiki/HifimanPort">HM-602</a>, <a href="/wiki/HifimanPort">HM-603</a>, <a href="/wiki/HifimanPort">HM-801</a></li>
 <li><b>iBasso</b>: <a href="/wiki/IBassoDXPort">DX50</a>, <a href="/wiki/IBassoDXPort">DX90</a>
@@ -66,7 +56,6 @@ and Ondio
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
 <li><b>Samsung</b>: <a href="/wiki/SamsungYPR0">YP-R0</a>, <a href="/wiki/SamsungYPR1">YP-R1</a>
 <li><b>SanDisk</b>: <a href="/wiki/SansaConnect">Sansa Connect</a>
-<li><b>Shanling</b>: <a href="/wiki/ShanlingQ1Port">Q1</a>
 <li><b>Sony</b>:
 <a href="/wiki/SonyNWZE350">NWZ-E350</a>,
 <a href="/wiki/SonyNWZE360Port">NWZ-E360</a>,
