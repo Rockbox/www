@@ -43,7 +43,7 @@ for (@zips) {
 }
 
 # update fonts
-`mkdir build-x ; cd build-x ; $source_dir/tools/configure --target=10 --type=N ; make fontzip ; mv rockbox-fonts.zip ../output/fonts/rockbox-fonts-$date.zip ; cd - ; rm -Rf build-x`;
+`mkdir build-fonts ; cd build-fonts ; $source_dir/tools/configure --target=10 --type=N ; make fontzip NODEPS=1 ; mv rockbox-fonts.zip ../output/fonts/rockbox-fonts-$date.zip ; cd - ; rm -Rf build-fonts`;
 `cd output/fonts ; ln -sf rockbox-fonts-$date.zip rockbox-fonts.zip`;
 
 my @bleeding = `cat build-info`;
