@@ -206,7 +206,7 @@ arm-eabi-gcc494:0:creativezenxfi3boot:Creative Zen X-Fi3 - Boot:bootloader-zenxf
 arm-eabi-gcc494:0:sonynwze360boot:Sony NWZ-E360 - Boot:bootloader-nwze360.sony:1390:tools/configure --target=sonynwze360 --type=b && make
 arm-eabi-gcc494:0:sonynwze370boot:Sony NWZ-E370 - Boot:bootloader-nwze370.sony:1392:tools/configure --target=sonynwze370 --type=b && make
 arm-eabi-gcc494:0:creativezenboot:Creative ZEN - Boot:bootloader-zen.creative:1466:tools/configure --target=creativezen --type=b && make
-arm-eabi-gcc494:0:creativezenvboot:Creative ZEN V - Boot:bootloader-zenv.creative:1362:tools/configure --target=creativezenv --type=b && make zip
+arm-eabi-gcc494:0:creativezenvboot:Creative ZEN V - Boot:bootloader-zenv.creative:1362:tools/configure --target=creativezenv --type=b && make
 arm-eabi-gcc494:0:creativezenxfiboot:Creative ZEN X-Fi - Boot:bootloader-zenxfi.creative:1444:tools/configure --target=creativezenxfi --type=b && make
 arm-eabi-gcc494:0:creativezenmozaicboot:Creative ZEN Mozaic - Boot:bootloader-zenmozaic.creative:1386:tools/configure --target=creativezenmozaic --type=b && make
 arm-eabi-gcc494:0:creativezenxfistyleboot:Creative ZEN X-Fi Style - Boot:bootloader-zenxfistyle.creative:1409:tools/configure --target=creativezenxfistyle --type=b && make
