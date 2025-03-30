@@ -37,8 +37,8 @@ else
     # udpate local git repo
     (cd $ROCKBOX_GIT_DIR && git pull -q --stat )
 
-    (cd $ROCKBOX_GIT_DIR/tools && ./build-info.pl > build-info.new && \
-     mv build-info.new ${ROCKBOX_DL_DIR}/build-info.release)
+    # Release build-info
+    ${ROCKBOX_GIT_DIR}/tools/build-info.pl > build-info.new && mv build-info.new ${ROCKBOX_DL_DIR}/build-info.release
 
     # Cleanup.  Must happen AFTER git update
     perl cleanupdatadir.pl
