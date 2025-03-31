@@ -4,7 +4,7 @@ use lib '.';
 require "../rockbox.pm";
 require "table.pm";
 
-header("Rockbox Manual Install");
+header("Rockbox Manual Installation");
 
 print <<HEAD
 <p>
