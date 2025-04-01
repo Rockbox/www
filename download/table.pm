@@ -49,7 +49,7 @@ sub buildtable {
                 print "</tr><tr valign=\"top\">";
                 $col=1;
             }
-            printf("<td align='center'><small><img border=\"0\" src=\"http://www.rockbox.org%s\" alt=\"$name\"><p>$name<br><a href=\"$pack\" title=\"$name\"><p>Firmware</a>$mans</small>$obsolete</td>\n",
+            printf("<td><table><tr><td height='85px' align='center'><img border=\"0\" src=\"//www.rockbox.org%s\" alt=\"$name\"></td></tr><tr><td align='center'><small>$name<br><a href=\"$pack\" title=\"$name\"><p>Firmware</a>$mans</small>$obsolete</td></tr></table></td>\n",
                    playerpic($m));
         }
     }
