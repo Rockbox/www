@@ -2,6 +2,8 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<p><i>2025-04-01</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes400">Rockbox 4.0 is released</a>
+
 <p><i>2023-10-14</i>: Due to the ...erratic new management of twitter, use of the @rockboxcommits handle has been discontinued.
 
 <p><i>2021-08-30</i>: Mailing lists have moved to a new host.

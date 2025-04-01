@@ -1,7 +1,7 @@
 #!/bin/sh
 
 GITDIR="$ROCKBOX_GIT_DIR"
-LAST_RELEASE="v3.15-final"
+LAST_RELEASE="v4.0-final"
 
 # recent mails
 perl last20threads.pl 5 1 > threads_front.html
