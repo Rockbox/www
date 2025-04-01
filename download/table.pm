@@ -38,8 +38,8 @@ sub buildtable {
                 }
 
 		foreach my $v (&allvoices) {
-		  if (-f "../../download/release/$builds{$m}{release}/$voice-$builds{$m}{release}-$v.zip") {
-		    $mans .= "<br><a href=\"$basedir/$voice-$builds{$m}{release}-$v.zip\">Voice ($voices{$v}{short})</a>";
+		  if (-f "../../download/release/$builds{$m}{release}/voice-$voice-$builds{$m}{release}-$v.zip") {
+		    $mans .= "<br><a href=\"$basedir/voice-$voice-$builds{$m}{release}-$v.zip\">Voice ($voices{$v}{short})</a>";
                   }
 		}
 		$mans .= "$extra";
