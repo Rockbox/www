@@ -329,7 +329,7 @@ m68k-gcc494,latex:1:iriverh120htmlmanual:iriver H120 - HTML Manual:rockbox-manua
 m68k-gcc494,latex:1:iriverh300manual:iriver H320/340 - Manual:rockbox-manual.pdf:1422:tools/configure --target=iriverh300 --type=n && make MAKEFLAGS= manual
 m68k-gcc494,latex:1:iriverh300htmlmanual:iriver H320/340 - HTML Manual:rockbox-manual.zip:3674:tools/configure --target=iriverh300 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 m68k-gcc494,latex:1:mpiohd300manual:MPIO HD300 - Manual:rockbox-manual.pdf:1422:tools/configure --target=mpiohd300 --type=n && make MAKEFLAGS= manual
-m68k-gcc494,latex:1:mipohd300manual:MPIO HD300 - HTML Manual:rockbox-manual.zip:3674:tools/configure --target=mpiohd300 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+m68k-gcc494,latex:1:mpiohd300manual:MPIO HD300 - HTML Manual:rockbox-manual.zip:3674:tools/configure --target=mpiohd300 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 
 ####
 # CheckWPS builds
