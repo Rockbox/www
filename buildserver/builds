@@ -300,22 +300,36 @@ arm-eabi-gcc494,latex:1:ipodnano1gmanual:iPod Nano 1G - Manual:rockbox-manual.pd
 arm-eabi-gcc494,latex:1:ipodnano1ghtmlmanual:iPod Nano 1G - HTML Manual:rockbox-manual.zip:3934:tools/configure --target=ipodnano1g --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 arm-eabi-gcc494,latex:1:ipodnano2gmanual:iPod Nano 2G - Manual:rockbox-manual.pdf:1466:tools/configure --target=ipodnano2g --type=n && make MAKEFLAGS= manual
 arm-eabi-gcc494,latex:1:ipodnano2ghtmlmanual:iPod Nano 2G - HTML Manual:rockbox-manual.zip:3857:tools/configure --target=ipodnano2g --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+arm-eabi-gcc494,latex:1:iriverh10manual:iriver H10 - Manual:rockbox-manual.pdf:1422:tools/configure --target=iriverh10 --type=n && make MAKEFLAGS= manual
+arm-eabi-gcc494,latex:1:iriverh10htmlmanual:iriver H10 - HTML Manual:rockbox-manual.zip:3674:tools/configure --target=iriverh10 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+arm-eabi-gcc494,latex:1:iriverh10_5gbmanual:iriver H10 5GB - Manual:rockbox-manual.pdf:1422:tools/configure --target=iriverh10_5gb --type=n && make MAKEFLAGS= manual
+arm-eabi-gcc494,latex:1:iriverh10_5gbhtmlmanual:iriver H10 5GB - HTML Manual:rockbox-manual.zip:3674:tools/configure --target=iriverh10_5gb --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+arm-eabi-gcc494,latex:1:mrobe100manual:Olympus M-Robe 100 - Manual:rockbox-manual.pdf:1422:tools/configure --target=mrobe100 --type=n && make MAKEFLAGS= manual
+arm-eabi-gcc494,latex:1:mrobe100htmlmanual:Olympus M-Robe 100 - HTML Manual:rockbox-manual.zip:3674:tools/configure --target=mrobe100 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+arm-eabi-gcc494,latex:1:vibe500manual:Packard Bell Vibe 500 - Manual:rockbox-manual.pdf:1422:tools/configure --target=vibe500 --type=n && make MAKEFLAGS= manual
+arm-eabi-gcc494,latex:1:vibe500htmlmanual:Packard Bell 500 - HTML Manual:rockbox-manual.zip:3674:tools/configure --target=vibe500 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+arm-eabi-gcc494,latex:1:gogearsa9200manual:Philips GoGear SA9200 - Manual:rockbox-manual.pdf:1422:tools/configure --target=gogearsa9200 --type=n && make MAKEFLAGS= manual
+arm-eabi-gcc494,latex:1:gogearsa9200htmlmanual:Philips GoGear SA9200 - HTML Manual:rockbox-manual.zip:3674:tools/configure --target=gogearsa9200 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+arm-eabi-gcc494,latex:1:samsungyh820manual:Samsung YH-820 - Manual:rockbox-manual.pdf:1422:tools/configure --target=samsungyh820 --type=n && make MAKEFLAGS= manual
+arm-eabi-gcc494,latex:1:samsungyh820htmlmanual:Samsung YH-820 - HTML Manual:rockbox-manual.zip:3674:tools/configure --target=samsungyh820 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+arm-eabi-gcc494,latex:1:samsungyh920manual:Samsung YH-920 - Manual:rockbox-manual.pdf:1422:tools/configure --target=samsungyh920 --type=n && make MAKEFLAGS= manual
+arm-eabi-gcc494,latex:1:samsungyh920htmlmanual:Samsung YH-925 - HTML Manual:rockbox-manual.zip:3674:tools/configure --target=samsungyh920 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+arm-eabi-gcc494,latex:1:samsungyh920manual:Samsung YH-925 - Manual:rockbox-manual.pdf:1422:tools/configure --target=samsungyh925 --type=n && make MAKEFLAGS= manual
+arm-eabi-gcc494,latex:1:samsungyh920htmlmanual:Samsung YH-925 - HTML Manual:rockbox-manual.zip:3674:tools/configure --target=samsungyh925 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 mipsel-gcc494,latex:1:erosqnativemanual:AIGO EROS Q/K - Manual:rockbox-manual.pdf:1473:tools/configure --target=erosqnative --type=n && make MAKEFLAGS= manual
 mipsel-gcc494,latex:1:erosqnativehtmlmanual:AIGO EROS Q/K - HTML Manual:rockbox-manual.zip:3770:tools/configure --target=erosqnative --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 mipsel-gcc494,latex:1:fiiom3kmanual:FiiO M3K - Manual:rockbox-manual.pdf:1525:tools/configure --target=fiiom3k --type=n && make MAKEFLAGS= manual
 mipsel-gcc494,latex:1:fiiom3khtmlmanual:FiiO M3K - HTML Manual:rockbox-manual.zip:3843:tools/configure --target=fiiom3k --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 mipsel-rb-gcc494,latex:1:agptekrockermanual:Agptek Rocker - Manual:rockbox-manual.pdf:1422:tools/configure --target=agptekrocker --type=n && make MAKEFLAGS= manual
 mipsel-rb-gcc494,latex:1:agptekrockerhtmlmanual:Agptek Rocker - HTML Manual:rockbox-manual.zip:3674:tools/configure --target=agptekrocker --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
-arm-eabi-gcc494,latex:1:iriverh10manual:iriver H10 - Manual:rockbox-manual.pdf:1422:tools/configure --target=iriverh10 --type=n && make MAKEFLAGS= manual
-arm-eabi-gcc494,latex:1:iriverh10htmlmanual:iriver H10 - HTML Manual:rockbox-manual.zip:3674:tools/configure --target=iriverh10 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
-arm-eabi-gcc494,latex:1:iriverh10_5gbmanual:iriver H10 5GB - Manual:rockbox-manual.pdf:1422:tools/configure --target=iriverh10_5gb --type=n && make MAKEFLAGS= manual
-arm-eabi-gcc494,latex:1:iriverh10_5gbhtmlmanual:iriver H10 5GB - HTML Manual:rockbox-manual.zip:3674:tools/configure --target=iriverh10_5gb --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 m68k-gcc494,latex:1:iriverh100manual:iriver H100/115 - Manual:rockbox-manual.pdf:1422:tools/configure --target=iriverh100 --type=n && make MAKEFLAGS= manual
 m68k-gcc494,latex:1:iriverh100htmlmanual:iriver H100/115 - HTML Manual:rockbox-manual.zip:3674:tools/configure --target=iriverh100 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 m68k-gcc494,latex:1:iriverh120manual:iriver H120 - Manual:rockbox-manual.pdf:1444:tools/configure --target=iriverh120 --type=n && make MAKEFLAGS= manual
 m68k-gcc494,latex:1:iriverh120htmlmanual:iriver H120 - HTML Manual:rockbox-manual.zip:3882:tools/configure --target=iriverh120 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 m68k-gcc494,latex:1:iriverh300manual:iriver H320/340 - Manual:rockbox-manual.pdf:1422:tools/configure --target=iriverh300 --type=n && make MAKEFLAGS= manual
 m68k-gcc494,latex:1:iriverh300htmlmanual:iriver H320/340 - HTML Manual:rockbox-manual.zip:3674:tools/configure --target=iriverh300 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+m68k-gcc494,latex:1:mpiohd300manual:MPIO HD300 - Manual:rockbox-manual.pdf:1422:tools/configure --target=mpiohd300 --type=n && make MAKEFLAGS= manual
+m68k-gcc494,latex:1:mipohd300manual:MPIO HD300 - HTML Manual:rockbox-manual.zip:3674:tools/configure --target=mpiohd300 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 
 ####
 # CheckWPS builds
