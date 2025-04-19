@@ -168,8 +168,7 @@ sub kill_build {
 
                 unlink <"$rbconfig{uploaddir}/$cli-$id"*>;
                 delete $client{$cl}{btime}{$id};
-            }
-            else {
+            } else {
                 slog "Remove: build $id client $client{$cl}{client}";
                 dblog($cl, "dequeued", $id);
             }
@@ -223,8 +222,7 @@ sub readblockfile {
                         slog "Adding client block for $$cname. Reason: $blocked{$$cname}.";
                     }
                     $$cblocked = 1;
-                }
-                else {
+                } else {
                     if ($$cblocked) {
                         slog "Removing client block for $$cname";
                     }
@@ -359,8 +357,7 @@ sub HELLO {
 
         command $rh, "_HELLO error";
         $client{$fno}{'bad'}="HELLO failed";
-    }
-    else {
+    } else {
         my $user;
         if($auth =~ /([^:]*):(.*)/) {
             $user = $1;
@@ -417,8 +414,7 @@ sub HELLO {
             privmessage $fno, sprintf  "Hello $cli. Your build client has been temporarily blocked by the administrators due to: $client{$fno}{blocked}. $rbconfig{enablemsg}";
             $client{$fno}{bad} = "blocked";
             return;
-        }
-        else {
+        } else {
 #            my $sock = $client{$fno}{socket};
 #            my($port,$iaddr) = sockaddr_in($sock);
             slog "Joined: client $cli ver $version host $host arch $archlist speed $speed";
@@ -461,8 +457,7 @@ sub UPLOADING {
         # redo calculations.
         if (!$rs) {
             slog "$cli has speed $client{$cl}{roundspeed}";
-        }
-        else {
+        } else {
             dlog sprintf "$cli is running at $rs%% (speed %d)", $client{$cl}{roundspeed};
         }
         # reallocate for unexpectedly slow clients, not for fast
@@ -583,8 +578,7 @@ sub COMPLETED {
 	    my $dest = "$rbconfig{storedir}/rockbox-$id.$ext";
             if (rename("$base-$result", $dest)) {
 		slog "Moved $base-$result to $dest";
-	    }
-	    else {
+	    } else {
 		slog "Failed moving $base-$result to $dest: $!";
 	    }
         }
@@ -658,8 +652,7 @@ sub check_log
         }
 
         return "";
-    }
-    else {
+    } else {
         return "Missing log file";
     }
 }
@@ -673,8 +666,7 @@ sub db_submit
     if ($client) {
         $submit_update_sth->execute($client, $timeused, $ultime, $ulsize, $revision, $id) or
             slog "DBI: Can't execute statement: ". $submit_update_sth->errstr;
-    }
-    else {
+    } else {
         $submit_new_sth->execute($revision, $id) or
             slog "DBI: Can't execute statement: ". $submit_new_sth->errstr;
     }
@@ -706,8 +698,7 @@ sub parsecmd {
         if($protocmd{$func}) {
             &$func($rh, $rest);
             #dlog "$client{$rh}{client} said $rest";
-        }
-        else {
+        } else {
             chomp $cmdstr;
             if ($cmdstr =~ /([^\r]+)/) {
                 $cmdstr = $1;
@@ -871,8 +862,7 @@ sub startround {
 
     if ($totspeed) {
         bestfit_builds();
-    }
-    else {
+    } else {
         evenspread_builds();
     }
 
@@ -942,8 +932,7 @@ sub endround {
         my ($errors,$warnings) = $get_build_results_sth->fetchrow_array();
         if ($errors or $warnings) {
             message "Revision $buildround result: $errors errors $warnings warnings";
-        }
-        else {
+        } else {
             message "Revision $buildround result: All green";
         }
     }
@@ -1035,8 +1024,7 @@ sub client_gone {
         if ((scalar &build_clients) == 0) {
             slog "Ending round due to lack of clients";
             endround();
-        }
-        else {
+        } else {
             # disable targets that no client can build
             for my $b (@buildids) {
                 my $found = 0;
@@ -1258,8 +1246,7 @@ sub bestfit_builds
             # we know how fast the client usually is.
             # give it as much work as it can do
             $sort_order = \&bigbuilds;
-        }
-        else {
+        } else {
             # if we don't know how fast the client is,
             # give it something light and see how fast it is
             $sort_order = \&smallbuilds;
@@ -1405,8 +1392,7 @@ sub start_next_build($)
             if (!$builds{$id}{done}) {
                 if ($builds{$id}{handcount} == 0) {
                     dlog "$cli does unstarted $id";
-                }
-                else {
+                } else {
                     if (!$speculative) {
                         message "Speculative building started";
                         $speculative = 1;
@@ -1602,13 +1588,11 @@ while(not $alldone) {
             my $hostinfo = gethostbyaddr($peeraddr);
             if ($hostinfo) {
                 $client{$new->fileno}{'host'} = $hostinfo->name;
-            }
-            else {
+            } else {
                 $client{$new->fileno}{'host'} = $new->peerhost;
             }
             $client{$new->fileno}{'port'} = $new->peerport;
-        }
-        else {
+        } else {
             my $data;
             my $fileno = $rh->fileno;
             my $len = $rh->read($data, 512);
@@ -1621,23 +1605,20 @@ while(not $alldone) {
                     last if ($pos == -1);
                     if ($type eq 'commander') {
                         &control($rh, $$cmd);
-                    }
-                    else {
+                    } else {
                         &parsecmd($rh, $$cmd);
                         $type = $conn{$rh->fileno}{type};
                     }
                     $$cmd = substr($$cmd, $pos+1);
                 }
-            }
-            else {
+            } else {
                 if ($type eq 'commander') {
                     slog "Commander left";
                     delete $conn{$fileno};
                     $read_set->remove($rh);
                     $rh->close;
                     $commander=0;
-                }
-                else {
+                } else {
                     $client{$fileno}{fine} = 1;
 
                     if (not $client{$fileno}{'bad'}) {
@@ -1663,8 +1644,7 @@ while(not $alldone) {
             if ($rh) {
                 $read_set->remove($rh);
                 $rh->close;
-            }
-            else {
+            } else {
                 slog "!!! No rh to delete for client $cli";
             }
             delete $client{$cl};
