@@ -360,7 +360,6 @@ mipsel-gcc494,latex:1:xduoox3manual:xDuoo X3 - Manual:rockbox-manual.pdf:1525:to
 mipsel-gcc494,latex:1:xduoox3htmlmanual:xDuoo X3 - HTML Manual:rockbox-manual.zip:3843:tools/configure --target=xduoox3 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 mipsel-rb-gcc494,latex:1:agptekrockermanual:Agptek Rocker - Manual:rockbox-manual.pdf:1422:tools/configure --target=agptekrocker --type=n && make MAKEFLAGS= manual
 mipsel-rb-gcc494,latex:1:agptekrockerhtmlmanual:Agptek Rocker - HTML Manual:rockbox-manual.zip:3674:tools/configure --target=agptekrocker --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
-
 ####
 # CheckWPS builds
 sdl2:0:iriverh120wps:iriver H120 - Checkwps:checkwps.iriverh120:237:tools/configure --target=iriverh120 --type=c && make
