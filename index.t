@@ -107,9 +107,6 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <tr><td nowrap>2025-04-01</td><td><a href="//www.rockbox.org/wiki/ReleaseNotes400">Rockbox 4.0 is released!</a></td></tr>
 <tr><td nowrap>2024-07-18</td><td>Switched nightly voice generation over to the Piper TTS engine.</td></tr>
 <tr><td nowrap>2024-07-17</td><td>AGPTek Rocker, xDuoo X3ii and xDuoo X20 promoted to Stable.</td></tr>
-<tr><td nowrap>2023-10-14</td><td>Due to erratic new management, use of the @rockboxcommits twitter handle has been discontinued.</td></tr>
-<tr><td nowrap>2021-08-30</td><td>Mailing lists moved to new host. See the <a href="/mail/">mail</a> page for more info.</td></tr>
-<tr><td nowrap>2021-03-16</td><td>mitxela created an <a href="https://www.youtube.com/watch?v=Qw-VvGsYpSU">Ode to Rockbox</a> on YouTube.</td></tr>
 
 </table>
 <small><a href="history.html">Older news</a>
