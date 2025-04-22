@@ -1209,7 +1209,7 @@ sub bestfit_builds
     my $idealtime = int(($totwork / $totspeed) + 0.5);
     slog "Ideal time: $idealtime seconds";
 
-    my $margin = 5;
+    my $margin = 15;
 
   tryagain:
     my $totleft = 0;
