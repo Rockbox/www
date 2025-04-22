@@ -1292,7 +1292,7 @@ sub bestfit_builds
     for my $b (@buildids) {
         if (!$builds{$b}{assigned} and !$builds{$b}{done}) {
             # increase the margin and try again
-            $margin += 5;
+            $margin += 15;
             dlog "*** $b unassigned, trying again";
             #sleep 1;
             goto tryagain;
