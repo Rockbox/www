@@ -16,7 +16,7 @@ sub buildtable {
             my $mans;
             my $obsolete = "";
             if($m eq "source") {
-                $pack="$basedir/rockbox-$builds{$m}{release}.7z";
+                $pack="$basedir/rockbox-source-$builds{$m}{release}.7z";
             }
             elsif($m eq "fonts") {
                 $pack="$basedir/rockbox-fonts-$builds{$m}{release}.zip";
@@ -28,7 +28,7 @@ sub buildtable {
                    $obsolete = "<br><br><i>Retired - v$builds{$m}{release}</i>";
 		}
 	        my $extra = "<br><a href=\"$basedir/rockbox-fonts-$builds{$m}{release}.zip\">Fonts</a>";
-	        $extra .= "<br><a href=\"$basedir/rockbox-$builds{$m}{release}.7z\">Source</a>";
+	        $extra .= "<br><a href=\"$basedir/rockbox-source-$builds{$m}{release}.7z\">Source</a>";
 		$mans = "";
 		if (-f "../../download/release/$builds{$m}{release}/rockbox-$docs-$builds{$m}{release}.pdf") {
                   $mans .= "<br><a href=\"$basedir/rockbox-$docs-$builds{$m}{release}.pdf\">PDF Manual</a>";
