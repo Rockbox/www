@@ -69,6 +69,7 @@ Rockbox is a free replacement firmware for digital music players. It runs on a w
 <a href="/wiki/SonyNWZA10">NWZ-A10</a>,
 and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <li><b>Toshiba</b>: <a href="/wiki/GigabeatSPort">Gigabeat S</a>
+<li><b>iHIFI</b> 770, 770C, and 800</li>
 </ul>
 
 <h2>Unusable ports</h2>
@@ -77,9 +78,10 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <ul>
 <li><b>Creative</b>: Zen V</li>
 <li><b>Onda</b>: VX747, VX767 and VX777</li>
-<li><b>iHIFI</b> 760, 770, 770C, 800, and 960</li>
+<li><b>iHIFI</b> 760 and 960</li>
 <li><b>Google</b> Android (4.4 and older only)</li>
 <li><b>Rockchip</b> rk27xx (generic)</li>
+<li><b>Surfans</b> F28</li>
 </ul>
 
 <p>Click here for a <a href="/wiki/TargetStatus#New_Platforms_Currently_Under_Development">status summary of unstable and unusable ports</a>.
