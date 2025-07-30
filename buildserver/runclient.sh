@@ -31,6 +31,8 @@ do
     ####### Android
     # android-ndk10          : Android NDK 10e, eg iBasso dx50/dx90
     # android-ndk10sdk19     : Android NDK 10e and SDK+tools supporting API 19 (4.4/KitKat)
+    ####### Other
+    # funkey-sdk             : Funkey SDK (eg for FunKey handheld or Ambergic RG Nano)
 
     # CHANGEME:  This list includes native targets only.
     perl -s rbclient.pl -username= -password= -clientname= -buildroot= -archlist=m68k-gcc494,mipsel-gcc494,arm-eabi-gcc494 -buildmaster=buildmaster.rockbox.org -port=19999

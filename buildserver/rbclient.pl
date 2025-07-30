@@ -20,7 +20,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 81;
+my $revision = 82;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -32,6 +32,36 @@ sub tprint {
         close LOG;
     }
 }
+
+    my %compilers = (
+	# Hosted targets
+        "arm-rb-gcc950" => { "arm-rockbox-linux-gnueabi-gcc --version", "9.5.0" },
+        "mipsel-rb-gcc950" => { "mipsel-rockbox-linux-gnu-gcc --version", "9.5.0" },
+        "android-ndk10" => { "cat $ENV{ANDROID_NDK_PATH}/RELEASE.TXT", "r10" },
+        "android-ndk10sdk19" => { "cat $ENV{ANDROID_NDK_PATH}/RELEASE.TXT" => "r10",
+				      "$ENV{ANDROID_SDK_PATH}/tools/bin/avdmanager list target" => "API level: 19" },
+        "funkey-sdk" => { "$ENV{FUNKEY_SDK_PATH}/bin/arm-funkey-linux-musleabihf-gcc", "10.2.0" },
+
+        # Native targets
+        "mipsel-gcc950" => { "mipsel-elf-gcc --version", "9.5.0" },
+        "arm-eabi-gcc950" => { "arm-elf-eabi-gcc --version", "9.5.0" },
+        "m68k-gcc950" => { "m68k-elf-gcc --version", "9.5.0" },
+
+	# Obsolete toolchains
+        "arm-rb-gcc494" => { "arm-rockbox-linux-gnueabi-gcc --version", "4.9.4" },
+        "mipsel-rb-gcc494" => { "mipsel-rockbox-linux-gnu-gcc --version", "4.9.4" },
+        "mipsel-gcc494" => { "mipsel-elf-gcc --version", "4.9.4" },
+        "arm-eabi-gcc494" => { "arm-elf-eabi-gcc --version", "4.9.4" },
+        "m68k-gcc494" => { "m68k-elf-gcc --version", "4.9.4" },
+        "sdl" => {"sdl-config --version", ".*" },
+
+        # Special stuff
+        "sdl2" => {"sdl2-config --version", ".*" },
+        "latex" => { "pdflatex --version", "Live 202?" },
+        "qt5" => { "pkg-config Qt5Core --libs", "Qt5Core" },
+        "qt6" => { "pkg-config Qt6Core --libs", "Qt6Core" },
+        "dummy" => { "/bin/true", ".*" },
+        );
 
 # read -parameters
 our $username = $username;
@@ -65,6 +95,8 @@ chomp $os;
 our $config;
 &readconfig($config) if ($config);
 
+my $toolchains = join(",", sort(keys(%compilers)));
+
 unless ($username and $password and $archlist and $clientname) {
     print <<MOO
 Insufficient parameters. You must specify:
@@ -81,8 +113,8 @@ Insufficient parameters. You must specify:
   your toaster. Right?
 
 -archlist=[list,of,archs]
-  May include arm,m68k,sh,sdl,sdl2,mipsel and should be a comma-separated list with
-  no spaces
+  Must be comma-separated list with no spaces containing one or more of the
+  following:  $toolchains
 
 optional setting:
 
@@ -550,30 +582,7 @@ sub parsecmd
 sub testsystem
 {
     # this is still rockbox specific. change this to suit your project.
-
     # check compilers
-    my %compilers = (
-	# Hosted targets
-        "arm-rb-gcc494" => { "arm-rockbox-linux-gnueabi-gcc --version", "4.9.4" },
-        "mipsel-rb-gcc494" => { "mipsel-rockbox-linux-gnu-gcc --version", "4.9.4" },
-        "android-ndk10" => { "cat $ENV{ANDROID_NDK_PATH}/RELEASE.TXT", "r10" },
-        "android-ndk10sdk19" => { "cat $ENV{ANDROID_NDK_PATH}/RELEASE.TXT" => "r10",
-				      "$ENV{ANDROID_SDK_PATH}/tools/bin/avdmanager list target" => "API level: 19" },
-
-        # Native targets
-        "mipsel-gcc494" => { "mipsel-elf-gcc --version", "4.9.4" },
-        "arm-eabi-gcc494" => { "arm-elf-eabi-gcc --version", "4.9.4" },
-        "m68k-gcc494" => { "m68k-elf-gcc --version", "4.9.4" },
-
-        # Special stuff
-        "sdl" => {"sdl-config --version", ".*" },
-        "sdl2" => {"sdl2-config --version", ".*" },
-        "latex" => { "pdflatex --version", "Live 202?" },
-        "qt5" => { "pkg-config Qt5Core --libs", "Qt5Core" },
-        "qt6" => { "pkg-config Qt6Core --libs", "Qt6Core" },
-        "dummy" => { "/bin/true", ".*" },
-        );
-
     for (split ',', $archlist) {
         if (not exists $compilers{$_}){
             tprint "Error: You specified unknownarch $_.\n";
