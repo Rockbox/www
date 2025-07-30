@@ -228,13 +228,15 @@ mipsel-gcc494:0:shanlingq1boot:Shanling Q1 - Boot:bootloader.q1:1464:tools/confi
 mipsel-gcc494:0:erosqnativeboot:AIGO EROS Q/K (Native) v1/v2 - Boot:bootloader.erosq:1461:tools/configure --target=erosqnative --type=b && make
 mipsel-gcc494:0:erosqnativeboot_v3:AIGO EROS Q/K (Native) v2 - Boot:bootloader.erosq:1461:tools/configure --target=erosqnative --type=b && make
 mipsel-gcc494:0:erosqnativeboot_v4:AIGO EROS Q/K (Native) v4 - Boot:bootloader.erosq:1461:tools/configure --target=erosqnative --type=b && make
-# Android native targets
+####
+# Android and other funky targets
 android-ndk10sdk19:0:android480x800:Android 480x800:rockbox.apk:20835:tools/configure --target=android --type=n --lcdwidth=480 --lcdheight=800 && make apk
 #android-ndk10sdk19:0:android480x800mips:Android 480x800 - MIPS:rockbox.apk:22147:tools/configure --target=androidmips --type=n --lcdwidth=480 --lcdheight=800 && make apk
 #android-ndk10sdk19:0:android480x800x86:Android 480x800 - x86:rockbox.apk:22147:tools/configure --target=androidx86 --type=n --lcdwidth=480 --lcdheight=800 && make apk
 android-ndk10:1:ibassodx50:iBasso DX50:rockbox.zip:53589:tools/configure --target=ibassodx50 --type=n && make zip
 android-ndk10:1:ibassodx90:iBasso DX90:rockbox.zip:53517:tools/configure --target=ibassodx90 --type=n && make zip
-###
+funkey-sdk:1:rgnano:Anbergnic RG Nano:rockbox.opk:53589:tools/configure --target=rgnano --type=n && make opk
+####
 # ARM hosted targets
 arm-rb-gcc494:1:samsungypr0:Samsung YP-R0:rockbox.zip:57327:tools/configure --target=samsungypr0 --type=n && make zip
 arm-rb-gcc494:1:samsungypr1:Samsung YP-R1:rockbox.zip:21634:tools/configure --target=samsungypr1 --type=n && make zip
@@ -247,7 +249,7 @@ arm-rb-gcc494:1:sonynwza10:Sony NWZ-A10:rockbox.zip:52226:tools/configure --targ
 arm-rb-gcc494:1:sonynwa20:Sony NW-A20:rockbox.zip:52128:tools/configure --target=sonynwa20 --type=n && make zip
 arm-rb-gcc494:1:sonynwza860:Sony NWZ-A860:rockbox.zip:14862:tools/configure --target=sonynwza860 --type=n && make zip
 arm-rb-gcc494:1:sonynwzs750:Sony NWZ-S750:rockbox.zip:52137:tools/configure --target=sonynwzs750 --type=n && make zip
-###
+####
 # ARM hosted bootloaders
 arm-rb-gcc494:0:sonynwze350boot:Sony NWZ-E350 - Boot:bootloader-nwze350.sony:864:tools/configure --target=sonynwze350 --type=b && make
 arm-rb-gcc494:0:sonynwze450boot:Sony NWZ-E450 - Boot:bootloader-nwze450.sony:867:tools/configure --target=sonynwze450 --type=b && make
@@ -258,21 +260,21 @@ arm-rb-gcc494:0:sonynwza10boot:Sony NWZ-A10 - Boot:bootloader-nwza10.sony:875:to
 arm-rb-gcc494:0:sonynwa20boot:Sony NW-A20 - Boot:bootloader-nwa20.sony:877:tools/configure --target=sonynwa20 --type=b && make
 arm-rb-gcc494:0:sonynwza860boot:Sony NWZ-A860 - Boot:bootloader-nwza860.sony:890:tools/configure --target=sonynwza860 --type=b && make
 arm-rb-gcc494:0:sonynwzs750boot:Sony NWZ-S750 - Boot:bootloader-nwzs750.sony:862:tools/configure --target=sonynwzs750 --type=b && make
-###
+####
 # MIPS hosted targets
 mipsel-rb-gcc494:1:agptekrocker:Agptek Rocker:rockbox.zip:56403:tools/configure --target=agptekrocker --type=n && make zip
 mipsel-rb-gcc494:1:xduoox3ii:xDuoo X3ii:rockbox.zip:57651:tools/configure --target=xduoox3ii --type=n && make zip
 mipsel-rb-gcc494:1:xduoox20:xDuoo X20:rockbox.zip:57694:tools/configure --target=xduoox20 --type=n && make zip
 mipsel-rb-gcc494:1:fiiom3klinux:FiiO M3K (Linux):rockbox.zip:56383:tools/configure --target=fiiom3klinux --type=n && make zip
 mipsel-rb-gcc494:1:aigoerosq:AIGO EROS Q/K:rockbox.zip:58135:tools/configure --target=aigoerosq --type=n && make zip
-###
+####
 # MIPS hosted bootloaders
 mipsel-rb-gcc494:0:agptekrockerboot:Agptek Rocker - Boot:bootloader.rocker:1030:tools/configure --target=agptekrocker --type=b && make
 mipsel-rb-gcc494:0:xduoox3iiboot:xDuoo X3ii - Boot:bootloader.x3ii:1140:tools/configure --target=xduoox3ii --type=b && make
 mipsel-rb-gcc494:0:xduoox20boot:xDuoo X20 - Boot:bootloader.x20:1136:tools/configure --target=xduoox20 --type=b && make
 mipsel-rb-gcc494:0:fiiom3klinuxboot:FiiO M3K (Linux) - Boot:bootloader.m3k:1029:tools/configure --target=fiiom3klinux --type=b && make
 mipsel-rb-gcc494:0:aigoerosqboot:AIGO Eros Q/K - Boot:bootloader.erosq:1150:tools/configure --target=aigoerosq --type=b && make
-###
+####
 # Manuals
 m68k-gcc494,latex:1:iaudiox5manual:iAudio X5 - Manual:rockbox-manual.pdf:1493:tools/configure --target=iaudiox5 --type=n && make MAKEFLAGS= manual
 m68k-gcc494,latex:1:iaudiox5htmlmanual:iAudio X5 - HTML Manual:rockbox-manual.zip:4026:tools/configure --target=iaudiox5 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
@@ -425,6 +427,7 @@ sdl2:0:fiiom3linuxkwps:FiiO M3K (Linux) - Checkwps:checkwps.fiiom3klinux:233:too
 sdl2:0:aigoerosqwps:AIGO EROS Q/K - Checkwps:checkwps.aigoerosq:233:tools/configure --target=aigoerosq --type=c && make
 sdl2:0:fiiom3kwps:FiiO M3K - Checkwps:checkwps.fiiom3k:238:tools/configure --target=fiiom3k --type=c && make
 sdl2:0:shanlingq1wps:Shanling Q1 - Checkwps:checkwps.shanlingq1:241:tools/configure --target=shanlingq1 --type=c && make
+sdl2:0:rgnanowps:Anbergnic RG Nano - Checkwps:checkwps.rgnano:241:tools/configure --target=rgnano --type=c && make
 ###
 # Database targets
 sdl2:0:iriverh300db:iriver H300 - Database:database.iriverh300:1118:tools/configure --target=iriverh300 --type=d && make
