@@ -2,6 +2,8 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<p><i>2025-07-29</i>: An <a href="https://www.reddit.com/r/innioasis/comments/1k4ilm1/innioasis_y1_update_guide">unofficial port</a> to the <a href="https://www.innioasis.com/products/y1">Innioasis Y1</a> is now available!
+
 <p><i>2025-04-01</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes400">Rockbox 4.0 is released</a>
 
 <p><i>2024-07-18</i>: Switched nightly voice generation over to the Piper TTS engine.
