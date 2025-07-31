@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 use POSIX 'strftime';
+use feature 'fc';
+
 require "./rbmaster.pm";
 
 $ENV{'TZ'} = "UTC";
@@ -103,7 +105,7 @@ print "<table class=\"buildstatus\" cellspacing=\"1\" cellpadding=\"0\"><tr>";
 print "<th>revision</th><th>timestamp</th>";
 print "<th>score</th>";
 print "<th>btime</th>";
-foreach $t (sort {$builds{$a}{sortkey} cmp $builds{$b}{sortkey}} keys %alltypes) {
+foreach $t (sort {fc($builds{$a}{sortkey}) cmp fc($builds{$b}{sortkey})} keys %alltypes) {
     my ($a1, $a2);
     my $name;
     
@@ -193,7 +195,7 @@ for my $rev (sort {$round{$b}{time} <=> $round{$a}{time}} keys %round) {
         push @tds, "<td class=buildok style='padding: 5px' rowspan=20>All $bcount builds are OK</td>";
     }
 
-    for my $type (sort {$builds{$a}{sortkey} cmp $builds{$b}{sortkey}} keys %alltypes) {
+    for my $type (sort {fc($builds{$a}{sortkey}) cmp fc($builds{$b}{sortkey})} keys %alltypes) {
 
         if (not defined $compiles{$rev}{$type}{client}) {
             push @tds, "<td>&nbsp;</td>\n";

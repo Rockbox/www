@@ -1,6 +1,8 @@
 #!/usr/bin/perl
 require "./rbmaster.pm";
 
+use feature 'fc';
+
 $ENV{'TZ'} = "UTC";
 
 my $rounds = 20;
@@ -10,6 +12,7 @@ my %compiles;
 my %lines;
 my %deltas1;
 my %deltas2;
+my $mode;
 
 if (defined($ARGV[0])) {
     $mode = 'bin';
@@ -79,7 +82,7 @@ for (my $i = 0; $i < $rounds ; $i++) {
     my $builds2 = 0;
     my $rev = $revisions[$i];
 
-    foreach my $id (sort(keys(%targets))) {
+    foreach my $id (sort { fc($builds{$a}{name}) cmp fc($builds{$b}{name}) } keys(%targets)) {
 	my $lastrev = 0;
 	if (!defined($compiles{$rev}{$id})) {
 	    # Build did not complete
@@ -175,7 +178,7 @@ MOO
 ;
 print "<table class=\"buildstatus\" cellspacing=\"1\" cellpadding=\"2\">\n";
 print "<tr><th>Revision</th>\n";
-foreach my $t (sort(keys(%targets))) {
+foreach my $t (sort { fc($builds{$a}{name}) cmp fc($builds{$b}{name}) } keys(%targets)) {
     my $a1 = "";
     my $a2 = "";
     my $name = "";
