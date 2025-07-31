@@ -47,15 +47,16 @@ Rockbox is a free replacement firmware for digital music players. It runs on a w
 <p>Rockbox runs on these players, but is incomplete, less usable or has problems that limit it to advanced users:
 
 <ul>
-<li><b>Creative</b>: <a href="/wiki/CreativeZENPort">Zen</a> and <a href="/wiki/CreativeZENXFi2Port">Zen X-Fi 2</a>
-<li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a>
-<li><b>HiFi E.T</b>: <a href="/wiki/HifietMAPort">MA9</a>, <a href="/wiki/HifietMAPort">MA8</a>
+<li><b>Anbernic</b>: RG Nano</li>
+<li><b>Creative</b>: <a href="/wiki/CreativeZENPort">Zen</a> and <a href="/wiki/CreativeZENXFi2Port">Zen X-Fi 2</a></li>
+<li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a></li>
+<li><b>HiFi E.T</b>: <a href="/wiki/HifietMAPort">MA9</a>, <a href="/wiki/HifietMAPort">MA8</a></li>
 <li><b>HiFiMAN</b>: <a href="/wiki/HifimanPort">HM-601</a>, <a href="/wiki/HifimanPort">HM-602</a>, <a href="/wiki/HifimanPort">HM-603</a>, <a href="/wiki/HifimanPort">HM-801</a></li>
-<li><b>iBasso</b>: <a href="/wiki/IBassoDXPort">DX50</a>, <a href="/wiki/IBassoDXPort">DX90</a>
-<li><b>MPIO</b>: <a href="/wiki/MPIOHD200Port">HD200</a>
-<li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a>
-<li><b>Samsung</b>: <a href="/wiki/SamsungYPR0">YP-R0</a>, <a href="/wiki/SamsungYPR1">YP-R1</a>
-<li><b>SanDisk</b>: <a href="/wiki/SansaConnect">Sansa Connect</a>
+<li><b>iBasso</b>: <a href="/wiki/IBassoDXPort">DX50</a>, <a href="/wiki/IBassoDXPort">DX90</a></li>
+<li><b>MPIO</b>: <a href="/wiki/MPIOHD200Port">HD200</a></li>
+<li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a></li>
+<li><b>Samsung</b>: <a href="/wiki/SamsungYPR0">YP-R0</a>, <a href="/wiki/SamsungYPR1">YP-R1</a></li>
+<li><b>SanDisk</b>: <a href="/wiki/SansaConnect">Sansa Connect</a></li>
 <li><b>Sony</b>:
 <a href="/wiki/SonyNWZE350">NWZ-E350</a>,
 <a href="/wiki/SonyNWZE360Port">NWZ-E360</a>,
@@ -67,8 +68,8 @@ Rockbox is a free replacement firmware for digital music players. It runs on a w
 <a href="/wiki/SonyNWZE580">NWZ-E580</a>,
 <a href="/wiki/SonyNWZA860">NWZ-A860</a>,
 <a href="/wiki/SonyNWZA10">NWZ-A10</a>,
-and <a href="/wiki/SonyNWA20">NW-A20</a> series.
-<li><b>Toshiba</b>: <a href="/wiki/GigabeatSPort">Gigabeat S</a>
+and <a href="/wiki/SonyNWA20">NW-A20</a> series.</li>
+<li><b>Toshiba</b>: <a href="/wiki/GigabeatSPort">Gigabeat S</a></li>
 <li><b>iHIFI</b>: 770, 770C, and 800</li>
 </ul>
 
@@ -106,6 +107,7 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
+<tr><td nowrap>2025-07-30</td><td>An "unstable" port to the <a href="https://anbernic.com/products/rg-nano">Anbernic RG Nano</a> is available!</td></tr>
 <tr><td nowrap>2025-07-29</td><td>An <a href="https://www.reddit.com/r/innioasis/comments/1k4ilm1/innioasis_y1_update_guide">unofficial port</a> to the <a href="https://www.innioasis.com/products/y1">Innioasis Y1</a> is now available!</td></tr>
 <tr><td nowrap>2025-04-01</td><td><a href="//www.rockbox.org/wiki/ReleaseNotes400">Rockbox 4.0 is released!</a></td></tr>
 <tr><td nowrap>2024-07-18</td><td>Switched nightly voice generation over to the Piper TTS engine.</td></tr>
