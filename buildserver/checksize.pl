@@ -12,7 +12,7 @@ my $sth = $db->prepare("UPDATE builds SET ramsize=?,binsize=? WHERE revision=? a
     warn "DBI: Can't prepare statement: ". $db->errstr;
 
 if (-f $zip) {
-    if (open(Z, "unzip -p $zip .rockbox/rockbox-info.txt|")) {
+    if (open(Z, "unzip -p $zip .rockbox/rockbox-info.txt rockbox-info.txt|")) {
         while(<Z>) {
             if(/^Actual size: (\d+)/i) {
                 $bytes = $1;
