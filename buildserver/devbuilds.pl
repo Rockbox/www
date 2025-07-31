@@ -14,7 +14,7 @@ sub buildtable {
             my $name= $builds{$m}{name},
             my $version = "";
             my $rev="broken?";
-	    my @ver = `unzip -p data/rockbox-$m.zip .rockbox/rockbox-info.txt`;
+	    my @ver = `unzip -p data/rockbox-$m.zip .rockbox/rockbox-info.txt rockbox-info.txt`;
 	    $version = (grep /^Version/, @ver)[0];
 	    chomp $version;
 	    if($version =~ /^Version: *(\w+)/) {
