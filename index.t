@@ -108,7 +108,7 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.</li>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
 <tr><td nowrap>2025-07-30</td><td>An "unstable" port to the <a href="https://anbernic.com/products/rg-nano">Anbernic RG Nano</a> is available!</td></tr>
-<tr><td nowrap>2025-07-29</td><td>An <a href="https://www.reddit.com/r/innioasis/comments/1k4ilm1/innioasis_y1_update_guide">unofficial port</a> to the <a href="https://www.innioasis.com/products/y1">Innioasis Y1</a> is now available!</td></tr>
+<tr><td nowrap>2025-07-29</td><td>An <a href="https://www.reddit.com/r/innioasis/comments/1mdrsre/y1_rockbox_installation_guide_using_spflashtool/">unofficial port</a> to the <a href="https://www.innioasis.com/products/y1">Innioasis Y1</a> is now available!</td></tr>
 <tr><td nowrap>2025-04-01</td><td><a href="//www.rockbox.org/wiki/ReleaseNotes400">Rockbox 4.0 is released!</a></td></tr>
 <tr><td nowrap>2024-07-18</td><td>Switched nightly voice generation over to the Piper TTS engine.</td></tr>
 <tr><td nowrap>2024-07-17</td><td>AGPTek Rocker, xDuoo X3ii and xDuoo X20 promoted to Stable.</td></tr>
