@@ -25,11 +25,11 @@ while (<STDIN>) {
     my @tmp = split(/&&/,$build);
     my $conf = $tmp[0] . " --no-ccache ";
 
-    $build = $tmp[2] . " -j$jobs ";
+    $build = $tmp[1] . " -j$jobs ";
 
     $build =~ s/make zip/make/;  # Leave out the zip
 
-    system("$conf > /dev/null");
+    system("../$conf > /dev/null");
     system("make clean > /dev/null");
     my $score = `(/usr/bin/time -f"%U+%S" $build >/dev/null) 2>&1 | bc -l` * 100;
     system("make clean > /dev/null");

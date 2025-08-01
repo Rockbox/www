@@ -235,7 +235,7 @@ android-ndk10sdk19:0:android480x800:Android 480x800:rockbox.apk:20835:tools/conf
 #android-ndk10sdk19:0:android480x800x86:Android 480x800 - x86:rockbox.apk:22147:tools/configure --target=androidx86 --type=n --lcdwidth=480 --lcdheight=800 && make apk
 android-ndk10:1:ibassodx50:iBasso DX50:rockbox.zip:53589:tools/configure --target=ibassodx50 --type=n && make zip
 android-ndk10:1:ibassodx90:iBasso DX90:rockbox.zip:53517:tools/configure --target=ibassodx90 --type=n && make zip
-funkey-sdk:1:rgnano:Anbergnic RG Nano:rockbox-opk.zip:53589:tools/configure --target=rgnano --type=n && make opk-zip
+funkey-sdk:1:rgnano:Anbergnic RG Nano:rockbox-opk.zip:52136:tools/configure --target=rgnano --type=n && make opk-zip
 ####
 # ARM hosted targets
 arm-rb-gcc494:1:samsungypr0:Samsung YP-R0:rockbox.zip:57327:tools/configure --target=samsungypr0 --type=n && make zip
@@ -267,7 +267,7 @@ mipsel-rb-gcc494:1:xduoox3ii:xDuoo X3ii:rockbox.zip:57651:tools/configure --targ
 mipsel-rb-gcc494:1:xduoox20:xDuoo X20:rockbox.zip:57694:tools/configure --target=xduoox20 --type=n && make zip
 mipsel-rb-gcc494:1:fiiom3klinux:FiiO M3K (Linux):rockbox.zip:56383:tools/configure --target=fiiom3klinux --type=n && make zip
 mipsel-rb-gcc494:1:aigoerosq:AIGO EROS Q/K:rockbox.zip:58135:tools/configure --target=aigoerosq --type=n && make zip
-mipsel-rb-gcc494:1:surfansf28:Surfans F28:rockbox.zip:28135:tools/configure --target=surfansf28 --type=n && make zip
+mipsel-rb-gcc494:1:surfansf28:Surfans F28:rockbox.zip:17629:tools/configure --target=surfansf28 --type=n && make zip
 ####
 # MIPS hosted bootloaders
 mipsel-rb-gcc494:0:agptekrockerboot:Agptek Rocker - Boot:bootloader.rocker:1030:tools/configure --target=agptekrocker --type=b && make
@@ -275,7 +275,7 @@ mipsel-rb-gcc494:0:xduoox3iiboot:xDuoo X3ii - Boot:bootloader.x3ii:1140:tools/co
 mipsel-rb-gcc494:0:xduoox20boot:xDuoo X20 - Boot:bootloader.x20:1136:tools/configure --target=xduoox20 --type=b && make
 mipsel-rb-gcc494:0:fiiom3klinuxboot:FiiO M3K (Linux) - Boot:bootloader.m3k:1029:tools/configure --target=fiiom3klinux --type=b && make
 mipsel-rb-gcc494:0:aigoerosqboot:AIGO Eros Q/K - Boot:bootloader.erosq:1150:tools/configure --target=aigoerosq --type=b && make
-mipsel-rb-gcc494:0:surfansf28boot:Surfans F28 - Boot:bootloader.f28:1150:tools/configure --target=surfansf28 --type=b && make
+mipsel-rb-gcc494:0:surfansf28boot:Surfans F28 - Boot:bootloader.f28:1164:tools/configure --target=surfansf28 --type=b && make
 ####
 # Manuals
 m68k-gcc494,latex:1:iaudiox5manual:iAudio X5 - Manual:rockbox-manual.pdf:1493:tools/configure --target=iaudiox5 --type=n && make MAKEFLAGS= manual
@@ -427,10 +427,10 @@ sdl2:0:xduoox3iiwps:Xduoo X3ii - Checkwps:checkwps.xduoox3ii:233:tools/configure
 sdl2:0:xduoox20wps:Xduoo X20 - Checkwps:checkwps.xduoox20:236:tools/configure --target=xduoox20 --type=c && make
 sdl2:0:fiiom3linuxkwps:FiiO M3K (Linux) - Checkwps:checkwps.fiiom3klinux:233:tools/configure --target=fiiom3klinux --type=c && make
 sdl2:0:aigoerosqwps:AIGO EROS Q/K - Checkwps:checkwps.aigoerosq:233:tools/configure --target=aigoerosq --type=c && make
-sdl2:0:surfansf28wps:Surfans F28 - Checkwps:checkwps.surfansf28:233:tools/configure --target=surfansf28 --type=c && make
+sdl2:0:surfansf28wps:Surfans F28 - Checkwps:checkwps.surfansf28:246:tools/configure --target=surfansf28 --type=c && make
 sdl2:0:fiiom3kwps:FiiO M3K - Checkwps:checkwps.fiiom3k:238:tools/configure --target=fiiom3k --type=c && make
 sdl2:0:shanlingq1wps:Shanling Q1 - Checkwps:checkwps.shanlingq1:241:tools/configure --target=shanlingq1 --type=c && make
-sdl2,funkey-sdk:0:rgnanowps:Anbergnic RG Nano - Checkwps:checkwps.rgnano:241:tools/configure --target=rgnano --type=c && make
+sdl2,funkey-sdk:0:rgnanowps:Anbergnic RG Nano - Checkwps:checkwps.rgnano:245:tools/configure --target=rgnano --type=c && make
 ###
 # Database targets
 sdl2:0:iriverh300db:iriver H300 - Database:database.iriverh300:1118:tools/configure --target=iriverh300 --type=d && make
