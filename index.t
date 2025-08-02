@@ -47,7 +47,7 @@ Rockbox is a free replacement firmware for digital music players. It runs on a w
 <p>Rockbox runs on these players, but is incomplete, less usable or has problems that limit it to advanced users:
 
 <ul>
-<li><b>Anbernic</b>: RG Nano</li>
+<li><b>Anbernic</b>: <a href="/wiki/AnbernicRGNanoPort">RG Nano</a></li>
 <li><b>Creative</b>: <a href="/wiki/CreativeZENPort">Zen</a> and <a href="/wiki/CreativeZENXFi2Port">Zen X-Fi 2</a></li>
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a></li>
 <li><b>HiFi E.T</b>: <a href="/wiki/HifietMAPort">MA9</a>, <a href="/wiki/HifietMAPort">MA8</a></li>
