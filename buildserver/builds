@@ -235,7 +235,7 @@ android-ndk10sdk19:0:android480x800:Android 480x800:rockbox.apk:20835:tools/conf
 #android-ndk10sdk19:0:android480x800x86:Android 480x800 - x86:rockbox.apk:22147:tools/configure --target=androidx86 --type=n --lcdwidth=480 --lcdheight=800 && make apk
 android-ndk10:1:ibassodx50:iBasso DX50:rockbox.zip:53589:tools/configure --target=ibassodx50 --type=n && make zip
 android-ndk10:1:ibassodx90:iBasso DX90:rockbox.zip:53517:tools/configure --target=ibassodx90 --type=n && make zip
-funkey-sdk:1:rgnano:Anbergnic RG Nano:rockbox-opk.zip:52136:tools/configure --target=rgnano --type=n && make opk-zip
+funkey-sdk:1:rgnano:Anbernic RG Nano:rockbox-opk.zip:52136:tools/configure --target=rgnano --type=n && make opk-zip
 ####
 # ARM hosted targets
 arm-rb-gcc494:1:samsungypr0:Samsung YP-R0:rockbox.zip:57327:tools/configure --target=samsungypr0 --type=n && make zip
@@ -364,8 +364,8 @@ mipsel-gcc494,latex:1:xduoox3manual:xDuoo X3 - Manual:rockbox-manual.pdf:1525:to
 mipsel-gcc494,latex:1:xduoox3htmlmanual:xDuoo X3 - HTML Manual:rockbox-manual.zip:3843:tools/configure --target=xduoox3 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 mipsel-rb-gcc494,latex:1:agptekrockermanual:Agptek Rocker - Manual:rockbox-manual.pdf:1422:tools/configure --target=agptekrocker --type=n && make MAKEFLAGS= manual
 mipsel-rb-gcc494,latex:1:agptekrockerhtmlmanual:Agptek Rocker - HTML Manual:rockbox-manual.zip:3674:tools/configure --target=agptekrocker --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
-funkey-sdk,latex:1:rgnanomanual:Anbergnic RG Nano - Manual :rockbox-manual.pdf:3674:tools/configure --target=rgnano --type=n && make MAKEFLAGS= manual
-funkey-sdk,latex:1:rgnanohtmlmanual:Anbergnic RG Nano - HTML Manual :rockbox-manual.zip:3674:tools/configure --target=rgnano --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+funkey-sdk,latex:1:rgnanomanual:Anbernic RG Nano - Manual :rockbox-manual.pdf:3674:tools/configure --target=rgnano --type=n && make MAKEFLAGS= manual
+funkey-sdk,latex:1:rgnanohtmlmanual:Anbernic RG Nano - HTML Manual :rockbox-manual.zip:3674:tools/configure --target=rgnano --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 ####
 # CheckWPS builds
 sdl2:0:iriverh120wps:iriver H120 - Checkwps:checkwps.iriverh120:237:tools/configure --target=iriverh120 --type=c && make
@@ -432,7 +432,7 @@ sdl2:0:aigoerosqwps:AIGO EROS Q/K - Checkwps:checkwps.aigoerosq:233:tools/config
 sdl2:0:surfansf28wps:Surfans F28 - Checkwps:checkwps.surfansf28:246:tools/configure --target=surfansf28 --type=c && make
 sdl2:0:fiiom3kwps:FiiO M3K - Checkwps:checkwps.fiiom3k:238:tools/configure --target=fiiom3k --type=c && make
 sdl2:0:shanlingq1wps:Shanling Q1 - Checkwps:checkwps.shanlingq1:241:tools/configure --target=shanlingq1 --type=c && make
-sdl2,funkey-sdk:0:rgnanowps:Anbergnic RG Nano - Checkwps:checkwps.rgnano:245:tools/configure --target=rgnano --type=c && make
+sdl2,funkey-sdk:0:rgnanowps:Anbernic RG Nano - Checkwps:checkwps.rgnano:245:tools/configure --target=rgnano --type=c && make
 ###
 # Database targets
 sdl2:0:iriverh300db:iriver H300 - Database:database.iriverh300:1118:tools/configure --target=iriverh300 --type=d && make
