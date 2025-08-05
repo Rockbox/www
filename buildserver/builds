@@ -70,6 +70,7 @@ sdl2:0:ihifi800sim:IHIFI 800 - Simulator:rockboxui:56203:tools/configure --targe
 sdl2:0:samsungypr0sim:Samsung YP-R0 - Simulator:rockboxui:62221:tools/configure --target=samsungypr0 --type=s && make
 #sdl2:0:samsungypr1sim:Samsung YP-R1 - Simulator:rockboxui:118270:tools/configure --target=samsungypr1 --type=s && make
 sdl2:0:fiiom3ksim:FiiO M3K - Simulator:rockboxui:57722:tools/configure --target=fiiom3k --type=s && make
+sdk2,funkey-sdk:0:rgnanosim:Anbernic RG Nano - Simulator:rockboxuip:52136:tools/configure --target=rgnano --type=s && make
 ####
 # m68k-based native targets
 m68k-gcc494:1:iriverh100:iriver H100:rockbox.zip:27455:tools/configure --target=iriverh100 --type=n && make zip
