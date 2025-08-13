@@ -25,3 +25,4 @@ Disallow: /wiki/bin/viewfile
 Disallow: /wiki/System
 Disallow: /wiki/pub/System
 Disallow: /tracker/
+Disallow: /realwiki/
