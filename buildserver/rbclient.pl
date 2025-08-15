@@ -20,7 +20,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 83;
+my $revision = 84;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -35,17 +35,17 @@ sub tprint {
 
     my %compilers = (
 	# Hosted targets
-        "arm-rb-gcc950" => { "arm-rockbox-linux-gnueabi-gcc --version", "9.5.0" },
-        "mipsel-rb-gcc950" => { "mipsel-rockbox-linux-gnu-gcc --version", "9.5.0" },
+        "arm-rb-gcc1050" => { "arm-rockbox-linux-gnueabi-gcc --version", "10.5.0" },
+        "mipsel-rb-gcc1050" => { "mipsel-rockbox-linux-gnu-gcc --version", "10.5.0" },
         "android-ndk10" => { "cat $ENV{ANDROID_NDK_PATH}/RELEASE.TXT", "r10" },
         "android-ndk10sdk19" => { "cat $ENV{ANDROID_NDK_PATH}/RELEASE.TXT" => "r10",
 				      "$ENV{ANDROID_SDK_PATH}/tools/bin/avdmanager list target" => "API level: 19" },
         "funkey-sdk" => { "$ENV{FUNKEY_SDK_PATH}/bin/arm-funkey-linux-musleabihf-gcc --version", "10.2.0" },
 
         # Native targets
-        "mipsel-gcc950" => { "mipsel-elf-gcc --version", "9.5.0" },
-        "arm-eabi-gcc950" => { "arm-elf-eabi-gcc --version", "9.5.0" },
-        "m68k-gcc950" => { "m68k-elf-gcc --version", "9.5.0" },
+        "mipsel-gcc1050" => { "mipsel-elf-gcc --version", "10.5.0" },
+        "arm-eabi-gcc1050" => { "arm-elf-eabi-gcc --version", "10.5.0" },
+        "m68k-gcc1050" => { "m68k-elf-gcc --version", "10.5.0" },
 
 	# Obsolete toolchains
         "arm-rb-gcc494" => { "arm-rockbox-linux-gnueabi-gcc --version", "4.9.4" },
