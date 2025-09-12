@@ -53,7 +53,7 @@ sub getdata {
     if ($rows) {
         while (my ($time,$rev,$id,$ramsize,$binsize) = $sth->fetchrow_array()) {
 	    $revs{$rev} = $time;
-	    if ($id !~ /manual/) {
+	    if ($id !~ /manual$/ && $id !~ /sim$/ && $id !~ /wps$/ && $id !~ /boot$/ && $id !~ /db$/ ) {
 		$targets{$id} = 1;
 	    }
             $compiles{$rev}{$id}{ram} = $ramsize;
@@ -202,7 +202,7 @@ for (my $i = 0; $i < $rounds ; $i++) {
     my $shortrev = substr($rev, 0, 10);
     print "<td nowrap><a class=\"bstamp\" href=\"//git.rockbox.org/cgit/rockbox.git/commit/?id=$rev\">$shortrev</a></td>\n";
 
-    foreach my $id (sort(keys(%targets))) {
+    foreach my $id (sort { fc($builds{$a}{name}) cmp fc($builds{$b}{name}) } keys(%targets)) {
 	if ($mode eq 'bin') {
 	    print "$compiles{$rev}{$id}{text2}\n";
 	} else {
