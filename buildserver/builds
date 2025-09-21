@@ -227,8 +227,8 @@ mipsel-gcc494:0:xduoox3boot:Xduoo X3 - Boot:bootloader-x3.bin:1184:tools/configu
 mipsel-gcc494:0:fiiom3kboot:FiiO M3K - Boot:bootloader.m3k:1464:tools/configure --target=fiiom3k --type=b && make
 mipsel-gcc494:0:shanlingq1boot:Shanling Q1 - Boot:bootloader.q1:1464:tools/configure --target=shanlingq1 --type=b && make
 mipsel-gcc494:0:erosqnativeboot:AIGO EROS Q/K (Native) v1/v2 - Boot:bootloader.erosq:1461:tools/configure --target=erosqnative --type=b && make
-mipsel-gcc494:0:erosqnativeboot_v3:AIGO EROS Q/K (Native) v2 - Boot:bootloader.erosq:1461:tools/configure --target=erosqnative --type=b && make
-mipsel-gcc494:0:erosqnativeboot_v4:AIGO EROS Q/K (Native) v4 - Boot:bootloader.erosq:1461:tools/configure --target=erosqnative --type=b && make
+mipsel-gcc494:0:erosqnativeboot_v3:AIGO EROS Q/K (Native) v2 - Boot:bootloader.erosq:1461:tools/configure --target=erosqnative_v3 --type=b && make
+mipsel-gcc494:0:erosqnativeboot_v4:AIGO EROS Q/K (Native) v4 - Boot:bootloader.erosq:1461:tools/configure --target=erosqnative_v4 --type=b && make
 ####
 # Android and other funky targets
 android-ndk10sdk19:0:android480x800:Android 480x800:rockbox.apk:20835:tools/configure --target=android --type=n --lcdwidth=480 --lcdheight=800 && make apk
