@@ -13,13 +13,13 @@ do
     ############### Possible values for archlist are:
 
     ####### Native targets
-    # m68k-gcc494            : m68k-based players
-    # arm-eabi-gcc494        | arm-based players
-    # mipsel-gcc494          : MIPS-based players
+    # m68k-gcc950            : m68k-based players
+    # arm-eabi-gcc950        | arm-based players
+    # mipsel-gcc950          : MIPS-based players
 
     ####### Hosted
-    # mipsel-rb-gcc494       : linux based MIPS players, eg Agptek Rocker (Benjie T6)
-    # arm-rb-gcc494          : linux based ARM players, eg Samsung YP-R0/YP-R1
+    # mipsel-rb-gcc950       : linux based MIPS players, eg Agptek Rocker (Benjie T6)
+    # arm-rb-gcc950          : linux based ARM players, eg Samsung YP-R0/YP-R1
 
     ####### Special
     # sdl2 : Non-crosscompiled targets. Simulators, application, checkwps, database tool, ...
@@ -35,7 +35,7 @@ do
     # funkey-sdk             : Funkey SDK (eg for FunKey handheld or Ambergic RG Nano)
 
     # CHANGEME:  This list includes native targets only.
-    perl -s rbclient.pl -username= -password= -clientname= -buildroot= -archlist=m68k-gcc494,mipsel-gcc494,arm-eabi-gcc494 -buildmaster=buildmaster.rockbox.org -port=19999
+    perl -s rbclient.pl -username= -password= -clientname= -buildroot= -archlist=m68k-gcc950,mipsel-gcc950,arm-eabi-gcc950 -buildmaster=buildmaster.rockbox.org -port=19999
     res=$?
     if test "$res" -eq 22; then
       echo "Address the above issue(s), then restart!"
