@@ -1209,7 +1209,7 @@ sub bestfit_builds
     my $idealtime = int(($totwork / $totspeed) + 0.5);
     slog "Ideal time: $idealtime seconds";
 
-    my $margin = 15;
+    my $margin = 30;
 
   tryagain:
     my $totleft = 0;
@@ -1292,7 +1292,7 @@ sub bestfit_builds
     for my $b (@buildids) {
         if (!$builds{$b}{assigned} and !$builds{$b}{done}) {
             # increase the margin and try again
-            $margin += 15;
+            $margin += 30;
             dlog "*** $b unassigned, trying again";
             #sleep 1;
             goto tryagain;
@@ -1303,7 +1303,7 @@ sub bestfit_builds
         my @blist;
         my @dlist;
         my $bcount = 0;
-        my $ulspeed = $client{$c}{ulspeed} || 20000; # assume 20 KB/s uplink
+        my $ulspeed = $client{$c}{ulspeed} || 50000; # assume 50 KB/s uplink
         for my $b (sort bigsort keys %{$client{$c}{queue}}) {
             my $btime = 0;
             if ($client{$c}{speed}) {
