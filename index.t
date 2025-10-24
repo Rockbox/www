@@ -79,6 +79,7 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.</li>
 <ul>
 <li><b>Creative</b>: Zen V</li>
 <li><b>Onda</b>: VX747, VX767 and VX777</li>
+<li><b>Nintendo</b>: 3DS</li>
 <li><b>iHIFI</b>: 760 and 960</li>
 <li><b>Google</b>: Android (4.4 and older only)</li>
 <li><b>Rockchip</b>: rk27xx (generic)</li>
@@ -107,6 +108,7 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.</li>
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
+<tr><td nowrap>2025-10-23</td><td>An experimental port to the Nintendo 3DS is now available!</td></tr>
 <tr><td nowrap>2025-07-30</td><td>An "unstable" port to the <a href="https://anbernic.com/products/rg-nano">Anbernic RG Nano</a> is available!</td></tr>
 <tr><td nowrap>2025-07-29</td><td>An <a href="https://www.reddit.com/r/innioasis/comments/1mdrsre/y1_rockbox_installation_guide_using_spflashtool/">unofficial port</a> to the <a href="https://www.innioasis.com/products/y1">Innioasis Y1</a> is now available!</td></tr>
 <tr><td nowrap>2025-04-01</td><td><a href="//www.rockbox.org/wiki/ReleaseNotes400">Rockbox 4.0 is released!</a></td></tr>

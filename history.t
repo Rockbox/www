@@ -2,6 +2,8 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<p><i>2025-10-24</i>: An experimental port to the Nintendo 3DS is available!
+
 <p><i>2025-07-30</i>: An unstable port to the <a href="https://anbernic.com/products/rg-nano">Anbernic RG Nano</a> is available!
 
 <p><i>2025-07-29</i>: An <a href="https://www.reddit.com/r/innioasis/comments/1mdrsre/y1_rockbox_installation_guide_using_spflashtool/">unofficial port</a> to the <a href="https://www.innioasis.com/products/y1">Innioasis Y1</a> is now available!
