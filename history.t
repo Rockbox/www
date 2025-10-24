@@ -2,7 +2,9 @@
 #define HISTORY_PAGE
 #include "head.t"
 
-<p><i>2025-10-24</i>: An experimental port to the Nintendo 3DS is available!
+<p><i>2025-10-23</i>: An experimental port to the Nintendo 3DS is available!
+
+<p><i>2025-09-25</i>: An <a href="https://portmaster.games/detail.html?name=rockbox">unofficial port</a> to Portmaster for retro gaming handhelds is now available!
 
 <p><i>2025-07-30</i>: An unstable port to the <a href="https://anbernic.com/products/rg-nano">Anbernic RG Nano</a> is available!
 
