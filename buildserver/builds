@@ -292,7 +292,7 @@ m68k-gcc950,latex:1:iriverh120htmlmanual:iriver H120 - HTML Manual:rockbox-manua
 m68k-gcc950,latex:1:iriverh300manual:iriver H320/340 - Manual:rockbox-manual.pdf:1543:tools/configure --target=iriverh300 --type=n && make MAKEFLAGS= manual
 m68k-gcc950,latex:1:iriverh300htmlmanual:iriver H320/340 - HTML Manual:rockbox-manual.zip:173:tools/configure --target=iriverh300 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 m68k-gcc950,latex:1:mpiohd300manual:MPIO HD300 - Manual:rockbox-manual.pdf:1464:tools/configure --target=mpiohd300 --type=n && make MAKEFLAGS= manual
-m68k-gcc950,latex:1:mpiohd300manual:MPIO HD300 - HTML Manual:rockbox-manual.zip:144:tools/configure --target=mpiohd300 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+m68k-gcc950,latex:1:mpiohd300htmlmanual:MPIO HD300 - HTML Manual:rockbox-manual.zip:144:tools/configure --target=mpiohd300 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 arm-eabi-gcc950,latex:1:cowond2manual:Cowon D2 - Manual:rockbox-manual.pdf:1539:tools/configure --target=cowond2 --type=n && make MAKEFLAGS= manual
 arm-eabi-gcc950,latex:1:cowond2htmlmanual:Cowon D2 - HTML Manual:rockbox-manual.zip:172:tools/configure --target=cowond2 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 arm-eabi-gcc950,latex:1:ipod1g2gmanual:iPod 1G/2G - Manual:rockbox-manual.pdf:1414:tools/configure --target=ipod1g2g --type=n && make MAKEFLAGS= manual
