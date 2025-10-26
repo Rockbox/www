@@ -404,6 +404,8 @@ sdl2:0:gogearsa9200wps:Philips SA9200 - Checkwps:checkwps.gogearsa9200:245:tools
 sdl2:0:samsungyh820wps:Samsung YH-820 - Checkwps:checkwps.samsungyh820:250:tools/configure --target=samsungyh820 --type=c && make
 sdl2:0:samsungyh920wps:Samsung YH-920 - Checkwps:checkwps.samsungyh920:247:tools/configure --target=samsungyh920 --type=c && make
 sdl2:0:samsungyh925wps:Samsung YH-925 - Checkwps:checkwps.samsungyh925:250:tools/configure --target=samsungyh925 --type=c && make
+sdl2:0:samsungypr0wps:Samsung YP-R0 - Checkwps:rockboxui:244:tools/configure --target=samsungypr0 --type=c && make
+sdl2:0:samsungypr1wps:Samsung YP-R1 - Checkwps:rockboxui:244:tools/configure --target=samsungypr1 --type=c && make
 sdl2:0:ondavx747wps:Onda VX747 - Checkwps:checkwps.ondavx747:247:tools/configure --target=ondavx747 --type=c && make
 sdl2:0:vibe500wps:Packard Bell Vibe 500 - Checkwps:checkwps.vibe500:247:tools/configure --target=vibe500 --type=c && make
 sdl2:0:mpiohd200wps:MPIO HD200 - Checkwps:checkwps.mpiohd200:244:tools/configure --target=mpiohd200 --type=c && make
@@ -422,8 +424,18 @@ sdl2:0:ihifi800wps:IHIFI 800 - Checkwps:checkwps.ihifi800:245:tools/configure --
 sdl2:0:ihifi960wps:IHIFI 960 - Checkwps:checkwps.ihifi960:242:tools/configure --target=ihifi960 --type=c && make
 sdl2:0:creativezenxfi2wps:Creative Zen X-Fi2 - Checkwps:checkwps.creativezenxfi2:248:tools/configure --target=creativezenxfi2 --type=c && make
 sdl2:0:creativezenxfi3wps:Creative Zen X-Fi3 - Checkwps:checkwps.creativezenxfi3:245:tools/configure --target=creativezenxfi3 --type=c && make
+sdl2:0:sonynwa20wps:Sony NW-A20 - Checkwps:checkwps.sonynwa20:248:tools/configure --target=sonynwa20 --type=c && make
+sdl2:0:sonynwza10wps:Sony NWZ-A10 - Checkwps:checkwps.sonynwza10:248:tools/configure --target=sonynwza10 --type=c && make
+sdl2:0:sonynwza680wps:Sony NWZ-A680 - Checkwps:checkwps.sonynwza680:248:tools/configure --target=sonynwza680 --type=c && make
+sdl2:0:sonynwze350wps:Sony NWZ-E350 - Checkwps:checkwps.sonynwze350:248:tools/configure --target=sonynwze350 --type=c && make
 sdl2:0:sonynwze360wps:Sony NWZ-E360 - Checkwps:checkwps.sonynwze360:248:tools/configure --target=sonynwze360 --type=c && make
 sdl2:0:sonynwze370wps:Sony NWZ-E370 - Checkwps:checkwps.sonynwze370:247:tools/configure --target=sonynwze370 --type=c && make
+sdl2:0:sonynwze450wps:Sony NWZ-E450 - Checkwps:checkwps.sonynwze450:248:tools/configure --target=sonynwze450 --type=c && make
+sdl2:0:sonynwze460wps:Sony NWZ-E460 - Checkwps:checkwps.sonynwze460:248:tools/configure --target=sonynwze460 --type=c && make
+sdl2:0:sonynwze470wps:Sony NWZ-E470 - Checkwps:checkwps.sonynwze470:247:tools/configure --target=sonynwze470 --type=c && make
+sdl2:0:sonynwze580wps:Sony NWZ-E580 - Checkwps:checkwps.sonynwze580:248:tools/configure --target=sonynwze580 --type=c && make
+sdl2:0:sonynwze750wps:Sony NWZ-E750 - Checkwps:checkwps.sonynwze750:248:tools/configure --target=sonynwze750 --type=c && make
+sdl2:0:sonynwzs750wps:Sony NWZ-S750 - Checkwps:checkwps.sonynwzs750:248:tools/configure --target=sonynwzs750 --type=c && make
 sdl2:0:agptekrockerwps:Agptek Rocker - Checkwps:checkwps.agptekrocker:243:tools/configure --target=agptekrocker --type=c && make
 sdl2:0:xduoox3wps:Xduoo X3 - Checkwps:checkwps.xduoox3:240:tools/configure --target=xduoox3 --type=c && make
 sdl2:0:xduoox3iiwps:Xduoo X3ii - Checkwps:checkwps.xduoox3ii:239:tools/configure --target=xduoox3ii --type=c && make
