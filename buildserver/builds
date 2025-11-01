@@ -405,7 +405,7 @@ sdl2:0:samsungyh820wps:Samsung YH-820 - Checkwps:checkwps.samsungyh820:250:tools
 sdl2:0:samsungyh920wps:Samsung YH-920 - Checkwps:checkwps.samsungyh920:247:tools/configure --target=samsungyh920 --type=c && make
 sdl2:0:samsungyh925wps:Samsung YH-925 - Checkwps:checkwps.samsungyh925:250:tools/configure --target=samsungyh925 --type=c && make
 sdl2:0:samsungypr0wps:Samsung YP-R0 - Checkwps:checkwps.samsungypr0:244:tools/configure --target=samsungypr0 --type=c && make
-sdl2:0:samsungypr1wps:Samsung YP-R1 - Checkwps:chechwps.samsungypr1:244:tools/configure --target=samsungypr1 --type=c && make
+sdl2:0:samsungypr1wps:Samsung YP-R1 - Checkwps:checkwps.samsungypr1:244:tools/configure --target=samsungypr1 --type=c && make
 sdl2:0:ondavx747wps:Onda VX747 - Checkwps:checkwps.ondavx747:247:tools/configure --target=ondavx747 --type=c && make
 sdl2:0:vibe500wps:Packard Bell Vibe 500 - Checkwps:checkwps.vibe500:247:tools/configure --target=vibe500 --type=c && make
 sdl2:0:mpiohd200wps:MPIO HD200 - Checkwps:checkwps.mpiohd200:244:tools/configure --target=mpiohd200 --type=c && make
