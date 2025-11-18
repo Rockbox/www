@@ -40,6 +40,9 @@ else
     # Release build-info
     ${ROCKBOX_GIT_DIR}/tools/build-info.pl > build-info.new && mv build-info.new ${ROCKBOX_DL_DIR}/build-info.release
 
+    # track the last N builds
+    echo $rev >> data/lastNbuilds
+
     # Cleanup.  Must happen AFTER git update
     perl cleanupdatadir.pl
 

@@ -53,12 +53,12 @@ sub runone {
 
     my $o="build-$dir/rockbox-manual.pdf";
     if (-f $o) {
-        my $newo="output/rockbox-$dir-$date.pdf";
-        system("cp $o output/rockbox-$dir.pdf");
+        my $newo="output/manual/rockbox-$dir-$date.pdf";
+        system("cp $o output/manual/rockbox-$dir.pdf");
         system("mv $o $newo");
         `chmod a+r $newo`;
         print "moved $o to $newo\n" if($verbose);
-        system("cd ../download/daily/$dir ; ln -sf ../manual/rockbox-$dir.pdf manual-$dir.pdf");
+        system("cd ../download/$dir ; ln -sf ../manual/rockbox-$dir.pdf manual-$dir.pdf");
     }
     else  {
         print "*** error: no pdf file $o\n" if($verbose);
@@ -66,11 +66,11 @@ sub runone {
 
     $o="build-$dir/rockbox-manual.zip";
     if (-f $o) {
-        my $newo="output/rockbox-$dir-$date-html.zip";
-        system("cp $o output/rockbox-$dir-html.zip");
+        my $newo="output/manual/rockbox-$dir-$date-html.zip";
+        system("cp $o output/manual/rockbox-$dir-html.zip");
         system("mv $o $newo");
         print "moved $o to $newo\n" if($verbose);
-        system("cd ../download/daily/$dir ; ln -sf ../manual/rockbox-$dir-html.zip manual-$dir-html.zip");
+        system("cd ../download/$dir ; ln -sf ../manual/rockbox-$dir-html.zip manual-$dir-html.zip");
     }
     else  {
         print "*** error: no zip file $o\n" if($verbose);
@@ -78,7 +78,7 @@ sub runone {
 
     $o="build-$dir/html";
     if (-d $o) {
-        my $newo="output/rockbox-$dir";
+        my $newo="output/manual/rockbox-$dir";
         system("rm -rf $newo");
         system("cp -r $o $newo");
         print "copied $o to $newo\n" if($verbose);
