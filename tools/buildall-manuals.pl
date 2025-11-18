@@ -110,12 +110,41 @@ sub buildit {
     system("make manual-zip");
 }
 
+sub copyone {
+    my ($tgt)=@_;
+    my $fn;
+
+# XXX check to see if source file is newer than destination.
+
+    $fn = "rockbox-${tgt}manual.pdf";
+    if (-f "input/$fn") {
+        print "copying input/$fn to output/manual/$fn\n" if($verbose);
+	system("cp input/$fn output/manual/$fn");
+    } else {
+        print "*** error: no pdf file input/$fn\n" if($verbose);
+    }
+    $fn = "rockbox-${tgt}htmlmanual.zip";
+    if (-f "input/$fn") {
+        print "copying input/$fn to output/manual/$fn\n" if($verbose);
+	system("cp input/$fn output/manual/$fn");
+        print "extracting input/$fn\n" if($verbose);
+        system("rm -Rf html");
+        system("unzip -q input/$fn");
+        system("rm -Rf output/manual/rockbox-${tgt}");
+        print "moving extracted manual to output/manual/rockbox-${tgt}\n" if($verbose);
+        system("mv html output/manual/rockbox-${tgt}");
+    } else {
+        print "*** error: no input file input/$fn\n" if($verbose);
+    }
+}
+
 # run make in tools first to make sure they're up-to-date
 `(cd $source_dir/tools && make ) >/dev/null 2>&1`;
 
 for my $build (&manualbuilds) {
     my $name = manualname($build);
     next if (not -f "$source_dir/manual/platform/$name.tex");
-    
-    runone($name);
+
+#    runone($name);
+     copyone($name);
 }
