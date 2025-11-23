@@ -14,9 +14,9 @@ while true ; do
     fi
     one=`head -n 1 ../buildserver-data/lastNbuilds`
     echo "DELETING FILES FOR $one"
-    rm ../buildserver-data/*$one*
+    rm -f ../buildserver-data/*$one*
     tail -n `expr $builds - 1` ../buildserver-data/lastNbuilds > updated
     mv updated ../buildserver-data/lastNbuilds
 done
 # until then... just purge anything older than two weeks?
-find -L input -type f -mtime +14 -exec rm -f {} \;
+#find -L input -type f -mtime +14 -exec rm -f {} \;
