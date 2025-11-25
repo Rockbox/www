@@ -88,14 +88,10 @@ for(reverse sort keys %date) {
     if($d =~ /(\d\d\d\d)(\d\d)(\d\d)/) {
         $nice = "$1-$2-$3";
     }
+    $rev="";
+
     $col = sprintf("style=\"background-color: #%02x%02x%02x\"",
                    $color1, $color2, $color3);
-    print "<tr><td>$nice</td>";
-    $color1 -= 0x18;
-    $color2 -= 0x18;
-    $color3 -= 0x18;
-
-    $rev="";
 
     if( -f "$basedir/daily/build-info-${d}") {
         open(R, "<$basedir/daily/build-info-${d}");
@@ -106,7 +102,14 @@ for(reverse sort keys %date) {
             }
         }
         close(R);
+    } else {
+       next;
     }
+
+    print "<tr><td>$nice</td>";
+    $color1 -= 0x18;
+    $color2 -= 0x18;
+    $color3 -= 0x18;
 
     print "<td title=\"The build done $nice has rev $rev\"><a href=\"//git.rockbox.org/cgit/rockbox.git/commit/?id=$rev\">$rev</a></td>";
     {
@@ -120,7 +123,7 @@ for(reverse sort keys %date) {
             printf("<td><a title=\"Rockbox zip package for ${desc} built $nice\" href=\"$baseurl/daily/$bin/rockbox-${m}-${d}.zip\">Rockbox</a> %d KB</td>",
                    $size/1024);
         } else {
-            print "<td>nbsp;</td>";
+            print "<td>&nbsp;</td>";
         }
 
         # maps!
@@ -130,15 +133,19 @@ for(reverse sort keys %date) {
 #        }
 #        print "<td>$map</td>";
 
-            if (-f "$basedir/daily/source/rockbox-source-$d.tar.xz") {
-                $size = int((stat("$basedir/daily/source/rockbox-source-$d.tar.xz"))[7] / 1024);
-                print "<td><a title=\"Rockbox source code for $d\" href=\"$baseurl/daily/source/rockbox-source-$d.tar.xz\">tar.xz source</a> $size KB</td>";
-            }
+        if (-f "$basedir/daily/source/rockbox-source-$d.tar.xz") {
+            $size = int((stat("$basedir/daily/source/rockbox-source-$d.tar.xz"))[7] / 1024);
+            print "<td><a title=\"Rockbox source code for $d\" href=\"$baseurl/daily/source/rockbox-source-$d.tar.xz\">tar.xz source</a> $size KB</td>";
+        } else {
+            print "<td>&nbsp;</td>";
+        }
 
-            if (-f "$basedir/daily/fonts/rockbox-fonts-$d.zip") {
-                $size = int((stat("$basedir/daily/fonts/rockbox-fonts-$d.zip"))[7] / 1024);
-                print "<td><a title=\"Rockbox fonts for $d\" href=\"$baseurl/daily/fonts/rockbox-fonts-$d.zip\">fonts zip</a> $size KB</td>";
-            }
+        if (-f "$basedir/daily/fonts/rockbox-fonts-$d.zip") {
+            $size = int((stat("$basedir/daily/fonts/rockbox-fonts-$d.zip"))[7] / 1024);
+            print "<td><a title=\"Rockbox fonts for $d\" href=\"$baseurl/daily/fonts/rockbox-fonts-$d.zip\">fonts zip</a> $size KB</td>";
+        } else {
+            print "<td>&nbsp;</td>";
+        }
 
         if ( -f "$basedir/daily/changelogs/changes-$d.html") {
             print "<td><a href=\"$baseurl/daily/changelogs/changes-$d.html\" title=\"changelog for Rockbox $nice\">changelog</a></td>";
