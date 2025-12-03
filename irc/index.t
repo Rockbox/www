@@ -18,8 +18,16 @@ firewall, try using <a href="https://web.libera.chat/?nick=WebGuest?#rockbox">Ki
 <a href="/wiki/IrcNicks">Nick reference</a>
 <p>
 <a href="/wiki/IrcTalk">IRC lingo explained</a>
-<p>
-<a href="http://rasher.dk/rockbox/ircstats/">Cool statistics</a>
+
+<p>We have a bot on the #rockbox channel that responds to a few simple commands:</p>
+<ul>
+<li><b>g1234 or g#1234</b>: Info about a gerrit change 1234 </li>
+<li><b>fs1234 or fs#1234</b>: Info about a bug tracker 1234 </li>
+<li><b>r1234abcd or r#1234abcd</b>: Info about git commit hash 1234abcd</li>
+</ul>
+<p>All of the above are case insensitive</p>
+
+<!-- <a href="http://rasher.dk/rockbox/ircstats/">Cool statistics</a> -->
 
 <h2>Logs</h2>
 
