@@ -13,11 +13,11 @@ use HTML::Parser;
 
 use IO::Socket;
 
-my $nickname = "rb-infobot";
-my $ircname = "Rockbox Info Bot";
+my $nickname = "rb-chanbot";
+my $ircname = "Rockbox Channel Bot";
 my $server = "irc.libera.chat";
-#my @channels = ("#rockbox");
-my @channels = ("#rockbox-community");
+my @channels = ("#rockbox");
+#my @channels = ("#rockbox-community");
 my $buildmaster = 'buildmaster.rockbox.org';
 my $port = 19999;
 
@@ -135,16 +135,15 @@ POE::Session->create(
 	heap => { irc => $irc },
     );
 
-while(1) {
-    $sock = IO::Socket::INET->new(PeerAddr => $buildmaster,
-				  PeerPort => $port,
-				  Proto    => 'tcp')
-	or sleep 1;
-    last if ($sock and $sock->connected);
-}
-$sock->blocking(0);
-
-print $sock "HELLO $revision logger rblogbot:password rb-logbot abacus 10 perl\n";
-
+#while(1) {
+#    $sock = IO::Socket::INET->new(PeerAddr => $buildmaster,
+#				  PeerPort => $port,
+#				  Proto    => 'tcp')
+#	or sleep 1;
+#    last if ($sock and $sock->connected);
+#}
+#$sock->blocking(0);
+#
+#print $sock "HELLO $revision logger rblogbot:password rb-logbot abacus 10 perl\n";
 
 $poe_kernel->run();
