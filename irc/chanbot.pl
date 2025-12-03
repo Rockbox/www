@@ -100,10 +100,39 @@ sub irc_public {
 		    );
 			}, "tagname,self");
 	    $p->parse($http->{content});
-	    $fstitle =~ s/FS#\d+ : (.*)/$1/;
-	    my $msg = "$url : $fstitle";
+	    if ($fstitle) {
+		$fstitle =~ s/FS#\d+ : (.*)/$1/;
+		my $msg = "$url : $fstitle";
+		$fstitle = "";
+		$irc->yield( privmsg => $channel => $msg );
+	    }
+	}
+    } elsif ($what =~ /r#?([A-F0-9]+)/i ) {
+	my $id = $1;
+	my $url = "https://git.rockbox.org/cgit/rockbox.git/commit/?id=$id";
+
+	my $http = HTTP::Tiny->new->get($url);
+	if ($http->{success}) {
+	    my $p = HTML::Parser->new(api_version => 3);
+	    $p->handler(start => sub {
+		my ($tagname, $attr, $self) = @_;
+		return unless $tagname eq "div";
+		if (defined($attr->{class}) && $attr->{class} eq "commit-subject") {
+		    $self->handler(text => sub {
+			return if $fstitle;
+		        $fstitle = shift;
+			print "found '$fstitle'\n";
+
+				   }, "dtext");
+		    $self->handler(end => "eof", "self" );
+		}
+		}, "tagname,attr,self");
+	    $p->parse($http->{content});
+	    if ($fstitle) {
+		my $msg = "$url : $fstitle";
+		$irc->yield( privmsg => $channel => $msg );
+	    }
 	    $fstitle = "";
-	    $irc->yield( privmsg => $channel => $msg );
 	}
     }
     # TODO:  log everything?  ie replace dancer etc?
