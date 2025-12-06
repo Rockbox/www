@@ -102,8 +102,8 @@ for (my $i = 0; $i < $rounds ; $i++) {
 	}
 	if ($compiles{$rev}{$id}{ram} == 0 || $compiles{$rev}{$id}{bin} == 0) {
 	    # Current build does not have numbers;
-	    $compiles{$rev}{$id}{text1} = '<td title="Build does not have sizs stored"> - </td>';
-	    $compiles{$rev}{$id}{text2} = '<td title="Build does not have sizs stored"> - </td>';
+	    $compiles{$rev}{$id}{text1} = '<td title="Build does not have sizes stored"> - </td>';
+	    $compiles{$rev}{$id}{text2} = '<td title="Build does not have sizes stored"> - </td>';
 	    next;
 	}
 	if ($compiles{$lastrev}{$id}{bin} == 0 || $compiles{$lastrev}{$id}{ram} == 0) {
