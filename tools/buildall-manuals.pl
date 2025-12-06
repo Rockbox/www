@@ -112,29 +112,31 @@ sub buildit {
 
 sub copyone {
     my ($tgt)=@_;
-    my $fn;
+    my ($ifn, $ofn);
 
 # XXX check to see if source file is newer than destination.
 
-    $fn = "rockbox-${tgt}manual.pdf";
-    if (-f "input/$fn") {
-        print "copying input/$fn to output/manual/$fn\n" if($verbose);
-	system("cp input/$fn output/manual/$fn");
+    $ifn = "rockbox-${tgt}manual.pdf";
+    $ofn = "rockbox-${tgt}.pdf";
+    if (-f "input/$ifn") {
+        print "copying input/$ifn to output/manual/$ofn\n" if($verbose);
+	system("cp input/$ifn output/manual/$ofn");
     } else {
-        print "*** error: no pdf file input/$fn\n" if($verbose);
+        print "*** error: no pdf file input/$ifn\n" if($verbose);
     }
-    $fn = "rockbox-${tgt}htmlmanual.zip";
-    if (-f "input/$fn") {
-        print "copying input/$fn to output/manual/$fn\n" if($verbose);
-	system("cp input/$fn output/manual/$fn");
-        print "extracting input/$fn\n" if($verbose);
+    $ifn = "rockbox-${tgt}htmlmanual.zip";
+    $ofn = "rockbox-${tgt}-html.zip";
+    if (-f "input/$ifn") {
+        print "copying input/$ifn to output/manual/$ofn\n" if($verbose);
+	system("cp input/$ifn output/manual/$ofn");
+        print "extracting input/$ifn\n" if($verbose);
         system("rm -Rf html");
-        system("unzip -q input/$fn");
+        system("unzip -q input/$ifn");
         system("rm -Rf output/manual/rockbox-${tgt}");
         print "moving extracted manual to output/manual/rockbox-${tgt}\n" if($verbose);
         system("mv html output/manual/rockbox-${tgt}");
     } else {
-        print "*** error: no input file input/$fn\n" if($verbose);
+        print "*** error: no input file input/$ifn\n" if($verbose);
     }
 }
 
