@@ -109,7 +109,7 @@ sub irc_public {
 	    my $author = $$obj{'owner'}{'name'};
 	    my $url = "https://gerrit.rockbox.org/r/c/$project/+/$id";
 
-	    my $msg = "Gerrit review #$id at $url : $title by $author";
+	    my $msg = "Gerrit review #$id at $url : \x0311$title by $author";
 	    $irc->yield( privmsg => $channel => $msg );
 	}
     } elsif ($what =~ /FS#?(\d+)/i ) {
