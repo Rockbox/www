@@ -12,17 +12,22 @@ use JSON::Parse 'parse_json';
 use HTTP::Tiny;
 use HTML::Parser;
 
-#my $nickname = "rb-chanbotdev";
-my $nickname = "rb-chanbot";
-my $ircname = "Rockbox Channel Bot";
-my $server = "irc.libera.chat";
-my @channels = ("#rockbox");
-#my @channels = ("#rockbox-community");
 my $buildmaster = 'buildmaster.rockbox.org';
 my $port = 19999;
 my $client_rev = 999;
 
-my $sock;
+my $nickname = "rb-chanbot";
+my $ircname = "Rockbox Channel Bot";
+my $server = "irc.libera.chat";
+my $logchan = "#rockbox";
+my $buildcreds = "logger chanbot:password rockbox";
+
+# for debugging
+#$nickname = "rb-chanbotdev";
+#$buildcreds = "loggerdev chanboddev:password rockbox";
+#$logchan = "#rockbox-community";
+
+my %channels = (  "$logchan" => '' );
 
 my $irc = POE::Component::IRC->spawn(
     nick => $nickname,
@@ -40,7 +45,7 @@ sub _start {
 
     # Autojoin plugin
     $irc->plugin_add('AutoJoin', POE::Component::IRC::Plugin::AutoJoin->new(
-			 Channels => @channels
+			 Channels => \%channels
 		     ));
 
     $irc->yield( register => 'all');
@@ -55,7 +60,7 @@ sub irc_001 {
     print "Connected to ", $irc->server_name(), "\n";
 
     # join our channels
-    $irc->yield( join => $_) for @channels;
+    $irc->yield( join => $_) for keys(%channels);
     return;
 }
 
@@ -64,22 +69,23 @@ my $url = "";
 
 sub get_gitrev {
     my ($id) = @_;
-    $url = "https://www.rockbox.org/tracker/task/$id";
+    $url = "https://git.rockbox.org/cgit/rockbox.git/commit/?id=$id";
 
     my $http = HTTP::Tiny->new->get($url);
     if ($http->{success}) {
 	my $p = HTML::Parser->new(api_version => 3);
 	$p->handler(start => sub {
-	    return if shift ne "title";
-	    my $self = shift;
-	    $self->handler(text => sub { $fstitle = shift; }, "dtext");
-	    $self->handler(
-		end => sub {
-		    shift->eof if shift eq "title";
-		},
-		"tagname,self"
-		);
-		    }, "tagname,self");
+	    my ($tagname, $attr, $self) = @_;
+	    return unless $tagname eq "div";
+	    if (defined($attr->{class}) && $attr->{class} eq "commit-subject") {
+		$self->handler(text => sub {
+		    return if $fstitle;
+		    $fstitle = shift;
+#		    print "found '$fstitle'\n";
+			       }, "dtext");
+		$self->handler(end => "eof", "self" );
+	    }
+		    }, "tagname,attr,self");
 	$p->parse($http->{content});
     }
 }
@@ -109,38 +115,37 @@ sub irc_public {
     } elsif ($what =~ /FS#?(\d+)/i ) {
 	my $id = $1;
 	get_gitrev($id);
-	if ($fstitle) {
-	    $fstitle =~ s/FS#\d+ : (.*)/$1/;
-	    my $msg = "$url : $fstitle";
-	    $fstitle = "";
-	    $irc->yield( privmsg => $channel => $msg );
-	}
-    } elsif ($what =~ /r#?([A-F0-9]+)/i ) {
-	my $id = $1;
-	my $url = "https://git.rockbox.org/cgit/rockbox.git/commit/?id=$id";
+	$url = "https://www.rockbox.org/tracker/task/$id";
 
 	my $http = HTTP::Tiny->new->get($url);
 	if ($http->{success}) {
 	    my $p = HTML::Parser->new(api_version => 3);
 	    $p->handler(start => sub {
-		my ($tagname, $attr, $self) = @_;
-		return unless $tagname eq "div";
-		if (defined($attr->{class}) && $attr->{class} eq "commit-subject") {
-		    $self->handler(text => sub {
-			return if $fstitle;
-		        $fstitle = shift;
-			print "found '$fstitle'\n";
-
-				   }, "dtext");
-		    $self->handler(end => "eof", "self" );
-		}
-		}, "tagname,attr,self");
+		return if shift ne "title";
+		my $self = shift;
+		$self->handler(text => sub { $fstitle = shift; }, "dtext");
+		$self->handler(
+		    end => sub {
+			shift->eof if shift eq "title";
+		    },
+		    "tagname,self"
+		    );
+			}, "tagname,self");
 	    $p->parse($http->{content});
 	    if ($fstitle) {
+		$fstitle =~ s/FS#\d+ : (.*)/$1/;
 		my $msg = "$url : $fstitle";
+		$fstitle = "";
 		$irc->yield( privmsg => $channel => $msg );
 	    }
+	}
+    } elsif ($what =~ /r#?([A-F0-9]+)/i ) {
+	my $id = $1;
+	get_gitrev($id);
+	if ($fstitle) {
+	    my $msg = "$url : $fstitle";
 	    $fstitle = "";
+	    $irc->yield( privmsg => $channel => $msg );
 	}
     }
     # TODO:  log everything?  ie replace dancer etc?
@@ -159,7 +164,7 @@ sub _default {
 	    push ( @output, "'$arg'" );
 	}
     }
-    print join ' ', @output, "\n";
+#    print join ' ', @output, "\n";
     return;
 }
 
@@ -177,9 +182,10 @@ POE::Component::Client::TCP->new(
     RemotePort => 19999,
     Connected => sub {
 	my $heap = $_[HEAP];
-	$heap->{server}->put("HELLO $client_rev logger chanbot:password rockbox abacus 10 perl");
+	$heap->{server}->put("HELLO $client_rev $buildcreds abacus 10 perl");
     },
     ServerInput => sub {
+	my $channel = $logchan;
 	my $heap = $_[HEAP];
 	my $input = $_[ARG0];
 	if($input =~ /^([_A-Z]*) *(.*)/) {
@@ -187,9 +193,11 @@ POE::Component::Client::TCP->new(
 	    my $rest = $2;
 	    chomp($rest);
 
-	    print "Server:  $func / $rest\n";
+#	    print "Server:  $func / $rest\n";
 
 	    if ($func eq "_HELLO") {
+		print "Connected to $buildmaster\n";
+
 		if ($rest ne "ok") {
 		    # XXX HACF?
 		}
@@ -198,7 +206,6 @@ POE::Component::Client::TCP->new(
 	    } elsif ($func eq "MESSAGE") {
 		if ($rest =~ /New build round started. Revision (\w+),/) {
 #		    my $irc = $heap->{irc};
-		    my $channel = $channels[0];
 		    $irc->yield( privmsg => $channel => $rest );
 		    get_gitrev($1);
 		    if ($fstitle) {
@@ -209,10 +216,10 @@ POE::Component::Client::TCP->new(
 		    }
 		} elsif ($rest =~ /Build round completed/) {
 #		    my $irc = $heap->{irc};
-		    $irc->yield( privmsg => $channels[0] => $rest );
+		    $irc->yield( privmsg => $channel => $rest );
 		} elsif ($rest =~ /Revision (\w+) result/) {
 #		    my $irc = $heap->{irc};
-		    $irc->yield( privmsg => $channels[0] => $rest );
+		    $irc->yield( privmsg => $channel => $rest );
 		}
 
 		# "New build round started. Revision $rev, $num_builds builds, $num_clients clients."
