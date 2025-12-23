@@ -6,13 +6,13 @@ use warnings;
 use POE qw(Component::IRC);
 use POE::Component::IRC::Plugin::AutoJoin;
 use POE::Component::IRC::Plugin::Connector;
+use POE::Component::Client::TCP;
 
 use JSON::Parse 'parse_json';
 use HTTP::Tiny;
 use HTML::Parser;
 
-use IO::Socket;
-
+#my $nickname = "rb-chanbotdev";
 my $nickname = "rb-chanbot";
 my $ircname = "Rockbox Channel Bot";
 my $server = "irc.libera.chat";
@@ -20,6 +20,7 @@ my @channels = ("#rockbox");
 #my @channels = ("#rockbox-community");
 my $buildmaster = 'buildmaster.rockbox.org';
 my $port = 19999;
+my $client_rev = 999;
 
 my $sock;
 
@@ -59,11 +60,35 @@ sub irc_001 {
 }
 
 my $fstitle = "";
+my $url = "";
+
+sub get_gitrev {
+    my ($id) = @_;
+    $url = "https://www.rockbox.org/tracker/task/$id";
+
+    my $http = HTTP::Tiny->new->get($url);
+    if ($http->{success}) {
+	my $p = HTML::Parser->new(api_version => 3);
+	$p->handler(start => sub {
+	    return if shift ne "title";
+	    my $self = shift;
+	    $self->handler(text => sub { $fstitle = shift; }, "dtext");
+	    $self->handler(
+		end => sub {
+		    shift->eof if shift eq "title";
+		},
+		"tagname,self"
+		);
+		    }, "tagname,self");
+	$p->parse($http->{content});
+    }
+}
 
 sub irc_public {
     my ($sender, $who, $where, $what) = @_[SENDER, ARG0 .. ARG2];
     my $nick = ( split /!/, $who )[0];
     my $channel = $where->[0];
+    my $irc = $sender->get_heap();
 
     if ($what =~ /g#?(\d+)/i ) {
 	my $id = $1;
@@ -83,29 +108,12 @@ sub irc_public {
 	}
     } elsif ($what =~ /FS#?(\d+)/i ) {
 	my $id = $1;
-	my $url = "https://www.rockbox.org/tracker/task/$id";
-
-	my $http = HTTP::Tiny->new->get($url);
-	if ($http->{success}) {
-	    my $p = HTML::Parser->new(api_version => 3);
-	    $p->handler(start => sub {
-		return if shift ne "title";
-		my $self = shift;
-		$self->handler(text => sub { $fstitle = shift; }, "dtext");
-		$self->handler(
-		    end => sub {
-			shift->eof if shift eq "title";
-		    },
-		    "tagname,self"
-		    );
-			}, "tagname,self");
-	    $p->parse($http->{content});
-	    if ($fstitle) {
-		$fstitle =~ s/FS#\d+ : (.*)/$1/;
-		my $msg = "$url : $fstitle";
-		$fstitle = "";
-		$irc->yield( privmsg => $channel => $msg );
-	    }
+	get_gitrev($id);
+	if ($fstitle) {
+	    $fstitle =~ s/FS#\d+ : (.*)/$1/;
+	    my $msg = "$url : $fstitle";
+	    $fstitle = "";
+	    $irc->yield( privmsg => $channel => $msg );
 	}
     } elsif ($what =~ /r#?([A-F0-9]+)/i ) {
 	my $id = $1;
@@ -155,8 +163,6 @@ sub _default {
     return;
 }
 
-####
-
 POE::Session->create(
     package_states => [
 	main => [ qw(_default _start irc_001 irc_public) ],
@@ -164,15 +170,63 @@ POE::Session->create(
 	heap => { irc => $irc },
     );
 
-#while(1) {
-#    $sock = IO::Socket::INET->new(PeerAddr => $buildmaster,
-#				  PeerPort => $port,
-#				  Proto    => 'tcp')
-#	or sleep 1;
-#    last if ($sock and $sock->connected);
-#}
-#$sock->blocking(0);
-#
-#print $sock "HELLO $revision logger rblogbot:password rb-logbot abacus 10 perl\n";
+####
 
-$poe_kernel->run();
+POE::Component::Client::TCP->new(
+    RemoteAddress => 'buildmaster.rockbox.org',
+    RemotePort => 19999,
+    Connected => sub {
+	my $heap = $_[HEAP];
+	$heap->{server}->put("HELLO $client_rev logger chanbot:password rockbox abacus 10 perl");
+    },
+    ServerInput => sub {
+	my $heap = $_[HEAP];
+	my $input = $_[ARG0];
+	if($input =~ /^([_A-Z]*) *(.*)/) {
+	    my $func = $1;
+	    my $rest = $2;
+	    chomp($rest);
+
+	    print "Server:  $func / $rest\n";
+
+	    if ($func eq "_HELLO") {
+		if ($rest ne "ok") {
+		    # XXX HACF?
+		}
+	    } elsif ($func eq "PING") {
+		$heap->{server}->put("_PING $rest");
+	    } elsif ($func eq "MESSAGE") {
+		if ($rest =~ /New build round started. Revision (\w+),/) {
+#		    my $irc = $heap->{irc};
+		    my $channel = $channels[0];
+		    $irc->yield( privmsg => $channel => $rest );
+		    get_gitrev($1);
+		    if ($fstitle) {
+			$fstitle =~ s/FS#\d+ : (.*)/$1/;
+			my $msg = "$url : $fstitle";
+			$fstitle = "";
+			$irc->yield( privmsg => $channel => $msg );
+		    }
+		} elsif ($rest =~ /Build round completed/) {
+#		    my $irc = $heap->{irc};
+		    $irc->yield( privmsg => $channels[0] => $rest );
+		} elsif ($rest =~ /Revision (\w+) result/) {
+#		    my $irc = $heap->{irc};
+		    $irc->yield( privmsg => $channels[0] => $rest );
+		}
+
+		# "New build round started. Revision $rev, $num_builds builds, $num_clients clients."
+		# "Build round completed after $took seconds."
+		# "Revision $buildround result: $errors errors $warnings warnings"
+		# "Revision $buildround result: All green"
+	    }
+	}
+    },
+    Disconnected => sub {
+	$_[KERNEL]->delay( reconnect => 15 );
+    },
+    ) or die "Fail to launch $!";
+
+###
+
+POE::Kernel->run();
