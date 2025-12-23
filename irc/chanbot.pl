@@ -134,7 +134,7 @@ sub irc_public {
 	    $p->parse($http->{content});
 	    if ($fstitle) {
 		$fstitle =~ s/FS#\d+ : (.*)/$1/;
-		my $msg = "$url : $fstitle";
+		my $msg = "$url : \x0311$fstitle";
 		$fstitle = "";
 		$irc->yield( privmsg => $channel => $msg );
 	    }
@@ -143,7 +143,7 @@ sub irc_public {
 	my $id = $1;
 	get_gitrev($id);
 	if ($fstitle) {
-	    my $msg = "$url : $fstitle";
+	    my $msg = "$url : \x0311$fstitle";
 	    $fstitle = "";
 	    $irc->yield( privmsg => $channel => $msg );
 	}
@@ -205,20 +205,24 @@ POE::Component::Client::TCP->new(
 		$heap->{server}->put("_PING $rest");
 	    } elsif ($func eq "MESSAGE") {
 		if ($rest =~ /New build round started. Revision (\w+),/) {
-#		    my $irc = $heap->{irc};
+		    $rest = "\x033$rest";
 		    $irc->yield( privmsg => $channel => $rest );
 		    get_gitrev($1);
 		    if ($fstitle) {
 			$fstitle =~ s/FS#\d+ : (.*)/$1/;
-			my $msg = "$url : $fstitle";
+			my $msg = "$url : \x0311$fstitle";
 			$fstitle = "";
 			$irc->yield( privmsg => $channel => $msg );
 		    }
 		} elsif ($rest =~ /Build round completed/) {
-#		    my $irc = $heap->{irc};
+		    $rest = "\x033$rest";
 		    $irc->yield( privmsg => $channel => $rest );
-		} elsif ($rest =~ /Revision (\w+) result/) {
-#		    my $irc = $heap->{irc};
+		} elsif ($rest =~ /Revision (\w+) result:(.*)/) {
+		    if ($rest eq "All green") {
+			$rest = "\x033$rest";
+		    } else {
+			$rest = "\x038$rest";
+		    }
 		    $irc->yield( privmsg => $channel => $rest );
 		}
 
