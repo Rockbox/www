@@ -218,7 +218,7 @@ POE::Component::Client::TCP->new(
 		    $rest = "\x033$rest";
 		    $irc->yield( privmsg => $channel => $rest );
 		} elsif ($rest =~ /Revision (\w+) result:(.*)/) {
-		    if ($rest eq "All green") {
+		    if ($rest =~ /All green/) {
 			$rest = "\x033$rest";
 		    } else {
 			$rest = "\x038$rest";
