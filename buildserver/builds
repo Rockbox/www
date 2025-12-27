@@ -71,6 +71,8 @@ sdl2:0:samsungypr0sim:Samsung YP-R0 - Simulator:rockboxui:66862:tools/configure 
 #sdl2:0:samsungypr1sim:Samsung YP-R1 - Simulator:rockboxui:118270:tools/configure --target=samsungypr1 --type=s && make
 sdl2:0:fiiom3ksim:FiiO M3K - Simulator:rockboxui:62570:tools/configure --target=fiiom3k --type=s && make
 sdl2,funkey-sdk:0:rgnanosim:Anbernic RG Nano - Simulator:rockboxui:60716:tools/configure --target=rgnano --type=s && make
+sdl2:0:hibyr1sim:Hiby R1 - Simulator:rockboxui:63143:tools/configure --target=hibyr1 --type=s && make
+sdl2:0:hibyr3proiisim:Hiby R3Pro II - Simulator:rockboxui:63110:tools/configure --target=hibyr3proii --type=s && make
 ####
 # m68k-based native targets
 m68k-gcc950:1:iriverh100:iriver H100:rockbox.zip:85822:tools/configure --target=iriverh100 --type=n && make zip
@@ -269,6 +271,8 @@ mipsel-rb-gcc950:1:xduoox20:xDuoo X20:rockbox.zip:181829:tools/configure --targe
 mipsel-rb-gcc950:1:fiiom3klinux:FiiO M3K (Linux):rockbox.zip:175124:tools/configure --target=fiiom3klinux --type=n && make zip
 mipsel-rb-gcc950:1:aigoerosq:AIGO EROS Q/K:rockbox.zip:184596:tools/configure --target=aigoerosq --type=n && make zip
 mipsel-rb-gcc950:1:surfansf28:Surfans F28:rockbox.zip:48033:tools/configure --target=surfansf28 --type=n && make zip
+mipsel-rb-gcc950:1:hibyr1:Hiby R1:rockbox.zip:179099:tools/configure --target=hibyr1 --type=n && make zip
+mipsel-rb-gcc950:1:hibyr3proii:Hiby R3Pro II:rockbox.zip:179222:tools/configure --target=hibyr3proii --type=n && make zip
 ####
 # MIPS hosted bootloaders
 mipsel-rb-gcc950:0:agptekrockerboot:Agptek Rocker - Boot:bootloader.rocker:2755:tools/configure --target=agptekrocker --type=b && make
@@ -277,6 +281,8 @@ mipsel-rb-gcc950:0:xduoox20boot:xDuoo X20 - Boot:bootloader.x20:3231:tools/confi
 mipsel-rb-gcc950:0:fiiom3klinuxboot:FiiO M3K (Linux) - Boot:bootloader.m3k:2661:tools/configure --target=fiiom3klinux --type=b && make
 mipsel-rb-gcc950:0:aigoerosqboot:AIGO Eros Q/K - Boot:bootloader.erosq:3381:tools/configure --target=aigoerosq --type=b && make
 mipsel-rb-gcc950:0:surfansf28boot:Surfans F28 - Boot:bootloader.f28:3357:tools/configure --target=surfansf28 --type=b && make
+mipsel-rb-gcc950:0:hibyr1boot:Hiby R1 - Boot:bootloader.r1:2686:tools/configure --target=hibyr1 --type=b && make
+mipsel-rb-gcc950:0:hibyr3proiiboot:Hiby R3Pro II - Boot:bootloader.r3proii:2686:tools/configure --target=hibyr3proii --type=b && make
 ####
 # Manuals
 m68k-gcc950,latex:1:iaudiox5manual:iAudio X5 - Manual:rockbox-manual.pdf:1553:tools/configure --target=iaudiox5 --type=n && make MAKEFLAGS= manual
@@ -442,6 +448,8 @@ sdl2:0:xduoox20wps:Xduoo X20 - Checkwps:checkwps.xduoox20:243:tools/configure --
 sdl2:0:fiiom3linuxkwps:FiiO M3K (Linux) - Checkwps:checkwps.fiiom3klinux:241:tools/configure --target=fiiom3klinux --type=c && make
 sdl2:0:aigoerosqwps:AIGO EROS Q/K - Checkwps:checkwps.aigoerosq:240:tools/configure --target=aigoerosq --type=c && make
 sdl2:0:surfansf28wps:Surfans F28 - Checkwps:checkwps.surfansf28:246:tools/configure --target=surfansf28 --type=c && make
+sdl2:0:hibyr1wps:Hiby R1 - Checkwps:checkwps.r1:275:tools/configure --target=hibyr1 --type=c && make
+sdl2:0:hibyr3proiiwps:Hiby R3Pro II - Checkwps:checkwps.r3proii:275:tools/configure --target=hibyr3proii --type=c && make
 sdl2:0:fiiom3kwps:FiiO M3K - Checkwps:checkwps.fiiom3k:246:tools/configure --target=fiiom3k --type=c && make
 sdl2:0:shanlingq1wps:Shanling Q1 - Checkwps:checkwps.shanlingq1:246:tools/configure --target=shanlingq1 --type=c && make
 sdl2,funkey-sdk:0:rgnanowps:Anbernic RG Nano - Checkwps:checkwps.rgnano:243:tools/configure --target=rgnano --type=c && make
