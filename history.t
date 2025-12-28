@@ -2,6 +2,8 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<p><i>2025-12-28</i>: An unstable port to the Hiby R1 and R3ProII is available!
+
 <p><i>2025-10-23</i>: An experimental port to the Nintendo 3DS is available!
 
 <p><i>2025-09-25</i>: An <a href="https://portmaster.games/detail.html?name=rockbox">unofficial port</a> to Portmaster for retro gaming handhelds is now available!

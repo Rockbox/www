@@ -52,6 +52,7 @@ Rockbox is a free replacement firmware for digital music players. It runs on a w
 <li><b>Cowon</b>: <a href="/wiki/CowonD2Info">D2</a></li>
 <li><b>HiFi E.T</b>: <a href="/wiki/HifietMAPort">MA9</a>, <a href="/wiki/HifietMAPort">MA8</a></li>
 <li><b>HiFiMAN</b>: <a href="/wiki/HifimanPort">HM-601</a>, <a href="/wiki/HifimanPort">HM-602</a>, <a href="/wiki/HifimanPort">HM-603</a>, <a href="/wiki/HifimanPort">HM-801</a></li>
+<li><b>Hiby</b>: R1, R3ProII</li>
 <li><b>iBasso</b>: <a href="/wiki/IBassoDXPort">DX50</a>, <a href="/wiki/IBassoDXPort">DX90</a></li>
 <li><b>MPIO</b>: <a href="/wiki/MPIOHD200Port">HD200</a></li>
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a></li>
@@ -108,11 +109,11 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.</li>
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
+<tr><td nowrap>2025-12-28</td><td>An "unstable" port to the Hiby R1 and R3ProII is now available!</td></tr>
 <tr><td nowrap>2025-10-23</td><td>An experimental port to the Nintendo 3DS is now available!</td></tr>
 <tr><td nowrap>2025-09-25</td><td>An <a href="https://portmaster.games/detail.html?name=rockbox">unofficial port</a> to Portmaster for retro gaming handhelds is now available!</td></tr>
 <tr><td nowrap>2025-07-30</td><td>An "unstable" port to the <a href="https://anbernic.com/products/rg-nano">Anbernic RG Nano</a> is available!</td></tr>
 <tr><td nowrap>2025-07-29</td><td>An <a href="https://www.reddit.com/r/innioasis/comments/1mdrsre/y1_rockbox_installation_guide_using_spflashtool/">unofficial port</a> to the <a href="https://www.innioasis.com/products/y1">Innioasis Y1</a> is now available!</td></tr>
-<tr><td nowrap>2025-04-01</td><td><a href="//www.rockbox.org/wiki/ReleaseNotes400">Rockbox 4.0 is released!</a></td></tr>
 
 </table>
 <small><a href="history.html">Older news</a>
