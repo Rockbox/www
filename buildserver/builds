@@ -448,8 +448,8 @@ sdl2:0:xduoox20wps:Xduoo X20 - Checkwps:checkwps.xduoox20:243:tools/configure --
 sdl2:0:fiiom3linuxkwps:FiiO M3K (Linux) - Checkwps:checkwps.fiiom3klinux:241:tools/configure --target=fiiom3klinux --type=c && make
 sdl2:0:aigoerosqwps:AIGO EROS Q/K - Checkwps:checkwps.aigoerosq:240:tools/configure --target=aigoerosq --type=c && make
 sdl2:0:surfansf28wps:Surfans F28 - Checkwps:checkwps.surfansf28:246:tools/configure --target=surfansf28 --type=c && make
-sdl2:0:hibyr1wps:Hiby R1 - Checkwps:checkwps.r1:275:tools/configure --target=hibyr1 --type=c && make
-sdl2:0:hibyr3proiiwps:Hiby R3Pro II - Checkwps:checkwps.r3proii:275:tools/configure --target=hibyr3proii --type=c && make
+sdl2:0:hibyr1wps:Hiby R1 - Checkwps:checkwps.hibyr1:275:tools/configure --target=hibyr1 --type=c && make
+sdl2:0:hibyr3proiiwps:Hiby R3Pro II - Checkwps:checkwps.hibyr3proii:275:tools/configure --target=hibyr3proii --type=c && make
 sdl2:0:fiiom3kwps:FiiO M3K - Checkwps:checkwps.fiiom3k:246:tools/configure --target=fiiom3k --type=c && make
 sdl2:0:shanlingq1wps:Shanling Q1 - Checkwps:checkwps.shanlingq1:246:tools/configure --target=shanlingq1 --type=c && make
 sdl2,funkey-sdk:0:rgnanowps:Anbernic RG Nano - Checkwps:checkwps.rgnano:243:tools/configure --target=rgnano --type=c && make
