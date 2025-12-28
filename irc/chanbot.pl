@@ -114,7 +114,6 @@ sub irc_public {
 	}
     } elsif ($what =~ /(^|\s)FS#?(\d+)/i ) {
 	my $id = $2;
-	get_gitrev($id);
 	$url = "https://www.rockbox.org/tracker/task/$id";
 
 	my $http = HTTP::Tiny->new->get($url);
@@ -209,19 +208,21 @@ POE::Component::Client::TCP->new(
 		    $irc->yield( privmsg => $channel => $rest );
 		    get_gitrev($1);
 		    if ($fstitle) {
-			$fstitle =~ s/FS#\d+ : (.*)/$1/;
-			my $msg = "$url : \x0311$fstitle";
+			my $msg = "$1 : \x0311$fstitle";
 			$fstitle = "";
 			$irc->yield( privmsg => $channel => $msg );
 		    }
 		} elsif ($rest =~ /Build round completed/) {
 		    $rest = "\x033$rest";
 		    $irc->yield( privmsg => $channel => $rest );
-		} elsif ($rest =~ /Revision (\w+) result:(.*)/) {
-		    if ($rest =~ /All green/) {
-			$rest = "\x033$rest";
-		    } else {
+		} elsif ($rest =~ /Revision (\w+) result: All green/) {
+		    $rest = "\x033$rest";
+		    $irc->yield( privmsg => $channel => $rest );
+		} elsif ($rest =~ /Revision (\w+) result: (\d+) errors(.*)/) {
+		    if ($2 == 0) {
 			$rest = "\x038$rest";
+		    } else {
+			$rest = "\x034$rest";
 		    }
 		    $irc->yield( privmsg => $channel => $rest );
 		}
