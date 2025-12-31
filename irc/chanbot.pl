@@ -3,10 +3,13 @@
 use strict;
 use warnings;
 
-use POE qw(Component::IRC);
+#use POE qw(Component::IRC);
+use POE qw(Component::IRC::State);
+
 use POE::Component::IRC::Plugin::AutoJoin;
 use POE::Component::IRC::Plugin::Connector;
 use POE::Component::IRC::Plugin::NickServID;
+use POE::Component::IRC::Plugin::Logger;
 use POE::Component::Client::TCP;
 
 use JSON::Parse 'parse_json';
@@ -31,7 +34,8 @@ my $ircpass = $ENV{'IRCPASS'};
 
 my %channels = (  "$logchan" => '' );
 
-my $irc = POE::Component::IRC->spawn(
+my $irc = POE::Component::IRC::State->spawn(
+#my $irc = POE::Component::IRC->spawn(
     nick => $nickname,
     ircname => $ircname,
     server => $server,
@@ -51,6 +55,17 @@ sub _start {
     # Identify with nickserv
     $irc->plugin_add( 'NickServID', POE::Component::IRC::Plugin::NickServID->new(
 	Password => $ircpass,
+    ));
+    # Logging
+    $irc->plugin_add('Logger', POE::Component::IRC::Plugin::Logger->new(
+	Path    => '/home/rockbox/irc-logs',  # .../#channel/YYY-MM-DD.log
+	DCC     => 1,
+	Private => 0,
+	Notices => 1,
+	Public  => 1,
+	Sort_by_date => 1,
+	Restricted => 0,
+	#Format => { ... },  ## customize
     ));
 
     $irc->yield( register => 'all');
