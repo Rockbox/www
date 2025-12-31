@@ -6,6 +6,7 @@ use warnings;
 use POE qw(Component::IRC);
 use POE::Component::IRC::Plugin::AutoJoin;
 use POE::Component::IRC::Plugin::Connector;
+use POE::Component::IRC::Plugin::NickServID;
 use POE::Component::Client::TCP;
 
 use JSON::Parse 'parse_json';
@@ -21,6 +22,7 @@ my $ircname = "Rockbox Channel Bot";
 my $server = "irc.libera.chat";
 my $logchan = "#rockbox";
 my $buildcreds = "logger chanbot:password rockbox";
+my $ircpass = $ENV{'IRCPASS'};
 
 # for debugging
 #$nickname = "rb-chanbotdev";
@@ -42,11 +44,14 @@ sub _start {
     # Connector plugin
     $heap->{connector} = POE::Component::IRC::Plugin::Connector->new();
     $irc->plugin_add( 'Connector' => $heap->{connector} );
-
     # Autojoin plugin
     $irc->plugin_add('AutoJoin', POE::Component::IRC::Plugin::AutoJoin->new(
 			 Channels => \%channels
 		     ));
+    # Identify with nickserv
+    $irc->plugin_add( 'NickServID', POE::Component::IRC::Plugin::NickServID->new(
+	Password => $ircpass,
+    ));
 
     $irc->yield( register => 'all');
     $irc->yield( connect => { } );
