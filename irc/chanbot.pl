@@ -84,30 +84,33 @@ sub irc_001 {
     return;
 }
 
-my $fstitle = "";
-my $url = "";
-
 sub get_gitrev {
     my ($id) = @_;
-    $url = "https://git.rockbox.org/cgit/rockbox.git/commit/?id=$id";
 
-    my $http = HTTP::Tiny->new->get($url);
-    if ($http->{success}) {
-	my $p = HTML::Parser->new(api_version => 3);
-	$p->handler(start => sub {
-	    my ($tagname, $attr, $self) = @_;
-	    return unless $tagname eq "div";
-	    if (defined($attr->{class}) && $attr->{class} eq "commit-subject") {
-		$self->handler(text => sub {
-		    return if $fstitle;
-		    $fstitle = shift;
-#		    print "found '$fstitle'\n";
-			       }, "dtext");
-		$self->handler(end => "eof", "self" );
-	    }
-		    }, "tagname,attr,self");
-	$p->parse($http->{content});
+    my @rvals;
+
+    my $title = "";
+    my $from = "";
+    my $url = "";
+
+
+    my $http = HTTP::Tiny->new->get("https://git.rockbox.org/cgit/rockbox.git/patch/?id=$id");
+    if ($http->{success} && length($http->{content})) {
+        my $data = $http->{content};
+        if ($data =~ /From: (.*) <.*>/) {
+	    $from = $1;
+        }
+	if ($data =~ /Subject: (.*)/) {
+	    $title = $1;
+        }
+	$url = "https://git.rockbox.org/cgit/rockbox.git/commit/?id=$id";
+    } else {
+	$url = "";
+	$title = "";
+	$from = "";
     }
+    push (@rvals, $url, $title, $from);
+    return @rvals;
 }
 
 sub irc_public {
@@ -129,12 +132,13 @@ sub irc_public {
 	    my $author = $$obj{'owner'}{'name'};
 	    my $url = "https://gerrit.rockbox.org/r/c/$project/+/$id";
 
-	    my $msg = "Gerrit review #$id at $url : \x0311$title by $author";
+	    my $msg = "Gerrit review #$id at $url : \x0311$title\x03 by \x0311$author";
 	    $irc->yield( privmsg => $channel => $msg );
 	}
     } elsif ($what =~ /(^|\s)FS#?(\d+)/i ) {
 	my $id = $2;
-	$url = "https://www.rockbox.org/tracker/task/$id";
+	my $url = "https://www.rockbox.org/tracker/task/$id";
+	my $title;
 
 	my $http = HTTP::Tiny->new->get($url);
 	if ($http->{success}) {
@@ -142,7 +146,7 @@ sub irc_public {
 	    $p->handler(start => sub {
 		return if shift ne "title";
 		my $self = shift;
-		$self->handler(text => sub { $fstitle = shift; }, "dtext");
+		$self->handler(text => sub { $title = shift; }, "dtext");
 		$self->handler(
 		    end => sub {
 			shift->eof if shift eq "title";
@@ -151,19 +155,18 @@ sub irc_public {
 		    );
 			}, "tagname,self");
 	    $p->parse($http->{content});
-	    if ($fstitle) {
-		$fstitle =~ s/FS#\d+ : (.*)/$1/;
-		my $msg = "$url : \x0311$fstitle";
-		$fstitle = "";
+	    if ($title) {
+		$title =~ s/FS#\d+ : (.*)/$1/;
+		my $msg = "$url : \x0311$title";
+		$title = "";
 		$irc->yield( privmsg => $channel => $msg );
 	    }
 	}
     } elsif ($what =~ /(^|\s)r#?([A-F0-9]+)/i ) {
 	my $id = $2;
-	get_gitrev($id);
-	if ($fstitle) {
-	    my $msg = "$url : \x0311$fstitle";
-	    $fstitle = "";
+	my ($url, $title, $from) = get_gitrev($id);
+	if ($title) {
+	    my $msg = "$url : \x0311$title\x03 by \x0311$from";
 	    $irc->yield( privmsg => $channel => $msg );
 	}
     }
@@ -226,10 +229,9 @@ POE::Component::Client::TCP->new(
 		if ($rest =~ /New build round started. Revision (\w+),/) {
 		    $rest = "\x033$rest";
 		    $irc->yield( privmsg => $channel => $rest );
-		    get_gitrev($1);
-		    if ($fstitle) {
-			my $msg = "$1 : \x0311$fstitle";
-			$fstitle = "";
+		    my ($url, $title, $from) = get_gitrev($1);
+		    if ($title) {
+			my $msg = "$1 : \x0311$title\x03 by \x0311$from";
 			$irc->yield( privmsg => $channel => $msg );
 		    }
 		} elsif ($rest =~ /Build round completed/) {
