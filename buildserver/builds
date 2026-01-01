@@ -213,6 +213,8 @@ arm-eabi-gcc950:0:creativezenvboot:Creative ZEN V - Boot:bootloader-zenv.creativ
 arm-eabi-gcc950:0:creativezenxfiboot:Creative ZEN X-Fi - Boot:bootloader-zenxfi.creative:3996:tools/configure --target=creativezenxfi --type=b && make
 arm-eabi-gcc950:0:creativezenmozaicboot:Creative ZEN Mozaic - Boot:bootloader-zenmozaic.creative:3722:tools/configure --target=creativezenmozaic --type=b && make
 arm-eabi-gcc950:0:creativezenxfistyleboot:Creative ZEN X-Fi Style - Boot:bootloader-zenxfistyle.creative:3828:tools/configure --target=creativezenxfistyle --type=b && make
+arm-eabi-gcc950:0:echor1boot:Echo R1 - Boot:bootloader.echo:3828:tools/configure --target=echor1 --type=b && make
+# ^ echo r1 needs an updated build score
 ####
 # MIPS-based native targets
 mipsel-gcc950:1:ondavx747:Onda VX747:rockbox.zip:163791:tools/configure --target=ondavx747 --type=n && make zip
