@@ -1216,7 +1216,7 @@ sub bestfit_builds
 
     # remove assignments
     for my $b (@buildids) {
-        $builds{$b}{assigned} = 0;
+        $builds{$b}{assigned} = 0 if (!$builds{$b}{done});
     }
 
     my @debug = ();
@@ -1254,7 +1254,7 @@ sub bestfit_builds
         }
 
         my $lastultime = 0;
-        my $ulspeed = $client{$c}{ulspeed} || 20000; # assume 20 KB/s uplink
+        my $ulspeed = $client{$c}{ulspeed} || 50000; # assume 50 KB/s uplink
 
         for my $b (&$sort_order)
         {
