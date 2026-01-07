@@ -119,7 +119,7 @@ sub irc_public {
     my $channel = $where->[0];
     my $irc = $sender->get_heap();
 
-    if ($what =~ /(^|\s)g#?(\d+)/i ) {
+    if ($what =~ /(^|\s\()g#?(\d+)/i ) {
 	my $id = $2;
 	my $queryurl = "https://gerrit.rockbox.org/r/changes/$id/detail";
 	my $http = HTTP::Tiny->new->get($queryurl);
@@ -135,7 +135,7 @@ sub irc_public {
 	    my $msg = "Gerrit review #$id at $url : \x0311$title\x03 by \x0311$author";
 	    $irc->yield( privmsg => $channel => $msg );
 	}
-    } elsif ($what =~ /(^|\s)FS#?(\d+)/i ) {
+    } elsif ($what =~ /(^|\s\()FS#?(\d+)/i ) {
 	my $id = $2;
 	my $url = "https://www.rockbox.org/tracker/task/$id";
 	my $title;
@@ -162,7 +162,7 @@ sub irc_public {
 		$irc->yield( privmsg => $channel => $msg );
 	    }
 	}
-    } elsif ($what =~ /(^|\s)r#?([A-F0-9]+)/i ) {
+    } elsif ($what =~ /(^|\s\()r#?([A-F0-9]+)/i ) {
 	my $id = $2;
 	my ($url, $title, $from) = get_gitrev($id);
 	if ($title) {
