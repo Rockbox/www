@@ -145,7 +145,7 @@ sub db_prepare
     $setlastrev_sth = $db->prepare("INSERT INTO clients (name, lastrev) VALUES (?,?) ON DUPLICATE KEY UPDATE lastrev=?,totscore=0,builds=0,blocked=0") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
 
-    $getspeed_sth = $db->prepare("SELECT id, timeused, ultime, ulsize FROM builds WHERE client=? AND errors = 0 AND warnings = 0 AND timeused > 10 ORDER BY time DESC LIMIT ?") or
+    $getspeed_sth = $db->prepare("SELECT id, timeused, ultime, ulsize FROM builds WHERE client=? AND id NOT LIKE %manual%' AND errors = 0 AND warnings = 0 ORDER BY time DESC LIMIT ?") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
 
     $getlastrev_sth = $db->prepare("SELECT revision FROM builds ORDER BY time DESC LIMIT 1") or
