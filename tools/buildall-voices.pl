@@ -56,7 +56,8 @@ sub runone {
     print "Build in $dir\n" if($verbose);
 
     # build the voice(s)
-    $a = buildit($target, $lang, $engine, $voice, $engine_opts);
+#    $a = buildit_fulltree($target, $lang, $engine, $voice, $engine_opts);
+    $a = buildit_voicestrings($target, $lang, $engine, $voice, $engine_opts);
 
     my $o="$lang.voice";
     if (-f $o) {
@@ -82,7 +83,7 @@ sub runone {
     return $a;
 };
 
-sub buildit {
+sub buildit_fulltree {
     my ($target, $lang, $engine, $voice, $engine_opts)=@_;
 
     `rm -rf * >/dev/null 2>&1`;
@@ -94,6 +95,27 @@ sub buildit {
 
     print "Run 'make voice'\n" if($verbose);
     system("make voice");
+}
+
+sub buildit_voicestrings {
+    my ($target, $lang, $engine, $voice, $engine_opts)=@_;
+    my $c;
+
+    `rm -rf * >/dev/null 2>&1`;
+
+    $c = "unzip -j ../output/$target/rockbox-$target-$date.zip .rockbox/langs/voicestrings.zip";
+
+    print "C: $c\n" if($verbose);
+    system($c);
+
+    if ($engine_opts eq "") {
+	$engine_opts = $voice;
+    }
+
+    $c = "$source_dir/tools/voice.pl -B=voicestrings.zip -l=$lang -s=$engine -S='$engine_opts' -e=rbspeexenc -E='-q 7 -c 10'";
+
+    print "C: $c\n" if($verbose);
+    system($c);
 }
 
 sub buildinfo {
