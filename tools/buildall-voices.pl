@@ -111,6 +111,7 @@ sub buildit_voicestrings {
     if ($engine_opts eq "") {
 	$engine_opts = $voice;
     }
+    $engine = "espeak-ng" if ($engine eq "espeak");
 
     $c = "$source_dir/tools/voice.pl -B=voicestrings.zip -l=$lang -s=$engine -S='$engine_opts' -e=rbspeexenc -E='-q 7 -c 10'";
 
