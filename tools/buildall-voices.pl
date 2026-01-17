@@ -56,8 +56,8 @@ sub runone {
     print "Build in $dir\n" if($verbose);
 
     # build the voice(s)
-#    $a = buildit_fulltree($target, $lang, $engine, $voice, $engine_opts);
-    $a = buildit_voicestrings($target, $lang, $engine, $voice, $engine_opts);
+    $a = buildit_fulltree($target, $lang, $engine, $voice, $engine_opts);
+#    $a = buildit_voicestrings($target, $lang, $engine, $voice, $engine_opts);
 
     my $o="$lang.voice";
     if (-f $o) {
