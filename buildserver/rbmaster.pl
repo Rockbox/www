@@ -1385,7 +1385,7 @@ sub start_next_build($)
     if (1) {
         # help with other builds, speculatively
         for my $id (&smallbuilds) {
-            next if (!$builds{$id}{done});
+            next if ($builds{$id}{done});
             next if (!client_can_build($cl, $id));
             next if (defined $client{$cl}{btime}{$id});
             # don't start any build that would take >66% of round time
