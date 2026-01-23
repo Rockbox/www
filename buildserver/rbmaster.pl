@@ -522,7 +522,7 @@ sub COMPLETED {
     # remove this build from this client
     delete $client{$cl}{queue}{$id};
     delete $client{$cl}{btime}{$id};
-    delete $builds{$id}{overdue};
+    $builds{$id}{overdue} = 0;
 
     # mark this client as not building anymore
     $client{$cl}{'building'}--;
