@@ -38,7 +38,8 @@ sub getbuilds {
         $builds{$id}{'done'} = 0; # not done
         $builds{$id}{'uploading'} = 0; # not uploading
         $builds{$id}{'ulsize'} = 0;
-        $buikds{$id}{'topspeed'} = 0;
+        $builds{$id}{'topspeed'} = 0;
+        $builds{$id}{'overdue'} = 0; # Not overdue
 
         push @buildids, $id;
     }
