@@ -1006,7 +1006,8 @@ sub client_gone {
 
     # check which builds this client had queued, and free them up
     for my $id (keys %{$client{$cl}{queue}}) {
-        $builds{$id}{'assigned'} = 0;
+        $builds{$id}{assigned} = 0;
+        $builds{$id}{topspeed} = 0;
         slog "$client{$cl}{client} abandoned build $id";
         dblog($cl, "abandoned", $id);
         $abandoned_builds += 1;
@@ -1463,7 +1464,6 @@ sub assign_overdue_builds
     }
 }
 
-
 sub estimate_eta
 {
     my %buildhost;
@@ -1658,6 +1658,7 @@ while(not $alldone) {
     }
 
     assign_overdue_builds();
+    assign_abandoned_builds();
 
     checkclients();
     readblockfile();
