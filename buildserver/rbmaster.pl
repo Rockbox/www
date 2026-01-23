@@ -1364,11 +1364,10 @@ sub start_next_build($)
         }
     }
 
-    # queue is empty. how can I help?
+    ### queue is empty. how can I help?
 
     # any abandoned builds I can do?
-    if ($abandoned_builds)
-    {
+    if ($abandoned_builds) {
         for my $id (&bigbuilds) {
             if (client_can_build($cl, $id) and !$builds{$id}{assigned}) {
                 $client{$cl}{queue}{$id} = 1;
@@ -1384,29 +1383,28 @@ sub start_next_build($)
     if (1) {
         # help with other builds, speculatively
         for my $id (&smallbuilds) {
+            next if (!$builds{$id}{done});
             next if (!client_can_build($cl, $id));
             next if (defined $client{$cl}{btime}{$id});
             # don't start any build that would take >66% of round time
             if ($estimated_time) {
                 next if ($client{$cl}{roundspeed} and ($builds{$id}{score} / $client{$cl}{roundspeed} > $estimated_time * 2 / 3));
             }
-            if (!$builds{$id}{done}) {
-                if ($builds{$id}{handcount} == 0) {
-                    dlog "$cli does unstarted $id";
-                } else {
-                    if (!$speculative) {
-                        message "Speculative building started";
-                        $speculative = 1;
-                    }
 
-                    # don't start building this if someone faster
-                    # is already building it
-                    # XXX this is broken, I think.
-                    #next if ($builds{$id}{topspeed} > $client{$cl}{speed})
+	    # don't start building this if someone faster
+	    # is already building it
+	    #next if ($builds{$id}{topspeed} > $client{$cl}{speed})
+
+            if ($builds{$id}{handcount} == 0) {
+                dlog "$cli does unstarted $id";
+            } else {
+                if (!$speculative) {
+                    message "Speculative building started";
+                    $speculative = 1;
                 }
-                &build($cl, $id);
-                return;
             }
+            &build($cl, $id);
+            return;
         }
     }
 
