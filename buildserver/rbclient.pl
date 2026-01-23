@@ -20,7 +20,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 86;
+my $revision = 87;
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -535,12 +535,12 @@ sub MESSAGE
     print $sock "_MESSAGE\n";
 }
 
-sub SYSTEM
-{
-    my ($cmd) = @_;
-    tprint "Server system command: $cmd\n";
-    system($cmd);
-}
+#sub SYSTEM
+#{
+#    my ($cmd) = @_;
+#    tprint "Server system command: $cmd\n";
+#    system($cmd);
+#}
 
 sub parsecmd
 {
@@ -556,7 +556,8 @@ sub parsecmd
                      'UPDATE', 1,
                      'CANCEL', 1,
                      'MESSAGE', 1,
-                     'SYSTEM', 1);
+#                     'SYSTEM', 1,
+	);
 
     if($cmdstr =~ /^([_A-Z]*) *(.*)/) {
         my $func = $1;
