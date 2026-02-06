@@ -32,7 +32,6 @@ sdl2:0:sansac200v2sim:SanDisk Sansa c200v2 - Simulator:rockboxui:47814:tools/con
 sdl2:0:mrobe500sim:Olympus M-Robe 500 - Simulator:rockboxui:49457:tools/configure --target=mrobe500 --type=s && make
 sdl2:0:mrobe100sim:Olympus M-Robe 100 - Simulator:rockboxui:45638:tools/configure --target=mrobe100 --type=s && make
 sdl2:0:cowond2sim:Cowon D2 - Simulator:rockboxui:62136:tools/configure --target=cowond2 --type=s && make
-sdl2:0:zenvisionm30sim:Creative Zen Vision M 30GB - Simulator:rockboxui:60949:tools/configure --target=zenvisionm30gb --type=s && make
 sdl2:0:sansaclipsim:SanDisk Sansa Clip - Simulator:rockboxui:36089:tools/configure --target=sansaclip --type=s && make
 sdl2:0:sansaclipzipsim:SanDisk Sansa Clip Zip - Simulator:rockboxui:62241:tools/configure --target=sansaclipzip --type=s && make
 sdl2:0:sansaconnectsim:SanDisk Sansa Connect - Simulator:rockboxui:61405:tools/configure --target=sansaconnect --type=s && make
@@ -114,9 +113,6 @@ arm-eabi-gcc950:1:ipod1g2g:iPod 1G/2G:rockbox.zip:84765:tools/configure --target
 arm-eabi-gcc950:1:mrobe500:Olympus M-Robe 500:rockbox.zip:86419:tools/configure --target=mrobe500 --type=n && make zip
 arm-eabi-gcc950:1:mrobe100:Olympus M-Robe 100:rockbox.zip:76629:tools/configure --target=mrobe100 --type=n && make zip
 arm-eabi-gcc950:1:cowond2:Cowon D2:rockbox.zip:154239:tools/configure --target=cowond2 --type=n && make zip
-arm-eabi-gcc950:1:zenvisionm30:Creative Zen Vision M 30GB:rockbox.zip:153221:tools/configure --target=zenvisionm30gb --type=n && make zip
-arm-eabi-gcc950:1:zenvisionm60:Creative Zen Vision M 60GB:rockbox.zip:153287:tools/configure --target=zenvisionm60gb --type=n && make zip
-arm-eabi-gcc950:1:zenvision:Creative Zen Vision:rockbox.zip:37388:tools/configure --target=zenvision --type=n && make zip
 arm-eabi-gcc950:1:sansafuze:SanDisk Sansa Fuze:rockbox.zip:167255:tools/configure --target=sansafuze --type=n && make zip
 arm-eabi-gcc950:1:sansafuzev2:SanDisk Sansa Fuzev2:rockbox.zip:164840:tools/configure --target=sansafuzev2 --type=n && make zip
 arm-eabi-gcc950:1:sansafuzeplus:SanDisk Sansa Fuze+:rockbox.zip:167302:tools/configure --target=sansafuzeplus --type=n && make zip
@@ -194,7 +190,6 @@ arm-eabi-gcc950:0:samsungyh920boot:Samsung YH-920 - Boot:PP5020.mi4:2958:tools/c
 arm-eabi-gcc950:0:samsungyh925boot:Samsung YH-925 - Boot:FW_YH925.mi4:2993:tools/configure --target=samsungyh925 --type=b && make
 arm-eabi-gcc950:0:gogearsa9200boot:Philips SA9200 - Boot:FWImage.ebn:3165:tools/configure --target=gogearsa9200 --type=b && make
 arm-eabi-gcc950:0:vibe500boot:Packard Bell Vibe 500 - Boot:jukebox.mi4:3052:tools/configure --target=vibe500 --type=b && make
-arm-eabi-gcc950:0:zenvisionm30boot:Creative Zen Vision M 30GB - Boot:rockbox.zvmboot:3257:tools/configure --target=zenvisionm30gb --type=b && make
 arm-eabi-gcc950:0:rk27genericboot:Rockchip rk27xx - Boot:bootloader.rkw:3184:tools/configure --target=rk27generic --type=b && make
 arm-eabi-gcc950:0:hifimanhm60xboot:HiFiMAN HM-60x - Boot:bootloader.rkw:3159:tools/configure --target=hifimanhm60x --type=b && make
 arm-eabi-gcc950:0:hifimanhm801boot:HiFiMAN HM-801 - Boot:bootloader.rkw:3155:tools/configure --target=hifimanhm801 --type=b && make
@@ -399,7 +394,6 @@ sdl2:0:sansac200v2wps:SanDisk Sansa c200v2 - Checkwps:checkwps.sansac200v2:244:t
 sdl2:0:mrobe500wps:Olympus M-Robe 500 - Checkwps:checkwps.mrobe500:245:tools/configure --target=mrobe500 --type=c && make
 sdl2:0:mrobe100wps:Olympus M-Robe 100 - Checkwps:checkwps.mrobe100:240:tools/configure --target=mrobe100 --type=c && make
 sdl2:0:cowond2wps:Cowon D2 - Checkwps:checkwps.cowond2:246:tools/configure --target=cowond2 --type=c && make
-sdl2:0:zenvisionm30wps:Creative Zen Vision M 30GB - Checkwps:checkwps.zenvisionm30gb:240:tools/configure --target=zenvisionm30gb --type=c && make
 sdl2:0:sansaclipwps:SanDisk Sansa Clip - Checkwps:checkwps.sansaclip:242:tools/configure --target=sansaclip --type=c && make
 sdl2:0:sansaclipzipwps:SanDisk Sansa Clip Zip - Checkwps:checkwps.sansaclipzip:248:tools/configure --target=sansaclipzip --type=c && make
 sdl2:0:sansaconnectwps:SanDisk Sansa Connect - Checkwps:checkwps.sansaconnect:245:tools/configure --target=sansaconnect --type=c && make
