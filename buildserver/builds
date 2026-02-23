@@ -222,6 +222,8 @@ mipsel-gcc950:1:erosqnative:AIGO EROS Q/K (Native):rockbox.zip:157373:tools/conf
 ####
 # MIPS-based native bootloaders
 mipsel-gcc950:0:ondavx747boot:Onda VX747 - Boot:ccpmp.bin:3484:tools/configure --target=ondavx747 --type=b && make
+mipsel-gcc950:0:ondavx767boot:Onda VX767 - Boot:ccpmp.bin:3484:tools/configure --target=ondavx767 --type=b && make
+mipsel-gcc950:0:ondavx777boot:Onda VX777 - Boot:ccpmp.bin:3484:tools/configure --target=ondavx777 --type=b && make
 mipsel-gcc950:0:xduoox3boot:Xduoo X3 - Boot:bootloader-x3.bin:3267:tools/configure --target=xduoox3 --type=b && make
 mipsel-gcc950:0:fiiom3kboot:FiiO M3K - Boot:bootloader.m3k:3979:tools/configure --target=fiiom3k --type=b && make
 mipsel-gcc950:0:shanlingq1boot:Shanling Q1 - Boot:bootloader.q1:3998:tools/configure --target=shanlingq1 --type=b && make
