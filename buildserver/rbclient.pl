@@ -20,7 +20,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 88;
+my $revision = 89;
 my $agent = "rbclient/$revision";
 my $cwd = `pwd`;
 chomp $cwd;
@@ -519,7 +519,7 @@ sub UPDATE
     my ($url) = @_;
     tprint "Update from $url\n";
 
-    `curl -L -o $perlfile.new "$url"`;
+    `curl -A '$agent' -L -o $perlfile.new "$url"`;
 
     # This might fail, but runclient.sh will save us
     rename("$perlfile.new", $perlfile);
