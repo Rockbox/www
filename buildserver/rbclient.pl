@@ -20,7 +20,8 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 87;
+my $revision = 88;
+my $agent = "rbclient/$revision";
 my $cwd = `pwd`;
 chomp $cwd;
 
@@ -441,8 +442,8 @@ sub upload
         $limit = "--limit-rate ${ulspeed}k";
     }
 
-    tprint "curl $limit -s -F upfile=\@$file $upload_url\n";
-    `curl $limit -s -F upfile=\@$file $upload_url`;
+    tprint "curl $limit -A '$agent' -s -F upfile=\@$file $upload_url\n";
+    `curl $limit -A '$agent' -s -F upfile=\@$file $upload_url`;
 }
 
 sub _HELLO
