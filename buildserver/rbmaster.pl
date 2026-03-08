@@ -256,7 +256,7 @@ sub build {
     my $rh = $client{$fileno}{'socket'};
     my $cli = $client{$fileno}{'client'};
     my $rev = $buildround;
-    my $args = "$id:$rev:mt:$builds{$id}{result}:$builds{$id}{upload}:$builds{$id}{cmdline}";
+    my $args = "$id:$rev:$builds{$id}{mt}:$builds{$id}{result}:$builds{$id}{upload}:$builds{$id}{cmdline}";
 
     # tell client to build!
     command $rh, "BUILD $args";

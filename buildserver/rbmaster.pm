@@ -24,11 +24,12 @@ sub getbuilds {
         chomp;
         next if (/^\#/);
         next if (/^\s*$/);
-        # arm-eabi-gcc444:0:ipodnano1gboot:iPod Nano 1G - Boot:bootloader-ipodnano1g.ipod:839:../tools/configure --target=ipodnano1g --type=b && make
-        my ($arch, $upload, $id, $name, $result, $score,
+        # arm-eabi-gcc444:0:mt:ipodnano1gboot:iPod Nano 1G - Boot:bootloader-ipodnano1g.ipod:839:../tools/configure --target=ipodnano1g --type=b && make
+        my ($arch, $upload, $mt, $id, $name, $result, $score,
             $cmdline) = split(':', $_);
         $builds{$id}{'arch'}=$arch;
         $builds{$id}{'upload'}=$upload;
+        $builds{$id}{'mt'}=$mt;
         $builds{$id}{'name'}=$name;
         $builds{$id}{'result'}=$result;
         $builds{$id}{'score'}=$score;
