@@ -20,7 +20,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 90;
+my $revision = 91;
 my $agent = "rbclient/$revision";
 my $cwd = `pwd`;
 chomp $cwd;
@@ -74,6 +74,7 @@ our $archlist = $archlist;
 our $buildmaster = $buildmaster || 'buildmaster.rockbox.org';
 our $port = $port || 19999;
 our $ulspeed = $ulspeed || 0;
+our $parallel = $parallel || 0;
 our $commandhook = $commandhook || '';
 our $buildroot = $buildroot || '';
 
@@ -123,6 +124,11 @@ optional setting:
 
 -cores=[num]
   Override rbclient\'s probed results
+
+-parallel=[0|1]
+  Enable experimental parallel build mode. May run multiple uploads in
+  parallel, so total upload bandwidth may exceed -ulspeed (if specified).
+  Disabled by default.
 
 -buildmaster=[host]
   Connect to this given server instead of the default.
@@ -241,7 +247,10 @@ while (1) {
                     # we're no longer busy
                     $busy -= $builds{$id}{cores};
                     $builds{$id}{cores} = 0;
-                    print $sock "GIMMEMORE\n";
+
+                    if ($busy < $cores) {
+                        print $sock "GIMMEMORE $builds{$id}{rev} $busy\n";
+                    }
                 }
                 elsif ($data =~ /done (.*?) (\d+) (\d+) (\d+) (.*)/) {
                     my ($id, $pid, $ultime, $ulsize, $status) = ($1, $2, $3, $4, $5);
@@ -490,7 +499,7 @@ sub CANCEL
     print $sock "_CANCEL\n";
 
     if ($busy < $cores) {
-        print $sock "GIMMEMORE\n";
+        print $sock "GIMMEMORE $builds{$id}{rev} $busy\n";
     }
 }
 
@@ -519,6 +528,10 @@ sub BUILD
     print $sock "_BUILD $id\n";
 
     &startbuild($id);
+
+    if ($parallel and $busy < $cores) {
+        print $sock "GIMMEMORE $rev $busy\n";
+    }
 }
 
 sub UPDATE
@@ -672,6 +685,9 @@ sub readconfig
         }
         elsif (/^buildroot:\s*(.*)/) {
             $buildroot = $1;
+        }
+        elsif (/^parallel:\s*(.*)/) {
+            $parallel = $1;
         }
     }
     close CFG;
