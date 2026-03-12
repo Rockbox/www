@@ -862,6 +862,9 @@ sub startround {
         $totspeed += $client{$_}{speed};
     }
 
+    # determine the number of clients that can do each build
+    update_canbuild();
+
     if ($totspeed) {
         bestfit_builds();
     } else {
@@ -1143,6 +1146,19 @@ sub client_eta($)
     return 0;
 }
 
+sub update_canbuild
+{
+    # how many clients for each build?
+    for my $b (@buildids) {
+        $builds{$b}{canbuild} = 0;
+        for my $c (&build_clients) {
+            if (client_can_build($c, $b)) {
+                $builds{$b}{canbuild} += 1;
+            }
+        }
+    }
+}
+
 sub evenspread_builds
 {
     # First time ever == no client speed ratings.
@@ -1167,7 +1183,6 @@ sub evenspread_builds
     }
 }
 
-
 my $firsttime = 0;
 sub bestfit_builds
 {
@@ -1182,16 +1197,6 @@ sub bestfit_builds
     for my $b (@buildids) {
         if (!$builds{$b}{done} and !$builds{$b}{uploading}) {
             $totwork += $builds{$b}{score};
-        }
-    }
-
-    # how many clients for each build?
-    for my $b (@buildids) {
-        $builds{$b}{canbuild} = 0;
-        for my $c (&build_clients) {
-            if (client_can_build($c, $b)) {
-                $builds{$b}{canbuild} += 1;
-            }
         }
     }
 
