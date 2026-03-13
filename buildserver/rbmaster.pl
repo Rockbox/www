@@ -425,7 +425,7 @@ sub HELLO {
         $client{$fno}{'fine'} = 1;
 
         if ($buildround) {
-            start_next_build($fno);
+            start_next_build($fno, 0);
         }
     }
 }
@@ -472,13 +472,20 @@ sub UPLOADING {
 
 sub GIMMEMORE {
     my ($rh, $args) = @_;
+    my ($revision, $busy) = split(" ", $args);
 
     command $rh, "_GIMMEMORE";
 
     my $cli = $client{$rh->fileno}{'client'};
     #slog "$cli asked for more work";
 
-    &start_next_build($rh->fileno);
+    if (defined($revision) and defined($busy)) {
+        if ($revision eq $buildround) {
+            &start_next_build($rh->fileno, $busy);
+        }
+    } else {
+        &start_next_build($rh->fileno, 0);
+    }
 }
 
 sub COMPLETED {
@@ -878,7 +885,7 @@ sub startround {
                    &build_clients)
         {
             if (!scalar keys %{$client{$c}{btime}}) {
-                &start_next_build($c);
+                &start_next_build($c, 0);
             }
         }
     }
@@ -1356,17 +1363,25 @@ sub bestfit_builds
 
 sub start_next_build($)
 {
-    my ($cl) = @_;
+    my ($cl, $busy) = @_;
 
     return if (!$buildround);
     return if ($client{$cl}{blocked});
 
     my $cli = $client{$cl}{client};
+    my $skipped = 0;
 
     # start next in queue
     for my $id (sort {bigsort(0)} keys %{$client{$cl}{queue}})
     {
-        if (!$builds{$id}{done} and !$builds{$id}{uploading})
+        if ($busy and $builds{$id}{mt} eq "mt") {
+            $skipped++;
+            next;
+        }
+
+        if (!$builds{$id}{done} and
+            !$builds{$id}{uploading} and
+            !$client{$cl}{btime}{$id})
         {
             &build($cl, $id);
             return;
@@ -1376,25 +1391,38 @@ sub start_next_build($)
     ### queue is empty. how can I help?
 
     # any abandoned builds I can do?
-    if ($abandoned_builds) {
+    if (!$skipped and $abandoned_builds) {
         for my $id (&bigbuilds) {
-            if (client_can_build($cl, $id) and !$builds{$id}{assigned}) {
-                $client{$cl}{queue}{$id} = 1;
-                $builds{$id}{assigned} = 1;
-                $abandoned_builds -= 1;
-                dlog "$cli does abandoned $id";
-                &build($cl, $id);
-                return;
+            next if (!client_can_build($cl, $id));
+            next if $builds{$id}{assigned};
+
+            if ($busy and $builds{$id}{mt} eq "mt") {
+                $skipped++;
+                next;
             }
+
+            # we found one
+            $client{$cl}{queue}{$id} = 1;
+            $builds{$id}{assigned} = 1;
+            $abandoned_builds -= 1;
+            dlog "$cli does abandoned $id";
+            &build($cl, $id);
+            return;
         }
     }
 
-    if (1) {
+    if (!$skipped) {
         # help with other builds, speculatively
         for my $id (&smallbuilds) {
             next if ($builds{$id}{done});
             next if (!client_can_build($cl, $id));
             next if (defined $client{$cl}{btime}{$id});
+
+            if ($busy and $builds{$id}{mt} eq "mt") {
+                $skipped++;
+                next;
+            }
+
             # don't start any build that would take >66% of round time
             if ($estimated_time) {
                 next if ($client{$cl}{roundspeed} and ($builds{$id}{score} / $client{$cl}{roundspeed} > $estimated_time * 2 / 3));
@@ -1415,6 +1443,11 @@ sub start_next_build($)
             &build($cl, $id);
             return;
         }
+    }
+
+    # only multithreaded builds left, but we're too busy to start them now
+    if ($skipped) {
+        return;
     }
 
     # there's nothing for me to do!
@@ -1441,7 +1474,7 @@ sub assign_abandoned_builds
                         $client{$c}{queue}{$id} = $builds{$id}{score};
                         $abandoned_builds -= 1;
                         $idle_clients -= 1;
-                        &start_next_build($c);
+                        &start_next_build($c, 0);
                     }
                 }
             }
