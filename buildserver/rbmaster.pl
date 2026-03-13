@@ -931,14 +931,16 @@ sub endround {
     }
 
     # pass round result to clients
-    my $rows = $get_build_results_sth->execute($buildround);
+    if (!$rbconfig{test}) {
+        my $rows = $get_build_results_sth->execute($buildround);
 
-    if ($rows) {
-        my ($errors,$warnings) = $get_build_results_sth->fetchrow_array();
-        if ($errors or $warnings) {
-            message "Revision $buildround result: $errors errors $warnings warnings";
-        } else {
-            message "Revision $buildround result: All green";
+        if ($rows) {
+            my ($errors,$warnings) = $get_build_results_sth->fetchrow_array();
+            if ($errors or $warnings) {
+                message "Revision $buildround result: $errors errors $warnings warnings";
+            } else {
+                message "Revision $buildround result: All green";
+            }
         }
     }
 
