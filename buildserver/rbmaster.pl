@@ -240,7 +240,7 @@ sub updateclient {
     my $rh = $client{$cl}{'socket'};
 
     # tell client to update
-    command $rh, sprintf("UPDATE $rbconfig{updateurl}", $rev);
+    command $rh, sprintf("UPDATE $rbconfig{updateurl}");
     $client{$cl}{'expect'}="_UPDATE";
     $client{$cl}{'bad'}="asked to update";
 
