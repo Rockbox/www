@@ -20,7 +20,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 89;
+my $revision = 90;
 my $agent = "rbclient/$revision";
 my $cwd = `pwd`;
 chomp $cwd;
@@ -59,8 +59,10 @@ sub tprint {
         # Special stuff
         "sdl2" => {"sdl2-config --version", ".*" },
         "latex" => { "pdflatex --version", "Live 202?" },
-        "qt5" => { "pkg-config Qt5Core --libs", "Qt5Core" },
-        "qt6" => { "pkg-config Qt6Core --libs", "Qt6Core" },
+        "qt5" => { "cmake --version" => ".*",
+                   "pkg-config Qt5Core --libs" => "Qt5Core" },
+        "qt6" => { "cmake --version" => ".*",
+                   "pkg-config Qt6Core --libs" => "Qt6Core" },
         "dummy" => { "/bin/true", ".*" },
         );
 
@@ -348,7 +350,12 @@ sub startbuild
         my $logfile = "$base.log";
         my $log = ">> $logfile 2>&1";
 
-        my $cmdline = $rbdir . '/' . $builds{$id}{cmdline};
+	my $cmdline = $builds{$id}{cmdline};
+	if ($cmdline =~ /cmake (.*)/) {
+	    $cmdline = 'cmake ' . $rbdir . '/' . $1;
+	} else {
+            $cmdline = $rbdir . '/' . $cmdline;
+	}
 
         if (not open DEST, ">$logfile") {
             tprint "Failed creating log file $logfile: $!\n";
