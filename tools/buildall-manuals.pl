@@ -118,17 +118,21 @@ sub copyone {
 
     $ifn = "rockbox-${tgt}manual.pdf";
     $ofn = "rockbox-${tgt}.pdf";
+    $ofn2 = "rockbox-${tgt}-${date}.pdf";
     if (-f "input/$ifn") {
         print "copying input/$ifn to output/manual/$ofn\n" if($verbose);
 	system("cp input/$ifn output/manual/$ofn");
+	system("cp input/$ifn output/manual/$ofn2");
     } else {
         print "*** error: no pdf file input/$ifn\n" if($verbose);
     }
     $ifn = "rockbox-${tgt}htmlmanual.zip";
     $ofn = "rockbox-${tgt}-html.zip";
+    $ofn2 = "rockbox-${tgt}-${date}-html.zip";
     if (-f "input/$ifn") {
         print "copying input/$ifn to output/manual/$ofn\n" if($verbose);
 	system("cp input/$ifn output/manual/$ofn");
+	system("cp input/$ifn output/manual/$ofn2");
         print "extracting input/$ifn\n" if($verbose);
         system("rm -Rf html");
         system("unzip -q input/$ifn");
