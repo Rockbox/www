@@ -20,7 +20,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 91;
+my $revision = 92;
 my $agent = "rbclient/$revision";
 my $cwd = `pwd`;
 chomp $cwd;
@@ -493,13 +493,14 @@ sub PING
 sub CANCEL
 {
     my ($id) = @_;
+    my $rev = $builds{$id}{rev};
 
     &killchild($id);
 
     print $sock "_CANCEL\n";
 
     if ($busy < $cores) {
-        print $sock "GIMMEMORE $builds{$id}{rev} $busy\n";
+        print $sock "GIMMEMORE $rev $busy\n";
     }
 }
 
