@@ -480,7 +480,7 @@ sub GIMMEMORE {
     #slog "$cli asked for more work";
 
     if (defined($revision) and defined($busy)) {
-        if ($revision eq $buildround) {
+        if ($revision eq $buildround or $busy == 0) {
             &start_next_build($rh->fileno, $busy);
         }
     } else {
