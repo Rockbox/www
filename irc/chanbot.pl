@@ -2,6 +2,7 @@
 
 use strict;
 use warnings;
+use utf8;
 
 #use POE qw(Component::IRC);
 use POE qw(Component::IRC::State);
@@ -97,6 +98,7 @@ sub get_gitrev {
     my $http = HTTP::Tiny->new->get("https://git.rockbox.org/cgit/rockbox.git/patch/?id=$id");
     if ($http->{success} && length($http->{content})) {
         my $data = $http->{content};
+        utf8::decode($data);
         if ($data =~ /From: (.*) <.*>/) {
 	    $from = $1;
         }
@@ -125,6 +127,7 @@ sub irc_public {
 	my $http = HTTP::Tiny->new->get($queryurl);
 	if ($http->{success}) {
 	    my $trimmed = substr($http->{content}, 4);
+            utf8::decode($trimmed);
 	    my $obj = parse_json($trimmed);
 
 	    my $title = $$obj{'subject'};
@@ -154,7 +157,9 @@ sub irc_public {
 		    "tagname,self"
 		    );
 			}, "tagname,self");
-	    $p->parse($http->{content});
+            my $data = $http->{content};
+            utf8::decode($data);
+	    $p->parse($data);
 	    if ($title) {
 		$title =~ s/FS#\d+ : (.*)/$1/;
 		my $msg = "$url : \x0311$title";
