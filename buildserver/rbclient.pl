@@ -20,7 +20,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 92;
+my $revision = 93;
 my $agent = "rbclient/$revision";
 my $cwd = `pwd`;
 chomp $cwd;
@@ -310,8 +310,14 @@ sub startbuild
         tprint "Your source tree is modified! Clean it up and restart.\n";
         exit 22;
     }
-    # (using system() to make stderr messages appear on client console)
-    system("git remote update");
+
+    # Only query the remote if the commit to build doesn't exist locally
+    # (using system() below to make stderr messages appear on client console)
+    `git rev-parse --quiet --verify $builds{$id}{rev}^{commit}`;
+    if ($?) {
+        system("git remote update");
+    }
+
     system("git checkout --quiet --force $builds{$id}{rev}");
     if ($?) { # abort if git failed
         tprint "*** git error!\n";
