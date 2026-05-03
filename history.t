@@ -112,7 +112,7 @@
 <p><i>2007-09-19</i>: 1st and 2nd gen iPods are supported
 
 <p><i>2007-08-07</i>: We now offer daily built voice files on the <a
-href="/daily.shtml">daily build page</a>
+href="/download/daily.shtml">daily build page</a>
 
 <p><i>2007-07-30</i>: The <a href="//www.rockbox.org/mail/archive/rockbox-dev-archive-2007-07/0049.shtml">Tracker Cleanup Week</a> has begun!
 
@@ -237,7 +237,7 @@ href="//www.rockbox.org/wiki/IriverPort">iRiver</a>.
 
 <p><i>2004-09-13</i>: Call for help! Please donate your broken iRiver iHP-1xx to the project!
 
-<p><i>2004-07-08</i>: Good news for Windows users! You can now install the <a href=/daily.shtml>daily builds</a> with an installer executable. Thanks to Christi Scarborough for that.
+<p><i>2004-07-08</i>: Good news for Windows users! You can now install the <a href=/download/daily.shtml>daily builds</a> with an installer executable. Thanks to Christi Scarborough for that.
 
 <p><i>2004-06-17</i>: We now have a <a href="/twiki">Wiki</a> for the documentation. Feel free to join the documentation frenzy!
 
@@ -316,7 +316,7 @@ is not yet enabled on the players by default.
 <p><i>2002-06-01</i>: Web site has been down three days due to a major power loss.
 
 <p><i>2002-05-27</i>: All v1.0 code is written, we are now entering debug phase.
-If you like living on the edge, <a href="daily.shtml">here are daily builds</a>.
+If you like living on the edge, <a href="download/daily.shtml">here are daily builds</a>.
 
 <p><i>2002-05-26</i>: New web design. First player release drawing closer.
 

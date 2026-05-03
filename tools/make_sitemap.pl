@@ -61,7 +61,7 @@ for my $file (@hourly) {
 
 
 # daily
-my @daily = ( "daily.shtml",
+my @daily = ( "download/daily.shtml",
               "manual.shtml",
               "irc/index.shtml",
               );

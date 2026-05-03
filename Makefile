@@ -1,7 +1,7 @@
 ACTION=@echo preprocessing $@; rm -f $@; cpp -P >$@
 
 SRC := $(wildcard *.t)
-SOBJS := index.shtml manual.shtml recent.shtml daily.shtml
+SOBJS := index.shtml manual.shtml recent.shtml download/daily.shtml
 
 OBJS := $(SRC:%.t=%.html) $(SOBJS) head.tmpl
 

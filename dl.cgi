@@ -26,7 +26,7 @@ header("Rockbox $desc Daily Builds");
 
 sub showother {
     my ($c)=@_;
-    print "<a href=\"/daily.shtml\">daily build page</a><p>";
+    print "<a href=\"/download/daily.shtml\">daily build page</a><p>";
 
     print "<table class=\"rockbox\"><tr>\n";
     for(sort keys %model) {
@@ -54,7 +54,7 @@ These are automated daily builds of the latest code. They contain all the
 latest features, but may also contain bugs and/or undocumented changes.
 The top line is the latest. 
 <p>
-For other players, see the <a href="daily.shtml">daily builds</a> page.
+For other players, see the <a href="download/daily.shtml">daily builds</a> page.
 <p>
 MOO
     ;

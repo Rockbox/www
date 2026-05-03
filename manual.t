@@ -9,6 +9,6 @@ Go to <a href="//www.rockbox.org/wiki/RockboxManual">RockboxManual</a> for furth
 <!--#exec cmd="./manual.pl" -->
 
 <p>
-See also the <a href="daily.shtml">daily Rockbox builds</a>
+See also the <a href="download/daily.shtml">daily Rockbox builds</a>
 
 #include "foot.t"

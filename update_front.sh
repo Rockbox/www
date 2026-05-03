@@ -13,7 +13,7 @@ perl recentwiki.pl 20 > recentwiki.html
 
 # Latest daily build stuff (have to put it somewhere..)
 perl dailymod.pl > dailymod.html.new
-mv dailymod.html.new dailymod.html
+mv dailymod.html.new download/dailymod.html
 
 GITLOG="git log --name-status --abbrev-commit --date=iso-local --encoding=utf8 --pretty=fuller"
 
