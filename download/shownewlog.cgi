@@ -1,0 +1,1 @@
+../buildserver/shownewlog.cgi

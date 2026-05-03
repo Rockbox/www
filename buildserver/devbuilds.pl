@@ -69,7 +69,7 @@ $beware
  For a stable build, <a href="//www.rockbox.org/download/">download the latest stable release</a>.
 
 <p>
-<a href="dev.cgi">Autobuilder details</a> &middot;
+<a href="//www.rockbox.org/download/dev.cgi">Autobuilder details</a> &middot;
 <a href="//www.rockbox.org/daily.shtml">Daily snapshot builds and voice files</a>
 HEAD
     ;

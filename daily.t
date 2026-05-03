@@ -2,8 +2,8 @@
 #include "head.t"
 
 <p>
-<a href="//build.rockbox.org">Latest development builds (updated after every commit)</a> &middot;
-<a href="//build.rockbox.org/dev.cgi">Autobuilder details</a>
+<a href="//www.rockbox.org/download/devbuilds.html">Latest development builds (updated after every commit)</a> &middot;
+<a href="//www.rockbox.org/download/dev.cgi">Autobuilder details</a>
 </p>
 
 <!--#include file="dailymod.html" -->
