@@ -1,0 +1,31 @@
+/* Common to both */
+.upload {
+    background-color: black;
+    opacity: 0.3;
+    margin-left: auto;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=30)"; // first!
+    filter: alpha(opacity=30);                                        // second!
+}
+td.buildcell {
+    width: {$width}{$unit};
+}
+table {
+    margin-bottom: 1em;
+}
+.build {
+    height: 1em;
+    background-repeat: no-repeat;
+}
+
+/* Normal page */
+.boot   { background-color: #cf72cd; }
+.sim    { background-color: #cfa272; }
+.target { background-color: #72cf73; }
+.wps    { background-color: #7372cf; }
+
+/* Debug page */
+.queued    { background-color: blue; }
+.dequeued  { background-color: aqua; }
+.cancelled { background-color: yellow; }
+.abandoned { background-color: red; }
+.completed { background-color: green; }
