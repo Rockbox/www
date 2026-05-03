@@ -16,7 +16,7 @@ print <<STUFF
  Build stuff for developers.  All timestamps here are UTC!
 </p>
 <p>
- <a href="./">Current build page</a>
+ <a href="devbuilds.html">Current build page</a>
 </p>
 STUFF
   ;
