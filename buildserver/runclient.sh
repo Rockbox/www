@@ -35,7 +35,7 @@ do
     # funkey-sdk             : Funkey SDK (eg for FunKey handheld or Ambergic RG Nano)
 
     # CHANGEME:  This list includes native targets only.
-    perl -s rbclient.pl -username= -password= -clientname= -buildroot= -archlist=m68k-gcc950,mipsel-gcc950,arm-eabi-gcc950 -buildmaster=buildmaster.rockbox.org -port=19999
+    perl -s rbclient.pl -username= -password= -clientname= -buildroot= -archlist=m68k-gcc950,mipsel-gcc950,arm-eabi-gcc950 -buildmaster=buildmaster.rockbox.org -port=19999 -parallel=0
     res=$?
     if test "$res" -eq 22; then
       echo "Address the above issue(s), then restart!"
