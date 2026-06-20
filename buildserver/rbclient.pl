@@ -20,7 +20,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 93;
+my $revision = 94;
 my $agent = "rbclient/$revision";
 my $cwd = `pwd`;
 chomp $cwd;
@@ -64,6 +64,12 @@ sub tprint {
         "qt6" => { "cmake --version" => ".*",
                    "pkg-config Qt6Core --libs" => "Qt6Core" },
         "dummy" => { "/bin/true", ".*" },
+
+	# OS-specific targets
+	"macos" => { "uname", "Darwin" },
+	"linux" => { "uname", "Linux" },
+	"win32" => { "mingw32-pkg-config --version", ".*" },
+	"win64" => { "mingw64-pkg-config --version", ".*" },
         );
 
 # read -parameters

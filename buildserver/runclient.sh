@@ -28,6 +28,12 @@ do
     # qt6 :  For building rbutil and themeeditor
     # dummy : does nothing
 
+    ###### OS-specific
+    # linux : Capable of building Linux binaries
+    # macos : Capable of building MacOS binaries
+    # win32 : Capable of building 32-bit Windows binaries
+    # win64 : Capable of building 64-bit Windows binaries
+
     ####### Android
     # android-ndk10          : Android NDK 10e, eg iBasso dx50/dx90
     # android-ndk10sdk19     : Android NDK 10e and SDK+tools supporting API 19 (4.4/KitKat)
