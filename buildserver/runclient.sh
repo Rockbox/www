@@ -24,13 +24,11 @@ do
     ####### Special
     # sdl2 : Non-crosscompiled targets. Simulators, application, checkwps, database tool, ...
     # latex : manuals
-    # qt5 :  For building rbutil and themeeditor
     # qt6 :  For building rbutil and themeeditor
     # dummy : does nothing
 
-    ###### OS-specific
-    # linux : Capable of building Linux binaries
-    # macos : Capable of building MacOS binaries
+    ###### OS-specific for cross-compiling
+    ## note:  the local OS (uname -s) and CPU (uname -m) output is always sent.
     # win32 : Capable of building 32-bit Windows binaries
     # win64 : Capable of building 64-bit Windows binaries
 

@@ -8,6 +8,8 @@
 # and are periodically regenerated, especially in the face of new/updated toolchains.
 #
 
+my $rbdir = "..";
+
 my $jobs = `nproc` + 0;
 
 while (<STDIN>) {
@@ -18,23 +20,31 @@ while (<STDIN>) {
     chomp;
     my @row = split(/:/);
 
-    my $make = $row[2];
-    my $oldscore = $row[5];
-    my $build = $row[6];
+    my $make = $row[3];
+    my $oldscore = $row[6];
+    my $build = $row[7];
+
+    if ($build =~ s/%SRCDIR%/$rbdir/) {
+
+    } else {
+        $build = $rbdir . '/' . $build;
+    }
 
     my @tmp = split(/&&/,$build);
-    my $conf = $tmp[0] . " --no-ccache ";
+    $ENV{'CCACHE_DISABLE'} = "true";
 
-    $build = $tmp[1] . " -j$jobs ";
+    my $conf = $tmp[0];
+
+    $build = $tmp[1]. " -j$jobs ";
 
     $build =~ s/make zip/make/;  # Leave out the zip
 
-    system("../$conf > /dev/null");
+    system("$conf > /dev/null");
     system("make clean > /dev/null");
     my $score = `(/usr/bin/time -f"%U+%S" $build >/dev/null) 2>&1 | bc -l` * 100;
     system("make clean > /dev/null");
 
-    $row[5] = $score;
+    $row[6] = $score;
 
     my $newrow = join(':',@row);
     print "$newrow\n";

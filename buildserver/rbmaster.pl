@@ -47,9 +47,9 @@ my @nextrounds;
 # {$fileno}{'cmd'} for building incoming commands
 #  {'client'}
 #  {'archs'}
-#  {'cpu'} - string for stats
+#  {'cpu'} - (uname -m)
 #  {'bits'} 32 / 64
-#  {'os'}
+#  {'os'} - (uname -s)
 #
 
 my $started = time();

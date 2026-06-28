@@ -1,5 +1,5 @@
 #### Rockbox Builds ####
-# arch:upload:threads:name:score:cmdline
+# arch:upload:threads:id:name:ulname:score:cmdline
 #  ^^ arch can be comma-separated list; ALL must be present to build
 #     threads selects mt(multi-thread) or st(single-thread) build
 ####
@@ -459,10 +459,9 @@ sdl2:0:mt:xduoox3iidb:Xduoo X3ii - Database:database.xduoox3ii:1143:tools/config
 # SDL and Warble targets
 sdl2:0:mt:sdlapplication:SDL Application:rockbox:37297:tools/configure --target=sdlapp --type=n --lcdwidth=640 --lcdheight=480 && make
 sdl2:0:mt:sdlapplicationwarble:SDL Application - warble:warble.sdlapp:13152:tools/configure --target=sdlapp --type=w --lcdwidth=640 --lcdheight=480 && make
-###
-# QT-based stuff
-#qt5,linux:0:mt:rbutil-linux-qt5:Rockbox Utility - Linux QT5:rbutilqt/RockboxUtility:228:cmake utils && make
-#qt6,linux:0:mt:rbutil-linux:Rockbox Utility - Linux QT6:rbutilqt/RockboxUtility:228:cmake utils && make
-#qt6,macos:0:mt:rbutil-macos:Rockbox Utility - MacOS QT6:rbutilqt/RockboxUtility:228:cmake utils && make
-#qt6,win32:0:mt:rbutil-win32:Rockbox Utility - Win32 QT6:rbutilqt/RockboxUtility:228:cmake utils && make
-#qt6,win64:0:mt:rbutil-win64:Rockbox Utility - Win64 QT6:rbutilqt/RockboxUtility:228:cmake utils && make
+# Rockbox Utility
+#qt6,x86_64,linux:0:mt:rbutil:Rockbox Utility - x86_64/Linux:rbutilqt/RockboxUtility:228:cmake %SRCDIR%/utils && make
+#qt6,aarch64,linux:0:mt:rbutil:Rockbox Utility - aarch64/Linux:rbutilqt/RockboxUtility:228:cmake %SRCDIR%/utils && make
+#qt6,win32:0:mt:rbutil:Rockbox Utility - Win32:rbutilqt/RockboxUtility.exe:228:cmake %SRCDIR%/utils && make
+#qt6,win64:0:mt:rbutil:Rockbox Utility - Win64:rbutilqt/RockboxUtility.exe:228:cmake %SRCDIR%/utils && make
+#qt6,macos:0:mt:rbutil-macos:Rockbox Utility - MacOS QT6:rbutilqt/RockboxUtility:228:cmake %SRCDIR%/utils && make

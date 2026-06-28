@@ -20,7 +20,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 94;
+my $revision = 95;
 my $agent = "rbclient/$revision";
 my $cwd = `pwd`;
 chomp $cwd;
@@ -59,15 +59,11 @@ sub tprint {
         # Special stuff
         "sdl2" => {"sdl2-config --version", ".*" },
         "latex" => { "pdflatex --version", "Live 202?" },
-        "qt5" => { "cmake --version" => ".*",
-                   "pkg-config Qt5Core --libs" => "Qt5Core" },
         "qt6" => { "cmake --version" => ".*",
                    "pkg-config Qt6Core --libs" => "Qt6Core" },
         "dummy" => { "/bin/true", ".*" },
 
-	# OS-specific targets
-	"macos" => { "uname", "Darwin" },
-	"linux" => { "uname", "Linux" },
+	# OS-specific targets for cross-compiling
 	"win32" => { "mingw32-pkg-config --version", ".*" },
 	"win64" => { "mingw64-pkg-config --version", ".*" },
         );
@@ -101,6 +97,9 @@ my $rbdir=getcwd();
 
 my $os = `uname -s`;
 chomp $os;
+
+# Always advertise your native OS + CPU arch
+$archlist .= ",$cpu,os";
 
 our $config;
 &readconfig($config) if ($config);
@@ -372,8 +371,12 @@ sub startbuild
         my $log = ">> $logfile 2>&1";
 
 	my $cmdline = $builds{$id}{cmdline};
-	if ($cmdline =~ /cmake (.*)/) {
-	    $cmdline = 'cmake ' . $rbdir . '/' . $1;
+	# Substitute out %SRCDIR% eg
+	# %SRCDIR%configure -> $rbdir/configure
+	# cmake %SRCDIR% -> cmake $rbdir
+	# no %SRCDIR% -> $rbdir $cmdline
+	if ($cmdline =~ s/%SRCDIR%/$rbdir/) {
+
 	} else {
             $cmdline = $rbdir . '/' . $cmdline;
 	}
