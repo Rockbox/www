@@ -11,6 +11,8 @@ my @mname = ('January', 'February', 'March', 'April', 'May',
 
 my %skip_tags = ('Change-Id' => 1,
                  'git-svn-id' => 1,
+                 'Co-authored-by' => 1,
+                 'Assisted-by' => 1,
                  'Reviewed-on' => 1,
                  'Reviewed-by' => 1);
 
