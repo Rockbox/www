@@ -41,7 +41,7 @@ while (<STDIN>) {
 
     system("$conf > /dev/null");
     system("make clean > /dev/null");
-    my $score = `(/usr/bin/time -f"%U+%S" $build >/dev/null) 2>&1 | bc -l` * 100;
+    my $score = `(/usr/bin/time -f"%U+%S" -o /tmp/buildtime $build >/dev/null 2>&1) && bc -l < /tmp/buildtime` * 100;
     system("make clean > /dev/null");
 
     $row[6] = $score;
