@@ -20,7 +20,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 95;
+my $revision = 96;
 my $agent = "rbclient/$revision";
 my $cwd = `pwd`;
 chomp $cwd;
@@ -98,9 +98,6 @@ my $rbdir=getcwd();
 my $os = `uname -s`;
 chomp $os;
 
-# Always advertise your native OS + CPU arch
-$archlist .= ",$cpu,os";
-
 our $config;
 &readconfig($config) if ($config);
 
@@ -158,6 +155,9 @@ MOO
 }
 
 &testsystem();
+
+# Always send our CPU+OS along
+$archlist .= ",$cpu,$os";
 
 # no localized messages, please
 $ENV{LC_ALL} = 'C';
