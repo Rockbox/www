@@ -41,6 +41,7 @@ while (<STDIN>) {
 
     system("$conf > /dev/null");
     system("make clean > /dev/null");
+    system("rm -Rf * > /dev/null");
     my $score = `(/usr/bin/time -f"%U+%S" -o /tmp/buildtime $build >/dev/null 2>&1) && bc -l < /tmp/buildtime` * 100;
     system("make clean > /dev/null");
 
