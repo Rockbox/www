@@ -462,6 +462,6 @@ sdl2:0:mt:sdlapplicationwarble:SDL Application - warble:warble.sdlapp:13152:tool
 # Rockbox Utility
 qt6,x86_64,Linux:0:mt:rbutilx64lin:Rockbox Utility - x86_64/Linux:rbutilqt/RockboxUtility:134324:cmake %SRCDIR%/utils && make
 #qt6,aarch64,Linux:0:mt:rbutila64lin:Rockbox Utility - aarch64/Linux:rbutilqt/RockboxUtility:228:cmake %SRCDIR%/utils && make
-#qt6,win32:0:mt:rbutilwin32:Rockbox Utility - Win32:rbutilqt/RockboxUtility.exe:228:cmake %SRCDIR%/utils && make
-#qt6,win64:0:mt:rbutilwin64:Rockbox Utility - Win64:RockboxUtility.zip:228:cmake %SRCDIR%/utils && make deploy
-#qt6,Darwin:0:mt:rbutilmacos:Rockbox Utility - MacOS QT6:rbutilqt/RockboxUtility:228:cmake %SRCDIR%/utils && make
+#qt6,win32:0:mt:rbutilwin32:Rockbox Utility - Win32:rbutilqt/RockboxUtility.exe:134324:cmake %SRCDIR%/utils && make
+qt6,win64:0:mt:rbutilwin64:Rockbox Utility - Win64:RockboxUtility.zip:134324:cmake %SRCDIR%/utils && make deploy
+#qt6,Darwin:0:mt:rbutilmacos:Rockbox Utility - MacOS QT6:rbutilqt/RockboxUtility:134324:cmake %SRCDIR%/utils && make
