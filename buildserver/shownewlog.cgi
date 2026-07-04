@@ -59,22 +59,28 @@ while (<LOG>) {
                 $lserver="";
             }
 
-            if($line =~ /^([^:]*):(\d*):.*warning:/) {
+            if($line =~ /^([^:]*):(\d*):.*warning: (.*)/ && $3 !~ /\(near/) {
                 $prob++;
                 push @o, "<a name=\"prob$prob\"></a>\n";
                 push @o, "<div class=\"gccwarn\">$line</div>\n";
             }
             elsif (($line =~ /^([^:]*):(\d*):.*note: (.*)/) ||
-                   ($line =~ /^In file included/))
+                   ($line =~ /^In file included/) ||
+                   ($line =~ /^inlined from:/) ||
+                   ($line =~ /^from:/) )
             {
                 # some gcc versions like to print notes every now and then
                 # we'll ignore those
                 push @o, "$line\n<br>\n";
             }
-            elsif (($line =~ /^(([^:]*):(\d+):| *make: *\*\*\*)/) or
-                   ($line =~ /(: undefined reference to|ld returned (\d+) exit status|gcc: .*: No such file or)/)
-#                  or ($line =~ /^error:/)
-                   ) {
+            elsif (($line =~ /^([^:]+):(\d+):(.+)/) ||
+                   ($line =~ /: undefined reference to/) ||
+                   ($line =~ /gcc: .*: No such file or/) ||
+                   ($line =~ /ld returned (\d+) exit status/) ||
+                   ($line =~ /^git: /) ||
+                   ($line =~ /^Build Failure: /) ||
+#                   ($line =~ /^error:/i) ||
+                   ($line =~ /^ *make: *\*\*\*/) ) {
                 $prob++;
                 push @o, "<a name=\"prob$prob\"></a>\n";
                 push @o, "<div class=\"gccerror\">$line</div>\n";
