@@ -465,4 +465,4 @@ qt6,x86_64,Linux:0:mt:rbthemex64lin:Rockbox Theme Editor - x86_64/Linux:themeedi
 #qt6,aarch64,Linux:0:mt:rbutila64lin:Rockbox Utility - aarch64/Linux:rbutilqt/RockboxUtility:228:cmake %SRCDIR%/utils && make RockboxUtility
 #qt6,win32:0:mt:rbutilwin32:Rockbox Utility - Win32:rbutilqt/RockboxUtility.exe:134324:mingw32-cmake %SRCDIR%/utils && make deploy_RockboxUtility
 qt6,win64:0:mt:rbutilwin64:Rockbox Utility - Win64:RockboxUtility.zip:100927:mingw64-cmake %SRCDIR%/utils && make deploy_RockboxUtility
-#qt6,Darwin:0:mt:rbutilmacos:Rockbox Utility - MacOS QT6:rbutilqt/RockboxUtility:134324:cmake %SRCDIR%/utils && make deploy_RockboxUtility
+qt6,Darwin:1:mt:rbutilmacos:Rockbox Utility - MacOS:rbutilqt/RockboxUtility:100927:cmake %SRCDIR%/utils && make deploy_RockboxUtility
