@@ -53,7 +53,7 @@ sub getdata {
     if ($rows) {
         while (my ($time,$rev,$id,$ramsize,$binsize) = $sth->fetchrow_array()) {
 	    $revs{$rev} = $time;
-	    if ($id !~ /manual$/ && $id !~ /sim$/ && $id !~ /wps$/ && $id !~ /boot$/ && $id !~ /db$/ ) {
+	    if ($id !~ /manual$/ && $id !~ /sim$/ && $id !~ /wps$/ && $id !~ /boot$/ && $id !~ /db$/ && $id !~ /rbutil/ && $id !~ /rbtheme/) {
 		$targets{$id} = 1;
 	    }
             $compiles{$rev}{$id}{ram} = $ramsize;

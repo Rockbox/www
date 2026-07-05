@@ -4,6 +4,8 @@ require './rbmaster.pm';
 my $build = $ARGV[0];
 
 exit(0) if ($build =~ /manual/);
+exit(0) if ($build =~ /rbutil/);
+exit(0) if ($build =~ /rbtheme/);
 
 my $zip = "data/rockbox-$build.zip";
 
