@@ -211,6 +211,13 @@ POE::Component::Client::TCP->new(
 	my $heap = $_[HEAP];
 	$heap->{server}->put("HELLO $client_rev $buildcreds abacus 10 perl");
     },
+    ConnectError => sub {
+      my ($operation, $error_number, $error_string) = @_[ARG0..ARG2];
+      warn "$operation error $error_number occurred: $error_string";
+      if (error_is_recoverable($error_number)) {
+          $_[KERNEL]->delay( reconnect => 15 );
+      }
+    },
     ServerInput => sub {
 	my $channel = $logchan;
 	my $heap = $_[HEAP];
