@@ -60,7 +60,7 @@ sub tprint {
         "sdl2" => {"sdl2-config --version", ".*" },
         "latex" => { "pdflatex --version", "Live 202?" },
         "qt6" => { "cmake --version" => ".*",
-                   "pkg-config Qt6Core --libs" => "Qt6Core" },
+                   "pkg-config Qt6Core --libs" => "Qt6?Core" },
         "dummy" => { "/bin/true", ".*" },
 
 	# OS-specific targets for cross-compiling
