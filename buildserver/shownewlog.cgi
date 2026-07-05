@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+use HTML::Entities;
+
 require "CGI.pm";
 
 $req = new CGI;
@@ -59,10 +61,12 @@ while (<LOG>) {
                 $lserver="";
             }
 
+            $line = encode_entities($line);
+
             if($line =~ /^([^:]*):(\d*):.*warning: (.*)/ && $3 !~ /\(near/) {
                 $prob++;
                 push @o, "<a name=\"prob$prob\"></a>\n";
-                push @o, "<div class=\"gccwarn\">$line</div>\n";
+                push @o, "<div class=\"gccwarn\"><pre>    $line</pre></div>\n";
             }
             elsif (($line =~ /^([^:]*):(\d*):.*note: (.*)/) ||
                    ($line =~ /^In file included/) ||
@@ -71,7 +75,7 @@ while (<LOG>) {
             {
                 # some gcc versions like to print notes every now and then
                 # we'll ignore those
-                push @o, "$line\n<br>\n";
+                push @o, "<pre>    $line</pre>\n";
             }
             elsif (($line =~ /^([^:]+):(\d+):(.+)/) ||
                    ($line =~ /: undefined reference to/) ||
@@ -83,10 +87,10 @@ while (<LOG>) {
                    ($line =~ /^ *make: *\*\*\*/) ) {
                 $prob++;
                 push @o, "<a name=\"prob$prob\"></a>\n";
-                push @o, "<div class=\"gccerror\">$line</div>\n";
+                push @o, "<div class=\"gccerror\"><pre>    $line</pre></div>\n";
             }
             else {
-                push @o, "$line\n<br>\n";
+                push @o, "<pre>    $line</pre>\n";
             }
         }
     }
