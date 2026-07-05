@@ -108,8 +108,8 @@ print "<th>btime</th>";
 foreach $t (sort {fc($builds{$a}{sortkey}) cmp fc($builds{$b}{sortkey})} keys %alltypes) {
     my ($a1, $a2);
     my $name;
-    
-    my $ext = "zip";
+
+    my $ext;
 
     if ($t =~ /manual/) {
         if ($t =~ /htmlmanual/) {
@@ -117,6 +117,10 @@ foreach $t (sort {fc($builds{$a}{sortkey}) cmp fc($builds{$b}{sortkey})} keys %a
         } else {
             $ext = "pdf";
         }
+    } elsif ($t =~ /macos/) {
+        $ext = "dmg";
+    } else {
+        $ext = "zip";
     }
 
     if (-f "data/rockbox-$t.$ext") {
