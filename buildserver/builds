@@ -460,8 +460,9 @@ sdl2:0:mt:xduoox3iidb:Xduoo X3ii - Database:database.xduoox3ii:1143:tools/config
 sdl2:0:mt:sdlapplication:SDL Application:rockbox:37297:tools/configure --target=sdlapp --type=n --lcdwidth=640 --lcdheight=480 && make
 sdl2:0:mt:sdlapplicationwarble:SDL Application - warble:warble.sdlapp:13152:tools/configure --target=sdlapp --type=w --lcdwidth=640 --lcdheight=480 && make
 # Rockbox Utility
-qt6,x86_64,Linux:0:mt:rbutilx64lin:Rockbox Utility - x86_64/Linux:rbutilqt/RockboxUtility:134324:cmake %SRCDIR%/utils && make
-#qt6,aarch64,Linux:0:mt:rbutila64lin:Rockbox Utility - aarch64/Linux:rbutilqt/RockboxUtility:228:cmake %SRCDIR%/utils && make
-#qt6,win32:0:mt:rbutilwin32:Rockbox Utility - Win32:rbutilqt/RockboxUtility.exe:134324:mingw32-cmake %SRCDIR%/utils && make
-qt6,win64:0:mt:rbutilwin64:Rockbox Utility - Win64:RockboxUtility.zip:139683:mingw64-cmake %SRCDIR%/utils && make deploy
-#qt6,Darwin:0:mt:rbutilmacos:Rockbox Utility - MacOS QT6:rbutilqt/RockboxUtility:134324:cmake %SRCDIR%/utils && make
+qt6,x86_64,Linux:0:mt:rbutilx64lin:Rockbox Utility - x86_64/Linux:rbutilqt/RockboxUtility:83195:cmake %SRCDIR%/utils && make RockboxUtility
+qt6,x86_64,Linux:0:mt:rbthemex64lin:Rockbox Theme Editor - x86_64/Linux:themeeditor/RockboxThemeEditor:32390:cmake %SRCDIR%/utils && make RockboxThemeEditor
+#qt6,aarch64,Linux:0:mt:rbutila64lin:Rockbox Utility - aarch64/Linux:rbutilqt/RockboxUtility:228:cmake %SRCDIR%/utils && make RockboxUtility
+#qt6,win32:0:mt:rbutilwin32:Rockbox Utility - Win32:rbutilqt/RockboxUtility.exe:134324:mingw32-cmake %SRCDIR%/utils && make deploy_RockboxUtility
+qt6,win64:0:mt:rbutilwin64:Rockbox Utility - Win64:RockboxUtility.zip:100927:mingw64-cmake %SRCDIR%/utils && make deploy_RockboxUtility
+#qt6,Darwin:0:mt:rbutilmacos:Rockbox Utility - MacOS QT6:rbutilqt/RockboxUtility:134324:cmake %SRCDIR%/utils && make deploy_RockboxUtility
