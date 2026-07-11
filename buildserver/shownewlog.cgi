@@ -20,6 +20,7 @@ print <<MOO
 <head>
 <link rel="STYLESHEET" type="text/css" href="//www.rockbox.org/style.css">
 <title>Rockbox: $type $rev</title>
+<meta charset="UTF-8">
 <meta name="author" content="Daniel Stenberg, in perl">
 </head>
 <body bgcolor="#b6c6e5" text="black" link="blue" vlink="purple" alink="red"
@@ -61,7 +62,7 @@ while (<LOG>) {
                 $lserver="";
             }
 
-            $line = encode_entities($line);
+            $line = encode_entities($line, '<>&"');
 
             if($line =~ /^([^:]*):(\d*):.*warning: (.*)/ && $3 !~ /\(near/) {
                 $prob++;
