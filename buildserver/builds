@@ -152,6 +152,7 @@ arm-eabi-gcc950:1:mt:creativezenv:Creative ZEN V:rockbox.zip:39883:tools/configu
 arm-eabi-gcc950:1:mt:creativezenxfi:Creative ZEN X-Fi:rockbox.zip:166757:tools/configure --target=creativezenxfi --type=n && make zip
 arm-eabi-gcc950:1:mt:creativezenmozaic:Creative ZEN Mozaic:rockbox.zip:156757:tools/configure --target=creativezenmozaic --type=n && make zip
 arm-eabi-gcc950:1:mt:creativezenxfistyle:Creative ZEN X-Fi Style:rockbox.zip:159256:tools/configure --target=creativezenxfistyle --type=n && make zip
+arm-eabi-gcc950:1:mt:echor1:Echo R1:rockbox.zip:181012:tools/configure --target=echor1 --type=n && make zip
 ####
 # ARM-based native bootloaders
 arm-eabi-gcc950:0:mt:ipodnano1gboot:iPod Nano 1G - Boot:bootloader-ipodnano1g.ipod:3118:tools/configure --target=ipodnano1g --type=b && make
@@ -208,8 +209,7 @@ arm-eabi-gcc950:0:mt:creativezenvboot:Creative ZEN V - Boot:bootloader-zenv.crea
 arm-eabi-gcc950:0:mt:creativezenxfiboot:Creative ZEN X-Fi - Boot:bootloader-zenxfi.creative:3996:tools/configure --target=creativezenxfi --type=b && make
 arm-eabi-gcc950:0:mt:creativezenmozaicboot:Creative ZEN Mozaic - Boot:bootloader-zenmozaic.creative:3722:tools/configure --target=creativezenmozaic --type=b && make
 arm-eabi-gcc950:0:mt:creativezenxfistyleboot:Creative ZEN X-Fi Style - Boot:bootloader-zenxfistyle.creative:3828:tools/configure --target=creativezenxfistyle --type=b && make
-arm-eabi-gcc950:0:mt:echor1boot:Echo R1 - Boot:bootloader.echo:3828:tools/configure --target=echor1 --type=b && make
-# ^ echo r1 needs an updated build score
+arm-eabi-gcc950:0:mt:echor1boot:Echo R1 - Boot:bootloader.echo:4080:tools/configure --target=echor1 --type=b && make
 ####
 # MIPS-based native targets
 mipsel-gcc950:1:mt:ondavx747:Onda VX747:rockbox.zip:163791:tools/configure --target=ondavx747 --type=n && make zip
