@@ -1201,6 +1201,21 @@ sub bestfit_builds
 
     dlog "-----------";
 
+    # disable targets that no client can build
+    for my $b (@buildids) {
+     	my $found = 0;
+        for my $cl (&build_clients) {
+            if (&client_can_build($cl, $b)) {
+               	$found = 1;
+              	last;
+             }
+        }
+        if (not $found) {
+            slog "Nobody can build $b. Disabling target.";
+            $builds{$b}{done} = 1;
+       }
+    }
+
     # calculate total work to be done
     my $totwork = 0;
     for my $b (@buildids) {
@@ -1275,7 +1290,7 @@ sub bestfit_builds
 
         for my $b (&$sort_order)
         {
-            next if ($builds{$b}{assigned});
+            next if ($builds{$b}{assigned} || $builds{$b}{done});
 
             my $buildtime = 0;
             if ($speed) {
@@ -1309,7 +1324,7 @@ sub bestfit_builds
     for my $b (@buildids) {
         if (!$builds{$b}{assigned} and !$builds{$b}{done}) {
             # increase the margin and try again
-            $margin += 30;
+            $margin += 60;
             dlog "*** $b unassigned, trying again";
             #sleep 1;
             goto tryagain;
