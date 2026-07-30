@@ -10,7 +10,7 @@
 
 <p><i>2025-07-30</i>: An unstable port to the <a href="https://anbernic.com/products/rg-nano">Anbernic RG Nano</a> is available!
 
-<p><i>2025-07-29</i>: An <a href="https://www.reddit.com/r/innioasis/comments/1mdrsre/y1_rockbox_installation_guide_using_spflashtool/">unofficial port</a> to the <a href="https://www.innioasis.com/products/y1">Innioasis Y1</a> is now available!
+<p><i>2025-07-29</i>: An <a href="https://github.com/rockbox-y1/rockbox">unofficial port</a> to the <a href="https://www.innioasis.com/products/y1">Innioasis Y1</a> is now available!
 
 <p><i>2025-04-01</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes400">Rockbox 4.0 is released</a>
 
@@ -323,7 +323,7 @@ If you like living on the edge, <a href="download/daily.shtml">here are daily bu
 <p><i>2002-05-03</i>: <b>SOUND!</b> Linus' experimental MAS code has 
 <a href="//bjorn.haxx.se/rockbox/mail/archive/rockbox-archive-2002-05/0016.shtml">played our first 4 seconds of music</a>.
 
-<p><i>2002-04-27</i>: Julien Labruyére has generously donated an Archos Jukebox 6000 to the project. Thank you!
+<p><i>2002-04-27</i>: Julien LabruyÃ©re has generously donated an Archos Jukebox 6000 to the project. Thank you!
 
 <p><i>2002-04-25</i>: Grant Wier has tested the Player LCD's double-height capability:
 <a href="archos-text-DH1.jpg"><img align=center src="archos-text-DH2_sm.jpg"></a>
