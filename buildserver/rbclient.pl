@@ -81,7 +81,19 @@ our $commandhook = $commandhook || '';
 our $buildroot = $buildroot || '';
 
 my $upload_url = "https://$buildmaster/upload.cgi";
-my $probecores = int(`nproc`);
+
+my $os = `uname -s`;
+chomp $os;
+
+our $probecorescmd;
+
+if ($os eq 'Darwin') {
+    $probecorescmd = 'sysctl -n hw.physicalcpu';
+} else {
+    $probecorescmd = 'nproc';
+}
+
+my $probecores = int(`$probecorescmd`);
 our $cores = $cores || $probecores;
 
 # All we really care about is 32/64-bit.
@@ -94,9 +106,6 @@ if ($cpu =~ /64/) {
     $bits = 32;
 }
 my $rbdir=getcwd();
-
-my $os = `uname -s`;
-chomp $os;
 
 our $config;
 &readconfig($config) if ($config);
