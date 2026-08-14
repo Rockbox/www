@@ -20,7 +20,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 99;
+my $revision = 100;
 my $agent = "rbclient/$revision";
 my $cwd = `pwd`;
 chomp $cwd;
@@ -88,7 +88,7 @@ chomp $os;
 our $probecorescmd;
 
 if ($os eq 'Darwin') {
-    $probecorescmd = 'sysctl -n hw.physicalcpu';
+    $probecorescmd = 'sysctl -n hw.logicalcpu';
 } else {
     $probecorescmd = 'nproc';
 }
