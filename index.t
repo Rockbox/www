@@ -53,6 +53,7 @@ Rockbox is a free replacement firmware for digital music players. It runs on a w
 <li><b>HiFi E.T</b>: <a href="/wiki/HifietMAPort">MA9</a>, <a href="/wiki/HifietMAPort">MA8</a></li>
 <li><b>HiFiMAN</b>: <a href="/wiki/HifimanPort">HM-601</a>, <a href="/wiki/HifimanPort">HM-602</a>, <a href="/wiki/HifimanPort">HM-603</a>, <a href="/wiki/HifimanPort">HM-801</a></li>
 <li><b>Hiby</b>: <a href="/wiki/HibyPort">R1</a>, <a href="/wiki/HibyPort">R3ProII</a></li>
+<li><b>Hidizs</b>: AP80 PRO MAX</li>
 <li><b>iBasso</b>: <a href="/wiki/IBassoDXPort">DX50</a>, <a href="/wiki/IBassoDXPort">DX90</a></li>
 <li><b>MPIO</b>: <a href="/wiki/MPIOHD200Port">HD200</a></li>
 <li><b>Olympus</b>: <a href="/wiki/OlympusMR500Info">M:Robe 500</a></li>
@@ -109,6 +110,7 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.</li>
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
+<tr><td nowrap>2026-08-14</td><td>An "unstable" port to the Hidizs AP80 PRO MAX</a> is now available!</td></tr>
 <tr><td nowrap>2025-12-28</td><td>An "unstable" port to the <a href="/wiki/HibyPort">Hiby R1 and R3ProII</a> is now available!</td></tr>
 <tr><td nowrap>2025-10-23</td><td>An experimental port to the Nintendo 3DS is now available!</td></tr>
 <tr><td nowrap>2025-09-25</td><td>An <a href="https://portmaster.games/detail.html?name=rockbox">unofficial port</a> to Portmaster for retro gaming handhelds is now available!</td></tr>

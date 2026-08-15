@@ -2,6 +2,8 @@
 #define HISTORY_PAGE
 #include "head.t"
 
+<p><i>2026-08-14</i>: An unstable port to the Hidizs AP80 PRO MAX is available!
+
 <p><i>2025-12-28</i>: An unstable port to the Hiby R1 and R3ProII is available!
 
 <p><i>2025-10-23</i>: An experimental port to the Nintendo 3DS is available!
