@@ -115,7 +115,6 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.</li>
 <tr><td nowrap>2025-10-23</td><td>An experimental port to the Nintendo 3DS is now available!</td></tr>
 <tr><td nowrap>2025-09-25</td><td>An <a href="https://portmaster.games/detail.html?name=rockbox">unofficial port</a> to Portmaster for retro gaming handhelds is now available!</td></tr>
 <tr><td nowrap>2025-07-30</td><td>An "unstable" port to the <a href="https://anbernic.com/products/rg-nano">Anbernic RG Nano</a> is available!</td></tr>
-<tr><td nowrap>2025-07-29</td><td>An <a href="https://www.reddit.com/r/innioasis/comments/1mdrsre/y1_rockbox_installation_guide_using_spflashtool/">unofficial port</a> to the <a href="https://www.innioasis.com/products/y1">Innioasis Y1</a> is now available!</td></tr>
 
 </table>
 <small><a href="history.html">Older news</a>
