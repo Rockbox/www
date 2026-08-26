@@ -18,7 +18,6 @@ my %skip_tags = ('Change-Id' => 1,
                  'Reviewed-on' => 1,
                  'Reviewed-by' => 1,
                  'Acked-by' => 1,
-                 '💘 Generated with' => 1,
                  'Signed-off-by' => 1);
 
 my $urlroot="//git.rockbox.org/cgit/rockbox.git";
@@ -168,7 +167,7 @@ while(<STDIN>) {
     else {
         my $skip = 0;
         if (/\w/ || @b) {
-            if (/^\s*(.+?):?/)
+            if (/^\s*(.+?):/)
             {
                 $skip = 1 if (defined $skip_tags{$1});
                 if (/Reviewed-on: (.*)/) {
@@ -177,6 +176,8 @@ while(<STDIN>) {
                         $gerrit_id = $1;
                     }
                 }
+            } elsif (/Generated with/) {
+                $skip = 1;
             }
             $_ =~ s/<.+@.+>//g; # remove email addresses
             push @b, "$_\n" unless ($skip);
