@@ -9,16 +9,16 @@ my @mname = ('January', 'February', 'March', 'April', 'May',
              'June', 'July', 'August', 'September', 'October',
              'November', 'December' );
 
-my %skip_tags = ('Change-Id' => 1,
+# NOTE: Lower case!
+my %skip_tags = ('change-id' => 1,
                  'git-svn-id' => 1,
-                 'Co-authored-by' => 1,
-                 'Co-Authored-By' => 1,
-                 'Co-Author' => 1,
-                 'Assisted-by' => 1,
-                 'Reviewed-on' => 1,
-                 'Reviewed-by' => 1,
-                 'Acked-by' => 1,
-                 'Signed-off-by' => 1);
+                 'co-authored-by' => 1,
+                 'co-author' => 1,
+                 'assisted-by' => 1,
+                 'reviewed-on' => 1,
+                 'reviewed-by' => 1,
+                 'acked-by' => 1,
+                 'signed-off-by' => 1);
 
 my $urlroot="//git.rockbox.org/cgit/rockbox.git";
 
@@ -169,14 +169,14 @@ while(<STDIN>) {
         if (/\w/ || @b) {
             if (/^\s*(.+?):/)
             {
-                $skip = 1 if (defined $skip_tags{$1});
-                if (/Reviewed-on: (.*)/) {
+                $skip = 1 if (defined $skip_tags{lc($1)});
+                if (/Reviewed-on: (.*)/i) {
                     $gerrit_url = $1;
                     if ($gerrit_url =~ /(\d+)/) {
                         $gerrit_id = $1;
                     }
                 }
-            } elsif (/Generated with/) {
+            } elsif (/Generated with/i) {
                 $skip = 1;
             }
             $_ =~ s/<.+@.+>//g; # remove email addresses
