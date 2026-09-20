@@ -97,6 +97,7 @@ m68k-gcc950:0:mt:mpiohd300boot:MPIO HD300 - Boot:bootloader.mpio:2294:tools/conf
 # ARM-based native targets
 arm-eabi-gcc950:1:mt:ipodnano1g:iPod Nano 1G:rockbox.zip:166155:tools/configure --target=ipodnano1g --type=n && make zip
 arm-eabi-gcc950:1:mt:ipodnano2g:iPod Nano 2G:rockbox.zip:167087:tools/configure --target=ipodnano2g --type=n && make zip
+arm-eabi-gcc950:1:mt:ipodnano3g:iPod Nano 3G:rockbox.zip:167087:tools/configure --target=ipodnano3g --type=n && make zip
 arm-eabi-gcc950:1:mt:ipodcolor:iPod Color:rockbox.zip:166553:tools/configure --target=ipodcolor --type=n && make zip
 arm-eabi-gcc950:1:mt:ipod4g:iPod 4G Grayscale:rockbox.zip:88994:tools/configure --target=ipod4g --type=n && make zip
 arm-eabi-gcc950:1:mt:ipodvideo:iPod Video:rockbox.zip:167684:tools/configure --target=ipodvideo --type=n && make zip
@@ -158,6 +159,7 @@ arm-eabi-gcc950:1:mt:echor1:Echo R1:rockbox.zip:181012:tools/configure --target=
 # ARM-based native bootloaders
 arm-eabi-gcc950:0:mt:ipodnano1gboot:iPod Nano 1G - Boot:bootloader-ipodnano1g.ipod:3118:tools/configure --target=ipodnano1g --type=b && make
 arm-eabi-gcc950:0:mt:ipodnano2gboot:iPod Nano 2G - Boot:bootloader-ipodnano2g.ipod:3344:tools/configure --target=ipodnano2g --type=b && make
+arm-eabi-gcc950:0:mt:ipodnano3gboot:iPod Nano 3G - Boot:bootloader-ipodnano3g.ipod:3344:tools/configure --target=ipodnano3g --type=b && make
 arm-eabi-gcc950:0:mt:ipodcolorboot:iPod Color - Boot:bootloader-ipodcolor.ipod:3136:tools/configure --target=ipodcolor --type=b && make
 arm-eabi-gcc950:0:mt:ipod4gboot:iPod 4G Grayscale - Boot:bootloader-ipod4g.ipod:3083:tools/configure --target=ipod4g --type=b && make
 arm-eabi-gcc950:0:mt:ipod6gboot:iPod Classic - Boot:bootloader-ipod6g.ipod:3731:tools/configure --target=ipod6g --type=b && make
@@ -323,6 +325,8 @@ arm-eabi-gcc950,latex:1:st:ipodnano1gmanual:iPod Nano 1G - Manual:rockbox-manual
 arm-eabi-gcc950,latex:1:st:ipodnano1ghtmlmanual:iPod Nano 1G - HTML Manual:rockbox-manual.zip:174:tools/configure --target=ipodnano1g --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 arm-eabi-gcc950,latex:1:st:ipodnano2gmanual:iPod Nano 2G - Manual:rockbox-manual.pdf:1531:tools/configure --target=ipodnano2g --type=n && make MAKEFLAGS= manual
 arm-eabi-gcc950,latex:1:st:ipodnano2ghtmlmanual:iPod Nano 2G - HTML Manual:rockbox-manual.zip:176:tools/configure --target=ipodnano2g --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+arm-eabi-gcc950,latex:1:st:ipodnano3gmanual:iPod Nano 3G - Manual:rockbox-manual.pdf:1531:tools/configure --target=ipodnano3g --type=n && make MAKEFLAGS= manual
+arm-eabi-gcc950,latex:1:st:ipodnano3ghtmlmanual:iPod Nano 3G - HTML Manual:rockbox-manual.zip:176:tools/configure --target=ipodnano3g --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 arm-eabi-gcc950,latex:1:st:iriverh10manual:iriver H10 - Manual:rockbox-manual.pdf:1553:tools/configure --target=iriverh10 --type=n && make MAKEFLAGS= manual
 arm-eabi-gcc950,latex:1:st:iriverh10htmlmanual:iriver H10 - HTML Manual:rockbox-manual.zip:173:tools/configure --target=iriverh10 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 arm-eabi-gcc950,latex:1:st:iriverh10_5gbmanual:iriver H10 5GB - Manual:rockbox-manual.pdf:1552:tools/configure --target=iriverh10_5gb --type=n && make MAKEFLAGS= manual
