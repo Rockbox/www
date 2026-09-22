@@ -55,7 +55,7 @@ my @nextrounds;
 my $started = time();
 my $wastedtime = 0; # sum of time spent by clients on cancelled builds
 
-our ( $setlastrev_sth, $dblog_sth, $submit_update_sth, $submit_new_sth, $get_build_results_sth );
+our ( $setlastrev_sth, $dblog_sth, $submit_update_sth, $submit_new_sth, $get_build_results_sth, $get_failuretargets_sth );
 our %rbconfig;
 our %builds;
 our %client;
@@ -944,7 +944,12 @@ sub endround {
         if ($rows) {
             my ($errors,$warnings) = $get_build_results_sth->fetchrow_array();
             if ($errors or $warnings) {
-                message "Revision $buildround result: $errors errors $warnings warnings";
+		$rows = $get_failuretargets_sth->execute($buildround);
+		my @issues;
+		while (my @row = $get_failuretargets_sth->fetchrow_array()) {
+		    push(@issues, $row[0]);
+		}
+                message "Revision $buildround result: $errors errors, $warnings warnings (" . join(', ', @issues) . ")";
             } else {
                 message "Revision $buildround result: All green";
             }

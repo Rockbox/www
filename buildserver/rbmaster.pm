@@ -161,6 +161,9 @@ sub db_prepare
 
     $get_build_results_sth = $db->prepare("SELECT sum(errors), sum(warnings) FROM builds WHERE revision=?") or
         warn "DBI: Can't prepare statement: ". $db->errstr;
+
+    $get_failuretargets_sth = $db->prepare("SELECT id from FROM builds WHERE revision=? and (errors > 0 or warnings > 0)") or
+        warn "DBI: Can't prepare statement: ". $db->errstr;
 }
 
 sub nicehead {
