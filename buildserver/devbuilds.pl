@@ -70,7 +70,7 @@ $beware
 
 <p>
 <a href="//www.rockbox.org/download/dev.cgi">Autobuilder details</a> &middot;
-<a href="//www.rockbox.org/daily.shtml">Daily snapshot builds and voice files</a>
+<a href="//www.rockbox.org/download/daily.shtml">Daily snapshot builds and voice files</a>
 HEAD
     ;
 
