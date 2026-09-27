@@ -93,7 +93,7 @@
 
 <p><i>2009-03-18</i>: Rockbox has been accepted as a mentor organization for Google Summer of Code 2009. <a href="//www.rockbox.org/wiki/SummerOfCode2009">Look here for project ideas.</a>
 
-<p><i>2009-02-25</i>:The Rockbox USB stack is now enabled by default on <a href="//forums.rockbox.org/index.php?topic=20752.0">all PP502x targets</a>.
+<p><i>2009-02-25</i>:The Rockbox USB stack is now enabled by default on <a href="//www.rockbox.org/forums/index.php?topic=20752.0">all PP502x targets</a>.
 
 <p><i>2008-12-23</i>: <a href="//www.rockbox.org/wiki/ReleaseNotes31">Rockbox 3.1 is released</a>
 
@@ -160,7 +160,7 @@ reduce some load.
 <p><i>2006-12-14</i>: Michiel van der Kolk, sometimes known as HCl, is
 dead. He passed away yesterday. He will be missed and remembered as maestro of
 Rockboy and his eager work on the initial tag database amongst other
-things. <a href="//forums.rockbox.org/index.php?topic=7694.0">more...</a>
+things. <a href="//www.rockbox.org/forums/index.php?topic=7694.0">more...</a>
 
 <p><i>2006-12-07</i>: Sansa e200 builds added to the CVS build table
 
