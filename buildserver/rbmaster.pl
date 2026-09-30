@@ -1606,7 +1606,7 @@ sub control {
             }
         }
     }
-    elsif ($cmd =~ /^UPDATE (.*?) (\d+)/) {
+    elsif ($cmd =~ /^UPDATE (.*?) (\S+)/) {
         for my $cl (&build_clients) {
             if ($client{$cl}{client} eq "$1") {
                 &update_client($cl, $2);
