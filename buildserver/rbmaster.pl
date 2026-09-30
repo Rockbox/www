@@ -1569,10 +1569,13 @@ sub estimate_eta
 
 my $stat;
 
+my $read_set = new IO::Select();
+
 # Control commands:
 #
-# BUILD [rev] - start a build immediately, or fail if one is already in
-# progress
+# BUILD [rev] - start a build immediately, or queue it up if one is in progress
+# UPDATE [client] - force a client to update itself
+# KILL [client] - terminate the connection to a client
 #
 
 sub control {
@@ -1585,6 +1588,22 @@ sub control {
             &startround($1);
         } else {
             push(@nextrounds, $1);
+        }
+    }
+    elsif($cmd =~ /^KILL (\S+)/) {
+        for my $cl (&build_clients) {
+            if ($client{$cl}{client} eq "$1") {
+                slog "Killing $1";
+                &client_gone($cl);
+                my $rh = $client{$cl}{'socket'};
+                if ($rh) {
+                    $read_set->remove($rh);
+                    $rh->close;
+                } else {
+                    slog "!!! No rh to delete for client $1";
+                }
+                delete $client{$cl};
+            }
         }
     }
     elsif ($cmd =~ /^UPDATE (.*?) (\d+)/) {
@@ -1610,7 +1629,6 @@ my $server = new IO::Socket::INET(
 or die "socket: $!\n";
 
 # Add the master socket to select mask
-my $read_set = new IO::Select();
 $read_set->add($server);
 $conn{$server->fileno} = { type => 'master' };
 
