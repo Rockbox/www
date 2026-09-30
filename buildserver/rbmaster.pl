@@ -508,8 +508,14 @@ sub COMPLETED {
 
     if (!$buildround) {
         # round has ended, but someone wasn't killed properly
-        # just ignore it
+        # kill it off or it can get stuck!
         slog "$cli completed $id after round end";
+        # XXX revert this once we fix the root cause
+        privmessage $cl, "Time travel, temporarily blocking you.";
+        $client{$cl}{'blocked'} = "Temporary time travel block";
+        $client{$cl}{'block_lift'} = time() + 30; # come back in 30s
+        client_gone($cl);
+        # XXX 
         return;
     }
 
