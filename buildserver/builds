@@ -131,6 +131,7 @@ arm-eabi-gcc950:1:mt:gogearhdd6330:Philips HDD6330:rockbox.zip:158358:tools/conf
 arm-eabi-gcc950:1:mt:samsungyh820:Samsung YH-820:rockbox.zip:156591:tools/configure --target=samsungyh820 --type=n && make zip
 arm-eabi-gcc950:1:mt:samsungyh920:Samsung YH-920:rockbox.zip:82064:tools/configure --target=samsungyh920 --type=n && make zip
 arm-eabi-gcc950:1:mt:samsungyh925:Samsung YH-925:rockbox.zip:157672:tools/configure --target=samsungyh925 --type=n && make zip
+#arm-eabi-gcc950:1:mt:samsungypcp3:Samsung YP-CP3:rockbox.zip:41186:tools/configure --target=samsungypcp3 --type=n && make zip
 arm-eabi-gcc950:1:mt:gogearsa9200:Philips SA9200:rockbox.zip:155848:tools/configure --target=gogearsa9200 --type=n && make zip
 arm-eabi-gcc950:1:mt:vibe500:Packard Bell Vibe 500:rockbox.zip:157303:tools/configure --target=vibe500 --type=n && make zip
 arm-eabi-gcc950:1:mt:rk27generic:Rockchip rk27xx:rockbox.zip:38263:tools/configure --target=rk27generic --type=n && make zip
@@ -192,6 +193,7 @@ arm-eabi-gcc950:0:mt:gogearhdd6330boot:Philips HDD6330 - Boot:FWImage.ebn:3016:t
 arm-eabi-gcc950:0:mt:samsungyh820boot:Samsung YH-820 - Boot:FW_YH820.mi4:2952:tools/configure --target=samsungyh820 --type=b && make
 arm-eabi-gcc950:0:mt:samsungyh920boot:Samsung YH-920 - Boot:PP5020.mi4:2958:tools/configure --target=samsungyh920 --type=b && make
 arm-eabi-gcc950:0:mt:samsungyh925boot:Samsung YH-925 - Boot:FW_YH925.mi4:2993:tools/configure --target=samsungyh925 --type=b && make
+#arm-eabi-gcc950:0:mt:samsungypcp3boot:Samsung YP-CP3 - Boot:bootloader.rkw:3747:tools/configure --target=samsungypcp3 --type=b && make
 arm-eabi-gcc950:0:mt:gogearsa9200boot:Philips SA9200 - Boot:FWImage.ebn:3165:tools/configure --target=gogearsa9200 --type=b && make
 arm-eabi-gcc950:0:mt:vibe500boot:Packard Bell Vibe 500 - Boot:jukebox.mi4:3052:tools/configure --target=vibe500 --type=b && make
 arm-eabi-gcc950:0:mt:rk27genericboot:Rockchip rk27xx - Boot:bootloader.rkw:3184:tools/configure --target=rk27generic --type=b && make
@@ -415,6 +417,7 @@ sdl2:0:mt:gogearsa9200wps:Philips SA9200 - Checkwps:checkwps.gogearsa9200:245:to
 sdl2:0:mt:samsungyh820wps:Samsung YH-820 - Checkwps:checkwps.samsungyh820:250:tools/configure --target=samsungyh820 --type=c && make
 sdl2:0:mt:samsungyh920wps:Samsung YH-920 - Checkwps:checkwps.samsungyh920:247:tools/configure --target=samsungyh920 --type=c && make
 sdl2:0:mt:samsungyh925wps:Samsung YH-925 - Checkwps:checkwps.samsungyh925:250:tools/configure --target=samsungyh925 --type=c && make
+#sdl2:0:mt:samsungypcp3wps:Samsung YP-CP3 - Checkwps:checkwps.samsungypcp3:282:tools/configure --target=samsungypcp3 --type=c && make
 sdl2:0:mt:samsungypr0wps:Samsung YP-R0 - Checkwps:checkwps.samsungypr0:244:tools/configure --target=samsungypr0 --type=c && make
 sdl2:0:mt:samsungypr1wps:Samsung YP-R1 - Checkwps:checkwps.samsungypr1:244:tools/configure --target=samsungypr1 --type=c && make
 sdl2:0:mt:ondavx747wps:Onda VX747 - Checkwps:checkwps.ondavx747:247:tools/configure --target=ondavx747 --type=c && make
