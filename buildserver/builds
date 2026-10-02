@@ -406,6 +406,8 @@ sdl2:0:mt:mrobe500wps:Olympus M-Robe 500 - Checkwps:checkwps.mrobe500:245:tools/
 sdl2:0:mt:mrobe100wps:Olympus M-Robe 100 - Checkwps:checkwps.mrobe100:240:tools/configure --target=mrobe100 --type=c && make
 sdl2:0:mt:cowond2wps:Cowon D2 - Checkwps:checkwps.cowond2:246:tools/configure --target=cowond2 --type=c && make
 sdl2:0:mt:sansaclipwps:SanDisk Sansa Clip - Checkwps:checkwps.sansaclip:242:tools/configure --target=sansaclip --type=c && make
+sdl2:0:mt:sansaclipv2wps:SanDisk Sansa Clipv2 - Checkwps:checkwps.sansaclipv2:242:tools/configure --target=sansaclipv2 --type=c && make
+sdl2:0:mt:sansaclippluswps:SanDisk Sansa Clip+ - Checkwps:checkwps.sansaclipplus:242:tools/configure --target=sansaclipplus --type=c && make
 sdl2:0:mt:sansaclipzipwps:SanDisk Sansa Clip Zip - Checkwps:checkwps.sansaclipzip:248:tools/configure --target=sansaclipzip --type=c && make
 sdl2:0:mt:sansaconnectwps:SanDisk Sansa Connect - Checkwps:checkwps.sansaconnect:245:tools/configure --target=sansaconnect --type=c && make
 sdl2:0:mt:sansafuzewps:SanDisk Sansa Fuze - Checkwps:checkwps.sansafuze:244:tools/configure --target=sansafuze --type=c && make
