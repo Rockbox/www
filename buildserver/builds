@@ -173,6 +173,7 @@ arm-eabi-gcc950:0:mt:h10boot:iriver H10 - Boot:H10_20GC.mi4:3205:tools/configure
 arm-eabi-gcc950:0:mt:gigabeatfxboot:Toshiba Gigabeat F - Boot:FWIMG01.DAT:2898:tools/configure --target=gigabeatfx --type=b && make
 arm-eabi-gcc950:0:mt:gigabeatsboot:Toshiba Gigabeat S - Boot:nk.bin:3901:tools/configure --target=gigabeats --type=b && make
 arm-eabi-gcc950:0:mt:sansae200boot:SanDisk Sansa e200 - Boot:PP5022.mi4:3304:tools/configure --target=sansae200 --type=b && make
+arm-eabi-gcc950:0:mt:sansae200rboot:SanDisk Sansa e200R - Boot:pp5022.mi4:3304:tools/configure --target=sansae200r --type=b && make
 arm-eabi-gcc950:0:mt:sansac200boot:SanDisk Sansa c200 - Boot:firmware.mi4:3001:tools/configure --target=sansac200 --type=b && make
 arm-eabi-gcc950:0:mt:ipod1g2gboot:iPod 1G/2G - Boot:bootloader-ipod1g2g.ipod:2812:tools/configure --target=ipod1g2g --type=b && make
 arm-eabi-gcc950:0:mt:mrobe100boot:Olympus M-Robe 100 - Boot:pp5020.mi4:2974:tools/configure --target=mrobe100 --type=b && make
