@@ -272,6 +272,7 @@ arm-rb-gcc950:0:mt:sonynwzs750boot:Sony NWZ-S750 - Boot:bootloader-nwzs750.sony:
 ####
 # MIPS hosted targets
 mipsel-rb-gcc950:1:mt:agptekrocker:Agptek Rocker:rockbox.zip:175501:tools/configure --target=agptekrocker --type=n && make zip
+mipsel-rb-gcc950:1:mt:agptekrockernative:Agptek Rocker (Native):rockbox.zip:159229:tools/configure --target=agptekrockernative --type=n && make zip
 mipsel-rb-gcc950:1:mt:xduoox3ii:xDuoo X3ii:rockbox.zip:181807:tools/configure --target=xduoox3ii --type=n && make zip
 mipsel-rb-gcc950:1:mt:xduoox20:xDuoo X20:rockbox.zip:181829:tools/configure --target=xduoox20 --type=n && make zip
 mipsel-rb-gcc950:1:mt:fiiom3klinux:FiiO M3K (Linux):rockbox.zip:175124:tools/configure --target=fiiom3klinux --type=n && make zip
@@ -283,6 +284,7 @@ mipsel-rb-gcc950:1:mt:hidizsap80max:Hidizs AP80 MAX:rockbox.zip:179222:tools/con
 ####
 # MIPS hosted bootloaders
 mipsel-rb-gcc950:0:mt:agptekrockerboot:Agptek Rocker - Boot:bootloader.rocker:2755:tools/configure --target=agptekrocker --type=b && make
+mipsel-rb-gcc950:0:mt:agptekrockernativeboot:Agptek Rocker (Native) - Boot:bootloader.rockern:4135:tools/configure --target=agptekrockernative --type=b && make
 mipsel-rb-gcc950:0:mt:xduoox3iiboot:xDuoo X3ii - Boot:bootloader.x3ii:3269:tools/configure --target=xduoox3ii --type=b && make
 mipsel-rb-gcc950:0:mt:xduoox20boot:xDuoo X20 - Boot:bootloader.x20:3231:tools/configure --target=xduoox20 --type=b && make
 mipsel-rb-gcc950:0:mt:fiiom3klinuxboot:FiiO M3K (Linux) - Boot:bootloader.m3k:2661:tools/configure --target=fiiom3klinux --type=b && make
@@ -454,6 +456,7 @@ sdl2:0:mt:sonynwze470wps:Sony NWZ-E470 - Checkwps:checkwps.sonynwze470:247:tools
 sdl2:0:mt:sonynwze580wps:Sony NWZ-E580 - Checkwps:checkwps.sonynwze580:248:tools/configure --target=sonynwze580 --type=c && make
 sdl2:0:mt:sonynwzs750wps:Sony NWZ-S750 - Checkwps:checkwps.sonynwzs750:248:tools/configure --target=sonynwzs750 --type=c && make
 sdl2:0:mt:agptekrockerwps:Agptek Rocker - Checkwps:checkwps.agptekrocker:243:tools/configure --target=agptekrocker --type=c && make
+sdl2:0:mt:agptekrockernativewps:Agptek Rocker (Native) - Checkwps:checkwps.agptekrockernative:302:tools/configure --target=agptekrockernative --type=c && make
 sdl2:0:mt:xduoox3wps:Xduoo X3 - Checkwps:checkwps.xduoox3:240:tools/configure --target=xduoox3 --type=c && make
 sdl2:0:mt:xduoox3iiwps:Xduoo X3ii - Checkwps:checkwps.xduoox3ii:239:tools/configure --target=xduoox3ii --type=c && make
 sdl2:0:mt:xduoox20wps:Xduoo X20 - Checkwps:checkwps.xduoox20:243:tools/configure --target=xduoox20 --type=c && make
