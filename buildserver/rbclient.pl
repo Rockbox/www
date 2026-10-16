@@ -20,7 +20,7 @@ my $perlfile = "rbclient.pl";
 # Increment this to have the buildmaster auto-update the cluster.
 # Remember to get someone to increment the corresponding value in
 # rbmaster.conf on the server!
-my $revision = 100;
+my $revision = 101;
 my $agent = "rbclient/$revision";
 my $cwd = `pwd`;
 chomp $cwd;
@@ -171,8 +171,6 @@ $archlist .= ",$cpu,$os";
 # no localized messages, please
 $ENV{LC_ALL} = 'C.UTF-8';
 
-beginning:
-
 tprint "Starting client $clientname, revision $revision, cores $cores\n";
 
 my $sock;
@@ -245,7 +243,7 @@ while (1) {
                         &killchild($id);
                     }
                 }
-                goto beginning;
+                exit -2;
             }
         }
         elsif ($conntype{$rh->fileno} eq "pipe") {
