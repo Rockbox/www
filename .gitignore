@@ -17,3 +17,4 @@ buildserver/rbmaster.conf
 buildserver/debuglog
 buildserver/upload
 buildserver/upload.log
+buildserver/blockedclients
