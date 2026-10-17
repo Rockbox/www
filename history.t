@@ -1,6 +1,12 @@
+
+
+
+
 #define _PAGE_ History
 #define HISTORY_PAGE
 #include "head.t"
+
+<p><i>2026-10-17</i>: An experimental port to the Sony PSP is available!
 
 <p><i>2026-08-14</i>: An unstable port to the Hidizs AP80 PRO MAX is available!
 

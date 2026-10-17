@@ -85,6 +85,7 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.</li>
 <li><b>iHIFI</b>: 760 and 960</li>
 <li><b>Google</b>: Android (4.4 and older only)</li>
 <li><b>Rockchip</b>: rk27xx (generic)</li>
+<li><b>Sony</b>: PSP</li>
 <li><b>Surfans</b>: F28</li>
 </ul>
 
@@ -110,11 +111,11 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.</li>
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
+<tr><td nowrap>2026-10-16</td><td>An experiental port to the Sony PSP is now available!</td></tr>
 <tr><td nowrap>2026-08-14</td><td>An "unstable" port to the <a href="/wiki/HidizsPort">Hidizs AP80 PRO MAX</a> is now available!</td></tr>
 <tr><td nowrap>2025-12-28</td><td>An "unstable" port to the <a href="/wiki/HibyPort">Hiby R1 and R3ProII</a> is now available!</td></tr>
 <tr><td nowrap>2025-10-23</td><td>An experimental port to the Nintendo 3DS is now available!</td></tr>
 <tr><td nowrap>2025-09-25</td><td>An <a href="https://portmaster.games/detail.html?name=rockbox">unofficial port</a> to Portmaster for retro gaming handhelds is now available!</td></tr>
-<tr><td nowrap>2025-07-30</td><td>An "unstable" port to the <a href="https://anbernic.com/products/rg-nano">Anbernic RG Nano</a> is available!</td></tr>
 
 </table>
 <small><a href="history.html">Older news</a>
