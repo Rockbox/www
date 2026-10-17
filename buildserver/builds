@@ -240,8 +240,6 @@ mipsel-gcc950:0:mt:erosqnativeboot_v4:AIGO EROS Q/K (Native) v4 - Boot:bootloade
 ####
 # Android and other funky targets
 android-ndk10sdk19:0:mt:android480x800:Android 480x800:rockbox.apk:21915:tools/configure --target=android --type=n --lcdwidth=480 --lcdheight=800 && make apk
-#android-ndk10sdk19:0:mt:android480x800mips:Android 480x800 - MIPS:rockbox.apk:22147:tools/configure --target=androidmips --type=n --lcdwidth=480 --lcdheight=800 && make apk
-#android-ndk10sdk19:0:mt:android480x800x86:Android 480x800 - x86:rockbox.apk:22147:tools/configure --target=androidx86 --type=n --lcdwidth=480 --lcdheight=800 && make apk
 android-ndk10:1:mt:ibassodx50:iBasso DX50:rockbox.zip:55276:tools/configure --target=ibassodx50 --type=n && make zip
 android-ndk10:1:mt:ibassodx90:iBasso DX90:rockbox.zip:55125:tools/configure --target=ibassodx90 --type=n && make zip
 funkey-sdk:1:mt:rgnano:Anbernic RG Nano:rockbox-opk.zip:52650:tools/configure --target=rgnano --type=n && make opk-zip
