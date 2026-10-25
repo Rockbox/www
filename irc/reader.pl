@@ -241,7 +241,7 @@ sub parsechunk {
                 ($hour, $minute, $second, $string) = ($1, $2, $3, $5);
                 if ($4 eq '<--') { $action = 'Quit'; }
                 elsif ($4 eq '-->') { $action = 'Join'; }
-                elsif ($4 eq '---') { $action = 'Nick'; }
+                elsif ($4 eq '---') { $action = 'Channel'; }
             } elsif ($line =~ /^(\d\d):(\d\d):(\d\d)\s+(<[^>]+>\s+.*)/) {
                 ($hour, $minute, $second, $action, $string) = ($1, $2, $3, '#', $4);
             }
@@ -358,7 +358,7 @@ sub parsechunk {
                   "</tr>\n");
             $houranchor = "";
         }
-        elsif ($action =~ /^(Join|Quit|Part|Nick)/) {
+        elsif ($action =~ /^(Join|Quit|Part|Nick|Channel)/) {
             my ($nick, $message);
             if ($string =~ /^([^ ]+) *(.*)/) {
                 ($nick, $message) = ($1, $2);
