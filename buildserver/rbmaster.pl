@@ -462,12 +462,12 @@ sub UPLOADING {
         }
         # reallocate for unexpectedly slow clients, not for fast
         #if (!$rs or $rs < 80) {
-        #    bestfit_builds(0);
+        #    bestfit_builds();
         #}
         #estimate_eta();
         #return;
     }
-    #bestfit_builds(0);
+    #bestfit_builds();
 }
 
 sub GIMMEMORE {
@@ -1695,7 +1695,7 @@ while(not $alldone) {
                     }
                     $$cmd = substr($$cmd, $pos+1);
                 }
-            } else {
+            } else { # EOF, ie a disconnect
                 if ($type eq 'commander') {
                     slog "Commander left";
                     delete $conn{$fileno};
@@ -1703,10 +1703,10 @@ while(not $alldone) {
                     $rh->close;
                     $commander=0;
                 } else {
-                    $client{$fileno}{fine} = 1;
+                    $client{$fileno}{'fine'} = 0;
 
                     if (not $client{$fileno}{'bad'}) {
-                        $client{$fileno}{'bad'}="connection lost";
+                        $client{$fileno}{'bad'}="connection lost/ ($!)";
                     }
                 }
             }
@@ -1722,7 +1722,7 @@ while(not $alldone) {
 
             slog "Disconnect: client $cli reason $err";
             dblog($cl, "disconnect", $err);
-            $client{$cl}{fine} = 0;
+            $client{$cl}{'fine'} = 0;
             client_gone($cl);
             my $rh = $client{$cl}{'socket'};
             if ($rh) {
@@ -1736,7 +1736,7 @@ while(not $alldone) {
 
             # we lost a client, re-allocate builds
             #if ($buildround) {
-            #    &bestfit_builds(0);
+            #    &bestfit_builds();
             #}
         }
     }
