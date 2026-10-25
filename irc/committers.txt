@@ -122,4 +122,4 @@ ulmutul Sebastian Leonhardt
 unhelpful Andrew Mahone
 wincent Wincent Balin
 wodz Marcin Bukat
-zagor Björn Stenberg
+zagor BjÃ¶rn Stenberg

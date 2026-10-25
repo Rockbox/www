@@ -1,4 +1,4 @@
-Zagor       => Björn Stenberg
+Zagor       => BjÃ¶rn Stenberg
 Linus       => Linus Nielsen Feltzing
 Bagder      => Daniel Stenberg
 Wavey       => Stuart Martin

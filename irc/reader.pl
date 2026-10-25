@@ -2,7 +2,7 @@
 #
 # reader.pl - reads irc logs from the Dancer bot and produces pretty HTML
 #
-# Copyright 2007 Björn Stenberg <bjorn@haxx.se>
+# Copyright 2007 BjÃ¶rn Stenberg <bjorn@haxx.se>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
