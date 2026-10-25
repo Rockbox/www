@@ -273,7 +273,6 @@ mipsel-rb-gcc950:1:mt:agptekrocker:Agptek Rocker:rockbox.zip:118455:tools/config
 mipsel-rb-gcc950:1:mt:agptekrockernative:Agptek Rocker (Native):rockbox.zip:103979:tools/configure --target=agptekrockernative --type=n && make zip
 mipsel-rb-gcc950:1:mt:xduoox3ii:xDuoo X3ii:rockbox.zip:122287:tools/configure --target=xduoox3ii --type=n && make zip
 mipsel-rb-gcc950:1:mt:xduoox20:xDuoo X20:rockbox.zip:122303:tools/configure --target=xduoox20 --type=n && make zip
-mipsel-rb-gcc950:1:mt:fiiom3klinux:FiiO M3K (Linux):rockbox.zip:118379:tools/configure --target=fiiom3klinux --type=n && make zip
 mipsel-rb-gcc950:1:mt:aigoerosq:AIGO EROS Q/K:rockbox.zip:130851:tools/configure --target=aigoerosq --type=n && make zip
 mipsel-rb-gcc950:1:mt:surfansf28:Surfans F28:rockbox.zip:33191:tools/configure --target=surfansf28 --type=n && make zip
 mipsel-rb-gcc950:1:mt:hibyr1:Hiby R1:rockbox.zip:120413:tools/configure --target=hibyr1 --type=n && make zip
@@ -285,7 +284,6 @@ mipsel-rb-gcc950:0:mt:agptekrockerboot:Agptek Rocker - Boot:bootloader.rocker:18
 mipsel-rb-gcc950:0:mt:agptekrockernativeboot:Agptek Rocker (Native) - Boot:bootloader.rockern:2885:tools/configure --target=agptekrockernative --type=b && make
 mipsel-rb-gcc950:0:mt:xduoox3iiboot:xDuoo X3ii - Boot:bootloader.x3ii:2192:tools/configure --target=xduoox3ii --type=b && make
 mipsel-rb-gcc950:0:mt:xduoox20boot:xDuoo X20 - Boot:bootloader.x20:2200:tools/configure --target=xduoox20 --type=b && make
-mipsel-rb-gcc950:0:mt:fiiom3klinuxboot:FiiO M3K (Linux) - Boot:bootloader.m3k:1834:tools/configure --target=fiiom3klinux --type=b && make
 mipsel-rb-gcc950:0:mt:aigoerosqboot:AIGO Eros Q/K - Boot:bootloader.erosq:2261:tools/configure --target=aigoerosq --type=b && make
 mipsel-rb-gcc950:0:mt:surfansf28boot:Surfans F28 - Boot:bootloader.f28:2263:tools/configure --target=surfansf28 --type=b && make
 mipsel-rb-gcc950:0:mt:hibyr1boot:Hiby R1 - Boot:bootloader.r1:1918:tools/configure --target=hibyr1 --type=b && make
@@ -458,7 +456,6 @@ sdl2:0:mt:agptekrockernativewps:Agptek Rocker (Native) - Checkwps:checkwps.agpte
 sdl2:0:mt:xduoox3wps:Xduoo X3 - Checkwps:checkwps.xduoox3:227:tools/configure --target=xduoox3 --type=c && make
 sdl2:0:mt:xduoox3iiwps:Xduoo X3ii - Checkwps:checkwps.xduoox3ii:229:tools/configure --target=xduoox3ii --type=c && make
 sdl2:0:mt:xduoox20wps:Xduoo X20 - Checkwps:checkwps.xduoox20:231:tools/configure --target=xduoox20 --type=c && make
-sdl2:0:mt:fiiom3linuxkwps:FiiO M3K (Linux) - Checkwps:checkwps.fiiom3klinux:232:tools/configure --target=fiiom3klinux --type=c && make
 sdl2:0:mt:aigoerosqwps:AIGO EROS Q/K - Checkwps:checkwps.aigoerosq:230:tools/configure --target=aigoerosq --type=c && make
 sdl2:0:mt:surfansf28wps:Surfans F28 - Checkwps:checkwps.surfansf28:232:tools/configure --target=surfansf28 --type=c && make
 sdl2:0:mt:hibyr1wps:Hiby R1 - Checkwps:checkwps.hibyr1:230:tools/configure --target=hibyr1 --type=c && make
