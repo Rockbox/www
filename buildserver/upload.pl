@@ -5,8 +5,11 @@ use File::Copy;
 use File::Basename;
 use POSIX qw(strftime);
 
+my $chunksize = 4096;
 my $destpath="/var/lib/rbmaster/upload";
 my $logfile="/var/lib/rbmaster/upload.log";
+my $starttime=time();
+
 sub ulog {
     if (open(L, ">>$logfile")) {
         print L strftime("%F %T ", localtime()) . $_[0] . "\n";
@@ -38,20 +41,26 @@ if (-f "$destpath/$filename") {
 my $bytesread = 0;
 if (open OUTFILE, ">$destpath/$filename") {
     my ($rval, $buffer);
-    while ($rval = read($fh,$buffer,1024)) {
+    while ($rval = read($fh,$buffer,$chunksize)) {
 #        print STDERR "read $rval\n";
         $bytesread += $rval;
         print OUTFILE $buffer;
     }
     close OUTFILE;
 }
+
+my $endtime = time() - $starttime;
+if ($endtime == 0) {
+   $endtime = 1;
+}
+
 if ($bytesread > 0) {
     print "Status: 200 Upload successful\n";
-    ulog "Uploaded upload/$filename ($bytesread)";
+    ulog "Uploaded upload/$filename ($bytesread in $endtime sec)";
 } else {
     print "Status: 502 File copy failed: $!\n";
     ulog "Failed creating upload/$filename";
 }
 
-print "\n$filename uploaded\n";
+print "\n$filename uploaded ($bytesread in $endtime sec)\n";
 #print STDERR "$destpath/$filename\n";
