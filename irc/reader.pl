@@ -49,23 +49,7 @@ if ($date =~ /(\d\d\d\d)(\d\d)(\d\d)/) {
     $year = $1;
 }
 
-my $push = 0;
-#if ($ENV{'HTTP_USER_AGENT'} =~ m|Gecko/2|) {
-#    $push = 1;
-#}
-#if ($ENV{'HTTP_USER_AGENT'} =~ m|Firefox/[4-9]|) {
-#    $push = 0;
-#}
-
-#if ($file eq "current.txt" and $push) {
-#    my $delimiter = sprintf("delimiter%x%x%x", rand(2**31), rand(2**31), rand(2**31));
-#    print "Content-type: multipart/mixed;boundary=$delimiter\n\n";
-#    print "--$delimiter\n";
-#    print "Content-type: text/html\n\n";
-#}
-#else {
-    print "Content-type: text/html\n\n";
-#}
+print "Content-type: text/html\n\n";
 
 print <<END
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
@@ -150,9 +134,7 @@ if ($file eq "current.txt") {
                        strftime "%Y%m%d", localtime(time - 86400));
 #    $nextday = sprintf("<a href='log-%s'>Next day</a>",
 #                       strftime "%Y%m%d", localtime(time + 86400));
-     $nextday  = "Next Day";
-#    $autoscroll = "<label for=autoscroll><input type=checkbox id=autoscroll onclick='autoscroll = !autoscroll;'> Autoscroll</label> |";
-    $autoscroll = "";
+     $nextday  = "<s>Next Day</s>";
 }
 else {
     $file =~ /(\d\d\d\d)(\d\d)(\d\d)/;
@@ -181,7 +163,6 @@ print <<END
 <table class=options>
 <tr><td>$prevday | Jump to hour: $hourlinks | $nextday
 <p>
-$autoscroll
 Seconds: 
 <a href="javascript:seconds(1);">Show</a>
 <a href="javascript:seconds(0);">Hide</a>
@@ -211,10 +192,6 @@ Seconds:
 END
     ;
 
-#if (!$push) {
-#    print "<p><b>Notice:</b> Only Gecko based browsers prior to FF4 support the multipart/mixed \"server push\" method used by this log reader to auto-update. Since you do not appear to use such a browser, this page will simply show the current log, and not automatically update.</p>\n";
-#}
-
 $date =~ m/(\d\d\d\d)(\d\d)(\d\d)/;
 print "<h2>#rockbox log for $1-$2-$3</h2>\n";
 
@@ -224,55 +201,7 @@ my $houranchor;
 print "<table class=irclog>\n";
 # pass 2: output html
 
-#if ($file eq "current.txt" and $push) {
-#    # go into tail chase mode
-#
-#    # start auto-scrolling
-#    print <<END
-#<script type="text/javascript">
-#<!--
-#setInterval("scroll_to_bottom()", 2000);
-#-->
-#</script>
-#END
-#;
-#
-#    my $needtodie = 0;
-#    $SIG{PIPE} = $SIG{HUP} = $SIG{INT} = $SIG{TERM} = sub { $needtodie = 1 };
-#    # Pipe isn't bad?
-#    #$SIG{PIPE} = 'IGNORE';
-#
-#    $SIG{__DIE__} = sub { 
-#        printf STDERR "Program ending: @_\n";
-#    };
-#
-#    $| = 1; # autoflush
-#
-#    my $keepalive = 0;
-#    seek(FILE,0,0); # back to the beginning
-#    for (;;) {
-#        seek(LOG, 0, 1);
-#        @lines = <FILE>;
-#        if (scalar @lines) {
-#            &parsechunk(\@lines);
-#            $keepalive = 0;
-#        }
-#        exit if ($needtodie);
-#        sleep 1;
-#
-#        if (++$keepalive > 15) {
-#            print "<!-- keepalive -->\n";
-#            $keepalive = 0;
-#        }
-#        
-#        # check the time, abort tail chase if clock_hour < $lasthour
-#        last if ((localtime())[2] < $lasthour);
-#    }
-#}
-#else {
-    # just parse the lines
-    &parsechunk(\@lines);
-#}
+&parsechunk(\@lines);
 
 close FILE;
 print "</table>\n";
@@ -328,9 +257,6 @@ sub parsechunk {
             # tag flyspray
             $message =~ s!FS *\#(\d+)!<a target="_blank" href=\"https://www.rockbox.org/tracker/task/$1\">FS \#$1</a>!g;
             $message =~ s!fs*\#(\d+)!<a target="_blank" href=\"https://www.rockbox.org/tracker/task/$1\">fs\#$1</a>!g;
-
-            # tag svn revisions
-#            $message =~ s!(\b\s)r(\d+)(\b)!$1<a target="_blank" href=\"http://svn.rockbox.org/viewvc.cgi?view=rev&revision=$2\">r$2</a>$3!g;
 
             # tag git revisions (WIP)
             $message =~ s!Revision (\w+)(\b)!<a target="_blank" href=\"https://git.rockbox.org/cgit/rockbox.git/commit/?id=$1\">Revision $1</a>$3!g;
