@@ -22,17 +22,37 @@ use POSIX 'strftime', 'mktime';
 my $logdir = "/home/rockbox/irc-logs";
 my $today = strftime "%Y%m%d", localtime;
 my $date = param('date') + 0;
-my $year = 0;
+my ($year, $month, $day) = (0, 0, 0);
+my $dancer = 0;  # 1 for dancer log format, 0 otherwise
+
+my $realfile;
 
 if ($date == 0) {
     print "Location: https://www.rockbox.org/irc/log-$today\n\n";
     exit;
+} elsif ($date =~ /(\d\d\d\d)(\d\d)(\d\d)/) {
+    $title = "#rockbox $1-$2-$3";
+    $year = $1;
+    $month = $2;
+    $day = $3;
+} else {
+    print "Location: https://www.rockbox.org/irc/log-$today\n\n";
+    exit;
 }
-elsif ($date == $today) {
-    $file = "current.txt";
-}
-else {
+
+if ($date == $today) {
+    $today = 1;
+    $realfile = "$logdir/#rockbox/$year-$month-$day.log";
+} else {
+    $today = 0;
     $file = "rockbox-$date.txt";
+    if ($year >= 2026 && $month >= 1 && $day >= 1) {
+        # New logger format
+        $realfile = "$logdir/#rockbox/$year-$month-$day.log";
+    } else {
+        # Old dancer archives
+        $realfile = "$logdir/$year/$file";
+    }
 }
 
 if (open NICKS, "<committers.txt") {
@@ -42,11 +62,6 @@ if (open NICKS, "<committers.txt") {
             $nicks{$1} = 1;
         }
     }
-}
-
-if ($date =~ /(\d\d\d\d)(\d\d)(\d\d)/) {
-    $title = "#rockbox $1-$2-$3";
-    $year = $1;
 }
 
 print "Content-type: text/html\n\n";
@@ -62,19 +77,6 @@ print <<END
 END
     ;
 
-if ($file =~ /[^\w\d\.\-]/) {
-    print "<p>$file: Invalid filename\n";
-    goto foot;
-}
-
-my $realfile;
-
-if ($file eq "current.txt") {
-    $realfile = $file;
-} else {
-    $realfile = "$logdir/$year/$file";
-}
-
 if (!open FILE, "<$realfile") {
     print "<p>$realfile: $!  ...\n";
     goto foot;
@@ -86,15 +88,29 @@ my $tophour = 0;
 # pass 1: find all nicks
 foreach my $line (@lines) {
     chomp $line;
-    if ($line =~ /^\d\d\.\d\d.\d\d \# + <([^>]+)> /) {
-        $nicks{$1} = 1;
+    if ($line =~ /^\d\d\.\d\d\.\d\d /) {
+        $dancer = 1;
     }
-    elsif ($line =~ /^\d\d\.\d\d.\d\d (Join|Part|Quit) + ([^ \[]+)/) {
-        $nicks{$2} = 1;
-    }
+    if ($dancer) {
+        if ($line =~ /^\d\d\.\d\d\.\d\d \# + <([^>]+)> /) {
+            $nicks{$1} = 1;
+        } elsif ($line =~ /^\d\d\.\d\d\.\d\d (Join|Part|Quit) + ([^ \[]+)/) {
+            $nicks{$2} = 1;
+        }
 
-    if ($line =~ m/^(\d\d)\./) {
-        $tophour = $1 if ($1 > $tophour);
+        if ($line =~ m/^(\d\d)\./) {
+            $tophour = $1 if ($1 > $tophour);
+        }
+    } else {
+        if ($line =~ /^\d\d:\d\d:\d\d\s+(<--|---|-->)\s+(\S+)\s+/) {
+            $nicks{$2} = 1;
+        } elsif ($line =~ /^\d\d:\d\d:\d\d\s+<([^>]+)>\s+/) {
+            $nicks{$1} = 1;
+        }
+
+        if ($line =~ m/^(\d\d):/) {
+            $tophour = $1 if ($1 > $tophour);
+        }
     }
 }
 
@@ -127,9 +143,9 @@ foreach my $nick (keys %nicks) {
 }
 print "</style>\n";
 
-my ($prevday, $nextday, $today);
+my ($prevday, $nextday, $todayday);
 
-if ($file eq "current.txt") {
+if ($today) {
     $prevday = sprintf("<a href='log-%s'>Previous day</a>",
                        strftime "%Y%m%d", localtime(time - 86400));
 #    $nextday = sprintf("<a href='log-%s'>Next day</a>",
@@ -137,8 +153,7 @@ if ($file eq "current.txt") {
      $nextday  = "<s>Next Day</s>";
 }
 else {
-    $file =~ /(\d\d\d\d)(\d\d)(\d\d)/;
-    my ($y, $m, $d) = ($1, $2, $3);
+    my ($y, $m, $d) = ($year, $month, $day);
     $prevtime = mktime( 0, 0, 0, $d-1, $m-1, $y-1900);
     $nexttime = mktime( 0, 0, 0, $d+1, $m-1, $y-1900);
 
@@ -147,7 +162,7 @@ else {
     $nextday = sprintf("<a href='log-%s'>Next day</a>",
                        strftime "%Y%m%d", localtime($nexttime));
 }
-$today = sprintf("<a href='log-today'>Today</a>");
+$todayday = sprintf("<a href='log-today'>Latest</a>");
 
 my $hourlinks;
 foreach (1 .. $tophour) {
@@ -162,7 +177,7 @@ print <<END
 <script src='reader.js?$jstime' language='javascript' type='text/javascript'></script>
 
 <table class=options>
-<tr><td>$prevday | Jump to hour: $hourlinks | $nextday | $today
+<tr><td>$prevday | Jump to hour: $hourlinks | $nextday | $todayday
 <p>
 Seconds: 
 <a href="javascript:seconds(1);">Show</a>
@@ -171,8 +186,6 @@ Seconds:
 | Joins:
 <a href="javascript:joins(1);">Show</a>
 <a href="javascript:joins(0);">Hide</a>
-
-| <a href="//www.rockbox.org/irc/logs/$year/$file">View raw</a>
 
 <br>Font:
 <a href="javascript:font('serif');"><span style='font-family: serif'>Serif</span></a>
@@ -209,7 +222,7 @@ print "</table>\n";
 foot:
 
 print <<END
-<p>$prevday | $nextday | $today
+<p>$prevday | $nextday | $todayday
 </body>
 </html>
 END
@@ -218,10 +231,21 @@ END
 sub parsechunk {
     my $lines = shift @_;
     foreach my $line (@{$lines}) {
-        next unless ($line =~ /^(\d\d)\.(\d\d).(\d\d) ([^ ]+) +(.*)/);
+        my ($hour, $minute, $second, $action, $string);
 
-        my ($hour, $minute, $second, $action, $string) = 
-            ($1, $2, $3, $4, $5);
+        if ($dancer) {
+            next unless ($line =~ /^(\d\d)\.(\d\d)\.(\d\d) ([^ ]+) +(.*)/);
+            ($hour, $minute, $second, $action, $string) = ($1, $2, $3, $4, $5);
+        } else {
+            if ($line =~ /^(\d\d):(\d\d):(\d\d)\s+(<--|---|-->)\s+(.*)/) {
+                ($hour, $minute, $second, $string) = ($1, $2, $3, $5);
+                if ($4 eq '<--') { $action = 'Quit'; }
+                elsif ($4 eq '-->') { $action = 'Join'; }
+                elsif ($4 eq '---') { $action = 'Nick'; }
+            } elsif ($line =~ /^(\d\d):(\d\d):(\d\d)\s+(<[^>]+>\s+.*)/) {
+                ($hour, $minute, $second, $action, $string) = ($1, $2, $3, '#', $4);
+            }
+        }
 
         last if ($hour > 0 and param('test'));
 
@@ -238,13 +262,14 @@ sub parsechunk {
 
         if ($action eq "#") {
             my ($nick, $message);
-            if ($string =~ /^<([^>]+)> (.*)/) {
+            if ($string =~ /^<([^>]+)>\s+(.*)/) {
                 ($nick, $message) = ($1, $2);
             }
             elsif ($string =~ /^\* (.*)/) {
                 $nick = "*";
                 $message = $1;
             }
+
             $message = escapeHTML($message);
 
             # tag URLs

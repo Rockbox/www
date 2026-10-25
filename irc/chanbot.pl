@@ -59,7 +59,7 @@ sub _start {
     ));
     # Logging
     $irc->plugin_add('Logger', POE::Component::IRC::Plugin::Logger->new(
-	Path    => '/home/rockbox/irc-logs',  # .../#channel/YYY-MM-DD.log
+	Path    => '/home/rockbox/irc-logs',  # .../#channel/YYY-MM-DD.log  CHANGE to YYYY/rockbox-YYYYMMDD.txt?
 	DCC     => 1,
 	Private => 0,
 	Notices => 1,
