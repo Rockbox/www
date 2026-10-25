@@ -347,6 +347,8 @@ arm-eabi-gcc950,latex:1:st:samsungyh925manual:Samsung YH-925 - Manual:rockbox-ma
 arm-eabi-gcc950,latex:1:st:samsungyh925htmlmanual:Samsung YH-925 - HTML Manual:rockbox-manual.zip:0:tools/configure --target=samsungyh925 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 arm-eabi-gcc950,latex:1:st:gigabeatfxmanual:Toshiba Gigabeat F/X - Manual:rockbox-manual.pdf:1764:tools/configure --target=gigabeatfx --type=n && make MAKEFLAGS= manual
 arm-eabi-gcc950,latex:1:st:gigabeatfxhtmlmanual:Toshiba Gigabeat F/X - HTML Manual:rockbox-manual.zip:0:tools/configure --target=gigabeatfx --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
+arm-eabi-gcc950,latex:1:st:gigabeatsmanual:Toshiba Gigabeat S - Manual:rockbox-manual.pdf:1764:tools/configure --target=gigabeats --type=n && make MAKEFLAGS= manual
+arm-eabi-gcc950,latex:1:st:gigabeatshtmlmanual:Toshiba Gigabeat S - HTML Manual:rockbox-manual.zip:0:tools/configure --target=gigabeats --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 arm-eabi-gcc950,latex:1:st:sansac200manual:SanDisk Sansa c200 - Manual:rockbox-manual.pdf:1759:tools/configure --target=sansac200 --type=n && make MAKEFLAGS= manual
 arm-eabi-gcc950,latex:1:st:sansac200htmlmanual:SanDisk Sansa c200 - HTML Manual:rockbox-manual.zip:0:tools/configure --target=sansac200 --type=n && make MAKEFLAGS= manual-zip|grep -v 'TeX4ht warning.*[n]ot found'
 arm-eabi-gcc950,latex:1:st:sansac200v2manual:SanDisk Sansa c200v2 - Manual:rockbox-manual.pdf:1754:tools/configure --target=sansac200v2 --type=n && make MAKEFLAGS= manual
