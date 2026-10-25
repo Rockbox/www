@@ -127,7 +127,7 @@ foreach my $nick (keys %nicks) {
 }
 print "</style>\n";
 
-my ($prevday, $nextday);
+my ($prevday, $nextday, $today);
 
 if ($file eq "current.txt") {
     $prevday = sprintf("<a href='log-%s'>Previous day</a>",
@@ -147,6 +147,7 @@ else {
     $nextday = sprintf("<a href='log-%s'>Next day</a>",
                        strftime "%Y%m%d", localtime($nexttime));
 }
+$today = sprintf("<a href='log-today'>Today</a>");
 
 my $hourlinks;
 foreach (1 .. $tophour) {
@@ -161,7 +162,7 @@ print <<END
 <script src='reader.js?$jstime' language='javascript' type='text/javascript'></script>
 
 <table class=options>
-<tr><td>$prevday | Jump to hour: $hourlinks | $nextday
+<tr><td>$prevday | Jump to hour: $hourlinks | $nextday | $today
 <p>
 Seconds: 
 <a href="javascript:seconds(1);">Show</a>
@@ -208,7 +209,7 @@ print "</table>\n";
 foot:
 
 print <<END
-<p>$prevday | $nextday
+<p>$prevday | $nextday | $today
 </body>
 </html>
 END
