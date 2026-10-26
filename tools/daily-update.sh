@@ -2,7 +2,8 @@
 
 . ~/.bash_profile
 
-export NUM_PARALLEL=4
+# current piper runs aren't parallelizable
+#export NUM_PARALLEL=4
 
 cd /home/rockbox/rockbox_git_clone
 version=`git rev-parse --verify --short HEAD 2>/dev/null`
