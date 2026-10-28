@@ -64,12 +64,11 @@ if (open NICKS, "<committers.txt") {
     }
 }
 
-print "Content-type: text/html\n\n";
+print "Content-type: text/html; charset=utf-8\n\n";
 
 print <<END
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
-<html>
 <head>
 <link rel="STYLESHEET" type="text/css" href="/style.css">
 <link rel="STYLESHEET" type="text/css" href="reader.css">
@@ -183,7 +182,7 @@ Seconds:
 <a href="javascript:seconds(1);">Show</a>
 <a href="javascript:seconds(0);">Hide</a>
 
-| Joins:
+| Actions :
 <a href="javascript:joins(1);">Show</a>
 <a href="javascript:joins(0);">Hide</a>
 
@@ -352,9 +351,9 @@ sub parsechunk {
 
             print("<tr valign=top class='row$realnick'>",
                   "<td class=time><a name='$hour:$minute:$second' href='$ENV{query}#$hour:$minute:$second'>$hour:$minute",
-                  "<span class=seconds>:$second</span></a></td>",
-                  "<td class=$class onclick='markNick(\"$realnick\");'>$n1$nick$n2</td>",
-                  "<td class=message>$message</td>",
+                  "<span class=\"seconds\">:$second</span></a></td>",
+                  "<td class=\"$class\" onclick='markNick(\"$realnick\");'>$n1$nick$n2</td>",
+                  "<td class=\"message\">$message</td>",
                   "</tr>\n");
             $houranchor = "";
         }
@@ -364,9 +363,9 @@ sub parsechunk {
                 ($nick, $message) = ($1, $2);
                 $message = escapeHTML($message); 
             }
-            print("<tr class=join valign=top>",
+            print("<tr class=\"join\" valign=top>",
                   "<td class=time>$hour:$minute",
-                  "<span class=seconds>:$second</span></td>",
+                  "<span class=\"seconds\">:$second</span></td>",
                   "<td>&nbsp;</td>",
                   "<td class=action>$action ",
                   "<span class=\"nick_$nick\">$nick</span> ",
@@ -374,9 +373,9 @@ sub parsechunk {
                   "</tr>\n");
         }
         else {
-            print("<tr class=misc valign=top>",
+            print("<tr class=\"misc\" valign=top>",
                   "<td class=time>$hour:$minute",
-                  "<span class=seconds>:$second</span></td>",
+                  "<span class=\"seconds\">:$second</span></td>",
                   "<td class=action>$action</td>",
                   "<td class=string>$string</td>",
                   "</tr>\n");
