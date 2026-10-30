@@ -226,6 +226,7 @@ mipsel-gcc950:1:mt:xduoox3:Xduoo X3:rockbox.zip:52860:tools/configure --target=x
 mipsel-gcc950:1:mt:fiiom3k:FiiO M3K:rockbox.zip:106005:tools/configure --target=fiiom3k --type=n && make zip
 mipsel-gcc950:1:mt:shanlingq1:Shanling Q1:rockbox.zip:105611:tools/configure --target=shanlingq1 --type=n && make zip
 mipsel-gcc950:1:mt:erosqnative:AIGO EROS Q/K (Native):rockbox.zip:110705:tools/configure --target=erosqnative --type=n && make zip
+mipsel-gcc950:1:mt:hibyr1native:Hiby R1 (Native):rockbox.zip:106000:tools/configure --target=hibyr1native --type=n && make zip
 ####
 # MIPS-based native bootloaders
 mipsel-gcc950:0:mt:ondavx747boot:Onda VX747 - Boot:ccpmp.bin:2572:tools/configure --target=ondavx747 --type=b && make
@@ -237,6 +238,7 @@ mipsel-gcc950:0:mt:shanlingq1boot:Shanling Q1 - Boot:bootloader.q1:2938:tools/co
 mipsel-gcc950:0:mt:erosqnativeboot:AIGO EROS Q/K (Native) v1/v2 - Boot:bootloader.erosq:2977:tools/configure --target=erosqnative --type=b && make
 mipsel-gcc950:0:mt:erosqnativeboot_v3:AIGO EROS Q/K (Native) v2 - Boot:bootloader.erosq:2977:tools/configure --target=erosqnative_v3 --type=b && make
 mipsel-gcc950:0:mt:erosqnativeboot_v4:AIGO EROS Q/K (Native) v4 - Boot:bootloader.erosq:2983:tools/configure --target=erosqnative_v4 --type=b && make
+mipsel-gcc950:0:mt:hibyr1nativeboot:Hiby R1 (Native) - Boot:bootloader.r1:2983:tools/configure --target=hibyr1native --type=b && make
 ####
 # Android and other funky targets
 android-ndk10sdk19:0:mt:android480x800:Android 480x800:rockbox.apk:16321:tools/configure --target=android --type=n --lcdwidth=480 --lcdheight=800 && make apk
@@ -464,6 +466,7 @@ sdl2:0:mt:hibyr1wps:Hiby R1 - Checkwps:checkwps.hibyr1:230:tools/configure --tar
 sdl2:0:mt:hibyr3proiiwps:Hiby R3Pro II - Checkwps:checkwps.hibyr3proii:229:tools/configure --target=hibyr3proii --type=c && make
 sdl2:0:mt:hidizsap80maxwps:Hidizds AP80 MAX - Checkwps:checkwps.hidizsap80max:236:tools/configure --target=hidizsap80max --type=c && make
 sdl2:0:mt:fiiom3kwps:FiiO M3K - Checkwps:checkwps.fiiom3k:236:tools/configure --target=fiiom3k --type=c && make
+sdl2:0:mt:hibyr1nativewps:Hiby R1 (Native) - Checkwps:checkwps.hibyr1native:230:tools/configure --target=hibyr1native --type=c && make
 sdl2:0:mt:shanlingq1wps:Shanling Q1 - Checkwps:checkwps.shanlingq1:240:tools/configure --target=shanlingq1 --type=c && make
 sdl2,funkey-sdk:0:mt:rgnanowps:Anbernic RG Nano - Checkwps:checkwps.rgnano:233:tools/configure --target=rgnano --type=c && make
 ###
