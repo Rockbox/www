@@ -105,6 +105,8 @@ foreach my $line (@lines) {
             $nicks{$2} = 1;
         } elsif ($line =~ /^\d\d:\d\d:\d\d\s+<([^>]+)>\s+/) {
             $nicks{$1} = 1;
+        } elsif ($line =~ /^\d\d\:\d\d\:\d\d\s+\*\s+([^>\s]+)/) {
+            $nicks{$1} = 1;
         }
 
         if ($line =~ m/^(\d\d):/) {
@@ -236,11 +238,12 @@ sub parsechunk {
             next unless ($line =~ /^(\d\d)\.(\d\d)\.(\d\d) ([^ ]+) +(.*)/);
             ($hour, $minute, $second, $action, $string) = ($1, $2, $3, $4, $5);
         } else {
-            if ($line =~ /^(\d\d):(\d\d):(\d\d)\s+(<--|---|-->)\s+(.*)/) {
+            if ($line =~ /^(\d\d):(\d\d):(\d\d)\s+(<--|---|-->|\*)\s+(.*)/) {
                 ($hour, $minute, $second, $string) = ($1, $2, $3, $5);
                 if ($4 eq '<--') { $action = 'Quit'; }
                 elsif ($4 eq '-->') { $action = 'Join'; }
                 elsif ($4 eq '---') { $action = 'Channel'; }
+                elsif ($4 eq '*') { $action = '*'; }
             } elsif ($line =~ /^(\d\d):(\d\d):(\d\d)\s+(<[^>]+>\s+.*)/) {
                 ($hour, $minute, $second, $action, $string) = ($1, $2, $3, '#', $4);
             }
@@ -259,17 +262,22 @@ sub parsechunk {
 # but ropes in other stuff too...
 #        $string =~ s|[-]||g;
 
-        if ($action eq "#") {
+        if ($action eq "#" || $action eq "*") {
             my ($nick, $message);
             if ($string =~ /^<([^>]+)>\s+(.*)/) {
                 ($nick, $message) = ($1, $2);
-            }
-            elsif ($string =~ /^\* (.*)/) {
+            } elsif ($action eq "*" && $string =~ /^([^>\s]+)\s+(.*)/) {
+                ($nick, $message) = ('*', $string);
+            } elsif ($string =~ /^\* (.*)/) {
+                $action = '*';
                 $nick = "*";
                 $message = $1;
             }
 
             $message = escapeHTML($message);
+            if ($action eq "*") {
+                $message = "<i>$message</i>";
+            }
 
             # tag URLs
             if ($message =~ m!((http|https|ftp)://[^\)\s,]+)!) {
