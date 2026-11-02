@@ -484,8 +484,13 @@ sub upload
         $limit = "--limit-rate ${ulspeed}k";
     }
 
-    tprint "curl $limit -A '$agent' -s -F upfile=\@$file $upload_url\n";
-    `curl $limit -A '$agent' -s -F upfile=\@$file $upload_url`;
+    my $curlopts = "-s";
+    if ($ENV{CURLOPTS}) {
+        $curlopts = $ENV{CURLOPTS};
+    }
+
+    tprint "curl $limit -A '$agent' $curlopts -F upfile=\@$file $upload_url\n";
+    `curl $limit -A '$agent' $curlopts -F upfile=\@$file $upload_url`;
 }
 
 sub _HELLO
