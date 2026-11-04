@@ -19,6 +19,7 @@ my %skip_tags = ('change-id' => 1,
                  'reviewed-by' => 1,
                  'claude-session' => 1,
                  'acked-by' => 1,
+                 'builds on change-id' => 1,
                  'signed-off-by' => 1);
 
 my $urlroot="//git.rockbox.org/cgit/rockbox.git";
@@ -177,9 +178,9 @@ while(<STDIN>) {
                         $gerrit_id = $1;
                     }
                 }
-            } elsif (/Generated with/i) {
+            } elsif (/^\s*Generated with/i) {
                 $skip = 1;
-            } elsif (/Developed with/i) {
+            } elsif (/^\s*Developed with/i) {
                 $skip = 1;
             }
             $_ =~ s/<.+@.+>//g; # remove email addresses
