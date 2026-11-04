@@ -179,6 +179,8 @@ while(<STDIN>) {
                 }
             } elsif (/Generated with/i) {
                 $skip = 1;
+            } elsif (/Developed with/i) {
+                $skip = 1;
             }
             $_ =~ s/<.+@.+>//g; # remove email addresses
             push @b, "$_\n" unless ($skip);
