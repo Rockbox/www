@@ -27,6 +27,7 @@ my $server = "irc.libera.chat";
 my $logchan = "#rockbox";
 my $buildcreds = "logger chanbot:password rockbox";
 my $ircpass = $ENV{'IRCPASS'};
+my $gitdir = $ENV{'GITDIR'};
 
 # for debugging
 #$nickname = "rb-chanbotdev";
@@ -94,23 +95,13 @@ sub get_gitrev {
     my $from = "";
     my $url = "";
 
-
-    my $http = HTTP::Tiny->new->get("https://git.rockbox.org/cgit/rockbox.git/patch/?id=$id");
-    if ($http->{success} && length($http->{content})) {
-        my $data = $http->{content};
-        utf8::decode($data);
-        if ($data =~ /From: (.*) <.*>/) {
-	    $from = $1;
-        }
-	if ($data =~ /Subject: (.*)/) {
-	    $title = $1;
-        }
-	$url = "https://git.rockbox.org/cgit/rockbox.git/commit/?id=$id";
-    } else {
-	$url = "";
-	$title = "";
-	$from = "";
+    my $summary = `git -C "$gitdir"  log -1 --format="%h <%aN> %s" $id`;
+    if ($summary =~ /(\S+) <(.*)> (.*)/) {
+       $title = $3;
+       $from = $2;
+       $url = "https://git.rockbox.org/cgit/rockbox.git/commit/?id=$1";
     }
+
     push (@rvals, $url, $title, $from);
     return @rvals;
 }
