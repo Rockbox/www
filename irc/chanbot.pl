@@ -28,6 +28,7 @@ my $logchan = "#rockbox";
 my $buildcreds = "logger chanbot:password rockbox";
 my $ircpass = $ENV{'IRCPASS'};
 my $gitdir = $ENV{'GITDIR'};
+my $gerrit = $ENV{'GERRIT'};
 
 # for debugging
 #$nickname = "rb-chanbotdev";
@@ -114,21 +115,23 @@ sub irc_public {
 
     if ($what =~ /(^|[\s(])g#?(\d+)/i ) {
 	my $id = $2;
-	my $queryurl = "https://gerrit.rockbox.org/r/changes/$id/detail";
-	my $http = HTTP::Tiny->new->get($queryurl);
-	if ($http->{success}) {
-	    my $trimmed = substr($http->{content}, 4);
-            utf8::decode($trimmed);
-	    my $obj = parse_json($trimmed);
 
-	    my $title = $$obj{'subject'};
-	    my $project = $$obj{'project'};
-	    my $author = $$obj{'owner'}{'name'};
-	    my $url = "https://gerrit.rockbox.org/r/c/$project/+/$id";
+        my $query = `ssh $gerrit gerrit query --format JSON $id`;
 
-	    my $msg = "Gerrit review #$id at $url : \x0311$title\x03 by \x0311$author";
-	    $irc->yield( privmsg => $channel => $msg );
-	}
+        if ($query =~ /^(.*)$/m) {
+            $query = $1;
+        }
+
+        my $obj = parse_json($query);
+        if (defined($$obj{'subject'})) {
+            my $title = $$obj{'subject'};
+            my $project = $$obj{'project'};
+            my $author = $$obj{'owner'}{'name'};
+            my $url = "https://gerrit.rockbox.org/r/c/$project/+/$id";
+
+            my $msg = "Gerrit review #$id at $url : \x0311$title\x03 by \x0311$author";
+            $irc->yield( privmsg => $channel => $msg );
+        }
     } elsif ($what =~ /(^|[\s(])FS#?(\d+)/i ) {
 	my $id = $2;
 	my $url = "https://www.rockbox.org/tracker/task/$id";
