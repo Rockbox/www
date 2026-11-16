@@ -137,7 +137,7 @@ sub irc_public {
 	my $id = $2;
 	my $url = "https://www.rockbox.org/tracker/task/$id";
 
-        my $output = `$fsdir/lookup.pl $fsdir $id`;
+        my $output = `$fsdir/lookup.pl $id`;
         chomp($output);
         if ($output =~ /\d+: (.*)/) {
 	    my $msg = "$url : \x0311$1";
