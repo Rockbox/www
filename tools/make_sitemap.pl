@@ -8,40 +8,40 @@ my $baseurl = "https://www.rockbox.org";
 my $htmldir = "/home/rockbox/www";
 
 ### flyspray
-my $dbpath = 'DBI:mysql:rbflyspray';
-my $dbuser = 'flyspray-ro';
-my $dbpwd = 'fsro';
-
-my $db = DBI->connect($dbpath, $dbuser, $dbpwd) or
-    die "Failed opening db: $?";
-#my $sth = $db->prepare("SELECT task_id,last_edited_time FROM flyspray_tasks WHERE is_closed=0 AND (task_type=2 OR task_type=4)");
-my $sth = $db->prepare("SELECT flyspray_tasks.task_id, flyspray_tasks.last_edited_time, flyspray_comments.last_edited_time, flyspray_tasks.is_closed FROM flyspray_tasks, flyspray_comments WHERE (task_type=2 OR task_type=4) AND flyspray_comments.task_id = flyspray_tasks.task_id");
-my $rows = $sth->execute();
-my $flyspray;
-my %tasktime;
-my %closed;
-while (1) {
-    my @r = $sth->fetchrow_array;
-    last if (not @r);
-    my $t;
-    my $id = $r[0];
-    if ($r[1] > $r[2]) {
-        $t = $r[1];
-    }
-    else {
-        $t = $r[2];
-    }
-
-    if (not defined $tasktime{$id} or ($t > $tasktime{$id})) {
-        $tasktime{$id} = $t;
-    }
-    $closed{$id} = $r[3];
-}
-
-for my $id (keys %tasktime) {
-    my $timestring = strftime("%FT%T+01:00", localtime($tasktime{$id}));
-    $flyspray .= sprintf "<url href='https://www.rockbox.org/tracker/task/$id' lastmod='$timestring' priority='0.%d' />\n", $closed{$id} ? 1 : 5;
-}
+#my $dbpath = 'DBI:mysql:rbflyspray';
+#my $dbuser = 'flyspray-ro';
+#my $dbpwd = 'fsro';
+#
+#my $db = DBI->connect($dbpath, $dbuser, $dbpwd) or
+#    die "Failed opening db: $?";
+##my $sth = $db->prepare("SELECT task_id,last_edited_time FROM flyspray_tasks WHERE is_closed=0 AND (task_type=2 OR task_type=4)");
+#my $sth = $db->prepare("SELECT flyspray_tasks.task_id, flyspray_tasks.last_edited_time, flyspray_comments.last_edited_time, flyspray_tasks.is_closed FROM flyspray_tasks, flyspray_comments WHERE (task_type=2 OR task_type=4) AND flyspray_comments.task_id = flyspray_tasks.task_id");
+#my $rows = $sth->execute();
+my $flyspray = "";
+#my %tasktime;
+#my %closed;
+#while (1) {
+#    my @r = $sth->fetchrow_array;
+#    last if (not @r);
+#    my $t;
+#    my $id = $r[0];
+#    if ($r[1] > $r[2]) {
+#        $t = $r[1];
+#    }
+#    else {
+#        $t = $r[2];
+#    }
+#
+#    if (not defined $tasktime{$id} or ($t > $tasktime{$id})) {
+#        $tasktime{$id} = $t;
+#    }
+#    $closed{$id} = $r[3];
+#}
+#
+#for my $id (keys %tasktime) {
+#    my $timestring = strftime("%FT%T+01:00", localtime($tasktime{$id}));
+#    $flyspray .= sprintf "<url href='https://www.rockbox.org/tracker/task/$id' lastmod='$timestring' priority='0.%d' />\n", $closed{$id} ? 1 : 5;
+#}
 
 ### html
 my $site;
