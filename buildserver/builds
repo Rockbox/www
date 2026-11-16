@@ -236,8 +236,6 @@ mipsel-gcc950:0:mt:xduoox3boot:Xduoo X3 - Boot:bootloader-x3.bin:2366:tools/conf
 mipsel-gcc950:0:mt:fiiom3kboot:FiiO M3K - Boot:bootloader.m3k:2924:tools/configure --target=fiiom3k --type=b && make
 mipsel-gcc950:0:mt:shanlingq1boot:Shanling Q1 - Boot:bootloader.q1:2938:tools/configure --target=shanlingq1 --type=b && make
 mipsel-gcc950:0:mt:erosqnativeboot:AIGO EROS Q/K (Native) v1/v2 - Boot:bootloader.erosq:2977:tools/configure --target=erosqnative --type=b && make
-mipsel-gcc950:0:mt:erosqnativeboot_v3:AIGO EROS Q/K (Native) v2 - Boot:bootloader.erosq:2977:tools/configure --target=erosqnative_v3 --type=b && make
-mipsel-gcc950:0:mt:erosqnativeboot_v4:AIGO EROS Q/K (Native) v4 - Boot:bootloader.erosq:2983:tools/configure --target=erosqnative_v4 --type=b && make
 mipsel-gcc950:0:mt:hibyr1nativeboot:Hiby R1 (Native) - Boot:bootloader.r1:2983:tools/configure --target=hibyr1native --type=b && make
 ####
 # Android and other funky targets
