@@ -29,6 +29,7 @@ my $buildcreds = "logger chanbot:password rockbox";
 my $ircpass = $ENV{'IRCPASS'};
 my $gitdir = $ENV{'GITDIR'};
 my $gerrit = $ENV{'GERRIT'};
+my $fsdir = $ENV{'FSDIR'};
 
 # for debugging
 #$nickname = "rb-chanbotdev";
@@ -135,31 +136,12 @@ sub irc_public {
     } elsif ($what =~ /(^|[\s(])FS#?(\d+)/i ) {
 	my $id = $2;
 	my $url = "https://www.rockbox.org/tracker/task/$id";
-	my $title;
 
-	my $http = HTTP::Tiny->new->get($url);
-	if ($http->{success}) {
-	    my $p = HTML::Parser->new(api_version => 3);
-	    $p->handler(start => sub {
-		return if shift ne "title";
-		my $self = shift;
-		$self->handler(text => sub { $title = shift; }, "dtext");
-		$self->handler(
-		    end => sub {
-			shift->eof if shift eq "title";
-		    },
-		    "tagname,self"
-		    );
-			}, "tagname,self");
-            my $data = $http->{content};
-            utf8::decode($data);
-	    $p->parse($data);
-	    if ($title) {
-		$title =~ s/FS#\d+ : (.*)/$1/;
-		my $msg = "$url : \x0311$title";
-		$title = "";
-		$irc->yield( privmsg => $channel => $msg );
-	    }
+        my $output = `$fsdir/lookup.pl $fsdir $id`;
+        chomp($output);
+        if ($output =~ /\d+: (.*)/) {
+	    my $msg = "$url : \x0311$1";
+	    $irc->yield( privmsg => $channel => $msg );
 	}
     } elsif ($what =~ /(^|[\s(])r#?([A-F0-9]+)/i ) {
 	my $id = $2;
@@ -169,7 +151,6 @@ sub irc_public {
 	    $irc->yield( privmsg => $channel => $msg );
 	}
     }
-    # TODO:  log everything?  ie replace dancer etc?
 
     return;
 }
