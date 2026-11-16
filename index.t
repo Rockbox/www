@@ -111,7 +111,7 @@ and <a href="/wiki/SonyNWA20">NW-A20</a> series.</li>
 <caption>Recent news</caption>
 <tr class='tabletop'><th>when</th><th>what</th></tr>
 
-<tr><td nowrap>2026-11-15</td><td>Our gerrit and bug tracker instances are now login-only due to repeated DoSing by bots</td></tr>
+<tr><td nowrap>2026-11-15</td><td>Our gerrit, cgit, and bug tracker instances are now login-only due to repeated DoSing by bots.</td></tr>
 <tr><td nowrap>2026-10-16</td><td>An experiental port to the Sony PSP is now available!</td></tr>
 <tr><td nowrap>2026-08-14</td><td>An "unstable" port to the <a href="/wiki/HidizsPort">Hidizs AP80 PRO MAX</a> is now available!</td></tr>
 <tr><td nowrap>2025-12-28</td><td>An "unstable" port to the <a href="/wiki/HibyPort">Hiby R1 and R3ProII</a> is now available!</td></tr>
