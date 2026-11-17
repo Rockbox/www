@@ -19,6 +19,8 @@ my %skip_tags = ('change-id' => 1,
                  'reviewed-by' => 1,
                  'claude-session' => 1,
                  'acked-by' => 1,
+                 'fixes' => 1,
+                 'credit' => 1,
                  'builds on change-id' => 1,
                  'signed-off-by' => 1);
 
