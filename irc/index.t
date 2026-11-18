@@ -23,9 +23,10 @@ firewall, try using <a href="https://web.libera.chat/?nick=WebGuest?#rockbox">Ki
 
 <p>We have a bot on the #rockbox channel that responds to a few simple commands:</p>
 <ul>
-<li><b>g1234 or g#1234</b>: Info about gerrit change # 1234 </li>
-<li><b>fs5678 or fs#5678</b>: Info about bug ticket # 5678 </li>
-<li><b>r1234abcdef or r#1234abcdef</b>: Info about git commit hash starting with 1234abcdef</li>
+<li><b>g1234</b> or <b>g#1234</b>: Info about gerrit change # 1234 </li>
+<li><b>fs578</b> or <b>fs#5678</b>: Info about bug ticket # 5678 </li>
+<li><b>r1234abcdef</b> or <b>r#1234abcdef</b>: Info about git commit hash starting with 1234abcdef</li>
+<li><b>t1832</b> or <b>t#1832</b>: Info about theme # 1832</li>
 </ul>
 <p>All of the above commands are case insensitive</p>
 

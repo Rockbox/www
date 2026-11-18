@@ -135,7 +135,7 @@ sub irc_public {
     my $channel = $where->[0];
     my $irc = $sender->get_heap();
 
-    if ($what =~ /(^|[\s(])g#?(\d+)/i ) {
+    if ($what =~ /(^|[\s(])g#?(\d+)($|[\s)])/i ) {
 	my $id = $2;
 
         my $query = `ssh $gerrit gerrit query --format JSON $id`;
@@ -154,7 +154,7 @@ sub irc_public {
             my $msg = "Gerrit review #$id at $url : \x0311$title\x03 by \x0311$author";
             $irc->yield( privmsg => $channel => $msg );
         }
-    } elsif ($what =~ /(^|[\s(])FS#?(\d+)/i ) {
+    } elsif ($what =~ /(^|[\s(])FS#?(\d+)($|[\s)])/i ) {
 	my $id = $2;
 	my $url = "https://www.rockbox.org/tracker/task/$id";
 
@@ -164,14 +164,14 @@ sub irc_public {
 	    my $msg = "$url : \x0311$1";
 	    $irc->yield( privmsg => $channel => $msg );
 	}
-    } elsif ($what =~ /(^|[\s(])r#?([A-F0-9]+)/i ) {
+    } elsif ($what =~ /(^|[\s(])r#?([A-F0-9]+)($|[\s)])/i ) {
 	my $id = $2;
 	my ($url, $title, $from) = get_gitrev($id);
 	if ($title) {
 	    my $msg = "$url : \x0311$title\x03 by \x0311$from";
 	    $irc->yield( privmsg => $channel => $msg );
 	}
-    } elsif ($what =~ /(^|[\s(])t#?(\d+)/i ) {
+    } elsif ($what =~ /(^|[\s(])t#?(\d+)($|[\s)])/i ) {
 	my $id = $2;
 	my ($url, $title, $from) = get_themeinfo($id);
 	if ($title) {
