@@ -98,7 +98,8 @@ m68k-gcc950:0:mt:mpiohd300boot:MPIO HD300 - Boot:bootloader.mpio:1670:tools/conf
 # ARM-based native targets
 arm-eabi-gcc950:1:mt:ipodnano1g:iPod Nano 1G:rockbox.zip:111404:tools/configure --target=ipodnano1g --type=n && make zip
 arm-eabi-gcc950:1:mt:ipodnano2g:iPod Nano 2G:rockbox.zip:112114:tools/configure --target=ipodnano2g --type=n && make zip
-arm-eabi-gcc950:1:mt:ipodnano3g:iPod Nano 3G:rockbox.zip:111959:tools/configure --target=ipodnano3g --type=n && make zip
+arm-eabi-gcc950:1:mt:ipodnano3g:iPod Nano 3G:rockbox.zip:114835:tools/configure --target=ipodnano3g --type=n && make zip
+arm-eabi-gcc950:1:mt:ipodnano4g:iPod Nano 4G:rockbox.zip:115981:tools/configure --target=ipodnano4g --type=n && make zip
 arm-eabi-gcc950:1:mt:ipodcolor:iPod Color:rockbox.zip:111660:tools/configure --target=ipodcolor --type=n && make zip
 arm-eabi-gcc950:1:mt:ipod4g:iPod 4G Grayscale:rockbox.zip:60325:tools/configure --target=ipod4g --type=n && make zip
 arm-eabi-gcc950:1:mt:ipodvideo:iPod Video:rockbox.zip:112387:tools/configure --target=ipodvideo --type=n && make zip
@@ -161,7 +162,8 @@ arm-eabi-gcc950:1:mt:echor1:Echo R1:rockbox.zip:118923:tools/configure --target=
 # ARM-based native bootloaders
 arm-eabi-gcc950:0:mt:ipodnano1gboot:iPod Nano 1G - Boot:bootloader-ipodnano1g.ipod:2209:tools/configure --target=ipodnano1g --type=b && make
 arm-eabi-gcc950:0:mt:ipodnano2gboot:iPod Nano 2G - Boot:bootloader-ipodnano2g.ipod:2200:tools/configure --target=ipodnano2g --type=b && make
-arm-eabi-gcc950:0:mt:ipodnano3gboot:iPod Nano 3G - Boot:bootloader-ipodnano3g.ipod:2776:tools/configure --target=ipodnano3g --type=b && make
+arm-eabi-gcc950:0:mt:ipodnano3gboot:iPod Nano 3G - Boot:bootloader-ipodnano3g.ipod:2815:tools/configure --target=ipodnano3g --type=b && make
+arm-eabi-gcc950:0:mt:ipodnano4gboot:iPod Nano 4G - Boot:bootloader-ipodnano4g.ipod:3229:tools/configure --target=ipodnano4g --type=b && make
 arm-eabi-gcc950:0:mt:ipodcolorboot:iPod Color - Boot:bootloader-ipodcolor.ipod:2221:tools/configure --target=ipodcolor --type=b && make
 arm-eabi-gcc950:0:mt:ipod4gboot:iPod 4G Grayscale - Boot:bootloader-ipod4g.ipod:2189:tools/configure --target=ipod4g --type=b && make
 arm-eabi-gcc950:0:mt:ipod6gboot:iPod Classic - Boot:bootloader-ipod6g.ipod:2692:tools/configure --target=ipod6g --type=b && make
@@ -389,6 +391,8 @@ sdl2:0:mt:iriverh120wps:iriver H120 - Checkwps:checkwps.iriverh120:229:tools/con
 sdl2:0:mt:iriverh300wps:iriver H300 - Checkwps:checkwps.iriverh300:239:tools/configure --target=iriverh300 --type=c && make
 sdl2:0:mt:ipodnano1gwps:iPod Nano - Checkwps:checkwps.ipodnano1g:229:tools/configure --target=ipodnano1g --type=c && make
 sdl2:0:mt:ipodnano2gwps:iPod Nano 2G - Checkwps:checkwps.ipodnano2g:236:tools/configure --target=ipodnano2g --type=c && make
+sdl2:0:mt:ipodnano3gwps:iPod Nano 3G - Checkwps:checkwps.ipodnano3g:252:tools/configure --target=ipodnano3g --type=c && make
+sdl2:0:mt:ipodnano4gwps:iPod Nano 4G - Checkwps:checkwps.ipodnano4g:252:tools/configure --target=ipodnano4g --type=c && make
 sdl2:0:mt:ipodcolorwps:iPod Color - Checkwps:checkwps.ipodcolor:234:tools/configure --target=ipodcolor --type=c && make
 sdl2:0:mt:iaudiox5wps:iAudio X5 - Checkwps:checkwps.iaudiox5:234:tools/configure --target=iaudiox5 --type=c && make
 sdl2:0:mt:iaudiom5wps:iAudio M5 - Checkwps:checkwps.iaudiom5:234:tools/configure --target=iaudiom5 --type=c && make
