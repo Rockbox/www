@@ -30,6 +30,7 @@ my $ircpass = $ENV{'IRCPASS'};
 my $gitdir = $ENV{'GITDIR'};
 my $gerrit = $ENV{'GERRIT'};
 my $fsdir = $ENV{'FSDIR'};
+my $themedir = $ENV{'THEMEDIR'};
 
 # for debugging
 #$nickname = "rb-chanbotdev";
@@ -108,6 +109,26 @@ sub get_gitrev {
     return @rvals;
 }
 
+sub get_themeinfo {
+    my ($id) = @_;
+
+    my @rvals;
+
+    my $title = "";
+    my $from = "";
+    my $url = "";
+
+    my $summary = `$themedir/getinfo.php $id`;
+    if ($summary =~ /(\d+):(.*):(.*)/) {
+       $title = $2;
+       $from = $3;
+       $url = "https://themes.rockbox.org/index.php?themeid=$1";
+    }
+
+    push (@rvals, $url, $title, $from);
+    return @rvals;
+}
+
 sub irc_public {
     my ($sender, $who, $where, $what) = @_[SENDER, ARG0 .. ARG2];
     my $nick = ( split /!/, $who )[0];
@@ -146,6 +167,13 @@ sub irc_public {
     } elsif ($what =~ /(^|[\s(])r#?([A-F0-9]+)/i ) {
 	my $id = $2;
 	my ($url, $title, $from) = get_gitrev($id);
+	if ($title) {
+	    my $msg = "$url : \x0311$title\x03 by \x0311$from";
+	    $irc->yield( privmsg => $channel => $msg );
+	}
+    } elsif ($what =~ /(^|[\s(])t#?(\d+)/i ) {
+	my $id = $2;
+	my ($url, $title, $from) = get_themeinfo($id);
 	if ($title) {
 	    my $msg = "$url : \x0311$title\x03 by \x0311$from";
 	    $irc->yield( privmsg => $channel => $msg );
