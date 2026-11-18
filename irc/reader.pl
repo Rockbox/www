@@ -288,14 +288,17 @@ sub parsechunk {
             }
 
             # tag flyspray
-            $message =~ s!FS *\#(\d+)!<a target="_blank" href=\"https://www.rockbox.org/tracker/task/$1\">FS \#$1</a>!g;
-            $message =~ s!fs*\#(\d+)!<a target="_blank" href=\"https://www.rockbox.org/tracker/task/$1\">fs\#$1</a>!g;
+            $message =~ s!FS\#?(\d+)!<a target="_blank" href=\"https://www.rockbox.org/tracker/task/$1\">FS\#$1</a>!ig;
 
             # tag git revisions (WIP)
-            $message =~ s!Revision (\w+)(\b)!<a target="_blank" href=\"https://git.rockbox.org/cgit/rockbox.git/commit/?id=$1\">Revision $1</a>$3!g;
+            $message =~ s!Revision ([0-9a-fA-F]+)(\b)!<a target="_blank" href=\"https://git.rockbox.org/cgit/rockbox.git/commit/?id=$1\">Revision $1</a>$3!g;
+#            $message =~ s!\s*r\#?([0-9a-fA-F]+)(\b)!<a target="_blank" href=\"https://git.rockbox.org/cgit/rockbox.git/commit/?id=$1\">Revision $1</a>$3!g;
 
             # tag gerrit ids
-            $message =~ s!\s*g\#(\d+)! <a target="_blank" href=\"https://gerrit.rockbox.org/r/c/rockbox/+/$1\">g\#$1</a>!g;
+            $message =~ s!\s*g\#?(\d+)! <a target="_blank" href=\"https://gerrit.rockbox.org/r/c/rockbox/+/$1\">g\#$1</a>!g;
+
+            # tag theme links
+            $message =~ s!\s*t\#?(\d+)! <a target="_blank" href=\"https://themes.rockbox.org/index.php?themeid=$1\">t\#$1</a>!g;
 
             # escape text that looks like the multipart delimiter
             $message =~ s!--!&minus;&minus;!g;
